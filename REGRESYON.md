@@ -23,7 +23,7 @@ Sonuç etiketleri:
 | Kontrol | Durum | Not |
 |---|---|---|
 | Proje klasörü doğru yerde açılıyor | OK | `C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI` |
-| Git durumu kontrol edildi | OK | `codex/v0.2-fatura-turleri` branch'i üzerinde çalışılıyor |
+| Git durumu kontrol edildi | OK | `codex/v0.3-abonelik-yonetimi` branch'i üzerinde çalışılıyor |
 | Markdown dokümantasyonu UTF-8 olarak okunuyor | OK | Plan dosyası UTF-8 korunarak kopyalandı |
 | Yeni dosya adları yol sorunu azaltmak için ASCII tutuluyor | OK | Kök klasör Türkçe, proje içi doküman adları ASCII |
 | `README.md` yeni chat başlangıcını açıklıyor | OK | Oluşturuldu |
@@ -62,11 +62,12 @@ Sonuç etiketleri:
 
 | Kontrol | Durum | Not |
 |---|---|---|
-| Abonelik eklenebiliyor | TODO | v0.3 sonunda |
-| Abonelik düzenlenebiliyor | TODO | v0.3 sonunda |
-| Abonelik aktif/pasif yapılabiliyor | TODO | v0.3 sonunda |
-| Abonelik fatura türüne bağlanıyor | TODO | v0.3 sonunda |
-| Pasif abonelik geçmiş kayıt mantığını bozmayacak şekilde saklanıyor | TODO | v0.3 sonunda |
+| Abonelik eklenebiliyor | OK | `--self-test` repository ekleme akışını doğruladı |
+| Abonelik düzenlenebiliyor | OK | `--self-test` repository güncelleme akışını doğruladı |
+| Abonelik aktif/pasif yapılabiliyor | OK | `--self-test` pasife alma akışını doğruladı |
+| Abonelik fatura türüne bağlanıyor | OK | `--self-test` `invoice_type_id` bağını doğruladı |
+| Pasif abonelik geçmiş kayıt mantığını bozmayacak şekilde saklanıyor | OK | UI ve repository fiziksel silme sunmuyor |
+| Abonelik listesi filtrelenebiliyor | OK | Tür, durum ve metin araması UI içinde destekleniyor |
 
 ## v0.4 - Fatura Kayıt Altyapısı
 
@@ -101,3 +102,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-05-30 | v0.0 | OK | Plan proje içine alındı, roadmap ve regresyon dosyaları oluşturuldu |
 | 2026-05-30 | v0.1 | OK | WPF iskeleti, SQLite başlangıcı, klasör altyapısı ve boş dashboard doğrulandı |
 | 2026-05-30 | v0.2 | OK | Fatura türleri migration, seed, listeleme, ekleme, düzenleme ve aktif/pasif akışı doğrulandı |
+| 2026-05-30 | v0.3 | OK | Abonelik migration, listeleme, filtreleme, ekleme, düzenleme ve aktif/pasif akışı doğrulandı |

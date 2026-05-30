@@ -16,8 +16,8 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | v0.0 | Tamamlandı | Planın projeye alınması, roadmap, regresyon ve devam dokümantasyonu | Bu dosyalar oluşturuldu ve proje içinde yer aldı |
 | v0.1 | Tamamlandı | WPF proje iskeleti, SQLite bağlantısı, ana klasör yapısı, başlangıç migration sınıfı, boş dashboard | Uygulama açılır, klasörler hazırlanır, veritabanı dosyası oluşturulur |
 | v0.2 | Tamamlandı | Fatura türleri yönetimi | Tür ekleme, düzenleme, aktif/pasif yapma çalışır |
-| v0.3 | Sıradaki | Abonelik yönetimi | Abonelik ekleme, düzenleme, aktif/pasif yapma ve filtreleme çalışır |
-| v0.4 | Beklemede | Fatura kayıt altyapısı | PDF olmadan temel fatura kaydı yapılabilir |
+| v0.3 | Tamamlandı | Abonelik yönetimi | Abonelik ekleme, düzenleme, aktif/pasif yapma ve filtreleme çalışır |
+| v0.4 | Sıradaki | Fatura kayıt altyapısı | PDF olmadan temel fatura kaydı yapılabilir |
 | v0.5 | Beklemede | Fatura PDF evrakı ekleme | PDF uygulama klasörüne kopyalanır, açılır, eksikliği raporlanabilir |
 | v0.6 | Beklemede | Fatura listesi ve filtreleme | Yıl, ay, tür, abonelik, ödeme durumu, PDF durumu ve fatura no ile filtreleme çalışır |
 | v0.7 | Beklemede | Ödeme kayıt altyapısı | Faturaya ödeme kaydı eklenebilir ve ödeme durumu gösterilir |
@@ -136,6 +136,50 @@ Bu fazda yapılmayacaklar:
 - Fatura kaydı
 - Ödeme kaydı
 - PDF evrak ekleme
+- Rapor ekranları
+- Excel/PDF dışa aktarım
+- Yedekleme
+
+## v0.3 Sonuç Notu
+
+Tamamlananlar:
+
+- `subscriptions` SQLite tablosu için `0003` migration eklendi.
+- Abonelik modeli ve repository katmanı eklendi.
+- Abonelikler fatura türlerine foreign key ile bağlandı.
+- Abonelik listeleme ekranı eklendi.
+- Yeni abonelik ekleme eklendi.
+- Mevcut abonelik düzenleme eklendi.
+- Aktif/pasif yapma akışı eklendi.
+- Tür, durum ve metin aramasıyla filtreleme altyapısı eklendi.
+- Dashboard aktif abonelik sayısını göstermeye başladı.
+- `--self-test` abonelik ekleme, düzenleme, fatura türüne bağlama ve pasife alma senaryolarını doğruluyor.
+
+Doğrulama:
+
+- `dotnet build FaturaTakip.sln`
+- `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check`
+- `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+- Uygulama kısa süreli başlatma testi
+
+## v0.4 Ayrıntılı Kapsam
+
+Yalnızca şu işler yapılacak:
+
+- Faturalar için veri modeli ve SQLite tablo migration'ı eklenecek.
+- Fatura ekleme yapılacak.
+- Fatura düzenleme yapılacak.
+- Fatura aboneliğe bağlanacak.
+- Dönem yılı/ayı, fatura tarihi, son ödeme tarihi, fatura no, tutar, kullanım miktarı, kullanım birimi ve açıklama alanları desteklenecek.
+- Aynı abonelikte aynı fatura numarası tekrarına izin verilmeyecek.
+- Negatif tutar ve negatif kullanım reddedilecek.
+- Son ödeme tarihi fatura tarihinden önceyse uyarı verilecek.
+
+Bu fazda yapılmayacaklar:
+
+- Fatura PDF evrak ekleme
+- Ödeme kaydı
+- Ödeme evrakı
 - Rapor ekranları
 - Excel/PDF dışa aktarım
 - Yedekleme

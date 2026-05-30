@@ -17,11 +17,12 @@ Bu dosya, geliştirme sırasında alınan kalıcı kararları kaydeder. Kararlar
 | 2026-05-30 | Fatura türleri fiziksel silinmeyecek, aktif/pasif yapılacak | Geçmiş kayıtlarla ilişki kurulacağı için referans bütünlüğü korunmalı |
 | 2026-05-30 | Fatura türü adları büyük/küçük harfe duyarsız benzersiz olacak | Aynı türün farklı yazımlarla tekrarlanmasını önler |
 | 2026-05-30 | Veri katmanı için şimdilik doğrudan repository sınıfları kullanılacak | Erken fazlarda ORM eklemeden davranışı sade tutar |
+| 2026-05-30 | Abonelikler fiziksel silinmeyecek, aktif/pasif yapılacak | Gelecekte faturalar aboneliklere bağlanacağı için geçmiş ilişki korunmalı |
+| 2026-05-30 | Abonelikler zorunlu olarak fatura türüne bağlanacak | Ana veri ilişkisi `Fatura Türü -> Abonelik -> Fatura` şeklinde korunmalı |
 
 ## Açık Kararlar
 
 Bu başlıklar ilk uygulama fazlarında netleştirilecek:
 
-- WPF proje adı ve namespace yapısı
 - Dosya hash algoritması
 - UI tema ve bileşen düzeni

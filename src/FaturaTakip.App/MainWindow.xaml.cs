@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
 using FaturaTakip.App.Data.InvoiceTypes;
+using FaturaTakip.App.Data.Subscriptions;
 using FaturaTakip.App.Infrastructure;
 
 namespace FaturaTakip.App;
@@ -12,6 +13,7 @@ namespace FaturaTakip.App;
 public partial class MainWindow : Window
 {
     private readonly InvoiceTypeRepository _invoiceTypeRepository;
+    private readonly SubscriptionRepository _subscriptionRepository;
     private IReadOnlyList<InvoiceType> _invoiceTypes = Array.Empty<InvoiceType>();
     private InvoiceType? _selectedInvoiceType;
 
@@ -20,8 +22,11 @@ public partial class MainWindow : Window
         InitializeComponent();
 
         _invoiceTypeRepository = new InvoiceTypeRepository(startupStatus.DatabasePath);
+        _subscriptionRepository = new SubscriptionRepository(startupStatus.DatabasePath);
+        SubscriptionsPanel.Initialize(startupStatus.DatabasePath);
         ApplyStartupStatus(startupStatus);
         RefreshInvoiceTypes();
+        RefreshDashboardSubscriptionCounts();
         ShowDashboard();
     }
 
@@ -49,14 +54,23 @@ public partial class MainWindow : Window
         ShowInvoiceTypes();
     }
 
+    private void SubscriptionsNavButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowSubscriptions();
+    }
+
     private void ShowDashboard()
     {
         DashboardPanel.Visibility = Visibility.Visible;
         InvoiceTypesPanel.Visibility = Visibility.Collapsed;
+        SubscriptionsPanel.Visibility = Visibility.Collapsed;
         DashboardNavButton.Foreground = Brushes.White;
         DashboardNavButton.FontWeight = FontWeights.SemiBold;
         InvoiceTypesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         InvoiceTypesNavButton.FontWeight = FontWeights.Normal;
+        SubscriptionsNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        SubscriptionsNavButton.FontWeight = FontWeights.Normal;
+        RefreshDashboardSubscriptionCounts();
     }
 
     private void ShowInvoiceTypes()
@@ -64,10 +78,27 @@ public partial class MainWindow : Window
         RefreshInvoiceTypes(_selectedInvoiceType?.Id);
         DashboardPanel.Visibility = Visibility.Collapsed;
         InvoiceTypesPanel.Visibility = Visibility.Visible;
+        SubscriptionsPanel.Visibility = Visibility.Collapsed;
         DashboardNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         DashboardNavButton.FontWeight = FontWeights.Normal;
         InvoiceTypesNavButton.Foreground = Brushes.White;
         InvoiceTypesNavButton.FontWeight = FontWeights.SemiBold;
+        SubscriptionsNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        SubscriptionsNavButton.FontWeight = FontWeights.Normal;
+    }
+
+    private void ShowSubscriptions()
+    {
+        SubscriptionsPanel.Refresh();
+        DashboardPanel.Visibility = Visibility.Collapsed;
+        InvoiceTypesPanel.Visibility = Visibility.Collapsed;
+        SubscriptionsPanel.Visibility = Visibility.Visible;
+        DashboardNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        DashboardNavButton.FontWeight = FontWeights.Normal;
+        InvoiceTypesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        InvoiceTypesNavButton.FontWeight = FontWeights.Normal;
+        SubscriptionsNavButton.Foreground = Brushes.White;
+        SubscriptionsNavButton.FontWeight = FontWeights.SemiBold;
     }
 
     private void RefreshInvoiceTypes(long? selectedId = null)
@@ -96,6 +127,17 @@ public partial class MainWindow : Window
 
         InvoiceTypeGrid.SelectedItem = selected;
         ApplySelectedInvoiceType(selected);
+    }
+
+    private void RefreshDashboardSubscriptionCounts()
+    {
+        var activeSubscriptionCount = _subscriptionRepository.GetAll().Count(item => item.IsActive);
+        DashboardActiveSubscriptionCountText.Text = activeSubscriptionCount.ToString(CultureInfo.InvariantCulture);
+    }
+
+    private void SubscriptionsPanel_SubscriptionsChanged(object sender, EventArgs e)
+    {
+        RefreshDashboardSubscriptionCounts();
     }
 
     private void InvoiceTypeGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)

@@ -5,12 +5,13 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 ## Güncel Kaldığımız Yer
 
 - Tarih: 2026-05-30
-- Aktif branch: `codex/v0.2-fatura-turleri`
-- Son tamamlanan faz: `v0.2 - Fatura Türleri Yönetimi`
-- Sıradaki faz: `v0.3 - Abonelik Yönetimi`
+- Aktif branch: `codex/v0.3-abonelik-yonetimi`
+- Son tamamlanan faz: `v0.3 - Abonelik Yönetimi`
+- Sıradaki faz: `v0.4 - Fatura Kayıt Altyapısı`
 - İlk dokümantasyon commit'i: `e0de4f9 docs: initialize project planning and continuity notes`
 - `v0.1` commit'i: `3b3e20a feat: initialize wpf sqlite project skeleton`
-- `v0.2` değişiklikleri henüz commitlenmedi.
+- `v0.2` commit'i: `c8ad90c feat: add invoice type management`
+- `v0.3` değişiklikleri henüz commitlenmedi.
 
 ## Bu Oturumda Yapılanlar
 
@@ -55,23 +56,36 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 33. `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
 34. `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
 35. Uygulama kısa süreli başlatma testinden geçti.
+36. `v0.2` commit'i master içine fast-forward merge edildi.
+37. `codex/v0.3-abonelik-yonetimi` branch'i açıldı.
+38. `v0.3` başlangıcında build, health-check, self-test ve kısa uygulama başlatma smoke testleri başarılı çalıştı.
+39. `subscriptions` tablosu için `0003` migration eklendi.
+40. Abonelik modeli ve repository katmanı eklendi.
+41. Abonelikler fatura türlerine foreign key ile bağlandı.
+42. Abonelik listeleme, ekleme, düzenleme, aktif/pasif yapma ve filtreleme UI akışı eklendi.
+43. Dashboard aktif abonelik sayısını göstermeye başladı.
+44. `--self-test` abonelik ekleme, düzenleme, fatura türüne bağlama ve pasife alma senaryolarını doğrulayacak şekilde genişletildi.
+45. `dotnet build FaturaTakip.sln` başarılı çalıştı.
+46. `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
+47. `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
+48. Uygulama kısa süreli başlatma testinden geçti.
 
 ## Bir Sonraki Codex Görevi
 
-Sıradaki görev yalnızca `v0.3` kapsamını uygulamak olmalı.
+Sıradaki görev yalnızca `v0.4` kapsamını uygulamak olmalı.
 
 Başlangıç talimatı:
 
 ```text
-C# WPF + SQLite tabanlı kurum fatura takip programında v0.3 fazını uygula.
+C# WPF + SQLite tabanlı kurum fatura takip programında v0.4 fazını uygula.
 
 Önce README.md, docs/00-codex-devam-kilavuzu.md, docs/03-devam-notlari.md, ROADMAP.md ve REGRESYON.md dosyalarını oku.
 
-Bu fazda yalnızca abonelik yönetimi yapılacak.
+Bu fazda yalnızca fatura kayıt altyapısı yapılacak.
 
-Abonelikler için tablo/migration, fatura türüne bağlama, listeleme, ekleme, düzenleme ve aktif/pasif yapma desteklenecek.
+Faturalar için tablo/migration, aboneliğe bağlama, listeleme, ekleme ve düzenleme desteklenecek. PDF evrak ekleme sonraki faza bırakılacak.
 
-Fatura kaydı, ödeme, PDF evrak ekleme, rapor, dışa aktarım ve yedekleme yapılmayacak.
+Ödeme, PDF evrak ekleme, rapor, dışa aktarım ve yedekleme yapılmayacak.
 
 Faz sonunda uygulamayı çalıştır veya en azından derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```

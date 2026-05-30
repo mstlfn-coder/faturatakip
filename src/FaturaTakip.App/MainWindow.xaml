@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:FaturaTakip.App.Views"
         mc:Ignorable="d"
         Title="Kurum Fatura Takip"
         Height="760"
@@ -90,9 +91,10 @@
                             Content="Fatura Türleri"
                             Style="{StaticResource NavButton}"
                             Click="InvoiceTypesNavButton_Click" />
-                    <TextBlock Text="Abonelikler"
-                               Foreground="#64748B"
-                               Margin="0,12,0,14" />
+                    <Button x:Name="SubscriptionsNavButton"
+                            Content="Abonelikler"
+                            Style="{StaticResource NavButton}"
+                            Click="SubscriptionsNavButton_Click" />
                     <TextBlock Text="Faturalar"
                                Foreground="#64748B"
                                Margin="0,0,0,14" />
@@ -104,7 +106,7 @@
                 </StackPanel>
 
                 <TextBlock Grid.Row="3"
-                           Text="v0.2"
+                           Text="v0.3"
                            Foreground="#94A3B8"
                            FontSize="13" />
             </Grid>
@@ -179,7 +181,8 @@
                         <StackPanel>
                             <TextBlock Text="Aktif Abonelik"
                                        Style="{StaticResource MutedText}" />
-                            <TextBlock Text="0"
+                            <TextBlock x:Name="DashboardActiveSubscriptionCountText"
+                                       Text="0"
                                        Margin="0,10,0,0"
                                        Foreground="#111827"
                                        FontSize="30"
@@ -502,6 +505,10 @@
                     </Border>
                 </Grid>
             </Grid>
+
+            <views:SubscriptionsView x:Name="SubscriptionsPanel"
+                                     Visibility="Collapsed"
+                                     SubscriptionsChanged="SubscriptionsPanel_SubscriptionsChanged" />
         </Grid>
     </Grid>
 </Window>

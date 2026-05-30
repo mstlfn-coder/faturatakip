@@ -1,6 +1,7 @@
 using System.IO;
 using FaturaTakip.App.Data;
 using FaturaTakip.App.Data.InvoiceTypes;
+using FaturaTakip.App.Data.Subscriptions;
 
 namespace FaturaTakip.App.Diagnostics;
 
@@ -36,6 +37,48 @@ public sealed class SelfTestRunner
             repository.SetActive(updated.Id, isActive: false);
             var passive = repository.GetAll().Single(item => item.Id == updated.Id);
             Assert(!passive.IsActive, "Fatura türü pasife alma başarısız.");
+
+            var subscriptionRepository = new SubscriptionRepository(databasePath);
+            var invoiceType = seeded.First();
+
+            var addedSubscription = subscriptionRepository.Add(new SubscriptionInput(
+                invoiceType.Id,
+                "Ana Bina Test Aboneliği",
+                "Test Kurumu",
+                "SUB-001",
+                "TES-001",
+                "SAY-001",
+                "Test Sağlayıcı",
+                "Test Mahallesi",
+                "Ana Bina",
+                invoiceType.DefaultUsageUnit,
+                IsActive: true,
+                StartDate: new DateTime(2026, 1, 1),
+                EndDate: null,
+                "Self-test abonelik kaydı"));
+            Assert(addedSubscription.Id > 0, "Abonelik ekleme başarısız.");
+            Assert(addedSubscription.InvoiceTypeId == invoiceType.Id, "Abonelik fatura türüne bağlanmadı.");
+
+            var updatedSubscription = subscriptionRepository.Update(addedSubscription.Id, new SubscriptionInput(
+                invoiceType.Id,
+                "Ana Bina Test Aboneliği Güncel",
+                "Test Kurumu",
+                "SUB-001",
+                "TES-002",
+                "SAY-001",
+                "Test Sağlayıcı",
+                "Test Mahallesi",
+                "Ana Bina",
+                invoiceType.DefaultUsageUnit,
+                IsActive: true,
+                StartDate: new DateTime(2026, 1, 1),
+                EndDate: null,
+                "Self-test abonelik güncellemesi"));
+            Assert(updatedSubscription.InstallationNo == "TES-002", "Abonelik düzenleme başarısız.");
+
+            subscriptionRepository.SetActive(updatedSubscription.Id, isActive: false);
+            var passiveSubscription = subscriptionRepository.GetAll().Single(item => item.Id == updatedSubscription.Id);
+            Assert(!passiveSubscription.IsActive, "Abonelik pasife alma başarısız.");
         }
         finally
         {
