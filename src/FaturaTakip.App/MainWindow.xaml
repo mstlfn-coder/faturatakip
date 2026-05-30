@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Kurum Fatura Takip"
-        Height="720"
-        Width="1120"
-        MinHeight="640"
-        MinWidth="980"
+        Height="760"
+        Width="1180"
+        MinHeight="700"
+        MinWidth="1040"
         Background="#F3F6F8"
         FontFamily="Segoe UI">
     <Window.Resources>
@@ -22,6 +22,37 @@
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="CornerRadius" Value="6" />
             <Setter Property="Padding" Value="18" />
+        </Style>
+        <Style x:Key="NavButton" TargetType="Button">
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Foreground" Value="#CBD5E1" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0,9" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#2563EB" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="14,9" />
+            <Setter Property="MinWidth" Value="96" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style x:Key="SecondaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#E7EEF6" />
+            <Setter Property="Foreground" Value="#334155" />
+            <Setter Property="BorderBrush" Value="#CFDAE8" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="14,8" />
+            <Setter Property="MinWidth" Value="96" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style x:Key="FieldLabel" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#334155" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="0,0,0,6" />
         </Style>
     </Window.Resources>
 
@@ -51,240 +82,426 @@
                            FontSize="14" />
 
                 <StackPanel Grid.Row="2">
-                    <TextBlock Text="Gösterge Paneli"
-                               Foreground="White"
-                               FontWeight="SemiBold"
-                               Margin="0,0,0,18" />
-                    <TextBlock Text="Fatura Türleri"
-                               Foreground="#94A3B8"
-                               Margin="0,0,0,14" />
+                    <Button x:Name="DashboardNavButton"
+                            Content="Gösterge Paneli"
+                            Style="{StaticResource NavButton}"
+                            Click="DashboardNavButton_Click" />
+                    <Button x:Name="InvoiceTypesNavButton"
+                            Content="Fatura Türleri"
+                            Style="{StaticResource NavButton}"
+                            Click="InvoiceTypesNavButton_Click" />
                     <TextBlock Text="Abonelikler"
-                               Foreground="#94A3B8"
-                               Margin="0,0,0,14" />
+                               Foreground="#64748B"
+                               Margin="0,12,0,14" />
                     <TextBlock Text="Faturalar"
-                               Foreground="#94A3B8"
+                               Foreground="#64748B"
                                Margin="0,0,0,14" />
                     <TextBlock Text="Ödemeler"
-                               Foreground="#94A3B8"
+                               Foreground="#64748B"
                                Margin="0,0,0,14" />
                     <TextBlock Text="Raporlar"
-                               Foreground="#94A3B8" />
+                               Foreground="#64748B" />
                 </StackPanel>
 
                 <TextBlock Grid.Row="3"
-                           Text="v0.1"
+                           Text="v0.2"
                            Foreground="#94A3B8"
                            FontSize="13" />
             </Grid>
         </Border>
 
         <Grid Grid.Column="1" Margin="28">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+            <Grid x:Name="DashboardPanel">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                <StackPanel>
-                    <TextBlock Text="Gösterge Paneli"
-                               Foreground="#1F2937"
-                               FontSize="28"
-                               FontWeight="SemiBold" />
-                    <TextBlock Text="Başlangıç durumu"
-                               Style="{StaticResource MutedText}"
-                               Margin="0,6,0,0" />
-                </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Gösterge Paneli"
+                                   Foreground="#1F2937"
+                                   FontSize="28"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Text="Başlangıç durumu"
+                                   Style="{StaticResource MutedText}"
+                                   Margin="0,6,0,0" />
+                    </StackPanel>
 
-                <Border Grid.Column="1"
-                        Background="#E7EEF6"
-                        BorderBrush="#CFDAE8"
-                        BorderThickness="1"
-                        CornerRadius="6"
-                        Padding="12,8"
-                        VerticalAlignment="Center">
-                    <TextBlock x:Name="InitializedAtText"
-                               Foreground="#334155"
-                               FontSize="13" />
-                </Border>
+                    <Border Grid.Column="1"
+                            Background="#E7EEF6"
+                            BorderBrush="#CFDAE8"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Padding="12,8"
+                            VerticalAlignment="Center">
+                        <TextBlock x:Name="InitializedAtText"
+                                   Foreground="#334155"
+                                   FontSize="13" />
+                    </Border>
+                </Grid>
+
+                <UniformGrid Grid.Row="1"
+                             Columns="4"
+                             Margin="0,24,0,24">
+                    <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
+                        <StackPanel>
+                            <TextBlock Text="Fatura Türü"
+                                       Style="{StaticResource MutedText}" />
+                            <TextBlock x:Name="DashboardInvoiceTypeCountText"
+                                       Text="0"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="30"
+                                       FontWeight="SemiBold" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
+                        <StackPanel>
+                            <TextBlock Text="Aktif Tür"
+                                       Style="{StaticResource MutedText}" />
+                            <TextBlock x:Name="DashboardActiveInvoiceTypeCountText"
+                                       Text="0"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="30"
+                                       FontWeight="SemiBold" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
+                        <StackPanel>
+                            <TextBlock Text="Aktif Abonelik"
+                                       Style="{StaticResource MutedText}" />
+                            <TextBlock Text="0"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="30"
+                                       FontWeight="SemiBold" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TileBorder}">
+                        <StackPanel>
+                            <TextBlock Text="Evrak Eksik"
+                                       Style="{StaticResource MutedText}" />
+                            <TextBlock Text="0"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="30"
+                                       FontWeight="SemiBold" />
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.2*" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Style="{StaticResource TileBorder}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Sistem Durumu"
+                                       Foreground="#1F2937"
+                                       FontSize="18"
+                                       FontWeight="SemiBold" />
+
+                            <Grid Grid.Row="1" Margin="0,18,0,18">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="140" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Veritabanı"
+                                           Style="{StaticResource MutedText}" />
+                                <TextBlock x:Name="DatabaseStateText"
+                                           Grid.Column="1"
+                                           Foreground="#166534"
+                                           FontWeight="SemiBold" />
+
+                                <TextBlock Grid.Row="1"
+                                           Text="Migration"
+                                           Style="{StaticResource MutedText}"
+                                           Margin="0,10,0,0" />
+                                <TextBlock x:Name="MigrationStateText"
+                                           Grid.Row="1"
+                                           Grid.Column="1"
+                                           Foreground="#334155"
+                                           FontWeight="SemiBold"
+                                           Margin="0,10,0,0" />
+
+                                <TextBlock Grid.Row="2"
+                                           Text="Proje Kökü"
+                                           Style="{StaticResource MutedText}"
+                                           Margin="0,10,0,0" />
+                                <TextBlock x:Name="RootPathText"
+                                           Grid.Row="2"
+                                           Grid.Column="1"
+                                           Foreground="#334155"
+                                           TextWrapping="Wrap"
+                                           Margin="0,10,0,0" />
+                            </Grid>
+
+                            <ListView x:Name="DirectoryList"
+                                      Grid.Row="2"
+                                      BorderBrush="#E5EAF1"
+                                      BorderThickness="1">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Klasör"
+                                                        Width="180"
+                                                        DisplayMemberBinding="{Binding Name}" />
+                                        <GridViewColumn Header="Durum"
+                                                        Width="110"
+                                                        DisplayMemberBinding="{Binding State}" />
+                                        <GridViewColumn Header="Yol"
+                                                        Width="360"
+                                                        DisplayMemberBinding="{Binding FullPath}" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </Border>
+
+                    <Border Grid.Column="2" Style="{StaticResource TileBorder}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="Veritabanı"
+                                       Foreground="#1F2937"
+                                       FontSize="18"
+                                       FontWeight="SemiBold" />
+                            <TextBlock x:Name="DatabasePathText"
+                                       Grid.Row="1"
+                                       Margin="0,16,0,18"
+                                       Foreground="#334155"
+                                       TextWrapping="Wrap" />
+
+                            <ItemsControl x:Name="MigrationList" Grid.Row="2">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderBrush="#E5EAF1"
+                                                BorderThickness="0,0,0,1"
+                                                Padding="0,10">
+                                            <TextBlock Text="{Binding}"
+                                                       Foreground="#334155"
+                                                       TextWrapping="Wrap" />
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <TextBlock Grid.Row="3"
+                           Margin="0,18,0,0"
+                           Text="Fatura Türü -> Abonelik -> Fatura -> Ödeme -> Evraklar"
+                           Style="{StaticResource MutedText}" />
             </Grid>
 
-            <UniformGrid Grid.Row="1"
-                         Columns="4"
-                         Margin="0,24,0,24">
-                <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
-                    <StackPanel>
-                        <TextBlock Text="Aktif Abonelik"
-                                   Style="{StaticResource MutedText}" />
-                        <TextBlock Text="0"
-                                   Margin="0,10,0,0"
-                                   Foreground="#111827"
-                                   FontSize="30"
-                                   FontWeight="SemiBold" />
-                    </StackPanel>
-                </Border>
-                <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
-                    <StackPanel>
-                        <TextBlock Text="Bu Ay Fatura"
-                                   Style="{StaticResource MutedText}" />
-                        <TextBlock Text="0"
-                                   Margin="0,10,0,0"
-                                   Foreground="#111827"
-                                   FontSize="30"
-                                   FontWeight="SemiBold" />
-                    </StackPanel>
-                </Border>
-                <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
-                    <StackPanel>
-                        <TextBlock Text="Ödenmemiş"
-                                   Style="{StaticResource MutedText}" />
-                        <TextBlock Text="0"
-                                   Margin="0,10,0,0"
-                                   Foreground="#111827"
-                                   FontSize="30"
-                                   FontWeight="SemiBold" />
-                    </StackPanel>
-                </Border>
-                <Border Style="{StaticResource TileBorder}">
-                    <StackPanel>
-                        <TextBlock Text="Evrak Eksik"
-                                   Style="{StaticResource MutedText}" />
-                        <TextBlock Text="0"
-                                   Margin="0,10,0,0"
-                                   Foreground="#111827"
-                                   FontSize="30"
-                                   FontWeight="SemiBold" />
-                    </StackPanel>
-                </Border>
-            </UniformGrid>
+            <Grid x:Name="InvoiceTypesPanel" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.2*" />
-                    <ColumnDefinition Width="20" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                <Border Grid.Column="0" Style="{StaticResource TileBorder}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Text="Sistem Durumu"
+                    <StackPanel>
+                        <TextBlock Text="Fatura Türleri"
                                    Foreground="#1F2937"
-                                   FontSize="18"
+                                   FontSize="28"
                                    FontWeight="SemiBold" />
+                        <TextBlock Text="Hizmet türü ve varsayılan kullanım birimi"
+                                   Style="{StaticResource MutedText}"
+                                   Margin="0,6,0,0" />
+                    </StackPanel>
 
-                        <Grid Grid.Row="1" Margin="0,18,0,18">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="140" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <Button Content="Yeni"
+                                Style="{StaticResource SecondaryButton}"
+                                Margin="0,0,8,0"
+                                Click="NewInvoiceTypeButton_Click" />
+                        <Button Content="Kaydet"
+                                Style="{StaticResource PrimaryButton}"
+                                Click="SaveInvoiceTypeButton_Click" />
+                    </StackPanel>
+                </Grid>
+
+                <UniformGrid Grid.Row="1"
+                             Columns="3"
+                             Margin="0,24,0,24">
+                    <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
+                        <StackPanel>
+                            <TextBlock Text="Toplam Tür"
+                                       Style="{StaticResource MutedText}" />
+                            <TextBlock x:Name="InvoiceTypeCountText"
+                                       Text="0"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="28"
+                                       FontWeight="SemiBold" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
+                        <StackPanel>
+                            <TextBlock Text="Aktif"
+                                       Style="{StaticResource MutedText}" />
+                            <TextBlock x:Name="ActiveInvoiceTypeCountText"
+                                       Text="0"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="28"
+                                       FontWeight="SemiBold" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TileBorder}">
+                        <StackPanel>
+                            <TextBlock Text="Pasif"
+                                       Style="{StaticResource MutedText}" />
+                            <TextBlock x:Name="PassiveInvoiceTypeCountText"
+                                       Text="0"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="28"
+                                       FontWeight="SemiBold" />
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.25*" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="0.75*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Style="{StaticResource TileBorder}">
+                        <DataGrid x:Name="InvoiceTypeGrid"
+                                  AutoGenerateColumns="False"
+                                  CanUserAddRows="False"
+                                  IsReadOnly="True"
+                                  SelectionMode="Single"
+                                  SelectionChanged="InvoiceTypeGrid_SelectionChanged"
+                                  BorderBrush="#E5EAF1"
+                                  BorderThickness="1"
+                                  HeadersVisibility="Column"
+                                  GridLinesVisibility="Horizontal">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Ad"
+                                                    Binding="{Binding Name}"
+                                                    Width="1.2*" />
+                                <DataGridTextColumn Header="Birim"
+                                                    Binding="{Binding DefaultUsageUnit}"
+                                                    Width="120" />
+                                <DataGridTextColumn Header="Durum"
+                                                    Binding="{Binding State}"
+                                                    Width="100" />
+                                <DataGridTextColumn Header="Açıklama"
+                                                    Binding="{Binding Description}"
+                                                    Width="1.6*" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+
+                    <Border Grid.Column="2" Style="{StaticResource TileBorder}">
+                        <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="Veritabanı"
-                                       Style="{StaticResource MutedText}" />
-                            <TextBlock x:Name="DatabaseStateText"
-                                       Grid.Column="1"
-                                       Foreground="#166534"
+                            <TextBlock x:Name="InvoiceTypeFormTitleText"
+                                       Text="Yeni Fatura Türü"
+                                       Foreground="#1F2937"
+                                       FontSize="18"
                                        FontWeight="SemiBold" />
 
-                            <TextBlock Grid.Row="1"
-                                       Text="Migration"
-                                       Style="{StaticResource MutedText}"
-                                       Margin="0,10,0,0" />
-                            <TextBlock x:Name="MigrationStateText"
-                                       Grid.Row="1"
-                                       Grid.Column="1"
-                                       Foreground="#334155"
-                                       FontWeight="SemiBold"
-                                       Margin="0,10,0,0" />
+                            <StackPanel Grid.Row="1" Margin="0,18,0,0">
+                                <TextBlock Text="Ad" Style="{StaticResource FieldLabel}" />
+                                <TextBox x:Name="InvoiceTypeNameInput"
+                                         Height="34"
+                                         MaxLength="100" />
+                            </StackPanel>
 
-                            <TextBlock Grid.Row="2"
-                                       Text="Proje Kökü"
-                                       Style="{StaticResource MutedText}"
-                                       Margin="0,10,0,0" />
-                            <TextBlock x:Name="RootPathText"
-                                       Grid.Row="2"
-                                       Grid.Column="1"
-                                       Foreground="#334155"
-                                       TextWrapping="Wrap"
-                                       Margin="0,10,0,0" />
+                            <StackPanel Grid.Row="2" Margin="0,14,0,0">
+                                <TextBlock Text="Varsayılan Kullanım Birimi"
+                                           Style="{StaticResource FieldLabel}" />
+                                <TextBox x:Name="DefaultUsageUnitInput"
+                                         Height="34"
+                                         MaxLength="30" />
+                            </StackPanel>
+
+                            <CheckBox x:Name="InvoiceTypeIsActiveInput"
+                                      Grid.Row="3"
+                                      Margin="0,16,0,0"
+                                      Content="Aktif"
+                                      IsChecked="True" />
+
+                            <StackPanel Grid.Row="4" Margin="0,16,0,0">
+                                <TextBlock Text="Açıklama" Style="{StaticResource FieldLabel}" />
+                                <TextBox x:Name="InvoiceTypeDescriptionInput"
+                                         MinHeight="96"
+                                         MaxLength="500"
+                                         AcceptsReturn="True"
+                                         TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Auto" />
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="5" Margin="0,18,0,0">
+                                <TextBlock x:Name="InvoiceTypeStatusText"
+                                           Style="{StaticResource MutedText}"
+                                           TextWrapping="Wrap"
+                                           Margin="0,0,0,12" />
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="ToggleInvoiceTypeButton"
+                                            Content="Pasife Al"
+                                            Style="{StaticResource SecondaryButton}"
+                                            Margin="0,0,8,0"
+                                            Click="ToggleInvoiceTypeButton_Click" />
+                                    <Button Content="Kaydet"
+                                            Style="{StaticResource PrimaryButton}"
+                                            Click="SaveInvoiceTypeButton_Click" />
+                                </StackPanel>
+                            </StackPanel>
                         </Grid>
-
-                        <ListView x:Name="DirectoryList"
-                                  Grid.Row="2"
-                                  BorderBrush="#E5EAF1"
-                                  BorderThickness="1">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Header="Klasör"
-                                                    Width="180"
-                                                    DisplayMemberBinding="{Binding Name}" />
-                                    <GridViewColumn Header="Durum"
-                                                    Width="110"
-                                                    DisplayMemberBinding="{Binding State}" />
-                                    <GridViewColumn Header="Yol"
-                                                    Width="360"
-                                                    DisplayMemberBinding="{Binding FullPath}" />
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </Grid>
-                </Border>
-
-                <Border Grid.Column="2" Style="{StaticResource TileBorder}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-
-                        <TextBlock Text="Veritabanı"
-                                   Foreground="#1F2937"
-                                   FontSize="18"
-                                   FontWeight="SemiBold" />
-                        <TextBlock x:Name="DatabasePathText"
-                                   Grid.Row="1"
-                                   Margin="0,16,0,18"
-                                   Foreground="#334155"
-                                   TextWrapping="Wrap" />
-
-                        <ItemsControl x:Name="MigrationList" Grid.Row="2">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Border BorderBrush="#E5EAF1"
-                                            BorderThickness="0,0,0,1"
-                                            Padding="0,10">
-                                        <TextBlock Text="{Binding}"
-                                                   Foreground="#334155"
-                                                   TextWrapping="Wrap" />
-                                    </Border>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </Grid>
-                </Border>
+                    </Border>
+                </Grid>
             </Grid>
-
-            <TextBlock Grid.Row="3"
-                       Margin="0,18,0,0"
-                       Text="Fatura Türü -> Abonelik -> Fatura -> Ödeme -> Evraklar"
-                       Style="{StaticResource MutedText}" />
         </Grid>
     </Grid>
 </Window>

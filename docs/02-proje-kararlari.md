@@ -14,6 +14,9 @@ Bu dosya, geliştirme sırasında alınan kalıcı kararları kaydeder. Kararlar
 | 2026-05-30 | İlk uygulama hedefi `net8.0-windows` olacak | Makinede .NET 8 SDK ve Windows Desktop runtime mevcut |
 | 2026-05-30 | İlk SQLite erişimi `Microsoft.Data.Sqlite` ile doğrudan yapılacak | v0.1 için hafif ve anlaşılır migration altyapısı yeterli |
 | 2026-05-30 | Migration kayıtları `schema_migrations` tablosunda tutulacak | Tekrar çalıştırılabilir ve izlenebilir başlangıç sağlar |
+| 2026-05-30 | Fatura türleri fiziksel silinmeyecek, aktif/pasif yapılacak | Geçmiş kayıtlarla ilişki kurulacağı için referans bütünlüğü korunmalı |
+| 2026-05-30 | Fatura türü adları büyük/küçük harfe duyarsız benzersiz olacak | Aynı türün farklı yazımlarla tekrarlanmasını önler |
+| 2026-05-30 | Veri katmanı için şimdilik doğrudan repository sınıfları kullanılacak | Erken fazlarda ORM eklemeden davranışı sade tutar |
 
 ## Açık Kararlar
 

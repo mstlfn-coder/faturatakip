@@ -1,5 +1,6 @@
 using System.IO;
 using System.Windows;
+using FaturaTakip.App.Diagnostics;
 using FaturaTakip.App.Infrastructure;
 
 namespace FaturaTakip.App;
@@ -15,6 +16,13 @@ public partial class App : Application
 
         try
         {
+            if (IsSelfTest(e.Args))
+            {
+                new SelfTestRunner().Run();
+                Shutdown(0);
+                return;
+            }
+
             var startupStatus = new ApplicationBootstrapper().Initialize();
             if (IsHealthCheck(e.Args))
             {
@@ -46,6 +54,11 @@ public partial class App : Application
     private static bool IsHealthCheck(IEnumerable<string> args)
     {
         return args.Any(arg => string.Equals(arg, "--health-check", StringComparison.OrdinalIgnoreCase));
+    }
+
+    private static bool IsSelfTest(IEnumerable<string> args)
+    {
+        return args.Any(arg => string.Equals(arg, "--self-test", StringComparison.OrdinalIgnoreCase));
     }
 
     private static void TryWriteStartupError(Exception exception)

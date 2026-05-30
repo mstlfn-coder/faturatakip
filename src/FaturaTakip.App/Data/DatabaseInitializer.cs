@@ -16,7 +16,7 @@ public sealed class DatabaseInitializer
             Directory.CreateDirectory(databaseDirectory);
         }
 
-        using var connection = new SqliteConnection($"Data Source={databasePath}");
+        using var connection = SqliteConnectionFactory.Create(databasePath);
         connection.Open();
 
         EnablePragmas(connection);
@@ -26,6 +26,7 @@ public sealed class DatabaseInitializer
             new IDatabaseMigration[]
             {
                 new InitialSchemaMigration(),
+                new InvoiceTypesSchemaMigration(),
             });
 
         return new DatabaseInitializationResult(appliedMigrations);

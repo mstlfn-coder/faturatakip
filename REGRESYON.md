@@ -23,7 +23,7 @@ Sonuç etiketleri:
 | Kontrol | Durum | Not |
 |---|---|---|
 | Proje klasörü doğru yerde açılıyor | OK | `C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI` |
-| Git durumu kontrol edildi | OK | `codex/v0.1-proje-iskeleti` branch'i üzerinde çalışılıyor |
+| Git durumu kontrol edildi | OK | `codex/v0.2-fatura-turleri` branch'i üzerinde çalışılıyor |
 | Markdown dokümantasyonu UTF-8 olarak okunuyor | OK | Plan dosyası UTF-8 korunarak kopyalandı |
 | Yeni dosya adları yol sorunu azaltmak için ASCII tutuluyor | OK | Kök klasör Türkçe, proje içi doküman adları ASCII |
 | `README.md` yeni chat başlangıcını açıklıyor | OK | Oluşturuldu |
@@ -50,11 +50,13 @@ Sonuç etiketleri:
 
 | Kontrol | Durum | Not |
 |---|---|---|
-| Fatura türü eklenebiliyor | TODO | v0.2 sonunda |
-| Fatura türü düzenlenebiliyor | TODO | v0.2 sonunda |
-| Fatura türü aktif/pasif yapılabiliyor | TODO | v0.2 sonunda |
-| Kullanım birimi saklanıyor | TODO | v0.2 sonunda |
-| Silme yerine pasif yapma davranışı korunuyor | TODO | v0.2 sonunda |
+| Fatura türü eklenebiliyor | OK | `--self-test` repository ekleme akışını doğruladı |
+| Fatura türü düzenlenebiliyor | OK | `--self-test` repository güncelleme akışını doğruladı |
+| Fatura türü aktif/pasif yapılabiliyor | OK | `--self-test` pasife alma akışını doğruladı |
+| Kullanım birimi saklanıyor | OK | `--self-test` güncel kullanım birimini doğruladı |
+| Silme yerine pasif yapma davranışı korunuyor | OK | UI ve repository fiziksel silme sunmuyor |
+| Başlangıç türleri seed ediliyor | OK | Self-test en az 6 başlangıç türünü doğruladı |
+| Aynı isimli fatura türü engelleniyor | OK | Repository isim benzersizliği kontrolü içeriyor |
 
 ## v0.3 - Abonelik Yönetimi
 
@@ -98,3 +100,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 |---|---|---|---|
 | 2026-05-30 | v0.0 | OK | Plan proje içine alındı, roadmap ve regresyon dosyaları oluşturuldu |
 | 2026-05-30 | v0.1 | OK | WPF iskeleti, SQLite başlangıcı, klasör altyapısı ve boş dashboard doğrulandı |
+| 2026-05-30 | v0.2 | OK | Fatura türleri migration, seed, listeleme, ekleme, düzenleme ve aktif/pasif akışı doğrulandı |

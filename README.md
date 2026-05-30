@@ -7,6 +7,7 @@ Bu depo, kurum aboneliklerine ait elektrik, su, doğalgaz, telefon, internet ve 
 - Proje klasörü: `C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI`
 - Git deposu hazır.
 - `v0.1` WPF + SQLite proje iskeleti oluşturuldu.
+- `v0.2` fatura türleri yönetimi eklendi.
 - Solution dosyası: `FaturaTakip.sln`
 - Uygulama projesi: `src/FaturaTakip.App/FaturaTakip.App.csproj`
 - Geliştirme planı proje içine alındı: `docs/01-gelistirme-plani.md`
@@ -43,13 +44,13 @@ Get-ChildItem -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI'
 
 ## Son Tamamlanan Faz
 
-Son tamamlanan geliştirme fazı `v0.1 - Proje İskeleti ve Veritabanı`.
+Son tamamlanan geliştirme fazı `v0.2 - Fatura Türleri Yönetimi`.
 
-Bu fazda C# WPF proje iskeleti, SQLite altyapısı, temel klasör yapısı, başlangıç migration mantığı ve boş dashboard hazırlandı. Fatura türü, abonelik, fatura, ödeme, PDF evrak ve rapor ekranları henüz yapılmadı.
+Bu fazda fatura türleri için SQLite tablosu, başlangıç türleri, listeleme, ekleme, düzenleme ve aktif/pasif yapma akışı hazırlandı. Abonelik, fatura, ödeme, PDF evrak ve rapor ekranları henüz yapılmadı.
 
 ## Sıradaki İş
 
-Sıradaki geliştirme fazı `v0.2 - Fatura Türleri Yönetimi`.
+Sıradaki geliştirme fazı `v0.3 - Abonelik Yönetimi`.
 
 ## Çalışma Kuralı
 
