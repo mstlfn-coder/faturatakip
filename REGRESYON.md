@@ -23,7 +23,7 @@ Sonuç etiketleri:
 | Kontrol | Durum | Not |
 |---|---|---|
 | Proje klasörü doğru yerde açılıyor | OK | `C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI` |
-| Git durumu kontrol edildi | OK | İlk durumda depo boş ve commitsiz |
+| Git durumu kontrol edildi | OK | `codex/v0.1-proje-iskeleti` branch'i üzerinde çalışılıyor |
 | Markdown dokümantasyonu UTF-8 olarak okunuyor | OK | Plan dosyası UTF-8 korunarak kopyalandı |
 | Yeni dosya adları yol sorunu azaltmak için ASCII tutuluyor | OK | Kök klasör Türkçe, proje içi doküman adları ASCII |
 | `README.md` yeni chat başlangıcını açıklıyor | OK | Oluşturuldu |
@@ -32,21 +32,19 @@ Sonuç etiketleri:
 
 ## v0.1 - Proje İskeleti ve Veritabanı
 
-Henüz başlanmadı.
-
 | Kontrol | Durum | Not |
 |---|---|---|
-| WPF uygulaması derleniyor | TODO | v0.1 sonunda kontrol edilecek |
-| Uygulama açılıyor | TODO | v0.1 sonunda kontrol edilecek |
-| `database` klasörü oluşturuluyor | TODO | v0.1 sonunda kontrol edilecek |
-| `attachments` klasörü oluşturuluyor | TODO | v0.1 sonunda kontrol edilecek |
-| `backups` klasörü oluşturuluyor | TODO | v0.1 sonunda kontrol edilecek |
-| `logs` klasörü oluşturuluyor | TODO | v0.1 sonunda kontrol edilecek |
-| `exports` klasörü oluşturuluyor | TODO | v0.1 sonunda kontrol edilecek |
-| `database/fatura_takip.db` oluşturuluyor | TODO | v0.1 sonunda kontrol edilecek |
-| Migration başlangıç mantığı tekrar çalıştırıldığında hata vermiyor | TODO | v0.1 sonunda kontrol edilecek |
-| Bu fazda veri giriş ekranı eklenmedi | TODO | Kapsam dışı kalmalı |
-| Bu fazda rapor ekranı eklenmedi | TODO | Kapsam dışı kalmalı |
+| WPF uygulaması derleniyor | OK | `dotnet build FaturaTakip.sln` başarılı, 0 hata |
+| Uygulama açılıyor | OK | Kısa başlatma testi başarılı, uygulama erken kapanmadı |
+| `database` klasörü oluşturuluyor | OK | `.gitkeep` ile takip ediliyor, runtime DB ignore ediliyor |
+| `attachments` klasörü oluşturuluyor | OK | `attachments/invoices` ve `attachments/payments` hazır |
+| `backups` klasörü oluşturuluyor | OK | `.gitkeep` ile takip ediliyor |
+| `logs` klasörü oluşturuluyor | OK | `.gitkeep` ile takip ediliyor |
+| `exports` klasörü oluşturuluyor | OK | `.gitkeep` ile takip ediliyor |
+| `database/fatura_takip.db` oluşturuluyor | OK | Health-check sonrası oluştu ve git tarafından ignore ediliyor |
+| Migration başlangıç mantığı tekrar çalıştırıldığında hata vermiyor | OK | Health-check iki kez çalıştırıldı |
+| Bu fazda veri giriş ekranı eklenmedi | OK | Sadece boş dashboard ve sistem durumu var |
+| Bu fazda rapor ekranı eklenmedi | OK | Rapor ekranı eklenmedi |
 
 ## v0.2 - Fatura Türleri Yönetimi
 
@@ -99,3 +97,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Tarih | Faz | Sonuç | Not |
 |---|---|---|---|
 | 2026-05-30 | v0.0 | OK | Plan proje içine alındı, roadmap ve regresyon dosyaları oluşturuldu |
+| 2026-05-30 | v0.1 | OK | WPF iskeleti, SQLite başlangıcı, klasör altyapısı ve boş dashboard doğrulandı |

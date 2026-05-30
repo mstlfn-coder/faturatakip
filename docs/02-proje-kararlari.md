@@ -11,14 +11,14 @@ Bu dosya, geliştirme sırasında alınan kalıcı kararları kaydeder. Kararlar
 | 2026-05-30 | Abonelikler ve faturalar fiziksel silme yerine pasif/iptal mantığıyla yönetilecek | Geçmiş raporlar ve denetlenebilirlik korunur |
 | 2026-05-30 | Gecikmiş fatura bilgisi öncelikle son ödeme tarihinden dinamik hesaplanacak | Veritabanındaki durum bilgisini sade tutar |
 | 2026-05-30 | Her faz sonunda roadmap, regresyon ve devam notları güncellenecek | Yeni Codex chatinde bağlam kaybını önler |
+| 2026-05-30 | İlk uygulama hedefi `net8.0-windows` olacak | Makinede .NET 8 SDK ve Windows Desktop runtime mevcut |
+| 2026-05-30 | İlk SQLite erişimi `Microsoft.Data.Sqlite` ile doğrudan yapılacak | v0.1 için hafif ve anlaşılır migration altyapısı yeterli |
+| 2026-05-30 | Migration kayıtları `schema_migrations` tablosunda tutulacak | Tekrar çalıştırılabilir ve izlenebilir başlangıç sağlar |
 
 ## Açık Kararlar
 
 Bu başlıklar ilk uygulama fazlarında netleştirilecek:
 
-- .NET sürümü
 - WPF proje adı ve namespace yapısı
-- ORM kullanılıp kullanılmayacağı
-- SQLite migration yaklaşımı
 - Dosya hash algoritması
 - UI tema ve bileşen düzeni

@@ -5,10 +5,11 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 ## Güncel Kaldığımız Yer
 
 - Tarih: 2026-05-30
-- Son tamamlanan faz: `v0.0 - Dokümantasyon ve planın projeye alınması`
-- Sıradaki faz: `v0.1 - Proje İskeleti ve Veritabanı`
-- Uygulama kodu henüz oluşturulmadı.
-- Git deposunda henüz commit yok.
+- Aktif branch: `codex/v0.1-proje-iskeleti`
+- Son tamamlanan faz: `v0.1 - Proje İskeleti ve Veritabanı`
+- Sıradaki faz: `v0.2 - Fatura Türleri Yönetimi`
+- İlk dokümantasyon commit'i: `e0de4f9 docs: initialize project planning and continuity notes`
+- `v0.1` değişiklikleri henüz commitlenmedi.
 
 ## Bu Oturumda Yapılanlar
 
@@ -30,21 +31,35 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 11. Proje kararları kaydı oluşturuldu:
     `docs/02-proje-kararlari.md`
 12. Bu devam notları oluşturuldu.
+13. `codex/v0.1-proje-iskeleti` branch'i açıldı.
+14. `FaturaTakip.sln` oluşturuldu.
+15. `src/FaturaTakip.App` WPF projesi oluşturuldu.
+16. `Microsoft.Data.Sqlite` paketi eklendi.
+17. `.gitignore` eklendi ve `FaturaTakip.App` klasörü için Windows'taki `*.app` ignore çakışması düzeltildi.
+18. Runtime klasör yapısı `.gitkeep` dosyalarıyla takip edilebilir hale getirildi.
+19. SQLite başlangıç altyapısı ve idempotent migration runner eklendi.
+20. `database/fatura_takip.db` health-check sırasında oluşturuldu.
+21. Sade boş dashboard ekranı bağlandı.
+22. `dotnet build FaturaTakip.sln` başarılı çalıştı.
+23. `dotnet run --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` iki kez başarılı çalıştı.
+24. Uygulama kısa süreli başlatma testinden geçti.
 
 ## Bir Sonraki Codex Görevi
 
-Sıradaki görev yalnızca `v0.1` kapsamını uygulamak olmalı.
+Sıradaki görev yalnızca `v0.2` kapsamını uygulamak olmalı.
 
 Başlangıç talimatı:
 
 ```text
-C# WPF + SQLite tabanlı kurum fatura takip programında v0.1 fazını uygula.
+C# WPF + SQLite tabanlı kurum fatura takip programında v0.2 fazını uygula.
 
 Önce README.md, docs/00-codex-devam-kilavuzu.md, docs/03-devam-notlari.md, ROADMAP.md ve REGRESYON.md dosyalarını oku.
 
-Bu fazda yalnızca proje iskeleti, SQLite bağlantısı, ana klasör yapısı, başlangıç migration mantığı ve boş dashboard hazırlanacak.
+Bu fazda yalnızca fatura türleri yönetimi yapılacak.
 
-Fatura türü, abonelik, fatura, ödeme, PDF evrak ekleme, rapor, dışa aktarım ve yedekleme ekranları yapılmayacak.
+Fatura türleri için tablo/migration, başlangıç türleri, listeleme, ekleme, düzenleme ve aktif/pasif yapma desteklenecek.
+
+Abonelik, fatura, ödeme, PDF evrak ekleme, rapor, dışa aktarım ve yedekleme yapılmayacak.
 
 Faz sonunda uygulamayı çalıştır veya en azından derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```

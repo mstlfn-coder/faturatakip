@@ -14,8 +14,8 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | Faz | Durum | Kapsam | Çıkış Kriteri |
 |---|---|---|---|
 | v0.0 | Tamamlandı | Planın projeye alınması, roadmap, regresyon ve devam dokümantasyonu | Bu dosyalar oluşturuldu ve proje içinde yer aldı |
-| v0.1 | Sıradaki | WPF proje iskeleti, SQLite bağlantısı, ana klasör yapısı, başlangıç migration sınıfı, boş dashboard | Uygulama açılır, klasörler hazırlanır, veritabanı dosyası oluşturulur |
-| v0.2 | Beklemede | Fatura türleri yönetimi | Tür ekleme, düzenleme, aktif/pasif yapma çalışır |
+| v0.1 | Tamamlandı | WPF proje iskeleti, SQLite bağlantısı, ana klasör yapısı, başlangıç migration sınıfı, boş dashboard | Uygulama açılır, klasörler hazırlanır, veritabanı dosyası oluşturulur |
+| v0.2 | Sıradaki | Fatura türleri yönetimi | Tür ekleme, düzenleme, aktif/pasif yapma çalışır |
 | v0.3 | Beklemede | Abonelik yönetimi | Abonelik ekleme, düzenleme, aktif/pasif yapma ve filtreleme çalışır |
 | v0.4 | Beklemede | Fatura kayıt altyapısı | PDF olmadan temel fatura kaydı yapılabilir |
 | v0.5 | Beklemede | Fatura PDF evrakı ekleme | PDF uygulama klasörüne kopyalanır, açılır, eksikliği raporlanabilir |
@@ -56,6 +56,47 @@ Bu fazda yapılmayacaklar:
 - PDF evrak ekleme
 - Rapor ekranları
 - Dışa aktarım
+- Yedekleme
+
+## v0.1 Sonuç Notu
+
+Tamamlananlar:
+
+- `FaturaTakip.sln` oluşturuldu.
+- `src/FaturaTakip.App` WPF projesi oluşturuldu.
+- `Microsoft.Data.Sqlite` paketi eklendi.
+- `database`, `attachments/invoices`, `attachments/payments`, `backups`, `logs`, `exports` klasörleri için altyapı hazırlandı.
+- Runtime veri dosyaları için `.gitignore` kuralları eklendi.
+- `database/fatura_takip.db` başlangıçta oluşturuluyor.
+- `schema_migrations` ve `app_metadata` tablolarını hazırlayan başlangıç migration mantığı eklendi.
+- Boş dashboard ekranı bağlandı.
+
+Doğrulama:
+
+- `dotnet build FaturaTakip.sln`
+- `dotnet run --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check`
+- Uygulama kısa süreli başlatma testi
+
+## v0.2 Ayrıntılı Kapsam
+
+Yalnızca şu işler yapılacak:
+
+- Fatura türleri için veri modeli ve SQLite tablo migration'ı eklenecek.
+- Elektrik, Su, Doğalgaz, Telefon, İnternet, Diğer başlangıç türleri güvenli şekilde seed edilecek.
+- Fatura türü listeleme ekranı hazırlanacak.
+- Yeni fatura türü ekleme yapılacak.
+- Mevcut fatura türü düzenleme yapılacak.
+- Aktif/pasif yapma mantığı eklenecek.
+- Varsayılan kullanım birimi alanı desteklenecek.
+
+Bu fazda yapılmayacaklar:
+
+- Abonelik yönetimi
+- Fatura kaydı
+- Ödeme kaydı
+- PDF evrak ekleme
+- Rapor ekranları
+- Excel/PDF dışa aktarım
 - Yedekleme
 
 ## Her Faz Sonu Kontrolü
