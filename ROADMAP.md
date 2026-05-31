@@ -27,8 +27,8 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | v0.11 | Tamamlandı | Aylık fatura listesi | Seçilen ayın tüm faturaları ve özet toplamları alınır |
 | v0.12 | Tamamlandı | Türe özgü aylık fatura listesi | Seçilen tür, yıl ve ay için toplamlar alınır |
 | v0.13 | Tamamlandı | Aboneliğe özgü aylık fatura bilgisi | Tek aboneliğin aylık detayı ve önceki ay karşılaştırması görünür |
-| v0.14 | Sıradaki | Aboneliğe özgü yıllık fatura listesi | 12 aylık liste, toplamlar, en yüksek ve en düşük ay görünür |
-| v0.15 | Beklemede | Türe özgü yıllık fatura listesi | Tür bazlı yıllık toplam ve abonelik dağılımı alınır |
+| v0.14 | Tamamlandı | Aboneliğe özgü yıllık fatura listesi | 12 aylık liste, toplamlar, en yüksek ve en düşük ay görünür |
+| v0.15 | Sıradaki | Türe özgü yıllık fatura listesi | Tür bazlı yıllık toplam ve abonelik dağılımı alınır |
 | v0.16 | Beklemede | Evrak eksikliği ve dosya kontrol raporu | Eksik PDF, kayıp dosya ve aynı hash uyarıları görünür |
 | v0.17 | Beklemede | Excel dışa aktarım | Ana listeler ve raporlar Excel'e aktarılır |
 | v0.18 | Beklemede | Yazdırılabilir PDF raporlar | Kullanıcıdan alınacak Excel örneğine göre temel raporlar PDF olarak üretilebilir |

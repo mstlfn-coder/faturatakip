@@ -18,6 +18,7 @@ public partial class ReportsView : UserControl
     private ActionableInvoiceReport _report = ActionableInvoiceReport.Empty;
     private MonthlyInvoiceReport _monthlyReport = MonthlyInvoiceReport.Empty;
     private SubscriptionMonthlyComparison _subscriptionComparison = SubscriptionMonthlyComparison.Empty;
+    private SubscriptionYearlyReport _subscriptionYearly = SubscriptionYearlyReport.Empty;
     private ReportTab _activeTab = ReportTab.Unpaid;
     private bool _isInitialized;
     private bool _isRefreshingMonthlyFilters;
@@ -72,6 +73,15 @@ public partial class ReportsView : UserControl
                 DateTime.Today,
                 invoice => _invoiceRepository.IsPdfMissing(invoice));
 
+        _subscriptionYearly = selectedSubscriptionId is null
+            ? SubscriptionYearlyReport.Empty
+            : SubscriptionYearlyReportCalculator.Calculate(
+                invoices,
+                selectedSubscriptionId.Value,
+                GetSelectedSubscriptionYear(),
+                DateTime.Today,
+                invoice => _invoiceRepository.IsPdfMissing(invoice));
+
         ApplyTab(_activeTab);
     }
 
@@ -98,6 +108,11 @@ public partial class ReportsView : UserControl
     private void SubscriptionTabButton_Click(object sender, RoutedEventArgs e)
     {
         ApplyTab(ReportTab.Subscription);
+    }
+
+    private void SubscriptionYearlyTabButton_Click(object sender, RoutedEventArgs e)
+    {
+        ApplyTab(ReportTab.SubscriptionYearly);
     }
 
     private void MonthlyFilter_Changed(object sender, SelectionChangedEventArgs e)
@@ -143,6 +158,7 @@ public partial class ReportsView : UserControl
         if (selectedSubscriptionId is null)
         {
             _subscriptionComparison = SubscriptionMonthlyComparison.Empty;
+            _subscriptionYearly = SubscriptionYearlyReport.Empty;
         }
         else
         {
@@ -154,11 +170,22 @@ public partial class ReportsView : UserControl
                 GetSelectedSubscriptionMonth(),
                 DateTime.Today,
                 invoice => _invoiceRepository.IsPdfMissing(invoice));
+
+            _subscriptionYearly = SubscriptionYearlyReportCalculator.Calculate(
+                invoices,
+                selectedSubscriptionId.Value,
+                GetSelectedSubscriptionYear(),
+                DateTime.Today,
+                invoice => _invoiceRepository.IsPdfMissing(invoice));
         }
 
         if (_activeTab == ReportTab.Subscription)
         {
             ApplyTab(ReportTab.Subscription);
+        }
+        else if (_activeTab == ReportTab.SubscriptionYearly)
+        {
+            ApplyTab(ReportTab.SubscriptionYearly);
         }
     }
 
@@ -171,9 +198,13 @@ public partial class ReportsView : UserControl
         SetTabActive(UpcomingTabButton, tab == ReportTab.Upcoming);
         SetTabActive(MonthlyTabButton, tab == ReportTab.Monthly);
         SetTabActive(SubscriptionTabButton, tab == ReportTab.Subscription);
+        SetTabActive(SubscriptionYearlyTabButton, tab == ReportTab.SubscriptionYearly);
 
         MonthlyFilterPanel.Visibility = tab == ReportTab.Monthly ? Visibility.Visible : Visibility.Collapsed;
-        SubscriptionFilterPanel.Visibility = tab == ReportTab.Subscription ? Visibility.Visible : Visibility.Collapsed;
+        SubscriptionFilterPanel.Visibility = tab is ReportTab.Subscription or ReportTab.SubscriptionYearly
+            ? Visibility.Visible
+            : Visibility.Collapsed;
+        SubscriptionMonthInput.Visibility = tab == ReportTab.Subscription ? Visibility.Visible : Visibility.Collapsed;
 
         var items = tab switch
         {
@@ -181,6 +212,7 @@ public partial class ReportsView : UserControl
             ReportTab.Upcoming => _report.Upcoming,
             ReportTab.Monthly => Array.Empty<ActionableInvoice>(),
             ReportTab.Subscription => Array.Empty<ActionableInvoice>(),
+            ReportTab.SubscriptionYearly => Array.Empty<ActionableInvoice>(),
             _ => _report.Unpaid,
         };
 
@@ -188,16 +220,29 @@ public partial class ReportsView : UserControl
         {
             ApplyMonthlyTiles();
             ReportGrid.ItemsSource = _monthlyReport.Rows.Select(ToMonthlyRow).ToList();
+            ReportGrid.Visibility = Visibility.Visible;
+            YearlyGrid.Visibility = Visibility.Collapsed;
         }
         else if (tab == ReportTab.Subscription)
         {
             ApplySubscriptionTiles();
             ReportGrid.ItemsSource = _subscriptionComparison.Current.Rows.Select(ToMonthlyRow).ToList();
+            ReportGrid.Visibility = Visibility.Visible;
+            YearlyGrid.Visibility = Visibility.Collapsed;
+        }
+        else if (tab == ReportTab.SubscriptionYearly)
+        {
+            ApplySubscriptionYearlyTiles();
+            YearlyGrid.ItemsSource = _subscriptionYearly.Months.Select(ToYearlyRow).ToList();
+            ReportGrid.Visibility = Visibility.Collapsed;
+            YearlyGrid.Visibility = Visibility.Visible;
         }
         else
         {
             ApplyActionableTiles();
             ReportGrid.ItemsSource = items.Select(ToActionableRow).ToList();
+            ReportGrid.Visibility = Visibility.Visible;
+            YearlyGrid.Visibility = Visibility.Collapsed;
         }
     }
 
@@ -264,6 +309,33 @@ public partial class ReportsView : UserControl
         SubscriptionHintText.Text = $"{current.Year:D4}/{current.Month:D2} dönemi (önceki ay karşılaştırmalı)";
     }
 
+    private void ApplySubscriptionYearlyTiles()
+    {
+        var year = _subscriptionYearly.Year;
+        Tile1LabelText.Text = "Toplam (Yıl)";
+        Tile1ValueText.Text = FormatMoney(_subscriptionYearly.TotalAmount);
+        Tile1DetailText.Text = $"{_subscriptionYearly.TotalInvoiceCount} fatura, Ödenen {FormatMoney(_subscriptionYearly.PaidTotal)}, Kalan {FormatMoney(_subscriptionYearly.RemainingTotal)}";
+
+        Tile2LabelText.Text = "En Yüksek Ay";
+        Tile2ValueText.Text = _subscriptionYearly.HighestMonth == 0
+            ? "-"
+            : $"{TurkishCulture.DateTimeFormat.GetMonthName(_subscriptionYearly.HighestMonth)}";
+        Tile2DetailText.Text = _subscriptionYearly.HighestMonth == 0
+            ? "-"
+            : $"Toplam {FormatMoney(_subscriptionYearly.HighestMonthTotal)}";
+
+        Tile3LabelText.Text = "En Düşük Ay";
+        Tile3ValueText.Text = _subscriptionYearly.LowestMonth == 0
+            ? "-"
+            : $"{TurkishCulture.DateTimeFormat.GetMonthName(_subscriptionYearly.LowestMonth)}";
+        Tile3DetailText.Text = _subscriptionYearly.LowestMonth == 0
+            ? "-"
+            : $"Toplam {FormatMoney(_subscriptionYearly.LowestMonthTotal)}";
+
+        MonthlyFilterHintText.Text = string.Empty;
+        SubscriptionHintText.Text = year == 0 ? string.Empty : $"{year} yılı (12 ay)";
+    }
+
     private static string FormatDelta(decimal value)
     {
         var formatted = FormatMoney(Math.Abs(value));
@@ -302,6 +374,19 @@ public partial class ReportsView : UserControl
             invoice.PaidAmount.ToString("N2", TurkishCulture),
             invoice.RemainingAmount.ToString("N2", TurkishCulture),
             row.PdfState);
+    }
+
+    private static YearlyRow ToYearlyRow(SubscriptionYearlyMonthRow row)
+    {
+        return new YearlyRow(
+            TurkishCulture.DateTimeFormat.GetMonthName(row.Month),
+            row.InvoiceCount.ToString(CultureInfo.InvariantCulture),
+            FormatMoney(row.TotalAmount),
+            FormatMoney(row.PaidTotal),
+            FormatMoney(row.RemainingTotal),
+            row.UnpaidInvoiceCount.ToString(CultureInfo.InvariantCulture),
+            row.OverdueInvoiceCount.ToString(CultureInfo.InvariantCulture),
+            row.MissingPdfCount.ToString(CultureInfo.InvariantCulture));
     }
 
     private static string FormatMoney(decimal value)
@@ -486,6 +571,7 @@ public partial class ReportsView : UserControl
         Upcoming,
         Monthly,
         Subscription,
+        SubscriptionYearly,
     }
 
     private sealed record ReportRow(
@@ -506,5 +592,15 @@ public partial class ReportsView : UserControl
     private sealed record InvoiceTypeOption(string Label, long? InvoiceTypeId);
 
     private sealed record SubscriptionOption(string Label, long SubscriptionId);
+
+    private sealed record YearlyRow(
+        string MonthName,
+        string InvoiceCountText,
+        string TotalAmountText,
+        string PaidText,
+        string RemainingText,
+        string UnpaidCountText,
+        string OverdueCountText,
+        string MissingPdfCountText);
 }
 

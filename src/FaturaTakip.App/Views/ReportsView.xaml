@@ -86,7 +86,12 @@
                 <Button x:Name="SubscriptionTabButton"
                         Content="Abonelik"
                         Style="{StaticResource SecondaryButton}"
+                        Margin="0,0,8,0"
                         Click="SubscriptionTabButton_Click" />
+                <Button x:Name="SubscriptionYearlyTabButton"
+                        Content="Abonelik Yıllık"
+                        Style="{StaticResource SecondaryButton}"
+                        Click="SubscriptionYearlyTabButton_Click" />
             </StackPanel>
         </Grid>
 
@@ -226,51 +231,91 @@
         </StackPanel>
 
         <Border Grid.Row="2" Style="{StaticResource TileBorder}">
-            <DataGrid x:Name="ReportGrid"
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      IsReadOnly="True"
-                      SelectionMode="Single"
-                      BorderBrush="#E5EAF1"
-                      BorderThickness="1"
-                      HeadersVisibility="Column"
-                      GridLinesVisibility="Horizontal">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Dönem"
-                                        Binding="{Binding Period}"
-                                        Width="70" />
-                    <DataGridTextColumn Header="Tür"
-                                        Binding="{Binding InvoiceTypeName}"
-                                        Width="90" />
-                    <DataGridTextColumn Header="Abonelik"
-                                        Binding="{Binding SubscriptionName}"
-                                        Width="1.0*" />
-                    <DataGridTextColumn Header="Kurum"
-                                        Binding="{Binding InstitutionName}"
-                                        Width="1.0*" />
-                    <DataGridTextColumn Header="Durum"
-                                        Binding="{Binding StatusText}"
-                                        Width="80" />
-                    <DataGridTextColumn Header="Fatura No"
-                                        Binding="{Binding InvoiceNo}"
-                                        Width="95" />
-                    <DataGridTextColumn Header="Son Ödeme"
-                                        Binding="{Binding DueDateText}"
-                                        Width="95" />
-                    <DataGridTextColumn Header="Tutar"
-                                        Binding="{Binding AmountText}"
-                                        Width="90" />
-                    <DataGridTextColumn Header="Ödenen"
-                                        Binding="{Binding PaidAmountText}"
-                                        Width="90" />
-                    <DataGridTextColumn Header="Kalan"
-                                        Binding="{Binding RemainingAmountText}"
-                                        Width="90" />
-                    <DataGridTextColumn Header="PDF"
-                                        Binding="{Binding PdfState}"
-                                        Width="90" />
-                </DataGrid.Columns>
-            </DataGrid>
+            <Grid>
+                <DataGrid x:Name="ReportGrid"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          IsReadOnly="True"
+                          SelectionMode="Single"
+                          BorderBrush="#E5EAF1"
+                          BorderThickness="1"
+                          HeadersVisibility="Column"
+                          GridLinesVisibility="Horizontal">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Dönem"
+                                            Binding="{Binding Period}"
+                                            Width="70" />
+                        <DataGridTextColumn Header="Tür"
+                                            Binding="{Binding InvoiceTypeName}"
+                                            Width="90" />
+                        <DataGridTextColumn Header="Abonelik"
+                                            Binding="{Binding SubscriptionName}"
+                                            Width="1.0*" />
+                        <DataGridTextColumn Header="Kurum"
+                                            Binding="{Binding InstitutionName}"
+                                            Width="1.0*" />
+                        <DataGridTextColumn Header="Durum"
+                                            Binding="{Binding StatusText}"
+                                            Width="80" />
+                        <DataGridTextColumn Header="Fatura No"
+                                            Binding="{Binding InvoiceNo}"
+                                            Width="95" />
+                        <DataGridTextColumn Header="Son Ödeme"
+                                            Binding="{Binding DueDateText}"
+                                            Width="95" />
+                        <DataGridTextColumn Header="Tutar"
+                                            Binding="{Binding AmountText}"
+                                            Width="90" />
+                        <DataGridTextColumn Header="Ödenen"
+                                            Binding="{Binding PaidAmountText}"
+                                            Width="90" />
+                        <DataGridTextColumn Header="Kalan"
+                                            Binding="{Binding RemainingAmountText}"
+                                            Width="90" />
+                        <DataGridTextColumn Header="PDF"
+                                            Binding="{Binding PdfState}"
+                                            Width="90" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <DataGrid x:Name="YearlyGrid"
+                          Visibility="Collapsed"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          IsReadOnly="True"
+                          SelectionMode="Single"
+                          BorderBrush="#E5EAF1"
+                          BorderThickness="1"
+                          HeadersVisibility="Column"
+                          GridLinesVisibility="Horizontal">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Ay"
+                                            Binding="{Binding MonthName}"
+                                            Width="120" />
+                        <DataGridTextColumn Header="Fatura"
+                                            Binding="{Binding InvoiceCountText}"
+                                            Width="70" />
+                        <DataGridTextColumn Header="Toplam"
+                                            Binding="{Binding TotalAmountText}"
+                                            Width="120" />
+                        <DataGridTextColumn Header="Ödenen"
+                                            Binding="{Binding PaidText}"
+                                            Width="120" />
+                        <DataGridTextColumn Header="Kalan"
+                                            Binding="{Binding RemainingText}"
+                                            Width="120" />
+                        <DataGridTextColumn Header="Ödenmemiş"
+                                            Binding="{Binding UnpaidCountText}"
+                                            Width="90" />
+                        <DataGridTextColumn Header="Gecikmiş"
+                                            Binding="{Binding OverdueCountText}"
+                                            Width="90" />
+                        <DataGridTextColumn Header="PDF Eksik"
+                                            Binding="{Binding MissingPdfCountText}"
+                                            Width="90" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

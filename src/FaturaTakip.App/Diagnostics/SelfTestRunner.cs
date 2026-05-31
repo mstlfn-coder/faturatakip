@@ -541,6 +541,70 @@ public sealed class SelfTestRunner
             Assert(comparison.Previous.TotalAmount == 80m, "Abonelik raporu (previous) toplam tutar hatalı.");
             Assert(comparison.TotalAmountDelta == 40m, "Abonelik raporu toplam delta hatalı.");
 
+            var yearlySamples = new[]
+            {
+                new Invoice
+                {
+                    Id = 70,
+                    SubscriptionId = 10,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 1,
+                    Amount = 100m,
+                    PaidAmount = 100m,
+                    DueDate = new DateTime(2026, 1, 5),
+                    Status = "paid",
+                    PdfFilePath = "attachments/invoices/2026/01/paid.pdf",
+                },
+                new Invoice
+                {
+                    Id = 71,
+                    SubscriptionId = 10,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 250m,
+                    PaidAmount = 0m,
+                    DueDate = new DateTime(2026, 2, 10),
+                    Status = "unpaid",
+                },
+                new Invoice
+                {
+                    Id = 72,
+                    SubscriptionId = 10,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 50m,
+                    PaidAmount = 50m,
+                    DueDate = new DateTime(2026, 2, 20),
+                    Status = "paid",
+                },
+                new Invoice
+                {
+                    Id = 73,
+                    SubscriptionId = 11,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 999m,
+                    PaidAmount = 0m,
+                    DueDate = new DateTime(2026, 2, 12),
+                    Status = "unpaid",
+                },
+            };
+            var yearly = SubscriptionYearlyReportCalculator.Calculate(
+                yearlySamples,
+                subscriptionId: 10,
+                year: 2026,
+                today: new DateTime(2026, 2, 15),
+                isPdfMissing: invoice => !invoice.HasPdf);
+            Assert(yearly.TotalInvoiceCount == 3, "Yıllık rapor toplam fatura sayısı hatalı.");
+            Assert(yearly.TotalAmount == 400m, "Yıllık rapor toplam tutar hatalı.");
+            Assert(yearly.PaidTotal == 200m, "Yıllık rapor ödenen toplam hatalı.");
+            Assert(yearly.RemainingTotal == 200m, "Yıllık rapor kalan toplam hatalı.");
+            Assert(yearly.MissingPdfCount == 2, "Yıllık rapor PDF eksik sayısı hatalı.");
+            Assert(yearly.HighestMonth == 2, "Yıllık rapor en yüksek ay hatalı.");
+            Assert(yearly.HighestMonthTotal == 300m, "Yıllık rapor en yüksek ay toplamı hatalı.");
+            Assert(yearly.LowestMonth == 1, "Yıllık rapor en düşük ay hatalı.");
+            Assert(yearly.LowestMonthTotal == 100m, "Yıllık rapor en düşük ay toplamı hatalı.");
+
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(
                     updatedSubscription.Id,

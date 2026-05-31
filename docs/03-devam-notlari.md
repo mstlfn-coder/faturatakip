@@ -213,6 +213,13 @@ Excel/PDF dışa aktarım, yazdırılabilir PDF rapor ve yedekleme yapılmayacak
 Faz sonunda uygulamayı çalıştır veya en azından derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```
 
+v0.14 sonuç notu:
+
+- Raporlar ekranına `Abonelik Yıllık` sekmesi eklendi.
+- 12 aylık özet tablo ve yıl toplamları gösteriliyor.
+- En yüksek/en düşük ay tile olarak gösteriliyor.
+- `SubscriptionYearlyReportCalculator` eklendi ve `--self-test` kapsadı.
+
 v0.13 sonuç notu:
 
 - Raporlar ekranına `Abonelik` sekmesi eklendi.

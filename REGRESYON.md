@@ -188,6 +188,15 @@ Sonuç etiketleri:
 | Önceki ay karşılaştırması görünüyor | OK | Tile detaylarında delta gösterilir |
 | `--self-test` abonelik karşılaştırmasını doğruluyor | OK | `SubscriptionMonthlyComparisonCalculator` senaryosu eklendi |
 
+## v0.14 - Aboneliğe Özgü Yıllık Fatura Listesi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Abonelik yıllık sekmesi açılıyor | OK | Raporlar ekranında `Abonelik Yıllık` sekmesi |
+| 12 ay özet tablosu görünüyor | OK | Aylara göre fatura/özet kolonları |
+| En yüksek/en düşük ay gösteriliyor | OK | Tile’larda ay adı ve toplam |
+| `--self-test` yıllık raporu doğruluyor | OK | `SubscriptionYearlyReportCalculator` senaryosu eklendi |
+
 ## v0.10 ve Sonrası İçin Regresyon Başlıkları
 
 Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
