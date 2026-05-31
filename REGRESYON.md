@@ -23,7 +23,7 @@ Sonuç etiketleri:
 | Kontrol | Durum | Not |
 |---|---|---|
 | Proje klasörü doğru yerde açılıyor | OK | `C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI` |
-| Git durumu kontrol edildi | OK | `codex/v0.3-abonelik-yonetimi` branch'i üzerinde çalışılıyor |
+| Git durumu kontrol edildi | OK | `codex/v0.4-fatura-kayit-altyapisi` branch'i üzerinde çalışılıyor |
 | Markdown dokümantasyonu UTF-8 olarak okunuyor | OK | Plan dosyası UTF-8 korunarak kopyalandı |
 | Yeni dosya adları yol sorunu azaltmak için ASCII tutuluyor | OK | Kök klasör Türkçe, proje içi doküman adları ASCII |
 | `README.md` yeni chat başlangıcını açıklıyor | OK | Oluşturuldu |
@@ -73,11 +73,12 @@ Sonuç etiketleri:
 
 | Kontrol | Durum | Not |
 |---|---|---|
-| Fatura aboneliğe bağlı kaydediliyor | TODO | v0.4 sonunda |
-| Negatif tutar reddediliyor | TODO | v0.4 sonunda |
-| Negatif kullanım reddediliyor | TODO | v0.4 sonunda |
-| Aynı abonelikte aynı fatura no tekrarına izin verilmiyor | TODO | v0.4 sonunda |
-| Son ödeme tarihi fatura tarihinden önceyse uyarı veriliyor | TODO | v0.4 sonunda |
+| Fatura aboneliğe bağlı kaydediliyor | OK | `--self-test` fatura-abonelik bağını doğruladı |
+| Negatif tutar reddediliyor | OK | `--self-test` negatif tutar senaryosunu doğruladı |
+| Negatif kullanım reddediliyor | OK | `--self-test` negatif kullanım senaryosunu doğruladı |
+| Aynı abonelikte aynı fatura no tekrarına izin verilmiyor | OK | `--self-test` aynı abonelikte tekrar fatura no senaryosunu doğruladı |
+| Son ödeme tarihi fatura tarihinden önceyse uyarı veriliyor | OK | `--self-test` tarih uyarısı üretimini doğruladı |
+| PDF olmadan temel fatura kaydı yapılabiliyor | OK | Fatura formunda PDF alanı yok, temel kayıt self-test ile doğrulandı |
 
 ## v0.5 ve Sonrası İçin Regresyon Başlıkları
 
@@ -103,3 +104,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-05-30 | v0.1 | OK | WPF iskeleti, SQLite başlangıcı, klasör altyapısı ve boş dashboard doğrulandı |
 | 2026-05-30 | v0.2 | OK | Fatura türleri migration, seed, listeleme, ekleme, düzenleme ve aktif/pasif akışı doğrulandı |
 | 2026-05-30 | v0.3 | OK | Abonelik migration, listeleme, filtreleme, ekleme, düzenleme ve aktif/pasif akışı doğrulandı |
+| 2026-05-31 | v0.4 | OK | Fatura migration, listeleme, ekleme, düzenleme ve temel doğrulamalar tamamlandı |

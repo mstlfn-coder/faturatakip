@@ -17,8 +17,8 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | v0.1 | Tamamlandı | WPF proje iskeleti, SQLite bağlantısı, ana klasör yapısı, başlangıç migration sınıfı, boş dashboard | Uygulama açılır, klasörler hazırlanır, veritabanı dosyası oluşturulur |
 | v0.2 | Tamamlandı | Fatura türleri yönetimi | Tür ekleme, düzenleme, aktif/pasif yapma çalışır |
 | v0.3 | Tamamlandı | Abonelik yönetimi | Abonelik ekleme, düzenleme, aktif/pasif yapma ve filtreleme çalışır |
-| v0.4 | Sıradaki | Fatura kayıt altyapısı | PDF olmadan temel fatura kaydı yapılabilir |
-| v0.5 | Beklemede | Fatura PDF evrakı ekleme | PDF uygulama klasörüne kopyalanır, açılır, eksikliği raporlanabilir |
+| v0.4 | Tamamlandı | Fatura kayıt altyapısı | PDF olmadan temel fatura kaydı yapılabilir |
+| v0.5 | Sıradaki | Fatura PDF evrakı ekleme | PDF uygulama klasörüne kopyalanır, açılır, eksikliği raporlanabilir |
 | v0.6 | Beklemede | Fatura listesi ve filtreleme | Yıl, ay, tür, abonelik, ödeme durumu, PDF durumu ve fatura no ile filtreleme çalışır |
 | v0.7 | Beklemede | Ödeme kayıt altyapısı | Faturaya ödeme kaydı eklenebilir ve ödeme durumu gösterilir |
 | v0.8 | Beklemede | Ödeme evrakı PDF ekleme | Ödeme PDF'i kopyalanır, açılır ve eksiklik rapor altyapısına girer |
@@ -178,6 +178,49 @@ Yalnızca şu işler yapılacak:
 Bu fazda yapılmayacaklar:
 
 - Fatura PDF evrak ekleme
+- Ödeme kaydı
+- Ödeme evrakı
+- Rapor ekranları
+- Excel/PDF dışa aktarım
+- Yedekleme
+
+## v0.4 Sonuç Notu
+
+Tamamlananlar:
+
+- `invoices` SQLite tablosu için `0004` migration eklendi.
+- Fatura modeli ve repository katmanı eklendi.
+- Faturalar aboneliklere ve aboneliğin fatura türüne bağlandı.
+- Fatura listeleme ekranı eklendi.
+- Yeni fatura ekleme eklendi.
+- Mevcut fatura düzenleme eklendi.
+- Dönem yılı/ayı, fatura tarihi, son ödeme tarihi, fatura no, tutar, kullanım miktarı, kullanım birimi ve açıklama alanları desteklendi.
+- Aynı abonelikte aynı fatura numarası engellendi.
+- Negatif tutar ve negatif kullanım miktarı engellendi.
+- Son ödeme tarihi fatura tarihinden önceyse kullanıcıya uyarı gösteriliyor.
+- Dashboard toplam fatura sayısını göstermeye başladı.
+- `--self-test` fatura ekleme, düzenleme, aboneliğe bağlama, tekrar fatura no, negatif tutar/kullanım ve tarih uyarısı senaryolarını doğruluyor.
+
+Doğrulama:
+
+- `dotnet build FaturaTakip.sln`
+- `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check`
+- `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+- Uygulama kısa süreli başlatma testi
+
+## v0.5 Ayrıntılı Kapsam
+
+Yalnızca şu işler yapılacak:
+
+- Faturaya PDF ekleme alanı ve akışı eklenecek.
+- Seçilen PDF `attachments/invoices/yyyy/MM` altında güvenli dosya adıyla kopyalanacak.
+- PDF yolu, orijinal dosya adı ve dosya hash bilgisi veritabanında saklanacak.
+- Fatura PDF'i açma akışı eklenecek.
+- Dosya varlık kontrolü yapılacak.
+- Fatura PDF eksikliği raporu için altyapı hazırlanacak.
+
+Bu fazda yapılmayacaklar:
+
 - Ödeme kaydı
 - Ödeme evrakı
 - Rapor ekranları

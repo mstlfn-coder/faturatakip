@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
+using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.InvoiceTypes;
 using FaturaTakip.App.Data.Subscriptions;
 using FaturaTakip.App.Infrastructure;
@@ -14,6 +15,7 @@ public partial class MainWindow : Window
 {
     private readonly InvoiceTypeRepository _invoiceTypeRepository;
     private readonly SubscriptionRepository _subscriptionRepository;
+    private readonly InvoiceRepository _invoiceRepository;
     private IReadOnlyList<InvoiceType> _invoiceTypes = Array.Empty<InvoiceType>();
     private InvoiceType? _selectedInvoiceType;
 
@@ -23,10 +25,13 @@ public partial class MainWindow : Window
 
         _invoiceTypeRepository = new InvoiceTypeRepository(startupStatus.DatabasePath);
         _subscriptionRepository = new SubscriptionRepository(startupStatus.DatabasePath);
+        _invoiceRepository = new InvoiceRepository(startupStatus.DatabasePath);
         SubscriptionsPanel.Initialize(startupStatus.DatabasePath);
+        InvoicesPanel.Initialize(startupStatus.DatabasePath);
         ApplyStartupStatus(startupStatus);
         RefreshInvoiceTypes();
         RefreshDashboardSubscriptionCounts();
+        RefreshDashboardInvoiceCounts();
         ShowDashboard();
     }
 
@@ -59,18 +64,27 @@ public partial class MainWindow : Window
         ShowSubscriptions();
     }
 
+    private void InvoicesNavButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowInvoices();
+    }
+
     private void ShowDashboard()
     {
         DashboardPanel.Visibility = Visibility.Visible;
         InvoiceTypesPanel.Visibility = Visibility.Collapsed;
         SubscriptionsPanel.Visibility = Visibility.Collapsed;
+        InvoicesPanel.Visibility = Visibility.Collapsed;
         DashboardNavButton.Foreground = Brushes.White;
         DashboardNavButton.FontWeight = FontWeights.SemiBold;
         InvoiceTypesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         InvoiceTypesNavButton.FontWeight = FontWeights.Normal;
         SubscriptionsNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         SubscriptionsNavButton.FontWeight = FontWeights.Normal;
+        InvoicesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        InvoicesNavButton.FontWeight = FontWeights.Normal;
         RefreshDashboardSubscriptionCounts();
+        RefreshDashboardInvoiceCounts();
     }
 
     private void ShowInvoiceTypes()
@@ -79,12 +93,15 @@ public partial class MainWindow : Window
         DashboardPanel.Visibility = Visibility.Collapsed;
         InvoiceTypesPanel.Visibility = Visibility.Visible;
         SubscriptionsPanel.Visibility = Visibility.Collapsed;
+        InvoicesPanel.Visibility = Visibility.Collapsed;
         DashboardNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         DashboardNavButton.FontWeight = FontWeights.Normal;
         InvoiceTypesNavButton.Foreground = Brushes.White;
         InvoiceTypesNavButton.FontWeight = FontWeights.SemiBold;
         SubscriptionsNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         SubscriptionsNavButton.FontWeight = FontWeights.Normal;
+        InvoicesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        InvoicesNavButton.FontWeight = FontWeights.Normal;
     }
 
     private void ShowSubscriptions()
@@ -93,12 +110,32 @@ public partial class MainWindow : Window
         DashboardPanel.Visibility = Visibility.Collapsed;
         InvoiceTypesPanel.Visibility = Visibility.Collapsed;
         SubscriptionsPanel.Visibility = Visibility.Visible;
+        InvoicesPanel.Visibility = Visibility.Collapsed;
         DashboardNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         DashboardNavButton.FontWeight = FontWeights.Normal;
         InvoiceTypesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         InvoiceTypesNavButton.FontWeight = FontWeights.Normal;
         SubscriptionsNavButton.Foreground = Brushes.White;
         SubscriptionsNavButton.FontWeight = FontWeights.SemiBold;
+        InvoicesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        InvoicesNavButton.FontWeight = FontWeights.Normal;
+    }
+
+    private void ShowInvoices()
+    {
+        InvoicesPanel.Refresh();
+        DashboardPanel.Visibility = Visibility.Collapsed;
+        InvoiceTypesPanel.Visibility = Visibility.Collapsed;
+        SubscriptionsPanel.Visibility = Visibility.Collapsed;
+        InvoicesPanel.Visibility = Visibility.Visible;
+        DashboardNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        DashboardNavButton.FontWeight = FontWeights.Normal;
+        InvoiceTypesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        InvoiceTypesNavButton.FontWeight = FontWeights.Normal;
+        SubscriptionsNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        SubscriptionsNavButton.FontWeight = FontWeights.Normal;
+        InvoicesNavButton.Foreground = Brushes.White;
+        InvoicesNavButton.FontWeight = FontWeights.SemiBold;
     }
 
     private void RefreshInvoiceTypes(long? selectedId = null)
@@ -135,9 +172,21 @@ public partial class MainWindow : Window
         DashboardActiveSubscriptionCountText.Text = activeSubscriptionCount.ToString(CultureInfo.InvariantCulture);
     }
 
+    private void RefreshDashboardInvoiceCounts()
+    {
+        var invoiceCount = _invoiceRepository.GetAll().Count;
+        DashboardInvoiceCountText.Text = invoiceCount.ToString(CultureInfo.InvariantCulture);
+    }
+
     private void SubscriptionsPanel_SubscriptionsChanged(object sender, EventArgs e)
     {
         RefreshDashboardSubscriptionCounts();
+        InvoicesPanel.Refresh();
+    }
+
+    private void InvoicesPanel_InvoicesChanged(object sender, EventArgs e)
+    {
+        RefreshDashboardInvoiceCounts();
     }
 
     private void InvoiceTypeGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)

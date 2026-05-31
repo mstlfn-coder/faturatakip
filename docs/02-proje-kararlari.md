@@ -19,6 +19,9 @@ Bu dosya, geliştirme sırasında alınan kalıcı kararları kaydeder. Kararlar
 | 2026-05-30 | Veri katmanı için şimdilik doğrudan repository sınıfları kullanılacak | Erken fazlarda ORM eklemeden davranışı sade tutar |
 | 2026-05-30 | Abonelikler fiziksel silinmeyecek, aktif/pasif yapılacak | Gelecekte faturalar aboneliklere bağlanacağı için geçmiş ilişki korunmalı |
 | 2026-05-30 | Abonelikler zorunlu olarak fatura türüne bağlanacak | Ana veri ilişkisi `Fatura Türü -> Abonelik -> Fatura` şeklinde korunmalı |
+| 2026-05-31 | Faturalar aboneliğe ve aboneliğin fatura türüne bağlanacak | Raporlama kolaylaşır, abonelik ana veri ilişkisi korunur |
+| 2026-05-31 | Fatura tutarı ve kullanım miktarı uygulama katmanında decimal doğrulanacak | Negatif değerler engellenir ve para hesabı hassasiyeti korunur |
+| 2026-05-31 | Aynı abonelikte aynı fatura numarası benzersiz olacak | Çift kayıt riskini azaltır |
 
 ## Açık Kararlar
 

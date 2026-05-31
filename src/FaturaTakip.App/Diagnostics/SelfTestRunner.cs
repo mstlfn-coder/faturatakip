@@ -1,5 +1,6 @@
 using System.IO;
 using FaturaTakip.App.Data;
+using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.InvoiceTypes;
 using FaturaTakip.App.Data.Subscriptions;
 
@@ -76,6 +77,89 @@ public sealed class SelfTestRunner
                 "Self-test abonelik güncellemesi"));
             Assert(updatedSubscription.InstallationNo == "TES-002", "Abonelik düzenleme başarısız.");
 
+            var invoiceRepository = new InvoiceRepository(databasePath);
+            var invoice = invoiceRepository.Add(new InvoiceInput(
+                updatedSubscription.Id,
+                2026,
+                1,
+                new DateTime(2026, 1, 10),
+                new DateTime(2026, 1, 20),
+                "INV-001",
+                1250.75m,
+                345.5m,
+                invoiceType.DefaultUsageUnit,
+                "Self-test fatura kaydı"));
+            Assert(invoice.SubscriptionId == updatedSubscription.Id, "Fatura aboneliğe bağlanmadı.");
+            Assert(invoice.InvoiceTypeId == invoiceType.Id, "Fatura türü abonelikten alınmadı.");
+
+            var updatedInvoice = invoiceRepository.Update(invoice.Id, new InvoiceInput(
+                updatedSubscription.Id,
+                2026,
+                1,
+                new DateTime(2026, 1, 10),
+                new DateTime(2026, 1, 20),
+                "INV-001-G",
+                1300m,
+                350m,
+                invoiceType.DefaultUsageUnit,
+                "Self-test fatura güncellemesi"));
+            Assert(updatedInvoice.Amount == 1300m, "Fatura düzenleme başarısız.");
+
+            AssertThrows(
+                () => invoiceRepository.Add(new InvoiceInput(
+                    updatedSubscription.Id,
+                    2026,
+                    1,
+                    new DateTime(2026, 1, 11),
+                    new DateTime(2026, 1, 21),
+                    "INV-001-G",
+                    1m,
+                    1m,
+                    invoiceType.DefaultUsageUnit,
+                    "Tekrar fatura no")),
+                "Aynı abonelikte aynı fatura numarası engellenmedi.");
+
+            AssertThrows(
+                () => invoiceRepository.Add(new InvoiceInput(
+                    updatedSubscription.Id,
+                    2026,
+                    2,
+                    new DateTime(2026, 2, 10),
+                    new DateTime(2026, 2, 20),
+                    "INV-NEG",
+                    -1m,
+                    1m,
+                    invoiceType.DefaultUsageUnit,
+                    "Negatif tutar")),
+                "Negatif fatura tutarı engellenmedi.");
+
+            AssertThrows(
+                () => invoiceRepository.Add(new InvoiceInput(
+                    updatedSubscription.Id,
+                    2026,
+                    2,
+                    new DateTime(2026, 2, 10),
+                    new DateTime(2026, 2, 20),
+                    "INV-USAGE-NEG",
+                    1m,
+                    -1m,
+                    invoiceType.DefaultUsageUnit,
+                    "Negatif kullanım")),
+                "Negatif kullanım miktarı engellenmedi.");
+
+            var dueDateWarning = InvoiceRepository.GetDueDateWarning(new InvoiceInput(
+                updatedSubscription.Id,
+                2026,
+                3,
+                new DateTime(2026, 3, 10),
+                new DateTime(2026, 3, 1),
+                "INV-WARN",
+                1m,
+                1m,
+                invoiceType.DefaultUsageUnit,
+                "Tarih uyarısı"));
+            Assert(!string.IsNullOrWhiteSpace(dueDateWarning), "Son ödeme tarihi uyarısı üretilmedi.");
+
             subscriptionRepository.SetActive(updatedSubscription.Id, isActive: false);
             var passiveSubscription = subscriptionRepository.GetAll().Single(item => item.Id == updatedSubscription.Id);
             Assert(!passiveSubscription.IsActive, "Abonelik pasife alma başarısız.");
@@ -95,5 +179,19 @@ public sealed class SelfTestRunner
         {
             throw new InvalidOperationException(message);
         }
+    }
+
+    private static void AssertThrows(Action action, string message)
+    {
+        try
+        {
+            action();
+        }
+        catch (InvalidOperationException)
+        {
+            return;
+        }
+
+        throw new InvalidOperationException(message);
     }
 }

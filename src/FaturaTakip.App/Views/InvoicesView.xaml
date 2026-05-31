@@ -1,0 +1,328 @@
+<UserControl x:Class="FaturaTakip.App.Views.InvoicesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="680"
+             d:DesignWidth="900">
+    <UserControl.Resources>
+        <Style x:Key="MutedText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#5F6B7A" />
+            <Setter Property="FontSize" Value="13" />
+        </Style>
+        <Style x:Key="TileBorder" TargetType="Border">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="#DDE4EC" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="18" />
+        </Style>
+        <Style x:Key="FieldLabel" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#334155" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Margin" Value="0,0,0,6" />
+        </Style>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#2563EB" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="14,9" />
+            <Setter Property="MinWidth" Value="96" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style x:Key="SecondaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#E7EEF6" />
+            <Setter Property="Foreground" Value="#334155" />
+            <Setter Property="BorderBrush" Value="#CFDAE8" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="14,8" />
+            <Setter Property="MinWidth" Value="96" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel>
+                <TextBlock Text="Faturalar"
+                           Foreground="#1F2937"
+                           FontSize="28"
+                           FontWeight="SemiBold" />
+                <TextBlock Text="PDF eklemeden temel fatura bilgisi"
+                           Style="{StaticResource MutedText}"
+                           Margin="0,6,0,0" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center">
+                <Button Content="Yeni"
+                        Style="{StaticResource SecondaryButton}"
+                        Margin="0,0,8,0"
+                        Click="NewInvoiceButton_Click" />
+                <Button Content="Kaydet"
+                        Style="{StaticResource PrimaryButton}"
+                        Click="SaveInvoiceButton_Click" />
+            </StackPanel>
+        </Grid>
+
+        <UniformGrid Grid.Row="1"
+                     Columns="3"
+                     Margin="0,24,0,24">
+            <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
+                <StackPanel>
+                    <TextBlock Text="Toplam Fatura"
+                               Style="{StaticResource MutedText}" />
+                    <TextBlock x:Name="InvoiceCountText"
+                               Text="0"
+                               Margin="0,10,0,0"
+                               Foreground="#111827"
+                               FontSize="28"
+                               FontWeight="SemiBold" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
+                <StackPanel>
+                    <TextBlock Text="Ödenmemiş"
+                               Style="{StaticResource MutedText}" />
+                    <TextBlock x:Name="UnpaidInvoiceCountText"
+                               Text="0"
+                               Margin="0,10,0,0"
+                               Foreground="#111827"
+                               FontSize="28"
+                               FontWeight="SemiBold" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource TileBorder}">
+                <StackPanel>
+                    <TextBlock Text="Gecikmiş"
+                               Style="{StaticResource MutedText}" />
+                    <TextBlock x:Name="OverdueInvoiceCountText"
+                               Text="0"
+                               Margin="0,10,0,0"
+                               Foreground="#111827"
+                               FontSize="28"
+                               FontWeight="SemiBold" />
+                </StackPanel>
+            </Border>
+        </UniformGrid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.2*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="0.8*" />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Style="{StaticResource TileBorder}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Margin="0,0,0,14">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.2*" />
+                            <ColumnDefinition Width="12" />
+                            <ColumnDefinition Width="0.9*" />
+                            <ColumnDefinition Width="12" />
+                            <ColumnDefinition Width="0.7*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="InvoiceSearchInput"
+                                 Height="34"
+                                 VerticalContentAlignment="Center"
+                                 TextChanged="InvoiceFilter_Changed"
+                                 ToolTip="Fatura no, abonelik, kurum veya tür ara" />
+
+                        <ComboBox x:Name="InvoiceSubscriptionFilterInput"
+                                  Grid.Column="2"
+                                  Height="34"
+                                  DisplayMemberPath="Label"
+                                  SelectionChanged="InvoiceFilter_Changed" />
+
+                        <ComboBox x:Name="InvoicePeriodFilterInput"
+                                  Grid.Column="4"
+                                  Height="34"
+                                  DisplayMemberPath="Label"
+                                  SelectionChanged="InvoiceFilter_Changed" />
+                    </Grid>
+
+                    <DataGrid x:Name="InvoiceGrid"
+                              Grid.Row="1"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              IsReadOnly="True"
+                              SelectionMode="Single"
+                              SelectionChanged="InvoiceGrid_SelectionChanged"
+                              BorderBrush="#E5EAF1"
+                              BorderThickness="1"
+                              HeadersVisibility="Column"
+                              GridLinesVisibility="Horizontal">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Dönem"
+                                                Binding="{Binding Period}"
+                                                Width="80" />
+                            <DataGridTextColumn Header="Tür"
+                                                Binding="{Binding InvoiceTypeName}"
+                                                Width="110" />
+                            <DataGridTextColumn Header="Abonelik"
+                                                Binding="{Binding SubscriptionName}"
+                                                Width="1.1*" />
+                            <DataGridTextColumn Header="Fatura No"
+                                                Binding="{Binding InvoiceNo}"
+                                                Width="120" />
+                            <DataGridTextColumn Header="Tutar"
+                                                Binding="{Binding AmountText}"
+                                                Width="100" />
+                            <DataGridTextColumn Header="Son Ödeme"
+                                                Binding="{Binding DueDate, StringFormat=dd.MM.yyyy}"
+                                                Width="110" />
+                            <DataGridTextColumn Header="Durum"
+                                                Binding="{Binding State}"
+                                                Width="95" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="2" Style="{StaticResource TileBorder}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock x:Name="InvoiceFormTitleText"
+                               Text="Yeni Fatura"
+                               Foreground="#1F2937"
+                               FontSize="18"
+                               FontWeight="SemiBold" />
+
+                    <ScrollViewer Grid.Row="1"
+                                  Margin="0,16,0,0"
+                                  VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <TextBlock Text="Abonelik" Style="{StaticResource FieldLabel}" />
+                            <ComboBox x:Name="InvoiceSubscriptionInput"
+                                      Height="34"
+                                      DisplayMemberPath="SubscriptionName"
+                                      SelectedValuePath="Id"
+                                      SelectionChanged="InvoiceSubscriptionInput_SelectionChanged" />
+
+                            <Grid Margin="0,14,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="12" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel>
+                                    <TextBlock Text="Dönem Yılı" Style="{StaticResource FieldLabel}" />
+                                    <TextBox x:Name="InvoiceYearInput"
+                                             Height="34"
+                                             MaxLength="4" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="Dönem Ayı" Style="{StaticResource FieldLabel}" />
+                                    <ComboBox x:Name="InvoiceMonthInput"
+                                              Height="34"
+                                              DisplayMemberPath="Label"
+                                              SelectedValuePath="Value" />
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Margin="0,14,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="12" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel>
+                                    <TextBlock Text="Fatura Tarihi" Style="{StaticResource FieldLabel}" />
+                                    <DatePicker x:Name="InvoiceDateInput" Height="34" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="Son Ödeme" Style="{StaticResource FieldLabel}" />
+                                    <DatePicker x:Name="InvoiceDueDateInput" Height="34" />
+                                </StackPanel>
+                            </Grid>
+
+                            <TextBlock Text="Fatura Numarası"
+                                       Style="{StaticResource FieldLabel}"
+                                       Margin="0,14,0,6" />
+                            <TextBox x:Name="InvoiceNoInput"
+                                     Height="34"
+                                     MaxLength="100" />
+
+                            <Grid Margin="0,14,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="12" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel>
+                                    <TextBlock Text="Tutar" Style="{StaticResource FieldLabel}" />
+                                    <TextBox x:Name="InvoiceAmountInput"
+                                             Height="34" />
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2">
+                                    <TextBlock Text="Kullanım" Style="{StaticResource FieldLabel}" />
+                                    <TextBox x:Name="UsageAmountInput"
+                                             Height="34" />
+                                </StackPanel>
+                            </Grid>
+
+                            <TextBlock Text="Kullanım Birimi"
+                                       Style="{StaticResource FieldLabel}"
+                                       Margin="0,14,0,6" />
+                            <TextBox x:Name="UsageUnitInput"
+                                     Height="34"
+                                     MaxLength="30" />
+
+                            <TextBlock Text="Açıklama"
+                                       Style="{StaticResource FieldLabel}"
+                                       Margin="0,14,0,6" />
+                            <TextBox x:Name="InvoiceDescriptionInput"
+                                     MinHeight="96"
+                                     MaxLength="500"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     VerticalScrollBarVisibility="Auto" />
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <StackPanel Grid.Row="2" Margin="0,18,0,0">
+                        <TextBlock x:Name="InvoiceStatusText"
+                                   Style="{StaticResource MutedText}"
+                                   TextWrapping="Wrap"
+                                   Margin="0,0,0,12" />
+                        <Button Content="Kaydet"
+                                Style="{StaticResource PrimaryButton}"
+                                HorizontalAlignment="Left"
+                                Click="SaveInvoiceButton_Click" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>
