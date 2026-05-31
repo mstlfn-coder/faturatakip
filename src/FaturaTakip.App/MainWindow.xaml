@@ -107,7 +107,7 @@
                 </StackPanel>
 
                 <TextBlock Grid.Row="3"
-                           Text="v0.3"
+                           Text="v0.5"
                            Foreground="#94A3B8"
                            FontSize="13" />
             </Grid>

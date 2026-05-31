@@ -60,7 +60,7 @@
                            Foreground="#1F2937"
                            FontSize="28"
                            FontWeight="SemiBold" />
-                <TextBlock Text="PDF eklemeden temel fatura bilgisi"
+                <TextBlock Text="Fatura bilgisi ve PDF evrak takibi"
                            Style="{StaticResource MutedText}"
                            Margin="0,6,0,0" />
             </StackPanel>
@@ -79,7 +79,7 @@
         </Grid>
 
         <UniformGrid Grid.Row="1"
-                     Columns="3"
+                     Columns="4"
                      Margin="0,24,0,24">
             <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
                 <StackPanel>
@@ -105,11 +105,23 @@
                                FontWeight="SemiBold" />
                 </StackPanel>
             </Border>
-            <Border Style="{StaticResource TileBorder}">
+            <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
                 <StackPanel>
                     <TextBlock Text="Gecikmiş"
                                Style="{StaticResource MutedText}" />
                     <TextBlock x:Name="OverdueInvoiceCountText"
+                               Text="0"
+                               Margin="0,10,0,0"
+                               Foreground="#111827"
+                               FontSize="28"
+                               FontWeight="SemiBold" />
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource TileBorder}">
+                <StackPanel>
+                    <TextBlock Text="PDF Eksik"
+                               Style="{StaticResource MutedText}" />
+                    <TextBlock x:Name="MissingPdfCountText"
                                Text="0"
                                Margin="0,10,0,0"
                                Foreground="#111827"
@@ -194,6 +206,9 @@
                             <DataGridTextColumn Header="Durum"
                                                 Binding="{Binding State}"
                                                 Width="95" />
+                            <DataGridTextColumn Header="PDF"
+                                                Binding="{Binding PdfState}"
+                                                Width="90" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -308,6 +323,32 @@
                                      AcceptsReturn="True"
                                      TextWrapping="Wrap"
                                      VerticalScrollBarVisibility="Auto" />
+
+                            <TextBlock Text="PDF Evrakı"
+                                       Style="{StaticResource FieldLabel}"
+                                       Margin="0,14,0,6" />
+                            <Border Background="#F8FAFC"
+                                    BorderBrush="#DDE4EC"
+                                    BorderThickness="1"
+                                    CornerRadius="6"
+                                    Padding="10">
+                                <StackPanel>
+                                    <TextBlock x:Name="InvoicePdfInfoText"
+                                               Style="{StaticResource MutedText}"
+                                               TextWrapping="Wrap" />
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="0,10,0,0">
+                                        <Button Content="PDF Seç"
+                                                Style="{StaticResource SecondaryButton}"
+                                                Margin="0,0,8,0"
+                                                Click="SelectInvoicePdfButton_Click" />
+                                        <Button x:Name="OpenInvoicePdfButton"
+                                                Content="PDF Aç"
+                                                Style="{StaticResource SecondaryButton}"
+                                                Click="OpenInvoicePdfButton_Click" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
                         </StackPanel>
                     </ScrollViewer>
 

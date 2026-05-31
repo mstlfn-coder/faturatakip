@@ -23,10 +23,11 @@ Bu dosya, geliştirme sırasında alınan kalıcı kararları kaydeder. Kararlar
 | 2026-05-31 | Fatura tutarı ve kullanım miktarı uygulama katmanında decimal doğrulanacak | Negatif değerler engellenir ve para hesabı hassasiyeti korunur |
 | 2026-05-31 | Aynı abonelikte aynı fatura numarası benzersiz olacak | Çift kayıt riskini azaltır |
 | 2026-05-31 | Fatura PDF raporları tasarlanmadan önce kullanıcıdan Excel örneği istenecek | Rapor kolonları, toplamlar, sayfa düzeni ve çıktı beklentisi örneğe göre netleştirilecek |
+| 2026-05-31 | Fatura PDF evrak hash algoritması SHA-256 olacak | Dosya tekrarları ve bütünlük kontrolü için yaygın, güvenilir ve yeterli |
+| 2026-05-31 | Fatura PDF yolları uygulama köküne göre göreli saklanacak | Klasör taşınabilirliği ve yedek geri yükleme senaryoları kolaylaşır |
 
 ## Açık Kararlar
 
 Bu başlıklar ilk uygulama fazlarında netleştirilecek:
 
-- Dosya hash algoritması
 - UI tema ve bileşen düzeni

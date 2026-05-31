@@ -1,9 +1,12 @@
+using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.Subscriptions;
+using Microsoft.Win32;
 
 namespace FaturaTakip.App.Views;
 
@@ -15,6 +18,7 @@ public partial class InvoicesView : UserControl
     private IReadOnlyList<Invoice> _invoices = Array.Empty<Invoice>();
     private IReadOnlyList<Subscription> _subscriptions = Array.Empty<Subscription>();
     private Invoice? _selectedInvoice;
+    private string? _pendingPdfSourcePath;
     private bool _isInitialized;
     private bool _isEditingExisting;
 
@@ -82,10 +86,12 @@ public partial class InvoicesView : UserControl
         _invoices = _invoiceRepository.GetAll();
         var unpaidCount = _invoices.Count(item => item.Status == "unpaid");
         var overdueCount = _invoices.Count(item => item.Status == "unpaid" && item.DueDate.Date < DateTime.Today);
+        var missingPdfCount = _invoices.Count(item => _invoiceRepository.IsPdfMissing(item));
 
         InvoiceCountText.Text = _invoices.Count.ToString(CultureInfo.InvariantCulture);
         UnpaidInvoiceCountText.Text = unpaidCount.ToString(CultureInfo.InvariantCulture);
         OverdueInvoiceCountText.Text = overdueCount.ToString(CultureInfo.InvariantCulture);
+        MissingPdfCountText.Text = missingPdfCount.ToString(CultureInfo.InvariantCulture);
 
         RefreshPeriodFilter();
 
@@ -189,6 +195,7 @@ public partial class InvoicesView : UserControl
     private void ApplySelectedInvoice(Invoice invoice)
     {
         _selectedInvoice = invoice;
+        _pendingPdfSourcePath = null;
         _isEditingExisting = true;
 
         InvoiceFormTitleText.Text = "Faturayı Düzenle";
@@ -202,6 +209,7 @@ public partial class InvoicesView : UserControl
         UsageAmountInput.Text = invoice.UsageAmount.ToString("N2", TurkishCulture);
         UsageUnitInput.Text = invoice.UsageUnit;
         InvoiceDescriptionInput.Text = invoice.Description;
+        UpdatePdfControls(invoice);
         SetInvoiceStatus($"Seçili kayıt: {invoice.InvoiceNo}", isError: false);
     }
 
@@ -225,12 +233,69 @@ public partial class InvoicesView : UserControl
             var saved = _selectedInvoice is null
                 ? _invoiceRepository.Add(input)
                 : _invoiceRepository.Update(_selectedInvoice.Id, input);
+            var pdfAttached = false;
+
+            if (!string.IsNullOrWhiteSpace(_pendingPdfSourcePath))
+            {
+                saved = _invoiceRepository.AttachPdf(saved.Id, _pendingPdfSourcePath);
+                _pendingPdfSourcePath = null;
+                pdfAttached = true;
+            }
 
             RefreshInvoices(saved.Id);
             InvoicesChanged?.Invoke(this, EventArgs.Empty);
-            SetInvoiceStatus(warning is null ? "Fatura kaydedildi." : $"Fatura kaydedildi. Uyarı: {warning}", isError: false);
+            var successMessage = pdfAttached ? "Fatura ve PDF kaydedildi." : "Fatura kaydedildi.";
+            SetInvoiceStatus(warning is null ? successMessage : $"{successMessage} Uyarı: {warning}", isError: false);
         }
-        catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException)
+        catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException or IOException or UnauthorizedAccessException)
+        {
+            SetInvoiceStatus(exception.Message, isError: true);
+        }
+    }
+
+    private void SelectInvoicePdfButton_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new OpenFileDialog
+        {
+            Title = "Fatura PDF Evrakı Seç",
+            Filter = "PDF Dosyaları (*.pdf)|*.pdf",
+            CheckFileExists = true,
+            Multiselect = false,
+        };
+
+        if (dialog.ShowDialog() != true)
+        {
+            return;
+        }
+
+        _pendingPdfSourcePath = dialog.FileName;
+        UpdatePdfControls(_selectedInvoice);
+        SetInvoiceStatus("PDF seçildi. Kaydet düğmesiyle faturaya eklenecek.", isError: false);
+    }
+
+    private void OpenInvoicePdfButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_invoiceRepository is null || _selectedInvoice is null)
+        {
+            return;
+        }
+
+        try
+        {
+            var pdfPath = _invoiceRepository.GetPdfAbsolutePath(_selectedInvoice);
+            if (string.IsNullOrWhiteSpace(pdfPath) || !File.Exists(pdfPath))
+            {
+                SetInvoiceStatus("PDF dosyası bulunamadı.", isError: true);
+                UpdatePdfControls(_selectedInvoice);
+                return;
+            }
+
+            Process.Start(new ProcessStartInfo(pdfPath)
+            {
+                UseShellExecute = true,
+            });
+        }
+        catch (Exception exception) when (exception is InvalidOperationException or IOException or UnauthorizedAccessException or System.ComponentModel.Win32Exception)
         {
             SetInvoiceStatus(exception.Message, isError: true);
         }
@@ -291,6 +356,7 @@ public partial class InvoicesView : UserControl
     private void ClearInvoiceForm()
     {
         _selectedInvoice = null;
+        _pendingPdfSourcePath = null;
         _isEditingExisting = false;
         InvoiceGrid.SelectedItem = null;
 
@@ -306,6 +372,7 @@ public partial class InvoicesView : UserControl
         UsageAmountInput.Text = "0,00";
         UsageUnitInput.Text = (InvoiceSubscriptionInput.SelectedItem as Subscription)?.DefaultUsageUnit ?? string.Empty;
         InvoiceDescriptionInput.Text = string.Empty;
+        UpdatePdfControls(null);
         SetInvoiceStatus("Yeni kayıt için alanları doldurun.", isError: false);
     }
 
@@ -330,6 +397,48 @@ public partial class InvoicesView : UserControl
     {
         InvoiceStatusText.Text = message;
         InvoiceStatusText.Foreground = isError
+            ? new SolidColorBrush(Color.FromRgb(185, 28, 28))
+            : new SolidColorBrush(Color.FromRgb(95, 107, 122));
+    }
+
+    private void UpdatePdfControls(Invoice? invoice)
+    {
+        if (!string.IsNullOrWhiteSpace(_pendingPdfSourcePath))
+        {
+            SetPdfInfo($"Seçili PDF: {Path.GetFileName(_pendingPdfSourcePath)}. Kaydet ile faturaya eklenecek.", isError: false);
+            OpenInvoicePdfButton.IsEnabled = false;
+            return;
+        }
+
+        if (invoice is null)
+        {
+            SetPdfInfo("PDF eklemek için dosya seçin; kayıt sırasında faturaya bağlanır.", isError: false);
+            OpenInvoicePdfButton.IsEnabled = false;
+            return;
+        }
+
+        if (!invoice.HasPdf)
+        {
+            SetPdfInfo("Bu faturaya PDF evrak eklenmemiş.", isError: false);
+            OpenInvoicePdfButton.IsEnabled = false;
+            return;
+        }
+
+        if (_invoiceRepository?.PdfFileExists(invoice) == true)
+        {
+            SetPdfInfo($"PDF kayıtlı: {invoice.PdfOriginalFileName}", isError: false);
+            OpenInvoicePdfButton.IsEnabled = true;
+            return;
+        }
+
+        SetPdfInfo($"PDF kaydı var ancak dosya bulunamadı: {invoice.PdfFilePath}", isError: true);
+        OpenInvoicePdfButton.IsEnabled = false;
+    }
+
+    private void SetPdfInfo(string message, bool isError)
+    {
+        InvoicePdfInfoText.Text = message;
+        InvoicePdfInfoText.Foreground = isError
             ? new SolidColorBrush(Color.FromRgb(185, 28, 28))
             : new SolidColorBrush(Color.FromRgb(95, 107, 122));
     }

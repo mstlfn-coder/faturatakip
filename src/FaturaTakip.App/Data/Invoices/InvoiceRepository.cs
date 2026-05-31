@@ -1,4 +1,6 @@
 using System.Globalization;
+using System.IO;
+using System.Security.Cryptography;
 using Microsoft.Data.Sqlite;
 
 namespace FaturaTakip.App.Data.Invoices;
@@ -6,10 +8,14 @@ namespace FaturaTakip.App.Data.Invoices;
 public sealed class InvoiceRepository
 {
     private readonly string _databasePath;
+    private readonly string _rootDirectory;
+    private readonly string _invoiceAttachmentDirectory;
 
     public InvoiceRepository(string databasePath)
     {
-        _databasePath = databasePath;
+        _databasePath = Path.GetFullPath(databasePath);
+        _rootDirectory = ResolveRootDirectory(_databasePath);
+        _invoiceAttachmentDirectory = Path.Combine(_rootDirectory, "attachments", "invoices");
     }
 
     public IReadOnlyList<Invoice> GetAll()
@@ -121,6 +127,66 @@ public sealed class InvoiceRepository
         }
 
         return GetRequired(id);
+    }
+
+    public Invoice AttachPdf(long id, string sourcePdfPath)
+    {
+        var invoice = GetRequired(id);
+        var sourceFullPath = ValidatePdfSource(sourcePdfPath);
+        var hash = ComputeSha256Hash(sourceFullPath);
+        var relativePath = CopyPdfToAttachmentDirectory(invoice, sourceFullPath, hash);
+        var originalFileName = Path.GetFileName(sourceFullPath);
+        var now = DateTimeOffset.Now.ToString("O", CultureInfo.InvariantCulture);
+
+        using var connection = SqliteConnectionFactory.Create(_databasePath);
+        connection.Open();
+
+        using var command = connection.CreateCommand();
+        command.CommandText = """
+            UPDATE invoices
+            SET pdf_file_path = $pdfFilePath,
+                pdf_original_file_name = $pdfOriginalFileName,
+                pdf_sha256_hash = $pdfSha256Hash,
+                pdf_attached_at = $pdfAttachedAt,
+                updated_at = $updatedAt
+            WHERE id = $id;
+            """;
+        command.Parameters.AddWithValue("$id", id);
+        command.Parameters.AddWithValue("$pdfFilePath", relativePath);
+        command.Parameters.AddWithValue("$pdfOriginalFileName", originalFileName);
+        command.Parameters.AddWithValue("$pdfSha256Hash", hash);
+        command.Parameters.AddWithValue("$pdfAttachedAt", now);
+        command.Parameters.AddWithValue("$updatedAt", now);
+
+        if (command.ExecuteNonQuery() == 0)
+        {
+            throw new InvalidOperationException("PDF eklenecek fatura bulunamadı.");
+        }
+
+        return GetRequired(id);
+    }
+
+    public string GetPdfAbsolutePath(Invoice invoice)
+    {
+        if (!invoice.HasPdf)
+        {
+            return string.Empty;
+        }
+
+        return Path.IsPathRooted(invoice.PdfFilePath)
+            ? invoice.PdfFilePath
+            : Path.GetFullPath(Path.Combine(_rootDirectory, invoice.PdfFilePath));
+    }
+
+    public bool PdfFileExists(Invoice invoice)
+    {
+        var path = GetPdfAbsolutePath(invoice);
+        return !string.IsNullOrWhiteSpace(path) && File.Exists(path);
+    }
+
+    public bool IsPdfMissing(Invoice invoice)
+    {
+        return !invoice.HasPdf || !PdfFileExists(invoice);
     }
 
     public static string? GetDueDateWarning(InvoiceInput input)
@@ -297,9 +363,81 @@ public sealed class InvoiceRepository
             UsageUnit = reader.GetString(13),
             Status = reader.GetString(14),
             Description = reader.GetString(15),
-            CreatedAt = ParseDateTimeOffset(reader.GetString(16)),
-            UpdatedAt = ParseDateTimeOffset(reader.GetString(17)),
+            PdfFilePath = reader.GetString(16),
+            PdfOriginalFileName = reader.GetString(17),
+            PdfSha256Hash = reader.GetString(18),
+            PdfAttachedAt = ParseNullableDateTimeOffset(reader.GetString(19)),
+            CreatedAt = ParseDateTimeOffset(reader.GetString(20)),
+            UpdatedAt = ParseDateTimeOffset(reader.GetString(21)),
         };
+    }
+
+    private string CopyPdfToAttachmentDirectory(Invoice invoice, string sourceFullPath, string hash)
+    {
+        var targetDirectory = Path.Combine(
+            _invoiceAttachmentDirectory,
+            invoice.InvoiceYear.ToString("D4", CultureInfo.InvariantCulture),
+            invoice.InvoiceMonth.ToString("D2", CultureInfo.InvariantCulture));
+        Directory.CreateDirectory(targetDirectory);
+
+        var hashPrefix = hash[..Math.Min(12, hash.Length)];
+        var timestamp = DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+        var targetFileName = $"invoice-{invoice.Id}-{timestamp}-{hashPrefix}.pdf";
+        var targetFullPath = Path.Combine(targetDirectory, targetFileName);
+
+        if (File.Exists(targetFullPath))
+        {
+            var suffix = Guid.NewGuid().ToString("N")[..8];
+            targetFileName = $"invoice-{invoice.Id}-{timestamp}-{hashPrefix}-{suffix}.pdf";
+            targetFullPath = Path.Combine(targetDirectory, targetFileName);
+        }
+
+        File.Copy(sourceFullPath, targetFullPath, overwrite: false);
+        return Path.GetRelativePath(_rootDirectory, targetFullPath);
+    }
+
+    private static string ValidatePdfSource(string sourcePdfPath)
+    {
+        if (string.IsNullOrWhiteSpace(sourcePdfPath))
+        {
+            throw new InvalidOperationException("PDF dosyası seçilmelidir.");
+        }
+
+        var fullPath = Path.GetFullPath(sourcePdfPath);
+        if (!File.Exists(fullPath))
+        {
+            throw new InvalidOperationException("Seçilen PDF dosyası bulunamadı.");
+        }
+
+        if (!string.Equals(Path.GetExtension(fullPath), ".pdf", StringComparison.OrdinalIgnoreCase))
+        {
+            throw new InvalidOperationException("Yalnızca PDF dosyası eklenebilir.");
+        }
+
+        var fileInfo = new FileInfo(fullPath);
+        if (fileInfo.Length == 0)
+        {
+            throw new InvalidOperationException("Seçilen PDF dosyası boş.");
+        }
+
+        using var stream = File.OpenRead(fullPath);
+        Span<byte> signature = stackalloc byte[4];
+        if (stream.Read(signature) < signature.Length ||
+            signature[0] != 0x25 ||
+            signature[1] != 0x50 ||
+            signature[2] != 0x44 ||
+            signature[3] != 0x46)
+        {
+            throw new InvalidOperationException("Seçilen dosya geçerli bir PDF olarak görünmüyor.");
+        }
+
+        return fullPath;
+    }
+
+    private static string ComputeSha256Hash(string filePath)
+    {
+        using var stream = File.OpenRead(filePath);
+        return Convert.ToHexString(SHA256.HashData(stream)).ToLowerInvariant();
     }
 
     private static string FormatDate(DateTime date)
@@ -332,6 +470,28 @@ public sealed class InvoiceRepository
         return DateTimeOffset.MinValue;
     }
 
+    private static DateTimeOffset? ParseNullableDateTimeOffset(string value)
+    {
+        return string.IsNullOrWhiteSpace(value)
+            ? null
+            : ParseDateTimeOffset(value);
+    }
+
+    private static string ResolveRootDirectory(string databasePath)
+    {
+        var databaseDirectory = Path.GetDirectoryName(databasePath);
+        if (!string.IsNullOrWhiteSpace(databaseDirectory))
+        {
+            var parent = Directory.GetParent(databaseDirectory);
+            if (parent is not null)
+            {
+                return parent.FullName;
+            }
+        }
+
+        return AppContext.BaseDirectory;
+    }
+
     private const string SelectSql = """
         SELECT
             i.id,
@@ -350,6 +510,10 @@ public sealed class InvoiceRepository
             i.usage_unit,
             i.status,
             i.description,
+            i.pdf_file_path,
+            i.pdf_original_file_name,
+            i.pdf_sha256_hash,
+            i.pdf_attached_at,
             i.created_at,
             i.updated_at
         FROM invoices i

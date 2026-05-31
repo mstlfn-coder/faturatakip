@@ -29,6 +29,7 @@ public sealed class DatabaseInitializer
                 new InvoiceTypesSchemaMigration(),
                 new SubscriptionsSchemaMigration(),
                 new InvoicesSchemaMigration(),
+                new InvoicePdfAttachmentMigration(),
             });
 
         return new DatabaseInitializationResult(appliedMigrations);

@@ -18,8 +18,8 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | v0.2 | Tamamlandı | Fatura türleri yönetimi | Tür ekleme, düzenleme, aktif/pasif yapma çalışır |
 | v0.3 | Tamamlandı | Abonelik yönetimi | Abonelik ekleme, düzenleme, aktif/pasif yapma ve filtreleme çalışır |
 | v0.4 | Tamamlandı | Fatura kayıt altyapısı | PDF olmadan temel fatura kaydı yapılabilir |
-| v0.5 | Sıradaki | Fatura PDF evrakı ekleme | PDF uygulama klasörüne kopyalanır, açılır, eksikliği raporlanabilir |
-| v0.6 | Beklemede | Fatura listesi ve filtreleme | Yıl, ay, tür, abonelik, ödeme durumu, PDF durumu ve fatura no ile filtreleme çalışır |
+| v0.5 | Tamamlandı | Fatura PDF evrakı ekleme | PDF uygulama klasörüne kopyalanır, açılır, eksikliği raporlanabilir |
+| v0.6 | Sıradaki | Fatura listesi ve filtreleme | Yıl, ay, tür, abonelik, ödeme durumu, PDF durumu ve fatura no ile filtreleme çalışır |
 | v0.7 | Beklemede | Ödeme kayıt altyapısı | Faturaya ödeme kaydı eklenebilir ve ödeme durumu gösterilir |
 | v0.8 | Beklemede | Ödeme evrakı PDF ekleme | Ödeme PDF'i kopyalanır, açılır ve eksiklik rapor altyapısına girer |
 | v0.9 | Beklemede | Ana gösterge paneli | Aylık toplamlar, ödenmemişler, gecikmişler ve evrak eksikleri görünür |
@@ -226,6 +226,24 @@ Bu fazda yapılmayacaklar:
 - Rapor ekranları
 - Excel/PDF dışa aktarım
 - Yedekleme
+
+## v0.5 Sonuç Notu
+
+Tamamlananlar:
+
+- `invoices` tablosuna PDF yolu, orijinal dosya adı, SHA-256 hash ve eklenme zamanı metadata alanları eklendi.
+- Seçilen PDF dosyası geçerli PDF imzasıyla doğrulanıyor.
+- PDF dosyası `attachments/invoices/yyyy/MM` altında güvenli ASCII dosya adıyla kopyalanıyor.
+- Fatura ekranına PDF seçme ve kayıtlı PDF'i açma akışı eklendi.
+- Fatura listesine PDF durumu ve üst özetlere PDF eksik sayısı eklendi.
+- `--self-test` PDF kopyalama, hash saklama, dosya varlığı, kayıp dosya algısı ve PDF olmayan dosya reddi senaryolarını doğruluyor.
+
+Doğrulama:
+
+- `dotnet build FaturaTakip.sln`
+- `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check`
+- `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+- Uygulama kısa süreli başlatma testi
 
 ## Gelecek Faz Notları
 

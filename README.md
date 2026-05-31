@@ -10,6 +10,7 @@ Bu depo, kurum aboneliklerine ait elektrik, su, doğalgaz, telefon, internet ve 
 - `v0.2` fatura türleri yönetimi eklendi.
 - `v0.3` abonelik yönetimi eklendi.
 - `v0.4` fatura kayıt altyapısı eklendi.
+- `v0.5` fatura PDF evrakı ekleme altyapısı eklendi.
 - Solution dosyası: `FaturaTakip.sln`
 - Uygulama projesi: `src/FaturaTakip.App/FaturaTakip.App.csproj`
 - Geliştirme planı proje içine alındı: `docs/01-gelistirme-plani.md`
@@ -46,13 +47,13 @@ Get-ChildItem -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI'
 
 ## Son Tamamlanan Faz
 
-Son tamamlanan geliştirme fazı `v0.4 - Fatura Kayıt Altyapısı`.
+Son tamamlanan geliştirme fazı `v0.5 - Fatura PDF Evrakı Ekleme`.
 
-Bu fazda faturalar için SQLite tablosu, aboneliğe bağlama, listeleme, ekleme, düzenleme, tekrar fatura no kontrolü, negatif tutar/kullanım kontrolü ve son ödeme tarihi uyarısı hazırlandı. PDF evrak, ödeme ve rapor ekranları henüz yapılmadı.
+Bu fazda faturaya PDF evrak seçme, PDF'i `attachments/invoices/yyyy/MM` altına güvenli adla kopyalama, orijinal dosya adı ve SHA-256 hash bilgisini saklama, kayıtlı PDF'i açma ve eksik PDF durumunu görme akışı hazırlandı. Ödeme ve rapor ekranları henüz yapılmadı.
 
 ## Sıradaki İş
 
-Sıradaki geliştirme fazı `v0.5 - Fatura PDF Evrakı Ekleme`.
+Sıradaki geliştirme fazı `v0.6 - Fatura Listesi ve Filtreleme`.
 
 ## Çalışma Kuralı
 

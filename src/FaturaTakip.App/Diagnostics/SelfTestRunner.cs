@@ -105,6 +105,26 @@ public sealed class SelfTestRunner
                 "Self-test fatura güncellemesi"));
             Assert(updatedInvoice.Amount == 1300m, "Fatura düzenleme başarısız.");
 
+            var samplePdfPath = Path.Combine(testRoot, "sample-invoice.pdf");
+            File.WriteAllText(samplePdfPath, "%PDF-1.4\n1 0 obj\n<<>>\nendobj\ntrailer\n<<>>\n%%EOF");
+
+            var invoiceWithPdf = invoiceRepository.AttachPdf(updatedInvoice.Id, samplePdfPath);
+            Assert(invoiceWithPdf.HasPdf, "Fatura PDF metadata kaydı oluşturulmadı.");
+            Assert(invoiceWithPdf.PdfOriginalFileName == "sample-invoice.pdf", "PDF orijinal dosya adı saklanmadı.");
+            Assert(!string.IsNullOrWhiteSpace(invoiceWithPdf.PdfSha256Hash), "PDF hash bilgisi saklanmadı.");
+            Assert(invoiceWithPdf.PdfFilePath.StartsWith(Path.Combine("attachments", "invoices", "2026", "01"), StringComparison.Ordinal), "PDF hedef klasörü dönem altında değil.");
+            Assert(invoiceRepository.PdfFileExists(invoiceWithPdf), "Kopyalanan PDF dosyası bulunamadı.");
+
+            var attachedPdfPath = invoiceRepository.GetPdfAbsolutePath(invoiceWithPdf);
+            File.Delete(attachedPdfPath);
+            Assert(invoiceRepository.IsPdfMissing(invoiceWithPdf), "Kayıp PDF dosyası algılanmadı.");
+
+            var invalidAttachmentPath = Path.Combine(testRoot, "not-pdf.txt");
+            File.WriteAllText(invalidAttachmentPath, "PDF değil");
+            AssertThrows(
+                () => invoiceRepository.AttachPdf(updatedInvoice.Id, invalidAttachmentPath),
+                "PDF olmayan dosya eklenebildi.");
+
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(
                     updatedSubscription.Id,

@@ -34,6 +34,14 @@ public sealed class Invoice
 
     public string Description { get; init; } = string.Empty;
 
+    public string PdfFilePath { get; init; } = string.Empty;
+
+    public string PdfOriginalFileName { get; init; } = string.Empty;
+
+    public string PdfSha256Hash { get; init; } = string.Empty;
+
+    public DateTimeOffset? PdfAttachedAt { get; init; }
+
     public DateTimeOffset CreatedAt { get; init; }
 
     public DateTimeOffset UpdatedAt { get; init; }
@@ -50,4 +58,8 @@ public sealed class Invoice
     public string AmountText => Amount.ToString("N2");
 
     public string UsageText => $"{UsageAmount:N2} {UsageUnit}".Trim();
+
+    public bool HasPdf => !string.IsNullOrWhiteSpace(PdfFilePath);
+
+    public string PdfState => HasPdf ? "PDF Var" : "PDF Yok";
 }

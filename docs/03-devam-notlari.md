@@ -6,14 +6,15 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 
 - Tarih: 2026-05-31
 - Aktif branch: `codex/v0.5-fatura-pdf-evraki`
-- Son tamamlanan faz: `v0.4 - Fatura Kayıt Altyapısı`
-- Aktif faz: `v0.5 - Fatura PDF Evrakı Ekleme`
+- Son tamamlanan faz: `v0.5 - Fatura PDF Evrakı Ekleme`
+- Sıradaki faz: `v0.6 - Fatura Listesi ve Filtreleme`
 - İlk dokümantasyon commit'i: `e0de4f9 docs: initialize project planning and continuity notes`
 - `v0.1` commit'i: `3b3e20a feat: initialize wpf sqlite project skeleton`
 - `v0.2` commit'i: `c8ad90c feat: add invoice type management`
 - `v0.3` commit'i: `061e1a7 feat: add subscription management`
 - `v0.4` commit'i: `252bbbd feat: add invoice entry foundation`
 - PDF rapor örneği notu commit'i: `c0643ee docs: note pdf report sample requirement`
+- `v0.5` commit mesajı: `feat: add invoice pdf attachments`
 
 ## Bu Oturumda Yapılanlar
 
@@ -90,23 +91,31 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 65. `v0.4` branch'i `master` içine fast-forward merge edildi.
 66. Merge sonrası `master` üzerinde build, health-check, self-test ve kısa uygulama başlatma smoke testleri başarılı çalıştı.
 67. `codex/v0.5-fatura-pdf-evraki` branch'i açıldı.
+68. `0005` migration ile fatura PDF yolu, orijinal dosya adı, SHA-256 hash ve eklenme zamanı alanları eklendi.
+69. PDF dosyası doğrulama, güvenli ASCII dosya adıyla `attachments/invoices/yyyy/MM` altına kopyalama ve metadata kaydetme repository akışı eklendi.
+70. Fatura ekranına PDF seçme, kaydetme sonrası faturaya bağlama, kayıtlı PDF'i açma, PDF durumu ve PDF eksik sayısı eklendi.
+71. `--self-test` PDF kopyalama, hash saklama, dosya varlığı, kayıp dosya algısı ve PDF olmayan dosya reddi senaryolarıyla genişletildi.
+72. `dotnet build FaturaTakip.sln` başarılı çalıştı.
+73. `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
+74. `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
+75. Uygulama kısa süreli başlatma testinden geçti.
 
-## Mevcut Codex Görevi
+## Bir Sonraki Codex Görevi
 
-Bu branch'teki görev yalnızca `v0.5` kapsamını uygulamak olmalı.
+Sıradaki görev yalnızca `v0.6` kapsamını uygulamak olmalı.
 
 Başlangıç talimatı:
 
 ```text
-C# WPF + SQLite tabanlı kurum fatura takip programında v0.5 fazını uygula.
+C# WPF + SQLite tabanlı kurum fatura takip programında v0.6 fazını uygula.
 
 Önce README.md, docs/00-codex-devam-kilavuzu.md, docs/03-devam-notlari.md, ROADMAP.md ve REGRESYON.md dosyalarını oku.
 
-Bu fazda yalnızca fatura PDF evrakı ekleme yapılacak.
+Bu fazda yalnızca fatura listesi ve filtreleme geliştirilecek.
 
-Faturaya PDF ekleme, PDF'i uygulama klasörüne kopyalama, PDF yolunu/orijinal adını/hash bilgisini veritabanına kaydetme, PDF açma ve dosya varlık kontrolü desteklenecek.
+Yıl, ay, fatura türü, abonelik, ödeme durumu, PDF durumu ve fatura no/metin aramasıyla filtreleme desteklenecek.
 
-Ödeme, ödeme evrakı, rapor, dışa aktarım ve yedekleme yapılmayacak.
+Ödeme kaydı, ödeme evrakı, rapor, dışa aktarım ve yedekleme yapılmayacak.
 
 Faz sonunda uygulamayı çalıştır veya en azından derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```
