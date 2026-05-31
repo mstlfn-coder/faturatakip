@@ -1,6 +1,6 @@
 # Kurum Fatura Takip Programı — Excel ve PDF Rapor Tasarım Planı
 
-Kaynak dosya: `C:\Users\Asus\Downloads\Kurum_Fatura_Takip_Excel_PDF_Rapor_Tasarim_Plani.md`
+Kaynak dosya (repo iÃ§ine kopyalandÄ±): `docs/05-excel-pdf-rapor-tasarim-plani-kaynak.md`
 
 Bu doküman, **Kurum Fatura Takip Programı** için üretilecek Excel ve PDF raporlarının tasarım kapsamını belirler.
 
