@@ -23,8 +23,8 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | v0.7 | Tamamlandı | Ödeme kayıt altyapısı | Faturaya ödeme kaydı eklenebilir ve ödeme durumu gösterilir |
 | v0.8 | Tamamlandı | Ödeme evrakı PDF ekleme | Ödeme PDF'i kopyalanır, açılır ve eksiklik rapor altyapısına girer |
 | v0.9 | Tamamlandı | Ana gösterge paneli | Aylık toplamlar, ödenmemişler, gecikmişler ve evrak eksikleri görünür |
-| v0.10 | Sıradaki | Ödenmemiş ve gecikmiş faturalar raporu | Ödenmemiş, gecikmiş ve yaklaşan ödemeler listelenir |
-| v0.11 | Beklemede | Aylık fatura listesi | Seçilen ayın tüm faturaları ve özet toplamları alınır |
+| v0.10 | Tamamlandı | Ödenmemiş ve gecikmiş faturalar raporu | Ödenmemiş, gecikmiş ve yaklaşan ödemeler listelenir |
+| v0.11 | Sıradaki | Aylık fatura listesi | Seçilen ayın tüm faturaları ve özet toplamları alınır |
 | v0.12 | Beklemede | Türe özgü aylık fatura listesi | Seçilen tür, yıl ve ay için toplamlar alınır |
 | v0.13 | Beklemede | Aboneliğe özgü aylık fatura bilgisi | Tek aboneliğin aylık detayı ve önceki ay karşılaştırması görünür |
 | v0.14 | Beklemede | Aboneliğe özgü yıllık fatura listesi | 12 aylık liste, toplamlar, en yüksek ve en düşük ay görünür |

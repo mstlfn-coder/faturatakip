@@ -5,10 +5,10 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 ## Güncel Kaldığımız Yer
 
 - Tarih: 2026-05-31
-- Aktif branch: `codex/v0.10-odenmemis-gecikmis-raporu`
-- Son tamamlanan faz: `v0.9 - Ana Gösterge Paneli`
-- Aktif faz: `v0.10 - Ödenmemiş ve Gecikmiş Faturalar Raporu`
-- Durum: v0.10 rapor ekranı uygulandı, smoke testleri geçti; commit ve master merge bekliyor.
+- Aktif branch: `codex/v0.11-aylik-fatura-listesi`
+- Son tamamlanan faz: `v0.10 - Ödenmemiş ve Gecikmiş Faturalar Raporu`
+- Sıradaki faz: `v0.11 - Aylık Fatura Listesi`
+- Durum: v0.10 tamamlandı ve master'a merge edildi; v0.11 branch'i açıldı, başlangıç smoke testleri bekliyor.
 - İlk dokümantasyon commit'i: `e0de4f9 docs: initialize project planning and continuity notes`
 - `v0.1` commit'i: `3b3e20a feat: initialize wpf sqlite project skeleton`
 - `v0.2` commit'i: `c8ad90c feat: add invoice type management`
@@ -23,6 +23,8 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 - `v0.8` commit'i: `fa49fd9 feat: add payment pdf attachments`
 - `v0.9` hazırlık commit'i: `5a1981d docs: prepare v0.9 branch context`
 - `v0.9` commit'i: `f88fc53 feat: improve dashboard summaries`
+- `v0.10` hazırlık commit'i: `b13d8d5 docs: prepare v0.10 branch context`
+- `v0.10` commit'i: `9771c31 feat: add unpaid/overdue invoice report`
 
 ## Bu Oturumda Yapılanlar
 
@@ -181,39 +183,32 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 147. `dotnet build .\src\FaturaTakip.App\FaturaTakip.App.csproj` başarılı çalıştı.
 148. `dotnet run --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
 149. `dotnet run --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
+150. `v0.10` commit'i oluşturuldu: `9771c31 feat: add unpaid/overdue invoice report`.
+151. `v0.10` branch'i `master` içine fast-forward merge edildi.
+152. Merge sonrası `master` üzerinde `dotnet build .\src\FaturaTakip.App\FaturaTakip.App.csproj` başarılı çalıştı.
+153. Merge sonrası `master` üzerinde `dotnet run --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
+154. Merge sonrası `master` üzerinde `dotnet run --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
+155. `codex/v0.11-aylik-fatura-listesi` branch'i açıldı.
 
 ## Mevcut Codex Görevi
 
-Bu branch'teki görev yalnızca `v0.10` kapsamını uygulamak olmalı.
+Bu branch'teki görev yalnızca `v0.11` kapsamını uygulamak olmalı.
 
-v0.10 başlangıç talimatı:
+v0.11 başlangıç talimatı:
 
 ```text
-C# WPF + SQLite tabanlı kurum fatura takip programında v0.10 fazını uygula.
+C# WPF + SQLite tabanlı kurum fatura takip programında v0.11 fazını uygula.
 
 Önce README.md, docs/00-codex-devam-kilavuzu.md, docs/03-devam-notlari.md, ROADMAP.md ve REGRESYON.md dosyalarını oku.
 
-Bu fazda yalnızca ödenmemiş ve gecikmiş faturalar raporu geliştirilecek.
+Bu fazda yalnızca aylık fatura listesi geliştirilecek.
 
-Ödenmemiş, gecikmiş ve yaklaşan ödemeler listelenecek.
-
-Gecikmiş fatura: ödeme durumu `unpaid` ve son ödeme tarihi bugünden önce.
-
-Yaklaşan ödeme: ödeme durumu `unpaid` ve son ödeme tarihi bugün ile sonraki 7 gün arasında.
+Seçilen ayın tüm faturaları listelenecek ve üstte özet toplamlar gösterilecek.
 
 Excel/PDF dışa aktarım, yazdırılabilir PDF rapor ve yedekleme yapılmayacak.
 
 Faz sonunda uygulamayı çalıştır veya en azından derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```
-
-v0.10 fazını bitirmek için sıradaki güvenli operasyon:
-
-1. `git status --short --branch` ile çalışma ağacı kontrol edilmeli.
-2. `git add src/FaturaTakip.App/MainWindow.xaml src/FaturaTakip.App/MainWindow.xaml.cs src/FaturaTakip.App/Views/ReportsView.xaml src/FaturaTakip.App/Views/ReportsView.xaml.cs src/FaturaTakip.App/Data/Reports src/FaturaTakip.App/Diagnostics/SelfTestRunner.cs`
-3. `git commit -m "feat: add unpaid/overdue invoice report"`
-4. `git switch master` ve `git merge --ff-only codex/v0.10-odenmemis-gecikmis-raporu`
-5. Merge sonrası `dotnet build`, `--self-test`, `--health-check` smoke testleri çalıştırılmalı
-6. `README.md`, `ROADMAP.md`, `REGRESYON.md`, `docs/03-devam-notlari.md` v0.10 tamamlandı / v0.11 sıradaki olacak şekilde güncellenmeli
 
 ## Dikkat Edilecekler
 
