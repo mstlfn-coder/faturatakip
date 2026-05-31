@@ -59,6 +59,10 @@ Bu fazda ana gösterge paneline bu ay fatura/ödeme toplamları, ödenmemiş ve 
 
 Sıradaki geliştirme fazı `v0.10 - Ödenmemiş ve Gecikmiş Faturalar Raporu`.
 
+Aktif çalışma branch'i: `codex/v0.10-odenmemis-gecikmis-raporu`.
+
+Bu fazda rapor ekranı yalnızca ödenmemiş, gecikmiş ve yaklaşan ödemeleri listeleyecek. Excel/PDF dışa aktarım ve yazdırılabilir PDF rapor üretimi yapılmayacak.
+
 ## Çalışma Kuralı
 
 Her faz sonunda şu dosyalar güncellenmeli:

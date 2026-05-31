@@ -319,6 +319,25 @@ Doğrulama:
 - `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 - `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check`
 
+## v0.10 Ayrıntılı Kapsam
+
+Yalnızca şu işler yapılacak:
+
+- Ödenmemiş ve gecikmiş faturalar için rapor ekranı veya rapor bölümü hazırlanacak.
+- Ödeme durumu `unpaid` olan faturalar aksiyon listesine alınacak.
+- Gecikmiş faturalar, son ödeme tarihi bugünden önce olan ödenmemiş faturalar olarak gösterilecek.
+- Yaklaşan ödemeler, son ödeme tarihi bugün ile sonraki 7 gün arasında olan ödenmemiş faturalar olarak gösterilecek.
+- Liste satırlarında fatura türü, abonelik, kurum, dönem, fatura no, son ödeme tarihi, tutar, ödenen tutar, kalan tutar ve PDF durumu görünecek.
+- Rapor üstünde ödenmemiş, gecikmiş ve yaklaşan ödeme sayı/toplam özetleri görünecek.
+- Hesaplama veya filtreleme mantığı self-test kapsamına alınacak.
+
+Bu fazda yapılmayacaklar:
+
+- Excel dışa aktarım
+- Yazdırılabilir PDF rapor
+- Fatura PDF rapor tasarımı
+- Yedekleme
+
 ## Gelecek Faz Notları
 
 - Fatura PDF raporları fazına geçildiğinde önce kullanıcıdan Excel'de hazırlanmış örnek rapor istenecek. PDF çıktının kolonları, toplamları, başlıkları ve sayfa düzeni bu örnek üzerinden şekillenecek.

@@ -32,6 +32,8 @@ Bu dosya, geliştirme sırasında alınan kalıcı kararları kaydeder. Kararlar
 | 2026-05-31 | Ödeme PDF evrak hash algoritması SHA-256 olacak | Fatura PDF evraklarıyla aynı bütünlük ve tekrar kontrol yaklaşımı korunur |
 | 2026-05-31 | Ödeme PDF yolları uygulama köküne göre göreli saklanacak | Klasör taşınabilirliği ve yedek geri yükleme senaryoları kolaylaşır |
 | 2026-05-31 | Dashboard özetleri test edilebilir hesaplayıcı katmanında üretilecek | Aylık toplam, gecikmiş, ödenmemiş ve eksik evrak hesapları UI'dan bağımsız regresyon testine alınmalı |
+| 2026-05-31 | Gecikmiş fatura raporunda yalnızca ödenmemiş ve son ödeme tarihi bugünden önce olan faturalar gecikmiş sayılacak | Ödenmiş faturalar geçmiş vadeli olsa bile aksiyon listesine düşmemeli |
+| 2026-05-31 | Yaklaşan ödeme penceresi ilk uygulamada 7 gün olacak | Günlük takip için kısa ve anlaşılır uyarı sağlar; gerekirse sonraki fazda ayarlanabilir yapılır |
 
 ## Açık Kararlar
 

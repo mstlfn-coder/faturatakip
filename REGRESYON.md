@@ -23,7 +23,7 @@ Sonuç etiketleri:
 | Kontrol | Durum | Not |
 |---|---|---|
 | Proje klasörü doğru yerde açılıyor | OK | `C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI` |
-| Git durumu kontrol edildi | OK | `codex/v0.9-dashboard` branch'i üzerinde çalışılıyor |
+| Git durumu kontrol edildi | OK | `codex/v0.10-odenmemis-gecikmis-raporu` branch'i üzerinde çalışılıyor |
 | Markdown dokümantasyonu UTF-8 olarak okunuyor | OK | Plan dosyası UTF-8 korunarak kopyalandı |
 | Yeni dosya adları yol sorunu azaltmak için ASCII tutuluyor | OK | Kök klasör Türkçe, proje içi doküman adları ASCII |
 | `README.md` yeni chat başlangıcını açıklıyor | OK | Oluşturuldu |
@@ -178,3 +178,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-05-31 | v0.8 | OK | Ödeme PDF metadata, kopyalama, hash, açma akışı ve eksik dosya kontrolü tamamlandı |
 | 2026-05-31 | v0.9 başlangıç | OK | v0.8 master merge sonrası build, health-check ve self-test doğrulandı |
 | 2026-05-31 | v0.9 | OK | Dashboard aylık toplamlar, ödenmemiş/gecikmiş özetler ve evrak eksikleriyle geliştirildi |
+| 2026-05-31 | v0.10 başlangıç | OK | v0.9 master merge sonrası build, health-check ve self-test doğrulandı |

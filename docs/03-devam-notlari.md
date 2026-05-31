@@ -5,9 +5,9 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 ## Güncel Kaldığımız Yer
 
 - Tarih: 2026-05-31
-- Aktif branch: `codex/v0.9-dashboard`
+- Aktif branch: `codex/v0.10-odenmemis-gecikmis-raporu`
 - Son tamamlanan faz: `v0.9 - Ana Gösterge Paneli`
-- Sıradaki faz: `v0.10 - Ödenmemiş ve Gecikmiş Faturalar Raporu`
+- Aktif faz: `v0.10 - Ödenmemiş ve Gecikmiş Faturalar Raporu`
 - İlk dokümantasyon commit'i: `e0de4f9 docs: initialize project planning and continuity notes`
 - `v0.1` commit'i: `3b3e20a feat: initialize wpf sqlite project skeleton`
 - `v0.2` commit'i: `c8ad90c feat: add invoice type management`
@@ -21,6 +21,7 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 - `v0.8` hazırlık commit'i: `7699971 docs: prepare v0.8 branch context`
 - `v0.8` commit'i: `fa49fd9 feat: add payment pdf attachments`
 - `v0.9` hazırlık commit'i: `5a1981d docs: prepare v0.9 branch context`
+- `v0.9` commit'i: `f88fc53 feat: improve dashboard summaries`
 
 ## Bu Oturumda Yapılanlar
 
@@ -165,18 +166,17 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 133. `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
 134. `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
 135. `README.md`, `ROADMAP.md`, `REGRESYON.md`, proje kararları ve devam notları v0.9 tamamlandı / v0.10 sıradaki olacak şekilde güncellendi.
+136. `v0.9` commit'i oluşturuldu: `f88fc53 feat: improve dashboard summaries`.
+137. `v0.9` branch'i `master` içine fast-forward merge edildi.
+138. Merge sonrası `master` üzerinde `dotnet build .\src\FaturaTakip.App\FaturaTakip.App.csproj` başarılı çalıştı.
+139. Merge sonrası `master` üzerinde `dotnet run --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
+140. Merge sonrası `master` üzerinde `dotnet run --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
+141. `codex/v0.10-odenmemis-gecikmis-raporu` branch'i açıldı.
+142. `v0.10` başlangıç dokümantasyonu hazırlandı.
 
-## Sıradaki Codex Görevi
+## Mevcut Codex Görevi
 
-`v0.9` kapsamı tamamlandı. Yeni chate geçilirse önce çalışma ağacı ve commit durumu kontrol edilmeli.
-
-Sıradaki güvenli operasyon:
-
-1. `git status --short --branch` ile branch ve temiz çalışma ağacı kontrol edilmeli.
-2. `v0.9` commit'i henüz oluşmadıysa değişiklikler `feat: improve dashboard summaries` mesajıyla commit edilmeli.
-3. `v0.9` commit'i oluştuysa `master` branch'ine fast-forward merge edilmeli.
-4. Merge sonrası `dotnet build`, `--self-test` ve `--health-check` smoke testleri çalıştırılmalı.
-5. Testler başarılıysa `codex/v0.10-odenmemis-gecikmis-raporu` branch'i açılıp v0.10 başlangıç dokümantasyonu commit edilmeli.
+Bu branch'teki görev yalnızca `v0.10` kapsamını uygulamak olmalı.
 
 v0.10 başlangıç talimatı:
 
@@ -188,6 +188,10 @@ C# WPF + SQLite tabanlı kurum fatura takip programında v0.10 fazını uygula.
 Bu fazda yalnızca ödenmemiş ve gecikmiş faturalar raporu geliştirilecek.
 
 Ödenmemiş, gecikmiş ve yaklaşan ödemeler listelenecek.
+
+Gecikmiş fatura: ödeme durumu `unpaid` ve son ödeme tarihi bugünden önce.
+
+Yaklaşan ödeme: ödeme durumu `unpaid` ve son ödeme tarihi bugün ile sonraki 7 gün arasında.
 
 Excel/PDF dışa aktarım, yazdırılabilir PDF rapor ve yedekleme yapılmayacak.
 
