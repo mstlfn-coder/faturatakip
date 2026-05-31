@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -7,6 +8,7 @@ using FaturaTakip.App.Data.InvoiceTypes;
 using FaturaTakip.App.Data.Payments;
 using FaturaTakip.App.Data.Reports;
 using FaturaTakip.App.Data.Subscriptions;
+using FaturaTakip.App.Infrastructure;
 
 namespace FaturaTakip.App.Views;
 
@@ -148,6 +150,93 @@ public partial class ReportsView : UserControl
     private void DocumentHealthTabButton_Click(object sender, RoutedEventArgs e)
     {
         ApplyTab(ReportTab.DocumentHealth);
+    }
+
+    private void ExportReportButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var paths = AppPaths.Resolve();
+            var exportsDir = Path.Combine(paths.RootDirectory, "exports");
+            Directory.CreateDirectory(exportsDir);
+
+            var tabKey = _activeTab.ToString().ToLowerInvariant();
+            var fileName = $"raporlar-{tabKey}-{DateTime.Now:yyyyMMdd-HHmmss}.xlsx";
+            var filePath = Path.Combine(exportsDir, fileName);
+
+            if (_activeTab is ReportTab.TypeYearly or ReportTab.SubscriptionYearly)
+            {
+                var headers = new[] { "Ay", "Fatura", "Toplam", "Ödenen", "Kalan", "Ödenmemiş", "Gecikmiş", "PDF Eksik" };
+                var rows = YearlyGrid.ItemsSource is IEnumerable<YearlyRow> yearly
+                    ? yearly.Select(r => (IReadOnlyList<object?>)new object?[]
+                    {
+                        r.MonthName, r.InvoiceCountText, r.TotalAmountText, r.PaidText, r.RemainingText,
+                        r.UnpaidCountText, r.OverdueCountText, r.MissingPdfCountText
+                    })
+                    : Array.Empty<IReadOnlyList<object?>>();
+
+                ExcelExportWriter.WriteTable(filePath, sheetName: "Yıllık", headers, rows);
+            }
+            else if (_activeTab == ReportTab.DocumentHealth)
+            {
+                var headers = new[]
+                {
+                    "Uyarı", "Tip", "Dönem/Tarih", "Tür", "Abonelik", "Kurum", "Tutar", "PDF", "Yol", "Hash", "Not",
+                };
+                var rows = DocumentHealthGrid.ItemsSource is IEnumerable<DocumentHealthRow> issues
+                    ? issues.Select(r => (IReadOnlyList<object?>)new object?[]
+                    {
+                        r.IssueType, r.EntityType, r.PeriodOrDate, r.InvoiceTypeName, r.SubscriptionName, r.InstitutionName,
+                        r.AmountText, r.PdfState, r.PdfFilePath, r.PdfSha256Hash, r.Note
+                    })
+                    : Array.Empty<IReadOnlyList<object?>>();
+
+                ExcelExportWriter.WriteTable(filePath, sheetName: "Evrak Kontrol", headers, rows);
+            }
+            else
+            {
+                var headers = new[]
+                {
+                    "Dönem", "Tür", "Abonelik", "Kurum", "Durum", "Fatura No", "Son Ödeme", "Tutar", "Ödenen", "Kalan", "PDF",
+                };
+                var rows = ReportGrid.ItemsSource is IEnumerable<ReportRow> items
+                    ? items.Select(r => (IReadOnlyList<object?>)new object?[]
+                    {
+                        r.Period, r.InvoiceTypeName, r.SubscriptionName, r.InstitutionName, r.StatusText, r.InvoiceNo,
+                        r.DueDateText, r.AmountText, r.PaidAmountText, r.RemainingAmountText, r.PdfState
+                    })
+                    : Array.Empty<IReadOnlyList<object?>>();
+
+                ExcelExportWriter.WriteTable(filePath, sheetName: "Rapor", headers, rows);
+            }
+
+            var hint = $"Excel yazıldı: exports/{fileName}";
+            switch (_activeTab)
+            {
+                case ReportTab.Monthly:
+                    MonthlyFilterHintText.Text = hint;
+                    break;
+                case ReportTab.Subscription:
+                case ReportTab.SubscriptionYearly:
+                    SubscriptionHintText.Text = hint;
+                    break;
+                case ReportTab.TypeYearly:
+                case ReportTab.DocumentHealth:
+                    TypeYearlyHintText.Text = hint;
+                    break;
+                default:
+                    MonthlyFilterHintText.Text = hint;
+                    break;
+            }
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidOperationException)
+        {
+            // Raporlar ekranında ortak bir status bandı yok; ipucu alanını hata mesajı için kullanıyoruz.
+            var message = exception.Message;
+            TypeYearlyHintText.Text = message;
+            MonthlyFilterHintText.Text = message;
+            SubscriptionHintText.Text = message;
+        }
     }
 
     private void MonthlyFilter_Changed(object sender, SelectionChangedEventArgs e)

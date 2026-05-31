@@ -100,7 +100,12 @@
                 <Button x:Name="DocumentHealthTabButton"
                         Content="Evrak Kontrol"
                         Style="{StaticResource SecondaryButton}"
+                        Margin="0,0,8,0"
                         Click="DocumentHealthTabButton_Click" />
+                <Button x:Name="ExportReportButton"
+                        Content="Excel'e Aktar"
+                        Style="{StaticResource SecondaryButton}"
+                        Click="ExportReportButton_Click" />
             </StackPanel>
         </Grid>
 

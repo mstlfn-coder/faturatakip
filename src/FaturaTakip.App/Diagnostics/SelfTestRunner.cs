@@ -799,6 +799,14 @@ public sealed class SelfTestRunner
             var exportFileInfo = new FileInfo(exportXlsxPath);
             Assert(exportFileInfo.Length > 1024, "Excel export dosyası beklenenden küçük.");
 
+            var reportXlsxPath = Path.Combine(testRoot, "exports", $"raporlar-selftest-{DateTime.Now:yyyyMMdd-HHmmss}.xlsx");
+            ExcelExportWriter.WriteTable(
+                reportXlsxPath,
+                sheetName: "Rapor",
+                headers: new[] { "A", "B" },
+                rows: new[] { new object?[] { "X", 1 } });
+            Assert(File.Exists(reportXlsxPath), "Rapor excel export dosyası oluşmadı.");
+
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(
                     updatedSubscription.Id,
