@@ -5,10 +5,10 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 ## Güncel Kaldığımız Yer
 
 - Tarih: 2026-05-31
-- Aktif branch: `codex/v0.11-aylik-fatura-listesi`
-- Son tamamlanan faz: `v0.10 - Ödenmemiş ve Gecikmiş Faturalar Raporu`
-- Sıradaki faz: `v0.11 - Aylık Fatura Listesi`
-- Durum: v0.10 tamamlandı ve master'a merge edildi; v0.11 branch'i açıldı, başlangıç smoke testleri bekliyor.
+- Aktif branch: `codex/v0.12-ture-ozgu-aylik-fatura-listesi`
+- Son tamamlanan faz: `v0.11 - Aylık Fatura Listesi`
+- Sıradaki faz: `v0.12 - Türe Özgü Aylık Fatura Listesi`
+- Durum: v0.11 tamamlandı ve master'a merge edildi; v0.12 branch'i açıldı, başlangıç smoke testleri bekliyor.
 - İlk dokümantasyon commit'i: `e0de4f9 docs: initialize project planning and continuity notes`
 - `v0.1` commit'i: `3b3e20a feat: initialize wpf sqlite project skeleton`
 - `v0.2` commit'i: `c8ad90c feat: add invoice type management`
@@ -195,18 +195,18 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 
 ## Mevcut Codex Görevi
 
-Bu branch'teki görev yalnızca `v0.11` kapsamını uygulamak olmalı.
+Bu branch'teki görev yalnızca `v0.12` kapsamını uygulamak olmalı.
 
-v0.11 başlangıç talimatı:
+v0.12 başlangıç talimatı:
 
 ```text
-C# WPF + SQLite tabanlı kurum fatura takip programında v0.11 fazını uygula.
+C# WPF + SQLite tabanlı kurum fatura takip programında v0.12 fazını uygula.
 
 Önce README.md, docs/00-codex-devam-kilavuzu.md, docs/03-devam-notlari.md, ROADMAP.md ve REGRESYON.md dosyalarını oku.
 
-Bu fazda yalnızca aylık fatura listesi geliştirilecek.
+Bu fazda yalnızca türe özgü aylık fatura listesi geliştirilecek.
 
-Seçilen ayın tüm faturaları listelenecek ve üstte özet toplamlar gösterilecek.
+Seçilen fatura türü + yıl + ay için faturalar listelenecek ve üstte özet toplamlar gösterilecek.
 
 Excel/PDF dışa aktarım, yazdırılabilir PDF rapor ve yedekleme yapılmayacak.
 

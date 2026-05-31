@@ -59,7 +59,7 @@ Bu fazda raporlar ekranına aylık fatura listesi eklendi: seçilen ayın fatura
 
 Sıradaki geliştirme fazı `v0.12 - Türe Özgü Aylık Fatura Listesi`.
 
-Aktif çalışma branch'i: `codex/v0.11-aylik-fatura-listesi`.
+Aktif çalışma branch'i: `codex/v0.12-ture-ozgu-aylik-fatura-listesi`.
 
 Bu fazda seçilen tür, yıl ve ay için toplamlar ve liste alınacak. Excel/PDF dışa aktarım, yazdırılabilir PDF rapor üretimi ve yedekleme yapılmayacak.
 
