@@ -5,9 +5,9 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 ## Güncel Kaldığımız Yer
 
 - Tarih: 2026-05-31
-- Aktif branch: `codex/v0.7-odeme-kayit-altyapisi`
+- Aktif branch: `codex/v0.8-odeme-pdf-evraki`
 - Son tamamlanan faz: `v0.7 - Ödeme Kayıt Altyapısı`
-- Sıradaki faz: `v0.8 - Ödeme Evrakı PDF Ekleme`
+- Aktif faz: `v0.8 - Ödeme Evrakı PDF Ekleme`
 - İlk dokümantasyon commit'i: `e0de4f9 docs: initialize project planning and continuity notes`
 - `v0.1` commit'i: `3b3e20a feat: initialize wpf sqlite project skeleton`
 - `v0.2` commit'i: `c8ad90c feat: add invoice type management`
@@ -17,6 +17,7 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 - `v0.5` commit'i: `2192c69 feat: add invoice pdf attachments`
 - `v0.6` commit'i: `296defe feat: improve invoice list filters`
 - `v0.7` hazırlık commit'i: `63e4c3a docs: prepare v0.7 branch context`
+- `v0.7` commit'i: `13375d1 feat: add payment record foundation`
 
 ## Bu Oturumda Yapılanlar
 
@@ -128,18 +129,16 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 100. `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
 101. `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
 102. `README.md`, `ROADMAP.md`, `REGRESYON.md` ve devam notları v0.7 tamamlandı / v0.8 sıradaki olacak şekilde güncellendi.
+103. `v0.7` commit'i oluşturuldu: `13375d1 feat: add payment record foundation`.
+104. `v0.7` branch'i `master` içine fast-forward merge edildi.
+105. Merge sonrası `master` üzerinde `dotnet build .\src\FaturaTakip.App\FaturaTakip.App.csproj` başarılı çalıştı.
+106. Merge sonrası `master` üzerinde `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
+107. Merge sonrası `master` üzerinde `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
+108. `codex/v0.8-odeme-pdf-evraki` branch'i açıldı.
 
-## Sıradaki Codex Görevi
+## Mevcut Codex Görevi
 
-`v0.7` kapsamı tamamlandı. Yeni chate geçilirse önce commit/merge durumu kontrol edilmeli.
-
-Sıradaki güvenli operasyon sırası:
-
-1. `git status --short --branch` ile çalışma ağacı kontrol edilsin.
-2. `v0.7` commit'i henüz oluşmadıysa `feat: add payment record foundation` mesajıyla commit edilsin.
-3. Commit oluştuysa `master` branch'ine fast-forward merge edilsin.
-4. Merge sonrası build, health-check ve self-test tekrar çalıştırılsın.
-5. `codex/v0.8-odeme-pdf-evraki` branch'i açılarak roadmapte `Sıradaki` olan v0.8 uygulanmaya başlansın.
+Bu branch'teki görev yalnızca `v0.8` kapsamını uygulamak olmalı.
 
 v0.8 başlangıç talimatı:
 
