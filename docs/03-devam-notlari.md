@@ -213,6 +213,15 @@ Excel/PDF dışa aktarım, yazdırılabilir PDF rapor ve yedekleme yapılmayacak
 Faz sonunda derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```
 
+v0.16 ilerleme notu (2026-05-31):
+
+- Branch açıldı: `codex/v0.16-evrak-eksikligi-dosya-kontrol-raporu`.
+- Raporlar ekranına `Evrak Kontrol` sekmesi eklendi.
+- Fatura ve ödeme kayıtları için `PDF Yok`, `PDF Kayıp` ve `Aynı Hash` uyarıları listeleniyor.
+- Hesaplama mantığı test edilebilir `DocumentHealthReportCalculator` katmanına alındı.
+- `--self-test` kapsamına evrak kontrol senaryosu eklendi.
+- `dotnet build`, `--self-test` ve `--health-check` başarılı çalıştı.
+
 v0.15 başlangıç talimatı:
 
 ```text

@@ -211,10 +211,10 @@ Sonuç etiketleri:
 
 | Kontrol | Durum | Not |
 |---|---|---|
-| Evrak kontrol sekmesi açılıyor | TODO | Raporlar ekranında yeni sekme |
-| Eksik PDF listesi görünüyor | TODO | Kayıt var ama dosya yok/erişilemiyor |
-| Aynı hash uyarıları görünüyor | TODO | Muhtemel mükerrer evraklar gruplu gösterilir |
-| `--self-test` evrak kontrolünü doğruluyor | TODO | En az bir eksik dosya ve bir aynı-hash senaryosu |
+| Evrak kontrol sekmesi açılıyor | OK | Raporlar ekranında `Evrak Kontrol` sekmesi |
+| Eksik PDF listesi görünüyor | OK | Fatura/Ödeme için `PDF Yok` ve `PDF Kayıp` uyarıları listeleniyor |
+| Aynı hash uyarıları görünüyor | OK | Fatura/Ödeme PDF hash grupları uyarı listesine ekleniyor |
+| `--self-test` evrak kontrolünü doğruluyor | OK | Eksik dosya + aynı-hash senaryosu eklendi |
 
 ## v0.10 ve Sonrası İçin Regresyon Başlıkları
 
