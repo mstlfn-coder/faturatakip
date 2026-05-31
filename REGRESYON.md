@@ -216,6 +216,15 @@ Sonuç etiketleri:
 | Aynı hash uyarıları görünüyor | OK | Fatura/Ödeme PDF hash grupları uyarı listesine ekleniyor |
 | `--self-test` evrak kontrolünü doğruluyor | OK | Eksik dosya + aynı-hash senaryosu eklendi |
 
+## v0.17 - Excel Dışa Aktarım
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Excel dışa aktarım butonu görünüyor | TODO | Liste/rapor ekranlarında |
+| XLSX dosyası exports/ altına yazılıyor | TODO | Dosya adı tarih-saat içerir |
+| Kolonlar doğru ve okunabilir | TODO | Başlıklar + sayısal format |
+| `--self-test` temel excel exportu doğruluyor | TODO | En az bir dosya oluşumu |
+
 ## v0.10 ve Sonrası İçin Regresyon Başlıkları
 
 Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:

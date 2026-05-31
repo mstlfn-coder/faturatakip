@@ -197,6 +197,23 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 
 Bu branch'teki görev yalnızca `v0.15` kapsamını uygulamak olmalı.
 
+v0.17 başlangıç talimatı:
+
+```text
+C# WPF + SQLite tabanlı kurum fatura takip programında v0.17 fazını uygula.
+
+Önce README.md, docs/00-codex-devam-kilavuzu.md, docs/03-devam-notlari.md, ROADMAP.md ve REGRESYON.md dosyalarını oku.
+
+Bu fazda yalnızca Excel dışa aktarım geliştirilecek.
+
+En azından fatura listesi ve raporlar ekranındaki listeler xlsx olarak dışa aktarılabilir olmalı.
+Çıktı exports/ altına tarih-saatli dosya adıyla yazılmalı.
+
+Bu fazda yazdırılabilir PDF rapor üretimi ve yedekleme yapılmayacak.
+
+Faz sonunda derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
+```
+
 v0.16 başlangıç talimatı:
 
 ```text
