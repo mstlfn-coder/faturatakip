@@ -59,7 +59,7 @@ Bu fazda raporlar ekranına abonelik bazlı aylık detay ve önceki ay karşıla
 
 Sıradaki geliştirme fazı `v0.14 - Aboneliğe Özgü Yıllık Fatura Listesi`.
 
-Aktif çalışma branch'i: `codex/v0.13-abonelige-ozgu-aylik-fatura`.
+Aktif çalışma branch'i: `codex/v0.14-abonelige-ozgu-yillik-fatura`.
 
 Bu fazda 12 aylık abonelik listesi, toplamlar, en yüksek ve en düşük ay görünür olacak. Excel/PDF dışa aktarım, yazdırılabilir PDF rapor üretimi ve yedekleme yapılmayacak.
 
