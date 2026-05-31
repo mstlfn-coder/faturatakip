@@ -7,6 +7,7 @@ using System.Windows.Media;
 using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.Payments;
 using FaturaTakip.App.Data.Subscriptions;
+using FaturaTakip.App.Infrastructure;
 using Microsoft.Win32;
 
 namespace FaturaTakip.App.Views;
@@ -301,6 +302,39 @@ public partial class InvoicesView : UserControl
             SetInvoiceStatus(warning is null ? successMessage : $"{successMessage} Uyarı: {warning}", isError: false);
         }
         catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException or IOException or UnauthorizedAccessException)
+        {
+            SetInvoiceStatus(exception.Message, isError: true);
+        }
+    }
+
+    private void ExportInvoicesButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_invoiceRepository is null)
+        {
+            return;
+        }
+
+        try
+        {
+            var items = InvoiceGrid.ItemsSource as IEnumerable<Invoice> ?? Array.Empty<Invoice>();
+            var list = items.ToList();
+            if (list.Count == 0)
+            {
+                SetInvoiceStatus("Excel aktarımı için listede kayıt yok.", isError: true);
+                return;
+            }
+
+            var paths = AppPaths.Resolve();
+            var exportsDir = Path.Combine(paths.RootDirectory, "exports");
+            Directory.CreateDirectory(exportsDir);
+            var fileName = $"faturalar-{DateTime.Now:yyyyMMdd-HHmmss}.xlsx";
+            var filePath = Path.Combine(exportsDir, fileName);
+
+            ExcelExportWriter.WriteInvoices(filePath, list, invoice => _invoiceRepository.IsPdfMissing(invoice));
+
+            SetInvoiceStatus($"Excel dosyası oluşturuldu: exports/{fileName}", isError: false);
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidOperationException)
         {
             SetInvoiceStatus(exception.Message, isError: true);
         }

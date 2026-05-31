@@ -6,6 +6,7 @@ using FaturaTakip.App.Data.InvoiceTypes;
 using FaturaTakip.App.Data.Payments;
 using FaturaTakip.App.Data.Reports;
 using FaturaTakip.App.Data.Subscriptions;
+using FaturaTakip.App.Infrastructure;
 
 namespace FaturaTakip.App.Diagnostics;
 
@@ -787,6 +788,16 @@ public sealed class SelfTestRunner
             Assert(documentHealth.DuplicateInvoiceHashItemCount == 2, "Evrak kontrol: fatura aynı-hash madde sayısı hatalı.");
             Assert(documentHealth.DuplicatePaymentHashItemCount == 2, "Evrak kontrol: ödeme aynı-hash madde sayısı hatalı.");
             Assert(documentHealth.Issues.Count >= 8, "Evrak kontrol: uyarı listesi beklenenden kısa.");
+
+            var exportXlsxPath = Path.Combine(testRoot, "exports", $"faturalar-{DateTime.Now:yyyyMMdd-HHmmss}.xlsx");
+            Directory.CreateDirectory(Path.GetDirectoryName(exportXlsxPath)!);
+            ExcelExportWriter.WriteInvoices(
+                exportXlsxPath,
+                documentHealthInvoices,
+                isPdfMissing: invoice => !invoice.HasPdf);
+            Assert(File.Exists(exportXlsxPath), "Excel export dosyası oluşmadı.");
+            var exportFileInfo = new FileInfo(exportXlsxPath);
+            Assert(exportFileInfo.Length > 1024, "Excel export dosyası beklenenden küçük.");
 
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(

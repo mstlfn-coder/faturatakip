@@ -72,6 +72,10 @@
                         Style="{StaticResource SecondaryButton}"
                         Margin="0,0,8,0"
                         Click="NewInvoiceButton_Click" />
+                <Button Content="Excel'e Aktar"
+                        Style="{StaticResource SecondaryButton}"
+                        Margin="0,0,8,0"
+                        Click="ExportInvoicesButton_Click" />
                 <Button Content="Kaydet"
                         Style="{StaticResource PrimaryButton}"
                         Click="SaveInvoiceButton_Click" />
