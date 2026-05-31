@@ -220,10 +220,10 @@ Sonuç etiketleri:
 
 | Kontrol | Durum | Not |
 |---|---|---|
-| Excel dışa aktarım butonu görünüyor | TODO | Liste/rapor ekranlarında |
-| XLSX dosyası exports/ altına yazılıyor | TODO | Dosya adı tarih-saat içerir |
-| Kolonlar doğru ve okunabilir | TODO | Başlıklar + sayısal format |
-| `--self-test` temel excel exportu doğruluyor | TODO | En az bir dosya oluşumu |
+| Excel dışa aktarım butonu görünüyor | OK | Faturalar ve Raporlar ekranında |
+| XLSX dosyası exports/ altına yazılıyor | OK | Dosya adı tarih-saat içerir |
+| Kolonlar doğru ve okunabilir | OK | Başlıklar + temel formatlar |
+| `--self-test` temel excel exportu doğruluyor | OK | En az bir dosya oluşumu |
 
 ## v0.10 ve Sonrası İçin Regresyon Başlıkları
 

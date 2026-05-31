@@ -214,6 +214,15 @@ Bu fazda yazdırılabilir PDF rapor üretimi ve yedekleme yapılmayacak.
 Faz sonunda derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```
 
+v0.17 ilerleme notu (2026-06-01):
+
+- Branch açıldı: `codex/v0.17-excel-disa-aktarim`.
+- `ClosedXML` eklendi ve `ExcelExportWriter` ile XLSX dışa aktarım altyapısı kuruldu.
+- `Faturalar` ekranına `Excel'e Aktar` butonu eklendi (mevcut filtrelenmiş liste `exports/` altına yazılır).
+- `Raporlar` ekranına `Excel'e Aktar` butonu eklendi (aktif sekme tablosu `exports/` altına yazılır).
+- `--self-test` içine temel excel dosya oluşumu kontrolü eklendi.
+- `dotnet build`, `--self-test` ve `--health-check` başarılı çalıştı.
+
 v0.16 başlangıç talimatı:
 
 ```text
