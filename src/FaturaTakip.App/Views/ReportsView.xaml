@@ -81,7 +81,12 @@
                 <Button x:Name="MonthlyTabButton"
                         Content="Aylık Liste"
                         Style="{StaticResource SecondaryButton}"
+                        Margin="0,0,8,0"
                         Click="MonthlyTabButton_Click" />
+                <Button x:Name="SubscriptionTabButton"
+                        Content="Abonelik"
+                        Style="{StaticResource SecondaryButton}"
+                        Click="SubscriptionTabButton_Click" />
             </StackPanel>
         </Grid>
 
@@ -120,6 +125,45 @@
                               SelectionChanged="MonthlyFilter_Changed"
                               Margin="0,0,10,0" />
                     <TextBlock x:Name="MonthlyFilterHintText"
+                               Text=""
+                               VerticalAlignment="Center"
+                               Foreground="#64748B" />
+                </StackPanel>
+            </Border>
+
+            <Border x:Name="SubscriptionFilterPanel"
+                    Background="White"
+                    BorderBrush="#DDE4EC"
+                    BorderThickness="1"
+                    CornerRadius="6"
+                    Padding="14,10"
+                    Margin="0,0,0,12"
+                    Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Abonelik:"
+                               VerticalAlignment="Center"
+                               Foreground="#334155"
+                               FontWeight="SemiBold"
+                               Margin="0,0,10,0" />
+                    <ComboBox x:Name="SubscriptionInput"
+                              Width="320"
+                              Height="34"
+                              VerticalContentAlignment="Center"
+                              SelectionChanged="SubscriptionFilter_Changed"
+                              Margin="0,0,10,0" />
+                    <ComboBox x:Name="SubscriptionYearInput"
+                              Width="110"
+                              Height="34"
+                              VerticalContentAlignment="Center"
+                              SelectionChanged="SubscriptionFilter_Changed"
+                              Margin="0,0,10,0" />
+                    <ComboBox x:Name="SubscriptionMonthInput"
+                              Width="150"
+                              Height="34"
+                              VerticalContentAlignment="Center"
+                              SelectionChanged="SubscriptionFilter_Changed"
+                              Margin="0,0,10,0" />
+                    <TextBlock x:Name="SubscriptionHintText"
                                Text=""
                                VerticalAlignment="Center"
                                Foreground="#64748B" />

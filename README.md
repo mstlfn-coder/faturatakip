@@ -51,17 +51,17 @@ Get-ChildItem -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI'
 
 ## Son Tamamlanan Faz
 
-Son tamamlanan geliştirme fazı `v0.12 - Türe Özgü Aylık Fatura Listesi`.
+Son tamamlanan geliştirme fazı `v0.13 - Aboneliğe Özgü Aylık Fatura Bilgisi`.
 
-Bu fazda aylık fatura listesine `Fatura Türü` filtresi eklendi: seçilen tür + yıl + ay için liste ve özet toplamlar alınır. Hesaplama mantığı test edilebilir `MonthlyInvoiceReportCalculator` katmanındadır.
+Bu fazda raporlar ekranına abonelik bazlı aylık detay ve önceki ay karşılaştırması eklendi. Hesaplama mantığı test edilebilir `SubscriptionMonthlyComparisonCalculator` katmanındadır.
 
 ## Sıradaki İş
 
-Sıradaki geliştirme fazı `v0.13 - Aboneliğe Özgü Aylık Fatura Bilgisi`.
+Sıradaki geliştirme fazı `v0.14 - Aboneliğe Özgü Yıllık Fatura Listesi`.
 
 Aktif çalışma branch'i: `codex/v0.13-abonelige-ozgu-aylik-fatura`.
 
-Bu fazda tek aboneliğin aylık detayları ve önceki ay karşılaştırması gösterilecek. Excel/PDF dışa aktarım, yazdırılabilir PDF rapor üretimi ve yedekleme yapılmayacak.
+Bu fazda 12 aylık abonelik listesi, toplamlar, en yüksek ve en düşük ay görünür olacak. Excel/PDF dışa aktarım, yazdırılabilir PDF rapor üretimi ve yedekleme yapılmayacak.
 
 ## Çalışma Kuralı
 

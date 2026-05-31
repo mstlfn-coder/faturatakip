@@ -179,6 +179,15 @@ Sonuç etiketleri:
 | Tür seçimiyle liste daralıyor | OK | Seçilen tür + yıl + ay için faturalar listelenir |
 | `--self-test` tür filtresini doğruluyor | OK | `invoiceTypeId` filtresi için senaryo eklendi |
 
+## v0.13 - Aboneliğe Özgü Aylık Fatura Bilgisi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Abonelik sekmesi açılıyor | OK | Raporlar ekranında `Abonelik` sekmesi |
+| Abonelik + dönem seçimi var | OK | Abonelik, yıl, ay seçimi ile liste güncellenir |
+| Önceki ay karşılaştırması görünüyor | OK | Tile detaylarında delta gösterilir |
+| `--self-test` abonelik karşılaştırmasını doğruluyor | OK | `SubscriptionMonthlyComparisonCalculator` senaryosu eklendi |
+
 ## v0.10 ve Sonrası İçin Regresyon Başlıkları
 
 Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:

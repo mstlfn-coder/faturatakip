@@ -490,6 +490,57 @@ public sealed class SelfTestRunner
             Assert(typedMonthly.TotalInvoiceCount == 1, "Tür filtresi aylık raporda çalışmadı.");
             Assert(typedMonthly.TotalAmount == 100m, "Tür filtresi aylık toplam tutarı yanlış.");
 
+            var subscriptionSamples = new[]
+            {
+                new Invoice
+                {
+                    Id = 60,
+                    SubscriptionId = 10,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 120m,
+                    PaidAmount = 20m,
+                    DueDate = new DateTime(2026, 2, 10),
+                    Status = "unpaid",
+                },
+                new Invoice
+                {
+                    Id = 61,
+                    SubscriptionId = 10,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 1,
+                    Amount = 80m,
+                    PaidAmount = 80m,
+                    DueDate = new DateTime(2026, 1, 5),
+                    Status = "paid",
+                    PdfFilePath = "attachments/invoices/2026/01/paid.pdf",
+                },
+                new Invoice
+                {
+                    Id = 62,
+                    SubscriptionId = 11,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 999m,
+                    PaidAmount = 0m,
+                    DueDate = new DateTime(2026, 2, 12),
+                    Status = "unpaid",
+                },
+            };
+            var comparison = SubscriptionMonthlyComparisonCalculator.Calculate(
+                subscriptionSamples,
+                subscriptionId: 10,
+                year: 2026,
+                month: 2,
+                today: new DateTime(2026, 2, 15),
+                isPdfMissing: invoice => false);
+            Assert(comparison.Current.TotalInvoiceCount == 1, "Abonelik raporu (current) toplam fatura sayısı hatalı.");
+            Assert(comparison.Current.TotalAmount == 120m, "Abonelik raporu (current) toplam tutar hatalı.");
+            Assert(comparison.Current.PaidTotal == 20m, "Abonelik raporu (current) ödenen toplam hatalı.");
+            Assert(comparison.Current.RemainingTotal == 100m, "Abonelik raporu (current) kalan toplam hatalı.");
+            Assert(comparison.Previous.TotalAmount == 80m, "Abonelik raporu (previous) toplam tutar hatalı.");
+            Assert(comparison.TotalAmountDelta == 40m, "Abonelik raporu toplam delta hatalı.");
+
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(
                     updatedSubscription.Id,

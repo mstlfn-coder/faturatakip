@@ -213,6 +213,13 @@ Excel/PDF dışa aktarım, yazdırılabilir PDF rapor ve yedekleme yapılmayacak
 Faz sonunda uygulamayı çalıştır veya en azından derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```
 
+v0.13 sonuç notu:
+
+- Raporlar ekranına `Abonelik` sekmesi eklendi.
+- Abonelik + yıl + ay seçimiyle seçilen ay faturaları listeleniyor.
+- Önceki ay karşılaştırması tile detaylarında delta olarak gösteriliyor.
+- `SubscriptionMonthlyComparisonCalculator` eklendi ve `--self-test` kapsadı.
+
 v0.12 sonuç notu:
 
 - Aylık liste raporuna `Fatura Türü` filtresi eklendi.
