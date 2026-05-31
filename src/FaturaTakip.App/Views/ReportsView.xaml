@@ -105,7 +105,12 @@
                 <Button x:Name="ExportReportButton"
                         Content="Excel'e Aktar"
                         Style="{StaticResource SecondaryButton}"
+                        Margin="0,0,8,0"
                         Click="ExportReportButton_Click" />
+                <Button x:Name="ExportReportPdfButton"
+                        Content="PDF'e Aktar"
+                        Style="{StaticResource SecondaryButton}"
+                        Click="ExportReportPdfButton_Click" />
             </StackPanel>
         </Grid>
 

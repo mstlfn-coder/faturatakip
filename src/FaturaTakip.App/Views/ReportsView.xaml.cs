@@ -164,50 +164,42 @@ public partial class ReportsView : UserControl
             var fileName = $"raporlar-{tabKey}-{DateTime.Now:yyyyMMdd-HHmmss}.xlsx";
             var filePath = Path.Combine(exportsDir, fileName);
 
-            if (_activeTab is ReportTab.TypeYearly or ReportTab.SubscriptionYearly)
-            {
-                var headers = new[] { "Ay", "Fatura", "Toplam", "Ödenen", "Kalan", "Ödenmemiş", "Gecikmiş", "PDF Eksik" };
-                var rows = YearlyGrid.ItemsSource is IEnumerable<YearlyRow> yearly
-                    ? yearly.Select(r => (IReadOnlyList<object?>)new object?[]
-                    {
-                        r.MonthName, r.InvoiceCountText, r.TotalAmountText, r.PaidText, r.RemainingText,
-                        r.UnpaidCountText, r.OverdueCountText, r.MissingPdfCountText
-                    })
-                    : Array.Empty<IReadOnlyList<object?>>();
+            var meta = new ExcelExportWriter.ReportMeta(
+                AppTitle: "KURUM FATURA TAKIP PROGRAMI",
+                InstitutionName: string.Empty,
+                ReportTitle: GetPdfReportTitle(),
+                ReportPeriod: GetPdfReportPeriod(),
+                ReportDate: DateTime.Today,
+                CreatedBy: Environment.UserName,
+                FilterText: GetPdfReportFilterText());
 
-                ExcelExportWriter.WriteTable(filePath, sheetName: "Yıllık", headers, rows);
-            }
-            else if (_activeTab == ReportTab.DocumentHealth)
-            {
-                var headers = new[]
-                {
-                    "Uyarı", "Tip", "Dönem/Tarih", "Tür", "Abonelik", "Kurum", "Tutar", "PDF", "Yol", "Hash", "Not",
-                };
-                var rows = DocumentHealthGrid.ItemsSource is IEnumerable<DocumentHealthRow> issues
-                    ? issues.Select(r => (IReadOnlyList<object?>)new object?[]
-                    {
-                        r.IssueType, r.EntityType, r.PeriodOrDate, r.InvoiceTypeName, r.SubscriptionName, r.InstitutionName,
-                        r.AmountText, r.PdfState, r.PdfFilePath, r.PdfSha256Hash, r.Note
-                    })
-                    : Array.Empty<IReadOnlyList<object?>>();
+            var (pdfSummary, primary, _secondaryTitle, secondTable) = BuildPdfContent();
+            var summary = pdfSummary.Select(s => new ExcelExportWriter.SummaryItem(s.Label, s.Value, s.Detail)).ToList();
+            var primaryRows = primary.Rows.Select(r => (IReadOnlyList<object?>)r.Cast<object?>().ToArray()).ToList();
 
-                ExcelExportWriter.WriteTable(filePath, sheetName: "Evrak Kontrol", headers, rows);
+            if (secondTable is null)
+            {
+                ExcelExportWriter.WriteReportWithHeader(
+                    filePath,
+                    sheetName: "Rapor",
+                    meta: meta,
+                    summary: summary,
+                    headers: primary.Headers,
+                    rows: primaryRows);
             }
             else
             {
-                var headers = new[]
-                {
-                    "Dönem", "Tür", "Abonelik", "Kurum", "Durum", "Fatura No", "Son Ödeme", "Tutar", "Ödenen", "Kalan", "PDF",
-                };
-                var rows = ReportGrid.ItemsSource is IEnumerable<ReportRow> items
-                    ? items.Select(r => (IReadOnlyList<object?>)new object?[]
-                    {
-                        r.Period, r.InvoiceTypeName, r.SubscriptionName, r.InstitutionName, r.StatusText, r.InvoiceNo,
-                        r.DueDateText, r.AmountText, r.PaidAmountText, r.RemainingAmountText, r.PdfState
-                    })
-                    : Array.Empty<IReadOnlyList<object?>>();
-
-                ExcelExportWriter.WriteTable(filePath, sheetName: "Rapor", headers, rows);
+                var secondRows = secondTable.Value.Rows.Select(r => (IReadOnlyList<object?>)r.Cast<object?>().ToArray()).ToList();
+                ExcelExportWriter.WriteReportWithTwoSheets(
+                    filePath,
+                    mainSheetName: "Rapor",
+                    meta: meta,
+                    summary: summary,
+                    headers: primary.Headers,
+                    rows: primaryRows,
+                    secondSheetName: secondTable.Value.Title,
+                    secondHeaders: secondTable.Value.Headers,
+                    secondRows: secondRows);
             }
 
             var hint = $"Excel yazıldı: exports/{fileName}";
@@ -237,6 +229,292 @@ public partial class ReportsView : UserControl
             MonthlyFilterHintText.Text = message;
             SubscriptionHintText.Text = message;
         }
+    }
+
+    private void ExportReportPdfButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var paths = AppPaths.Resolve();
+            var exportsDir = Path.Combine(paths.RootDirectory, "exports");
+            Directory.CreateDirectory(exportsDir);
+
+            var tabKey = _activeTab.ToString().ToLowerInvariant();
+            var fileName = $"raporlar-{tabKey}-{DateTime.Now:yyyyMMdd-HHmmss}.pdf";
+            var filePath = Path.Combine(exportsDir, fileName);
+
+            var createdBy = Environment.UserName;
+            var meta = new PdfReportWriter.ReportMeta(
+                AppTitle: "KURUM FATURA TAKIP PROGRAMI",
+                InstitutionName: string.Empty,
+                ReportTitle: GetPdfReportTitle(),
+                ReportPeriod: GetPdfReportPeriod(),
+                ReportDate: DateTime.Today,
+                CreatedBy: createdBy,
+                FilterText: GetPdfReportFilterText());
+
+            var (summary, primary, secondaryTitle, secondTable) = BuildPdfContent();
+
+            PdfReportWriter.WriteSimpleTableReport(
+                filePath,
+                meta,
+                summary,
+                primary.Headers,
+                primary.Rows,
+                secondaryTitle: secondaryTitle,
+                secondTable: secondTable);
+
+            SetPdfHint($"PDF yazıldı: exports/{fileName}");
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidOperationException)
+        {
+            SetPdfHint(exception.Message);
+        }
+    }
+
+    private void SetPdfHint(string message)
+    {
+        // Raporlar ekranında ortak bir status bandı yok; mevcut ipucu alanlarını kullanıyoruz.
+        TypeYearlyHintText.Text = message;
+        MonthlyFilterHintText.Text = message;
+        SubscriptionHintText.Text = message;
+    }
+
+    private string GetPdfReportTitle()
+    {
+        return _activeTab switch
+        {
+            ReportTab.Unpaid => "ÖDENMEMİŞ FATURALAR RAPORU",
+            ReportTab.Overdue => "GECİKMİŞ FATURALAR RAPORU",
+            ReportTab.Upcoming => "YAKLAŞAN ÖDEMELER RAPORU",
+            ReportTab.Monthly => "AYLIK FATURA RAPORU",
+            ReportTab.Subscription => "ABONELİK AYLIK FATURA RAPORU",
+            ReportTab.SubscriptionYearly => "ABONELİK YILLIK FATURA RAPORU",
+            ReportTab.TypeYearly => "TÜR YILLIK FATURA RAPORU",
+            ReportTab.DocumentHealth => "EVRAK KONTROL RAPORU",
+            _ => "RAPOR",
+        };
+    }
+
+    private string GetPdfReportPeriod()
+    {
+        return _activeTab switch
+        {
+            ReportTab.Monthly => $"{_monthlyReport.Year:D4}/{_monthlyReport.Month:D2}",
+            ReportTab.Subscription => $"{_subscriptionComparison.Current.Year:D4}/{_subscriptionComparison.Current.Month:D2}",
+            ReportTab.SubscriptionYearly => _subscriptionYearly.Year == 0 ? string.Empty : $"{_subscriptionYearly.Year}",
+            ReportTab.TypeYearly => _typeYearly.Year == 0 ? string.Empty : $"{_typeYearly.Year}",
+            _ => string.Empty,
+        };
+    }
+
+    private string GetPdfReportFilterText()
+    {
+        return _activeTab switch
+        {
+            ReportTab.Monthly => $"Tür: {(GetSelectedInvoiceTypeLabel() ?? "Tüm Türler")}",
+            ReportTab.Subscription => $"Abonelik: {(GetSelectedSubscriptionLabel() ?? string.Empty)}",
+            ReportTab.SubscriptionYearly => $"Abonelik: {(GetSelectedSubscriptionLabel() ?? string.Empty)}",
+            ReportTab.TypeYearly => $"Tür: {(GetSelectedTypeYearlyInvoiceType()?.Label ?? string.Empty)}",
+            ReportTab.DocumentHealth => "Fatura + Ödeme evrak kontrolü",
+            _ => string.Empty,
+        };
+    }
+
+    private string? GetSelectedInvoiceTypeLabel()
+    {
+        return (MonthlyInvoiceTypeInput.SelectedItem as InvoiceTypeOption)?.Label;
+    }
+
+    private string? GetSelectedSubscriptionLabel()
+    {
+        return (SubscriptionInput.SelectedItem as SubscriptionOption)?.Label;
+    }
+
+    private (IReadOnlyList<PdfReportWriter.SummaryItem> Summary,
+        (IReadOnlyList<string> Headers, IReadOnlyList<IReadOnlyList<string>> Rows) Primary,
+        string? SecondaryTitle,
+        (IReadOnlyList<string> Headers, IReadOnlyList<IReadOnlyList<string>> Rows, string Title)? SecondTable) BuildPdfContent()
+    {
+        if (_activeTab == ReportTab.Monthly)
+        {
+            var summary = new List<PdfReportWriter.SummaryItem>
+            {
+                new("Toplam Fatura", _monthlyReport.TotalInvoiceCount.ToString(CultureInfo.InvariantCulture), $"Toplam {FormatMoney(_monthlyReport.TotalAmount)}"),
+                new("Ödenen", FormatMoney(_monthlyReport.PaidTotal), $"PDF eksik {_monthlyReport.MissingPdfCount}"),
+                new("Kalan", FormatMoney(_monthlyReport.RemainingTotal), $"Ödenmemiş {_monthlyReport.UnpaidInvoiceCount}, Gecikmiş {_monthlyReport.OverdueInvoiceCount}"),
+            };
+
+            var headers = new[] { "Dönem", "Tür", "Abonelik", "Kurum", "Durum", "Fatura No", "Son Ödeme", "Tutar", "Ödenen", "Kalan", "PDF" };
+            var rows = _monthlyReport.Rows.Select(r => (IReadOnlyList<string>)new[]
+            {
+                r.Invoice.Period,
+                r.Invoice.InvoiceTypeName,
+                r.Invoice.SubscriptionName,
+                r.Invoice.InstitutionName,
+                r.Invoice.State,
+                r.Invoice.InvoiceNo,
+                r.Invoice.DueDate.ToString("dd.MM.yyyy", TurkishCulture),
+                FormatMoney(r.Invoice.Amount),
+                FormatMoney(r.Invoice.PaidAmount),
+                FormatMoney(r.Invoice.RemainingAmount),
+                r.PdfState,
+            }).ToList();
+
+            return (summary, (headers, rows), secondaryTitle: null, secondTable: null);
+        }
+
+        if (_activeTab == ReportTab.TypeYearly)
+        {
+            var summary = new List<PdfReportWriter.SummaryItem>
+            {
+                new("Toplam (Yıl)", FormatMoney(_typeYearly.TotalAmount), $"{_typeYearly.TotalInvoiceCount} fatura, Ödenen {FormatMoney(_typeYearly.PaidTotal)}, Kalan {FormatMoney(_typeYearly.RemainingTotal)}"),
+                new("En Yüksek Ay", _typeYearly.HighestMonth == 0 ? "-" : TurkishCulture.DateTimeFormat.GetMonthName(_typeYearly.HighestMonth), _typeYearly.HighestMonth == 0 ? "-" : $"Toplam {FormatMoney(_typeYearly.HighestMonthTotal)}"),
+                new("En Düşük Ay", _typeYearly.LowestMonth == 0 ? "-" : TurkishCulture.DateTimeFormat.GetMonthName(_typeYearly.LowestMonth), _typeYearly.LowestMonth == 0 ? "-" : $"Toplam {FormatMoney(_typeYearly.LowestMonthTotal)}"),
+            };
+
+            var headers = new[] { "Ay", "Fatura", "Toplam", "Ödenen", "Kalan", "Ödenmemiş", "Gecikmiş", "PDF Eksik" };
+            var rows = _typeYearly.Months.Select(m => (IReadOnlyList<string>)new[]
+            {
+                TurkishCulture.DateTimeFormat.GetMonthName(m.Month),
+                m.InvoiceCount.ToString(CultureInfo.InvariantCulture),
+                FormatMoney(m.TotalAmount),
+                FormatMoney(m.PaidTotal),
+                FormatMoney(m.RemainingTotal),
+                m.UnpaidInvoiceCount.ToString(CultureInfo.InvariantCulture),
+                m.OverdueInvoiceCount.ToString(CultureInfo.InvariantCulture),
+                m.MissingPdfCount.ToString(CultureInfo.InvariantCulture),
+            }).ToList();
+
+            var distHeaders = new[] { "Abonelik", "Kurum", "Fatura", "Toplam", "Ödenen", "Kalan", "PDF Eksik" };
+            var distRows = _typeYearly.Distribution.Select(d => (IReadOnlyList<string>)new[]
+            {
+                d.SubscriptionName,
+                d.InstitutionName,
+                d.InvoiceCount.ToString(CultureInfo.InvariantCulture),
+                FormatMoney(d.TotalAmount),
+                FormatMoney(d.PaidTotal),
+                FormatMoney(d.RemainingTotal),
+                d.MissingPdfCount.ToString(CultureInfo.InvariantCulture),
+            }).ToList();
+
+            var second = (Headers: (IReadOnlyList<string>)distHeaders, Rows: (IReadOnlyList<IReadOnlyList<string>>)distRows, Title: "Abonelik Dağılımı");
+            var secondaryTitle = _typeYearly.Year == 0 ? null : $"{_typeYearly.InvoiceTypeName} / {_typeYearly.Year}";
+            return (summary, (headers, rows), secondaryTitle, second);
+        }
+
+        if (_activeTab == ReportTab.SubscriptionYearly)
+        {
+            var summary = new List<PdfReportWriter.SummaryItem>
+            {
+                new("Toplam (Yıl)", FormatMoney(_subscriptionYearly.TotalAmount), $"{_subscriptionYearly.TotalInvoiceCount} fatura, Ödenen {FormatMoney(_subscriptionYearly.PaidTotal)}, Kalan {FormatMoney(_subscriptionYearly.RemainingTotal)}"),
+                new("En Yüksek Ay", _subscriptionYearly.HighestMonth == 0 ? "-" : TurkishCulture.DateTimeFormat.GetMonthName(_subscriptionYearly.HighestMonth), _subscriptionYearly.HighestMonth == 0 ? "-" : $"Toplam {FormatMoney(_subscriptionYearly.HighestMonthTotal)}"),
+                new("En Düşük Ay", _subscriptionYearly.LowestMonth == 0 ? "-" : TurkishCulture.DateTimeFormat.GetMonthName(_subscriptionYearly.LowestMonth), _subscriptionYearly.LowestMonth == 0 ? "-" : $"Toplam {FormatMoney(_subscriptionYearly.LowestMonthTotal)}"),
+            };
+
+            var headers = new[] { "Ay", "Fatura", "Toplam", "Ödenen", "Kalan", "Ödenmemiş", "Gecikmiş", "PDF Eksik" };
+            var rows = _subscriptionYearly.Months.Select(m => (IReadOnlyList<string>)new[]
+            {
+                TurkishCulture.DateTimeFormat.GetMonthName(m.Month),
+                m.InvoiceCount.ToString(CultureInfo.InvariantCulture),
+                FormatMoney(m.TotalAmount),
+                FormatMoney(m.PaidTotal),
+                FormatMoney(m.RemainingTotal),
+                m.UnpaidInvoiceCount.ToString(CultureInfo.InvariantCulture),
+                m.OverdueInvoiceCount.ToString(CultureInfo.InvariantCulture),
+                m.MissingPdfCount.ToString(CultureInfo.InvariantCulture),
+            }).ToList();
+
+            return (summary, (headers, rows), secondaryTitle: GetSelectedSubscriptionLabel(), secondTable: null);
+        }
+
+        if (_activeTab == ReportTab.Subscription)
+        {
+            var current = _subscriptionComparison.Current;
+            var summary = new List<PdfReportWriter.SummaryItem>
+            {
+                new("Toplam Fatura", current.TotalInvoiceCount.ToString(CultureInfo.InvariantCulture), $"Toplam {FormatMoney(current.TotalAmount)}"),
+                new("Ödenen", FormatMoney(current.PaidTotal), $"Önceki ay {FormatMoney(_subscriptionComparison.Previous.PaidTotal)}"),
+                new("Kalan", FormatMoney(current.RemainingTotal), $"Önceki ay {FormatMoney(_subscriptionComparison.Previous.RemainingTotal)}"),
+            };
+
+            var headers = new[] { "Dönem", "Tür", "Abonelik", "Kurum", "Durum", "Fatura No", "Son Ödeme", "Tutar", "Ödenen", "Kalan", "PDF" };
+            var rows = current.Rows.Select(r => (IReadOnlyList<string>)new[]
+            {
+                r.Invoice.Period,
+                r.Invoice.InvoiceTypeName,
+                r.Invoice.SubscriptionName,
+                r.Invoice.InstitutionName,
+                r.Invoice.State,
+                r.Invoice.InvoiceNo,
+                r.Invoice.DueDate.ToString("dd.MM.yyyy", TurkishCulture),
+                FormatMoney(r.Invoice.Amount),
+                FormatMoney(r.Invoice.PaidAmount),
+                FormatMoney(r.Invoice.RemainingAmount),
+                r.PdfState,
+            }).ToList();
+
+            return (summary, (headers, rows), secondaryTitle: GetSelectedSubscriptionLabel(), secondTable: null);
+        }
+
+        if (_activeTab == ReportTab.DocumentHealth)
+        {
+            var summary = new List<PdfReportWriter.SummaryItem>
+            {
+                new("Fatura PDF", (_documentHealth.InvoiceNoPdfCount + _documentHealth.InvoiceMissingFileCount).ToString(CultureInfo.InvariantCulture), $"Yok {_documentHealth.InvoiceNoPdfCount}, Kayıp {_documentHealth.InvoiceMissingFileCount}"),
+                new("Ödeme PDF", (_documentHealth.PaymentNoPdfCount + _documentHealth.PaymentMissingFileCount).ToString(CultureInfo.InvariantCulture), $"Yok {_documentHealth.PaymentNoPdfCount}, Kayıp {_documentHealth.PaymentMissingFileCount}"),
+                new("Aynı Hash", (_documentHealth.DuplicateInvoiceHashItemCount + _documentHealth.DuplicatePaymentHashItemCount).ToString(CultureInfo.InvariantCulture), $"Fatura {_documentHealth.DuplicateInvoiceHashItemCount}, Ödeme {_documentHealth.DuplicatePaymentHashItemCount}"),
+            };
+
+            var headers = new[] { "Uyarı", "Tip", "Dönem/Tarih", "Tür", "Abonelik", "Kurum", "Tutar", "PDF", "Yol", "Hash", "Not" };
+            var rows = _documentHealth.Issues.Select(i => (IReadOnlyList<string>)new[]
+            {
+                i.IssueType,
+                i.EntityType,
+                i.PeriodOrDate,
+                i.InvoiceTypeName,
+                i.SubscriptionName,
+                i.InstitutionName,
+                FormatMoney(i.Amount),
+                i.PdfState,
+                i.PdfFilePath,
+                i.PdfSha256Hash,
+                i.Note,
+            }).ToList();
+
+            return (summary, (headers, rows), secondaryTitle: null, secondTable: null);
+        }
+
+        // Default: actionable lists
+        var actionableItems = _activeTab switch
+        {
+            ReportTab.Overdue => _report.Overdue,
+            ReportTab.Upcoming => _report.Upcoming,
+            _ => _report.Unpaid,
+        };
+        var defaultSummary = new List<PdfReportWriter.SummaryItem>
+        {
+            new("Toplam", actionableItems.Count.ToString(CultureInfo.InvariantCulture), string.Empty),
+            new("Kalan", FormatMoney(actionableItems.Sum(x => x.Invoice.RemainingAmount)), string.Empty),
+            new("PDF Eksik", actionableItems.Count(x => x.PdfState != "PDF Var").ToString(CultureInfo.InvariantCulture), string.Empty),
+        };
+        var defaultHeaders = new[] { "Dönem", "Tür", "Abonelik", "Kurum", "Durum", "Fatura No", "Son Ödeme", "Tutar", "Ödenen", "Kalan", "PDF" };
+        var defaultRows = actionableItems.Select(i => (IReadOnlyList<string>)new[]
+        {
+            i.Invoice.Period,
+            i.Invoice.InvoiceTypeName,
+            i.Invoice.SubscriptionName,
+            i.Invoice.InstitutionName,
+            i.Invoice.State,
+            i.Invoice.InvoiceNo,
+            i.Invoice.DueDate.ToString("dd.MM.yyyy", TurkishCulture),
+            FormatMoney(i.Invoice.Amount),
+            FormatMoney(i.Invoice.PaidAmount),
+            FormatMoney(i.Invoice.RemainingAmount),
+            i.PdfState,
+        }).ToList();
+
+        return (defaultSummary, (defaultHeaders, defaultRows), secondaryTitle: null, secondTable: null);
     }
 
     private void MonthlyFilter_Changed(object sender, SelectionChangedEventArgs e)

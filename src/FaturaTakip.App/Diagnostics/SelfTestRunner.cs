@@ -807,6 +807,23 @@ public sealed class SelfTestRunner
                 rows: new[] { new object?[] { "X", 1 } });
             Assert(File.Exists(reportXlsxPath), "Rapor excel export dosyası oluşmadı.");
 
+            var reportPdfPath = Path.Combine(testRoot, "exports", $"raporlar-selftest-{DateTime.Now:yyyyMMdd-HHmmss}.pdf");
+            PdfReportWriter.WriteSimpleTableReport(
+                reportPdfPath,
+                new PdfReportWriter.ReportMeta(
+                    AppTitle: "KURUM FATURA TAKIP PROGRAMI",
+                    InstitutionName: "Test Kurum",
+                    ReportTitle: "SELF-TEST PDF",
+                    ReportPeriod: "2026/01",
+                    ReportDate: new DateTime(2026, 6, 1),
+                    CreatedBy: "codex",
+                    FilterText: "Test"),
+                summary: new[] { new PdfReportWriter.SummaryItem("Toplam", "1") },
+                headers: new[] { "Kolon" },
+                rows: new[] { new[] { "Satır" } });
+            Assert(File.Exists(reportPdfPath), "PDF export dosyası oluşmadı.");
+            Assert(new FileInfo(reportPdfPath).Length > 1024, "PDF export dosyası beklenenden küçük.");
+
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(
                     updatedSubscription.Id,
