@@ -106,10 +106,14 @@
                             Content="Raporlar"
                             Style="{StaticResource NavButton}"
                             Click="ReportsNavButton_Click" />
+                    <Button x:Name="BackupNavButton"
+                            Content="Yedekleme"
+                            Style="{StaticResource NavButton}"
+                            Click="BackupNavButton_Click" />
                 </StackPanel>
 
                 <TextBlock Grid.Row="3"
-                           Text="v0.10"
+                           Text="v0.19"
                            Foreground="#94A3B8"
                            FontSize="13" />
             </Grid>
@@ -614,6 +618,9 @@
 
             <views:ReportsView x:Name="ReportsPanel"
                                Visibility="Collapsed" />
+
+            <views:BackupView x:Name="BackupPanel"
+                              Visibility="Collapsed" />
         </Grid>
     </Grid>
 </Window>

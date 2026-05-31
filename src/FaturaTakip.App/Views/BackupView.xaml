@@ -1,0 +1,98 @@
+<UserControl x:Class="FaturaTakip.App.Views.BackupView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="680"
+             d:DesignWidth="900">
+    <UserControl.Resources>
+        <Style x:Key="MutedText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#5F6B7A" />
+            <Setter Property="FontSize" Value="13" />
+        </Style>
+        <Style x:Key="TileBorder" TargetType="Border">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="#DDE4EC" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="18" />
+        </Style>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#2563EB" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="14,9" />
+            <Setter Property="MinWidth" Value="140" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+        <Style x:Key="SecondaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#E7EEF6" />
+            <Setter Property="Foreground" Value="#334155" />
+            <Setter Property="BorderBrush" Value="#CFDAE8" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="14,8" />
+            <Setter Property="MinWidth" Value="140" />
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock Text="Yedekleme"
+                       Foreground="#1F2937"
+                       FontSize="28"
+                       FontWeight="SemiBold" />
+            <TextBlock Text="VeritabanÄ± + ekler + rapor Ã§Ä±ktÄ±larÄ± iÃ§in tek tÄ±kla zip yedek"
+                       Style="{StaticResource MutedText}"
+                       Margin="0,6,0,0" />
+        </StackPanel>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource TileBorder}"
+                Margin="0,24,0,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="BackupStatusText"
+                           Style="{StaticResource MutedText}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,12" />
+
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal"
+                            Margin="0,0,0,12">
+                    <CheckBox x:Name="IncludeAttachmentsCheck"
+                              Content="attachments dahil"
+                              IsChecked="True"
+                              Margin="0,0,18,0" />
+                    <CheckBox x:Name="IncludeExportsCheck"
+                              Content="exports dahil"
+                              IsChecked="True" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="2"
+                            Orientation="Horizontal">
+                    <Button Content="Yedek OluÅŸtur"
+                            Style="{StaticResource PrimaryButton}"
+                            Margin="0,0,8,0"
+                            Click="CreateBackupButton_Click" />
+                    <Button Content="KlasÃ¶rÃ¼ AÃ§"
+                            Style="{StaticResource SecondaryButton}"
+                            Click="OpenBackupsFolderButton_Click" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
+
