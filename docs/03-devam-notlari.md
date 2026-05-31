@@ -213,6 +213,14 @@ Excel/PDF dışa aktarım, yazdırılabilir PDF rapor ve yedekleme yapılmayacak
 Faz sonunda uygulamayı çalıştır veya en azından derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```
 
+v0.15 sonuç notu:
+
+- Raporlar ekranına `Tür Yıllık` sekmesi eklendi.
+- Fatura türü + yıl seçimiyle 12 aylık toplamlar gösteriliyor.
+- Aynı ekranda abonelik dağılımı tablosu gösteriliyor (abonelik bazlı toplamlar, büyükten küçüğe).
+- `InvoiceTypeYearlyReportCalculator` eklendi ve `--self-test` kapsamına alındı.
+- `dotnet build`, `--self-test` ve `--health-check` başarılı çalıştı.
+
 v0.14 sonuç notu:
 
 - Raporlar ekranına `Abonelik Yıllık` sekmesi eklendi.

@@ -197,6 +197,16 @@ Sonuç etiketleri:
 | En yüksek/en düşük ay gösteriliyor | OK | Tile’larda ay adı ve toplam |
 | `--self-test` yıllık raporu doğruluyor | OK | `SubscriptionYearlyReportCalculator` senaryosu eklendi |
 
+## v0.15 - Türe Özgü Yıllık Fatura Listesi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Tür yıllık sekmesi açılıyor | OK | Raporlar ekranında `Tür Yıllık` sekmesi |
+| Tür + yıl seçimi var | OK | Fatura türü ve yıl seçimiyle rapor güncellenir |
+| 12 ay toplamları görünüyor | OK | Ay bazlı toplamlar hesaplanır |
+| Abonelik dağılımı listesi görünüyor | OK | Seçilen tür+ yıl için abonelik bazlı toplamlar sıralanır |
+| `--self-test` tür yıllık raporunu doğruluyor | OK | `InvoiceTypeYearlyReportCalculator` senaryosu eklendi |
+
 ## v0.10 ve Sonrası İçin Regresyon Başlıkları
 
 Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
@@ -229,3 +239,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-05-31 | v0.9 | OK | Dashboard aylık toplamlar, ödenmemiş/gecikmiş özetler ve evrak eksikleriyle geliştirildi |
 | 2026-05-31 | v0.10 başlangıç | OK | v0.9 master merge sonrası build, health-check ve self-test doğrulandı |
 | 2026-05-31 | v0.11 başlangıç | OK | v0.10 master merge sonrası build, health-check ve self-test doğrulandı |
+| 2026-05-31 | v0.15 | OK | Tür yıllık raporu eklendi; build, self-test ve health-check doğrulandı |

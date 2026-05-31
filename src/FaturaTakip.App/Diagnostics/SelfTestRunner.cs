@@ -605,6 +605,67 @@ public sealed class SelfTestRunner
             Assert(yearly.LowestMonth == 1, "Yıllık rapor en düşük ay hatalı.");
             Assert(yearly.LowestMonthTotal == 100m, "Yıllık rapor en düşük ay toplamı hatalı.");
 
+            var typeYearlySamples = new[]
+            {
+                new Invoice
+                {
+                    Id = 80,
+                    InvoiceTypeId = 100,
+                    InvoiceTypeName = "Elektrik",
+                    SubscriptionId = 10,
+                    SubscriptionName = "Ana Bina",
+                    InstitutionName = "Kurum A",
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 1,
+                    Amount = 100m,
+                    PaidAmount = 0m,
+                    DueDate = new DateTime(2026, 1, 10),
+                    Status = "unpaid",
+                },
+                new Invoice
+                {
+                    Id = 81,
+                    InvoiceTypeId = 100,
+                    InvoiceTypeName = "Elektrik",
+                    SubscriptionId = 11,
+                    SubscriptionName = "Şube",
+                    InstitutionName = "Kurum B",
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 250m,
+                    PaidAmount = 250m,
+                    DueDate = new DateTime(2026, 2, 5),
+                    Status = "paid",
+                    PdfFilePath = "attachments/invoices/2026/02/paid.pdf",
+                },
+                new Invoice
+                {
+                    Id = 82,
+                    InvoiceTypeId = 101,
+                    InvoiceTypeName = "Su",
+                    SubscriptionId = 10,
+                    SubscriptionName = "Ana Bina",
+                    InstitutionName = "Kurum A",
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 999m,
+                    PaidAmount = 0m,
+                    DueDate = new DateTime(2026, 2, 12),
+                    Status = "unpaid",
+                },
+            };
+            var typeYearly = InvoiceTypeYearlyReportCalculator.Calculate(
+                typeYearlySamples,
+                invoiceTypeId: 100,
+                invoiceTypeName: "Elektrik",
+                year: 2026,
+                today: new DateTime(2026, 2, 15),
+                isPdfMissing: invoice => !invoice.HasPdf);
+            Assert(typeYearly.TotalInvoiceCount == 2, "Tür yıllık rapor toplam fatura sayısı hatalı.");
+            Assert(typeYearly.TotalAmount == 350m, "Tür yıllık rapor toplam tutar hatalı.");
+            Assert(typeYearly.Distribution.Count == 2, "Tür yıllık rapor dağılım satır sayısı hatalı.");
+            Assert(typeYearly.Distribution[0].TotalAmount == 250m, "Tür yıllık rapor dağılım sıralaması hatalı.");
+
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(
                     updatedSubscription.Id,

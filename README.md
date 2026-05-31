@@ -15,6 +15,12 @@ Bu depo, kurum aboneliklerine ait elektrik, su, doğalgaz, telefon, internet ve 
 - `v0.7` ödeme kayıt altyapısı eklendi.
 - `v0.8` ödeme PDF evrakı ekleme altyapısı eklendi.
 - `v0.9` ana gösterge paneli geliştirildi.
+- `v0.10` raporlar: ödenmemiş/gecikmiş/yaklaşan ödemeler eklendi.
+- `v0.11` raporlar: aylık fatura listesi eklendi.
+- `v0.12` raporlar: türe özgü aylık liste filtresi eklendi.
+- `v0.13` raporlar: aboneliğe özgü aylık karşılaştırma eklendi.
+- `v0.14` raporlar: aboneliğe özgü yıllık (12 ay) özet eklendi.
+- `v0.15` raporlar: türe özgü yıllık toplam + abonelik dağılımı eklendi.
 - Solution dosyası: `FaturaTakip.sln`
 - Uygulama projesi: `src/FaturaTakip.App/FaturaTakip.App.csproj`
 - Geliştirme planı proje içine alındı: `docs/01-gelistirme-plani.md`
@@ -51,17 +57,15 @@ Get-ChildItem -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI'
 
 ## Son Tamamlanan Faz
 
-Son tamamlanan geliştirme fazı `v0.14 - Aboneliğe Özgü Yıllık Fatura Listesi`.
+Son tamamlanan geliştirme fazı `v0.15 - Türe Özgü Yıllık Fatura Listesi`.
 
-Bu fazda raporlar ekranına abonelik bazlı yıllık (12 ay) özet eklendi: toplamlar, en yüksek ve en düşük ay görünür. Hesaplama mantığı test edilebilir `SubscriptionYearlyReportCalculator` katmanındadır.
+Bu fazda raporlar ekranına `Tür Yıllık` sekmesi eklendi: seçilen fatura türü ve yıl için 12 aylık toplamlar ve abonelik dağılımı (hangi aboneliklerden ne kadar geldiği) görünür. Hesaplama mantığı test edilebilir `InvoiceTypeYearlyReportCalculator` katmanındadır.
 
 ## Sıradaki İş
 
-Sıradaki geliştirme fazı `v0.15 - Türe Özgü Yıllık Fatura Listesi`.
+Sıradaki geliştirme fazı `v0.16 - Evrak Eksikliği ve Dosya Kontrol Raporu`.
 
-Aktif çalışma branch'i: `codex/v0.15-ture-ozgu-yillik-fatura-listesi`.
-
-Bu fazda tür bazlı yıllık toplam ve abonelik dağılımı alınacak. Excel/PDF dışa aktarım, yazdırılabilir PDF rapor üretimi ve yedekleme yapılmayacak.
+Bu fazda eksik PDF, kayıp dosya ve aynı hash uyarıları raporlanacak. Excel/PDF dışa aktarım, yazdırılabilir PDF rapor üretimi ve yedekleme bu fazda yapılmayacak.
 
 ## Çalışma Kuralı
 

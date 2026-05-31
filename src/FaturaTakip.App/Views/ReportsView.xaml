@@ -92,6 +92,10 @@
                         Content="Abonelik Yıllık"
                         Style="{StaticResource SecondaryButton}"
                         Click="SubscriptionYearlyTabButton_Click" />
+                <Button x:Name="TypeYearlyTabButton"
+                        Content="Tür Yıllık"
+                        Style="{StaticResource SecondaryButton}"
+                        Click="TypeYearlyTabButton_Click" />
             </StackPanel>
         </Grid>
 
@@ -169,6 +173,39 @@
                               SelectionChanged="SubscriptionFilter_Changed"
                               Margin="0,0,10,0" />
                     <TextBlock x:Name="SubscriptionHintText"
+                               Text=""
+                               VerticalAlignment="Center"
+                               Foreground="#64748B" />
+                </StackPanel>
+            </Border>
+
+            <Border x:Name="TypeYearlyFilterPanel"
+                    Background="White"
+                    BorderBrush="#DDE4EC"
+                    BorderThickness="1"
+                    CornerRadius="6"
+                    Padding="14,10"
+                    Margin="0,0,0,12"
+                    Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Tür:"
+                               VerticalAlignment="Center"
+                               Foreground="#334155"
+                               FontWeight="SemiBold"
+                               Margin="0,0,10,0" />
+                    <ComboBox x:Name="TypeYearlyInvoiceTypeInput"
+                              Width="220"
+                              Height="34"
+                              VerticalContentAlignment="Center"
+                              SelectionChanged="TypeYearlyFilter_Changed"
+                              Margin="0,0,10,0" />
+                    <ComboBox x:Name="TypeYearlyYearInput"
+                              Width="110"
+                              Height="34"
+                              VerticalContentAlignment="Center"
+                              SelectionChanged="TypeYearlyFilter_Changed"
+                              Margin="0,0,10,0" />
+                    <TextBlock x:Name="TypeYearlyHintText"
                                Text=""
                                VerticalAlignment="Center"
                                Foreground="#64748B" />
@@ -310,6 +347,41 @@
                         <DataGridTextColumn Header="Gecikmiş"
                                             Binding="{Binding OverdueCountText}"
                                             Width="90" />
+                        <DataGridTextColumn Header="PDF Eksik"
+                                            Binding="{Binding MissingPdfCountText}"
+                                            Width="90" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <DataGrid x:Name="DistributionGrid"
+                          Visibility="Collapsed"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          IsReadOnly="True"
+                          SelectionMode="Single"
+                          BorderBrush="#E5EAF1"
+                          BorderThickness="1"
+                          HeadersVisibility="Column"
+                          GridLinesVisibility="Horizontal">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Abonelik"
+                                            Binding="{Binding SubscriptionName}"
+                                            Width="1.2*" />
+                        <DataGridTextColumn Header="Kurum"
+                                            Binding="{Binding InstitutionName}"
+                                            Width="1.0*" />
+                        <DataGridTextColumn Header="Fatura"
+                                            Binding="{Binding InvoiceCountText}"
+                                            Width="70" />
+                        <DataGridTextColumn Header="Toplam"
+                                            Binding="{Binding TotalAmountText}"
+                                            Width="120" />
+                        <DataGridTextColumn Header="Ödenen"
+                                            Binding="{Binding PaidText}"
+                                            Width="120" />
+                        <DataGridTextColumn Header="Kalan"
+                                            Binding="{Binding RemainingText}"
+                                            Width="120" />
                         <DataGridTextColumn Header="PDF Eksik"
                                             Binding="{Binding MissingPdfCountText}"
                                             Width="90" />
