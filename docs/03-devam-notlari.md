@@ -5,14 +5,15 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 ## Güncel Kaldığımız Yer
 
 - Tarih: 2026-05-31
-- Aktif branch: `codex/v0.4-fatura-kayit-altyapisi`
+- Aktif branch: `codex/v0.5-fatura-pdf-evraki`
 - Son tamamlanan faz: `v0.4 - Fatura Kayıt Altyapısı`
-- Sıradaki faz: `v0.5 - Fatura PDF Evrakı Ekleme`
+- Aktif faz: `v0.5 - Fatura PDF Evrakı Ekleme`
 - İlk dokümantasyon commit'i: `e0de4f9 docs: initialize project planning and continuity notes`
 - `v0.1` commit'i: `3b3e20a feat: initialize wpf sqlite project skeleton`
 - `v0.2` commit'i: `c8ad90c feat: add invoice type management`
 - `v0.3` commit'i: `061e1a7 feat: add subscription management`
-- `v0.4` commit mesajı: `feat: add invoice entry foundation`
+- `v0.4` commit'i: `252bbbd feat: add invoice entry foundation`
+- PDF rapor örneği notu commit'i: `c0643ee docs: note pdf report sample requirement`
 
 ## Bu Oturumda Yapılanlar
 
@@ -86,10 +87,13 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 62. `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
 63. Uygulama kısa süreli başlatma testinden geçti.
 64. Kullanıcı, fatura PDF raporları fazına gelindiğinde önce kendisinden Excel örneği istenmesini istedi; bu not proje kararları, roadmap ve regresyon notlarına işlendi.
+65. `v0.4` branch'i `master` içine fast-forward merge edildi.
+66. Merge sonrası `master` üzerinde build, health-check, self-test ve kısa uygulama başlatma smoke testleri başarılı çalıştı.
+67. `codex/v0.5-fatura-pdf-evraki` branch'i açıldı.
 
-## Bir Sonraki Codex Görevi
+## Mevcut Codex Görevi
 
-Sıradaki görev yalnızca `v0.5` kapsamını uygulamak olmalı.
+Bu branch'teki görev yalnızca `v0.5` kapsamını uygulamak olmalı.
 
 Başlangıç talimatı:
 
