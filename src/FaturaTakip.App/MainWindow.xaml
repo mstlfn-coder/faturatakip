@@ -102,12 +102,14 @@
                     <TextBlock Text="Ödemeler"
                                Foreground="#64748B"
                                Margin="0,0,0,14" />
-                    <TextBlock Text="Raporlar"
-                               Foreground="#64748B" />
+                    <Button x:Name="ReportsNavButton"
+                            Content="Raporlar"
+                            Style="{StaticResource NavButton}"
+                            Click="ReportsNavButton_Click" />
                 </StackPanel>
 
                 <TextBlock Grid.Row="3"
-                           Text="v0.9"
+                           Text="v0.10"
                            Foreground="#94A3B8"
                            FontSize="13" />
             </Grid>
@@ -609,6 +611,9 @@
             <views:InvoicesView x:Name="InvoicesPanel"
                                 Visibility="Collapsed"
                                 InvoicesChanged="InvoicesPanel_InvoicesChanged" />
+
+            <views:ReportsView x:Name="ReportsPanel"
+                               Visibility="Collapsed" />
         </Grid>
     </Grid>
 </Window>

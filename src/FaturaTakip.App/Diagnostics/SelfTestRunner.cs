@@ -4,6 +4,7 @@ using FaturaTakip.App.Data.Dashboard;
 using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.InvoiceTypes;
 using FaturaTakip.App.Data.Payments;
+using FaturaTakip.App.Data.Reports;
 using FaturaTakip.App.Data.Subscriptions;
 
 namespace FaturaTakip.App.Diagnostics;
@@ -346,6 +347,62 @@ public sealed class SelfTestRunner
             Assert(dashboardSummary.OverdueRemainingTotal == 75m, "Dashboard gecikmiş kalan toplamı hatalı.");
             Assert(dashboardSummary.MissingInvoicePdfCount == 1, "Dashboard fatura PDF eksik sayısı hatalı.");
             Assert(dashboardSummary.MissingPaymentPdfCount == 1, "Dashboard ödeme PDF eksik sayısı hatalı.");
+
+            var reportSamples = new[]
+            {
+                new Invoice
+                {
+                    Id = 30,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 100m,
+                    PaidAmount = 25m,
+                    DueDate = new DateTime(2026, 2, 10),
+                    Status = "unpaid",
+                },
+                new Invoice
+                {
+                    Id = 31,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 200m,
+                    PaidAmount = 0m,
+                    DueDate = new DateTime(2026, 2, 20),
+                    Status = "unpaid",
+                    PdfFilePath = "attachments/invoices/2026/02/unpaid.pdf",
+                },
+                new Invoice
+                {
+                    Id = 32,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 50m,
+                    PaidAmount = 50m,
+                    DueDate = new DateTime(2026, 2, 9),
+                    Status = "paid",
+                },
+                new Invoice
+                {
+                    Id = 33,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 60m,
+                    PaidAmount = 0m,
+                    DueDate = new DateTime(2026, 2, 23),
+                    Status = "unpaid",
+                },
+            };
+            var report = ActionableInvoiceReportCalculator.Calculate(
+                reportSamples,
+                new DateTime(2026, 2, 15),
+                upcomingDays: 7,
+                invoice => false);
+            Assert(report.Unpaid.Count == 3, "Rapor ödenmemiş sayısı hatalı.");
+            Assert(report.UnpaidRemainingTotal == 335m, "Rapor ödenmemiş kalan toplamı hatalı.");
+            Assert(report.Overdue.Count == 1, "Rapor gecikmiş sayısı hatalı.");
+            Assert(report.OverdueRemainingTotal == 75m, "Rapor gecikmiş kalan toplamı hatalı.");
+            Assert(report.Upcoming.Count == 1, "Rapor yaklaşan sayısı hatalı.");
+            Assert(report.UpcomingRemainingTotal == 200m, "Rapor yaklaşan kalan toplamı hatalı.");
 
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(

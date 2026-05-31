@@ -8,6 +8,7 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 - Aktif branch: `codex/v0.10-odenmemis-gecikmis-raporu`
 - Son tamamlanan faz: `v0.9 - Ana Gösterge Paneli`
 - Aktif faz: `v0.10 - Ödenmemiş ve Gecikmiş Faturalar Raporu`
+- Durum: v0.10 rapor ekranı uygulandı, smoke testleri geçti; commit ve master merge bekliyor.
 - İlk dokümantasyon commit'i: `e0de4f9 docs: initialize project planning and continuity notes`
 - `v0.1` commit'i: `3b3e20a feat: initialize wpf sqlite project skeleton`
 - `v0.2` commit'i: `c8ad90c feat: add invoice type management`
@@ -173,6 +174,13 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 140. Merge sonrası `master` üzerinde `dotnet run --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
 141. `codex/v0.10-odenmemis-gecikmis-raporu` branch'i açıldı.
 142. `v0.10` başlangıç dokümantasyonu hazırlandı.
+143. `ReportsView` eklendi: ödenmemiş, gecikmiş ve yaklaşan (7 gün) ödemeler için rapor ekranı oluşturuldu.
+144. Rapor ekranı için `ActionableInvoiceReportCalculator` hesaplama katmanı eklendi.
+145. Ana menüye `Raporlar` navigasyonu eklendi.
+146. `--self-test` rapor hesaplarını doğrulayacak şekilde genişletildi.
+147. `dotnet build .\src\FaturaTakip.App\FaturaTakip.App.csproj` başarılı çalıştı.
+148. `dotnet run --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
+149. `dotnet run --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
 
 ## Mevcut Codex Görevi
 
@@ -197,6 +205,15 @@ Excel/PDF dışa aktarım, yazdırılabilir PDF rapor ve yedekleme yapılmayacak
 
 Faz sonunda uygulamayı çalıştır veya en azından derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```
+
+v0.10 fazını bitirmek için sıradaki güvenli operasyon:
+
+1. `git status --short --branch` ile çalışma ağacı kontrol edilmeli.
+2. `git add src/FaturaTakip.App/MainWindow.xaml src/FaturaTakip.App/MainWindow.xaml.cs src/FaturaTakip.App/Views/ReportsView.xaml src/FaturaTakip.App/Views/ReportsView.xaml.cs src/FaturaTakip.App/Data/Reports src/FaturaTakip.App/Diagnostics/SelfTestRunner.cs`
+3. `git commit -m "feat: add unpaid/overdue invoice report"`
+4. `git switch master` ve `git merge --ff-only codex/v0.10-odenmemis-gecikmis-raporu`
+5. Merge sonrası `dotnet build`, `--self-test`, `--health-check` smoke testleri çalıştırılmalı
+6. `README.md`, `ROADMAP.md`, `REGRESYON.md`, `docs/03-devam-notlari.md` v0.10 tamamlandı / v0.11 sıradaki olacak şekilde güncellenmeli
 
 ## Dikkat Edilecekler
 

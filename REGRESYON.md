@@ -148,6 +148,18 @@ Sonuç etiketleri:
 | Temel kayıt sayıları korunuyor | OK | Fatura türü, aktif tür, aktif abonelik ve toplam fatura dashboard içinde gösteriliyor |
 | Bu fazda rapor ekranı eklenmedi | OK | Rapor ekranları v0.10+ fazlara bırakıldı |
 
+## v0.10 - Ödenmemiş ve Gecikmiş Faturalar Raporu
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Rapor ekranı açılıyor | OK | Sol menüde `Raporlar` sekmesi |
+| Ödenmemiş listesi gösteriliyor | OK | `ActionableInvoiceReportCalculator` ile hesaplanır |
+| Gecikmiş listesi gösteriliyor | OK | `unpaid` ve son ödeme tarihi bugünden önce |
+| Yaklaşan listesi gösteriliyor | OK | `unpaid` ve son ödeme tarihi bugün–7 gün |
+| Üst özetler (sayı/kalan) gösteriliyor | OK | Ödenmemiş, gecikmiş, yaklaşan için ayrı tile |
+| Liste kolonları beklenen alanları içeriyor | OK | Tür, abonelik, kurum, dönem, no, son ödeme, tutar, ödenen, kalan, PDF |
+| `--self-test` rapor hesaplarını doğruluyor | OK | `ActionableInvoiceReportCalculator` senaryosu eklendi |
+
 ## v0.10 ve Sonrası İçin Regresyon Başlıkları
 
 Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:

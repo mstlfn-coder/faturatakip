@@ -32,6 +32,7 @@ public partial class MainWindow : Window
         _paymentRepository = new PaymentRepository(startupStatus.DatabasePath);
         SubscriptionsPanel.Initialize(startupStatus.DatabasePath);
         InvoicesPanel.Initialize(startupStatus.DatabasePath);
+        ReportsPanel.Initialize(startupStatus.DatabasePath);
         ApplyStartupStatus(startupStatus);
         RefreshInvoiceTypes();
         RefreshDashboardSubscriptionCounts();
@@ -73,12 +74,18 @@ public partial class MainWindow : Window
         ShowInvoices();
     }
 
+    private void ReportsNavButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowReports();
+    }
+
     private void ShowDashboard()
     {
         DashboardPanel.Visibility = Visibility.Visible;
         InvoiceTypesPanel.Visibility = Visibility.Collapsed;
         SubscriptionsPanel.Visibility = Visibility.Collapsed;
         InvoicesPanel.Visibility = Visibility.Collapsed;
+        ReportsPanel.Visibility = Visibility.Collapsed;
         DashboardNavButton.Foreground = Brushes.White;
         DashboardNavButton.FontWeight = FontWeights.SemiBold;
         InvoiceTypesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
@@ -87,6 +94,8 @@ public partial class MainWindow : Window
         SubscriptionsNavButton.FontWeight = FontWeights.Normal;
         InvoicesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         InvoicesNavButton.FontWeight = FontWeights.Normal;
+        ReportsNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        ReportsNavButton.FontWeight = FontWeights.Normal;
         RefreshDashboardSubscriptionCounts();
         RefreshDashboardMetrics();
     }
@@ -98,6 +107,7 @@ public partial class MainWindow : Window
         InvoiceTypesPanel.Visibility = Visibility.Visible;
         SubscriptionsPanel.Visibility = Visibility.Collapsed;
         InvoicesPanel.Visibility = Visibility.Collapsed;
+        ReportsPanel.Visibility = Visibility.Collapsed;
         DashboardNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         DashboardNavButton.FontWeight = FontWeights.Normal;
         InvoiceTypesNavButton.Foreground = Brushes.White;
@@ -106,6 +116,8 @@ public partial class MainWindow : Window
         SubscriptionsNavButton.FontWeight = FontWeights.Normal;
         InvoicesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         InvoicesNavButton.FontWeight = FontWeights.Normal;
+        ReportsNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        ReportsNavButton.FontWeight = FontWeights.Normal;
     }
 
     private void ShowSubscriptions()
@@ -115,6 +127,7 @@ public partial class MainWindow : Window
         InvoiceTypesPanel.Visibility = Visibility.Collapsed;
         SubscriptionsPanel.Visibility = Visibility.Visible;
         InvoicesPanel.Visibility = Visibility.Collapsed;
+        ReportsPanel.Visibility = Visibility.Collapsed;
         DashboardNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         DashboardNavButton.FontWeight = FontWeights.Normal;
         InvoiceTypesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
@@ -123,6 +136,8 @@ public partial class MainWindow : Window
         SubscriptionsNavButton.FontWeight = FontWeights.SemiBold;
         InvoicesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         InvoicesNavButton.FontWeight = FontWeights.Normal;
+        ReportsNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        ReportsNavButton.FontWeight = FontWeights.Normal;
     }
 
     private void ShowInvoices()
@@ -132,6 +147,7 @@ public partial class MainWindow : Window
         InvoiceTypesPanel.Visibility = Visibility.Collapsed;
         SubscriptionsPanel.Visibility = Visibility.Collapsed;
         InvoicesPanel.Visibility = Visibility.Visible;
+        ReportsPanel.Visibility = Visibility.Collapsed;
         DashboardNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         DashboardNavButton.FontWeight = FontWeights.Normal;
         InvoiceTypesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
@@ -140,6 +156,28 @@ public partial class MainWindow : Window
         SubscriptionsNavButton.FontWeight = FontWeights.Normal;
         InvoicesNavButton.Foreground = Brushes.White;
         InvoicesNavButton.FontWeight = FontWeights.SemiBold;
+        ReportsNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        ReportsNavButton.FontWeight = FontWeights.Normal;
+    }
+
+    private void ShowReports()
+    {
+        ReportsPanel.Refresh();
+        DashboardPanel.Visibility = Visibility.Collapsed;
+        InvoiceTypesPanel.Visibility = Visibility.Collapsed;
+        SubscriptionsPanel.Visibility = Visibility.Collapsed;
+        InvoicesPanel.Visibility = Visibility.Collapsed;
+        ReportsPanel.Visibility = Visibility.Visible;
+        DashboardNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        DashboardNavButton.FontWeight = FontWeights.Normal;
+        InvoiceTypesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        InvoiceTypesNavButton.FontWeight = FontWeights.Normal;
+        SubscriptionsNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        SubscriptionsNavButton.FontWeight = FontWeights.Normal;
+        InvoicesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
+        InvoicesNavButton.FontWeight = FontWeights.Normal;
+        ReportsNavButton.Foreground = Brushes.White;
+        ReportsNavButton.FontWeight = FontWeights.SemiBold;
     }
 
     private void RefreshInvoiceTypes(long? selectedId = null)
