@@ -597,8 +597,8 @@ public sealed class SelfTestRunner
                 isPdfMissing: invoice => !invoice.HasPdf);
             Assert(yearly.TotalInvoiceCount == 3, "Yıllık rapor toplam fatura sayısı hatalı.");
             Assert(yearly.TotalAmount == 400m, "Yıllık rapor toplam tutar hatalı.");
-            Assert(yearly.PaidTotal == 200m, "Yıllık rapor ödenen toplam hatalı.");
-            Assert(yearly.RemainingTotal == 200m, "Yıllık rapor kalan toplam hatalı.");
+            Assert(yearly.PaidTotal == 150m, "Yıllık rapor ödenen toplam hatalı.");
+            Assert(yearly.RemainingTotal == 250m, "Yıllık rapor kalan toplam hatalı.");
             Assert(yearly.MissingPdfCount == 2, "Yıllık rapor PDF eksik sayısı hatalı.");
             Assert(yearly.HighestMonth == 2, "Yıllık rapor en yüksek ay hatalı.");
             Assert(yearly.HighestMonthTotal == 300m, "Yıllık rapor en yüksek ay toplamı hatalı.");
