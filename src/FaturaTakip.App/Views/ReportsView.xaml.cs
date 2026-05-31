@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.InvoiceTypes;
+using FaturaTakip.App.Data.Payments;
 using FaturaTakip.App.Data.Reports;
 using FaturaTakip.App.Data.Subscriptions;
 
@@ -13,6 +14,7 @@ public partial class ReportsView : UserControl
 {
     private static readonly CultureInfo TurkishCulture = CultureInfo.GetCultureInfo("tr-TR");
     private InvoiceRepository? _invoiceRepository;
+    private PaymentRepository? _paymentRepository;
     private InvoiceTypeRepository? _invoiceTypeRepository;
     private SubscriptionRepository? _subscriptionRepository;
     private ActionableInvoiceReport _report = ActionableInvoiceReport.Empty;
@@ -20,6 +22,7 @@ public partial class ReportsView : UserControl
     private SubscriptionMonthlyComparison _subscriptionComparison = SubscriptionMonthlyComparison.Empty;
     private SubscriptionYearlyReport _subscriptionYearly = SubscriptionYearlyReport.Empty;
     private InvoiceTypeYearlyReport _typeYearly = InvoiceTypeYearlyReport.Empty;
+    private DocumentHealthReport _documentHealth = DocumentHealthReport.Empty;
     private ReportTab _activeTab = ReportTab.Unpaid;
     private bool _isInitialized;
     private bool _isRefreshingMonthlyFilters;
@@ -34,6 +37,7 @@ public partial class ReportsView : UserControl
     public void Initialize(string databasePath)
     {
         _invoiceRepository = new InvoiceRepository(databasePath);
+        _paymentRepository = new PaymentRepository(databasePath);
         _invoiceTypeRepository = new InvoiceTypeRepository(databasePath);
         _subscriptionRepository = new SubscriptionRepository(databasePath);
         _isInitialized = true;
@@ -42,12 +46,13 @@ public partial class ReportsView : UserControl
 
     public void Refresh()
     {
-        if (!_isInitialized || _invoiceRepository is null)
+        if (!_isInitialized || _invoiceRepository is null || _paymentRepository is null)
         {
             return;
         }
 
         var invoices = _invoiceRepository.GetAll();
+        var payments = _paymentRepository.GetAll();
         _report = ActionableInvoiceReportCalculator.Calculate(
             invoices,
             DateTime.Today,
@@ -96,6 +101,12 @@ public partial class ReportsView : UserControl
                 DateTime.Today,
                 invoice => _invoiceRepository.IsPdfMissing(invoice));
 
+        _documentHealth = DocumentHealthReportCalculator.Calculate(
+            invoices,
+            payments,
+            invoice => _invoiceRepository.PdfFileExists(invoice),
+            payment => _paymentRepository.PdfFileExists(payment));
+
         ApplyTab(_activeTab);
     }
 
@@ -132,6 +143,11 @@ public partial class ReportsView : UserControl
     private void TypeYearlyTabButton_Click(object sender, RoutedEventArgs e)
     {
         ApplyTab(ReportTab.TypeYearly);
+    }
+
+    private void DocumentHealthTabButton_Click(object sender, RoutedEventArgs e)
+    {
+        ApplyTab(ReportTab.DocumentHealth);
     }
 
     private void MonthlyFilter_Changed(object sender, SelectionChangedEventArgs e)
@@ -254,6 +270,7 @@ public partial class ReportsView : UserControl
         SetTabActive(SubscriptionTabButton, tab == ReportTab.Subscription);
         SetTabActive(SubscriptionYearlyTabButton, tab == ReportTab.SubscriptionYearly);
         SetTabActive(TypeYearlyTabButton, tab == ReportTab.TypeYearly);
+        SetTabActive(DocumentHealthTabButton, tab == ReportTab.DocumentHealth);
 
         MonthlyFilterPanel.Visibility = tab == ReportTab.Monthly ? Visibility.Visible : Visibility.Collapsed;
         SubscriptionFilterPanel.Visibility = tab is ReportTab.Subscription or ReportTab.SubscriptionYearly
@@ -270,6 +287,7 @@ public partial class ReportsView : UserControl
             ReportTab.Subscription => Array.Empty<ActionableInvoice>(),
             ReportTab.SubscriptionYearly => Array.Empty<ActionableInvoice>(),
             ReportTab.TypeYearly => Array.Empty<ActionableInvoice>(),
+            ReportTab.DocumentHealth => Array.Empty<ActionableInvoice>(),
             _ => _report.Unpaid,
         };
 
@@ -279,6 +297,8 @@ public partial class ReportsView : UserControl
             ReportGrid.ItemsSource = _monthlyReport.Rows.Select(ToMonthlyRow).ToList();
             ReportGrid.Visibility = Visibility.Visible;
             YearlyGrid.Visibility = Visibility.Collapsed;
+            DistributionGrid.Visibility = Visibility.Collapsed;
+            DocumentHealthGrid.Visibility = Visibility.Collapsed;
         }
         else if (tab == ReportTab.Subscription)
         {
@@ -286,6 +306,8 @@ public partial class ReportsView : UserControl
             ReportGrid.ItemsSource = _subscriptionComparison.Current.Rows.Select(ToMonthlyRow).ToList();
             ReportGrid.Visibility = Visibility.Visible;
             YearlyGrid.Visibility = Visibility.Collapsed;
+            DistributionGrid.Visibility = Visibility.Collapsed;
+            DocumentHealthGrid.Visibility = Visibility.Collapsed;
         }
         else if (tab == ReportTab.SubscriptionYearly)
         {
@@ -294,6 +316,7 @@ public partial class ReportsView : UserControl
             ReportGrid.Visibility = Visibility.Collapsed;
             YearlyGrid.Visibility = Visibility.Visible;
             DistributionGrid.Visibility = Visibility.Collapsed;
+            DocumentHealthGrid.Visibility = Visibility.Collapsed;
         }
         else if (tab == ReportTab.TypeYearly)
         {
@@ -303,6 +326,16 @@ public partial class ReportsView : UserControl
             ReportGrid.Visibility = Visibility.Collapsed;
             YearlyGrid.Visibility = Visibility.Visible;
             DistributionGrid.Visibility = Visibility.Visible;
+            DocumentHealthGrid.Visibility = Visibility.Collapsed;
+        }
+        else if (tab == ReportTab.DocumentHealth)
+        {
+            ApplyDocumentHealthTiles();
+            DocumentHealthGrid.ItemsSource = _documentHealth.Issues.Select(ToDocumentHealthRow).ToList();
+            ReportGrid.Visibility = Visibility.Collapsed;
+            YearlyGrid.Visibility = Visibility.Collapsed;
+            DistributionGrid.Visibility = Visibility.Collapsed;
+            DocumentHealthGrid.Visibility = Visibility.Visible;
         }
         else
         {
@@ -311,6 +344,7 @@ public partial class ReportsView : UserControl
             ReportGrid.Visibility = Visibility.Visible;
             YearlyGrid.Visibility = Visibility.Collapsed;
             DistributionGrid.Visibility = Visibility.Collapsed;
+            DocumentHealthGrid.Visibility = Visibility.Collapsed;
         }
     }
 
@@ -423,6 +457,25 @@ public partial class ReportsView : UserControl
         TypeYearlyHintText.Text = _typeYearly.Year == 0 ? string.Empty : $"{_typeYearly.InvoiceTypeName} / {_typeYearly.Year}";
     }
 
+    private void ApplyDocumentHealthTiles()
+    {
+        Tile1LabelText.Text = "Fatura PDF";
+        Tile1ValueText.Text = (_documentHealth.InvoiceNoPdfCount + _documentHealth.InvoiceMissingFileCount).ToString(CultureInfo.InvariantCulture);
+        Tile1DetailText.Text = $"Yok {_documentHealth.InvoiceNoPdfCount}, Kayıp {_documentHealth.InvoiceMissingFileCount}";
+
+        Tile2LabelText.Text = "Ödeme PDF";
+        Tile2ValueText.Text = (_documentHealth.PaymentNoPdfCount + _documentHealth.PaymentMissingFileCount).ToString(CultureInfo.InvariantCulture);
+        Tile2DetailText.Text = $"Yok {_documentHealth.PaymentNoPdfCount}, Kayıp {_documentHealth.PaymentMissingFileCount}";
+
+        Tile3LabelText.Text = "Aynı Hash";
+        Tile3ValueText.Text = (_documentHealth.DuplicateInvoiceHashItemCount + _documentHealth.DuplicatePaymentHashItemCount).ToString(CultureInfo.InvariantCulture);
+        Tile3DetailText.Text = $"Fatura {_documentHealth.DuplicateInvoiceHashItemCount}, Ödeme {_documentHealth.DuplicatePaymentHashItemCount}";
+
+        MonthlyFilterHintText.Text = string.Empty;
+        SubscriptionHintText.Text = string.Empty;
+        TypeYearlyHintText.Text = string.Empty;
+    }
+
     private static string FormatDelta(decimal value)
     {
         var formatted = FormatMoney(Math.Abs(value));
@@ -486,6 +539,22 @@ public partial class ReportsView : UserControl
             FormatMoney(row.PaidTotal),
             FormatMoney(row.RemainingTotal),
             row.MissingPdfCount.ToString(CultureInfo.InvariantCulture));
+    }
+
+    private static DocumentHealthRow ToDocumentHealthRow(DocumentHealthIssue issue)
+    {
+        return new DocumentHealthRow(
+            issue.IssueType,
+            issue.EntityType,
+            issue.PeriodOrDate,
+            issue.InvoiceTypeName,
+            issue.SubscriptionName,
+            issue.InstitutionName,
+            FormatMoney(issue.Amount),
+            issue.PdfState,
+            issue.PdfFilePath,
+            issue.PdfSha256Hash,
+            issue.Note);
     }
 
     private static string FormatMoney(decimal value)
@@ -723,6 +792,7 @@ public partial class ReportsView : UserControl
         Subscription,
         SubscriptionYearly,
         TypeYearly,
+        DocumentHealth,
     }
 
     private sealed record ReportRow(
@@ -762,5 +832,18 @@ public partial class ReportsView : UserControl
         string PaidText,
         string RemainingText,
         string MissingPdfCountText);
+
+    private sealed record DocumentHealthRow(
+        string IssueType,
+        string EntityType,
+        string PeriodOrDate,
+        string InvoiceTypeName,
+        string SubscriptionName,
+        string InstitutionName,
+        string AmountText,
+        string PdfState,
+        string PdfFilePath,
+        string PdfSha256Hash,
+        string Note);
 }
 

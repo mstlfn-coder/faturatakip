@@ -95,7 +95,12 @@
                 <Button x:Name="TypeYearlyTabButton"
                         Content="Tür Yıllık"
                         Style="{StaticResource SecondaryButton}"
+                        Margin="0,0,8,0"
                         Click="TypeYearlyTabButton_Click" />
+                <Button x:Name="DocumentHealthTabButton"
+                        Content="Evrak Kontrol"
+                        Style="{StaticResource SecondaryButton}"
+                        Click="DocumentHealthTabButton_Click" />
             </StackPanel>
         </Grid>
 
@@ -384,6 +389,53 @@
                                             Width="120" />
                         <DataGridTextColumn Header="PDF Eksik"
                                             Binding="{Binding MissingPdfCountText}"
+                                            Width="90" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <DataGrid x:Name="DocumentHealthGrid"
+                          Visibility="Collapsed"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          IsReadOnly="True"
+                          SelectionMode="Single"
+                          BorderBrush="#E5EAF1"
+                          BorderThickness="1"
+                          HeadersVisibility="Column"
+                          GridLinesVisibility="Horizontal">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Uyarı"
+                                            Binding="{Binding IssueType}"
+                                            Width="110" />
+                        <DataGridTextColumn Header="Tip"
+                                            Binding="{Binding EntityType}"
+                                            Width="70" />
+                        <DataGridTextColumn Header="Dönem/Tarih"
+                                            Binding="{Binding PeriodOrDate}"
+                                            Width="120" />
+                        <DataGridTextColumn Header="Tür"
+                                            Binding="{Binding InvoiceTypeName}"
+                                            Width="90" />
+                        <DataGridTextColumn Header="Abonelik"
+                                            Binding="{Binding SubscriptionName}"
+                                            Width="1.0*" />
+                        <DataGridTextColumn Header="Kurum"
+                                            Binding="{Binding InstitutionName}"
+                                            Width="1.0*" />
+                        <DataGridTextColumn Header="Tutar"
+                                            Binding="{Binding AmountText}"
+                                            Width="90" />
+                        <DataGridTextColumn Header="PDF"
+                                            Binding="{Binding PdfState}"
+                                            Width="90" />
+                        <DataGridTextColumn Header="Yol"
+                                            Binding="{Binding PdfFilePath}"
+                                            Width="1.2*" />
+                        <DataGridTextColumn Header="Hash"
+                                            Binding="{Binding PdfSha256Hash}"
+                                            Width="160" />
+                        <DataGridTextColumn Header="Not"
+                                            Binding="{Binding Note}"
                                             Width="90" />
                     </DataGrid.Columns>
                 </DataGrid>

@@ -666,6 +666,128 @@ public sealed class SelfTestRunner
             Assert(typeYearly.Distribution.Count == 2, "Tür yıllık rapor dağılım satır sayısı hatalı.");
             Assert(typeYearly.Distribution[0].TotalAmount == 250m, "Tür yıllık rapor dağılım sıralaması hatalı.");
 
+            var documentHealthInvoices = new List<Invoice>
+            {
+                new()
+                {
+                    Id = 1001,
+                    InvoiceTypeId = 100,
+                    InvoiceTypeName = "Elektrik",
+                    SubscriptionId = 10,
+                    SubscriptionName = "Ana Bina",
+                    InstitutionName = "Kurum A",
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 1,
+                    Amount = 10m,
+                    PaidAmount = 0m,
+                    DueDate = new DateTime(2026, 1, 10),
+                    Status = "unpaid",
+                },
+                new()
+                {
+                    Id = 1002,
+                    InvoiceTypeId = 100,
+                    InvoiceTypeName = "Elektrik",
+                    SubscriptionId = 10,
+                    SubscriptionName = "Ana Bina",
+                    InstitutionName = "Kurum A",
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 20m,
+                    PaidAmount = 0m,
+                    DueDate = new DateTime(2026, 2, 10),
+                    Status = "unpaid",
+                    PdfFilePath = "attachments/invoices/2026/02/missing.pdf",
+                    PdfSha256Hash = "H-MISSING",
+                },
+                new()
+                {
+                    Id = 1003,
+                    InvoiceTypeId = 101,
+                    InvoiceTypeName = "Su",
+                    SubscriptionId = 11,
+                    SubscriptionName = "Şube",
+                    InstitutionName = "Kurum B",
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 3,
+                    Amount = 30m,
+                    PaidAmount = 0m,
+                    DueDate = new DateTime(2026, 3, 10),
+                    Status = "unpaid",
+                    PdfFilePath = "attachments/invoices/2026/03/dup-1.pdf",
+                    PdfSha256Hash = "H-DUP",
+                },
+                new()
+                {
+                    Id = 1004,
+                    InvoiceTypeId = 101,
+                    InvoiceTypeName = "Su",
+                    SubscriptionId = 11,
+                    SubscriptionName = "Şube",
+                    InstitutionName = "Kurum B",
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 4,
+                    Amount = 40m,
+                    PaidAmount = 0m,
+                    DueDate = new DateTime(2026, 4, 10),
+                    Status = "unpaid",
+                    PdfFilePath = "attachments/invoices/2026/04/dup-2.pdf",
+                    PdfSha256Hash = "H-DUP",
+                },
+            };
+
+            var documentHealthPayments = new List<Payment>
+            {
+                new()
+                {
+                    Id = 2001,
+                    InvoiceId = 1001,
+                    PaymentDate = new DateTime(2026, 1, 5),
+                    Amount = 1m,
+                },
+                new()
+                {
+                    Id = 2002,
+                    InvoiceId = 1002,
+                    PaymentDate = new DateTime(2026, 2, 5),
+                    Amount = 2m,
+                    PdfFilePath = "attachments/payments/2026/02/missing.pdf",
+                    PdfSha256Hash = "P-MISSING",
+                },
+                new()
+                {
+                    Id = 2003,
+                    InvoiceId = 1003,
+                    PaymentDate = new DateTime(2026, 3, 5),
+                    Amount = 3m,
+                    PdfFilePath = "attachments/payments/2026/03/dup-1.pdf",
+                    PdfSha256Hash = "P-DUP",
+                },
+                new()
+                {
+                    Id = 2004,
+                    InvoiceId = 1004,
+                    PaymentDate = new DateTime(2026, 4, 5),
+                    Amount = 4m,
+                    PdfFilePath = "attachments/payments/2026/04/dup-2.pdf",
+                    PdfSha256Hash = "P-DUP",
+                },
+            };
+
+            var documentHealth = DocumentHealthReportCalculator.Calculate(
+                documentHealthInvoices,
+                documentHealthPayments,
+                invoice => invoice.Id != 1002,
+                payment => payment.Id != 2002);
+
+            Assert(documentHealth.InvoiceNoPdfCount == 1, "Evrak kontrol: fatura PDF yok sayısı hatalı.");
+            Assert(documentHealth.InvoiceMissingFileCount == 1, "Evrak kontrol: fatura PDF kayıp sayısı hatalı.");
+            Assert(documentHealth.PaymentNoPdfCount == 1, "Evrak kontrol: ödeme PDF yok sayısı hatalı.");
+            Assert(documentHealth.PaymentMissingFileCount == 1, "Evrak kontrol: ödeme PDF kayıp sayısı hatalı.");
+            Assert(documentHealth.DuplicateInvoiceHashItemCount == 2, "Evrak kontrol: fatura aynı-hash madde sayısı hatalı.");
+            Assert(documentHealth.DuplicatePaymentHashItemCount == 2, "Evrak kontrol: ödeme aynı-hash madde sayısı hatalı.");
+            Assert(documentHealth.Issues.Count >= 8, "Evrak kontrol: uyarı listesi beklenenden kısa.");
+
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(
                     updatedSubscription.Id,
