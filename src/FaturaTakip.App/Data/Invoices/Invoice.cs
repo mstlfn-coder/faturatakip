@@ -26,6 +26,10 @@ public sealed class Invoice
 
     public decimal Amount { get; init; }
 
+    public decimal PaidAmount { get; init; }
+
+    public decimal RemainingAmount => Math.Max(Amount - PaidAmount, 0m);
+
     public decimal UsageAmount { get; init; }
 
     public string UsageUnit { get; init; } = string.Empty;
@@ -52,10 +56,17 @@ public sealed class Invoice
     {
         "paid" => "Ödendi",
         "canceled" => "İptal",
+        _ when PaidAmount > 0 => "Kısmi",
         _ => "Ödenmedi",
     };
 
     public string AmountText => Amount.ToString("N2");
+
+    public string PaidAmountText => PaidAmount.ToString("N2");
+
+    public string RemainingAmountText => RemainingAmount.ToString("N2");
+
+    public string PaymentSummaryText => $"Ödenen {PaidAmountText} / Kalan {RemainingAmountText}";
 
     public string UsageText => $"{UsageAmount:N2} {UsageUnit}".Trim();
 

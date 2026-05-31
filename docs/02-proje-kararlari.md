@@ -25,6 +25,9 @@ Bu dosya, geliştirme sırasında alınan kalıcı kararları kaydeder. Kararlar
 | 2026-05-31 | Fatura PDF raporları tasarlanmadan önce kullanıcıdan Excel örneği istenecek | Rapor kolonları, toplamlar, sayfa düzeni ve çıktı beklentisi örneğe göre netleştirilecek |
 | 2026-05-31 | Fatura PDF evrak hash algoritması SHA-256 olacak | Dosya tekrarları ve bütünlük kontrolü için yaygın, güvenilir ve yeterli |
 | 2026-05-31 | Fatura PDF yolları uygulama köküne göre göreli saklanacak | Klasör taşınabilirliği ve yedek geri yükleme senaryoları kolaylaşır |
+| 2026-05-31 | Ödemeler ayrı `payments` tablosunda saklanacak | Bir faturaya birden fazla kısmi ödeme eklenebilmesi ve geçmişin korunması gerekir |
+| 2026-05-31 | Fatura ödeme durumu ödeme toplamından güncellenecek | Kısmi ödeme, tam ödeme ve fatura tutarı değişikliği tutarlı kalmalı |
+| 2026-05-31 | Kalan tutarı aşan ödeme engellenecek | Kullanıcı hatasıyla fazla ödeme kaydı oluşmasını önler |
 
 ## Açık Kararlar
 

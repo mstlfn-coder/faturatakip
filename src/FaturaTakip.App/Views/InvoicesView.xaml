@@ -226,28 +226,31 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Dönem"
                                                 Binding="{Binding Period}"
-                                                Width="80" />
+                                                Width="70" />
                             <DataGridTextColumn Header="Tür"
                                                 Binding="{Binding InvoiceTypeName}"
-                                                Width="110" />
+                                                Width="90" />
                             <DataGridTextColumn Header="Abonelik"
                                                 Binding="{Binding SubscriptionName}"
                                                 Width="1.1*" />
                             <DataGridTextColumn Header="Fatura No"
                                                 Binding="{Binding InvoiceNo}"
-                                                Width="120" />
+                                                Width="95" />
                             <DataGridTextColumn Header="Tutar"
                                                 Binding="{Binding AmountText}"
-                                                Width="100" />
+                                                Width="85" />
+                            <DataGridTextColumn Header="Ödeme"
+                                                Binding="{Binding PaymentSummaryText}"
+                                                Width="135" />
                             <DataGridTextColumn Header="Son Ödeme"
                                                 Binding="{Binding DueDate, StringFormat=dd.MM.yyyy}"
-                                                Width="110" />
+                                                Width="95" />
                             <DataGridTextColumn Header="Durum"
                                                 Binding="{Binding State}"
-                                                Width="95" />
+                                                Width="80" />
                             <DataGridTextColumn Header="PDF"
                                                 Binding="{Binding PdfState}"
-                                                Width="90" />
+                                                Width="70" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -357,11 +360,82 @@
                                        Style="{StaticResource FieldLabel}"
                                        Margin="0,14,0,6" />
                             <TextBox x:Name="InvoiceDescriptionInput"
-                                     MinHeight="96"
-                                     MaxLength="500"
-                                     AcceptsReturn="True"
-                                     TextWrapping="Wrap"
-                                     VerticalScrollBarVisibility="Auto" />
+                                      MinHeight="96"
+                                      MaxLength="500"
+                                      AcceptsReturn="True"
+                                      TextWrapping="Wrap"
+                                      VerticalScrollBarVisibility="Auto" />
+
+                            <TextBlock Text="Ödeme Bilgisi"
+                                       Style="{StaticResource FieldLabel}"
+                                       Margin="0,14,0,6" />
+                            <Border Background="#F8FAFC"
+                                    BorderBrush="#DDE4EC"
+                                    BorderThickness="1"
+                                    CornerRadius="6"
+                                    Padding="10">
+                                <StackPanel>
+                                    <TextBlock x:Name="InvoicePaymentSummaryText"
+                                               Style="{StaticResource MutedText}"
+                                               TextWrapping="Wrap" />
+
+                                    <Grid Margin="0,10,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="12" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel>
+                                            <TextBlock Text="Ödeme Tarihi" Style="{StaticResource FieldLabel}" />
+                                            <DatePicker x:Name="PaymentDateInput" Height="34" />
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="2">
+                                            <TextBlock Text="Ödeme Tutarı" Style="{StaticResource FieldLabel}" />
+                                            <TextBox x:Name="PaymentAmountInput"
+                                                     Height="34" />
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <TextBlock Text="Ödeme Açıklaması"
+                                               Style="{StaticResource FieldLabel}"
+                                               Margin="0,10,0,6" />
+                                    <TextBox x:Name="PaymentDescriptionInput"
+                                             Height="34"
+                                             MaxLength="500" />
+
+                                    <Button x:Name="SavePaymentButton"
+                                            Content="Ödeme Kaydet"
+                                            Style="{StaticResource SecondaryButton}"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,10,0,0"
+                                            Click="SavePaymentButton_Click" />
+
+                                    <DataGrid x:Name="PaymentGrid"
+                                              AutoGenerateColumns="False"
+                                              CanUserAddRows="False"
+                                              IsReadOnly="True"
+                                              Height="112"
+                                              Margin="0,10,0,0"
+                                              HeadersVisibility="Column"
+                                              GridLinesVisibility="Horizontal"
+                                              BorderBrush="#E5EAF1"
+                                              BorderThickness="1">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Header="Tarih"
+                                                                Binding="{Binding PaymentDateText}"
+                                                                Width="90" />
+                                            <DataGridTextColumn Header="Tutar"
+                                                                Binding="{Binding AmountText}"
+                                                                Width="85" />
+                                            <DataGridTextColumn Header="Açıklama"
+                                                                Binding="{Binding Description}"
+                                                                Width="*" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </StackPanel>
+                            </Border>
 
                             <TextBlock Text="PDF Evrakı"
                                        Style="{StaticResource FieldLabel}"

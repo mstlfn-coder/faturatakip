@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using FaturaTakip.App.Data.Invoices;
+using FaturaTakip.App.Data.Payments;
 using FaturaTakip.App.Data.Subscriptions;
 using Microsoft.Win32;
 
@@ -14,8 +15,10 @@ public partial class InvoicesView : UserControl
 {
     private static readonly CultureInfo TurkishCulture = CultureInfo.GetCultureInfo("tr-TR");
     private InvoiceRepository? _invoiceRepository;
+    private PaymentRepository? _paymentRepository;
     private SubscriptionRepository? _subscriptionRepository;
     private IReadOnlyList<Invoice> _invoices = Array.Empty<Invoice>();
+    private IReadOnlyList<Payment> _payments = Array.Empty<Payment>();
     private IReadOnlyList<Subscription> _subscriptions = Array.Empty<Subscription>();
     private Invoice? _selectedInvoice;
     private string? _pendingPdfSourcePath;
@@ -33,6 +36,7 @@ public partial class InvoicesView : UserControl
     public void Initialize(string databasePath)
     {
         _invoiceRepository = new InvoiceRepository(databasePath);
+        _paymentRepository = new PaymentRepository(databasePath);
         _subscriptionRepository = new SubscriptionRepository(databasePath);
         _isInitialized = true;
 
@@ -257,6 +261,7 @@ public partial class InvoicesView : UserControl
         UsageUnitInput.Text = invoice.UsageUnit;
         InvoiceDescriptionInput.Text = invoice.Description;
         UpdatePdfControls(invoice);
+        RefreshPaymentControls(invoice);
         SetInvoiceStatus($"Seçili kayıt: {invoice.InvoiceNo}", isError: false);
     }
 
@@ -348,6 +353,36 @@ public partial class InvoicesView : UserControl
         }
     }
 
+    private void SavePaymentButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_paymentRepository is null || _selectedInvoice is null)
+        {
+            return;
+        }
+
+        try
+        {
+            if (PaymentDateInput.SelectedDate is null)
+            {
+                throw new InvalidOperationException("Ödeme tarihi zorunludur.");
+            }
+
+            var payment = _paymentRepository.Add(new PaymentInput(
+                _selectedInvoice.Id,
+                PaymentDateInput.SelectedDate.Value,
+                ParseDecimal(PaymentAmountInput.Text, "Ödeme tutarı"),
+                PaymentDescriptionInput.Text));
+
+            RefreshInvoices(_selectedInvoice.Id);
+            InvoicesChanged?.Invoke(this, EventArgs.Empty);
+            SetInvoiceStatus($"Ödeme kaydedildi: {payment.AmountText}", isError: false);
+        }
+        catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException)
+        {
+            SetInvoiceStatus(exception.Message, isError: true);
+        }
+    }
+
     private void InvoiceSubscriptionInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (!_isInitialized || _isEditingExisting)
@@ -420,6 +455,7 @@ public partial class InvoicesView : UserControl
         UsageUnitInput.Text = (InvoiceSubscriptionInput.SelectedItem as Subscription)?.DefaultUsageUnit ?? string.Empty;
         InvoiceDescriptionInput.Text = string.Empty;
         UpdatePdfControls(null);
+        RefreshPaymentControls(null);
         SetInvoiceStatus("Yeni kayıt için alanları doldurun.", isError: false);
     }
 
@@ -488,6 +524,59 @@ public partial class InvoicesView : UserControl
         InvoicePdfInfoText.Foreground = isError
             ? new SolidColorBrush(Color.FromRgb(185, 28, 28))
             : new SolidColorBrush(Color.FromRgb(95, 107, 122));
+    }
+
+    private void RefreshPaymentControls(Invoice? invoice)
+    {
+        _payments = Array.Empty<Payment>();
+        PaymentGrid.ItemsSource = _payments;
+        PaymentDateInput.SelectedDate = DateTime.Today;
+        PaymentAmountInput.Text = "0,00";
+        PaymentDescriptionInput.Text = string.Empty;
+
+        if (invoice is null)
+        {
+            SetPaymentInfo("Ödeme eklemek için önce faturayı kaydedin.", isError: false);
+            SetPaymentInputEnabled(false);
+            return;
+        }
+
+        _payments = _paymentRepository?.GetForInvoice(invoice.Id) ?? Array.Empty<Payment>();
+        PaymentGrid.ItemsSource = _payments;
+
+        if (invoice.Status == "canceled")
+        {
+            SetPaymentInfo($"{invoice.PaymentSummaryText}. İptal faturaya ödeme eklenemez.", isError: false);
+            SetPaymentInputEnabled(false);
+            return;
+        }
+
+        if (invoice.RemainingAmount <= 0)
+        {
+            SetPaymentInfo($"{invoice.PaymentSummaryText}. Fatura tamamen ödendi.", isError: false);
+            SetPaymentInputEnabled(false);
+            return;
+        }
+
+        PaymentAmountInput.Text = invoice.RemainingAmount.ToString("N2", TurkishCulture);
+        SetPaymentInfo(invoice.PaymentSummaryText, isError: false);
+        SetPaymentInputEnabled(true);
+    }
+
+    private void SetPaymentInfo(string message, bool isError)
+    {
+        InvoicePaymentSummaryText.Text = message;
+        InvoicePaymentSummaryText.Foreground = isError
+            ? new SolidColorBrush(Color.FromRgb(185, 28, 28))
+            : new SolidColorBrush(Color.FromRgb(95, 107, 122));
+    }
+
+    private void SetPaymentInputEnabled(bool isEnabled)
+    {
+        PaymentDateInput.IsEnabled = isEnabled;
+        PaymentAmountInput.IsEnabled = isEnabled;
+        PaymentDescriptionInput.IsEnabled = isEnabled;
+        SavePaymentButton.IsEnabled = isEnabled;
     }
 
     private sealed record MonthOption(int Value, string Label);

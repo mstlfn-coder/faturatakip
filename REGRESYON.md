@@ -106,11 +106,25 @@ Sonuç etiketleri:
 | Fatura listesi metin/fatura no ile aranabiliyor | OK | `--self-test` çok terimli aramayı doğruladı |
 | Filtreler temizlenebiliyor | OK | UI üzerinde filtreleri temizleme düğmesi eklendi |
 
-## v0.7 ve Sonrası İçin Regresyon Başlıkları
+## v0.7 - Ödeme Kayıt Altyapısı
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Faturaya ödeme kaydı eklenebiliyor | OK | `--self-test` ödeme ekleme akışını doğruladı |
+| Ödeme tarihi, tutarı ve açıklaması saklanıyor | OK | `--self-test` ödeme açıklamasını ve ödeme listesini doğruladı |
+| Kısmi ödeme faturayı erken ödendi yapmıyor | OK | `--self-test` kısmi ödeme sonrası `unpaid` ve `Kısmi` durumunu doğruladı |
+| Tam ödeme faturayı ödendi yapıyor | OK | `--self-test` tam ödeme sonrası `paid` durumunu doğruladı |
+| Ödenen ve kalan tutar gösteriliyor | OK | Fatura listesi ve ödeme formu ödenen/kalan tutarı gösteriyor |
+| Kalan tutarı aşan ödeme engelleniyor | OK | `--self-test` kalan aşımı senaryosunu doğruladı |
+| Negatif ödeme tutarı reddediliyor | OK | `--self-test` negatif ödeme senaryosunu doğruladı |
+| Olmayan faturaya ödeme eklenemiyor | OK | `--self-test` geçersiz fatura senaryosunu doğruladı |
+| Fatura tutarı değişince ödeme durumu yeniden hesaplanıyor | OK | `--self-test` tutar artırma sonrası kalan ödeme durumunu doğruladı |
+| Bu fazda ödeme PDF evrakı eklenmedi | OK | Kapsam v0.8'e bırakıldı |
+
+## v0.8 ve Sonrası İçin Regresyon Başlıkları
 
 Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
-- Ödeme kaydı ve ödeme durumu
 - Ödeme PDF kopyalama, hash alma ve açma
 - Dashboard toplamları
 - Ödenmemiş ve gecikmiş fatura raporları
@@ -134,3 +148,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-05-31 | v0.6 başlangıç | OK | v0.5 master merge sonrası build, health-check, self-test ve kısa uygulama başlatma doğrulandı |
 | 2026-05-31 | v0.6 | OK | Fatura listesi yıl, ay, tür, abonelik, ödeme durumu, PDF durumu ve metin aramasıyla filtrelenebilir hale geldi |
 | 2026-05-31 | v0.7 başlangıç | OK | v0.6 master merge sonrası build, health-check, self-test ve kısa uygulama başlatma doğrulandı |
+| 2026-05-31 | v0.7 | OK | Ödeme kayıt altyapısı, kısmi/tam ödeme durumu, kalan tutar kontrolü ve self-test kapsamı tamamlandı |

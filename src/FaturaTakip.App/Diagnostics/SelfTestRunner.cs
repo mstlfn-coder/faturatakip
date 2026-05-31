@@ -2,6 +2,7 @@ using System.IO;
 using FaturaTakip.App.Data;
 using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.InvoiceTypes;
+using FaturaTakip.App.Data.Payments;
 using FaturaTakip.App.Data.Subscriptions;
 
 namespace FaturaTakip.App.Diagnostics;
@@ -104,6 +105,78 @@ public sealed class SelfTestRunner
                 invoiceType.DefaultUsageUnit,
                 "Self-test fatura güncellemesi"));
             Assert(updatedInvoice.Amount == 1300m, "Fatura düzenleme başarısız.");
+
+            var paymentRepository = new PaymentRepository(databasePath);
+            var partialPayment = paymentRepository.Add(new PaymentInput(
+                updatedInvoice.Id,
+                new DateTime(2026, 1, 25),
+                300m,
+                "Self-test kısmi ödeme"));
+            Assert(partialPayment.Id > 0, "Ödeme kaydı ekleme başarısız.");
+            Assert(partialPayment.Description == "Self-test kısmi ödeme", "Ödeme açıklaması saklanmadı.");
+
+            var partialInvoice = invoiceRepository.GetAll().Single(item => item.Id == updatedInvoice.Id);
+            Assert(partialInvoice.PaidAmount == 300m, "Kısmi ödeme toplamı faturaya yansımadı.");
+            Assert(partialInvoice.RemainingAmount == 1000m, "Kalan ödeme tutarı hatalı hesaplandı.");
+            Assert(partialInvoice.Status == "unpaid", "Kısmi ödeme faturayı erken ödendi yapmamalı.");
+            Assert(partialInvoice.State == "Kısmi", "Kısmi ödeme durumu gösterilmedi.");
+            Assert(paymentRepository.GetForInvoice(updatedInvoice.Id).Count == 1, "Fatura ödeme listesi okunamadı.");
+
+            AssertThrows(
+                () => paymentRepository.Add(new PaymentInput(
+                    updatedInvoice.Id,
+                    new DateTime(2026, 1, 26),
+                    1000.01m,
+                    "Kalanı aşan ödeme")),
+                "Kalan tutarı aşan ödeme engellenmedi.");
+
+            paymentRepository.Add(new PaymentInput(
+                updatedInvoice.Id,
+                new DateTime(2026, 1, 26),
+                1000m,
+                "Self-test tamamlama ödemesi"));
+            var paidInvoice = invoiceRepository.GetAll().Single(item => item.Id == updatedInvoice.Id);
+            Assert(paidInvoice.PaidAmount == 1300m, "Tam ödeme toplamı faturaya yansımadı.");
+            Assert(paidInvoice.RemainingAmount == 0m, "Tam ödeme sonrası kalan tutar sıfırlanmadı.");
+            Assert(paidInvoice.Status == "paid", "Tam ödeme faturayı ödendi yapmadı.");
+
+            var increasedInvoice = invoiceRepository.Update(updatedInvoice.Id, new InvoiceInput(
+                updatedSubscription.Id,
+                2026,
+                1,
+                new DateTime(2026, 1, 10),
+                new DateTime(2026, 1, 20),
+                "INV-001-G",
+                1500m,
+                350m,
+                invoiceType.DefaultUsageUnit,
+                "Self-test fatura tutarı artırıldı"));
+            Assert(increasedInvoice.Status == "unpaid", "Tutar artınca ödeme durumu yeniden hesaplanmadı.");
+            Assert(increasedInvoice.RemainingAmount == 200m, "Tutar artışı sonrası kalan ödeme hatalı.");
+
+            paymentRepository.Add(new PaymentInput(
+                updatedInvoice.Id,
+                new DateTime(2026, 1, 27),
+                200m,
+                "Self-test son ödeme"));
+            var fullyPaidInvoice = invoiceRepository.GetAll().Single(item => item.Id == updatedInvoice.Id);
+            Assert(fullyPaidInvoice.Status == "paid", "Ek ödeme sonrası fatura yeniden ödendi olmadı.");
+            Assert(fullyPaidInvoice.PaidAmount == 1500m, "Ek ödeme toplamı hatalı.");
+
+            AssertThrows(
+                () => paymentRepository.Add(new PaymentInput(
+                    updatedInvoice.Id,
+                    new DateTime(2026, 1, 28),
+                    -1m,
+                    "Negatif ödeme")),
+                "Negatif ödeme tutarı engellenmedi.");
+            AssertThrows(
+                () => paymentRepository.Add(new PaymentInput(
+                    999999,
+                    new DateTime(2026, 1, 28),
+                    1m,
+                    "Olmayan fatura")),
+                "Olmayan faturaya ödeme eklenebildi.");
 
             var samplePdfPath = Path.Combine(testRoot, "sample-invoice.pdf");
             File.WriteAllText(samplePdfPath, "%PDF-1.4\n1 0 obj\n<<>>\nendobj\ntrailer\n<<>>\n%%EOF");

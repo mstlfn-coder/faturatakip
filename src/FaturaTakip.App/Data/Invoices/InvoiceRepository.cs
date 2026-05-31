@@ -111,6 +111,12 @@ public sealed class InvoiceRepository
                 due_date = $dueDate,
                 invoice_no = $invoiceNo,
                 amount = $amount,
+                status = CASE
+                    WHEN status = 'canceled' THEN status
+                    WHEN (SELECT COALESCE(SUM(CAST(p.amount AS REAL)), 0) FROM payments p WHERE p.invoice_id = $id) >= CAST($amount AS REAL)
+                         AND CAST($amount AS REAL) > 0 THEN 'paid'
+                    ELSE 'unpaid'
+                END,
                 usage_amount = $usageAmount,
                 usage_unit = $usageUnit,
                 description = $description,
@@ -359,6 +365,7 @@ public sealed class InvoiceRepository
             DueDate = ParseDate(reader.GetString(9)),
             InvoiceNo = reader.GetString(10),
             Amount = ParseDecimal(reader.GetString(11)),
+            PaidAmount = ParseReaderDecimal(reader, 22),
             UsageAmount = ParseDecimal(reader.GetString(12)),
             UsageUnit = reader.GetString(13),
             Status = reader.GetString(14),
@@ -460,6 +467,13 @@ public sealed class InvoiceRepository
         return decimal.Parse(value, CultureInfo.InvariantCulture);
     }
 
+    private static decimal ParseReaderDecimal(SqliteDataReader reader, int ordinal)
+    {
+        return decimal.Parse(
+            Convert.ToString(reader.GetValue(ordinal), CultureInfo.InvariantCulture) ?? "0",
+            CultureInfo.InvariantCulture);
+    }
+
     private static DateTimeOffset ParseDateTimeOffset(string value)
     {
         if (DateTimeOffset.TryParse(value, CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal, out var parsed))
@@ -515,7 +529,8 @@ public sealed class InvoiceRepository
             i.pdf_sha256_hash,
             i.pdf_attached_at,
             i.created_at,
-            i.updated_at
+            i.updated_at,
+            COALESCE((SELECT SUM(CAST(p.amount AS REAL)) FROM payments p WHERE p.invoice_id = i.id), 0) AS paid_amount
         FROM invoices i
         INNER JOIN subscriptions s ON s.id = i.subscription_id
         INNER JOIN invoice_types it ON it.id = i.invoice_type_id

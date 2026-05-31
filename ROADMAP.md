@@ -20,8 +20,8 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | v0.4 | Tamamlandı | Fatura kayıt altyapısı | PDF olmadan temel fatura kaydı yapılabilir |
 | v0.5 | Tamamlandı | Fatura PDF evrakı ekleme | PDF uygulama klasörüne kopyalanır, açılır, eksikliği raporlanabilir |
 | v0.6 | Tamamlandı | Fatura listesi ve filtreleme | Yıl, ay, tür, abonelik, ödeme durumu, PDF durumu ve fatura no ile filtreleme çalışır |
-| v0.7 | Sıradaki | Ödeme kayıt altyapısı | Faturaya ödeme kaydı eklenebilir ve ödeme durumu gösterilir |
-| v0.8 | Beklemede | Ödeme evrakı PDF ekleme | Ödeme PDF'i kopyalanır, açılır ve eksiklik rapor altyapısına girer |
+| v0.7 | Tamamlandı | Ödeme kayıt altyapısı | Faturaya ödeme kaydı eklenebilir ve ödeme durumu gösterilir |
+| v0.8 | Sıradaki | Ödeme evrakı PDF ekleme | Ödeme PDF'i kopyalanır, açılır ve eksiklik rapor altyapısına girer |
 | v0.9 | Beklemede | Ana gösterge paneli | Aylık toplamlar, ödenmemişler, gecikmişler ve evrak eksikleri görünür |
 | v0.10 | Beklemede | Ödenmemiş ve gecikmiş faturalar raporu | Ödenmemiş, gecikmiş ve yaklaşan ödemeler listelenir |
 | v0.11 | Beklemede | Aylık fatura listesi | Seçilen ayın tüm faturaları ve özet toplamları alınır |
@@ -261,6 +261,26 @@ Doğrulama:
 - `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check`
 - `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 - Uygulama kısa süreli başlatma testi
+
+## v0.7 Sonuç Notu
+
+Tamamlananlar:
+
+- `payments` SQLite tablosu için `0006` migration eklendi.
+- Ödeme modeli, ödeme girişi ve repository katmanı eklendi.
+- Faturaya ödeme tarihi, tutarı ve açıklamasıyla ödeme kaydı ekleme akışı eklendi.
+- Kısmi ödeme, tam ödeme, ödenen tutar ve kalan tutar bilgileri fatura listesi ve formunda gösteriliyor.
+- Kalan tutarı aşan ödeme, negatif ödeme ve olmayan faturaya ödeme ekleme engellendi.
+- Fatura tutarı düzenlenirse ödeme durumu ödenen toplam üzerinden yeniden hesaplanıyor.
+- Fatura ekranına ödeme kaydı formu ve ödeme geçmişi listesi eklendi.
+- Ödeme PDF evrakı, rapor, dışa aktarım ve yedekleme kapsam dışı bırakıldı.
+- `--self-test` kısmi ödeme, tam ödeme, kalan aşımı, durum yeniden hesaplama, negatif ödeme ve olmayan fatura senaryolarını doğruluyor.
+
+Doğrulama:
+
+- `dotnet build .\src\FaturaTakip.App\FaturaTakip.App.csproj`
+- `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+- `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check`
 
 ## Gelecek Faz Notları
 

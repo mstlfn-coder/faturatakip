@@ -6,8 +6,8 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 
 - Tarih: 2026-05-31
 - Aktif branch: `codex/v0.7-odeme-kayit-altyapisi`
-- Son tamamlanan faz: `v0.6 - Fatura Listesi ve Filtreleme`
-- Aktif faz: `v0.7 - Ödeme Kayıt Altyapısı`
+- Son tamamlanan faz: `v0.7 - Ödeme Kayıt Altyapısı`
+- Sıradaki faz: `v0.8 - Ödeme Evrakı PDF Ekleme`
 - İlk dokümantasyon commit'i: `e0de4f9 docs: initialize project planning and continuity notes`
 - `v0.1` commit'i: `3b3e20a feat: initialize wpf sqlite project skeleton`
 - `v0.2` commit'i: `c8ad90c feat: add invoice type management`
@@ -16,6 +16,7 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 - PDF rapor örneği notu commit'i: `c0643ee docs: note pdf report sample requirement`
 - `v0.5` commit'i: `2192c69 feat: add invoice pdf attachments`
 - `v0.6` commit'i: `296defe feat: improve invoice list filters`
+- `v0.7` hazırlık commit'i: `63e4c3a docs: prepare v0.7 branch context`
 
 ## Bu Oturumda Yapılanlar
 
@@ -114,23 +115,44 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 87. `v0.6` branch'i `master` içine fast-forward merge edildi.
 88. Merge sonrası `master` üzerinde build, health-check, self-test ve kısa uygulama başlatma smoke testleri başarılı çalıştı.
 89. `codex/v0.7-odeme-kayit-altyapisi` branch'i açıldı.
+90. `v0.7` başlangıç dokümantasyonu commit edildi: `63e4c3a docs: prepare v0.7 branch context`.
+91. `payments` tablosu için `0006` migration eklendi.
+92. `Payment`, `PaymentInput` ve `PaymentRepository` veri katmanı eklendi.
+93. Ödeme kaydı ekleme, ödeme tarihi/tutarı/açıklaması saklama, kalan tutarı aşan ödemeyi engelleme ve fatura durumunu güncelleme akışı eklendi.
+94. Fatura modeli ödenen tutar, kalan tutar, ödeme özeti ve kısmi ödeme durumunu gösterecek şekilde genişletildi.
+95. Fatura tutarı düzenlendiğinde ödeme durumu ödenen toplam üzerinden yeniden hesaplanacak şekilde güncellendi.
+96. Fatura ekranına ödeme özeti, ödeme kayıt formu ve ödeme geçmişi listesi eklendi.
+97. Fatura listesine kompakt ödeme özeti sütunu eklendi.
+98. `--self-test` kısmi ödeme, tam ödeme, kalan aşımı, tutar değişince durum yenileme, negatif ödeme ve olmayan fatura senaryolarıyla genişletildi.
+99. `dotnet build .\src\FaturaTakip.App\FaturaTakip.App.csproj` başarılı çalıştı.
+100. `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
+101. `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
+102. `README.md`, `ROADMAP.md`, `REGRESYON.md` ve devam notları v0.7 tamamlandı / v0.8 sıradaki olacak şekilde güncellendi.
 
-## Mevcut Codex Görevi
+## Sıradaki Codex Görevi
 
-Bu branch'teki görev yalnızca `v0.7` kapsamını uygulamak olmalı.
+`v0.7` kapsamı tamamlandı. Yeni chate geçilirse önce commit/merge durumu kontrol edilmeli.
 
-Başlangıç talimatı:
+Sıradaki güvenli operasyon sırası:
+
+1. `git status --short --branch` ile çalışma ağacı kontrol edilsin.
+2. `v0.7` commit'i henüz oluşmadıysa `feat: add payment record foundation` mesajıyla commit edilsin.
+3. Commit oluştuysa `master` branch'ine fast-forward merge edilsin.
+4. Merge sonrası build, health-check ve self-test tekrar çalıştırılsın.
+5. `codex/v0.8-odeme-pdf-evraki` branch'i açılarak roadmapte `Sıradaki` olan v0.8 uygulanmaya başlansın.
+
+v0.8 başlangıç talimatı:
 
 ```text
-C# WPF + SQLite tabanlı kurum fatura takip programında v0.7 fazını uygula.
+C# WPF + SQLite tabanlı kurum fatura takip programında v0.8 fazını uygula.
 
 Önce README.md, docs/00-codex-devam-kilavuzu.md, docs/03-devam-notlari.md, ROADMAP.md ve REGRESYON.md dosyalarını oku.
 
-Bu fazda yalnızca ödeme kayıt altyapısı geliştirilecek.
+Bu fazda yalnızca ödeme evrakı PDF ekleme altyapısı geliştirilecek.
 
-Faturaya ödeme kaydı ekleme, ödeme tutarı/tarihi/açıklaması saklama ve fatura ödeme durumunu gösterme desteklenecek.
+Ödeme kayıtlarına PDF evrakı bağlama, PDF'i uygulama klasörüne kopyalama, açma ve eksik dosya durumunu gösterme desteklenecek.
 
-Ödeme evrakı PDF'i, rapor, dışa aktarım ve yedekleme yapılmayacak.
+Rapor, dışa aktarım ve yedekleme yapılmayacak.
 
 Faz sonunda uygulamayı çalıştır veya en azından derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```
