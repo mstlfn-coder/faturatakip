@@ -21,6 +21,7 @@ Bu depo, kurum aboneliklerine ait elektrik, su, doğalgaz, telefon, internet ve 
 - `v0.13` raporlar: aboneliğe özgü aylık karşılaştırma eklendi.
 - `v0.14` raporlar: aboneliğe özgü yıllık (12 ay) özet eklendi.
 - `v0.15` raporlar: türe özgü yıllık toplam + abonelik dağılımı eklendi.
+- `v0.16` raporlar: evrak kontrol (PDF yok/kayıp + aynı hash uyarıları) eklendi.
 - Solution dosyası: `FaturaTakip.sln`
 - Uygulama projesi: `src/FaturaTakip.App/FaturaTakip.App.csproj`
 - Geliştirme planı proje içine alındı: `docs/01-gelistirme-plani.md`
@@ -57,15 +58,15 @@ Get-ChildItem -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI'
 
 ## Son Tamamlanan Faz
 
-Son tamamlanan geliştirme fazı `v0.15 - Türe Özgü Yıllık Fatura Listesi`.
+Son tamamlanan geliştirme fazı `v0.16 - Evrak Eksikliği ve Dosya Kontrol Raporu`.
 
-Bu fazda raporlar ekranına `Tür Yıllık` sekmesi eklendi: seçilen fatura türü ve yıl için 12 aylık toplamlar ve abonelik dağılımı (hangi aboneliklerden ne kadar geldiği) görünür. Hesaplama mantığı test edilebilir `InvoiceTypeYearlyReportCalculator` katmanındadır.
+Bu fazda raporlar ekranına `Evrak Kontrol` sekmesi eklendi: fatura ve ödeme evrakları için `PDF Yok`, `PDF Kayıp` ve `Aynı Hash` uyarıları listelenir. Hesaplama mantığı test edilebilir `DocumentHealthReportCalculator` katmanındadır.
 
 ## Sıradaki İş
 
-Sıradaki geliştirme fazı `v0.16 - Evrak Eksikliği ve Dosya Kontrol Raporu`.
+Sıradaki geliştirme fazı `v0.17 - Excel Dışa Aktarım`.
 
-Bu fazda eksik PDF, kayıp dosya ve aynı hash uyarıları raporlanacak. Excel/PDF dışa aktarım, yazdırılabilir PDF rapor üretimi ve yedekleme bu fazda yapılmayacak.
+Bu fazda ana listeler ve raporlar Excel’e aktarılacak. Yazdırılabilir PDF rapor üretimi ve yedekleme bu fazda yapılmayacak.
 
 ## Çalışma Kuralı
 

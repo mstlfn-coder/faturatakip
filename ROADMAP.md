@@ -29,8 +29,8 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | v0.13 | Tamamlandı | Aboneliğe özgü aylık fatura bilgisi | Tek aboneliğin aylık detayı ve önceki ay karşılaştırması görünür |
 | v0.14 | Tamamlandı | Aboneliğe özgü yıllık fatura listesi | 12 aylık liste, toplamlar, en yüksek ve en düşük ay görünür |
 | v0.15 | Tamamlandı | Türe özgü yıllık fatura listesi | Tür bazlı yıllık toplam ve abonelik dağılımı alınır |
-| v0.16 | Sıradaki | Evrak eksikliği ve dosya kontrol raporu | Eksik PDF, kayıp dosya ve aynı hash uyarıları görünür |
-| v0.17 | Beklemede | Excel dışa aktarım | Ana listeler ve raporlar Excel'e aktarılır |
+| v0.16 | Tamamlandı | Evrak eksikliği ve dosya kontrol raporu | Eksik PDF, kayıp dosya ve aynı hash uyarıları görünür |
+| v0.17 | Sıradaki | Excel dışa aktarım | Ana listeler ve raporlar Excel'e aktarılır |
 | v0.18 | Beklemede | Yazdırılabilir PDF raporlar | Kullanıcıdan alınacak Excel örneğine göre temel raporlar PDF olarak üretilebilir |
 | v0.19 | Beklemede | Manuel güvenli yedekleme | Veritabanı ve evraklar ZIP yedek olarak alınır |
 | v0.20 | Beklemede | Tutarlılık denetimi | Salt okunur veri tutarlılığı raporu çalışır |

@@ -222,6 +222,12 @@ v0.16 ilerleme notu (2026-05-31):
 - `--self-test` kapsamına evrak kontrol senaryosu eklendi.
 - `dotnet build`, `--self-test` ve `--health-check` başarılı çalıştı.
 
+v0.16 sonuç notu:
+
+- Raporlar ekranında `Evrak Kontrol` sekmesi hazırlandı ve doğrulandı.
+- Fatura ve ödeme evrakları için `PDF Yok`, `PDF Kayıp` ve `Aynı Hash` uyarıları görünür.
+- `DocumentHealthReportCalculator` eklendi ve `--self-test` kapsadı.
+
 v0.15 başlangıç talimatı:
 
 ```text

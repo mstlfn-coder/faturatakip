@@ -249,3 +249,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-05-31 | v0.10 başlangıç | OK | v0.9 master merge sonrası build, health-check ve self-test doğrulandı |
 | 2026-05-31 | v0.11 başlangıç | OK | v0.10 master merge sonrası build, health-check ve self-test doğrulandı |
 | 2026-05-31 | v0.15 | OK | Tür yıllık raporu eklendi; build, self-test ve health-check doğrulandı |
+| 2026-05-31 | v0.16 | OK | Evrak kontrol raporu eklendi; build, self-test ve health-check doğrulandı |
