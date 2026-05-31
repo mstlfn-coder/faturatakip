@@ -5,16 +5,16 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 ## Güncel Kaldığımız Yer
 
 - Tarih: 2026-05-31
-- Aktif branch: `codex/v0.5-fatura-pdf-evraki`
+- Aktif branch: `codex/v0.6-fatura-listesi-filtreleme`
 - Son tamamlanan faz: `v0.5 - Fatura PDF Evrakı Ekleme`
-- Sıradaki faz: `v0.6 - Fatura Listesi ve Filtreleme`
+- Aktif faz: `v0.6 - Fatura Listesi ve Filtreleme`
 - İlk dokümantasyon commit'i: `e0de4f9 docs: initialize project planning and continuity notes`
 - `v0.1` commit'i: `3b3e20a feat: initialize wpf sqlite project skeleton`
 - `v0.2` commit'i: `c8ad90c feat: add invoice type management`
 - `v0.3` commit'i: `061e1a7 feat: add subscription management`
 - `v0.4` commit'i: `252bbbd feat: add invoice entry foundation`
 - PDF rapor örneği notu commit'i: `c0643ee docs: note pdf report sample requirement`
-- `v0.5` commit mesajı: `feat: add invoice pdf attachments`
+- `v0.5` commit'i: `2192c69 feat: add invoice pdf attachments`
 
 ## Bu Oturumda Yapılanlar
 
@@ -99,10 +99,13 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 73. `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
 74. `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
 75. Uygulama kısa süreli başlatma testinden geçti.
+76. `v0.5` branch'i `master` içine fast-forward merge edildi.
+77. Merge sonrası `master` üzerinde build, health-check, self-test ve kısa uygulama başlatma smoke testleri başarılı çalıştı.
+78. `codex/v0.6-fatura-listesi-filtreleme` branch'i açıldı.
 
-## Bir Sonraki Codex Görevi
+## Mevcut Codex Görevi
 
-Sıradaki görev yalnızca `v0.6` kapsamını uygulamak olmalı.
+Bu branch'teki görev yalnızca `v0.6` kapsamını uygulamak olmalı.
 
 Başlangıç talimatı:
 
