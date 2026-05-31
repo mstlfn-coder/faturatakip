@@ -340,6 +340,103 @@ public partial class InvoicesView : UserControl
         }
     }
 
+    private void ExportInvoicesPdfButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_invoiceRepository is null)
+        {
+            return;
+        }
+
+        try
+        {
+            var items = InvoiceGrid.ItemsSource as IEnumerable<Invoice> ?? Array.Empty<Invoice>();
+            var list = items.ToList();
+            if (list.Count == 0)
+            {
+                SetInvoiceStatus("PDF aktarımı için listede kayıt yok.", isError: true);
+                return;
+            }
+
+            var paths = AppPaths.Resolve();
+            var exportsDir = Path.Combine(paths.RootDirectory, "exports");
+            Directory.CreateDirectory(exportsDir);
+            var fileName = $"faturalar-{DateTime.Now:yyyyMMdd-HHmmss}.pdf";
+            var filePath = Path.Combine(exportsDir, fileName);
+
+            var criteria = ReadFilterCriteria();
+            var period = criteria.Year is null
+                ? string.Empty
+                : criteria.Month is null ? $"{criteria.Year}" : $"{criteria.Year:D4}/{criteria.Month.Value:D2}";
+
+            var filterParts = new List<string>();
+            if (InvoiceTypeFilterInput.SelectedItem is InvoiceTypeFilterOption typeOpt && typeOpt.InvoiceTypeId is not null)
+                filterParts.Add($"Tür: {typeOpt.Label}");
+            if (InvoiceSubscriptionFilterInput.SelectedItem is SubscriptionFilterOption subOpt && subOpt.SubscriptionId is not null)
+                filterParts.Add($"Abonelik: {subOpt.Label}");
+            if (InvoicePaymentStatusFilterInput.SelectedItem is PaymentStatusFilterOption payOpt && payOpt.Value != InvoicePaymentStatusFilter.All)
+                filterParts.Add($"Durum: {payOpt.Label}");
+            if (InvoicePdfStatusFilterInput.SelectedItem is PdfStatusFilterOption pdfOpt && pdfOpt.Value != InvoicePdfStatusFilter.All)
+                filterParts.Add($"PDF: {pdfOpt.Label}");
+            if (!string.IsNullOrWhiteSpace(criteria.SearchText))
+                filterParts.Add($"Ara: {criteria.SearchText.Trim()}");
+
+            var filterText = filterParts.Count == 0 ? "Tüm Kayıtlar" : string.Join(" / ", filterParts);
+
+            var summary = new List<PdfReportWriter.SummaryItem>
+            {
+                new("Toplam Fatura", list.Count.ToString(CultureInfo.InvariantCulture), $"Toplam {list.Sum(x => x.Amount).ToString("N2", TurkishCulture)}"),
+                new("Ödenen", list.Sum(x => x.PaidAmount).ToString("N2", TurkishCulture), $"PDF eksik {list.Count(x => _invoiceRepository.IsPdfMissing(x))}"),
+                new("Kalan", list.Sum(x => x.RemainingAmount).ToString("N2", TurkishCulture), $"Ödenmemiş {list.Count(x => x.Status == "unpaid")}, Gecikmiş {list.Count(x => x.Status == "unpaid" && x.DueDate.Date < DateTime.Today.Date)}"),
+            };
+
+            var headers = new[] { "Dönem", "Tür", "Abonelik", "Kurum", "Durum", "Fatura No", "Fatura Tarihi", "Son Ödeme", "Tutar", "Ödenen", "Kalan", "PDF" };
+            var rows = list
+                .OrderBy(x => x.DueDate)
+                .ThenBy(x => x.InvoiceTypeName, StringComparer.CurrentCultureIgnoreCase)
+                .ThenBy(x => x.SubscriptionName, StringComparer.CurrentCultureIgnoreCase)
+                .Select(x =>
+                {
+                    var pdfState = !x.HasPdf ? "PDF Yok" : (_invoiceRepository.IsPdfMissing(x) ? "PDF Kayıp" : "PDF Var");
+                    return (IReadOnlyList<string>)new[]
+                    {
+                        x.Period,
+                        x.InvoiceTypeName,
+                        x.SubscriptionName,
+                        x.InstitutionName,
+                        x.State,
+                        x.InvoiceNo,
+                        x.InvoiceDate.ToString("dd.MM.yyyy", TurkishCulture),
+                        x.DueDate.ToString("dd.MM.yyyy", TurkishCulture),
+                        x.Amount.ToString("N2", TurkishCulture),
+                        x.PaidAmount.ToString("N2", TurkishCulture),
+                        x.RemainingAmount.ToString("N2", TurkishCulture),
+                        pdfState,
+                    };
+                })
+                .ToList();
+
+            PdfReportWriter.WriteSimpleTableReport(
+                filePath,
+                new PdfReportWriter.ReportMeta(
+                    AppTitle: "KURUM FATURA TAKIP PROGRAMI",
+                    InstitutionName: string.Empty,
+                    ReportTitle: "FATURA LİSTESİ",
+                    ReportPeriod: period,
+                    ReportDate: DateTime.Today,
+                    CreatedBy: Environment.UserName,
+                    FilterText: filterText),
+                summary,
+                headers,
+                rows);
+
+            SetInvoiceStatus($"PDF dosyası oluşturuldu: exports/{fileName}", isError: false);
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidOperationException)
+        {
+            SetInvoiceStatus(exception.Message, isError: true);
+        }
+    }
+
     private void SelectInvoicePdfButton_Click(object sender, RoutedEventArgs e)
     {
         var dialog = new OpenFileDialog
