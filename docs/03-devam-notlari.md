@@ -223,6 +223,12 @@ v0.17 ilerleme notu (2026-06-01):
 - `--self-test` içine temel excel dosya oluşumu kontrolü eklendi.
 - `dotnet build`, `--self-test` ve `--health-check` başarılı çalıştı.
 
+v0.17 sonuç notu:
+
+- `Faturalar` ekranına `Excel'e Aktar` eklendi; filtrelenmiş liste `exports/` altına `.xlsx` olarak yazılır.
+- `Raporlar` ekranına `Excel'e Aktar` eklendi; aktif sekme tablosu `exports/` altına `.xlsx` olarak yazılır.
+- `--self-test` temel excel export dosya oluşumunu doğruluyor.
+
 v0.16 başlangıç talimatı:
 
 ```text
