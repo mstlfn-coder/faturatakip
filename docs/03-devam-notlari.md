@@ -189,6 +189,9 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 153. Merge sonrası `master` üzerinde `dotnet run --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
 154. Merge sonrası `master` üzerinde `dotnet run --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
 155. `codex/v0.11-aylik-fatura-listesi` branch'i açıldı.
+156. Excel/PDF rapor tasarım planı dokümana alındı: `docs/04-excel-pdf-rapor-tasarim-plani.md`.
+157. v0.11 için `Aylık Liste` rapor sekmesi eklendi; dönem seçimiyle seçilen ayın faturaları listeleniyor ve özet toplamlar gösteriliyor.
+158. `--self-test` aylık rapor hesaplarını doğrulayacak şekilde genişletildi.
 
 ## Mevcut Codex Görevi
 

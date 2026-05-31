@@ -12,8 +12,10 @@ public partial class ReportsView : UserControl
     private static readonly CultureInfo TurkishCulture = CultureInfo.GetCultureInfo("tr-TR");
     private InvoiceRepository? _invoiceRepository;
     private ActionableInvoiceReport _report = ActionableInvoiceReport.Empty;
+    private MonthlyInvoiceReport _monthlyReport = MonthlyInvoiceReport.Empty;
     private ReportTab _activeTab = ReportTab.Unpaid;
     private bool _isInitialized;
+    private bool _isRefreshingMonthlyFilters;
 
     public ReportsView()
     {
@@ -41,12 +43,13 @@ public partial class ReportsView : UserControl
             upcomingDays: 7,
             invoice => _invoiceRepository.IsPdfMissing(invoice));
 
-        UnpaidCountText.Text = _report.Unpaid.Count.ToString(CultureInfo.InvariantCulture);
-        UnpaidRemainingText.Text = $"Kalan {FormatMoney(_report.UnpaidRemainingTotal)}";
-        OverdueCountText.Text = _report.Overdue.Count.ToString(CultureInfo.InvariantCulture);
-        OverdueRemainingText.Text = $"Kalan {FormatMoney(_report.OverdueRemainingTotal)}";
-        UpcomingCountText.Text = _report.Upcoming.Count.ToString(CultureInfo.InvariantCulture);
-        UpcomingRemainingText.Text = $"Kalan {FormatMoney(_report.UpcomingRemainingTotal)}";
+        EnsureMonthlyFiltersInitialized(invoices);
+        _monthlyReport = MonthlyInvoiceReportCalculator.Calculate(
+            invoices,
+            GetSelectedYear(),
+            GetSelectedMonth(),
+            DateTime.Today,
+            invoice => _invoiceRepository.IsPdfMissing(invoice));
 
         ApplyTab(_activeTab);
     }
@@ -66,6 +69,37 @@ public partial class ReportsView : UserControl
         ApplyTab(ReportTab.Upcoming);
     }
 
+    private void MonthlyTabButton_Click(object sender, RoutedEventArgs e)
+    {
+        ApplyTab(ReportTab.Monthly);
+    }
+
+    private void MonthlyFilter_Changed(object sender, SelectionChangedEventArgs e)
+    {
+        if (_isRefreshingMonthlyFilters)
+        {
+            return;
+        }
+
+        if (_invoiceRepository is null)
+        {
+            return;
+        }
+
+        var invoices = _invoiceRepository.GetAll();
+        _monthlyReport = MonthlyInvoiceReportCalculator.Calculate(
+            invoices,
+            GetSelectedYear(),
+            GetSelectedMonth(),
+            DateTime.Today,
+            invoice => _invoiceRepository.IsPdfMissing(invoice));
+
+        if (_activeTab == ReportTab.Monthly)
+        {
+            ApplyTab(ReportTab.Monthly);
+        }
+    }
+
     private void ApplyTab(ReportTab tab)
     {
         _activeTab = tab;
@@ -73,15 +107,28 @@ public partial class ReportsView : UserControl
         SetTabActive(UnpaidTabButton, tab == ReportTab.Unpaid);
         SetTabActive(OverdueTabButton, tab == ReportTab.Overdue);
         SetTabActive(UpcomingTabButton, tab == ReportTab.Upcoming);
+        SetTabActive(MonthlyTabButton, tab == ReportTab.Monthly);
+
+        MonthlyFilterPanel.Visibility = tab == ReportTab.Monthly ? Visibility.Visible : Visibility.Collapsed;
 
         var items = tab switch
         {
             ReportTab.Overdue => _report.Overdue,
             ReportTab.Upcoming => _report.Upcoming,
+            ReportTab.Monthly => Array.Empty<ActionableInvoice>(),
             _ => _report.Unpaid,
         };
 
-        ReportGrid.ItemsSource = items.Select(ToRow).ToList();
+        if (tab == ReportTab.Monthly)
+        {
+            ApplyMonthlyTiles();
+            ReportGrid.ItemsSource = _monthlyReport.Rows.Select(ToMonthlyRow).ToList();
+        }
+        else
+        {
+            ApplyActionableTiles();
+            ReportGrid.ItemsSource = items.Select(ToActionableRow).ToList();
+        }
     }
 
     private static void SetTabActive(Button button, bool isActive)
@@ -91,13 +138,49 @@ public partial class ReportsView : UserControl
         button.BorderThickness = isActive ? new Thickness(0) : new Thickness(1);
     }
 
-    private static ReportRow ToRow(ActionableInvoice invoice)
+    private void ApplyActionableTiles()
     {
+        Tile1LabelText.Text = "Ödenmemiş";
+        Tile1ValueText.Text = _report.Unpaid.Count.ToString(CultureInfo.InvariantCulture);
+        Tile1DetailText.Text = $"Kalan {FormatMoney(_report.UnpaidRemainingTotal)}";
+
+        Tile2LabelText.Text = "Gecikmiş";
+        Tile2ValueText.Text = _report.Overdue.Count.ToString(CultureInfo.InvariantCulture);
+        Tile2DetailText.Text = $"Kalan {FormatMoney(_report.OverdueRemainingTotal)}";
+
+        Tile3LabelText.Text = "Yaklaşan (7 gün)";
+        Tile3ValueText.Text = _report.Upcoming.Count.ToString(CultureInfo.InvariantCulture);
+        Tile3DetailText.Text = $"Kalan {FormatMoney(_report.UpcomingRemainingTotal)}";
+
+        MonthlyFilterHintText.Text = string.Empty;
+    }
+
+    private void ApplyMonthlyTiles()
+    {
+        Tile1LabelText.Text = "Toplam Fatura";
+        Tile1ValueText.Text = _monthlyReport.TotalInvoiceCount.ToString(CultureInfo.InvariantCulture);
+        Tile1DetailText.Text = $"Toplam {FormatMoney(_monthlyReport.TotalAmount)}";
+
+        Tile2LabelText.Text = "Ödenen";
+        Tile2ValueText.Text = FormatMoney(_monthlyReport.PaidTotal);
+        Tile2DetailText.Text = $"PDF eksik {_monthlyReport.MissingPdfCount}";
+
+        Tile3LabelText.Text = "Kalan";
+        Tile3ValueText.Text = FormatMoney(_monthlyReport.RemainingTotal);
+        Tile3DetailText.Text = $"Ödenmemiş {_monthlyReport.UnpaidInvoiceCount}, Gecikmiş {_monthlyReport.OverdueInvoiceCount}";
+
+        MonthlyFilterHintText.Text = $"{_monthlyReport.Year:D4}/{_monthlyReport.Month:D2} dönemi listeleniyor";
+    }
+
+    private static ReportRow ToActionableRow(ActionableInvoice invoice)
+    {
+        var statusText = invoice.Invoice.State;
         return new ReportRow(
             invoice.Invoice.Period,
             invoice.Invoice.InvoiceTypeName,
             invoice.Invoice.SubscriptionName,
             invoice.Invoice.InstitutionName,
+            statusText,
             invoice.Invoice.InvoiceNo,
             invoice.Invoice.DueDate.ToString("dd.MM.yyyy", TurkishCulture),
             invoice.Invoice.Amount.ToString("N2", TurkishCulture),
@@ -106,9 +189,89 @@ public partial class ReportsView : UserControl
             invoice.PdfState);
     }
 
+    private static ReportRow ToMonthlyRow(MonthlyInvoiceRow row)
+    {
+        var invoice = row.Invoice;
+        return new ReportRow(
+            invoice.Period,
+            invoice.InvoiceTypeName,
+            invoice.SubscriptionName,
+            invoice.InstitutionName,
+            invoice.State,
+            invoice.InvoiceNo,
+            invoice.DueDate.ToString("dd.MM.yyyy", TurkishCulture),
+            invoice.Amount.ToString("N2", TurkishCulture),
+            invoice.PaidAmount.ToString("N2", TurkishCulture),
+            invoice.RemainingAmount.ToString("N2", TurkishCulture),
+            row.PdfState);
+    }
+
     private static string FormatMoney(decimal value)
     {
         return value.ToString("N2", TurkishCulture);
+    }
+
+    private void EnsureMonthlyFiltersInitialized(IReadOnlyList<Invoice> invoices)
+    {
+        _isRefreshingMonthlyFilters = true;
+        try
+        {
+            var years = invoices
+                .Select(item => item.InvoiceYear)
+                .Distinct()
+                .OrderByDescending(item => item)
+                .ToList();
+
+            if (years.Count == 0)
+            {
+                years.Add(DateTime.Today.Year);
+            }
+
+            if (MonthlyYearInput.Items.Count == 0)
+            {
+                MonthlyYearInput.ItemsSource = years;
+                MonthlyYearInput.SelectedItem = years.Contains(DateTime.Today.Year) ? DateTime.Today.Year : years[0];
+            }
+
+            if (MonthlyMonthInput.Items.Count == 0)
+            {
+                MonthlyMonthInput.ItemsSource = Enumerable.Range(1, 12)
+                    .Select(month => new MonthOption(month, TurkishCulture.DateTimeFormat.GetMonthName(month)))
+                    .ToList();
+                MonthlyMonthInput.DisplayMemberPath = nameof(MonthOption.Label);
+                MonthlyMonthInput.SelectedValuePath = nameof(MonthOption.Value);
+                MonthlyMonthInput.SelectedValue = DateTime.Today.Month;
+            }
+        }
+        finally
+        {
+            _isRefreshingMonthlyFilters = false;
+        }
+    }
+
+    private int GetSelectedYear()
+    {
+        if (MonthlyYearInput.SelectedItem is int year)
+        {
+            return year;
+        }
+
+        return DateTime.Today.Year;
+    }
+
+    private int GetSelectedMonth()
+    {
+        if (MonthlyMonthInput.SelectedValue is int month)
+        {
+            return month;
+        }
+
+        if (MonthlyMonthInput.SelectedItem is MonthOption option)
+        {
+            return option.Value;
+        }
+
+        return DateTime.Today.Month;
     }
 
     private enum ReportTab
@@ -116,6 +279,7 @@ public partial class ReportsView : UserControl
         Unpaid,
         Overdue,
         Upcoming,
+        Monthly,
     }
 
     private sealed record ReportRow(
@@ -123,11 +287,14 @@ public partial class ReportsView : UserControl
         string InvoiceTypeName,
         string SubscriptionName,
         string InstitutionName,
+        string StatusText,
         string InvoiceNo,
         string DueDateText,
         string AmountText,
         string PaidAmountText,
         string RemainingAmountText,
         string PdfState);
+
+    private sealed record MonthOption(int Value, string Label);
 }
 

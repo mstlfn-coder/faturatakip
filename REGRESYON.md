@@ -160,6 +160,17 @@ Sonuç etiketleri:
 | Liste kolonları beklenen alanları içeriyor | OK | Tür, abonelik, kurum, dönem, no, son ödeme, tutar, ödenen, kalan, PDF |
 | `--self-test` rapor hesaplarını doğruluyor | OK | `ActionableInvoiceReportCalculator` senaryosu eklendi |
 
+## v0.11 - Aylık Fatura Listesi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Aylık liste sekmesi açılıyor | OK | Raporlar ekranında `Aylık Liste` sekmesi |
+| Yıl/ay seçimi ile liste güncelleniyor | OK | Dönem seçimi UI üzerinden değişebilir |
+| Üst özetler (toplam/ödenen/kalan) gösteriliyor | OK | Aylık rapor özetleri tile olarak gösterilir |
+| Ödenmemiş ve gecikmiş adetleri hesaplanıyor | OK | Aylık raporda ödenmemiş/gecikmiş adetleri detayda gösterilir |
+| PDF eksik sayısı hesaplanıyor | OK | Aylık raporda PDF eksik sayısı gösterilir |
+| `--self-test` aylık rapor hesaplarını doğruluyor | OK | `MonthlyInvoiceReportCalculator` senaryosu eklendi |
+
 ## v0.10 ve Sonrası İçin Regresyon Başlıkları
 
 Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:

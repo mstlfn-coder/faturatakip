@@ -51,17 +51,17 @@ Get-ChildItem -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI'
 
 ## Son Tamamlanan Faz
 
-Son tamamlanan geliştirme fazı `v0.10 - Ödenmemiş ve Gecikmiş Faturalar Raporu`.
+Son tamamlanan geliştirme fazı `v0.11 - Aylık Fatura Listesi`.
 
-Bu fazda raporlar ekranı eklendi: ödenmemiş, gecikmiş ve yaklaşan (7 gün) ödemeler listelenir. Hesaplama mantığı test edilebilir `ActionableInvoiceReportCalculator` katmanındadır.
+Bu fazda raporlar ekranına aylık fatura listesi eklendi: seçilen ayın faturaları listelenir ve üst özet toplamlar gösterilir. Hesaplama mantığı test edilebilir `MonthlyInvoiceReportCalculator` katmanındadır.
 
 ## Sıradaki İş
 
-Sıradaki geliştirme fazı `v0.11 - Aylık Fatura Listesi`.
+Sıradaki geliştirme fazı `v0.12 - Türe Özgü Aylık Fatura Listesi`.
 
 Aktif çalışma branch'i: `codex/v0.11-aylik-fatura-listesi`.
 
-Bu fazda seçilen ayın tüm faturaları ve özet toplamları listelenecek. Excel/PDF dışa aktarım, yazdırılabilir PDF rapor üretimi ve yedekleme yapılmayacak.
+Bu fazda seçilen tür, yıl ve ay için toplamlar ve liste alınacak. Excel/PDF dışa aktarım, yazdırılabilir PDF rapor üretimi ve yedekleme yapılmayacak.
 
 ## Çalışma Kuralı
 

@@ -404,6 +404,54 @@ public sealed class SelfTestRunner
             Assert(report.Upcoming.Count == 1, "Rapor yaklaşan sayısı hatalı.");
             Assert(report.UpcomingRemainingTotal == 200m, "Rapor yaklaşan kalan toplamı hatalı.");
 
+            var monthlySamples = new[]
+            {
+                new Invoice
+                {
+                    Id = 40,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 100m,
+                    PaidAmount = 25m,
+                    DueDate = new DateTime(2026, 2, 10),
+                    Status = "unpaid",
+                },
+                new Invoice
+                {
+                    Id = 41,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 200m,
+                    PaidAmount = 200m,
+                    DueDate = new DateTime(2026, 2, 5),
+                    Status = "paid",
+                    PdfFilePath = "attachments/invoices/2026/02/paid.pdf",
+                },
+                new Invoice
+                {
+                    Id = 42,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 1,
+                    Amount = 50m,
+                    PaidAmount = 0m,
+                    DueDate = new DateTime(2026, 1, 25),
+                    Status = "unpaid",
+                },
+            };
+            var monthly = MonthlyInvoiceReportCalculator.Calculate(
+                monthlySamples,
+                2026,
+                2,
+                new DateTime(2026, 2, 15),
+                invoice => !invoice.HasPdf);
+            Assert(monthly.TotalInvoiceCount == 2, "Aylık rapor toplam fatura sayısı hatalı.");
+            Assert(monthly.TotalAmount == 300m, "Aylık rapor toplam tutar hatalı.");
+            Assert(monthly.PaidTotal == 225m, "Aylık rapor ödenen toplam hatalı.");
+            Assert(monthly.RemainingTotal == 75m, "Aylık rapor kalan toplam hatalı.");
+            Assert(monthly.UnpaidInvoiceCount == 1, "Aylık rapor ödenmemiş sayısı hatalı.");
+            Assert(monthly.OverdueInvoiceCount == 1, "Aylık rapor gecikmiş sayısı hatalı.");
+            Assert(monthly.MissingPdfCount == 1, "Aylık rapor PDF eksik sayısı hatalı.");
+
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(
                     updatedSubscription.Id,
