@@ -234,6 +234,15 @@ Sonuç etiketleri:
 | Filtre bilgileri PDF üstünde görünüyor | OK | Dönem/oluşturan/filtre alanları |
 | `--self-test` temel PDF üretimini doğruluyor | OK | En az bir dosya oluşumu |
 
+## v0.19 - Manuel Güvenli Yedekleme
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Yedekleme butonu görünüyor | TODO | Uygulama içinde erişilebilir |
+| ZIP yedek backups/ altına yazılıyor | TODO | Dosya adı tarih-saat içerir |
+| Veritabanı + evraklar ZIP içinde | TODO | `database/` + `attachments/` |
+| `--self-test` temel yedeklemeyi doğruluyor | TODO | En az bir ZIP oluşumu |
+
 ## v0.10 ve Sonrası İçin Regresyon Başlıkları
 
 Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:

@@ -254,6 +254,25 @@ v0.18 sonuç notu (2026-06-01):
 - `--self-test` temel PDF dosyası oluşumunu doğruluyor.
 - `dotnet build`, `--self-test` ve `--health-check` başarılı çalıştı.
 
+v0.19 başlangıç talimatı:
+
+```text
+C# WPF + SQLite tabanlı kurum fatura takip programında v0.19 fazını uygula.
+
+Önce README.md, docs/00-codex-devam-kilavuzu.md, docs/03-devam-notlari.md, ROADMAP.md ve REGRESYON.md dosyalarını oku.
+
+Bu fazda yalnızca manuel güvenli yedekleme geliştirilecek.
+
+Kapsam:
+- Veritabanı dosyası ve attachments altındaki evraklar ZIP içine alınacak.
+- Çıktı backups/ altında tarih-saatli dosya adıyla oluşturulacak.
+- Yedekleme işleminden sonra kullanıcıya dosya yolu bildirilecek.
+
+Bu fazda otomatik zamanlanmış yedekleme veya bulut senaryosu yapılmayacak.
+
+Faz sonunda derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
+```
+
 v0.16 başlangıç talimatı:
 
 ```text
