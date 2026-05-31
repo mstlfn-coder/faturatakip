@@ -171,6 +171,14 @@ Sonuç etiketleri:
 | PDF eksik sayısı hesaplanıyor | OK | Aylık raporda PDF eksik sayısı gösterilir |
 | `--self-test` aylık rapor hesaplarını doğruluyor | OK | `MonthlyInvoiceReportCalculator` senaryosu eklendi |
 
+## v0.12 - Türe Özgü Aylık Fatura Listesi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Aylık liste için tür filtresi var | OK | Dönem filtresine `Fatura Türü` seçimi eklendi |
+| Tür seçimiyle liste daralıyor | OK | Seçilen tür + yıl + ay için faturalar listelenir |
+| `--self-test` tür filtresini doğruluyor | OK | `invoiceTypeId` filtresi için senaryo eklendi |
+
 ## v0.10 ve Sonrası İçin Regresyon Başlıkları
 
 Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using FaturaTakip.App.Data.Invoices;
+using FaturaTakip.App.Data.InvoiceTypes;
 using FaturaTakip.App.Data.Reports;
 
 namespace FaturaTakip.App.Views;
@@ -11,6 +12,7 @@ public partial class ReportsView : UserControl
 {
     private static readonly CultureInfo TurkishCulture = CultureInfo.GetCultureInfo("tr-TR");
     private InvoiceRepository? _invoiceRepository;
+    private InvoiceTypeRepository? _invoiceTypeRepository;
     private ActionableInvoiceReport _report = ActionableInvoiceReport.Empty;
     private MonthlyInvoiceReport _monthlyReport = MonthlyInvoiceReport.Empty;
     private ReportTab _activeTab = ReportTab.Unpaid;
@@ -25,6 +27,7 @@ public partial class ReportsView : UserControl
     public void Initialize(string databasePath)
     {
         _invoiceRepository = new InvoiceRepository(databasePath);
+        _invoiceTypeRepository = new InvoiceTypeRepository(databasePath);
         _isInitialized = true;
         Refresh();
     }
@@ -48,6 +51,7 @@ public partial class ReportsView : UserControl
             invoices,
             GetSelectedYear(),
             GetSelectedMonth(),
+            GetSelectedInvoiceTypeId(),
             DateTime.Today,
             invoice => _invoiceRepository.IsPdfMissing(invoice));
 
@@ -91,6 +95,7 @@ public partial class ReportsView : UserControl
             invoices,
             GetSelectedYear(),
             GetSelectedMonth(),
+            GetSelectedInvoiceTypeId(),
             DateTime.Today,
             invoice => _invoiceRepository.IsPdfMissing(invoice));
 
@@ -216,6 +221,16 @@ public partial class ReportsView : UserControl
         _isRefreshingMonthlyFilters = true;
         try
         {
+            if (MonthlyInvoiceTypeInput.Items.Count == 0)
+            {
+                var types = _invoiceTypeRepository?.GetAll() ?? Array.Empty<InvoiceType>();
+                var typeOptions = new List<InvoiceTypeOption> { new("Tüm Türler", null) };
+                typeOptions.AddRange(types.Select(item => new InvoiceTypeOption(item.Name, item.Id)));
+                MonthlyInvoiceTypeInput.ItemsSource = typeOptions;
+                MonthlyInvoiceTypeInput.DisplayMemberPath = nameof(InvoiceTypeOption.Label);
+                MonthlyInvoiceTypeInput.SelectedItem = typeOptions[0];
+            }
+
             var years = invoices
                 .Select(item => item.InvoiceYear)
                 .Distinct()
@@ -247,6 +262,16 @@ public partial class ReportsView : UserControl
         {
             _isRefreshingMonthlyFilters = false;
         }
+    }
+
+    private long? GetSelectedInvoiceTypeId()
+    {
+        if (MonthlyInvoiceTypeInput.SelectedItem is InvoiceTypeOption option)
+        {
+            return option.InvoiceTypeId;
+        }
+
+        return null;
     }
 
     private int GetSelectedYear()
@@ -296,5 +321,7 @@ public partial class ReportsView : UserControl
         string PdfState);
 
     private sealed record MonthOption(int Value, string Label);
+
+    private sealed record InvoiceTypeOption(string Label, long? InvoiceTypeId);
 }
 

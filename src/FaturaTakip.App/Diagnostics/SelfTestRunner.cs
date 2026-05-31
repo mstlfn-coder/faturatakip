@@ -442,6 +442,7 @@ public sealed class SelfTestRunner
                 monthlySamples,
                 2026,
                 2,
+                invoiceTypeId: null,
                 new DateTime(2026, 2, 15),
                 invoice => !invoice.HasPdf);
             Assert(monthly.TotalInvoiceCount == 2, "Aylık rapor toplam fatura sayısı hatalı.");
@@ -451,6 +452,43 @@ public sealed class SelfTestRunner
             Assert(monthly.UnpaidInvoiceCount == 1, "Aylık rapor ödenmemiş sayısı hatalı.");
             Assert(monthly.OverdueInvoiceCount == 1, "Aylık rapor gecikmiş sayısı hatalı.");
             Assert(monthly.MissingPdfCount == 1, "Aylık rapor PDF eksik sayısı hatalı.");
+
+            var typedMonthlySamples = new[]
+            {
+                new Invoice
+                {
+                    Id = 50,
+                    InvoiceTypeId = 100,
+                    InvoiceTypeName = "Elektrik",
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 100m,
+                    PaidAmount = 0m,
+                    DueDate = new DateTime(2026, 2, 10),
+                    Status = "unpaid",
+                },
+                new Invoice
+                {
+                    Id = 51,
+                    InvoiceTypeId = 101,
+                    InvoiceTypeName = "Su",
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 200m,
+                    PaidAmount = 0m,
+                    DueDate = new DateTime(2026, 2, 11),
+                    Status = "unpaid",
+                },
+            };
+            var typedMonthly = MonthlyInvoiceReportCalculator.Calculate(
+                typedMonthlySamples,
+                2026,
+                2,
+                invoiceTypeId: 100,
+                new DateTime(2026, 2, 15),
+                invoice => false);
+            Assert(typedMonthly.TotalInvoiceCount == 1, "Tür filtresi aylık raporda çalışmadı.");
+            Assert(typedMonthly.TotalAmount == 100m, "Tür filtresi aylık toplam tutarı yanlış.");
 
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(

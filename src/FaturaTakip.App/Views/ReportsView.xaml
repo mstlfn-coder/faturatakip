@@ -101,6 +101,12 @@
                                Foreground="#334155"
                                FontWeight="SemiBold"
                                Margin="0,0,10,0" />
+                    <ComboBox x:Name="MonthlyInvoiceTypeInput"
+                              Width="220"
+                              Height="34"
+                              VerticalContentAlignment="Center"
+                              SelectionChanged="MonthlyFilter_Changed"
+                              Margin="0,0,10,0" />
                     <ComboBox x:Name="MonthlyYearInput"
                               Width="110"
                               Height="34"

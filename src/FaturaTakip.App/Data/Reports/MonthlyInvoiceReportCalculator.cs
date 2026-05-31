@@ -8,11 +8,13 @@ public static class MonthlyInvoiceReportCalculator
         IEnumerable<Invoice> invoices,
         int year,
         int month,
+        long? invoiceTypeId,
         DateTime today,
         Func<Invoice, bool> isPdfMissing)
     {
         var list = invoices
             .Where(item => item.InvoiceYear == year && item.InvoiceMonth == month)
+            .Where(item => invoiceTypeId is null || item.InvoiceTypeId == invoiceTypeId.Value)
             .OrderBy(item => item.DueDate)
             .ThenBy(item => item.InvoiceTypeName, StringComparer.CurrentCultureIgnoreCase)
             .ThenBy(item => item.SubscriptionName, StringComparer.CurrentCultureIgnoreCase)

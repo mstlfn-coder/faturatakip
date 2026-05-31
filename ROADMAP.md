@@ -25,8 +25,8 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | v0.9 | Tamamlandı | Ana gösterge paneli | Aylık toplamlar, ödenmemişler, gecikmişler ve evrak eksikleri görünür |
 | v0.10 | Tamamlandı | Ödenmemiş ve gecikmiş faturalar raporu | Ödenmemiş, gecikmiş ve yaklaşan ödemeler listelenir |
 | v0.11 | Tamamlandı | Aylık fatura listesi | Seçilen ayın tüm faturaları ve özet toplamları alınır |
-| v0.12 | Sıradaki | Türe özgü aylık fatura listesi | Seçilen tür, yıl ve ay için toplamlar alınır |
-| v0.13 | Beklemede | Aboneliğe özgü aylık fatura bilgisi | Tek aboneliğin aylık detayı ve önceki ay karşılaştırması görünür |
+| v0.12 | Tamamlandı | Türe özgü aylık fatura listesi | Seçilen tür, yıl ve ay için toplamlar alınır |
+| v0.13 | Sıradaki | Aboneliğe özgü aylık fatura bilgisi | Tek aboneliğin aylık detayı ve önceki ay karşılaştırması görünür |
 | v0.14 | Beklemede | Aboneliğe özgü yıllık fatura listesi | 12 aylık liste, toplamlar, en yüksek ve en düşük ay görünür |
 | v0.15 | Beklemede | Türe özgü yıllık fatura listesi | Tür bazlı yıllık toplam ve abonelik dağılımı alınır |
 | v0.16 | Beklemede | Evrak eksikliği ve dosya kontrol raporu | Eksik PDF, kayıp dosya ve aynı hash uyarıları görünür |

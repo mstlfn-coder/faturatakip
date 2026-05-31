@@ -213,6 +213,12 @@ Excel/PDF dışa aktarım, yazdırılabilir PDF rapor ve yedekleme yapılmayacak
 Faz sonunda uygulamayı çalıştır veya en azından derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```
 
+v0.12 sonuç notu:
+
+- Aylık liste raporuna `Fatura Türü` filtresi eklendi.
+- `MonthlyInvoiceReportCalculator` artık `invoiceTypeId` filtresi alıyor.
+- `--self-test` tür filtresi senaryosuyla genişletildi.
+
 ## Dikkat Edilecekler
 
 - Yol sorunlarına karşı PowerShell'de gerekirse `-LiteralPath` kullanılmalı.
