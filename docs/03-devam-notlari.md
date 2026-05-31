@@ -85,6 +85,7 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 61. `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
 62. `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
 63. Uygulama kısa süreli başlatma testinden geçti.
+64. Kullanıcı, fatura PDF raporları fazına gelindiğinde önce kendisinden Excel örneği istenmesini istedi; bu not proje kararları, roadmap ve regresyon notlarına işlendi.
 
 ## Bir Sonraki Codex Görevi
 
@@ -113,3 +114,4 @@ Faz sonunda uygulamayı çalıştır veya en azından derleme/test doğrulaması
 - Yeni oluşturulacak klasör adları ASCII olmalı.
 - Faz kapsamı aşılmamalı.
 - Önce dokümantasyon okunmalı, sonra uygulama koduna geçilmeli.
+- Fatura PDF raporları fazına gelindiğinde kullanıcıdan Excel örneği istenmeden tasarım/uygulama yapılmamalı.

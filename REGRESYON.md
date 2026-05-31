@@ -92,7 +92,7 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 - Ödenmemiş ve gecikmiş fatura raporları
 - Aylık ve yıllık raporlar
 - Excel dışa aktarım
-- PDF rapor üretimi
+- PDF rapor üretimi; başlamadan önce kullanıcıdan Excel örneği istenecek ve çıktı bu örneğe göre doğrulanacak
 - Manuel yedekleme
 - Tutarlılık denetimi
 

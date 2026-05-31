@@ -22,6 +22,7 @@ Bu dosya, geliştirme sırasında alınan kalıcı kararları kaydeder. Kararlar
 | 2026-05-31 | Faturalar aboneliğe ve aboneliğin fatura türüne bağlanacak | Raporlama kolaylaşır, abonelik ana veri ilişkisi korunur |
 | 2026-05-31 | Fatura tutarı ve kullanım miktarı uygulama katmanında decimal doğrulanacak | Negatif değerler engellenir ve para hesabı hassasiyeti korunur |
 | 2026-05-31 | Aynı abonelikte aynı fatura numarası benzersiz olacak | Çift kayıt riskini azaltır |
+| 2026-05-31 | Fatura PDF raporları tasarlanmadan önce kullanıcıdan Excel örneği istenecek | Rapor kolonları, toplamlar, sayfa düzeni ve çıktı beklentisi örneğe göre netleştirilecek |
 
 ## Açık Kararlar
 
