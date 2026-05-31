@@ -6,8 +6,8 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 
 - Tarih: 2026-05-31
 - Aktif branch: `codex/v0.9-dashboard`
-- Son tamamlanan faz: `v0.8 - Ödeme Evrakı PDF Ekleme`
-- Aktif faz: `v0.9 - Ana Gösterge Paneli`
+- Son tamamlanan faz: `v0.9 - Ana Gösterge Paneli`
+- Sıradaki faz: `v0.10 - Ödenmemiş ve Gecikmiş Faturalar Raporu`
 - İlk dokümantasyon commit'i: `e0de4f9 docs: initialize project planning and continuity notes`
 - `v0.1` commit'i: `3b3e20a feat: initialize wpf sqlite project skeleton`
 - `v0.2` commit'i: `c8ad90c feat: add invoice type management`
@@ -20,6 +20,7 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 - `v0.7` commit'i: `13375d1 feat: add payment record foundation`
 - `v0.8` hazırlık commit'i: `7699971 docs: prepare v0.8 branch context`
 - `v0.8` commit'i: `fa49fd9 feat: add payment pdf attachments`
+- `v0.9` hazırlık commit'i: `5a1981d docs: prepare v0.9 branch context`
 
 ## Bu Oturumda Yapılanlar
 
@@ -153,23 +154,42 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 122. Merge sonrası `master` üzerinde `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
 123. Merge sonrası `master` üzerinde `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
 124. `codex/v0.9-dashboard` branch'i açıldı.
+125. `v0.9` başlangıç dokümantasyonu commit edildi: `5a1981d docs: prepare v0.9 branch context`.
+126. Dashboard özet hesaplama mantığı `DashboardSummaryCalculator` katmanına alındı.
+127. Ana gösterge paneline bu ay fatura toplamı ve bu ay ödeme toplamı eklendi.
+128. Ödenmemiş fatura sayısı, kalan tutar, gecikmiş fatura sayısı ve gecikmiş kalan tutar dashboard üzerinde gösterildi.
+129. Fatura PDF eksik sayısı ve ödeme PDF eksik sayısı dashboard üzerinde gösterildi.
+130. Fatura türü, aktif tür, aktif abonelik ve toplam fatura sayıları dashboard içinde korunarak yeni özetlerle birlikte düzenlendi.
+131. `--self-test` dashboard hesaplarını doğrulayacak şekilde genişletildi.
+132. `dotnet build .\src\FaturaTakip.App\FaturaTakip.App.csproj` başarılı çalıştı.
+133. `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
+134. `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
+135. `README.md`, `ROADMAP.md`, `REGRESYON.md`, proje kararları ve devam notları v0.9 tamamlandı / v0.10 sıradaki olacak şekilde güncellendi.
 
-## Mevcut Codex Görevi
+## Sıradaki Codex Görevi
 
-Bu branch'teki görev yalnızca `v0.9` kapsamını uygulamak olmalı.
+`v0.9` kapsamı tamamlandı. Yeni chate geçilirse önce çalışma ağacı ve commit durumu kontrol edilmeli.
 
-v0.9 başlangıç talimatı:
+Sıradaki güvenli operasyon:
+
+1. `git status --short --branch` ile branch ve temiz çalışma ağacı kontrol edilmeli.
+2. `v0.9` commit'i henüz oluşmadıysa değişiklikler `feat: improve dashboard summaries` mesajıyla commit edilmeli.
+3. `v0.9` commit'i oluştuysa `master` branch'ine fast-forward merge edilmeli.
+4. Merge sonrası `dotnet build`, `--self-test` ve `--health-check` smoke testleri çalıştırılmalı.
+5. Testler başarılıysa `codex/v0.10-odenmemis-gecikmis-raporu` branch'i açılıp v0.10 başlangıç dokümantasyonu commit edilmeli.
+
+v0.10 başlangıç talimatı:
 
 ```text
-C# WPF + SQLite tabanlı kurum fatura takip programında v0.9 fazını uygula.
+C# WPF + SQLite tabanlı kurum fatura takip programında v0.10 fazını uygula.
 
 Önce README.md, docs/00-codex-devam-kilavuzu.md, docs/03-devam-notlari.md, ROADMAP.md ve REGRESYON.md dosyalarını oku.
 
-Bu fazda yalnızca ana gösterge paneli geliştirilecek.
+Bu fazda yalnızca ödenmemiş ve gecikmiş faturalar raporu geliştirilecek.
 
-Aylık toplamlar, ödenmemişler, gecikmişler, fatura PDF eksikleri ve ödeme PDF eksikleri gösterilecek.
+Ödenmemiş, gecikmiş ve yaklaşan ödemeler listelenecek.
 
-Rapor ekranları, Excel/PDF dışa aktarım ve yedekleme yapılmayacak.
+Excel/PDF dışa aktarım, yazdırılabilir PDF rapor ve yedekleme yapılmayacak.
 
 Faz sonunda uygulamayı çalıştır veya en azından derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```

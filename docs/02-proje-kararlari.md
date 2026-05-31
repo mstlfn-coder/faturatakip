@@ -31,6 +31,7 @@ Bu dosya, geliştirme sırasında alınan kalıcı kararları kaydeder. Kararlar
 | 2026-05-31 | Ödeme PDF evrakları `attachments/payments/yyyy/MM` altında saklanacak | Ödeme tarihine göre dosya düzeni rapor ve eksik evrak kontrollerini kolaylaştırır |
 | 2026-05-31 | Ödeme PDF evrak hash algoritması SHA-256 olacak | Fatura PDF evraklarıyla aynı bütünlük ve tekrar kontrol yaklaşımı korunur |
 | 2026-05-31 | Ödeme PDF yolları uygulama köküne göre göreli saklanacak | Klasör taşınabilirliği ve yedek geri yükleme senaryoları kolaylaşır |
+| 2026-05-31 | Dashboard özetleri test edilebilir hesaplayıcı katmanında üretilecek | Aylık toplam, gecikmiş, ödenmemiş ve eksik evrak hesapları UI'dan bağımsız regresyon testine alınmalı |
 
 ## Açık Kararlar
 

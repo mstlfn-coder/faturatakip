@@ -107,7 +107,7 @@
                 </StackPanel>
 
                 <TextBlock Grid.Row="3"
-                           Text="v0.8"
+                           Text="v0.9"
                            Foreground="#94A3B8"
                            FontSize="13" />
             </Grid>
@@ -116,6 +116,7 @@
         <Grid Grid.Column="1" Margin="28">
             <Grid x:Name="DashboardPanel">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
@@ -133,7 +134,7 @@
                                    Foreground="#1F2937"
                                    FontSize="28"
                                    FontWeight="SemiBold" />
-                        <TextBlock Text="Başlangıç durumu"
+                        <TextBlock Text="Aylık durum, tahsilat ve evrak eksikleri"
                                    Style="{StaticResource MutedText}"
                                    Margin="0,6,0,0" />
                     </StackPanel>
@@ -156,13 +157,106 @@
                              Margin="0,24,0,24">
                     <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
                         <StackPanel>
+                            <TextBlock Text="Bu Ay Fatura"
+                                       Style="{StaticResource MutedText}" />
+                            <TextBlock x:Name="DashboardMonthlyInvoiceTotalText"
+                                       Text="0,00"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="30"
+                                       FontWeight="SemiBold" />
+                            <TextBlock x:Name="DashboardMonthlyInvoiceCountText"
+                                       Text="0 kayıt"
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,6,0,0" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
+                        <StackPanel>
+                            <TextBlock Text="Bu Ay Ödeme"
+                                       Style="{StaticResource MutedText}" />
+                            <TextBlock x:Name="DashboardMonthlyPaymentTotalText"
+                                       Text="0,00"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="30"
+                                       FontWeight="SemiBold" />
+                            <TextBlock x:Name="DashboardMonthlyPaymentCountText"
+                                       Text="0 kayıt"
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,6,0,0" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
+                        <StackPanel>
+                            <TextBlock Text="Ödenmemiş"
+                                       Style="{StaticResource MutedText}" />
+                            <TextBlock x:Name="DashboardUnpaidInvoiceCountText"
+                                       Text="0"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="30"
+                                       FontWeight="SemiBold" />
+                            <TextBlock x:Name="DashboardUnpaidRemainingText"
+                                       Text="Kalan 0,00"
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,6,0,0" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TileBorder}">
+                        <StackPanel>
+                            <TextBlock Text="Gecikmiş"
+                                       Style="{StaticResource MutedText}" />
+                            <TextBlock x:Name="DashboardOverdueInvoiceCountText"
+                                       Text="0"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="30"
+                                       FontWeight="SemiBold" />
+                            <TextBlock x:Name="DashboardOverdueRemainingText"
+                                       Text="Kalan 0,00"
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,6,0,0" />
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <UniformGrid Grid.Row="2"
+                             Columns="3"
+                             Margin="0,0,0,24">
+                    <Border Style="{StaticResource TileBorder}" Margin="0,0,12,12">
+                        <StackPanel>
+                            <TextBlock Text="Fatura PDF Eksik"
+                                       Style="{StaticResource MutedText}" />
+                            <TextBlock x:Name="DashboardMissingInvoicePdfCountText"
+                                       Text="0"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="26"
+                                       FontWeight="SemiBold" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TileBorder}" Margin="0,0,12,12">
+                        <StackPanel>
+                            <TextBlock Text="Ödeme PDF Eksik"
+                                       Style="{StaticResource MutedText}" />
+                            <TextBlock x:Name="DashboardMissingPaymentPdfCountText"
+                                       Text="0"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="26"
+                                       FontWeight="SemiBold" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TileBorder}" Margin="0,0,0,12">
+                        <StackPanel>
                             <TextBlock Text="Fatura Türü"
                                        Style="{StaticResource MutedText}" />
                             <TextBlock x:Name="DashboardInvoiceTypeCountText"
                                        Text="0"
                                        Margin="0,10,0,0"
                                        Foreground="#111827"
-                                       FontSize="30"
+                                       FontSize="26"
                                        FontWeight="SemiBold" />
                         </StackPanel>
                     </Border>
@@ -174,7 +268,7 @@
                                        Text="0"
                                        Margin="0,10,0,0"
                                        Foreground="#111827"
-                                       FontSize="30"
+                                       FontSize="26"
                                        FontWeight="SemiBold" />
                         </StackPanel>
                     </Border>
@@ -186,7 +280,7 @@
                                        Text="0"
                                        Margin="0,10,0,0"
                                        Foreground="#111827"
-                                       FontSize="30"
+                                       FontSize="26"
                                        FontWeight="SemiBold" />
                         </StackPanel>
                     </Border>
@@ -198,13 +292,13 @@
                                        Text="0"
                                        Margin="0,10,0,0"
                                        Foreground="#111827"
-                                       FontSize="30"
+                                       FontSize="26"
                                        FontWeight="SemiBold" />
                         </StackPanel>
                     </Border>
                 </UniformGrid>
 
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.2*" />
                         <ColumnDefinition Width="20" />
@@ -321,7 +415,7 @@
                     </Border>
                 </Grid>
 
-                <TextBlock Grid.Row="3"
+                <TextBlock Grid.Row="4"
                            Margin="0,18,0,0"
                            Text="Fatura Türü -> Abonelik -> Fatura -> Ödeme -> Evraklar"
                            Style="{StaticResource MutedText}" />

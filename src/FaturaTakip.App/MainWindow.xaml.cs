@@ -1,8 +1,10 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Media;
+using FaturaTakip.App.Data.Dashboard;
 using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.InvoiceTypes;
+using FaturaTakip.App.Data.Payments;
 using FaturaTakip.App.Data.Subscriptions;
 using FaturaTakip.App.Infrastructure;
 
@@ -16,6 +18,7 @@ public partial class MainWindow : Window
     private readonly InvoiceTypeRepository _invoiceTypeRepository;
     private readonly SubscriptionRepository _subscriptionRepository;
     private readonly InvoiceRepository _invoiceRepository;
+    private readonly PaymentRepository _paymentRepository;
     private IReadOnlyList<InvoiceType> _invoiceTypes = Array.Empty<InvoiceType>();
     private InvoiceType? _selectedInvoiceType;
 
@@ -26,12 +29,13 @@ public partial class MainWindow : Window
         _invoiceTypeRepository = new InvoiceTypeRepository(startupStatus.DatabasePath);
         _subscriptionRepository = new SubscriptionRepository(startupStatus.DatabasePath);
         _invoiceRepository = new InvoiceRepository(startupStatus.DatabasePath);
+        _paymentRepository = new PaymentRepository(startupStatus.DatabasePath);
         SubscriptionsPanel.Initialize(startupStatus.DatabasePath);
         InvoicesPanel.Initialize(startupStatus.DatabasePath);
         ApplyStartupStatus(startupStatus);
         RefreshInvoiceTypes();
         RefreshDashboardSubscriptionCounts();
-        RefreshDashboardInvoiceCounts();
+        RefreshDashboardMetrics();
         ShowDashboard();
     }
 
@@ -84,7 +88,7 @@ public partial class MainWindow : Window
         InvoicesNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         InvoicesNavButton.FontWeight = FontWeights.Normal;
         RefreshDashboardSubscriptionCounts();
-        RefreshDashboardInvoiceCounts();
+        RefreshDashboardMetrics();
     }
 
     private void ShowInvoiceTypes()
@@ -174,8 +178,31 @@ public partial class MainWindow : Window
 
     private void RefreshDashboardInvoiceCounts()
     {
-        var invoiceCount = _invoiceRepository.GetAll().Count;
-        DashboardInvoiceCountText.Text = invoiceCount.ToString(CultureInfo.InvariantCulture);
+        RefreshDashboardMetrics();
+    }
+
+    private void RefreshDashboardMetrics()
+    {
+        var invoices = _invoiceRepository.GetAll();
+        var payments = _paymentRepository.GetAll();
+        var summary = DashboardSummaryCalculator.Calculate(
+            invoices,
+            payments,
+            DateTime.Today,
+            invoice => _invoiceRepository.IsPdfMissing(invoice),
+            payment => _paymentRepository.IsPdfMissing(payment));
+
+        DashboardInvoiceCountText.Text = invoices.Count.ToString(CultureInfo.InvariantCulture);
+        DashboardMonthlyInvoiceTotalText.Text = FormatMoney(summary.MonthlyInvoiceTotal);
+        DashboardMonthlyInvoiceCountText.Text = $"{summary.MonthlyInvoiceCount} kayıt";
+        DashboardMonthlyPaymentTotalText.Text = FormatMoney(summary.MonthlyPaymentTotal);
+        DashboardMonthlyPaymentCountText.Text = $"{summary.MonthlyPaymentCount} kayıt";
+        DashboardUnpaidInvoiceCountText.Text = summary.UnpaidInvoiceCount.ToString(CultureInfo.InvariantCulture);
+        DashboardUnpaidRemainingText.Text = $"Kalan {FormatMoney(summary.UnpaidRemainingTotal)}";
+        DashboardOverdueInvoiceCountText.Text = summary.OverdueInvoiceCount.ToString(CultureInfo.InvariantCulture);
+        DashboardOverdueRemainingText.Text = $"Kalan {FormatMoney(summary.OverdueRemainingTotal)}";
+        DashboardMissingInvoicePdfCountText.Text = summary.MissingInvoicePdfCount.ToString(CultureInfo.InvariantCulture);
+        DashboardMissingPaymentPdfCountText.Text = summary.MissingPaymentPdfCount.ToString(CultureInfo.InvariantCulture);
     }
 
     private void SubscriptionsPanel_SubscriptionsChanged(object sender, EventArgs e)
@@ -187,6 +214,11 @@ public partial class MainWindow : Window
     private void InvoicesPanel_InvoicesChanged(object sender, EventArgs e)
     {
         RefreshDashboardInvoiceCounts();
+    }
+
+    private static string FormatMoney(decimal value)
+    {
+        return value.ToString("N2", CultureInfo.GetCultureInfo("tr-TR"));
     }
 
     private void InvoiceTypeGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)

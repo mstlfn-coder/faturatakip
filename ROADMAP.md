@@ -22,8 +22,8 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | v0.6 | Tamamlandı | Fatura listesi ve filtreleme | Yıl, ay, tür, abonelik, ödeme durumu, PDF durumu ve fatura no ile filtreleme çalışır |
 | v0.7 | Tamamlandı | Ödeme kayıt altyapısı | Faturaya ödeme kaydı eklenebilir ve ödeme durumu gösterilir |
 | v0.8 | Tamamlandı | Ödeme evrakı PDF ekleme | Ödeme PDF'i kopyalanır, açılır ve eksiklik rapor altyapısına girer |
-| v0.9 | Sıradaki | Ana gösterge paneli | Aylık toplamlar, ödenmemişler, gecikmişler ve evrak eksikleri görünür |
-| v0.10 | Beklemede | Ödenmemiş ve gecikmiş faturalar raporu | Ödenmemiş, gecikmiş ve yaklaşan ödemeler listelenir |
+| v0.9 | Tamamlandı | Ana gösterge paneli | Aylık toplamlar, ödenmemişler, gecikmişler ve evrak eksikleri görünür |
+| v0.10 | Sıradaki | Ödenmemiş ve gecikmiş faturalar raporu | Ödenmemiş, gecikmiş ve yaklaşan ödemeler listelenir |
 | v0.11 | Beklemede | Aylık fatura listesi | Seçilen ayın tüm faturaları ve özet toplamları alınır |
 | v0.12 | Beklemede | Türe özgü aylık fatura listesi | Seçilen tür, yıl ve ay için toplamlar alınır |
 | v0.13 | Beklemede | Aboneliğe özgü aylık fatura bilgisi | Tek aboneliğin aylık detayı ve önceki ay karşılaştırması görünür |
@@ -294,6 +294,24 @@ Tamamlananlar:
 - Seçili ödeme kaydına PDF seçme ve kayıtlı ödeme PDF'ini açma akışı eklendi.
 - Kayıp ödeme PDF dosyası algılama altyapısı eklendi.
 - `--self-test` ödeme PDF kopyalama, hash saklama, dosya varlığı, kayıp dosya algısı ve PDF olmayan dosya reddi senaryolarını doğruluyor.
+
+Doğrulama:
+
+- `dotnet build .\src\FaturaTakip.App\FaturaTakip.App.csproj`
+- `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+- `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check`
+
+## v0.9 Sonuç Notu
+
+Tamamlananlar:
+
+- Ana gösterge paneli aylık fatura toplamı ve aylık ödeme toplamını göstermeye başladı.
+- Ödenmemiş fatura sayısı ve kalan ödeme toplamı gösteriliyor.
+- Gecikmiş fatura sayısı ve gecikmiş kalan ödeme toplamı gösteriliyor.
+- Fatura PDF eksik sayısı ve ödeme PDF eksik sayısı gösteriliyor.
+- Temel kayıt sayıları dashboard içinde korunuyor: fatura türü, aktif tür, aktif abonelik ve toplam fatura.
+- Dashboard hesaplama mantığı test edilebilir `DashboardSummaryCalculator` katmanına alındı.
+- `--self-test` aylık toplam, ödeme toplamı, ödenmemiş, gecikmiş, fatura PDF eksik ve ödeme PDF eksik hesaplarını doğruluyor.
 
 Doğrulama:
 

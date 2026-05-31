@@ -135,11 +135,23 @@ Sonuç etiketleri:
 | Ödeme PDF eksikliği görülebiliyor | OK | Ödeme geçmişi satırında PDF durumu ve seçili ödeme PDF bilgi alanı gösteriliyor |
 | Bu fazda rapor, dışa aktarım ve yedekleme eklenmedi | OK | Kapsam v0.9+ fazlara bırakıldı |
 
-## v0.9 ve Sonrası İçin Regresyon Başlıkları
+## v0.9 - Ana Gösterge Paneli
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Bu ay fatura toplamı gösteriliyor | OK | `DashboardSummaryCalculator` ve `--self-test` doğruladı |
+| Bu ay ödeme toplamı gösteriliyor | OK | `DashboardSummaryCalculator` ve `--self-test` doğruladı |
+| Ödenmemiş fatura sayısı ve kalan toplam gösteriliyor | OK | `DashboardSummaryCalculator` ve `--self-test` doğruladı |
+| Gecikmiş fatura sayısı ve kalan toplam gösteriliyor | OK | `DashboardSummaryCalculator` ve `--self-test` doğruladı |
+| Fatura PDF eksikleri gösteriliyor | OK | `DashboardSummaryCalculator` ve `--self-test` doğruladı |
+| Ödeme PDF eksikleri gösteriliyor | OK | `DashboardSummaryCalculator` ve `--self-test` doğruladı |
+| Temel kayıt sayıları korunuyor | OK | Fatura türü, aktif tür, aktif abonelik ve toplam fatura dashboard içinde gösteriliyor |
+| Bu fazda rapor ekranı eklenmedi | OK | Rapor ekranları v0.10+ fazlara bırakıldı |
+
+## v0.10 ve Sonrası İçin Regresyon Başlıkları
 
 Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
-- Dashboard toplamları
 - Ödenmemiş ve gecikmiş fatura raporları
 - Aylık ve yıllık raporlar
 - Excel dışa aktarım
@@ -165,3 +177,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-05-31 | v0.8 başlangıç | OK | v0.7 master merge sonrası build, health-check ve self-test doğrulandı |
 | 2026-05-31 | v0.8 | OK | Ödeme PDF metadata, kopyalama, hash, açma akışı ve eksik dosya kontrolü tamamlandı |
 | 2026-05-31 | v0.9 başlangıç | OK | v0.8 master merge sonrası build, health-check ve self-test doğrulandı |
+| 2026-05-31 | v0.9 | OK | Dashboard aylık toplamlar, ödenmemiş/gecikmiş özetler ve evrak eksikleriyle geliştirildi |

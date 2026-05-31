@@ -14,6 +14,7 @@ Bu depo, kurum aboneliklerine ait elektrik, su, doğalgaz, telefon, internet ve 
 - `v0.6` fatura listesi ve filtreleme geliştirildi.
 - `v0.7` ödeme kayıt altyapısı eklendi.
 - `v0.8` ödeme PDF evrakı ekleme altyapısı eklendi.
+- `v0.9` ana gösterge paneli geliştirildi.
 - Solution dosyası: `FaturaTakip.sln`
 - Uygulama projesi: `src/FaturaTakip.App/FaturaTakip.App.csproj`
 - Geliştirme planı proje içine alındı: `docs/01-gelistirme-plani.md`
@@ -50,13 +51,13 @@ Get-ChildItem -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI'
 
 ## Son Tamamlanan Faz
 
-Son tamamlanan geliştirme fazı `v0.8 - Ödeme Evrakı PDF Ekleme`.
+Son tamamlanan geliştirme fazı `v0.9 - Ana Gösterge Paneli`.
 
-Bu fazda ödeme kayıtlarına PDF evrakı bağlama, seçilen PDF'i `attachments/payments/yyyy/MM` altına kopyalama, ödeme PDF'ini açma, PDF metadata/hash saklama ve kayıp ödeme PDF dosyasını algılama eklendi. Rapor ekranları henüz yapılmadı.
+Bu fazda ana gösterge paneline bu ay fatura/ödeme toplamları, ödenmemiş ve gecikmiş fatura özeti, fatura PDF eksikleri ve ödeme PDF eksikleri eklendi. Rapor ekranları henüz yapılmadı.
 
 ## Sıradaki İş
 
-Sıradaki geliştirme fazı `v0.9 - Ana Gösterge Paneli`.
+Sıradaki geliştirme fazı `v0.10 - Ödenmemiş ve Gecikmiş Faturalar Raporu`.
 
 ## Çalışma Kuralı
 

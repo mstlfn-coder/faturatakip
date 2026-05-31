@@ -1,5 +1,6 @@
 using System.IO;
 using FaturaTakip.App.Data;
+using FaturaTakip.App.Data.Dashboard;
 using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.InvoiceTypes;
 using FaturaTakip.App.Data.Payments;
@@ -276,6 +277,75 @@ public sealed class SelfTestRunner
             Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PdfStatus: InvoicePdfStatusFilter.HasPdf), filterToday).Single().InvoiceNo == "ELK-001", "PDF var filtresi çalışmadı.");
             Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PdfStatus: InvoicePdfStatusFilter.MissingPdf), filterToday).Count == 2, "PDF eksik filtresi çalışmadı.");
             Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(SearchText: "Ana ELK"), filterToday).Count == 2, "Metin arama filtresi çalışmadı.");
+
+            var dashboardInvoices = new[]
+            {
+                new Invoice
+                {
+                    Id = 10,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 100m,
+                    PaidAmount = 25m,
+                    DueDate = new DateTime(2026, 2, 10),
+                    Status = "unpaid",
+                },
+                new Invoice
+                {
+                    Id = 11,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    Amount = 200m,
+                    PaidAmount = 200m,
+                    DueDate = new DateTime(2026, 2, 20),
+                    Status = "paid",
+                    PdfFilePath = "attachments/invoices/2026/02/paid.pdf",
+                },
+                new Invoice
+                {
+                    Id = 12,
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 1,
+                    Amount = 50m,
+                    DueDate = new DateTime(2026, 3, 1),
+                    Status = "unpaid",
+                    PdfFilePath = "attachments/invoices/2026/01/old.pdf",
+                },
+            };
+            var dashboardPayments = new[]
+            {
+                new Payment
+                {
+                    Id = 20,
+                    InvoiceId = 10,
+                    PaymentDate = new DateTime(2026, 2, 12),
+                    Amount = 25m,
+                },
+                new Payment
+                {
+                    Id = 21,
+                    InvoiceId = 11,
+                    PaymentDate = new DateTime(2026, 2, 13),
+                    Amount = 200m,
+                    PdfFilePath = "attachments/payments/2026/02/paid.pdf",
+                },
+            };
+            var dashboardSummary = DashboardSummaryCalculator.Calculate(
+                dashboardInvoices,
+                dashboardPayments,
+                new DateTime(2026, 2, 15),
+                invoice => !invoice.HasPdf,
+                payment => !payment.HasPdf);
+            Assert(dashboardSummary.MonthlyInvoiceCount == 2, "Dashboard aylık fatura sayısı hatalı.");
+            Assert(dashboardSummary.MonthlyInvoiceTotal == 300m, "Dashboard aylık fatura toplamı hatalı.");
+            Assert(dashboardSummary.MonthlyPaymentCount == 2, "Dashboard aylık ödeme sayısı hatalı.");
+            Assert(dashboardSummary.MonthlyPaymentTotal == 225m, "Dashboard aylık ödeme toplamı hatalı.");
+            Assert(dashboardSummary.UnpaidInvoiceCount == 2, "Dashboard ödenmemiş fatura sayısı hatalı.");
+            Assert(dashboardSummary.UnpaidRemainingTotal == 125m, "Dashboard ödenmemiş kalan toplamı hatalı.");
+            Assert(dashboardSummary.OverdueInvoiceCount == 1, "Dashboard gecikmiş fatura sayısı hatalı.");
+            Assert(dashboardSummary.OverdueRemainingTotal == 75m, "Dashboard gecikmiş kalan toplamı hatalı.");
+            Assert(dashboardSummary.MissingInvoicePdfCount == 1, "Dashboard fatura PDF eksik sayısı hatalı.");
+            Assert(dashboardSummary.MissingPaymentPdfCount == 1, "Dashboard ödeme PDF eksik sayısı hatalı.");
 
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(

@@ -18,6 +18,27 @@ public sealed class PaymentRepository
         _paymentAttachmentDirectory = Path.Combine(_rootDirectory, "attachments", "payments");
     }
 
+    public IReadOnlyList<Payment> GetAll()
+    {
+        using var connection = SqliteConnectionFactory.Create(_databasePath);
+        connection.Open();
+
+        using var command = connection.CreateCommand();
+        command.CommandText = SelectSql + """
+
+            ORDER BY payment_date DESC, id DESC;
+            """;
+
+        using var reader = command.ExecuteReader();
+        var payments = new List<Payment>();
+        while (reader.Read())
+        {
+            payments.Add(ReadPayment(reader));
+        }
+
+        return payments;
+    }
+
     public IReadOnlyList<Payment> GetForInvoice(long invoiceId)
     {
         using var connection = SqliteConnectionFactory.Create(_databasePath);
