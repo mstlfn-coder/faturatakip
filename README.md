@@ -59,7 +59,7 @@ Bu fazda aylık fatura listesine `Fatura Türü` filtresi eklendi: seçilen tür
 
 Sıradaki geliştirme fazı `v0.13 - Aboneliğe Özgü Aylık Fatura Bilgisi`.
 
-Aktif çalışma branch'i: `codex/v0.12-ture-ozgu-aylik-fatura-listesi`.
+Aktif çalışma branch'i: `codex/v0.13-abonelige-ozgu-aylik-fatura`.
 
 Bu fazda tek aboneliğin aylık detayları ve önceki ay karşılaştırması gösterilecek. Excel/PDF dışa aktarım, yazdırılabilir PDF rapor üretimi ve yedekleme yapılmayacak.
 
