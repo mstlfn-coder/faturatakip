@@ -59,7 +59,7 @@ Bu fazda raporlar ekranına abonelik bazlı yıllık (12 ay) özet eklendi: topl
 
 Sıradaki geliştirme fazı `v0.15 - Türe Özgü Yıllık Fatura Listesi`.
 
-Aktif çalışma branch'i: `codex/v0.14-abonelige-ozgu-yillik-fatura`.
+Aktif çalışma branch'i: `codex/v0.15-ture-ozgu-yillik-fatura-listesi`.
 
 Bu fazda tür bazlı yıllık toplam ve abonelik dağılımı alınacak. Excel/PDF dışa aktarım, yazdırılabilir PDF rapor üretimi ve yedekleme yapılmayacak.
 
