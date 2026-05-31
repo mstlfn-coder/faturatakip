@@ -225,6 +225,15 @@ Sonuç etiketleri:
 | Kolonlar doğru ve okunabilir | OK | Başlıklar + temel formatlar |
 | `--self-test` temel excel exportu doğruluyor | OK | En az bir dosya oluşumu |
 
+## v0.18 - Yazdırılabilir PDF Raporlar
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| PDF rapor butonu görünüyor | TODO | İlgili liste/rapor ekranlarında |
+| PDF A4 sayfa düzeni doğru | TODO | Başlık + özet + tablo + footer |
+| Filtre bilgileri PDF üstünde görünüyor | TODO | Plan dokümanına uygun |
+| `--self-test` temel PDF üretimini doğruluyor | TODO | En az bir dosya oluşumu |
+
 ## v0.10 ve Sonrası İçin Regresyon Başlıkları
 
 Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:

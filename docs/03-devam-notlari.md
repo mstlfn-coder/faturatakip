@@ -229,6 +229,22 @@ v0.17 sonuç notu:
 - `Raporlar` ekranına `Excel'e Aktar` eklendi; aktif sekme tablosu `exports/` altına `.xlsx` olarak yazılır.
 - `--self-test` temel excel export dosya oluşumunu doğruluyor.
 
+v0.18 başlangıç talimatı:
+
+```text
+C# WPF + SQLite tabanlı kurum fatura takip programında v0.18 fazını uygula.
+
+Önce README.md, docs/00-codex-devam-kilavuzu.md, docs/03-devam-notlari.md, ROADMAP.md, REGRESYON.md ve docs/04-excel-pdf-rapor-tasarim-plani.md dosyalarını oku.
+
+Bu fazda yalnızca yazdırılabilir PDF raporlar geliştirilecek.
+
+PDF tasarımına başlamadan önce kullanıcıdan en az 1 adet Excel rapor örneği istenecek (kolonlar, toplamlar ve sayfa düzeni birebir bu örneğe göre yapılacak).
+
+Bu fazda Excel dışa aktarım, yedekleme ve farklı kapsam işleri yapılmayacak.
+
+Faz sonunda derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
+```
+
 v0.16 başlangıç talimatı:
 
 ```text
