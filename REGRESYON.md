@@ -207,6 +207,15 @@ Sonuç etiketleri:
 | Abonelik dağılımı listesi görünüyor | OK | Seçilen tür+ yıl için abonelik bazlı toplamlar sıralanır |
 | `--self-test` tür yıllık raporunu doğruluyor | OK | `InvoiceTypeYearlyReportCalculator` senaryosu eklendi |
 
+## v0.16 - Evrak Eksikliği ve Dosya Kontrol Raporu
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Evrak kontrol sekmesi açılıyor | TODO | Raporlar ekranında yeni sekme |
+| Eksik PDF listesi görünüyor | TODO | Kayıt var ama dosya yok/erişilemiyor |
+| Aynı hash uyarıları görünüyor | TODO | Muhtemel mükerrer evraklar gruplu gösterilir |
+| `--self-test` evrak kontrolünü doğruluyor | TODO | En az bir eksik dosya ve bir aynı-hash senaryosu |
+
 ## v0.10 ve Sonrası İçin Regresyon Başlıkları
 
 Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:

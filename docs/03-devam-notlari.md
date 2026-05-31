@@ -197,6 +197,22 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 
 Bu branch'teki görev yalnızca `v0.15` kapsamını uygulamak olmalı.
 
+v0.16 başlangıç talimatı:
+
+```text
+C# WPF + SQLite tabanlı kurum fatura takip programında v0.16 fazını uygula.
+
+Önce README.md, docs/00-codex-devam-kilavuzu.md, docs/03-devam-notlari.md, ROADMAP.md ve REGRESYON.md dosyalarını oku.
+
+Bu fazda yalnızca evrak eksikliği ve dosya kontrol raporu geliştirilecek.
+
+Rapor, eksik PDF (kayıt var ama dosya yok), kayıp dosya/erişilemeyen yol ve aynı hash (muhtemel mükerrer evrak) uyarılarını görünür kılacak.
+
+Excel/PDF dışa aktarım, yazdırılabilir PDF rapor ve yedekleme yapılmayacak.
+
+Faz sonunda derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
+```
+
 v0.15 başlangıç talimatı:
 
 ```text
