@@ -21,6 +21,7 @@ public partial class InvoicesView : UserControl
     private string? _pendingPdfSourcePath;
     private bool _isInitialized;
     private bool _isEditingExisting;
+    private bool _isRefreshingFilterOptions;
 
     public event EventHandler? InvoicesChanged;
 
@@ -38,6 +39,27 @@ public partial class InvoicesView : UserControl
         InvoiceMonthInput.ItemsSource = Enumerable.Range(1, 12)
             .Select(month => new MonthOption(month, TurkishCulture.DateTimeFormat.GetMonthName(month)))
             .ToList();
+        InvoiceMonthFilterInput.ItemsSource = new[] { new MonthFilterOption("Tüm Aylar", null) }
+            .Concat(Enumerable.Range(1, 12)
+                .Select(month => new MonthFilterOption(TurkishCulture.DateTimeFormat.GetMonthName(month), month)))
+            .ToList();
+        InvoiceMonthFilterInput.SelectedIndex = 0;
+        InvoicePaymentStatusFilterInput.ItemsSource = new List<PaymentStatusFilterOption>
+        {
+            new("Tüm Durumlar", InvoicePaymentStatusFilter.All),
+            new("Ödenmedi", InvoicePaymentStatusFilter.Unpaid),
+            new("Ödendi", InvoicePaymentStatusFilter.Paid),
+            new("İptal", InvoicePaymentStatusFilter.Canceled),
+            new("Gecikmiş", InvoicePaymentStatusFilter.Overdue),
+        };
+        InvoicePaymentStatusFilterInput.SelectedIndex = 0;
+        InvoicePdfStatusFilterInput.ItemsSource = new List<PdfStatusFilterOption>
+        {
+            new("Tüm PDF", InvoicePdfStatusFilter.All),
+            new("PDF Var", InvoicePdfStatusFilter.HasPdf),
+            new("PDF Eksik", InvoicePdfStatusFilter.MissingPdf),
+        };
+        InvoicePdfStatusFilterInput.SelectedIndex = 0;
 
         RefreshSubscriptionLists();
         RefreshInvoices();
@@ -61,6 +83,7 @@ public partial class InvoicesView : UserControl
             return;
         }
 
+        var selectedSubscriptionId = (InvoiceSubscriptionFilterInput.SelectedItem as SubscriptionFilterOption)?.SubscriptionId;
         _subscriptions = _subscriptionRepository.GetAll();
         InvoiceSubscriptionInput.ItemsSource = _subscriptions;
 
@@ -73,7 +96,7 @@ public partial class InvoicesView : UserControl
             item.Id)));
 
         InvoiceSubscriptionFilterInput.ItemsSource = filters;
-        InvoiceSubscriptionFilterInput.SelectedIndex = 0;
+        InvoiceSubscriptionFilterInput.SelectedItem = filters.FirstOrDefault(item => item.SubscriptionId == selectedSubscriptionId) ?? filters[0];
     }
 
     private void RefreshInvoices(long? selectedId = null)
@@ -93,7 +116,7 @@ public partial class InvoicesView : UserControl
         OverdueInvoiceCountText.Text = overdueCount.ToString(CultureInfo.InvariantCulture);
         MissingPdfCountText.Text = missingPdfCount.ToString(CultureInfo.InvariantCulture);
 
-        RefreshPeriodFilter();
+        RefreshDynamicFilterOptions();
 
         var filtered = ApplyFilters(_invoices).ToList();
         InvoiceGrid.ItemsSource = filtered;
@@ -112,58 +135,56 @@ public partial class InvoicesView : UserControl
         ApplySelectedInvoice(selected);
     }
 
-    private void RefreshPeriodFilter()
+    private void RefreshDynamicFilterOptions()
     {
-        var selectedValue = (InvoicePeriodFilterInput.SelectedItem as PeriodFilterOption)?.Value;
-        var periods = new List<PeriodFilterOption>
-        {
-            new("Tüm Dönemler", null),
-        };
-        periods.AddRange(_invoices
-            .Select(item => item.Period)
-            .Distinct(StringComparer.Ordinal)
-            .OrderByDescending(item => item)
-            .Select(item => new PeriodFilterOption(item, item)));
+        var selectedYear = (InvoiceYearFilterInput.SelectedItem as YearFilterOption)?.Year;
+        var selectedInvoiceTypeId = (InvoiceTypeFilterInput.SelectedItem as InvoiceTypeFilterOption)?.InvoiceTypeId;
 
-        InvoicePeriodFilterInput.ItemsSource = periods;
-        InvoicePeriodFilterInput.SelectedItem = periods.FirstOrDefault(item => item.Value == selectedValue) ?? periods[0];
+        _isRefreshingFilterOptions = true;
+        try
+        {
+            var years = new List<YearFilterOption>
+            {
+                new("Tüm Yıllar", null),
+            };
+            years.AddRange(_invoices
+                .Select(item => item.InvoiceYear)
+                .Distinct()
+                .OrderByDescending(item => item)
+                .Select(item => new YearFilterOption(item.ToString(CultureInfo.InvariantCulture), item)));
+            InvoiceYearFilterInput.ItemsSource = years;
+            InvoiceYearFilterInput.SelectedItem = years.FirstOrDefault(item => item.Year == selectedYear) ?? years[0];
+
+            var invoiceTypes = new List<InvoiceTypeFilterOption>
+            {
+                new("Tüm Türler", null),
+            };
+            invoiceTypes.AddRange(_invoices
+                .GroupBy(item => new { item.InvoiceTypeId, item.InvoiceTypeName })
+                .OrderBy(group => group.Key.InvoiceTypeName, StringComparer.CurrentCultureIgnoreCase)
+                .Select(group => new InvoiceTypeFilterOption(group.Key.InvoiceTypeName, group.Key.InvoiceTypeId)));
+            InvoiceTypeFilterInput.ItemsSource = invoiceTypes;
+            InvoiceTypeFilterInput.SelectedItem = invoiceTypes.FirstOrDefault(item => item.InvoiceTypeId == selectedInvoiceTypeId) ?? invoiceTypes[0];
+        }
+        finally
+        {
+            _isRefreshingFilterOptions = false;
+        }
     }
 
     private IEnumerable<Invoice> ApplyFilters(IEnumerable<Invoice> source)
     {
-        var query = source;
-
-        if (InvoiceSubscriptionFilterInput.SelectedItem is SubscriptionFilterOption { SubscriptionId: { } subscriptionId })
-        {
-            query = query.Where(item => item.SubscriptionId == subscriptionId);
-        }
-
-        if (InvoicePeriodFilterInput.SelectedItem is PeriodFilterOption { Value: { } period })
-        {
-            query = query.Where(item => item.Period == period);
-        }
-
-        var search = InvoiceSearchInput.Text.Trim();
-        if (!string.IsNullOrWhiteSpace(search))
-        {
-            query = query.Where(item =>
-                Contains(item.InvoiceTypeName, search) ||
-                Contains(item.SubscriptionName, search) ||
-                Contains(item.InstitutionName, search) ||
-                Contains(item.InvoiceNo, search));
-        }
-
-        return query;
-    }
-
-    private static bool Contains(string value, string search)
-    {
-        return value.Contains(search, StringComparison.CurrentCultureIgnoreCase);
+        var criteria = ReadFilterCriteria();
+        return InvoiceFilter.Apply(
+            source,
+            criteria,
+            DateTime.Today,
+            invoice => _invoiceRepository?.IsPdfMissing(invoice) ?? !invoice.HasPdf);
     }
 
     private void InvoiceFilter_Changed(object sender, RoutedEventArgs e)
     {
-        if (!_isInitialized)
+        if (!_isInitialized || _isRefreshingFilterOptions)
         {
             return;
         }
@@ -182,6 +203,32 @@ public partial class InvoicesView : UserControl
         {
             InvoiceGrid.SelectedItem = selected;
         }
+    }
+
+    private void ClearInvoiceFiltersButton_Click(object sender, RoutedEventArgs e)
+    {
+        InvoiceSearchInput.Text = string.Empty;
+        InvoiceTypeFilterInput.SelectedIndex = 0;
+        InvoiceSubscriptionFilterInput.SelectedIndex = 0;
+        InvoiceYearFilterInput.SelectedIndex = 0;
+        InvoiceMonthFilterInput.SelectedIndex = 0;
+        InvoicePaymentStatusFilterInput.SelectedIndex = 0;
+        InvoicePdfStatusFilterInput.SelectedIndex = 0;
+
+        var filtered = ApplyFilters(_invoices).ToList();
+        InvoiceGrid.ItemsSource = filtered;
+    }
+
+    private InvoiceFilterCriteria ReadFilterCriteria()
+    {
+        return new InvoiceFilterCriteria(
+            Year: (InvoiceYearFilterInput.SelectedItem as YearFilterOption)?.Year,
+            Month: (InvoiceMonthFilterInput.SelectedItem as MonthFilterOption)?.Month,
+            InvoiceTypeId: (InvoiceTypeFilterInput.SelectedItem as InvoiceTypeFilterOption)?.InvoiceTypeId,
+            SubscriptionId: (InvoiceSubscriptionFilterInput.SelectedItem as SubscriptionFilterOption)?.SubscriptionId,
+            PaymentStatus: (InvoicePaymentStatusFilterInput.SelectedItem as PaymentStatusFilterOption)?.Value ?? InvoicePaymentStatusFilter.All,
+            PdfStatus: (InvoicePdfStatusFilterInput.SelectedItem as PdfStatusFilterOption)?.Value ?? InvoicePdfStatusFilter.All,
+            SearchText: InvoiceSearchInput.Text);
     }
 
     private void InvoiceGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -445,7 +492,15 @@ public partial class InvoicesView : UserControl
 
     private sealed record MonthOption(int Value, string Label);
 
+    private sealed record InvoiceTypeFilterOption(string Label, long? InvoiceTypeId);
+
     private sealed record SubscriptionFilterOption(string Label, long? SubscriptionId);
 
-    private sealed record PeriodFilterOption(string Label, string? Value);
+    private sealed record YearFilterOption(string Label, int? Year);
+
+    private sealed record MonthFilterOption(string Label, int? Month);
+
+    private sealed record PaymentStatusFilterOption(string Label, InvoicePaymentStatusFilter Value);
+
+    private sealed record PdfStatusFilterOption(string Label, InvoicePdfStatusFilter Value);
 }

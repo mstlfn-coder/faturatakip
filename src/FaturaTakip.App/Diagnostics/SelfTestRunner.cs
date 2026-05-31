@@ -125,6 +125,68 @@ public sealed class SelfTestRunner
                 () => invoiceRepository.AttachPdf(updatedInvoice.Id, invalidAttachmentPath),
                 "PDF olmayan dosya eklenebildi.");
 
+            var filterSamples = new[]
+            {
+                new Invoice
+                {
+                    Id = 1,
+                    SubscriptionId = 10,
+                    InvoiceTypeId = 100,
+                    InvoiceTypeName = "Elektrik",
+                    SubscriptionName = "Ana Bina",
+                    InstitutionName = "Test Kurumu",
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 1,
+                    DueDate = new DateTime(2026, 1, 15),
+                    InvoiceNo = "ELK-001",
+                    Status = "unpaid",
+                    Description = "Ocak elektrik",
+                    PdfFilePath = "attachments/invoices/2026/01/elk.pdf",
+                    PdfOriginalFileName = "elk.pdf",
+                },
+                new Invoice
+                {
+                    Id = 2,
+                    SubscriptionId = 11,
+                    InvoiceTypeId = 101,
+                    InvoiceTypeName = "Su",
+                    SubscriptionName = "Ek Hizmet Binası",
+                    InstitutionName = "Test Kurumu",
+                    InvoiceYear = 2026,
+                    InvoiceMonth = 2,
+                    DueDate = new DateTime(2026, 3, 1),
+                    InvoiceNo = "SU-001",
+                    Status = "paid",
+                    Description = "Şubat su",
+                },
+                new Invoice
+                {
+                    Id = 3,
+                    SubscriptionId = 10,
+                    InvoiceTypeId = 100,
+                    InvoiceTypeName = "Elektrik",
+                    SubscriptionName = "Ana Bina",
+                    InstitutionName = "Test Kurumu",
+                    InvoiceYear = 2025,
+                    InvoiceMonth = 12,
+                    DueDate = new DateTime(2026, 1, 1),
+                    InvoiceNo = "ELK-OLD",
+                    Status = "canceled",
+                    Description = "Eski kayıt",
+                },
+            };
+            var filterToday = new DateTime(2026, 2, 1);
+
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(Year: 2026), filterToday).Count == 2, "Yıl filtresi çalışmadı.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(Month: 1), filterToday).Single().InvoiceNo == "ELK-001", "Ay filtresi çalışmadı.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(InvoiceTypeId: 100), filterToday).Count == 2, "Fatura türü filtresi çalışmadı.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(SubscriptionId: 11), filterToday).Single().InvoiceNo == "SU-001", "Abonelik filtresi çalışmadı.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PaymentStatus: InvoicePaymentStatusFilter.Paid), filterToday).Single().InvoiceNo == "SU-001", "Ödeme durumu filtresi çalışmadı.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PaymentStatus: InvoicePaymentStatusFilter.Overdue), filterToday).Single().InvoiceNo == "ELK-001", "Gecikmiş fatura filtresi çalışmadı.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PdfStatus: InvoicePdfStatusFilter.HasPdf), filterToday).Single().InvoiceNo == "ELK-001", "PDF var filtresi çalışmadı.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PdfStatus: InvoicePdfStatusFilter.MissingPdf), filterToday).Count == 2, "PDF eksik filtresi çalışmadı.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(SearchText: "Ana ELK"), filterToday).Count == 2, "Metin arama filtresi çalışmadı.");
+
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(
                     updatedSubscription.Id,

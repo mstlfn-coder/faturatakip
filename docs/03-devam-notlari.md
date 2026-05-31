@@ -6,8 +6,8 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 
 - Tarih: 2026-05-31
 - Aktif branch: `codex/v0.6-fatura-listesi-filtreleme`
-- Son tamamlanan faz: `v0.5 - Fatura PDF Evrakı Ekleme`
-- Aktif faz: `v0.6 - Fatura Listesi ve Filtreleme`
+- Son tamamlanan faz: `v0.6 - Fatura Listesi ve Filtreleme`
+- Sıradaki faz: `v0.7 - Ödeme Kayıt Altyapısı`
 - İlk dokümantasyon commit'i: `e0de4f9 docs: initialize project planning and continuity notes`
 - `v0.1` commit'i: `3b3e20a feat: initialize wpf sqlite project skeleton`
 - `v0.2` commit'i: `c8ad90c feat: add invoice type management`
@@ -15,6 +15,7 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 - `v0.4` commit'i: `252bbbd feat: add invoice entry foundation`
 - PDF rapor örneği notu commit'i: `c0643ee docs: note pdf report sample requirement`
 - `v0.5` commit'i: `2192c69 feat: add invoice pdf attachments`
+- `v0.6` commit mesajı: `feat: improve invoice list filters`
 
 ## Bu Oturumda Yapılanlar
 
@@ -102,23 +103,31 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 76. `v0.5` branch'i `master` içine fast-forward merge edildi.
 77. Merge sonrası `master` üzerinde build, health-check, self-test ve kısa uygulama başlatma smoke testleri başarılı çalıştı.
 78. `codex/v0.6-fatura-listesi-filtreleme` branch'i açıldı.
+79. Fatura filtreleme mantığı `InvoiceFilter` ve `InvoiceFilterCriteria` sınıflarına alındı.
+80. Fatura ekranına yıl, ay, fatura türü, abonelik, ödeme durumu, PDF durumu ve filtreleri temizleme kontrolleri eklendi.
+81. Serbest metin araması fatura no, tür, abonelik, kurum, açıklama ve PDF orijinal dosya adını kapsayacak şekilde genişletildi.
+82. `--self-test` yıl, ay, tür, abonelik, ödeme durumu, gecikmiş, PDF var/eksik ve çok terimli arama filtrelerini doğrulayacak şekilde genişletildi.
+83. `dotnet build FaturaTakip.sln` başarılı çalıştı.
+84. `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
+85. `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
+86. Uygulama kısa süreli başlatma testinden geçti.
 
-## Mevcut Codex Görevi
+## Bir Sonraki Codex Görevi
 
-Bu branch'teki görev yalnızca `v0.6` kapsamını uygulamak olmalı.
+Sıradaki görev yalnızca `v0.7` kapsamını uygulamak olmalı.
 
 Başlangıç talimatı:
 
 ```text
-C# WPF + SQLite tabanlı kurum fatura takip programında v0.6 fazını uygula.
+C# WPF + SQLite tabanlı kurum fatura takip programında v0.7 fazını uygula.
 
 Önce README.md, docs/00-codex-devam-kilavuzu.md, docs/03-devam-notlari.md, ROADMAP.md ve REGRESYON.md dosyalarını oku.
 
-Bu fazda yalnızca fatura listesi ve filtreleme geliştirilecek.
+Bu fazda yalnızca ödeme kayıt altyapısı geliştirilecek.
 
-Yıl, ay, fatura türü, abonelik, ödeme durumu, PDF durumu ve fatura no/metin aramasıyla filtreleme desteklenecek.
+Faturaya ödeme kaydı ekleme, ödeme tutarı/tarihi/açıklaması saklama ve fatura ödeme durumunu gösterme desteklenecek.
 
-Ödeme kaydı, ödeme evrakı, rapor, dışa aktarım ve yedekleme yapılmayacak.
+Ödeme evrakı PDF'i, rapor, dışa aktarım ve yedekleme yapılmayacak.
 
 Faz sonunda uygulamayı çalıştır veya en azından derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```
