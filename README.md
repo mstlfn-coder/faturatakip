@@ -23,6 +23,7 @@ Bu depo, kurum aboneliklerine ait elektrik, su, doğalgaz, telefon, internet ve 
 - `v0.15` raporlar: türe özgü yıllık toplam + abonelik dağılımı eklendi.
 - `v0.16` raporlar: evrak kontrol (PDF yok/kayıp + aynı hash uyarıları) eklendi.
 - `v0.17` Excel dışa aktarım eklendi (faturalar ve raporlar).
+- `v0.18` PDF raporları eklendi (faturalar ve raporlar).
 - Solution dosyası: `FaturaTakip.sln`
 - Uygulama projesi: `src/FaturaTakip.App/FaturaTakip.App.csproj`
 - Geliştirme planı proje içine alındı: `docs/01-gelistirme-plani.md`
@@ -59,15 +60,15 @@ Get-ChildItem -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI'
 
 ## Son Tamamlanan Faz
 
-Son tamamlanan geliştirme fazı `v0.17 - Excel Dışa Aktarım`.
+Son tamamlanan geliştirme fazı `v0.18 - Yazdırılabilir PDF Raporlar`.
 
-Bu fazda `Faturalar` ve `Raporlar` ekranlarına `Excel'e Aktar` butonu eklendi. Görünen liste/rapor, `exports/` altına zaman damgalı `.xlsx` dosyası olarak yazılır.
+Bu fazda `Faturalar` ve `Raporlar` ekranlarına `PDF'e Aktar` butonu eklendi. Görünen liste/rapor, `exports/` altına zaman damgalı `.pdf` dosyası olarak yazılır (A4, başlık/özet/tablo/footer).
 
 ## Sıradaki İş
 
-Sıradaki geliştirme fazı `v0.18 - Yazdırılabilir PDF Raporlar`.
+Sıradaki geliştirme fazı `v0.19 - Manuel Güvenli Yedekleme`.
 
-Bu fazda, kullanıcıdan alınacak Excel örneğine göre temel raporlar PDF olarak üretilebilir hale getirilecek. Bu faza başlamadan önce Excel örneğini istemeyi unutma.
+Bu fazda veritabanı ve evraklar ZIP yedek olarak alınacak.
 
 ## Çalışma Kuralı
 

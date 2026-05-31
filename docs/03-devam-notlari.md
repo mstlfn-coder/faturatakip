@@ -245,6 +245,15 @@ Bu fazda Excel dışa aktarım, yedekleme ve farklı kapsam işleri yapılmayaca
 Faz sonunda derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```
 
+v0.18 sonuç notu (2026-06-01):
+
+- PDF rapor motoru eklendi (QuestPDF).
+- `Raporlar` ekranına `PDF'e Aktar` eklendi; aktif sekme A4 PDF olarak `exports/` altına yazılır.
+- `Faturalar` ekranına `PDF'e Aktar` eklendi; filtrelenmiş liste A4 PDF olarak `exports/` altına yazılır.
+- PDF şablonu standart: başlık + filtre bloğu + özet + tablo + footer (sayfa no) + imza alanı.
+- `--self-test` temel PDF dosyası oluşumunu doğruluyor.
+- `dotnet build`, `--self-test` ve `--health-check` başarılı çalıştı.
+
 v0.16 başlangıç talimatı:
 
 ```text

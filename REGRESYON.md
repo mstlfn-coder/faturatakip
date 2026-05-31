@@ -229,10 +229,10 @@ Sonuç etiketleri:
 
 | Kontrol | Durum | Not |
 |---|---|---|
-| PDF rapor butonu görünüyor | TODO | İlgili liste/rapor ekranlarında |
-| PDF A4 sayfa düzeni doğru | TODO | Başlık + özet + tablo + footer |
-| Filtre bilgileri PDF üstünde görünüyor | TODO | Plan dokümanına uygun |
-| `--self-test` temel PDF üretimini doğruluyor | TODO | En az bir dosya oluşumu |
+| PDF rapor butonu görünüyor | OK | Faturalar ve Raporlar ekranında |
+| PDF A4 sayfa düzeni doğru | OK | Başlık + özet + tablo + footer + imza alanı |
+| Filtre bilgileri PDF üstünde görünüyor | OK | Dönem/oluşturan/filtre alanları |
+| `--self-test` temel PDF üretimini doğruluyor | OK | En az bir dosya oluşumu |
 
 ## v0.10 ve Sonrası İçin Regresyon Başlıkları
 
@@ -269,3 +269,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-05-31 | v0.15 | OK | Tür yıllık raporu eklendi; build, self-test ve health-check doğrulandı |
 | 2026-05-31 | v0.16 | OK | Evrak kontrol raporu eklendi; build, self-test ve health-check doğrulandı |
 | 2026-06-01 | v0.17 | OK | Excel dışa aktarım eklendi; build, self-test ve health-check doğrulandı |
+| 2026-06-01 | v0.18 | OK | PDF rapor export eklendi; build, self-test ve health-check doğrulandı |
