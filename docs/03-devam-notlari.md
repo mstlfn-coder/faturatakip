@@ -6,8 +6,8 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 
 - Tarih: 2026-05-31
 - Aktif branch: `codex/v0.8-odeme-pdf-evraki`
-- Son tamamlanan faz: `v0.7 - Ödeme Kayıt Altyapısı`
-- Aktif faz: `v0.8 - Ödeme Evrakı PDF Ekleme`
+- Son tamamlanan faz: `v0.8 - Ödeme Evrakı PDF Ekleme`
+- Sıradaki faz: `v0.9 - Ana Gösterge Paneli`
 - İlk dokümantasyon commit'i: `e0de4f9 docs: initialize project planning and continuity notes`
 - `v0.1` commit'i: `3b3e20a feat: initialize wpf sqlite project skeleton`
 - `v0.2` commit'i: `c8ad90c feat: add invoice type management`
@@ -135,23 +135,41 @@ Bu dosya, yeni Codex chatlerinde kaldığımız yeri hızlıca anlamak için tut
 106. Merge sonrası `master` üzerinde `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
 107. Merge sonrası `master` üzerinde `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
 108. `codex/v0.8-odeme-pdf-evraki` branch'i açıldı.
+109. `v0.8` başlangıç dokümantasyonu commit edildi: `7699971 docs: prepare v0.8 branch context`.
+110. `payments` tablosuna PDF yolu, orijinal dosya adı, SHA-256 hash ve eklenme zamanı alanları için `0007` migration eklendi.
+111. Ödeme PDF dosyası doğrulama, güvenli ASCII dosya adıyla `attachments/payments/yyyy/MM` altına kopyalama ve metadata kaydetme repository akışı eklendi.
+112. Ödeme modeline PDF durumu ve ödeme PDF eksikliği algılama altyapısı eklendi.
+113. Fatura ekranındaki ödeme geçmişine PDF durumu, seçili ödeme için PDF seçme ve kayıtlı ödeme PDF'ini açma akışı eklendi.
+114. `--self-test` ödeme PDF kopyalama, hash saklama, dosya varlığı, kayıp dosya algısı ve PDF olmayan ödeme dosyası reddi senaryolarıyla genişletildi.
+115. `dotnet build .\src\FaturaTakip.App\FaturaTakip.App.csproj` başarılı çalıştı.
+116. `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` başarılı çalıştı.
+117. `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` başarılı çalıştı.
+118. `README.md`, `ROADMAP.md`, `REGRESYON.md`, proje kararları ve devam notları v0.8 tamamlandı / v0.9 sıradaki olacak şekilde güncellendi.
 
-## Mevcut Codex Görevi
+## Sıradaki Codex Görevi
 
-Bu branch'teki görev yalnızca `v0.8` kapsamını uygulamak olmalı.
+`v0.8` kapsamı tamamlandı. Yeni chate geçilirse önce commit/merge durumu kontrol edilmeli.
 
-v0.8 başlangıç talimatı:
+Sıradaki güvenli operasyon sırası:
+
+1. `git status --short --branch` ile çalışma ağacı kontrol edilsin.
+2. `v0.8` commit'i henüz oluşmadıysa `feat: add payment pdf attachments` mesajıyla commit edilsin.
+3. Commit oluştuysa `master` branch'ine fast-forward merge edilsin.
+4. Merge sonrası build, health-check ve self-test tekrar çalıştırılsın.
+5. `codex/v0.9-dashboard` branch'i açılarak roadmapte `Sıradaki` olan v0.9 uygulanmaya başlansın.
+
+v0.9 başlangıç talimatı:
 
 ```text
-C# WPF + SQLite tabanlı kurum fatura takip programında v0.8 fazını uygula.
+C# WPF + SQLite tabanlı kurum fatura takip programında v0.9 fazını uygula.
 
 Önce README.md, docs/00-codex-devam-kilavuzu.md, docs/03-devam-notlari.md, ROADMAP.md ve REGRESYON.md dosyalarını oku.
 
-Bu fazda yalnızca ödeme evrakı PDF ekleme altyapısı geliştirilecek.
+Bu fazda yalnızca ana gösterge paneli geliştirilecek.
 
-Ödeme kayıtlarına PDF evrakı bağlama, PDF'i uygulama klasörüne kopyalama, açma ve eksik dosya durumunu gösterme desteklenecek.
+Aylık toplamlar, ödenmemişler, gecikmişler, fatura PDF eksikleri ve ödeme PDF eksikleri gösterilecek.
 
-Rapor, dışa aktarım ve yedekleme yapılmayacak.
+Rapor ekranları, Excel/PDF dışa aktarım ve yedekleme yapılmayacak.
 
 Faz sonunda uygulamayı çalıştır veya en azından derleme/test doğrulamasını yap; sonra ROADMAP.md, REGRESYON.md ve docs/03-devam-notlari.md dosyalarını güncelle.
 ```

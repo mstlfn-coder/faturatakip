@@ -28,6 +28,9 @@ Bu dosya, geliştirme sırasında alınan kalıcı kararları kaydeder. Kararlar
 | 2026-05-31 | Ödemeler ayrı `payments` tablosunda saklanacak | Bir faturaya birden fazla kısmi ödeme eklenebilmesi ve geçmişin korunması gerekir |
 | 2026-05-31 | Fatura ödeme durumu ödeme toplamından güncellenecek | Kısmi ödeme, tam ödeme ve fatura tutarı değişikliği tutarlı kalmalı |
 | 2026-05-31 | Kalan tutarı aşan ödeme engellenecek | Kullanıcı hatasıyla fazla ödeme kaydı oluşmasını önler |
+| 2026-05-31 | Ödeme PDF evrakları `attachments/payments/yyyy/MM` altında saklanacak | Ödeme tarihine göre dosya düzeni rapor ve eksik evrak kontrollerini kolaylaştırır |
+| 2026-05-31 | Ödeme PDF evrak hash algoritması SHA-256 olacak | Fatura PDF evraklarıyla aynı bütünlük ve tekrar kontrol yaklaşımı korunur |
+| 2026-05-31 | Ödeme PDF yolları uygulama köküne göre göreli saklanacak | Klasör taşınabilirliği ve yedek geri yükleme senaryoları kolaylaşır |
 
 ## Açık Kararlar
 

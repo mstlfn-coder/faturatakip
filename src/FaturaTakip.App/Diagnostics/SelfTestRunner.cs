@@ -178,6 +178,20 @@ public sealed class SelfTestRunner
                     "Olmayan fatura")),
                 "Olmayan faturaya ödeme eklenebildi.");
 
+            var samplePaymentPdfPath = Path.Combine(testRoot, "sample-payment.pdf");
+            File.WriteAllText(samplePaymentPdfPath, "%PDF-1.4\n1 0 obj\n<<>>\nendobj\ntrailer\n<<>>\n%%EOF");
+
+            var paymentWithPdf = paymentRepository.AttachPdf(partialPayment.Id, samplePaymentPdfPath);
+            Assert(paymentWithPdf.HasPdf, "Ödeme PDF metadata kaydı oluşturulmadı.");
+            Assert(paymentWithPdf.PdfOriginalFileName == "sample-payment.pdf", "Ödeme PDF orijinal dosya adı saklanmadı.");
+            Assert(!string.IsNullOrWhiteSpace(paymentWithPdf.PdfSha256Hash), "Ödeme PDF hash bilgisi saklanmadı.");
+            Assert(paymentWithPdf.PdfFilePath.StartsWith(Path.Combine("attachments", "payments", "2026", "01"), StringComparison.Ordinal), "Ödeme PDF hedef klasörü ödeme tarihi altında değil.");
+            Assert(paymentRepository.PdfFileExists(paymentWithPdf), "Kopyalanan ödeme PDF dosyası bulunamadı.");
+
+            var attachedPaymentPdfPath = paymentRepository.GetPdfAbsolutePath(paymentWithPdf);
+            File.Delete(attachedPaymentPdfPath);
+            Assert(paymentRepository.IsPdfMissing(paymentWithPdf), "Kayıp ödeme PDF dosyası algılanmadı.");
+
             var samplePdfPath = Path.Combine(testRoot, "sample-invoice.pdf");
             File.WriteAllText(samplePdfPath, "%PDF-1.4\n1 0 obj\n<<>>\nendobj\ntrailer\n<<>>\n%%EOF");
 
@@ -197,6 +211,9 @@ public sealed class SelfTestRunner
             AssertThrows(
                 () => invoiceRepository.AttachPdf(updatedInvoice.Id, invalidAttachmentPath),
                 "PDF olmayan dosya eklenebildi.");
+            AssertThrows(
+                () => paymentRepository.AttachPdf(partialPayment.Id, invalidAttachmentPath),
+                "PDF olmayan ödeme dosyası eklenebildi.");
 
             var filterSamples = new[]
             {

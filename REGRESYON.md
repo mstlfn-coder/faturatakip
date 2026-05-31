@@ -121,11 +121,24 @@ Sonuç etiketleri:
 | Fatura tutarı değişince ödeme durumu yeniden hesaplanıyor | OK | `--self-test` tutar artırma sonrası kalan ödeme durumunu doğruladı |
 | Bu fazda ödeme PDF evrakı eklenmedi | OK | Kapsam v0.8'e bırakıldı |
 
-## v0.8 ve Sonrası İçin Regresyon Başlıkları
+## v0.8 - Ödeme Evrakı PDF Ekleme
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Ödeme kaydına PDF eklenebiliyor | OK | `--self-test` ödeme PDF ekleme akışını doğruladı |
+| Ödeme PDF'i uygulama klasörüne kopyalanıyor | OK | Hedef klasör `attachments/payments/yyyy/MM` altında oluşturuluyor |
+| Ödeme PDF orijinal adı saklanıyor | OK | `--self-test` orijinal dosya adını doğruladı |
+| Ödeme PDF SHA-256 hash bilgisi saklanıyor | OK | `--self-test` hash alanının dolduğunu doğruladı |
+| Ödeme PDF olmayan dosya reddediliyor | OK | `--self-test` PDF olmayan ödeme dosyası ekleme girişimini doğruladı |
+| Kayıp ödeme PDF dosyası algılanıyor | OK | `--self-test` kopyalanan ödeme PDF'i silinince eksik durumunu doğruladı |
+| Kayıtlı ödeme PDF açma akışı mevcut | OK | UI seçili ödeme PDF'ini varsayılan sistem uygulamasıyla açıyor |
+| Ödeme PDF eksikliği görülebiliyor | OK | Ödeme geçmişi satırında PDF durumu ve seçili ödeme PDF bilgi alanı gösteriliyor |
+| Bu fazda rapor, dışa aktarım ve yedekleme eklenmedi | OK | Kapsam v0.9+ fazlara bırakıldı |
+
+## v0.9 ve Sonrası İçin Regresyon Başlıkları
 
 Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
-- Ödeme PDF kopyalama, hash alma ve açma
 - Dashboard toplamları
 - Ödenmemiş ve gecikmiş fatura raporları
 - Aylık ve yıllık raporlar
@@ -150,3 +163,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-05-31 | v0.7 başlangıç | OK | v0.6 master merge sonrası build, health-check, self-test ve kısa uygulama başlatma doğrulandı |
 | 2026-05-31 | v0.7 | OK | Ödeme kayıt altyapısı, kısmi/tam ödeme durumu, kalan tutar kontrolü ve self-test kapsamı tamamlandı |
 | 2026-05-31 | v0.8 başlangıç | OK | v0.7 master merge sonrası build, health-check ve self-test doğrulandı |
+| 2026-05-31 | v0.8 | OK | Ödeme PDF metadata, kopyalama, hash, açma akışı ve eksik dosya kontrolü tamamlandı |

@@ -21,8 +21,8 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | v0.5 | Tamamlandı | Fatura PDF evrakı ekleme | PDF uygulama klasörüne kopyalanır, açılır, eksikliği raporlanabilir |
 | v0.6 | Tamamlandı | Fatura listesi ve filtreleme | Yıl, ay, tür, abonelik, ödeme durumu, PDF durumu ve fatura no ile filtreleme çalışır |
 | v0.7 | Tamamlandı | Ödeme kayıt altyapısı | Faturaya ödeme kaydı eklenebilir ve ödeme durumu gösterilir |
-| v0.8 | Sıradaki | Ödeme evrakı PDF ekleme | Ödeme PDF'i kopyalanır, açılır ve eksiklik rapor altyapısına girer |
-| v0.9 | Beklemede | Ana gösterge paneli | Aylık toplamlar, ödenmemişler, gecikmişler ve evrak eksikleri görünür |
+| v0.8 | Tamamlandı | Ödeme evrakı PDF ekleme | Ödeme PDF'i kopyalanır, açılır ve eksiklik rapor altyapısına girer |
+| v0.9 | Sıradaki | Ana gösterge paneli | Aylık toplamlar, ödenmemişler, gecikmişler ve evrak eksikleri görünür |
 | v0.10 | Beklemede | Ödenmemiş ve gecikmiş faturalar raporu | Ödenmemiş, gecikmiş ve yaklaşan ödemeler listelenir |
 | v0.11 | Beklemede | Aylık fatura listesi | Seçilen ayın tüm faturaları ve özet toplamları alınır |
 | v0.12 | Beklemede | Türe özgü aylık fatura listesi | Seçilen tür, yıl ve ay için toplamlar alınır |
@@ -275,6 +275,25 @@ Tamamlananlar:
 - Fatura ekranına ödeme kaydı formu ve ödeme geçmişi listesi eklendi.
 - Ödeme PDF evrakı, rapor, dışa aktarım ve yedekleme kapsam dışı bırakıldı.
 - `--self-test` kısmi ödeme, tam ödeme, kalan aşımı, durum yeniden hesaplama, negatif ödeme ve olmayan fatura senaryolarını doğruluyor.
+
+Doğrulama:
+
+- `dotnet build .\src\FaturaTakip.App\FaturaTakip.App.csproj`
+- `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+- `dotnet run --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check`
+
+## v0.8 Sonuç Notu
+
+Tamamlananlar:
+
+- `payments` tablosuna ödeme PDF yolu, orijinal dosya adı, SHA-256 hash ve eklenme zamanı metadata alanları eklendi.
+- Ödeme PDF dosyası geçerli PDF imzasıyla doğrulanıyor.
+- PDF dosyası `attachments/payments/yyyy/MM` altında güvenli ASCII dosya adıyla kopyalanıyor.
+- Ödeme kayıt modeline PDF durumu eklendi.
+- Fatura ekranındaki ödeme geçmişinde ödeme PDF durumu gösteriliyor.
+- Seçili ödeme kaydına PDF seçme ve kayıtlı ödeme PDF'ini açma akışı eklendi.
+- Kayıp ödeme PDF dosyası algılama altyapısı eklendi.
+- `--self-test` ödeme PDF kopyalama, hash saklama, dosya varlığı, kayıp dosya algısı ve PDF olmayan dosya reddi senaryolarını doğruluyor.
 
 Doğrulama:
 

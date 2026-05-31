@@ -1,4 +1,6 @@
 using System.Globalization;
+using System.IO;
+using System.Security.Cryptography;
 using Microsoft.Data.Sqlite;
 
 namespace FaturaTakip.App.Data.Payments;
@@ -6,10 +8,14 @@ namespace FaturaTakip.App.Data.Payments;
 public sealed class PaymentRepository
 {
     private readonly string _databasePath;
+    private readonly string _rootDirectory;
+    private readonly string _paymentAttachmentDirectory;
 
     public PaymentRepository(string databasePath)
     {
-        _databasePath = databasePath;
+        _databasePath = Path.GetFullPath(databasePath);
+        _rootDirectory = ResolveRootDirectory(_databasePath);
+        _paymentAttachmentDirectory = Path.Combine(_rootDirectory, "attachments", "payments");
     }
 
     public IReadOnlyList<Payment> GetForInvoice(long invoiceId)
@@ -118,6 +124,84 @@ public sealed class PaymentRepository
         return payment;
     }
 
+    public Payment AttachPdf(long id, string sourcePdfPath)
+    {
+        var payment = GetRequired(id);
+        var sourceFullPath = ValidatePdfSource(sourcePdfPath);
+        var hash = ComputeSha256Hash(sourceFullPath);
+        var relativePath = CopyPdfToAttachmentDirectory(payment, sourceFullPath, hash);
+        var originalFileName = Path.GetFileName(sourceFullPath);
+        var now = DateTimeOffset.Now.ToString("O", CultureInfo.InvariantCulture);
+
+        using var connection = SqliteConnectionFactory.Create(_databasePath);
+        connection.Open();
+
+        using var command = connection.CreateCommand();
+        command.CommandText = """
+            UPDATE payments
+            SET pdf_file_path = $pdfFilePath,
+                pdf_original_file_name = $pdfOriginalFileName,
+                pdf_sha256_hash = $pdfSha256Hash,
+                pdf_attached_at = $pdfAttachedAt,
+                updated_at = $updatedAt
+            WHERE id = $id;
+            """;
+        command.Parameters.AddWithValue("$id", id);
+        command.Parameters.AddWithValue("$pdfFilePath", relativePath);
+        command.Parameters.AddWithValue("$pdfOriginalFileName", originalFileName);
+        command.Parameters.AddWithValue("$pdfSha256Hash", hash);
+        command.Parameters.AddWithValue("$pdfAttachedAt", now);
+        command.Parameters.AddWithValue("$updatedAt", now);
+
+        if (command.ExecuteNonQuery() == 0)
+        {
+            throw new InvalidOperationException("PDF eklenecek ödeme kaydı bulunamadı.");
+        }
+
+        return GetRequired(id);
+    }
+
+    public string GetPdfAbsolutePath(Payment payment)
+    {
+        if (!payment.HasPdf)
+        {
+            return string.Empty;
+        }
+
+        return Path.IsPathRooted(payment.PdfFilePath)
+            ? payment.PdfFilePath
+            : Path.GetFullPath(Path.Combine(_rootDirectory, payment.PdfFilePath));
+    }
+
+    public bool PdfFileExists(Payment payment)
+    {
+        var path = GetPdfAbsolutePath(payment);
+        return !string.IsNullOrWhiteSpace(path) && File.Exists(path);
+    }
+
+    public bool IsPdfMissing(Payment payment)
+    {
+        return !payment.HasPdf || !PdfFileExists(payment);
+    }
+
+    private Payment GetRequired(long id)
+    {
+        using var connection = SqliteConnectionFactory.Create(_databasePath);
+        connection.Open();
+
+        using var command = connection.CreateCommand();
+        command.CommandText = SelectSql + "\nWHERE id = $id;";
+        command.Parameters.AddWithValue("$id", id);
+
+        using var reader = command.ExecuteReader();
+        if (!reader.Read())
+        {
+            throw new InvalidOperationException("Ödeme kaydı bulunamadı.");
+        }
+
+        return ReadPayment(reader);
+    }
+
     private static PaymentInput Normalize(PaymentInput input)
     {
         var normalized = input with
@@ -216,9 +300,81 @@ public sealed class PaymentRepository
             PaymentDate = ParseDate(reader.GetString(2)),
             Amount = ParseDecimal(reader.GetString(3)),
             Description = reader.GetString(4),
-            CreatedAt = ParseDateTimeOffset(reader.GetString(5)),
-            UpdatedAt = ParseDateTimeOffset(reader.GetString(6)),
+            PdfFilePath = reader.GetString(5),
+            PdfOriginalFileName = reader.GetString(6),
+            PdfSha256Hash = reader.GetString(7),
+            PdfAttachedAt = ParseNullableDateTimeOffset(reader.GetString(8)),
+            CreatedAt = ParseDateTimeOffset(reader.GetString(9)),
+            UpdatedAt = ParseDateTimeOffset(reader.GetString(10)),
         };
+    }
+
+    private string CopyPdfToAttachmentDirectory(Payment payment, string sourceFullPath, string hash)
+    {
+        var targetDirectory = Path.Combine(
+            _paymentAttachmentDirectory,
+            payment.PaymentDate.Year.ToString("D4", CultureInfo.InvariantCulture),
+            payment.PaymentDate.Month.ToString("D2", CultureInfo.InvariantCulture));
+        Directory.CreateDirectory(targetDirectory);
+
+        var hashPrefix = hash[..Math.Min(12, hash.Length)];
+        var timestamp = DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+        var targetFileName = $"payment-{payment.Id}-{timestamp}-{hashPrefix}.pdf";
+        var targetFullPath = Path.Combine(targetDirectory, targetFileName);
+
+        if (File.Exists(targetFullPath))
+        {
+            var suffix = Guid.NewGuid().ToString("N")[..8];
+            targetFileName = $"payment-{payment.Id}-{timestamp}-{hashPrefix}-{suffix}.pdf";
+            targetFullPath = Path.Combine(targetDirectory, targetFileName);
+        }
+
+        File.Copy(sourceFullPath, targetFullPath, overwrite: false);
+        return Path.GetRelativePath(_rootDirectory, targetFullPath);
+    }
+
+    private static string ValidatePdfSource(string sourcePdfPath)
+    {
+        if (string.IsNullOrWhiteSpace(sourcePdfPath))
+        {
+            throw new InvalidOperationException("PDF dosyası seçilmelidir.");
+        }
+
+        var fullPath = Path.GetFullPath(sourcePdfPath);
+        if (!File.Exists(fullPath))
+        {
+            throw new InvalidOperationException("Seçilen PDF dosyası bulunamadı.");
+        }
+
+        if (!string.Equals(Path.GetExtension(fullPath), ".pdf", StringComparison.OrdinalIgnoreCase))
+        {
+            throw new InvalidOperationException("Yalnızca PDF dosyası eklenebilir.");
+        }
+
+        var fileInfo = new FileInfo(fullPath);
+        if (fileInfo.Length == 0)
+        {
+            throw new InvalidOperationException("Seçilen PDF dosyası boş.");
+        }
+
+        using var stream = File.OpenRead(fullPath);
+        Span<byte> signature = stackalloc byte[4];
+        if (stream.Read(signature) < signature.Length ||
+            signature[0] != 0x25 ||
+            signature[1] != 0x50 ||
+            signature[2] != 0x44 ||
+            signature[3] != 0x46)
+        {
+            throw new InvalidOperationException("Seçilen dosya geçerli bir PDF olarak görünmüyor.");
+        }
+
+        return fullPath;
+    }
+
+    private static string ComputeSha256Hash(string filePath)
+    {
+        using var stream = File.OpenRead(filePath);
+        return Convert.ToHexString(SHA256.HashData(stream)).ToLowerInvariant();
     }
 
     private static string FormatDate(DateTime date)
@@ -251,6 +407,28 @@ public sealed class PaymentRepository
         return DateTimeOffset.MinValue;
     }
 
+    private static DateTimeOffset? ParseNullableDateTimeOffset(string value)
+    {
+        return string.IsNullOrWhiteSpace(value)
+            ? null
+            : ParseDateTimeOffset(value);
+    }
+
+    private static string ResolveRootDirectory(string databasePath)
+    {
+        var databaseDirectory = Path.GetDirectoryName(databasePath);
+        if (!string.IsNullOrWhiteSpace(databaseDirectory))
+        {
+            var parent = Directory.GetParent(databaseDirectory);
+            if (parent is not null)
+            {
+                return parent.FullName;
+            }
+        }
+
+        return AppContext.BaseDirectory;
+    }
+
     private const string SelectSql = """
         SELECT
             id,
@@ -258,6 +436,10 @@ public sealed class PaymentRepository
             payment_date,
             amount,
             description,
+            pdf_file_path,
+            pdf_original_file_name,
+            pdf_sha256_hash,
+            pdf_attached_at,
             created_at,
             updated_at
         FROM payments

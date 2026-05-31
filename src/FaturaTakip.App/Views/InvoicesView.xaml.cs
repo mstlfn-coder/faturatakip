@@ -21,6 +21,7 @@ public partial class InvoicesView : UserControl
     private IReadOnlyList<Payment> _payments = Array.Empty<Payment>();
     private IReadOnlyList<Subscription> _subscriptions = Array.Empty<Subscription>();
     private Invoice? _selectedInvoice;
+    private Payment? _selectedPayment;
     private string? _pendingPdfSourcePath;
     private bool _isInitialized;
     private bool _isEditingExisting;
@@ -374,10 +375,85 @@ public partial class InvoicesView : UserControl
                 PaymentDescriptionInput.Text));
 
             RefreshInvoices(_selectedInvoice.Id);
+            SelectPayment(payment.Id);
             InvoicesChanged?.Invoke(this, EventArgs.Empty);
             SetInvoiceStatus($"Ödeme kaydedildi: {payment.AmountText}", isError: false);
         }
         catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException)
+        {
+            SetInvoiceStatus(exception.Message, isError: true);
+        }
+    }
+
+    private void PaymentGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (PaymentGrid.SelectedItem is Payment payment)
+        {
+            _selectedPayment = payment;
+            UpdatePaymentPdfControls(payment);
+            return;
+        }
+
+        _selectedPayment = null;
+        UpdatePaymentPdfControls(null);
+    }
+
+    private void SelectPaymentPdfButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_paymentRepository is null || _selectedInvoice is null || _selectedPayment is null)
+        {
+            return;
+        }
+
+        var dialog = new OpenFileDialog
+        {
+            Title = "Ödeme PDF Evrakı Seç",
+            Filter = "PDF Dosyaları (*.pdf)|*.pdf",
+            CheckFileExists = true,
+            Multiselect = false,
+        };
+
+        if (dialog.ShowDialog() != true)
+        {
+            return;
+        }
+
+        try
+        {
+            var attached = _paymentRepository.AttachPdf(_selectedPayment.Id, dialog.FileName);
+            RefreshPaymentControls(_selectedInvoice);
+            SelectPayment(attached.Id);
+            SetInvoiceStatus("Ödeme PDF evrakı kaydedildi.", isError: false);
+        }
+        catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException or IOException or UnauthorizedAccessException)
+        {
+            SetInvoiceStatus(exception.Message, isError: true);
+        }
+    }
+
+    private void OpenPaymentPdfButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_paymentRepository is null || _selectedPayment is null)
+        {
+            return;
+        }
+
+        try
+        {
+            var pdfPath = _paymentRepository.GetPdfAbsolutePath(_selectedPayment);
+            if (string.IsNullOrWhiteSpace(pdfPath) || !File.Exists(pdfPath))
+            {
+                SetInvoiceStatus("Ödeme PDF dosyası bulunamadı.", isError: true);
+                UpdatePaymentPdfControls(_selectedPayment);
+                return;
+            }
+
+            Process.Start(new ProcessStartInfo(pdfPath)
+            {
+                UseShellExecute = true,
+            });
+        }
+        catch (Exception exception) when (exception is InvalidOperationException or IOException or UnauthorizedAccessException or System.ComponentModel.Win32Exception)
         {
             SetInvoiceStatus(exception.Message, isError: true);
         }
@@ -438,6 +514,7 @@ public partial class InvoicesView : UserControl
     private void ClearInvoiceForm()
     {
         _selectedInvoice = null;
+        _selectedPayment = null;
         _pendingPdfSourcePath = null;
         _isEditingExisting = false;
         InvoiceGrid.SelectedItem = null;
@@ -528,11 +605,14 @@ public partial class InvoicesView : UserControl
 
     private void RefreshPaymentControls(Invoice? invoice)
     {
+        _selectedPayment = null;
         _payments = Array.Empty<Payment>();
         PaymentGrid.ItemsSource = _payments;
+        PaymentGrid.SelectedItem = null;
         PaymentDateInput.SelectedDate = DateTime.Today;
         PaymentAmountInput.Text = "0,00";
         PaymentDescriptionInput.Text = string.Empty;
+        UpdatePaymentPdfControls(null);
 
         if (invoice is null)
         {
@@ -543,6 +623,7 @@ public partial class InvoicesView : UserControl
 
         _payments = _paymentRepository?.GetForInvoice(invoice.Id) ?? Array.Empty<Payment>();
         PaymentGrid.ItemsSource = _payments;
+        SelectPayment();
 
         if (invoice.Status == "canceled")
         {
@@ -577,6 +658,54 @@ public partial class InvoicesView : UserControl
         PaymentAmountInput.IsEnabled = isEnabled;
         PaymentDescriptionInput.IsEnabled = isEnabled;
         SavePaymentButton.IsEnabled = isEnabled;
+    }
+
+    private void SelectPayment(long? paymentId = null)
+    {
+        var selected = paymentId is null
+            ? _payments.FirstOrDefault()
+            : _payments.FirstOrDefault(item => item.Id == paymentId.Value) ?? _payments.FirstOrDefault();
+
+        PaymentGrid.SelectedItem = selected;
+        _selectedPayment = selected;
+        UpdatePaymentPdfControls(selected);
+    }
+
+    private void UpdatePaymentPdfControls(Payment? payment)
+    {
+        if (payment is null)
+        {
+            SetPaymentPdfInfo("PDF eklemek için ödeme kaydı seçin.", isError: false);
+            SelectPaymentPdfButton.IsEnabled = false;
+            OpenPaymentPdfButton.IsEnabled = false;
+            return;
+        }
+
+        SelectPaymentPdfButton.IsEnabled = true;
+        if (!payment.HasPdf)
+        {
+            SetPaymentPdfInfo("Bu ödeme kaydına PDF evrak eklenmemiş.", isError: false);
+            OpenPaymentPdfButton.IsEnabled = false;
+            return;
+        }
+
+        if (_paymentRepository?.PdfFileExists(payment) == true)
+        {
+            SetPaymentPdfInfo($"PDF kayıtlı: {payment.PdfOriginalFileName}", isError: false);
+            OpenPaymentPdfButton.IsEnabled = true;
+            return;
+        }
+
+        SetPaymentPdfInfo($"PDF kaydı var ancak dosya bulunamadı: {payment.PdfFilePath}", isError: true);
+        OpenPaymentPdfButton.IsEnabled = false;
+    }
+
+    private void SetPaymentPdfInfo(string message, bool isError)
+    {
+        PaymentPdfInfoText.Text = message;
+        PaymentPdfInfoText.Foreground = isError
+            ? new SolidColorBrush(Color.FromRgb(185, 28, 28))
+            : new SolidColorBrush(Color.FromRgb(95, 107, 122));
     }
 
     private sealed record MonthOption(int Value, string Label);
