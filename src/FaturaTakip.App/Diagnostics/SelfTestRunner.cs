@@ -16,6 +16,10 @@ public sealed class SelfTestRunner
     {
         var testRoot = Path.Combine(Path.GetTempPath(), "FaturaTakip.SelfTest", Guid.NewGuid().ToString("N"));
         var databasePath = Path.Combine(testRoot, "database", "fatura_takip.db");
+        var keepArtifacts = string.Equals(
+            Environment.GetEnvironmentVariable("FATURATAKIP_SELFTEST_KEEP"),
+            "1",
+            StringComparison.OrdinalIgnoreCase);
 
         try
         {
@@ -807,12 +811,68 @@ public sealed class SelfTestRunner
             Assert(exportFileInfo.Length > 1024, "Excel export dosyasi beklenenden kucuk.");
 
             var reportXlsxPath = Path.Combine(testRoot, "exports", $"raporlar-selftest-{DateTime.Now:yyyyMMdd-HHmmss}.xlsx");
-            ExcelExportWriter.WriteTable(
+            ExcelExportWriter.WriteReportWithHeader(
                 reportXlsxPath,
                 sheetName: "Rapor",
-                headers: new[] { "A", "B" },
-                rows: new[] { new object?[] { "X", 1 } });
+                meta: new ExcelExportWriter.ReportMeta(
+                    AppTitle: "KURUM FATURA TAKIP PROGRAMI",
+                    InstitutionName: "Test Kurum",
+                    ReportTitle: "SELF-TEST EXCEL",
+                    ReportPeriod: "2026/01",
+                    ReportDate: new DateTime(2026, 6, 1),
+                    CreatedBy: "codex",
+                    FilterText: "Test"),
+                summary: new[]
+                {
+                    new ExcelExportWriter.SummaryItem("Toplam Fatura", "1", "Toplam 1.00"),
+                    new ExcelExportWriter.SummaryItem("Ödenen", "0.00", "PDF eksik 0"),
+                    new ExcelExportWriter.SummaryItem("Kalan", "1.00", "Ödenmemiş 1, Gecikmiş 0"),
+                },
+                headers: new[]
+                {
+                    "Dönem",
+                    "Tür",
+                    "Abonelik",
+                    "Kurum",
+                    "Durum",
+                    "Fatura Tarihi",
+                    "Son Ödeme",
+                    "Fatura No",
+                    "Tutar",
+                    "Kullanım",
+                    "Birim",
+                    "Ödenen",
+                    "Kalan",
+                    "Fatura PDF",
+                    "Ödeme Tarihi",
+                    "Ödeme PDF",
+                    "Açıklama",
+                },
+                rows: new[]
+                {
+                    new object?[]
+                    {
+                        "2026/01",
+                        "Elektrik",
+                        "Ana Bina",
+                        "Test Kurumu",
+                        "Ödenmedi",
+                        new DateTime(2026, 1, 10),
+                        new DateTime(2026, 1, 20),
+                        "INV-001",
+                        1.00m,
+                        10.5m,
+                        "kWh",
+                        0.00m,
+                        1.00m,
+                        "PDF Yok",
+                        "",
+                        "PDF Yok",
+                        "Self-test satırı",
+                    },
+                });
             Assert(File.Exists(reportXlsxPath), "Rapor excel export dosyasi olusmadi.");
+            Assert(new FileInfo(reportXlsxPath).Length > 1024, "Rapor excel export dosyasi beklenenden kucuk.");
 
             var reportPdfPath = Path.Combine(testRoot, "exports", $"raporlar-selftest-{DateTime.Now:yyyyMMdd-HHmmss}.pdf");
             PdfReportWriter.WriteSimpleTableReport(
@@ -892,7 +952,18 @@ public sealed class SelfTestRunner
         }
         finally
         {
-            if (Directory.Exists(testRoot))
+            if (keepArtifacts)
+            {
+                try
+                {
+                    Console.WriteLine($"Self-test artifacts kept at: {testRoot}");
+                }
+                catch
+                {
+                    // Ignore console issues in WPF.
+                }
+            }
+            else if (Directory.Exists(testRoot))
             {
                 Directory.Delete(testRoot, recursive: true);
             }
