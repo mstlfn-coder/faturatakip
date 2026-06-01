@@ -23,7 +23,7 @@ Sonuç etiketleri:
 | Kontrol | Durum | Not |
 |---|---|---|
 | Proje klasörü doğru yerde açılıyor | OK | `C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI` |
-| Git durumu kontrol edildi | OK | `codex/v0.15-ture-ozgu-yillik-fatura-listesi` branch'i üzerinde çalışılıyor |
+| Git durumu kontrol edildi | OK | `codex/v0.19-manuel-guvenli-yedekleme` branch'i üzerinde çalışılıyor |
 | Markdown dokümantasyonu UTF-8 olarak okunuyor | OK | Plan dosyası UTF-8 korunarak kopyalandı |
 | Yeni dosya adları yol sorunu azaltmak için ASCII tutuluyor | OK | Kök klasör Türkçe, proje içi doküman adları ASCII |
 | `README.md` yeni chat başlangıcını açıklıyor | OK | Oluşturuldu |
@@ -238,10 +238,11 @@ Sonuç etiketleri:
 
 | Kontrol | Durum | Not |
 |---|---|---|
-| Yedekleme butonu görünüyor | TODO | Uygulama içinde erişilebilir |
-| ZIP yedek backups/ altına yazılıyor | TODO | Dosya adı tarih-saat içerir |
-| Veritabanı + evraklar ZIP içinde | TODO | `database/` + `attachments/` |
-| `--self-test` temel yedeklemeyi doğruluyor | TODO | En az bir ZIP oluşumu |
+| Yedekleme butonu görünüyor | TODO | UI üzerinden kontrol edilecek |
+| ZIP yedek backups/ altına yazılıyor | OK | `--create-backup --backup-no-attachments --backup-no-exports` ile `backups/backup_YYYYMMDD_HHMMSS.zip` oluştu |
+| Veritabanı ZIP içinde | OK | ZIP içinde `database/fatura_takip.db` var (SQLite backup ile) |
+| Evraklar ZIP içinde | TODO | `attachments/` ve `exports/` büyükse süre uzayabilir; UI veya CLI ile doğrulanacak |
+| CLI smoke test mevcut | OK | `dotnet run --no-build --project src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --create-backup --backup-no-attachments --backup-no-exports` |
 
 ## v0.10 ve Sonrası İçin Regresyon Başlıkları
 
@@ -279,3 +280,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-05-31 | v0.16 | OK | Evrak kontrol raporu eklendi; build, self-test ve health-check doğrulandı |
 | 2026-06-01 | v0.17 | OK | Excel dışa aktarım eklendi; build, self-test ve health-check doğrulandı |
 | 2026-06-01 | v0.18 | OK | PDF rapor export eklendi; build, self-test ve health-check doğrulandı |
+| 2026-06-01 | v0.19 | OK | Yedekleme (UI + `--create-backup`) eklendi; build, self-test, health-check ve CLI smoke test doğrulandı |

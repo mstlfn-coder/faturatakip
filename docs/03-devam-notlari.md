@@ -4,11 +4,12 @@ Bu dosya, yeni Codex chatlerinde kaldÄ±ÄŸÄ±mÄ±z yeri hÄ±zlÄ±ca anlam
 
 ## GÃ¼ncel KaldÄ±ÄŸÄ±mÄ±z Yer
 
-- Tarih: 2026-05-31
-- Aktif branch: `codex/v0.15-ture-ozgu-yillik-fatura-listesi`
-- Son tamamlanan faz: `v0.14 - AboneliÄŸe Ã–zgÃ¼ YÄ±llÄ±k Fatura Listesi`
-- SÄ±radaki faz: `v0.15 - TÃ¼re Ã–zgÃ¼ YÄ±llÄ±k Fatura Listesi`
-- Durum: v0.14 tamamlandÄ± ve master'a merge edildi; v0.15 branch'i aÃ§Ä±ldÄ±, baÅŸlangÄ±Ã§ smoke testleri bekliyor.
+- Tarih: 2026-06-01
+- Aktif branch: `codex/v0.19-manuel-guvenli-yedekleme`
+- Son commit: `fbf6d96 feat: add --create-backup command`
+- Son tamamlanan faz: `v0.19 - Manuel GÃ¼venli Yedekleme` (branch Ã¼zerinde)
+- SÄ±radaki faz: `v0.20 - TutarlÄ±lÄ±k Denetimi`
+- Durum: build + health-check + self-test OK. `--create-backup --backup-no-attachments --backup-no-exports` smoke testi OK (zip oluÅŸuyor).
 - Ä°lk dokÃ¼mantasyon commit'i: `e0de4f9 docs: initialize project planning and continuity notes`
 - `v0.1` commit'i: `3b3e20a feat: initialize wpf sqlite project skeleton`
 - `v0.2` commit'i: `c8ad90c feat: add invoice type management`
@@ -30,9 +31,12 @@ Bu dosya, yeni Codex chatlerinde kaldÄ±ÄŸÄ±mÄ±z yeri hÄ±zlÄ±ca anlam
 
 (2026-06-01 / v0.19)
 
-1. codex/v0.19-manuel-guvenli-yedekleme branch'indeyiz.
-2. Views/BackupView eklendi: DB + attachments + exports iÃ§eren zip yedek Ã¼retiyor.
-3. Smoke test: dotnet build -c Release baÅŸarÄ±lÄ± (yalnÄ±zca uyarÄ±lar var).
+1. `Views/BackupView` eklendi: DB + attachments + exports iÃ§eren zip yedek Ã¼retiyor.
+2. CLI eklendi: `--create-backup` (opsiyonel: `--backup-no-attachments`, `--backup-no-exports`).
+3. Smoke test: `dotnet build -c Release` OK.
+4. Smoke test: `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check` OK.
+5. Smoke test: `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` OK.
+6. Smoke test: `dotnet run --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --create-backup --backup-no-attachments --backup-no-exports` OK (ZIP oluÅŸtu).
 
 1. Proje klasÃ¶rÃ¼ kontrol edildi.
 2. Proje klasÃ¶rÃ¼nde baÅŸlangÄ±Ã§ta yalnÄ±zca `.git` bulundu.

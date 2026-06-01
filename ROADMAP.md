@@ -32,8 +32,8 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | v0.16 | Tamamlandı | Evrak eksikliği ve dosya kontrol raporu | Eksik PDF, kayıp dosya ve aynı hash uyarıları görünür |
 | v0.17 | Tamamlandı | Excel dışa aktarım | Ana listeler ve raporlar Excel'e aktarılır |
 | v0.18 | Tamamlandı | Yazdırılabilir PDF raporlar | Kullanıcıdan alınacak Excel örneğine göre temel raporlar PDF olarak üretilebilir |
-| v0.19 | Sıradaki | Manuel güvenli yedekleme | Veritabanı ve evraklar ZIP yedek olarak alınır |
-| v0.20 | Beklemede | Tutarlılık denetimi | Salt okunur veri tutarlılığı raporu çalışır |
+| v0.19 | Tamamlandı | Manuel güvenli yedekleme | Veritabanı ve evraklar ZIP yedek olarak alınır (UI + `--create-backup`) |
+| v0.20 | Sıradaki | Tutarlılık denetimi | Salt okunur veri tutarlılığı raporu çalışır |
 
 ## v0.1 Ayrıntılı Kapsam
 
