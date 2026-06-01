@@ -27,7 +27,7 @@ public static class PdfReportWriter
         string? notes = null,
         string? secondaryTitle = null,
         (IReadOnlyList<string> Headers, IReadOnlyList<IReadOnlyList<string>> Rows, string Title)? secondTable = null,
-        bool includeSignature = true)
+        bool includeSignature = false)
     {
         // Community license is enough for internal/business apps; required by QuestPDF runtime.
         QuestPDF.Settings.License = LicenseType.Community;
@@ -57,7 +57,12 @@ public static class PdfReportWriter
 
                         if (!string.IsNullOrWhiteSpace(notes))
                         {
-                            col.Item().Text(notes).FontSize(9).FontColor(Colors.Grey.Darken1);
+                            col.Item().PaddingTop(4).Row(r =>
+                            {
+                                r.ConstantItem(90).Text("Açıklama").FontSize(11);
+                                r.ConstantItem(20).AlignCenter().Text(":").FontSize(11);
+                                r.RelativeItem().Text(notes).FontSize(11);
+                            });
                         }
 
                         col.Item().Element(x => ComposeTable(x, headers, rows));
@@ -68,25 +73,7 @@ public static class PdfReportWriter
                             col.Item().Element(x => ComposeTable(x, secondTable.Value.Headers, secondTable.Value.Rows));
                         }
 
-                        if (includeSignature)
-                        {
-                            col.Item().PaddingTop(12).Row(r =>
-                            {
-                                r.RelativeItem().Column(left =>
-                                {
-                                    left.Item().Text("Hazırlayan").SemiBold();
-                                    left.Item().Text("Ad Soyad / İmza");
-                                    left.Item().PaddingTop(18).Height(1).Background(Colors.Grey.Lighten1);
-                                });
-                                r.ConstantItem(40);
-                                r.RelativeItem().Column(right =>
-                                {
-                                    right.Item().Text("Kontrol Eden").SemiBold();
-                                    right.Item().Text("Ad Soyad / İmza");
-                                    right.Item().PaddingTop(18).Height(1).Background(Colors.Grey.Lighten1);
-                                });
-                            });
-                        }
+                        // Signature blocks are intentionally omitted; these PDFs are informational reports.
                     });
                 });
 
@@ -105,50 +92,39 @@ public static class PdfReportWriter
 
     private static void ComposeHeader(IContainer container, ReportMeta meta, string? secondaryTitle, CultureInfo culture)
     {
+        // Match the provided example PDFs' header layout:
+        // - Centered institution block
+        // - Right-aligned "Tarih : dd.MM.yyyy"
+        // - Centered report title (optionally prefixed by secondary title)
         container.Column(col =>
         {
-            col.Spacing(6);
-
-            col.Item().Text(meta.AppTitle).FontSize(13).SemiBold();
-            col.Item().Text(meta.ReportTitle).FontSize(16).Bold();
-            if (!string.IsNullOrWhiteSpace(secondaryTitle))
-            {
-                col.Item().Text(secondaryTitle).FontSize(11).FontColor(Colors.Grey.Darken1);
-            }
-
-            col.Item().LineHorizontal(1).LineColor(Colors.Grey.Lighten1);
+            col.Spacing(10);
 
             col.Item().Row(r =>
             {
-                r.RelativeItem().Column(left =>
+                r.RelativeItem().Column(center =>
                 {
-                    var lines = (meta.InstitutionName ?? string.Empty)
-                        .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-
-                    left.Item().Text("Kurum       :").FontSize(10);
-                    if (lines.Length == 0)
+                    center.Item().AlignCenter().Text(meta.AppTitle).FontSize(12);
+                    foreach (var line in (meta.InstitutionName ?? string.Empty)
+                                 .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
                     {
-                        left.Item().Text(string.Empty).FontSize(10);
+                        center.Item().AlignCenter().Text(line).FontSize(12);
                     }
-                    else
-                    {
-                        foreach (var line in lines)
-                            left.Item().Text(line).FontSize(10);
-                    }
-
-                    left.Item().Text($"Dönem       : {meta.ReportPeriod}").FontSize(10);
                 });
-                r.RelativeItem().Column(right =>
+
+                // Keep a fixed-width right column so the date aligns consistently.
+                r.ConstantItem(200).AlignRight().PaddingTop(34).Text(t =>
                 {
-                    right.Item().Text($"Rapor Tarihi: {meta.ReportDate:dd.MM.yyyy}").FontSize(10);
-                    right.Item().Text($"Oluşturan   : {meta.CreatedBy}").FontSize(10);
+                    t.Span("Tarih").FontSize(11);
+                    t.Span("     :     ").FontSize(11);
+                    t.Span(meta.ReportDate.ToString("dd.MM.yyyy", culture)).FontSize(11);
                 });
             });
 
-            if (!string.IsNullOrWhiteSpace(meta.FilterText))
-            {
-                col.Item().Text($"Filtre      : {meta.FilterText}").FontSize(10);
-            }
+            var title = string.IsNullOrWhiteSpace(secondaryTitle)
+                ? meta.ReportTitle
+                : $"{secondaryTitle} {meta.ReportTitle}";
+            col.Item().AlignCenter().Text(title).FontSize(13).Bold();
         });
     }
 

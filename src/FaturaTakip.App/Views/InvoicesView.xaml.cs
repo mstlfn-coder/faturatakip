@@ -382,13 +382,6 @@ public partial class InvoicesView : UserControl
 
             var filterText = filterParts.Count == 0 ? "Tüm Kayıtlar" : string.Join(" / ", filterParts);
 
-            var summary = new List<PdfReportWriter.SummaryItem>
-            {
-                new("Toplam Fatura", list.Count.ToString(CultureInfo.InvariantCulture), $"Toplam {list.Sum(x => x.Amount).ToString("N2", TurkishCulture)}"),
-                new("Ödenen", list.Sum(x => x.PaidAmount).ToString("N2", TurkishCulture), $"PDF eksik {list.Count(x => _invoiceRepository.IsPdfMissing(x))}"),
-                new("Kalan", list.Sum(x => x.RemainingAmount).ToString("N2", TurkishCulture), $"Ödenmemiş {list.Count(x => x.Status == "unpaid")}, Gecikmiş {list.Count(x => x.Status == "unpaid" && x.DueDate.Date < DateTime.Today.Date)}"),
-            };
-
             var headers = new[] { "Dönem", "Tür", "Abonelik", "Kurum", "Durum", "Fatura No", "Fatura Tarihi", "Son Ödeme", "Tutar", "Ödenen", "Kalan", "PDF" };
             var rows = list
                 .OrderBy(x => x.DueDate)
@@ -424,10 +417,11 @@ public partial class InvoicesView : UserControl
                     ReportPeriod: period,
                     ReportDate: DateTime.Today,
                     CreatedBy: Environment.UserName,
-                    FilterText: filterText),
-                summary,
+                    FilterText: string.Empty),
+                summary: Array.Empty<PdfReportWriter.SummaryItem>(),
                 headers,
-                rows);
+                rows,
+                notes: filterText);
 
             SetInvoiceStatus($"PDF dosyası oluşturuldu: exports/{fileName}", isError: false);
         }
