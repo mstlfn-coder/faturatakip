@@ -195,11 +195,16 @@ public partial class ReportsView : UserControl
             var summary = pdfSummary.Select(s => new ExcelExportWriter.SummaryItem(s.Label, s.Value, s.Detail)).ToList();
             var primaryRows = primary.Rows.Select(r => (IReadOnlyList<object?>)r.Cast<object?>().ToArray()).ToList();
 
-            // For Monthly Excel export, match the provided Excel template on the main sheet,
-            // and keep the richer detail table on a second sheet to avoid losing information.
-            if (_activeTab == ReportTab.Monthly)
+            // For some tabs, match the provided Excel templates on the main sheet,
+            // and keep the existing export table on a second sheet to avoid losing information.
+            if (_activeTab is ReportTab.Monthly or ReportTab.Subscription or ReportTab.SubscriptionYearly)
             {
-                var (tplHeaders, tplRows) = BuildExcelMonthlyTemplateRows();
+                var (tplHeaders, tplRows) = _activeTab switch
+                {
+                    ReportTab.Monthly => BuildExcelMonthlyTemplateRows(),
+                    ReportTab.Subscription => BuildExcelSubscriptionMonthlyTemplateRows(),
+                    _ => BuildExcelSubscriptionYearlyTemplateRows(),
+                };
                 ExcelExportWriter.WriteReportWithTwoSheets(
                     filePath,
                     mainSheetName: "Rapor",
@@ -212,10 +217,10 @@ public partial class ReportsView : UserControl
                     secondRows: primaryRows,
                     notes: GetExcelReportNotes());
 
-                var monthlyHint = $"Excel yazıldı: exports/{fileName}";
-                MonthlyFilterHintText.Text = monthlyHint;
-                TypeYearlyHintText.Text = monthlyHint;
-                SubscriptionHintText.Text = monthlyHint;
+                var templateHint = $"Excel yazıldı: exports/{fileName}";
+                MonthlyFilterHintText.Text = templateHint;
+                TypeYearlyHintText.Text = templateHint;
+                SubscriptionHintText.Text = templateHint;
                 return;
             }
 
@@ -388,6 +393,95 @@ public partial class ReportsView : UserControl
             r.Invoice.InvoiceNo,
             r.Invoice.UsageAmount,
             r.Invoice.Amount,
+        }).ToList();
+
+        return (headers, rows);
+    }
+
+    private (IReadOnlyList<string> Headers, IReadOnlyList<IReadOnlyList<object?>> Rows) BuildExcelSubscriptionMonthlyTemplateRows()
+    {
+        // Template reference: docs/references/fatura-excel-ornekler.xlsx (sheet: abonelikaylikfaturalar)
+        var headers = (IReadOnlyList<string>)new[]
+        {
+            "Yıl",
+            "Ay",
+            "Abone Bilgisi",
+            "F. Tarihi",
+            "Fatura Numarası",
+            "Kullanım M.",
+            "Fatura Tutar",
+        };
+
+        if (_invoiceRepository is null)
+        {
+            return (headers, Array.Empty<IReadOnlyList<object?>>());
+        }
+
+        var subscriptionId = GetSelectedSubscriptionId();
+        var year = GetSelectedSubscriptionYear();
+        var month = GetSelectedSubscriptionMonth();
+
+        var list = _invoiceRepository.GetAll()
+            .Where(i => subscriptionId is null || i.SubscriptionId == subscriptionId.Value)
+            .Where(i => i.InvoiceYear == year && i.InvoiceMonth == month)
+            .OrderBy(i => i.InvoiceDate)
+            .ThenBy(i => i.InvoiceNo, StringComparer.CurrentCultureIgnoreCase)
+            .ToList();
+
+        var rows = list.Select(i => (IReadOnlyList<object?>)new object?[]
+        {
+            i.InvoiceYear,
+            TurkishCulture.DateTimeFormat.GetMonthName(i.InvoiceMonth),
+            string.IsNullOrWhiteSpace(i.SubscriptionName) ? i.SubscriptionId.ToString(CultureInfo.InvariantCulture) : i.SubscriptionName,
+            i.InvoiceDate,
+            i.InvoiceNo,
+            i.UsageAmount,
+            i.Amount,
+        }).ToList();
+
+        return (headers, rows);
+    }
+
+    private (IReadOnlyList<string> Headers, IReadOnlyList<IReadOnlyList<object?>> Rows) BuildExcelSubscriptionYearlyTemplateRows()
+    {
+        // Template reference: docs/references/fatura-excel-ornekler.xlsx (sheet: abonelikyillikfaturalar)
+        var headers = (IReadOnlyList<string>)new[]
+        {
+            "Yıl",
+            "Ay",
+            "Abone Bilgisi",
+            "F. Tarihi",
+            "Fatura Sayısı",
+            "Kullanım M.",
+            "Fatura Tutar",
+        };
+
+        if (_invoiceRepository is null)
+        {
+            return (headers, Array.Empty<IReadOnlyList<object?>>());
+        }
+
+        var subscriptionId = GetSelectedSubscriptionId();
+        var year = GetSelectedSubscriptionYear();
+
+        var list = _invoiceRepository.GetAll()
+            .Where(i => subscriptionId is null || i.SubscriptionId == subscriptionId.Value)
+            .Where(i => i.InvoiceYear == year)
+            .OrderBy(i => i.InvoiceMonth)
+            .ThenBy(i => i.InvoiceDate)
+            .ThenBy(i => i.InvoiceNo, StringComparer.CurrentCultureIgnoreCase)
+            .ToList();
+
+        // Despite the "Fatura Sayısı" label in the template, the example data matches invoice no.
+        var rows = list.Select(i => (IReadOnlyList<object?>)new object?[]
+        {
+            i.InvoiceYear,
+            TurkishCulture.DateTimeFormat.GetMonthName(i.InvoiceMonth),
+            string.IsNullOrWhiteSpace(i.SubscriptionName) ? i.SubscriptionId.ToString(CultureInfo.InvariantCulture) : i.SubscriptionName,
+            i.InvoiceDate,
+            i.InvoiceNo,
+            i.UsageAmount,
+            i.Amount,
         }).ToList();
 
         return (headers, rows);
