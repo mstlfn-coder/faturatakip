@@ -325,6 +325,14 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
 | NU1603 yok | OK | QuestPDF paketi 2025.4.0'a sabitlendi |
 
+## v0.28 - PDF Aciklama Cumlesi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| PDF Aciklama cumlesi | OK | Template raporlarda `Açıklama :` satiri filtre yerine cumle olarak uretiliyor |
+
 ## Test Geçmişi
 
 | Tarih | Faz | Sonuç | Not |
@@ -359,3 +367,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-06-01 | v0.25 | OK | PDF rapor matbu stil + toplam satiri; build + self-test OK |
 | 2026-06-02 | v0.26 | OK | PDF footer varsayilan kapali; build + self-test OK |
 | 2026-06-02 | v0.27 | OK | QuestPDF NU1603 kaldirildi; build + self-test OK |
+| 2026-06-02 | v0.28 | OK | PDF aciklama satiri cumle olarak; build + self-test OK |

@@ -403,7 +403,7 @@ public partial class ReportsView : UserControl
                     summary: Array.Empty<PdfReportWriter.SummaryItem>(),
                     headers: tplHeaders.ToList(),
                     rows: rows,
-                    notes: GetPdfReportFilterText(),
+                    notes: GetPdfReportDescription(cfg.InstitutionName),
                     secondaryTitle: secondaryTitle,
                     footerCells: footerCells,
                     columnWeights: weights,
@@ -419,7 +419,7 @@ public partial class ReportsView : UserControl
                     Array.Empty<PdfReportWriter.SummaryItem>(),
                     primary.Headers,
                     primary.Rows,
-                    notes: GetPdfReportFilterText(),
+                    notes: GetPdfReportDescription(cfg.InstitutionName),
                     secondaryTitle: secondaryTitle,
                     secondTable: secondTable);
             }
@@ -693,6 +693,33 @@ public partial class ReportsView : UserControl
             ReportTab.TypeYearly => $"Tür: {(GetSelectedTypeYearlyInvoiceType()?.Label ?? string.Empty)}",
             ReportTab.DocumentHealth => "Fatura + Ödeme evrak kontrolü",
             _ => string.Empty,
+        };
+    }
+
+    private string GetPdfReportDescription(string institutionName)
+    {
+        var inst = string.IsNullOrWhiteSpace(institutionName) ? "Kurum" : institutionName.Trim();
+        var tr = TurkishCulture;
+
+        string? type = _activeTab switch
+        {
+            ReportTab.Monthly or ReportTab.YearlyAll => GetSelectedInvoiceTypeLabel(),
+            ReportTab.TypeYearly => GetSelectedTypeYearlyInvoiceType()?.Label,
+            _ => null,
+        };
+
+        var typeSuffix = string.IsNullOrWhiteSpace(type) || string.Equals(type, "Tüm Türler", StringComparison.OrdinalIgnoreCase)
+            ? "tüm faturaların"
+            : $"tüm {type} faturalarının";
+
+        return _activeTab switch
+        {
+            ReportTab.Monthly => $"{inst} için {GetSelectedYear():D4} {tr.DateTimeFormat.GetMonthName(GetSelectedMonth())} ayında gelen {typeSuffix} listesidir.",
+            ReportTab.YearlyAll => $"{inst} için {GetSelectedYear():D4} yılında gelen {typeSuffix} listesidir.",
+            ReportTab.Subscription => $"{inst} için {GetSelectedSubscriptionYear():D4} {tr.DateTimeFormat.GetMonthName(GetSelectedSubscriptionMonth())} ayında {(GetSelectedSubscriptionLabel() ?? "seçili abonelik")} için gelen tüm faturaların listesidir.",
+            ReportTab.SubscriptionYearly => $"{inst} için {GetSelectedSubscriptionYear():D4} yılında {(GetSelectedSubscriptionLabel() ?? "seçili abonelik")} için gelen tüm faturaların listesidir.",
+            ReportTab.TypeYearly => $"{inst} için {GetSelectedTypeYearlyYear():D4} yılında gelen {typeSuffix} listesidir.",
+            _ => GetPdfReportFilterText(),
         };
     }
 
