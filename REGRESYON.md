@@ -289,7 +289,7 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Self-test artifact saklama calisiyor | OK | `FATURATAKIP_SELFTEST_KEEP=1` iken test klasoru silinmez |
 | Raporlar Excel export'ta Aciklama satiri var | OK | Excel raporlarinda 6. satirda `Aciklama : ...` |
 | Excel export ana sayfa sablon kolonlari + Detay sayfasi | OK | Aylik, Abonelik Aylik/Yillik, Tur Yillik, Yillik Liste: ana sayfa sablon kolonlari + `Detay` |
-| Raporlar ekraninda `Yillik Liste` sekmesi var | TODO | UI uzerinden gorunurluk ve filtre davranisi manuel dogrulanacak |
+| Raporlar ekraninda `Yillik Liste` sekmesi var | OK | Filtre degisiminde liste yenileniyor; self-test yillik liste excel export smoke eklendi |
 | PDF export halen calisiyor | OK | Build + self-test OK |
 
 ## v0.24 - Build Uyari Temizligi (CS8123)
