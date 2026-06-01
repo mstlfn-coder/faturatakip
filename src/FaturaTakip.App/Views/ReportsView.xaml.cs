@@ -670,7 +670,7 @@ public partial class ReportsView : UserControl
                 };
             }).ToList();
 
-            return (summary, (headers, rows), secondaryTitle: null, secondTable: null);
+            return (summary, (headers, rows), SecondaryTitle: null, SecondTable: null);
         }
 
         if (_activeTab == ReportTab.TypeYearly)
@@ -734,7 +734,7 @@ public partial class ReportsView : UserControl
                 m.MissingPdfCount.ToString(CultureInfo.InvariantCulture),
             }).ToList();
 
-            return (summary, (headers, rows), secondaryTitle: GetSelectedSubscriptionLabel(), secondTable: null);
+            return (summary, (headers, rows), SecondaryTitle: GetSelectedSubscriptionLabel(), SecondTable: null);
         }
 
         if (_activeTab == ReportTab.Subscription)
@@ -763,7 +763,7 @@ public partial class ReportsView : UserControl
                 r.PdfState,
             }).ToList();
 
-            return (summary, (headers, rows), secondaryTitle: GetSelectedSubscriptionLabel(), secondTable: null);
+            return (summary, (headers, rows), SecondaryTitle: GetSelectedSubscriptionLabel(), SecondTable: null);
         }
 
         if (_activeTab == ReportTab.DocumentHealth)
@@ -791,7 +791,7 @@ public partial class ReportsView : UserControl
                 i.Note,
             }).ToList();
 
-            return (summary, (headers, rows), secondaryTitle: null, secondTable: null);
+            return (summary, (headers, rows), SecondaryTitle: null, SecondTable: null);
         }
 
         if (_activeTab == ReportTab.Consistency)
@@ -813,7 +813,7 @@ public partial class ReportsView : UserControl
                 i.Message,
             }).ToList();
 
-            return (summary, (headers, rows), secondaryTitle: null, secondTable: null);
+            return (summary, (headers, rows), SecondaryTitle: null, SecondTable: null);
         }
 
         // Default: actionable lists
@@ -877,7 +877,7 @@ public partial class ReportsView : UserControl
             };
         }).ToList();
 
-        return (defaultSummary, (defaultHeaders, defaultRows), secondaryTitle: null, secondTable: null);
+        return (defaultSummary, (defaultHeaders, defaultRows), SecondaryTitle: null, SecondTable: null);
     }
 
     private (string PaymentDate, string PaymentPdfState) GetPaymentInfo(long invoiceId)
