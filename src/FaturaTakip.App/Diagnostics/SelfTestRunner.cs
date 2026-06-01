@@ -870,7 +870,8 @@ public sealed class SelfTestRunner
                         "PDF Yok",
                         "Self-test satırı",
                     },
-                });
+                },
+                notes: "Self-test rapor örneği: kolon/başlık düzeni doğrulama amacıyla üretilmiştir.");
             Assert(File.Exists(reportXlsxPath), "Rapor excel export dosyasi olusmadi.");
             Assert(new FileInfo(reportXlsxPath).Length > 1024, "Rapor excel export dosyasi beklenenden kucuk.");
 

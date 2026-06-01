@@ -63,6 +63,7 @@ public static class ExcelExportWriter
         IReadOnlyList<SummaryItem> summary,
         IReadOnlyList<string> headers,
         IEnumerable<IReadOnlyList<object?>> rows,
+        string? notes = null,
         string? totalsLabel = "GENEL TOPLAM")
     {
         using var workbook = new XLWorkbook();
@@ -101,6 +102,16 @@ public static class ExcelExportWriter
         sheet.Cell(2, 1).Style.Font.Bold = true;
         sheet.Cell(2, 1).Style.Font.FontSize = 16;
         sheet.Range(1, 1, 2, lastHeaderCol).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+        // Optional notes row
+        if (!string.IsNullOrWhiteSpace(notes))
+        {
+            sheet.Cell(6, 1).Value = "Açıklama";
+            sheet.Cell(6, 2).Value = ":";
+            sheet.Cell(6, 3).Value = notes;
+            sheet.Cell(6, 3).Style.Alignment.WrapText = true;
+            sheet.Range(6, 3, 6, lastHeaderCol).Merge();
+        }
 
         // Row 7: table headers
         var headerRow = 7;
@@ -201,14 +212,15 @@ public static class ExcelExportWriter
         IEnumerable<IReadOnlyList<object?>> rows,
         string secondSheetName,
         IReadOnlyList<string> secondHeaders,
-        IEnumerable<IReadOnlyList<object?>> secondRows)
+        IEnumerable<IReadOnlyList<object?>> secondRows,
+        string? notes = null)
     {
         using var workbook = new XLWorkbook();
         var main = workbook.Worksheets.Add(string.IsNullOrWhiteSpace(mainSheetName) ? "Rapor" : mainSheetName);
         var second = workbook.Worksheets.Add(string.IsNullOrWhiteSpace(secondSheetName) ? "Ek" : secondSheetName);
 
         // Build main via the same logic (inline, to avoid refactoring the sheet param through the public API).
-        WriteReportWithHeaderIntoSheet(main, meta, summary, headers, rows);
+        WriteReportWithHeaderIntoSheet(main, meta, summary, headers, rows, notes: notes);
         WriteSimpleTableIntoSheet(second, secondHeaders, secondRows);
 
         workbook.SaveAs(filePath);
@@ -220,6 +232,7 @@ public static class ExcelExportWriter
         IReadOnlyList<SummaryItem> summary,
         IReadOnlyList<string> headers,
         IEnumerable<IReadOnlyList<object?>> rows,
+        string? notes = null,
         string? totalsLabel = "GENEL TOPLAM")
     {
         sheet.Cell(1, 1).Value = meta.AppTitle;
@@ -254,6 +267,15 @@ public static class ExcelExportWriter
         sheet.Cell(2, 1).Style.Font.Bold = true;
         sheet.Cell(2, 1).Style.Font.FontSize = 16;
         sheet.Range(1, 1, 2, lastHeaderCol).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+
+        if (!string.IsNullOrWhiteSpace(notes))
+        {
+            sheet.Cell(6, 1).Value = "Açıklama";
+            sheet.Cell(6, 2).Value = ":";
+            sheet.Cell(6, 3).Value = notes;
+            sheet.Cell(6, 3).Style.Alignment.WrapText = true;
+            sheet.Range(6, 3, 6, lastHeaderCol).Merge();
+        }
 
         var headerRow = 7;
         for (var i = 0; i < headers.Count; i++)
