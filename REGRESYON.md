@@ -238,7 +238,7 @@ Sonuç etiketleri:
 
 | Kontrol | Durum | Not |
 |---|---|---|
-| Yedekleme butonu görünüyor | TODO | UI üzerinden kontrol edilecek |
+| Yedekleme butonu görünüyor | OK | `MainWindow.xaml` içinde `BackupNavButton` mevcut ve `BackupNavButton_Click` bağlı |
 | ZIP yedek backups/ altına yazılıyor | OK | `--create-backup --backup-no-attachments --backup-no-exports` ile `backups/backup_YYYYMMDD_HHMMSS.zip` oluştu |
 | Veritabanı ZIP içinde | OK | ZIP içinde `database/fatura_takip.db` var (SQLite backup ile) |
 | Evraklar ZIP içinde | TODO | `attachments/` ve `exports/` büyükse süre uzayabilir; UI veya CLI ile doğrulanacak |
@@ -259,7 +259,7 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
 | Kontrol | Durum | Not |
 |---|---|---|
-| Raporlar ekranında Tutarlılık sekmesi görünüyor | TODO | UI üzerinden kontrol edilecek |
+| Raporlar ekranında Tutarlılık sekmesi görünüyor | OK | `ReportsView.xaml` içinde `ConsistencyTabButton` mevcut ve `ConsistencyTabButton_Click` bağlı |
 | Tutarlılık denetimi liste üretiyor | OK | Boş veri setinde 0 issue; veri varsa WARN/ERROR listelenir |
 | CLI tutarlılık denetimi çalışıyor | OK | `dotnet run -c Release --no-build --project src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --consistency-check` |
 
