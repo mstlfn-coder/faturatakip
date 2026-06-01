@@ -875,6 +875,160 @@ public sealed class SelfTestRunner
             Assert(File.Exists(reportXlsxPath), "Rapor excel export dosyasi olusmadi.");
             Assert(new FileInfo(reportXlsxPath).Length > 1024, "Rapor excel export dosyasi beklenenden kucuk.");
 
+            // Yearly list report smoke: ensure YearlyAll-style template + detail sheets are produced.
+            invoiceRepository.Add(new InvoiceInput(
+                updatedSubscription.Id,
+                2026,
+                2,
+                new DateTime(2026, 2, 10),
+                new DateTime(2026, 2, 20),
+                "INV-002",
+                200m,
+                20m,
+                invoiceType.DefaultUsageUnit,
+                "Self-test yearly list invoice (Feb)"));
+            invoiceRepository.Add(new InvoiceInput(
+                updatedSubscription.Id,
+                2026,
+                3,
+                new DateTime(2026, 3, 10),
+                new DateTime(2026, 3, 20),
+                "INV-003",
+                300m,
+                30m,
+                invoiceType.DefaultUsageUnit,
+                "Self-test yearly list invoice (Mar)"));
+
+            // Add a second invoice type to verify optional type filtering.
+            var secondType = seeded.Skip(1).First();
+            var secondSub = subscriptionRepository.Add(new SubscriptionInput(
+                secondType.Id,
+                "Ek Abonelik",
+                "Test Kurumu",
+                "SUB-002",
+                "TES-010",
+                "SAY-010",
+                "Test Saglayici",
+                "Test Mahallesi",
+                "Ek Bina",
+                secondType.DefaultUsageUnit,
+                IsActive: true,
+                StartDate: new DateTime(2026, 1, 1),
+                EndDate: null,
+                "Self-test abonelik (2)"));
+            invoiceRepository.Add(new InvoiceInput(
+                secondSub.Id,
+                2026,
+                1,
+                new DateTime(2026, 1, 12),
+                new DateTime(2026, 1, 25),
+                "INV-X-001",
+                50m,
+                5m,
+                secondType.DefaultUsageUnit,
+                "Self-test yearly list invoice (other type)"));
+
+            var yearlyInvoices = invoiceRepository.GetAll();
+            var yearlyList = YearlyInvoiceListReportCalculator.Calculate(
+                yearlyInvoices,
+                2026,
+                invoiceTypeId: null,
+                today: new DateTime(2026, 6, 1),
+                isPdfMissing: _ => false);
+            Assert(yearlyList.Rows.Count >= 3, "Yillik liste raporu beklenen sayida satir uretmedi.");
+
+            var yearlyExcelPath = Path.Combine(testRoot, "exports", $"raporlar-yillik-liste-selftest-{DateTime.Now:yyyyMMdd-HHmmss}.xlsx");
+            var metaYearly = new ExcelExportWriter.ReportMeta(
+                AppTitle: "KURUM FATURA TAKIP PROGRAMI",
+                InstitutionName: "Test Kurum",
+                ReportTitle: "YILLIK FATURA RAPORU",
+                ReportPeriod: "2026",
+                ReportDate: new DateTime(2026, 6, 1),
+                CreatedBy: "codex",
+                FilterText: "Self-test");
+
+            var mainHeaders = (IReadOnlyList<string>)new[]
+            {
+                "Yıl",
+                "Ay",
+                "Abone Bilgisi",
+                "F. Tarihi",
+                "Fatura Sayısı",
+                "Kullanım M.",
+                "Fatura Tutar",
+            };
+            var mainRows = yearlyList.Rows.Select(r => (IReadOnlyList<object?>)new object?[]
+            {
+                r.Invoice.InvoiceYear,
+                global::System.Globalization.CultureInfo.GetCultureInfo("tr-TR").DateTimeFormat.GetMonthName(r.Invoice.InvoiceMonth),
+                r.Invoice.SubscriptionName,
+                r.Invoice.InvoiceDate,
+                r.Invoice.InvoiceNo,
+                r.Invoice.UsageAmount,
+                r.Invoice.Amount,
+            }).ToList();
+
+            var detailHeaders = (IReadOnlyList<string>)new[]
+            {
+                "Dönem",
+                "Tür",
+                "Abonelik",
+                "Kurum",
+                "Durum",
+                "Fatura Tarihi",
+                "Son Ödeme",
+                "Fatura No",
+                "Tutar",
+                "Kullanım",
+                "Birim",
+                "Ödenen",
+                "Kalan",
+                "Fatura PDF",
+                "Açıklama",
+            };
+            var detailRows = yearlyList.Rows.Select(r => (IReadOnlyList<object?>)new object?[]
+            {
+                r.Invoice.Period,
+                r.Invoice.InvoiceTypeName,
+                r.Invoice.SubscriptionName,
+                r.Invoice.InstitutionName,
+                r.Invoice.State,
+                r.Invoice.InvoiceDate,
+                r.Invoice.DueDate,
+                r.Invoice.InvoiceNo,
+                r.Invoice.Amount,
+                r.Invoice.UsageAmount,
+                r.Invoice.UsageUnit,
+                r.Invoice.PaidAmount,
+                r.Invoice.RemainingAmount,
+                r.PdfState,
+                r.Invoice.Description,
+            }).ToList();
+
+            ExcelExportWriter.WriteReportWithTwoSheets(
+                yearlyExcelPath,
+                mainSheetName: "Rapor",
+                meta: metaYearly,
+                summary: new[]
+                {
+                    new ExcelExportWriter.SummaryItem("Toplam (Yıl)", yearlyList.TotalInvoiceCount.ToString(global::System.Globalization.CultureInfo.InvariantCulture), $"Toplam {yearlyList.TotalAmount:N2}"),
+                },
+                headers: mainHeaders,
+                rows: mainRows,
+                secondSheetName: "Detay",
+                secondHeaders: detailHeaders,
+                secondRows: detailRows,
+                notes: "Self-test yillik liste: sablon + detay sayfasi smoke");
+            Assert(File.Exists(yearlyExcelPath), "Yillik liste excel export dosyasi olusmadi.");
+
+            using (var wb = new global::ClosedXML.Excel.XLWorkbook(yearlyExcelPath))
+            {
+                var rapor = wb.Worksheet("Rapor");
+                Assert(rapor.Cell(6, 1).GetString() == "Açıklama", "Yillik liste excel: Aciklama satiri yazilmadi.");
+                Assert(rapor.Cell(7, 1).GetString() == "Yıl", "Yillik liste excel: sablon basliklari yazilmadi.");
+                Assert(wb.Worksheets.Any(s => s.Name == "Detay"), "Yillik liste excel: 'Detay' sayfasi bulunamadi.");
+            }
+
             var reportPdfPath = Path.Combine(testRoot, "exports", $"raporlar-selftest-{DateTime.Now:yyyyMMdd-HHmmss}.pdf");
             PdfReportWriter.WriteSimpleTableReport(
                 reportPdfPath,
