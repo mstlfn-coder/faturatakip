@@ -197,13 +197,14 @@ public partial class ReportsView : UserControl
 
             // For some tabs, match the provided Excel templates on the main sheet,
             // and keep the existing export table on a second sheet to avoid losing information.
-            if (_activeTab is ReportTab.Monthly or ReportTab.Subscription or ReportTab.SubscriptionYearly)
+            if (_activeTab is ReportTab.Monthly or ReportTab.Subscription or ReportTab.SubscriptionYearly or ReportTab.TypeYearly)
             {
                 var (tplHeaders, tplRows) = _activeTab switch
                 {
                     ReportTab.Monthly => BuildExcelMonthlyTemplateRows(),
                     ReportTab.Subscription => BuildExcelSubscriptionMonthlyTemplateRows(),
-                    _ => BuildExcelSubscriptionYearlyTemplateRows(),
+                    ReportTab.SubscriptionYearly => BuildExcelSubscriptionYearlyTemplateRows(),
+                    _ => BuildExcelTypeYearlyTemplateRows(),
                 };
                 ExcelExportWriter.WriteReportWithTwoSheets(
                     filePath,
@@ -393,6 +394,52 @@ public partial class ReportsView : UserControl
             r.Invoice.InvoiceNo,
             r.Invoice.UsageAmount,
             r.Invoice.Amount,
+        }).ToList();
+
+        return (headers, rows);
+    }
+
+    private (IReadOnlyList<string> Headers, IReadOnlyList<IReadOnlyList<object?>> Rows) BuildExcelTypeYearlyTemplateRows()
+    {
+        // Template reference: docs/references/fatura-excel-ornekler.xlsx (sheet: abonelikturuyillikfaturalar)
+        var headers = (IReadOnlyList<string>)new[]
+        {
+            "Yıl",
+            "Ay",
+            "Abone Bilgisi",
+            "F. Tarihi",
+            "Fatura Sayısı",
+            "Kullanım M.",
+            "Fatura Tutar",
+        };
+
+        if (_invoiceRepository is null)
+        {
+            return (headers, Array.Empty<IReadOnlyList<object?>>());
+        }
+
+        var year = GetSelectedTypeYearlyYear();
+        var type = GetSelectedTypeYearlyInvoiceType();
+        var typeId = type?.InvoiceTypeId;
+
+        var list = _invoiceRepository.GetAll()
+            .Where(i => i.InvoiceYear == year)
+            .Where(i => typeId is null || i.InvoiceTypeId == typeId.Value)
+            .OrderBy(i => i.InvoiceMonth)
+            .ThenBy(i => i.SubscriptionName, StringComparer.CurrentCultureIgnoreCase)
+            .ThenBy(i => i.InvoiceDate)
+            .ThenBy(i => i.InvoiceNo, StringComparer.CurrentCultureIgnoreCase)
+            .ToList();
+
+        var rows = list.Select(i => (IReadOnlyList<object?>)new object?[]
+        {
+            i.InvoiceYear,
+            TurkishCulture.DateTimeFormat.GetMonthName(i.InvoiceMonth),
+            string.IsNullOrWhiteSpace(i.SubscriptionName) ? i.SubscriptionId.ToString(CultureInfo.InvariantCulture) : i.SubscriptionName,
+            i.InvoiceDate,
+            i.InvoiceNo,
+            i.UsageAmount,
+            i.Amount,
         }).ToList();
 
         return (headers, rows);
