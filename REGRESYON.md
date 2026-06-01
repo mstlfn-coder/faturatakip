@@ -255,6 +255,14 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 - Manuel yedekleme
 - Tutarlılık denetimi
 
+## v0.20 - Tutarlılık Denetimi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Raporlar ekranında Tutarlılık sekmesi görünüyor | TODO | UI üzerinden kontrol edilecek |
+| Tutarlılık denetimi liste üretiyor | OK | Boş veri setinde 0 issue; veri varsa WARN/ERROR listelenir |
+| CLI tutarlılık denetimi çalışıyor | OK | `dotnet run -c Debug --no-build --project src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --consistency-check` |
+
 ## Test Geçmişi
 
 | Tarih | Faz | Sonuç | Not |
@@ -281,3 +289,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-06-01 | v0.17 | OK | Excel dışa aktarım eklendi; build, self-test ve health-check doğrulandı |
 | 2026-06-01 | v0.18 | OK | PDF rapor export eklendi; build, self-test ve health-check doğrulandı |
 | 2026-06-01 | v0.19 | OK | Yedekleme (UI + `--create-backup`) eklendi; build, self-test, health-check ve CLI smoke test doğrulandı |
+| 2026-06-01 | v0.20 | OK | Tutarlılık denetimi eklendi; build, self-test, health-check ve `--consistency-check` smoke test doğrulandı |

@@ -19,6 +19,7 @@ public partial class App : Application
         var isHealthCheck = IsHealthCheck(e.Args);
         var isSelfTest = IsSelfTest(e.Args);
         var isCreateBackup = IsCreateBackup(e.Args);
+        var isConsistencyCheck = IsConsistencyCheck(e.Args);
 
         try
         {
@@ -62,6 +63,27 @@ public partial class App : Application
                 return;
             }
 
+            if (isConsistencyCheck)
+            {
+                TryAppendCommandLog("consistency-check: start");
+                var bootstrapStatus = new ApplicationBootstrapper().Initialize();
+
+                // CLI should be fast: use SQL-based checks (no heavy in-memory joins, no file IO).
+                var report = Data.Reports.ConsistencyCheckSqlRunner.Run(bootstrapStatus.DatabasePath);
+                TryAppendCommandLog($"consistency-check: computed issues={report.TotalCount} errors={report.ErrorCount} warns={report.WarningCount}");
+
+                Console.WriteLine($"Consistency check: {report.TotalCount} issue(s) (ERROR={report.ErrorCount}, WARN={report.WarningCount})");
+                foreach (var issue in report.Issues)
+                {
+                    var id = issue.EntityId is null ? "" : $"#{issue.EntityId.Value}";
+                    Console.WriteLine($"{issue.Severity} {issue.Code} {issue.Entity}{id}: {issue.Message}");
+                }
+
+                TryAppendCommandLog("consistency-check: exit");
+                Shutdown(report.ErrorCount > 0 ? 1 : 0);
+                return;
+            }
+
             var startupStatus = new ApplicationBootstrapper().Initialize();
             var window = new MainWindow(startupStatus);
             MainWindow = window;
@@ -72,7 +94,7 @@ public partial class App : Application
             TryWriteStartupError(exception);
 
             // Never block command-mode runs on a MessageBox (headless environments).
-            if (!isHealthCheck && !isSelfTest && !isCreateBackup)
+            if (!isHealthCheck && !isSelfTest && !isCreateBackup && !isConsistencyCheck)
             {
                 MessageBox.Show(
                     exception.Message,
@@ -100,6 +122,11 @@ public partial class App : Application
         return args.Any(arg => string.Equals(arg, "--create-backup", StringComparison.OrdinalIgnoreCase));
     }
 
+    private static bool IsConsistencyCheck(string[] args)
+    {
+        return args.Any(arg => string.Equals(arg, "--consistency-check", StringComparison.OrdinalIgnoreCase));
+    }
+
     private static void TryWriteStartupError(Exception exception)
     {
         try
@@ -114,5 +141,19 @@ public partial class App : Application
             // Startup error logging must never hide the original startup failure.
         }
     }
-}
 
+    private static void TryAppendCommandLog(string message)
+    {
+        try
+        {
+            var paths = AppPaths.Resolve();
+            var logsDirectory = Path.Combine(paths.RootDirectory, "logs");
+            Directory.CreateDirectory(logsDirectory);
+            var line = $"{DateTimeOffset.Now:O} {message}{Environment.NewLine}";
+            File.AppendAllText(Path.Combine(logsDirectory, "command.log"), line);
+        }
+        catch
+        {
+        }
+    }
+}

@@ -102,6 +102,11 @@
                         Style="{StaticResource SecondaryButton}"
                         Margin="0,0,8,0"
                         Click="DocumentHealthTabButton_Click" />
+                <Button x:Name="ConsistencyTabButton"
+                        Content="Tutarlılık"
+                        Style="{StaticResource SecondaryButton}"
+                        Margin="0,0,8,0"
+                        Click="ConsistencyTabButton_Click" />
                 <Button x:Name="ExportReportButton"
                         Content="Excel'e Aktar"
                         Style="{StaticResource SecondaryButton}"
@@ -447,6 +452,35 @@
                         <DataGridTextColumn Header="Not"
                                             Binding="{Binding Note}"
                                             Width="90" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <DataGrid x:Name="ConsistencyGrid"
+                          Visibility="Collapsed"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          IsReadOnly="True"
+                          SelectionMode="Single"
+                          BorderBrush="#E5EAF1"
+                          BorderThickness="1"
+                          HeadersVisibility="Column"
+                          GridLinesVisibility="Horizontal">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Seviye"
+                                            Binding="{Binding Severity}"
+                                            Width="90" />
+                        <DataGridTextColumn Header="Kod"
+                                            Binding="{Binding Code}"
+                                            Width="200" />
+                        <DataGridTextColumn Header="Varlık"
+                                            Binding="{Binding Entity}"
+                                            Width="80" />
+                        <DataGridTextColumn Header="Id"
+                                            Binding="{Binding EntityId}"
+                                            Width="80" />
+                        <DataGridTextColumn Header="Mesaj"
+                                            Binding="{Binding Message}"
+                                            Width="1.5*" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

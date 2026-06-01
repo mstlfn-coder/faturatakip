@@ -29,6 +29,13 @@ Bu dosya, yeni Codex chatlerinde kaldÄ±ÄŸÄ±mÄ±z yeri hÄ±zlÄ±ca anlam
 
 ## Bu Oturumda YapÄ±lanlar
 
+(2026-06-01 / v0.20)
+
+1. Raporlar ekranına `Tutarlılık` sekmesi eklendi.
+2. Salt okunur tutarlılık denetimi hesaplayıcısı eklendi: `ConsistencyReportCalculator`.
+3. CLI eklendi: `--consistency-check`.
+4. Smoke test: `dotnet run -c Debug --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --consistency-check` OK.
+5. Smoke test: `dotnet run -c Debug --no-build --project src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test` OK.
 (2026-06-01 / v0.19)
 
 1. `Views/BackupView` eklendi: DB + attachments + exports iÃ§eren zip yedek Ã¼retiyor.

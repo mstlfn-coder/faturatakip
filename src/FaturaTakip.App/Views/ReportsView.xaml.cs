@@ -25,6 +25,7 @@ public partial class ReportsView : UserControl
     private SubscriptionYearlyReport _subscriptionYearly = SubscriptionYearlyReport.Empty;
     private InvoiceTypeYearlyReport _typeYearly = InvoiceTypeYearlyReport.Empty;
     private DocumentHealthReport _documentHealth = DocumentHealthReport.Empty;
+    private ConsistencyReport _consistency = ConsistencyReport.Empty;
     private ReportTab _activeTab = ReportTab.Unpaid;
     private bool _isInitialized;
     private bool _isRefreshingMonthlyFilters;
@@ -109,6 +110,12 @@ public partial class ReportsView : UserControl
             invoice => _invoiceRepository.PdfFileExists(invoice),
             payment => _paymentRepository.PdfFileExists(payment));
 
+        _consistency = ConsistencyReportCalculator.Calculate(
+            invoices,
+            payments,
+            invoice => _invoiceRepository.PdfFileExists(invoice),
+            payment => _paymentRepository.PdfFileExists(payment));
+
         ApplyTab(_activeTab);
     }
 
@@ -150,6 +157,11 @@ public partial class ReportsView : UserControl
     private void DocumentHealthTabButton_Click(object sender, RoutedEventArgs e)
     {
         ApplyTab(ReportTab.DocumentHealth);
+    }
+
+    private void ConsistencyTabButton_Click(object sender, RoutedEventArgs e)
+    {
+        ApplyTab(ReportTab.Consistency);
     }
 
     private void ExportReportButton_Click(object sender, RoutedEventArgs e)
@@ -485,6 +497,28 @@ public partial class ReportsView : UserControl
             return (summary, (headers, rows), secondaryTitle: null, secondTable: null);
         }
 
+        if (_activeTab == ReportTab.Consistency)
+        {
+            var summary = new List<PdfReportWriter.SummaryItem>
+            {
+                new("ERROR", _consistency.ErrorCount.ToString(CultureInfo.InvariantCulture), "Kritik tutarsızlık"),
+                new("WARN", _consistency.WarningCount.ToString(CultureInfo.InvariantCulture), "Uyarı"),
+                new("Toplam", _consistency.TotalCount.ToString(CultureInfo.InvariantCulture), "Issue"),
+            };
+
+            var headers = new[] { "Seviye", "Kod", "Varlık", "Id", "Mesaj" };
+            var rows = _consistency.Issues.Select(i => (IReadOnlyList<string>)new[]
+            {
+                i.Severity,
+                i.Code,
+                i.Entity,
+                i.EntityId?.ToString(CultureInfo.InvariantCulture) ?? string.Empty,
+                i.Message,
+            }).ToList();
+
+            return (summary, (headers, rows), secondaryTitle: null, secondTable: null);
+        }
+
         // Default: actionable lists
         var actionableItems = _activeTab switch
         {
@@ -638,6 +672,7 @@ public partial class ReportsView : UserControl
         SetTabActive(SubscriptionYearlyTabButton, tab == ReportTab.SubscriptionYearly);
         SetTabActive(TypeYearlyTabButton, tab == ReportTab.TypeYearly);
         SetTabActive(DocumentHealthTabButton, tab == ReportTab.DocumentHealth);
+        SetTabActive(ConsistencyTabButton, tab == ReportTab.Consistency);
 
         MonthlyFilterPanel.Visibility = tab == ReportTab.Monthly ? Visibility.Visible : Visibility.Collapsed;
         SubscriptionFilterPanel.Visibility = tab is ReportTab.Subscription or ReportTab.SubscriptionYearly
@@ -655,6 +690,7 @@ public partial class ReportsView : UserControl
             ReportTab.SubscriptionYearly => Array.Empty<ActionableInvoice>(),
             ReportTab.TypeYearly => Array.Empty<ActionableInvoice>(),
             ReportTab.DocumentHealth => Array.Empty<ActionableInvoice>(),
+            ReportTab.Consistency => Array.Empty<ActionableInvoice>(),
             _ => _report.Unpaid,
         };
 
@@ -703,6 +739,17 @@ public partial class ReportsView : UserControl
             YearlyGrid.Visibility = Visibility.Collapsed;
             DistributionGrid.Visibility = Visibility.Collapsed;
             DocumentHealthGrid.Visibility = Visibility.Visible;
+            ConsistencyGrid.Visibility = Visibility.Collapsed;
+        }
+        else if (tab == ReportTab.Consistency)
+        {
+            ApplyConsistencyTiles();
+            ConsistencyGrid.ItemsSource = _consistency.Issues.ToList();
+            ReportGrid.Visibility = Visibility.Collapsed;
+            YearlyGrid.Visibility = Visibility.Collapsed;
+            DistributionGrid.Visibility = Visibility.Collapsed;
+            DocumentHealthGrid.Visibility = Visibility.Collapsed;
+            ConsistencyGrid.Visibility = Visibility.Visible;
         }
         else
         {
@@ -712,6 +759,7 @@ public partial class ReportsView : UserControl
             YearlyGrid.Visibility = Visibility.Collapsed;
             DistributionGrid.Visibility = Visibility.Collapsed;
             DocumentHealthGrid.Visibility = Visibility.Collapsed;
+            ConsistencyGrid.Visibility = Visibility.Collapsed;
         }
     }
 
@@ -837,6 +885,25 @@ public partial class ReportsView : UserControl
         Tile3LabelText.Text = "Aynı Hash";
         Tile3ValueText.Text = (_documentHealth.DuplicateInvoiceHashItemCount + _documentHealth.DuplicatePaymentHashItemCount).ToString(CultureInfo.InvariantCulture);
         Tile3DetailText.Text = $"Fatura {_documentHealth.DuplicateInvoiceHashItemCount}, Ödeme {_documentHealth.DuplicatePaymentHashItemCount}";
+
+        MonthlyFilterHintText.Text = string.Empty;
+        SubscriptionHintText.Text = string.Empty;
+        TypeYearlyHintText.Text = string.Empty;
+    }
+
+    private void ApplyConsistencyTiles()
+    {
+        Tile1LabelText.Text = "ERROR";
+        Tile1ValueText.Text = _consistency.ErrorCount.ToString(CultureInfo.InvariantCulture);
+        Tile1DetailText.Text = "Kritik tutarsÄ±zlÄ±k";
+
+        Tile2LabelText.Text = "WARN";
+        Tile2ValueText.Text = _consistency.WarningCount.ToString(CultureInfo.InvariantCulture);
+        Tile2DetailText.Text = "UyarÄ±";
+
+        Tile3LabelText.Text = "Toplam";
+        Tile3ValueText.Text = _consistency.TotalCount.ToString(CultureInfo.InvariantCulture);
+        Tile3DetailText.Text = "Issue";
 
         MonthlyFilterHintText.Text = string.Empty;
         SubscriptionHintText.Text = string.Empty;
@@ -1160,6 +1227,7 @@ public partial class ReportsView : UserControl
         SubscriptionYearly,
         TypeYearly,
         DocumentHealth,
+        Consistency,
     }
 
     private sealed record ReportRow(
