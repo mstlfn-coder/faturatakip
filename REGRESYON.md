@@ -261,7 +261,7 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 |---|---|---|
 | Raporlar ekranında Tutarlılık sekmesi görünüyor | TODO | UI üzerinden kontrol edilecek |
 | Tutarlılık denetimi liste üretiyor | OK | Boş veri setinde 0 issue; veri varsa WARN/ERROR listelenir |
-| CLI tutarlılık denetimi çalışıyor | OK | `dotnet run -c Debug --no-build --project src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --consistency-check` |
+| CLI tutarlılık denetimi çalışıyor | OK | `dotnet run -c Release --no-build --project src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --consistency-check` |
 
 ## Test Geçmişi
 
