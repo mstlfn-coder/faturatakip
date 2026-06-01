@@ -315,16 +315,17 @@ public partial class ReportsView : UserControl
                 ReportPeriod: GetPdfReportPeriod(),
                 ReportDate: DateTime.Today,
                 CreatedBy: createdBy,
-                FilterText: GetPdfReportFilterText());
+                FilterText: string.Empty);
 
             var (summary, primary, secondaryTitle, secondTable) = BuildPdfContent();
 
             PdfReportWriter.WriteSimpleTableReport(
                 filePath,
                 meta,
-                summary,
+                Array.Empty<PdfReportWriter.SummaryItem>(),
                 primary.Headers,
                 primary.Rows,
+                notes: GetPdfReportFilterText(),
                 secondaryTitle: secondaryTitle,
                 secondTable: secondTable);
 

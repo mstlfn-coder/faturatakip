@@ -1039,10 +1039,11 @@ public sealed class SelfTestRunner
                     ReportPeriod: "2026/01",
                     ReportDate: new DateTime(2026, 6, 1),
                     CreatedBy: "codex",
-                    FilterText: "Test"),
-                summary: new[] { new PdfReportWriter.SummaryItem("Toplam", "1") },
+                    FilterText: string.Empty),
+                summary: Array.Empty<PdfReportWriter.SummaryItem>(),
                 headers: new[] { "Kolon" },
-                rows: new[] { new[] { "Satir" } });
+                rows: new[] { new[] { "Satir" } },
+                notes: "Self-test açıklama satırı");
             Assert(File.Exists(reportPdfPath), "PDF export dosyasi olusmadi.");
             Assert(new FileInfo(reportPdfPath).Length > 1024, "PDF export dosyasi beklenenden kucuk.");
 
