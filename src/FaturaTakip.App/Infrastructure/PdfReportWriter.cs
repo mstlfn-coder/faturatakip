@@ -32,7 +32,8 @@ public static class PdfReportWriter
         bool includeSignature = false,
         IReadOnlyList<TableFooterCell>? footerCells = null,
         IReadOnlyList<float>? columnWeights = null,
-        IReadOnlyList<TableColumnStyle>? columnStyles = null)
+        IReadOnlyList<TableColumnStyle>? columnStyles = null,
+        bool includeFooter = false)
     {
         // Community license is enough for internal/business apps; required by QuestPDF runtime.
         QuestPDF.Settings.License = LicenseType.Community;
@@ -82,15 +83,18 @@ public static class PdfReportWriter
                     });
                 });
 
-                page.Footer().AlignCenter().Text(t =>
+                if (includeFooter)
                 {
-                    t.DefaultTextStyle(x => x.FontSize(9).FontColor(Colors.Grey.Darken1));
-                    t.Span("Bu rapor Kurum Fatura Takip Programı tarafından oluşturulmuştur.  ");
-                    t.Span("Sayfa ");
-                    t.CurrentPageNumber();
-                    t.Span(" / ");
-                    t.TotalPages();
-                });
+                    page.Footer().AlignCenter().Text(t =>
+                    {
+                        t.DefaultTextStyle(x => x.FontSize(9).FontColor(Colors.Grey.Darken1));
+                        t.Span("Bu rapor Kurum Fatura Takip Programı tarafından oluşturulmuştur.  ");
+                        t.Span("Sayfa ");
+                        t.CurrentPageNumber();
+                        t.Span(" / ");
+                        t.TotalPages();
+                    });
+                }
             });
         }).GeneratePdf(filePath);
     }
