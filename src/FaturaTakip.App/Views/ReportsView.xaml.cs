@@ -380,6 +380,18 @@ public partial class ReportsView : UserControl
 
                 // Column widths tuned for the 7-column template: year, month, subscription, date, invoice no, usage, amount.
                 var weights = tplHeaders.Count == 7 ? new float[] { 1.0f, 1.4f, 2.4f, 1.6f, 3.2f, 1.6f, 1.8f } : null;
+                var styles = tplHeaders.Count == 7
+                    ? new[]
+                    {
+                        new PdfReportWriter.TableColumnStyle(AlignCenter: true),
+                        new PdfReportWriter.TableColumnStyle(),
+                        new PdfReportWriter.TableColumnStyle(),
+                        new PdfReportWriter.TableColumnStyle(),
+                        new PdfReportWriter.TableColumnStyle(),
+                        new PdfReportWriter.TableColumnStyle(AlignRight: true),
+                        new PdfReportWriter.TableColumnStyle(AlignRight: true),
+                    }
+                    : null;
 
                 var rows = tplRows
                     .Select(r => (IReadOnlyList<string>)r.Select(FormatCell).ToArray())
@@ -394,7 +406,8 @@ public partial class ReportsView : UserControl
                     notes: GetPdfReportFilterText(),
                     secondaryTitle: secondaryTitle,
                     footerCells: footerCells,
-                    columnWeights: weights);
+                    columnWeights: weights,
+                    columnStyles: styles);
             }
             else
             {
