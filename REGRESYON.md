@@ -271,6 +271,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Boş olmayan hedefe restore engelleniyor | TODO | Güvenlik kontrolü negatif senaryo |
 | Restore sonrası DB dosyası var | OK | `database/fatura_takip.db` hedefte mevcut |
 
+## v0.22 - UI Backup Restore
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Backup ekraninda restore bolumu var | OK | BackupView icinde restore alanlari mevcut |
+| Zip secme butonu calisiyor | OK | OpenFileDialog |
+| Hedef klasor yolu girilebiliyor | OK | TextBox editable |
+| Restore sadece bos klasore izin veriyor | OK | RestoreToEmptyRoot kontrol ediyor |
+
 ## Test Geçmişi
 
 | Tarih | Faz | Sonuç | Not |
@@ -299,3 +308,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-06-01 | v0.19 | OK | Yedekleme (UI + `--create-backup`) eklendi; build, self-test, health-check ve CLI smoke test doğrulandı |
 | 2026-06-01 | v0.20 | OK | Tutarlılık denetimi eklendi; build, self-test, health-check ve `--consistency-check` smoke test doğrulandı |
 | 2026-06-01 | v0.21 | OK | Güvenli geri yükleme eklendi; `--restore-backup` smoke test doğrulandı |
+| 2026-06-01 | v0.22 | OK | Backup UI restore eklendi; build + self-test OK; restore hata durumda MessageBox yok |

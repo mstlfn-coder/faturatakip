@@ -35,6 +35,7 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | v0.19 | Tamamlandı | Manuel güvenli yedekleme | Veritabanı ve evraklar ZIP yedek olarak alınır (UI + `--create-backup`) |
 | v0.20 | Tamamlandı | Tutarlılık denetimi | Salt okunur veri tutarlılığı raporu çalışır (`Raporlar > Tutarlılık` + `--consistency-check`) |
 | v0.21 | Tamamlandı | Güvenli yedek geri yükleme | ZIP yedek boş klasöre geri yüklenir (`--restore-backup` + `--restore-target`) |
+| v0.22 | Tamamlandi | UI restore (backup) | Backup ekranindan zip secilip bos klasore restore edilebilir |
 
 ## v0.1 Ayrıntılı Kapsam
 

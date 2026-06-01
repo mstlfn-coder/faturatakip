@@ -110,7 +110,7 @@ public partial class App : Application
             TryWriteStartupError(exception);
 
             // Never block command-mode runs on a MessageBox (headless environments).
-            if (!isHealthCheck && !isSelfTest && !isCreateBackup && !isConsistencyCheck)
+            if (!isHealthCheck && !isSelfTest && !isCreateBackup && !isConsistencyCheck && !isRestoreBackup)
             {
                 MessageBox.Show(
                     exception.Message,

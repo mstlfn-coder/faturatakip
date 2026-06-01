@@ -1,4 +1,4 @@
-﻿# Devam NotlarÄ±
+﻿﻿# Devam NotlarÄ±
 
 Bu dosya, yeni Codex chatlerinde kaldÄ±ÄŸÄ±mÄ±z yeri hÄ±zlÄ±ca anlamak iÃ§in tutulur.
 
@@ -28,6 +28,14 @@ Bu dosya, yeni Codex chatlerinde kaldÄ±ÄŸÄ±mÄ±z yeri hÄ±zlÄ±ca anlam
 - `v0.10` commit'i: `9771c31 feat: add unpaid/overdue invoice report`
 
 ## Bu Oturumda YapÄ±lanlar
+
+(2026-06-01 / v0.22)
+
+1. BackupView uzerine UI restore bolumu eklendi (Zip sec + hedef klasor yolu + Geri Yukle).
+2. CLI restore hata durumunda MessageBox gosterimi kapatildi (headless/run kilitlenmesin).
+3. Smoke test: dotnet build -c Release OK.
+4. Smoke test: dotnet run -c Release --no-build --project src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test OK.
+5. Smoke test: --restore-backup negatif senaryo (non-empty hedef) exit=1 OK.
 
 (2026-06-01 / v0.21)
 

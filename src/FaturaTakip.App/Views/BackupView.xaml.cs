@@ -1,9 +1,10 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Win32;
 using FaturaTakip.App.Infrastructure;
 
 namespace FaturaTakip.App.Views;
@@ -31,15 +32,19 @@ public partial class BackupView : UserControl
 
             if (latest is null)
             {
-                BackupStatusText.Text = "HenÃ¼z yedek yok. Ã–neri: gÃ¼nde 1 kez yedek alÄ±n.";
+                BackupStatusText.Text = "HenÃƒÂ¼z yedek yok. Ãƒâ€“neri: gÃƒÂ¼nde 1 kez yedek alÃ„Â±n.";
                 return;
             }
 
             BackupStatusText.Text = $"Son yedek: {latest.Name} ({latest.LastWriteTime.ToString("dd.MM.yyyy HH:mm", CultureInfo.GetCultureInfo("tr-TR"))})";
+
+            // Convenience: prefill restore zip with the latest backup.
+            RestoreZipPathText.Text = latest.FullName;
+            RestoreStatusText.Text = "";
         }
         catch (Exception ex)
         {
-            BackupStatusText.Text = $"Yedek durumu okunamadÄ±: {ex.Message}";
+            BackupStatusText.Text = $"Yedek durumu okunamadÃ„Â±: {ex.Message}";
         }
     }
 
@@ -57,7 +62,7 @@ public partial class BackupView : UserControl
         catch (Exception ex)
         {
             MessageBox.Show(
-                $"Yedek oluÅŸturulamadÄ±:\n{ex.Message}",
+                $"Yedek oluÃ…Å¸turulamadÃ„Â±:\n{ex.Message}",
                 "Yedekleme",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
@@ -81,13 +86,102 @@ public partial class BackupView : UserControl
         catch (Exception ex)
         {
             MessageBox.Show(
-                $"KlasÃ¶r aÃ§Ä±lamadÄ±:\n{ex.Message}",
+                $"KlasÃƒÂ¶r aÃƒÂ§Ã„Â±lamadÃ„Â±:\n{ex.Message}",
                 "Yedekleme",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
         }
     }
 
+
+    private void SelectRestoreZipButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var paths = AppPaths.Resolve();
+            var backupsDir = Path.Combine(paths.RootDirectory, "backups");
+            Directory.CreateDirectory(backupsDir);
+
+            var dlg = new OpenFileDialog
+            {
+                Title = "Yedek Zip SeÃ§",
+                Filter = "Zip (*.zip)|*.zip|TÃ¼m Dosyalar|*.*",
+                InitialDirectory = backupsDir,
+                CheckFileExists = true,
+                Multiselect = false,
+            };
+
+            if (dlg.ShowDialog() == true)
+            {
+                RestoreZipPathText.Text = dlg.FileName;
+                RestoreStatusText.Text = "";
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                $"Zip seÃ§ilemedi:\n{ex.Message}",
+                "Geri YÃ¼kleme",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
+    }
+
+    private void RestoreBackupButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var zipPath = (RestoreZipPathText.Text ?? "").Trim();
+            var targetRoot = (RestoreTargetPathText.Text ?? "").Trim();
+
+            if (string.IsNullOrWhiteSpace(zipPath))
+            {
+                MessageBox.Show("LÃ¼tfen bir yedek zip seÃ§in.", "Geri YÃ¼kleme", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(targetRoot))
+            {
+                MessageBox.Show("LÃ¼tfen boÅŸ bir hedef klasÃ¶r seÃ§in (yolunu yazÄ±n).", "Geri YÃ¼kleme", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            targetRoot = Path.GetFullPath(targetRoot);
+
+            var confirm = MessageBox.Show(
+                "SeÃ§ilen zip boÅŸ bir klasÃ¶re geri yÃ¼klenecek.\n\n" +
+                $"Zip: {zipPath}\n" +
+                $"Hedef: {targetRoot}\n\n" +
+                "Not: Bu iÅŸlem hedef klasÃ¶r boÅŸ deÄŸilse Ã§alÄ±ÅŸmaz.\n\n" +
+                "Devam edilsin mi?",
+                "Geri YÃ¼kleme OnayÄ±",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (confirm != MessageBoxResult.Yes)
+            {
+                return;
+            }
+
+            var result = BackupRestoreService.RestoreToEmptyRoot(zipPath, targetRoot);
+            RestoreStatusText.Text = result.Message;
+
+            MessageBox.Show(
+                result.Message,
+                "Geri YÃ¼kleme",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
+        }
+        catch (Exception ex)
+        {
+            RestoreStatusText.Text = "Hata: " + ex.Message;
+            MessageBox.Show(
+                $"Geri yÃ¼kleme baÅŸarÄ±sÄ±z:\n{ex.Message}",
+                "Geri YÃ¼kleme",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
+    }
     private static string FormatBytes(long bytes)
     {
         if (bytes < 1024) return $"{bytes} B";
