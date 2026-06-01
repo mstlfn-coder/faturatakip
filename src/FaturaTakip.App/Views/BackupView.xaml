@@ -140,6 +140,11 @@
                                     Style="{StaticResource PrimaryButton}"
                                     Margin="0,0,10,0"
                                     Click="RestoreBackupButton_Click" />
+                             <Button Content="Hedefi Ac"
+                                     Style="{StaticResource SecondaryButton}"
+                                     MinWidth="110"
+                                     Margin="0,0,10,0"
+                                     Click="OpenRestoreTargetButton_Click" />
                             <TextBlock x:Name="RestoreStatusText"
                                        Style="{StaticResource MutedText}"
                                        VerticalAlignment="Center"

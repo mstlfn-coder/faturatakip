@@ -1,4 +1,4 @@
-﻿﻿# Devam NotlarÄ±
+﻿﻿﻿# Devam NotlarÄ±
 
 Bu dosya, yeni Codex chatlerinde kaldÄ±ÄŸÄ±mÄ±z yeri hÄ±zlÄ±ca anlamak iÃ§in tutulur.
 
@@ -37,6 +37,7 @@ Bu dosya, yeni Codex chatlerinde kaldÄ±ÄŸÄ±mÄ±z yeri hÄ±zlÄ±ca anlam
 4. Smoke test: dotnet run -c Release --no-build --project src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test OK.
 5. Smoke test: --restore-backup negatif senaryo (non-empty hedef) exit=1 OK.
 
+6. UX: Hedefi Ac butonu eklendi + UI tarafinda hedef klasor bos mu on kontrolu eklendi.
 (2026-06-01 / v0.21)
 
 1. CLI eklendi: `--restore-backup <zip> --restore-target <emptyFolder>`.

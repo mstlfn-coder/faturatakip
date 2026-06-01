@@ -39,7 +39,10 @@ public partial class BackupView : UserControl
             BackupStatusText.Text = $"Son yedek: {latest.Name} ({latest.LastWriteTime.ToString("dd.MM.yyyy HH:mm", CultureInfo.GetCultureInfo("tr-TR"))})";
 
             // Convenience: prefill restore zip with the latest backup.
-            RestoreZipPathText.Text = latest.FullName;
+            if (string.IsNullOrWhiteSpace(RestoreZipPathText.Text))
+            {
+                RestoreZipPathText.Text = latest.FullName;
+            }
             RestoreStatusText.Text = "";
         }
         catch (Exception ex)
@@ -127,6 +130,40 @@ public partial class BackupView : UserControl
         }
     }
 
+    private void OpenRestoreTargetButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var targetRoot = (RestoreTargetPathText.Text ?? "").Trim();
+            if (string.IsNullOrWhiteSpace(targetRoot))
+            {
+                MessageBox.Show("LÃ¼tfen hedef klasÃ¶r yolunu girin.", "Geri YÃ¼kleme", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            targetRoot = Path.GetFullPath(targetRoot);
+            if (!Directory.Exists(targetRoot))
+            {
+                MessageBox.Show("Hedef klasÃ¶r bulunamadÄ± (henÃ¼z oluÅŸmamÄ±ÅŸ olabilir).", "Geri YÃ¼kleme", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = targetRoot,
+                UseShellExecute = true,
+            });
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                $"KlasÃ¶r aÃ§Ä±lamadÄ±:\n{ex.Message}",
+                "Geri YÃ¼kleme",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
+    }
+
     private void RestoreBackupButton_Click(object sender, RoutedEventArgs e)
     {
         try
@@ -146,7 +183,20 @@ public partial class BackupView : UserControl
                 return;
             }
 
+            if (!File.Exists(zipPath))
+            {
+                MessageBox.Show("Yedek zip dosyasÄ± bulunamadÄ±.", "Geri YÃ¼kleme", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             targetRoot = Path.GetFullPath(targetRoot);
+
+            if (Directory.Exists(targetRoot) && Directory.EnumerateFileSystemEntries(targetRoot).Any())
+            {
+                RestoreStatusText.Text = "Hata: hedef klasÃ¶r boÅŸ deÄŸil.";
+                MessageBox.Show("GÃ¼venlik iÃ§in sadece boÅŸ klasÃ¶re geri yÃ¼kleme yapÄ±labilir.", "Geri YÃ¼kleme", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
             var confirm = MessageBox.Show(
                 "SeÃ§ilen zip boÅŸ bir klasÃ¶re geri yÃ¼klenecek.\n\n" +
