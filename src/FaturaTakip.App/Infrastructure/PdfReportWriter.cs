@@ -8,6 +8,7 @@ namespace FaturaTakip.App.Infrastructure;
 public static class PdfReportWriter
 {
     public sealed record SummaryItem(string Label, string Value, string? Detail = null);
+    public sealed record TableFooterCell(string Text, int ColumnSpan = 1, bool Bold = true, bool AlignRight = false);
 
     public sealed record ReportMeta(
         string AppTitle,
@@ -27,7 +28,9 @@ public static class PdfReportWriter
         string? notes = null,
         string? secondaryTitle = null,
         (IReadOnlyList<string> Headers, IReadOnlyList<IReadOnlyList<string>> Rows, string Title)? secondTable = null,
-        bool includeSignature = false)
+        bool includeSignature = false,
+        IReadOnlyList<TableFooterCell>? footerCells = null,
+        IReadOnlyList<float>? columnWeights = null)
     {
         // Community license is enough for internal/business apps; required by QuestPDF runtime.
         QuestPDF.Settings.License = LicenseType.Community;
@@ -65,7 +68,7 @@ public static class PdfReportWriter
                             });
                         }
 
-                        col.Item().Element(x => ComposeTable(x, headers, rows));
+                        col.Item().Element(x => ComposeTable(x, headers, rows, footerCells, columnWeights));
 
                         if (secondTable is not null)
                         {
@@ -158,6 +161,14 @@ public static class PdfReportWriter
     }
 
     private static void ComposeTable(IContainer container, IReadOnlyList<string> headers, IReadOnlyList<IReadOnlyList<string>> rows)
+        => ComposeTable(container, headers, rows, footerCells: null, columnWeights: null);
+
+    private static void ComposeTable(
+        IContainer container,
+        IReadOnlyList<string> headers,
+        IReadOnlyList<IReadOnlyList<string>> rows,
+        IReadOnlyList<TableFooterCell>? footerCells,
+        IReadOnlyList<float>? columnWeights)
     {
         // Never render "filler" rows. If upstream accidentally produces an all-empty row,
         // skip it so the PDF doesn't look like a pre-printed form.
@@ -169,15 +180,23 @@ public static class PdfReportWriter
         {
             table.ColumnsDefinition(cols =>
             {
-                foreach (var _ in headers)
-                    cols.RelativeColumn();
+                if (columnWeights is not null && columnWeights.Count == headers.Count)
+                {
+                    foreach (var w in columnWeights)
+                        cols.RelativeColumn(w);
+                }
+                else
+                {
+                    foreach (var _ in headers)
+                        cols.RelativeColumn();
+                }
             });
 
             table.Header(header =>
             {
                 for (var i = 0; i < headers.Count; i++)
                 {
-                    header.Cell().Element(CellStyleHeader).Text(headers[i]).SemiBold();
+                    header.Cell().Element(CellStyleHeader).AlignCenter().Text(headers[i]).SemiBold();
                 }
             });
 
@@ -189,6 +208,23 @@ public static class PdfReportWriter
                     table.Cell().Element(CellStyleBody).Text(value ?? string.Empty);
                 }
             }
+
+            if (footerCells is not null && footerCells.Count > 0)
+            {
+                table.Footer(footer =>
+                {
+                    foreach (var cell in footerCells)
+                    {
+                        var span = Math.Max(1, cell.ColumnSpan);
+                        var c = footer.Cell().ColumnSpan((uint)span).Element(x => CellStyleFooter(x, cell.AlignRight));
+                        var text = c.Text(cell.Text ?? string.Empty);
+                        if (cell.Bold)
+                            text.SemiBold();
+                        if (cell.AlignRight)
+                            text.AlignRight();
+                    }
+                });
+            }
         });
     }
 
@@ -196,18 +232,28 @@ public static class PdfReportWriter
     {
         return container
             .Border(1)
-            .BorderColor(Colors.Grey.Lighten2)
-            .Background(Colors.Grey.Lighten4)
+            .BorderColor(Colors.Black)
             .PaddingVertical(4)
-            .PaddingHorizontal(5);
+            .PaddingHorizontal(4);
     }
 
     private static IContainer CellStyleBody(IContainer container)
     {
         return container
             .Border(1)
-            .BorderColor(Colors.Grey.Lighten3)
+            .BorderColor(Colors.Black)
             .PaddingVertical(3)
-            .PaddingHorizontal(5);
+            .PaddingHorizontal(4);
+    }
+
+    private static IContainer CellStyleFooter(IContainer container, bool alignRight)
+    {
+        var styled = container
+            .Border(1)
+            .BorderColor(Colors.Black)
+            .PaddingVertical(4)
+            .PaddingHorizontal(4);
+
+        return alignRight ? styled.AlignRight() : styled;
     }
 }
