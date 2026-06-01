@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿# Devam NotlarÄ±
+﻿﻿﻿﻿﻿﻿# Devam NotlarÄ±
 
 Bu dosya, yeni Codex chatlerinde kaldÄ±ÄŸÄ±mÄ±z yeri hÄ±zlÄ±ca anlamak iÃ§in tutulur.
 
@@ -393,3 +393,4 @@ v0.12 sonuÃ§ notu:
 
 1. Rapor tasarim referanslari repo icine alindi: docs/references/02-excel-pdf-rapor-tasarim-plani.md + docs/references/fatura-excel-ornekler.xlsx.
 2. Excel rapor cikti format iyilestirmeleri: baslik ortalama + freeze + toplam formulleri + formatlar (ExcelExportWriter).
+3. PDF rapor ozet alani 2 satira kadar genisletildi ve imza blogu opsiyonel hale getirildi (PdfReportWriter).

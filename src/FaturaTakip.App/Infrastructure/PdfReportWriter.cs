@@ -26,7 +26,8 @@ public static class PdfReportWriter
         IReadOnlyList<IReadOnlyList<string>> rows,
         string? notes = null,
         string? secondaryTitle = null,
-        (IReadOnlyList<string> Headers, IReadOnlyList<IReadOnlyList<string>> Rows, string Title)? secondTable = null)
+        (IReadOnlyList<string> Headers, IReadOnlyList<IReadOnlyList<string>> Rows, string Title)? secondTable = null,
+        bool includeSignature = true)
     {
         // Community license is enough for internal/business apps; required by QuestPDF runtime.
         QuestPDF.Settings.License = LicenseType.Community;
@@ -67,22 +68,25 @@ public static class PdfReportWriter
                             col.Item().Element(x => ComposeTable(x, secondTable.Value.Headers, secondTable.Value.Rows));
                         }
 
-                        col.Item().PaddingTop(12).Row(r =>
+                        if (includeSignature)
                         {
-                            r.RelativeItem().Column(left =>
+                            col.Item().PaddingTop(12).Row(r =>
                             {
-                                left.Item().Text("Hazırlayan").SemiBold();
-                                left.Item().Text("Ad Soyad / İmza");
-                                left.Item().PaddingTop(18).Height(1).Background(Colors.Grey.Lighten1);
+                                r.RelativeItem().Column(left =>
+                                {
+                                    left.Item().Text("Hazırlayan").SemiBold();
+                                    left.Item().Text("Ad Soyad / İmza");
+                                    left.Item().PaddingTop(18).Height(1).Background(Colors.Grey.Lighten1);
+                                });
+                                r.ConstantItem(40);
+                                r.RelativeItem().Column(right =>
+                                {
+                                    right.Item().Text("Kontrol Eden").SemiBold();
+                                    right.Item().Text("Ad Soyad / İmza");
+                                    right.Item().PaddingTop(18).Height(1).Background(Colors.Grey.Lighten1);
+                                });
                             });
-                            r.ConstantItem(40);
-                            r.RelativeItem().Column(right =>
-                            {
-                                right.Item().Text("Kontrol Eden").SemiBold();
-                                right.Item().Text("Ad Soyad / İmza");
-                                right.Item().PaddingTop(18).Height(1).Background(Colors.Grey.Lighten1);
-                            });
-                        });
+                        }
                     });
                 });
 
@@ -137,18 +141,27 @@ public static class PdfReportWriter
 
     private static void ComposeSummary(IContainer container, IReadOnlyList<SummaryItem> items)
     {
-        container.Row(row =>
+        // Render up to 6 cards as 2 rows x 3 columns to better match the report plan's richer summary needs.
+        var list = items.Take(6).ToList();
+        container.Column(col =>
         {
-            row.Spacing(10);
-            foreach (var item in items.Take(3))
+            col.Spacing(8);
+            for (var rowIndex = 0; rowIndex < list.Count; rowIndex += 3)
             {
-                row.RelativeItem().Border(1).BorderColor(Colors.Grey.Lighten2).Padding(10).Column(col =>
+                col.Item().Row(row =>
                 {
-                    col.Item().Text(item.Label).FontSize(9).FontColor(Colors.Grey.Darken1);
-                    col.Item().Text(item.Value).FontSize(14).SemiBold();
-                    if (!string.IsNullOrWhiteSpace(item.Detail))
+                    row.Spacing(10);
+                    foreach (var item in list.Skip(rowIndex).Take(3))
                     {
-                        col.Item().Text(item.Detail!).FontSize(9).FontColor(Colors.Grey.Darken1);
+                        row.RelativeItem().Border(1).BorderColor(Colors.Grey.Lighten2).Padding(10).Column(c =>
+                        {
+                            c.Item().Text(item.Label).FontSize(9).FontColor(Colors.Grey.Darken1);
+                            c.Item().Text(item.Value).FontSize(14).SemiBold();
+                            if (!string.IsNullOrWhiteSpace(item.Detail))
+                            {
+                                c.Item().Text(item.Detail!).FontSize(9).FontColor(Colors.Grey.Darken1);
+                            }
+                        });
                     }
                 });
             }
