@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+﻿﻿﻿using System.Globalization;
 using FaturaTakip.App.Data;
 using Microsoft.Data.Sqlite;
 
@@ -28,7 +28,7 @@ public static class ConsistencyCheckSqlRunner
                 "INVOICE_STATUS_INVALID",
                 "invoice",
                 reader.GetInt64(0),
-                $"Fatura durumu geÃ§ersiz: {reader.GetString(1)}")));
+                $"Fatura durumu gecersiz: {reader.GetString(1)}")));
 
         // Paid status but remaining
         issues.AddRange(QueryIssues(
@@ -53,7 +53,7 @@ public static class ConsistencyCheckSqlRunner
                 "INVOICE_STATUS_PAID_BUT_REMAINING",
                 "invoice",
                 reader.GetInt64(0),
-                $"Fatura 'Ã¶dendi' ama kalan var. Ã–denen={reader.GetDecimal(2).ToString("N2", CultureInfo.GetCultureInfo("tr-TR"))}, Tutar={reader.GetDecimal(1).ToString("N2", CultureInfo.GetCultureInfo("tr-TR"))}")));
+                $"Fatura 'odendi' ama kalan var. Odenen={reader.GetDecimal(2).ToString("N2", CultureInfo.GetCultureInfo("tr-TR"))}, Tutar={reader.GetDecimal(1).ToString("N2", CultureInfo.GetCultureInfo("tr-TR"))}")));
 
         // Unpaid status but fully paid
         issues.AddRange(QueryIssues(
@@ -78,7 +78,7 @@ public static class ConsistencyCheckSqlRunner
                 "INVOICE_STATUS_UNPAID_BUT_FULLY_PAID",
                 "invoice",
                 reader.GetInt64(0),
-                $"Fatura 'Ã¶denmedi' ama Ã¶deme tamamlanmÄ±ÅŸ gÃ¶rÃ¼nÃ¼yor. Ã–denen={reader.GetDecimal(2).ToString("N2", CultureInfo.GetCultureInfo("tr-TR"))}, Tutar={reader.GetDecimal(1).ToString("N2", CultureInfo.GetCultureInfo("tr-TR"))}")));
+                $"Fatura 'odenmedi' ama odeme tamamlanmis gorunuyor. Odenen={reader.GetDecimal(2).ToString("N2", CultureInfo.GetCultureInfo("tr-TR"))}, Tutar={reader.GetDecimal(1).ToString("N2", CultureInfo.GetCultureInfo("tr-TR"))}")));
 
         // Paid exceeds amount
         issues.AddRange(QueryIssues(
@@ -103,7 +103,7 @@ public static class ConsistencyCheckSqlRunner
                 "INVOICE_PAID_EXCEEDS_AMOUNT",
                 "invoice",
                 reader.GetInt64(0),
-                $"Ã–denen tutar fatura tutarÄ±nÄ± aÅŸÄ±yor. Ã–denen={reader.GetDecimal(2).ToString("N2", CultureInfo.GetCultureInfo("tr-TR"))}, Tutar={reader.GetDecimal(1).ToString("N2", CultureInfo.GetCultureInfo("tr-TR"))}")));
+                $"Odenen tutar fatura tutarini asiyor. Odenen={reader.GetDecimal(2).ToString("N2", CultureInfo.GetCultureInfo("tr-TR"))}, Tutar={reader.GetDecimal(1).ToString("N2", CultureInfo.GetCultureInfo("tr-TR"))}")));
 
         // Orphan payments
         issues.AddRange(QueryIssues(
@@ -121,7 +121,7 @@ public static class ConsistencyCheckSqlRunner
                 "ORPHAN_PAYMENT",
                 "payment",
                 reader.GetInt64(0),
-                $"Ã–deme kaydÄ± faturaya baÄŸlÄ± deÄŸil. invoice_id={reader.GetInt64(1)}")));
+                $"Odeme kaydi faturaya bagli degil. invoice_id={reader.GetInt64(1)}")));
 
         // Non-positive payments
         issues.AddRange(QueryIssues(
@@ -138,7 +138,7 @@ public static class ConsistencyCheckSqlRunner
                 "PAYMENT_AMOUNT_NON_POSITIVE",
                 "payment",
                 reader.GetInt64(0),
-                $"Ã–deme tutarÄ± geÃ§ersiz: {reader.GetDecimal(1).ToString("N2", CultureInfo.GetCultureInfo("tr-TR"))}")));
+                $"Odeme tutari gecersiz: {reader.GetDecimal(1).ToString("N2", CultureInfo.GetCultureInfo("tr-TR"))}")));
 
         return new ConsistencyReport(issues);
     }

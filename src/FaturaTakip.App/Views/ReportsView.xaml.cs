@@ -895,11 +895,11 @@ public partial class ReportsView : UserControl
     {
         Tile1LabelText.Text = "ERROR";
         Tile1ValueText.Text = _consistency.ErrorCount.ToString(CultureInfo.InvariantCulture);
-        Tile1DetailText.Text = "Kritik tutarsÄ±zlÄ±k";
+        Tile1DetailText.Text = "Kritik tutarsizlik";
 
         Tile2LabelText.Text = "WARN";
         Tile2ValueText.Text = _consistency.WarningCount.ToString(CultureInfo.InvariantCulture);
-        Tile2DetailText.Text = "UyarÄ±";
+        Tile2DetailText.Text = "Uyari";
 
         Tile3LabelText.Text = "Toplam";
         Tile3ValueText.Text = _consistency.TotalCount.ToString(CultureInfo.InvariantCulture);

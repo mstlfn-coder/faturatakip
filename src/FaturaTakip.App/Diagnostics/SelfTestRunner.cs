@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿﻿﻿﻿using System.IO;
 using FaturaTakip.App.Data;
 using FaturaTakip.App.Data.Dashboard;
 using FaturaTakip.App.Data.Invoices;
@@ -23,25 +23,25 @@ public sealed class SelfTestRunner
             var repository = new InvoiceTypeRepository(databasePath);
 
             var seeded = repository.GetAll();
-            Assert(seeded.Count >= 6, "BaÅŸlangÄ±Ã§ fatura tÃ¼rleri oluÅŸturulmadÄ±.");
+            Assert(seeded.Count >= 6, "Baslangic fatura turleri olusturulmadi.");
 
             var added = repository.Add(new InvoiceTypeInput(
-                "Test TÃ¼rÃ¼",
-                "Self-test kaydÄ±",
+                "Test Turu",
+                "Self-test kaydi",
                 "adet",
                 IsActive: true));
-            Assert(added.Id > 0, "Fatura tÃ¼rÃ¼ ekleme baÅŸarÄ±sÄ±z.");
+            Assert(added.Id > 0, "Fatura turu ekleme basarisiz.");
 
             var updated = repository.Update(added.Id, new InvoiceTypeInput(
-                "Test TÃ¼rÃ¼ GÃ¼ncel",
-                "Self-test gÃ¼ncellemesi",
+                "Test Turu Guncel",
+                "Self-test guncellemesi",
                 "saat",
                 IsActive: true));
-            Assert(updated.DefaultUsageUnit == "saat", "Fatura tÃ¼rÃ¼ gÃ¼ncelleme baÅŸarÄ±sÄ±z.");
+            Assert(updated.DefaultUsageUnit == "saat", "Fatura turu guncelleme basarisiz.");
 
             repository.SetActive(updated.Id, isActive: false);
             var passive = repository.GetAll().Single(item => item.Id == updated.Id);
-            Assert(!passive.IsActive, "Fatura tÃ¼rÃ¼ pasife alma baÅŸarÄ±sÄ±z.");
+            Assert(!passive.IsActive, "Fatura turu pasife alma basarisiz.");
 
             var subscriptionRepository = new SubscriptionRepository(databasePath);
             var invoiceType = seeded.First();
@@ -53,33 +53,33 @@ public sealed class SelfTestRunner
                 "SUB-001",
                 "TES-001",
                 "SAY-001",
-                "Test SaÄŸlayÄ±cÄ±",
+                "Test Saglayici",
                 "Test Mahallesi",
                 "Ana Bina",
                 invoiceType.DefaultUsageUnit,
                 IsActive: true,
                 StartDate: new DateTime(2026, 1, 1),
                 EndDate: null,
-                "Self-test abonelik kaydÄ±"));
-            Assert(addedSubscription.Id > 0, "Abonelik ekleme baÅŸarÄ±sÄ±z.");
-            Assert(addedSubscription.InvoiceTypeId == invoiceType.Id, "Abonelik fatura tÃ¼rÃ¼ne baÄŸlanmadÄ±.");
+                "Self-test abonelik kaydi"));
+            Assert(addedSubscription.Id > 0, "Abonelik ekleme basarisiz.");
+            Assert(addedSubscription.InvoiceTypeId == invoiceType.Id, "Abonelik fatura turune baglanmadi.");
 
             var updatedSubscription = subscriptionRepository.Update(addedSubscription.Id, new SubscriptionInput(
                 invoiceType.Id,
-                "Ana Bina Test AboneliÄŸi GÃ¼ncel",
+                "Ana Bina Test AboneliÄŸi Guncel",
                 "Test Kurumu",
                 "SUB-001",
                 "TES-002",
                 "SAY-001",
-                "Test SaÄŸlayÄ±cÄ±",
+                "Test Saglayici",
                 "Test Mahallesi",
                 "Ana Bina",
                 invoiceType.DefaultUsageUnit,
                 IsActive: true,
                 StartDate: new DateTime(2026, 1, 1),
                 EndDate: null,
-                "Self-test abonelik gÃ¼ncellemesi"));
-            Assert(updatedSubscription.InstallationNo == "TES-002", "Abonelik dÃ¼zenleme baÅŸarÄ±sÄ±z.");
+                "Self-test abonelik guncellemesi"));
+            Assert(updatedSubscription.InstallationNo == "TES-002", "Abonelik duzenleme basarisiz.");
 
             var invoiceRepository = new InvoiceRepository(databasePath);
             var invoice = invoiceRepository.Add(new InvoiceInput(
@@ -92,9 +92,9 @@ public sealed class SelfTestRunner
                 1250.75m,
                 345.5m,
                 invoiceType.DefaultUsageUnit,
-                "Self-test fatura kaydÄ±"));
-            Assert(invoice.SubscriptionId == updatedSubscription.Id, "Fatura aboneliÄŸe baÄŸlanmadÄ±.");
-            Assert(invoice.InvoiceTypeId == invoiceType.Id, "Fatura tÃ¼rÃ¼ abonelikten alÄ±nmadÄ±.");
+                "Self-test fatura kaydi"));
+            Assert(invoice.SubscriptionId == updatedSubscription.Id, "Fatura aboneliÄŸe baglanmadi.");
+            Assert(invoice.InvoiceTypeId == invoiceType.Id, "Fatura turu abonelikten alinmadi.");
 
             var updatedInvoice = invoiceRepository.Update(invoice.Id, new InvoiceInput(
                 updatedSubscription.Id,
@@ -106,42 +106,42 @@ public sealed class SelfTestRunner
                 1300m,
                 350m,
                 invoiceType.DefaultUsageUnit,
-                "Self-test fatura gÃ¼ncellemesi"));
-            Assert(updatedInvoice.Amount == 1300m, "Fatura dÃ¼zenleme baÅŸarÄ±sÄ±z.");
+                "Self-test fatura guncellemesi"));
+            Assert(updatedInvoice.Amount == 1300m, "Fatura duzenleme basarisiz.");
 
             var paymentRepository = new PaymentRepository(databasePath);
             var partialPayment = paymentRepository.Add(new PaymentInput(
                 updatedInvoice.Id,
                 new DateTime(2026, 1, 25),
                 300m,
-                "Self-test kÄ±smi Ã¶deme"));
-            Assert(partialPayment.Id > 0, "Ã–deme kaydÄ± ekleme baÅŸarÄ±sÄ±z.");
-            Assert(partialPayment.Description == "Self-test kÄ±smi Ã¶deme", "Ã–deme aÃ§Ä±klamasÄ± saklanmadÄ±.");
+                "Self-test kismi odeme"));
+            Assert(partialPayment.Id > 0, "Odeme kaydi ekleme basarisiz.");
+            Assert(partialPayment.Description == "Self-test kismi odeme", "Odeme aciklamasi saklanmadi.");
 
             var partialInvoice = invoiceRepository.GetAll().Single(item => item.Id == updatedInvoice.Id);
-            Assert(partialInvoice.PaidAmount == 300m, "KÄ±smi Ã¶deme toplamÄ± faturaya yansÄ±madÄ±.");
-            Assert(partialInvoice.RemainingAmount == 1000m, "Kalan Ã¶deme tutarÄ± hatalÄ± hesaplandÄ±.");
-            Assert(partialInvoice.Status == "unpaid", "KÄ±smi Ã¶deme faturayÄ± erken Ã¶dendi yapmamalÄ±.");
-            Assert(partialInvoice.State == "Kısmi", "KÄ±smi Ã¶deme durumu gÃ¶sterilmedi.");
-            Assert(paymentRepository.GetForInvoice(updatedInvoice.Id).Count == 1, "Fatura Ã¶deme listesi okunamadÄ±.");
+            Assert(partialInvoice.PaidAmount == 300m, "Kismi odeme toplami faturaya yansimadi.");
+            Assert(partialInvoice.RemainingAmount == 1000m, "Kalan odeme tutari hatali hesaplandi.");
+            Assert(partialInvoice.Status == "unpaid", "Kismi odeme faturayi erken odendi yapmamali.");
+            Assert(partialInvoice.State == "Kısmi", "Kismi odeme durumu gosterilmedi.");
+            Assert(paymentRepository.GetForInvoice(updatedInvoice.Id).Count == 1, "Fatura odeme listesi okunamadi.");
 
             AssertThrows(
                 () => paymentRepository.Add(new PaymentInput(
                     updatedInvoice.Id,
                     new DateTime(2026, 1, 26),
                     1000.01m,
-                    "KalanÄ± aÅŸan Ã¶deme")),
-                "Kalan tutarÄ± aÅŸan Ã¶deme engellenmedi.");
+                    "Kalani asan odeme")),
+                "Kalan tutari asan odeme engellenmedi.");
 
             paymentRepository.Add(new PaymentInput(
                 updatedInvoice.Id,
                 new DateTime(2026, 1, 26),
                 1000m,
-                "Self-test tamamlama Ã¶demesi"));
+                "Self-test tamamlama odemesi"));
             var paidInvoice = invoiceRepository.GetAll().Single(item => item.Id == updatedInvoice.Id);
-            Assert(paidInvoice.PaidAmount == 1300m, "Tam Ã¶deme toplamÄ± faturaya yansÄ±madÄ±.");
-            Assert(paidInvoice.RemainingAmount == 0m, "Tam Ã¶deme sonrasÄ± kalan tutar sÄ±fÄ±rlanmadÄ±.");
-            Assert(paidInvoice.Status == "paid", "Tam Ã¶deme faturayÄ± Ã¶dendi yapmadÄ±.");
+            Assert(paidInvoice.PaidAmount == 1300m, "Tam odeme toplami faturaya yansimadi.");
+            Assert(paidInvoice.RemainingAmount == 0m, "Tam odeme sonrasi kalan tutar sifirlanmadi.");
+            Assert(paidInvoice.Status == "paid", "Tam odeme faturayi odendi yapmadi.");
 
             var increasedInvoice = invoiceRepository.Update(updatedInvoice.Id, new InvoiceInput(
                 updatedSubscription.Id,
@@ -153,70 +153,70 @@ public sealed class SelfTestRunner
                 1500m,
                 350m,
                 invoiceType.DefaultUsageUnit,
-                "Self-test fatura tutarÄ± artÄ±rÄ±ldÄ±"));
-            Assert(increasedInvoice.Status == "unpaid", "Tutar artÄ±nca Ã¶deme durumu yeniden hesaplanmadÄ±.");
-            Assert(increasedInvoice.RemainingAmount == 200m, "Tutar artÄ±ÅŸÄ± sonrasÄ± kalan Ã¶deme hatalÄ±.");
+                "Self-test fatura tutari artirildi"));
+            Assert(increasedInvoice.Status == "unpaid", "Tutar artinca odeme durumu yeniden hesaplanmadi.");
+            Assert(increasedInvoice.RemainingAmount == 200m, "Tutar artisi sonrasi kalan odeme hatali.");
 
             paymentRepository.Add(new PaymentInput(
                 updatedInvoice.Id,
                 new DateTime(2026, 1, 27),
                 200m,
-                "Self-test son Ã¶deme"));
+                "Self-test son odeme"));
             var fullyPaidInvoice = invoiceRepository.GetAll().Single(item => item.Id == updatedInvoice.Id);
-            Assert(fullyPaidInvoice.Status == "paid", "Ek Ã¶deme sonrasÄ± fatura yeniden Ã¶dendi olmadÄ±.");
-            Assert(fullyPaidInvoice.PaidAmount == 1500m, "Ek Ã¶deme toplamÄ± hatalÄ±.");
+            Assert(fullyPaidInvoice.Status == "paid", "Ek odeme sonrasi fatura yeniden odendi olmadi.");
+            Assert(fullyPaidInvoice.PaidAmount == 1500m, "Ek odeme toplami hatali.");
 
             AssertThrows(
                 () => paymentRepository.Add(new PaymentInput(
                     updatedInvoice.Id,
                     new DateTime(2026, 1, 28),
                     -1m,
-                    "Negatif Ã¶deme")),
-                "Negatif Ã¶deme tutarÄ± engellenmedi.");
+                    "Negatif odeme")),
+                "Negatif odeme tutari engellenmedi.");
             AssertThrows(
                 () => paymentRepository.Add(new PaymentInput(
                     999999,
                     new DateTime(2026, 1, 28),
                     1m,
                     "Olmayan fatura")),
-                "Olmayan faturaya Ã¶deme eklenebildi.");
+                "Olmayan faturaya odeme eklenebildi.");
 
             var samplePaymentPdfPath = Path.Combine(testRoot, "sample-payment.pdf");
             File.WriteAllText(samplePaymentPdfPath, "%PDF-1.4\n1 0 obj\n<<>>\nendobj\ntrailer\n<<>>\n%%EOF");
 
             var paymentWithPdf = paymentRepository.AttachPdf(partialPayment.Id, samplePaymentPdfPath);
-            Assert(paymentWithPdf.HasPdf, "Ã–deme PDF metadata kaydÄ± oluÅŸturulmadÄ±.");
-            Assert(paymentWithPdf.PdfOriginalFileName == "sample-payment.pdf", "Ã–deme PDF orijinal dosya adÄ± saklanmadÄ±.");
-            Assert(!string.IsNullOrWhiteSpace(paymentWithPdf.PdfSha256Hash), "Ã–deme PDF hash bilgisi saklanmadÄ±.");
-            Assert(paymentWithPdf.PdfFilePath.StartsWith(Path.Combine("attachments", "payments", "2026", "01"), StringComparison.Ordinal), "Ã–deme PDF hedef klasÃ¶rÃ¼ Ã¶deme tarihi altÄ±nda deÄŸil.");
-            Assert(paymentRepository.PdfFileExists(paymentWithPdf), "Kopyalanan Ã¶deme PDF dosyasÄ± bulunamadÄ±.");
+            Assert(paymentWithPdf.HasPdf, "Odeme PDF metadata kaydi olusturulmadi.");
+            Assert(paymentWithPdf.PdfOriginalFileName == "sample-payment.pdf", "Odeme PDF orijinal dosya adi saklanmadi.");
+            Assert(!string.IsNullOrWhiteSpace(paymentWithPdf.PdfSha256Hash), "Odeme PDF hash bilgisi saklanmadi.");
+            Assert(paymentWithPdf.PdfFilePath.StartsWith(Path.Combine("attachments", "payments", "2026", "01"), StringComparison.Ordinal), "Odeme PDF hedef klasoru odeme tarihi altinda degil.");
+            Assert(paymentRepository.PdfFileExists(paymentWithPdf), "Kopyalanan odeme PDF dosyasi bulunamadi.");
 
             var attachedPaymentPdfPath = paymentRepository.GetPdfAbsolutePath(paymentWithPdf);
             File.Delete(attachedPaymentPdfPath);
-            Assert(paymentRepository.IsPdfMissing(paymentWithPdf), "KayÄ±p Ã¶deme PDF dosyasÄ± algÄ±lanmadÄ±.");
+            Assert(paymentRepository.IsPdfMissing(paymentWithPdf), "Kayip odeme PDF dosyasi algilanmadi.");
 
             var samplePdfPath = Path.Combine(testRoot, "sample-invoice.pdf");
             File.WriteAllText(samplePdfPath, "%PDF-1.4\n1 0 obj\n<<>>\nendobj\ntrailer\n<<>>\n%%EOF");
 
             var invoiceWithPdf = invoiceRepository.AttachPdf(updatedInvoice.Id, samplePdfPath);
-            Assert(invoiceWithPdf.HasPdf, "Fatura PDF metadata kaydÄ± oluÅŸturulmadÄ±.");
-            Assert(invoiceWithPdf.PdfOriginalFileName == "sample-invoice.pdf", "PDF orijinal dosya adÄ± saklanmadÄ±.");
-            Assert(!string.IsNullOrWhiteSpace(invoiceWithPdf.PdfSha256Hash), "PDF hash bilgisi saklanmadÄ±.");
-            Assert(invoiceWithPdf.PdfFilePath.StartsWith(Path.Combine("attachments", "invoices", "2026", "01"), StringComparison.Ordinal), "PDF hedef klasÃ¶rÃ¼ dÃ¶nem altÄ±nda deÄŸil.");
-            Assert(invoiceRepository.PdfFileExists(invoiceWithPdf), "Kopyalanan PDF dosyasÄ± bulunamadÄ±.");
+            Assert(invoiceWithPdf.HasPdf, "Fatura PDF metadata kaydi olusturulmadi.");
+            Assert(invoiceWithPdf.PdfOriginalFileName == "sample-invoice.pdf", "PDF orijinal dosya adi saklanmadi.");
+            Assert(!string.IsNullOrWhiteSpace(invoiceWithPdf.PdfSha256Hash), "PDF hash bilgisi saklanmadi.");
+            Assert(invoiceWithPdf.PdfFilePath.StartsWith(Path.Combine("attachments", "invoices", "2026", "01"), StringComparison.Ordinal), "PDF hedef klasoru donem altinda degil.");
+            Assert(invoiceRepository.PdfFileExists(invoiceWithPdf), "Kopyalanan PDF dosyasi bulunamadi.");
 
             var attachedPdfPath = invoiceRepository.GetPdfAbsolutePath(invoiceWithPdf);
             File.Delete(attachedPdfPath);
-            Assert(invoiceRepository.IsPdfMissing(invoiceWithPdf), "KayÄ±p PDF dosyasÄ± algÄ±lanmadÄ±.");
+            Assert(invoiceRepository.IsPdfMissing(invoiceWithPdf), "Kayip PDF dosyasi algilanmadi.");
 
             var invalidAttachmentPath = Path.Combine(testRoot, "not-pdf.txt");
-            File.WriteAllText(invalidAttachmentPath, "PDF deÄŸil");
+            File.WriteAllText(invalidAttachmentPath, "PDF degil");
             AssertThrows(
                 () => invoiceRepository.AttachPdf(updatedInvoice.Id, invalidAttachmentPath),
                 "PDF olmayan dosya eklenebildi.");
             AssertThrows(
                 () => paymentRepository.AttachPdf(partialPayment.Id, invalidAttachmentPath),
-                "PDF olmayan Ã¶deme dosyasÄ± eklenebildi.");
+                "PDF olmayan odeme dosyasi eklenebildi.");
 
             var filterSamples = new[]
             {
@@ -243,7 +243,7 @@ public sealed class SelfTestRunner
                     SubscriptionId = 11,
                     InvoiceTypeId = 101,
                     InvoiceTypeName = "Su",
-                    SubscriptionName = "Ek Hizmet BinasÄ±",
+                    SubscriptionName = "Ek Hizmet Binasi",
                     InstitutionName = "Test Kurumu",
                     InvoiceYear = 2026,
                     InvoiceMonth = 2,
@@ -265,20 +265,20 @@ public sealed class SelfTestRunner
                     DueDate = new DateTime(2026, 1, 1),
                     InvoiceNo = "ELK-OLD",
                     Status = "canceled",
-                    Description = "Eski kayÄ±t",
+                    Description = "Eski kayit",
                 },
             };
             var filterToday = new DateTime(2026, 2, 1);
 
-            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(Year: 2026), filterToday).Count == 2, "YÄ±l filtresi Ã§alÄ±ÅŸmadÄ±.");
-            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(Month: 1), filterToday).Single().InvoiceNo == "ELK-001", "Ay filtresi Ã§alÄ±ÅŸmadÄ±.");
-            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(InvoiceTypeId: 100), filterToday).Count == 2, "Fatura tÃ¼rÃ¼ filtresi Ã§alÄ±ÅŸmadÄ±.");
-            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(SubscriptionId: 11), filterToday).Single().InvoiceNo == "SU-001", "Abonelik filtresi Ã§alÄ±ÅŸmadÄ±.");
-            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PaymentStatus: InvoicePaymentStatusFilter.Paid), filterToday).Single().InvoiceNo == "SU-001", "Ã–deme durumu filtresi Ã§alÄ±ÅŸmadÄ±.");
-            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PaymentStatus: InvoicePaymentStatusFilter.Overdue), filterToday).Single().InvoiceNo == "ELK-001", "GecikmiÅŸ fatura filtresi Ã§alÄ±ÅŸmadÄ±.");
-            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PdfStatus: InvoicePdfStatusFilter.HasPdf), filterToday).Single().InvoiceNo == "ELK-001", "PDF var filtresi Ã§alÄ±ÅŸmadÄ±.");
-            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PdfStatus: InvoicePdfStatusFilter.MissingPdf), filterToday).Count == 2, "PDF eksik filtresi Ã§alÄ±ÅŸmadÄ±.");
-            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(SearchText: "Ana ELK"), filterToday).Count == 2, "Metin arama filtresi Ã§alÄ±ÅŸmadÄ±.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(Year: 2026), filterToday).Count == 2, "Yil filtresi calismadi.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(Month: 1), filterToday).Single().InvoiceNo == "ELK-001", "Ay filtresi calismadi.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(InvoiceTypeId: 100), filterToday).Count == 2, "Fatura turu filtresi calismadi.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(SubscriptionId: 11), filterToday).Single().InvoiceNo == "SU-001", "Abonelik filtresi calismadi.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PaymentStatus: InvoicePaymentStatusFilter.Paid), filterToday).Single().InvoiceNo == "SU-001", "Odeme durumu filtresi calismadi.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PaymentStatus: InvoicePaymentStatusFilter.Overdue), filterToday).Single().InvoiceNo == "ELK-001", "Gecikmis fatura filtresi calismadi.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PdfStatus: InvoicePdfStatusFilter.HasPdf), filterToday).Single().InvoiceNo == "ELK-001", "PDF var filtresi calismadi.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PdfStatus: InvoicePdfStatusFilter.MissingPdf), filterToday).Count == 2, "PDF eksik filtresi calismadi.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(SearchText: "Ana ELK"), filterToday).Count == 2, "Metin arama filtresi calismadi.");
 
             var dashboardInvoices = new[]
             {
@@ -338,16 +338,16 @@ public sealed class SelfTestRunner
                 new DateTime(2026, 2, 15),
                 invoice => !invoice.HasPdf,
                 payment => !payment.HasPdf);
-            Assert(dashboardSummary.MonthlyInvoiceCount == 2, "Dashboard aylÄ±k fatura sayÄ±sÄ± hatalÄ±.");
-            Assert(dashboardSummary.MonthlyInvoiceTotal == 300m, "Dashboard aylÄ±k fatura toplamÄ± hatalÄ±.");
-            Assert(dashboardSummary.MonthlyPaymentCount == 2, "Dashboard aylÄ±k Ã¶deme sayÄ±sÄ± hatalÄ±.");
-            Assert(dashboardSummary.MonthlyPaymentTotal == 225m, "Dashboard aylÄ±k Ã¶deme toplamÄ± hatalÄ±.");
-            Assert(dashboardSummary.UnpaidInvoiceCount == 2, "Dashboard Ã¶denmemiÅŸ fatura sayÄ±sÄ± hatalÄ±.");
-            Assert(dashboardSummary.UnpaidRemainingTotal == 125m, "Dashboard Ã¶denmemiÅŸ kalan toplamÄ± hatalÄ±.");
-            Assert(dashboardSummary.OverdueInvoiceCount == 1, "Dashboard gecikmiÅŸ fatura sayÄ±sÄ± hatalÄ±.");
-            Assert(dashboardSummary.OverdueRemainingTotal == 75m, "Dashboard gecikmiÅŸ kalan toplamÄ± hatalÄ±.");
-            Assert(dashboardSummary.MissingInvoicePdfCount == 1, "Dashboard fatura PDF eksik sayÄ±sÄ± hatalÄ±.");
-            Assert(dashboardSummary.MissingPaymentPdfCount == 1, "Dashboard Ã¶deme PDF eksik sayÄ±sÄ± hatalÄ±.");
+            Assert(dashboardSummary.MonthlyInvoiceCount == 2, "Dashboard aylik fatura sayisi hatali.");
+            Assert(dashboardSummary.MonthlyInvoiceTotal == 300m, "Dashboard aylik fatura toplami hatali.");
+            Assert(dashboardSummary.MonthlyPaymentCount == 2, "Dashboard aylik odeme sayisi hatali.");
+            Assert(dashboardSummary.MonthlyPaymentTotal == 225m, "Dashboard aylik odeme toplami hatali.");
+            Assert(dashboardSummary.UnpaidInvoiceCount == 2, "Dashboard odenmemis fatura sayisi hatali.");
+            Assert(dashboardSummary.UnpaidRemainingTotal == 125m, "Dashboard odenmemis kalan toplami hatali.");
+            Assert(dashboardSummary.OverdueInvoiceCount == 1, "Dashboard gecikmis fatura sayisi hatali.");
+            Assert(dashboardSummary.OverdueRemainingTotal == 75m, "Dashboard gecikmis kalan toplami hatali.");
+            Assert(dashboardSummary.MissingInvoicePdfCount == 1, "Dashboard fatura PDF eksik sayisi hatali.");
+            Assert(dashboardSummary.MissingPaymentPdfCount == 1, "Dashboard odeme PDF eksik sayisi hatali.");
 
             var reportSamples = new[]
             {
@@ -398,12 +398,12 @@ public sealed class SelfTestRunner
                 new DateTime(2026, 2, 15),
                 upcomingDays: 7,
                 invoice => false);
-            Assert(report.Unpaid.Count == 3, "Rapor Ã¶denmemiÅŸ sayÄ±sÄ± hatalÄ±.");
-            Assert(report.UnpaidRemainingTotal == 335m, "Rapor Ã¶denmemiÅŸ kalan toplamÄ± hatalÄ±.");
-            Assert(report.Overdue.Count == 1, "Rapor gecikmiÅŸ sayÄ±sÄ± hatalÄ±.");
-            Assert(report.OverdueRemainingTotal == 75m, "Rapor gecikmiÅŸ kalan toplamÄ± hatalÄ±.");
-            Assert(report.Upcoming.Count == 1, "Rapor yaklaÅŸan sayÄ±sÄ± hatalÄ±.");
-            Assert(report.UpcomingRemainingTotal == 200m, "Rapor yaklaÅŸan kalan toplamÄ± hatalÄ±.");
+            Assert(report.Unpaid.Count == 3, "Rapor odenmemis sayisi hatali.");
+            Assert(report.UnpaidRemainingTotal == 335m, "Rapor odenmemis kalan toplami hatali.");
+            Assert(report.Overdue.Count == 1, "Rapor gecikmis sayisi hatali.");
+            Assert(report.OverdueRemainingTotal == 75m, "Rapor gecikmis kalan toplami hatali.");
+            Assert(report.Upcoming.Count == 1, "Rapor yaklasan sayisi hatali.");
+            Assert(report.UpcomingRemainingTotal == 200m, "Rapor yaklasan kalan toplami hatali.");
 
             var monthlySamples = new[]
             {
@@ -446,13 +446,13 @@ public sealed class SelfTestRunner
                 invoiceTypeId: null,
                 new DateTime(2026, 2, 15),
                 invoice => !invoice.HasPdf);
-            Assert(monthly.TotalInvoiceCount == 2, "AylÄ±k rapor toplam fatura sayÄ±sÄ± hatalÄ±.");
-            Assert(monthly.TotalAmount == 300m, "AylÄ±k rapor toplam tutar hatalÄ±.");
-            Assert(monthly.PaidTotal == 225m, "AylÄ±k rapor Ã¶denen toplam hatalÄ±.");
-            Assert(monthly.RemainingTotal == 75m, "AylÄ±k rapor kalan toplam hatalÄ±.");
-            Assert(monthly.UnpaidInvoiceCount == 1, "AylÄ±k rapor Ã¶denmemiÅŸ sayÄ±sÄ± hatalÄ±.");
-            Assert(monthly.OverdueInvoiceCount == 1, "AylÄ±k rapor gecikmiÅŸ sayÄ±sÄ± hatalÄ±.");
-            Assert(monthly.MissingPdfCount == 1, "AylÄ±k rapor PDF eksik sayÄ±sÄ± hatalÄ±.");
+            Assert(monthly.TotalInvoiceCount == 2, "Aylik rapor toplam fatura sayisi hatali.");
+            Assert(monthly.TotalAmount == 300m, "Aylik rapor toplam tutar hatali.");
+            Assert(monthly.PaidTotal == 225m, "Aylik rapor odenen toplam hatali.");
+            Assert(monthly.RemainingTotal == 75m, "Aylik rapor kalan toplam hatali.");
+            Assert(monthly.UnpaidInvoiceCount == 1, "Aylik rapor odenmemis sayisi hatali.");
+            Assert(monthly.OverdueInvoiceCount == 1, "Aylik rapor gecikmis sayisi hatali.");
+            Assert(monthly.MissingPdfCount == 1, "Aylik rapor PDF eksik sayisi hatali.");
 
             var typedMonthlySamples = new[]
             {
@@ -488,8 +488,8 @@ public sealed class SelfTestRunner
                 invoiceTypeId: 100,
                 new DateTime(2026, 2, 15),
                 invoice => false);
-            Assert(typedMonthly.TotalInvoiceCount == 1, "TÃ¼r filtresi aylÄ±k raporda Ã§alÄ±ÅŸmadÄ±.");
-            Assert(typedMonthly.TotalAmount == 100m, "TÃ¼r filtresi aylÄ±k toplam tutarÄ± yanlÄ±ÅŸ.");
+            Assert(typedMonthly.TotalInvoiceCount == 1, "Tur filtresi aylik raporda calismadi.");
+            Assert(typedMonthly.TotalAmount == 100m, "Tur filtresi aylik toplam tutari yanlis.");
 
             var subscriptionSamples = new[]
             {
@@ -535,12 +535,12 @@ public sealed class SelfTestRunner
                 month: 2,
                 today: new DateTime(2026, 2, 15),
                 isPdfMissing: invoice => false);
-            Assert(comparison.Current.TotalInvoiceCount == 1, "Abonelik raporu (current) toplam fatura sayÄ±sÄ± hatalÄ±.");
-            Assert(comparison.Current.TotalAmount == 120m, "Abonelik raporu (current) toplam tutar hatalÄ±.");
-            Assert(comparison.Current.PaidTotal == 20m, "Abonelik raporu (current) Ã¶denen toplam hatalÄ±.");
-            Assert(comparison.Current.RemainingTotal == 100m, "Abonelik raporu (current) kalan toplam hatalÄ±.");
-            Assert(comparison.Previous.TotalAmount == 80m, "Abonelik raporu (previous) toplam tutar hatalÄ±.");
-            Assert(comparison.TotalAmountDelta == 40m, "Abonelik raporu toplam delta hatalÄ±.");
+            Assert(comparison.Current.TotalInvoiceCount == 1, "Abonelik raporu (current) toplam fatura sayisi hatali.");
+            Assert(comparison.Current.TotalAmount == 120m, "Abonelik raporu (current) toplam tutar hatali.");
+            Assert(comparison.Current.PaidTotal == 20m, "Abonelik raporu (current) odenen toplam hatali.");
+            Assert(comparison.Current.RemainingTotal == 100m, "Abonelik raporu (current) kalan toplam hatali.");
+            Assert(comparison.Previous.TotalAmount == 80m, "Abonelik raporu (previous) toplam tutar hatali.");
+            Assert(comparison.TotalAmountDelta == 40m, "Abonelik raporu toplam delta hatali.");
 
             var yearlySamples = new[]
             {
@@ -596,15 +596,15 @@ public sealed class SelfTestRunner
                 year: 2026,
                 today: new DateTime(2026, 2, 15),
                 isPdfMissing: invoice => !invoice.HasPdf);
-            Assert(yearly.TotalInvoiceCount == 3, "YÄ±llÄ±k rapor toplam fatura sayÄ±sÄ± hatalÄ±.");
-            Assert(yearly.TotalAmount == 400m, "YÄ±llÄ±k rapor toplam tutar hatalÄ±.");
-            Assert(yearly.PaidTotal == 150m, "YÄ±llÄ±k rapor Ã¶denen toplam hatalÄ±.");
-            Assert(yearly.RemainingTotal == 250m, "YÄ±llÄ±k rapor kalan toplam hatalÄ±.");
-            Assert(yearly.MissingPdfCount == 2, "YÄ±llÄ±k rapor PDF eksik sayÄ±sÄ± hatalÄ±.");
-            Assert(yearly.HighestMonth == 2, "YÄ±llÄ±k rapor en yÃ¼ksek ay hatalÄ±.");
-            Assert(yearly.HighestMonthTotal == 300m, "YÄ±llÄ±k rapor en yÃ¼ksek ay toplamÄ± hatalÄ±.");
-            Assert(yearly.LowestMonth == 1, "YÄ±llÄ±k rapor en dÃ¼ÅŸÃ¼k ay hatalÄ±.");
-            Assert(yearly.LowestMonthTotal == 100m, "YÄ±llÄ±k rapor en dÃ¼ÅŸÃ¼k ay toplamÄ± hatalÄ±.");
+            Assert(yearly.TotalInvoiceCount == 3, "Yillik rapor toplam fatura sayisi hatali.");
+            Assert(yearly.TotalAmount == 400m, "Yillik rapor toplam tutar hatali.");
+            Assert(yearly.PaidTotal == 150m, "Yillik rapor odenen toplam hatali.");
+            Assert(yearly.RemainingTotal == 250m, "Yillik rapor kalan toplam hatali.");
+            Assert(yearly.MissingPdfCount == 2, "Yillik rapor PDF eksik sayisi hatali.");
+            Assert(yearly.HighestMonth == 2, "Yillik rapor en yuksek ay hatali.");
+            Assert(yearly.HighestMonthTotal == 300m, "Yillik rapor en yuksek ay toplami hatali.");
+            Assert(yearly.LowestMonth == 1, "Yillik rapor en dusuk ay hatali.");
+            Assert(yearly.LowestMonthTotal == 100m, "Yillik rapor en dusuk ay toplami hatali.");
 
             var typeYearlySamples = new[]
             {
@@ -662,10 +662,10 @@ public sealed class SelfTestRunner
                 year: 2026,
                 today: new DateTime(2026, 2, 15),
                 isPdfMissing: invoice => !invoice.HasPdf);
-            Assert(typeYearly.TotalInvoiceCount == 2, "TÃ¼r yÄ±llÄ±k rapor toplam fatura sayÄ±sÄ± hatalÄ±.");
-            Assert(typeYearly.TotalAmount == 350m, "TÃ¼r yÄ±llÄ±k rapor toplam tutar hatalÄ±.");
-            Assert(typeYearly.Distribution.Count == 2, "TÃ¼r yÄ±llÄ±k rapor daÄŸÄ±lÄ±m satÄ±r sayÄ±sÄ± hatalÄ±.");
-            Assert(typeYearly.Distribution[0].TotalAmount == 250m, "TÃ¼r yÄ±llÄ±k rapor daÄŸÄ±lÄ±m sÄ±ralamasÄ± hatalÄ±.");
+            Assert(typeYearly.TotalInvoiceCount == 2, "Tur yillik rapor toplam fatura sayisi hatali.");
+            Assert(typeYearly.TotalAmount == 350m, "Tur yillik rapor toplam tutar hatali.");
+            Assert(typeYearly.Distribution.Count == 2, "Tur yillik rapor dagilim satir sayisi hatali.");
+            Assert(typeYearly.Distribution[0].TotalAmount == 250m, "Tur yillik rapor dagilim siralamasi hatali.");
 
             var documentHealthInvoices = new List<Invoice>
             {
@@ -781,20 +781,20 @@ public sealed class SelfTestRunner
                 invoice => invoice.Id != 1002,
                 payment => payment.Id != 2002);
 
-            Assert(documentHealth.InvoiceNoPdfCount == 1, "Evrak kontrol: fatura PDF yok sayÄ±sÄ± hatalÄ±.");
-            Assert(documentHealth.InvoiceMissingFileCount == 1, "Evrak kontrol: fatura PDF kayÄ±p sayÄ±sÄ± hatalÄ±.");
-            Assert(documentHealth.PaymentNoPdfCount == 1, "Evrak kontrol: Ã¶deme PDF yok sayÄ±sÄ± hatalÄ±.");
-            Assert(documentHealth.PaymentMissingFileCount == 1, "Evrak kontrol: Ã¶deme PDF kayÄ±p sayÄ±sÄ± hatalÄ±.");
-            Assert(documentHealth.DuplicateInvoiceHashItemCount == 2, "Evrak kontrol: fatura aynÄ±-hash madde sayÄ±sÄ± hatalÄ±.");
-            Assert(documentHealth.DuplicatePaymentHashItemCount == 2, "Evrak kontrol: Ã¶deme aynÄ±-hash madde sayÄ±sÄ± hatalÄ±.");
-            Assert(documentHealth.Issues.Count >= 8, "Evrak kontrol: uyarÄ± listesi beklenenden kÄ±sa.");
+            Assert(documentHealth.InvoiceNoPdfCount == 1, "Evrak kontrol: fatura PDF yok sayisi hatali.");
+            Assert(documentHealth.InvoiceMissingFileCount == 1, "Evrak kontrol: fatura PDF kayip sayisi hatali.");
+            Assert(documentHealth.PaymentNoPdfCount == 1, "Evrak kontrol: odeme PDF yok sayisi hatali.");
+            Assert(documentHealth.PaymentMissingFileCount == 1, "Evrak kontrol: odeme PDF kayip sayisi hatali.");
+            Assert(documentHealth.DuplicateInvoiceHashItemCount == 2, "Evrak kontrol: fatura ayni-hash madde sayisi hatali.");
+            Assert(documentHealth.DuplicatePaymentHashItemCount == 2, "Evrak kontrol: odeme ayni-hash madde sayisi hatali.");
+            Assert(documentHealth.Issues.Count >= 8, "Evrak kontrol: uyari listesi beklenenden kisa.");
 
             var consistency = ConsistencyReportCalculator.Calculate(
                 documentHealthInvoices,
                 documentHealthPayments,
                 invoice => invoice.Id != 1002,
                 payment => payment.Id != 2002);
-            Assert(consistency.ErrorCount == 0, "TutarlÄ±lÄ±k denetimi ERROR Ã¼retti.");
+            Assert(consistency.ErrorCount == 0, "Tutarlilik denetimi ERROR uretti.");
 
             var exportXlsxPath = Path.Combine(testRoot, "exports", $"faturalar-{DateTime.Now:yyyyMMdd-HHmmss}.xlsx");
             Directory.CreateDirectory(Path.GetDirectoryName(exportXlsxPath)!);
@@ -802,9 +802,9 @@ public sealed class SelfTestRunner
                 exportXlsxPath,
                 documentHealthInvoices,
                 isPdfMissing: invoice => !invoice.HasPdf);
-            Assert(File.Exists(exportXlsxPath), "Excel export dosyasÄ± oluÅŸmadÄ±.");
+            Assert(File.Exists(exportXlsxPath), "Excel export dosyasi olusmadi.");
             var exportFileInfo = new FileInfo(exportXlsxPath);
-            Assert(exportFileInfo.Length > 1024, "Excel export dosyasÄ± beklenenden kÃ¼Ã§Ã¼k.");
+            Assert(exportFileInfo.Length > 1024, "Excel export dosyasi beklenenden kucuk.");
 
             var reportXlsxPath = Path.Combine(testRoot, "exports", $"raporlar-selftest-{DateTime.Now:yyyyMMdd-HHmmss}.xlsx");
             ExcelExportWriter.WriteTable(
@@ -812,7 +812,7 @@ public sealed class SelfTestRunner
                 sheetName: "Rapor",
                 headers: new[] { "A", "B" },
                 rows: new[] { new object?[] { "X", 1 } });
-            Assert(File.Exists(reportXlsxPath), "Rapor excel export dosyasÄ± oluÅŸmadÄ±.");
+            Assert(File.Exists(reportXlsxPath), "Rapor excel export dosyasi olusmadi.");
 
             var reportPdfPath = Path.Combine(testRoot, "exports", $"raporlar-selftest-{DateTime.Now:yyyyMMdd-HHmmss}.pdf");
             PdfReportWriter.WriteSimpleTableReport(
@@ -827,9 +827,9 @@ public sealed class SelfTestRunner
                     FilterText: "Test"),
                 summary: new[] { new PdfReportWriter.SummaryItem("Toplam", "1") },
                 headers: new[] { "Kolon" },
-                rows: new[] { new[] { "SatÄ±r" } });
-            Assert(File.Exists(reportPdfPath), "PDF export dosyasÄ± oluÅŸmadÄ±.");
-            Assert(new FileInfo(reportPdfPath).Length > 1024, "PDF export dosyasÄ± beklenenden kÃ¼Ã§Ã¼k.");
+                rows: new[] { new[] { "Satir" } });
+            Assert(File.Exists(reportPdfPath), "PDF export dosyasi olusmadi.");
+            Assert(new FileInfo(reportPdfPath).Length > 1024, "PDF export dosyasi beklenenden kucuk.");
 
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(
@@ -843,7 +843,7 @@ public sealed class SelfTestRunner
                     1m,
                     invoiceType.DefaultUsageUnit,
                     "Tekrar fatura no")),
-                "AynÄ± abonelikte aynÄ± fatura numarasÄ± engellenmedi.");
+                "Ayni abonelikte ayni fatura numarasi engellenmedi.");
 
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(
@@ -857,7 +857,7 @@ public sealed class SelfTestRunner
                     1m,
                     invoiceType.DefaultUsageUnit,
                     "Negatif tutar")),
-                "Negatif fatura tutarÄ± engellenmedi.");
+                "Negatif fatura tutari engellenmedi.");
 
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(
@@ -870,8 +870,8 @@ public sealed class SelfTestRunner
                     1m,
                     -1m,
                     invoiceType.DefaultUsageUnit,
-                    "Negatif kullanÄ±m")),
-                "Negatif kullanÄ±m miktarÄ± engellenmedi.");
+                    "Negatif kullanim")),
+                "Negatif kullanim miktari engellenmedi.");
 
             var dueDateWarning = InvoiceRepository.GetDueDateWarning(new InvoiceInput(
                 updatedSubscription.Id,
@@ -883,12 +883,12 @@ public sealed class SelfTestRunner
                 1m,
                 1m,
                 invoiceType.DefaultUsageUnit,
-                "Tarih uyarÄ±sÄ±"));
-            Assert(!string.IsNullOrWhiteSpace(dueDateWarning), "Son Ã¶deme tarihi uyarÄ±sÄ± Ã¼retilmedi.");
+                "Tarih uyarisi"));
+            Assert(!string.IsNullOrWhiteSpace(dueDateWarning), "Son odeme tarihi uyarisi uretilmedi.");
 
             subscriptionRepository.SetActive(updatedSubscription.Id, isActive: false);
             var passiveSubscription = subscriptionRepository.GetAll().Single(item => item.Id == updatedSubscription.Id);
-            Assert(!passiveSubscription.IsActive, "Abonelik pasife alma baÅŸarÄ±sÄ±z.");
+            Assert(!passiveSubscription.IsActive, "Abonelik pasife alma basarisiz.");
         }
         finally
         {
