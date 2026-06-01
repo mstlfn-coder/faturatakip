@@ -34,6 +34,7 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | v0.18 | Tamamlandı | Yazdırılabilir PDF raporlar | Kullanıcıdan alınacak Excel örneğine göre temel raporlar PDF olarak üretilebilir |
 | v0.19 | Tamamlandı | Manuel güvenli yedekleme | Veritabanı ve evraklar ZIP yedek olarak alınır (UI + `--create-backup`) |
 | v0.20 | Tamamlandı | Tutarlılık denetimi | Salt okunur veri tutarlılığı raporu çalışır (`Raporlar > Tutarlılık` + `--consistency-check`) |
+| v0.21 | Tamamlandı | Güvenli yedek geri yükleme | ZIP yedek boş klasöre geri yüklenir (`--restore-backup` + `--restore-target`) |
 
 ## v0.1 Ayrıntılı Kapsam
 

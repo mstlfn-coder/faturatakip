@@ -263,6 +263,14 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Tutarlılık denetimi liste üretiyor | OK | Boş veri setinde 0 issue; veri varsa WARN/ERROR listelenir |
 | CLI tutarlılık denetimi çalışıyor | OK | `dotnet run -c Release --no-build --project src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --consistency-check` |
 
+## v0.21 - Güvenli Yedek Geri Yükleme
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| CLI geri yükleme çalışıyor | OK | `--restore-backup <zip> --restore-target <emptyFolder>` |
+| Boş olmayan hedefe restore engelleniyor | TODO | Güvenlik kontrolü negatif senaryo |
+| Restore sonrası DB dosyası var | OK | `database/fatura_takip.db` hedefte mevcut |
+
 ## Test Geçmişi
 
 | Tarih | Faz | Sonuç | Not |
@@ -290,3 +298,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-06-01 | v0.18 | OK | PDF rapor export eklendi; build, self-test ve health-check doğrulandı |
 | 2026-06-01 | v0.19 | OK | Yedekleme (UI + `--create-backup`) eklendi; build, self-test, health-check ve CLI smoke test doğrulandı |
 | 2026-06-01 | v0.20 | OK | Tutarlılık denetimi eklendi; build, self-test, health-check ve `--consistency-check` smoke test doğrulandı |
+| 2026-06-01 | v0.21 | OK | Güvenli geri yükleme eklendi; `--restore-backup` smoke test doğrulandı |

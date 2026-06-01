@@ -20,6 +20,7 @@ public partial class App : Application
         var isSelfTest = IsSelfTest(e.Args);
         var isCreateBackup = IsCreateBackup(e.Args);
         var isConsistencyCheck = IsConsistencyCheck(e.Args);
+        var isRestoreBackup = IsRestoreBackup(e.Args);
 
         try
         {
@@ -59,6 +60,21 @@ public partial class App : Application
                     // Ignore console issues in WPF.
                 }
 
+                Shutdown(0);
+                return;
+            }
+
+            if (isRestoreBackup)
+            {
+                var zipPath = GetArgValue(e.Args, "--restore-backup");
+                var targetRoot = GetArgValue(e.Args, "--restore-target");
+                if (string.IsNullOrWhiteSpace(zipPath) || string.IsNullOrWhiteSpace(targetRoot))
+                {
+                    throw new InvalidOperationException("Kullanım: --restore-backup <zipPath> --restore-target <emptyFolder>");
+                }
+
+                var result = BackupRestoreService.RestoreToEmptyRoot(zipPath!, targetRoot!);
+                Console.WriteLine(result.Message);
                 Shutdown(0);
                 return;
             }
@@ -125,6 +141,24 @@ public partial class App : Application
     private static bool IsConsistencyCheck(string[] args)
     {
         return args.Any(arg => string.Equals(arg, "--consistency-check", StringComparison.OrdinalIgnoreCase));
+    }
+
+    private static bool IsRestoreBackup(string[] args)
+    {
+        return args.Any(arg => string.Equals(arg, "--restore-backup", StringComparison.OrdinalIgnoreCase));
+    }
+
+    private static string? GetArgValue(string[] args, string key)
+    {
+        for (var i = 0; i < args.Length - 1; i++)
+        {
+            if (string.Equals(args[i], key, StringComparison.OrdinalIgnoreCase))
+            {
+                return args[i + 1];
+            }
+        }
+
+        return null;
     }
 
     private static void TryWriteStartupError(Exception exception)

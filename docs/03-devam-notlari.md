@@ -29,6 +29,11 @@ Bu dosya, yeni Codex chatlerinde kaldÄ±ÄŸÄ±mÄ±z yeri hÄ±zlÄ±ca anlam
 
 ## Bu Oturumda YapÄ±lanlar
 
+(2026-06-01 / v0.21)
+
+1. CLI eklendi: `--restore-backup <zip> --restore-target <emptyFolder>`.
+2. Güvenlik: yalnızca boş klasöre restore yapılır.
+3. Smoke test: `--create-backup` (DB-only) -> `--restore-backup` OK.
 (2026-06-01 / v0.20)
 
 1. Raporlar ekranına `Tutarlılık` sekmesi eklendi.
