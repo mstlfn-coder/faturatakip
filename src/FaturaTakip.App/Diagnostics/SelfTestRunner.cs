@@ -48,7 +48,7 @@ public sealed class SelfTestRunner
 
             var addedSubscription = subscriptionRepository.Add(new SubscriptionInput(
                 invoiceType.Id,
-                "Ana Bina Test AboneliÄŸi",
+                "Ana Bina Test Aboneligi",
                 "Test Kurumu",
                 "SUB-001",
                 "TES-001",
@@ -66,7 +66,7 @@ public sealed class SelfTestRunner
 
             var updatedSubscription = subscriptionRepository.Update(addedSubscription.Id, new SubscriptionInput(
                 invoiceType.Id,
-                "Ana Bina Test AboneliÄŸi Guncel",
+                "Ana Bina Test Aboneligi Guncel",
                 "Test Kurumu",
                 "SUB-001",
                 "TES-002",
@@ -93,7 +93,7 @@ public sealed class SelfTestRunner
                 345.5m,
                 invoiceType.DefaultUsageUnit,
                 "Self-test fatura kaydi"));
-            Assert(invoice.SubscriptionId == updatedSubscription.Id, "Fatura aboneliÄŸe baglanmadi.");
+            Assert(invoice.SubscriptionId == updatedSubscription.Id, "Fatura abonelige baglanmadi.");
             Assert(invoice.InvoiceTypeId == invoiceType.Id, "Fatura turu abonelikten alinmadi.");
 
             var updatedInvoice = invoiceRepository.Update(invoice.Id, new InvoiceInput(
@@ -250,7 +250,7 @@ public sealed class SelfTestRunner
                     DueDate = new DateTime(2026, 3, 1),
                     InvoiceNo = "SU-001",
                     Status = "paid",
-                    Description = "Åubat su",
+                    Description = "Subat su",
                 },
                 new Invoice
                 {
@@ -629,7 +629,7 @@ public sealed class SelfTestRunner
                     InvoiceTypeId = 100,
                     InvoiceTypeName = "Elektrik",
                     SubscriptionId = 11,
-                    SubscriptionName = "Åube",
+                    SubscriptionName = "Sube",
                     InstitutionName = "Kurum B",
                     InvoiceYear = 2026,
                     InvoiceMonth = 2,
@@ -707,7 +707,7 @@ public sealed class SelfTestRunner
                     InvoiceTypeId = 101,
                     InvoiceTypeName = "Su",
                     SubscriptionId = 11,
-                    SubscriptionName = "Åube",
+                    SubscriptionName = "Sube",
                     InstitutionName = "Kurum B",
                     InvoiceYear = 2026,
                     InvoiceMonth = 3,
@@ -724,7 +724,7 @@ public sealed class SelfTestRunner
                     InvoiceTypeId = 101,
                     InvoiceTypeName = "Su",
                     SubscriptionId = 11,
-                    SubscriptionName = "Åube",
+                    SubscriptionName = "Sube",
                     InstitutionName = "Kurum B",
                     InvoiceYear = 2026,
                     InvoiceMonth = 4,
