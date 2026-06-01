@@ -75,6 +75,7 @@ public static class ExcelExportWriter
         sheet.Cell(3, 1).Value = "Kurum";
         sheet.Cell(3, 2).Value = ":";
         sheet.Cell(3, 3).Value = meta.InstitutionName;
+        sheet.Cell(3, 3).Style.Alignment.WrapText = true;
 
         sheet.Cell(4, 1).Value = "Dönem";
         sheet.Cell(4, 2).Value = ":";
@@ -227,6 +228,7 @@ public static class ExcelExportWriter
         sheet.Cell(3, 1).Value = "Kurum";
         sheet.Cell(3, 2).Value = ":";
         sheet.Cell(3, 3).Value = meta.InstitutionName;
+        sheet.Cell(3, 3).Style.Alignment.WrapText = true;
 
         sheet.Cell(4, 1).Value = "Dönem";
         sheet.Cell(4, 2).Value = ":";
@@ -418,12 +420,14 @@ public static class ExcelExportWriter
             new("Kalan", list.Sum(i => i.RemainingAmount).ToString("N2", CultureInfo.GetCultureInfo("tr-TR"))),
         };
 
+        var cfg = ReportMetaConfig.LoadOrDefault(AppPaths.Resolve().RootDirectory);
+
         WriteReportWithHeader(
             filePath,
             sheetName: "Faturalar",
             meta: new ReportMeta(
-                AppTitle: "KURUM FATURA TAKIP PROGRAMI",
-                InstitutionName: string.Empty,
+                AppTitle: cfg.AppTitle,
+                InstitutionName: cfg.InstitutionName,
                 ReportTitle: "FATURA LİSTESİ",
                 ReportPeriod: string.Empty,
                 ReportDate: DateTime.Today,
@@ -474,3 +478,4 @@ public static class ExcelExportWriter
         }
     }
 }
+

@@ -122,7 +122,20 @@ public static class PdfReportWriter
             {
                 r.RelativeItem().Column(left =>
                 {
-                    left.Item().Text($"Kurum       : {meta.InstitutionName}").FontSize(10);
+                    var lines = (meta.InstitutionName ?? string.Empty)
+                        .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+                    left.Item().Text("Kurum       :").FontSize(10);
+                    if (lines.Length == 0)
+                    {
+                        left.Item().Text(string.Empty).FontSize(10);
+                    }
+                    else
+                    {
+                        foreach (var line in lines)
+                            left.Item().Text(line).FontSize(10);
+                    }
+
                     left.Item().Text($"Dönem       : {meta.ReportPeriod}").FontSize(10);
                 });
                 r.RelativeItem().Column(right =>

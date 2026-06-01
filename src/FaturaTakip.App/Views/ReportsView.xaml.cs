@@ -176,9 +176,10 @@ public partial class ReportsView : UserControl
             var fileName = $"raporlar-{tabKey}-{DateTime.Now:yyyyMMdd-HHmmss}.xlsx";
             var filePath = Path.Combine(exportsDir, fileName);
 
+            var cfg = ReportMetaConfig.LoadOrDefault(paths.RootDirectory);
             var meta = new ExcelExportWriter.ReportMeta(
-                AppTitle: "KURUM FATURA TAKIP PROGRAMI",
-                InstitutionName: string.Empty,
+                AppTitle: cfg.AppTitle,
+                InstitutionName: cfg.InstitutionName,
                 ReportTitle: GetPdfReportTitle(),
                 ReportPeriod: GetPdfReportPeriod(),
                 ReportDate: DateTime.Today,
@@ -256,9 +257,10 @@ public partial class ReportsView : UserControl
             var filePath = Path.Combine(exportsDir, fileName);
 
             var createdBy = Environment.UserName;
+            var cfg = ReportMetaConfig.LoadOrDefault(paths.RootDirectory);
             var meta = new PdfReportWriter.ReportMeta(
-                AppTitle: "KURUM FATURA TAKIP PROGRAMI",
-                InstitutionName: string.Empty,
+                AppTitle: cfg.AppTitle,
+                InstitutionName: cfg.InstitutionName,
                 ReportTitle: GetPdfReportTitle(),
                 ReportPeriod: GetPdfReportPeriod(),
                 ReportDate: DateTime.Today,

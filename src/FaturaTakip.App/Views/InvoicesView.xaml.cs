@@ -418,8 +418,8 @@ public partial class InvoicesView : UserControl
             PdfReportWriter.WriteSimpleTableReport(
                 filePath,
                 new PdfReportWriter.ReportMeta(
-                    AppTitle: "KURUM FATURA TAKIP PROGRAMI",
-                    InstitutionName: string.Empty,
+                    AppTitle: ReportMetaConfig.LoadOrDefault(AppPaths.Resolve().RootDirectory).AppTitle,
+                    InstitutionName: ReportMetaConfig.LoadOrDefault(AppPaths.Resolve().RootDirectory).InstitutionName,
                     ReportTitle: "FATURA LİSTESİ",
                     ReportPeriod: period,
                     ReportDate: DateTime.Today,
