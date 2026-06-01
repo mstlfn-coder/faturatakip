@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -27,6 +28,7 @@ public partial class ReportsView : UserControl
     private DocumentHealthReport _documentHealth = DocumentHealthReport.Empty;
     private ConsistencyReport _consistency = ConsistencyReport.Empty;
     private ReportTab _activeTab = ReportTab.Unpaid;
+    private Dictionary<long, List<Payment>> _paymentsByInvoice = new();
     private bool _isInitialized;
     private bool _isRefreshingMonthlyFilters;
     private bool _isRefreshingSubscriptionFilters;
@@ -56,6 +58,9 @@ public partial class ReportsView : UserControl
 
         var invoices = _invoiceRepository.GetAll();
         var payments = _paymentRepository.GetAll();
+        _paymentsByInvoice = payments
+            .GroupBy(p => p.InvoiceId)
+            .ToDictionary(g => g.Key, g => g.OrderByDescending(x => x.PaymentDate).ThenByDescending(x => x.Id).ToList());
         _report = ActionableInvoiceReportCalculator.Calculate(
             invoices,
             DateTime.Today,
@@ -534,23 +539,80 @@ public partial class ReportsView : UserControl
             new("Kalan", FormatMoney(actionableItems.Sum(x => x.Invoice.RemainingAmount)), string.Empty),
             new("PDF Eksik", actionableItems.Count(x => x.PdfState != "PDF Var").ToString(CultureInfo.InvariantCulture), string.Empty),
         };
-        var defaultHeaders = new[] { "Dönem", "Tür", "Abonelik", "Kurum", "Durum", "Fatura No", "Son Ödeme", "Tutar", "Ödenen", "Kalan", "PDF" };
-        var defaultRows = actionableItems.Select(i => (IReadOnlyList<string>)new[]
+
+        // Align actionable exports with the Excel/PDF report plan (richer invoice + payment columns).
+        var defaultHeaders = new[]
         {
-            i.Invoice.Period,
-            i.Invoice.InvoiceTypeName,
-            i.Invoice.SubscriptionName,
-            i.Invoice.InstitutionName,
-            i.Invoice.State,
-            i.Invoice.InvoiceNo,
-            i.Invoice.DueDate.ToString("dd.MM.yyyy", TurkishCulture),
-            FormatMoney(i.Invoice.Amount),
-            FormatMoney(i.Invoice.PaidAmount),
-            FormatMoney(i.Invoice.RemainingAmount),
-            i.PdfState,
+            "Dönem",
+            "Tür",
+            "Abonelik",
+            "Kurum",
+            "Durum",
+            "Fatura Tarihi",
+            "Son Ödeme",
+            "Fatura No",
+            "Tutar",
+            "Kullanım",
+            "Birim",
+            "Ödenen",
+            "Kalan",
+            "Fatura PDF",
+            "Ödeme Tarihi",
+            "Ödeme PDF",
+            "Açıklama",
+        };
+
+        var defaultRows = actionableItems.Select(i =>
+        {
+            var (paymentDate, paymentPdfState) = GetPaymentInfo(i.Invoice.Id);
+            return (IReadOnlyList<string>)new[]
+            {
+                i.Invoice.Period,
+                i.Invoice.InvoiceTypeName,
+                i.Invoice.SubscriptionName,
+                i.Invoice.InstitutionName,
+                i.Invoice.State,
+                i.Invoice.InvoiceDate.ToString("dd.MM.yyyy", TurkishCulture),
+                i.Invoice.DueDate.ToString("dd.MM.yyyy", TurkishCulture),
+                i.Invoice.InvoiceNo,
+                FormatMoney(i.Invoice.Amount),
+                i.Invoice.UsageAmount.ToString("N2", TurkishCulture),
+                i.Invoice.UsageUnit,
+                FormatMoney(i.Invoice.PaidAmount),
+                FormatMoney(i.Invoice.RemainingAmount),
+                i.PdfState,
+                paymentDate,
+                paymentPdfState,
+                i.Invoice.Description,
+            };
         }).ToList();
 
         return (defaultSummary, (defaultHeaders, defaultRows), secondaryTitle: null, secondTable: null);
+    }
+
+    private (string PaymentDate, string PaymentPdfState) GetPaymentInfo(long invoiceId)
+    {
+        if (_paymentRepository is null)
+        {
+            return (string.Empty, string.Empty);
+        }
+
+        if (!_paymentsByInvoice.TryGetValue(invoiceId, out var list) || list.Count == 0)
+        {
+            return (string.Empty, "PDF Yok");
+        }
+
+        var latest = list[0];
+        var latestDate = latest.PaymentDate.ToString("dd.MM.yyyy", TurkishCulture);
+
+        var anyHasPdf = list.Any(p => p.HasPdf);
+        if (!anyHasPdf)
+        {
+            return (latestDate, "PDF Yok");
+        }
+
+        var anyMissing = list.Any(p => _paymentRepository.IsPdfMissing(p));
+        return (latestDate, anyMissing ? "PDF Kayıp" : "PDF Var");
     }
 
     private void MonthlyFilter_Changed(object sender, SelectionChangedEventArgs e)
