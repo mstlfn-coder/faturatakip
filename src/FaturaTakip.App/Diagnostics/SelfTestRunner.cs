@@ -1036,14 +1036,25 @@ public sealed class SelfTestRunner
                     AppTitle: "KURUM FATURA TAKIP PROGRAMI",
                     InstitutionName: "Test Kurum",
                     ReportTitle: "SELF-TEST PDF",
-                    ReportPeriod: "2026/01",
+                    ReportPeriod: "2026",
                     ReportDate: new DateTime(2026, 6, 1),
                     CreatedBy: "codex",
                     FilterText: string.Empty),
                 summary: Array.Empty<PdfReportWriter.SummaryItem>(),
-                headers: new[] { "Kolon" },
-                rows: new[] { new[] { "Satir" } },
-                notes: "Self-test açıklama satırı");
+                headers: new[] { "Yıl", "Ay", "Abone Bilgisi", "F. Tarihi", "Fatura Sayısı", "Kullanım M.", "Fatura Tutar" },
+                rows: new[]
+                {
+                    new[] { "2026", "Ocak", "Ana Bina", "31.01.2026", "INV-001", "10,500", "1,00" },
+                    new[] { "2026", "Şubat", "Ana Bina", "29.02.2026", "INV-002", "20,000", "2,00" },
+                },
+                notes: "Self-test açıklama satırı",
+                footerCells: new[]
+                {
+                    new PdfReportWriter.TableFooterCell("GENEL TOPLAM", ColumnSpan: 5, Bold: true, AlignRight: true),
+                    new PdfReportWriter.TableFooterCell("30,500", Bold: true, AlignRight: true),
+                    new PdfReportWriter.TableFooterCell("3,00", Bold: true, AlignRight: true),
+                },
+                columnWeights: new float[] { 1.0f, 1.4f, 2.4f, 1.6f, 3.2f, 1.6f, 1.8f });
             Assert(File.Exists(reportPdfPath), "PDF export dosyasi olusmadi.");
             Assert(new FileInfo(reportPdfPath).Length > 1024, "PDF export dosyasi beklenenden kucuk.");
 

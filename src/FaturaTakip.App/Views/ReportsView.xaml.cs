@@ -317,17 +317,99 @@ public partial class ReportsView : UserControl
                 CreatedBy: createdBy,
                 FilterText: string.Empty);
 
-            var (summary, primary, secondaryTitle, secondTable) = BuildPdfContent();
+            // For template-aligned tabs, export the compact 7-column template view into PDF,
+            // with a single GENEL TOPLAM row at the bottom.
+            if (_activeTab is ReportTab.Monthly or ReportTab.YearlyAll or ReportTab.Subscription or ReportTab.SubscriptionYearly or ReportTab.TypeYearly)
+            {
+                // Reuse the existing PDF content builder for secondary title (when applicable).
+                var (_, _, secondaryTitle, _) = BuildPdfContent();
 
-            PdfReportWriter.WriteSimpleTableReport(
-                filePath,
-                meta,
-                Array.Empty<PdfReportWriter.SummaryItem>(),
-                primary.Headers,
-                primary.Rows,
-                notes: GetPdfReportFilterText(),
-                secondaryTitle: secondaryTitle,
-                secondTable: secondTable);
+                var (tplHeaders, tplRows) = _activeTab switch
+                {
+                    ReportTab.Monthly => BuildExcelMonthlyTemplateRows(),
+                    ReportTab.YearlyAll => BuildExcelYearlyAllTemplateRows(),
+                    ReportTab.Subscription => BuildExcelSubscriptionMonthlyTemplateRows(),
+                    ReportTab.SubscriptionYearly => BuildExcelSubscriptionYearlyTemplateRows(),
+                    _ => BuildExcelTypeYearlyTemplateRows(),
+                };
+
+                static string FormatCell(object? value)
+                {
+                    if (value is null)
+                        return string.Empty;
+
+                    var tr = CultureInfo.GetCultureInfo("tr-TR");
+                    return value switch
+                    {
+                        DateTime dt => dt.ToString("dd.MM.yyyy", tr),
+                        decimal d => d.ToString("0.00", tr),
+                        double dbl => dbl.ToString("0.00", tr),
+                        float f => f.ToString("0.00", tr),
+                        int i => i.ToString(CultureInfo.InvariantCulture),
+                        long l => l.ToString(CultureInfo.InvariantCulture),
+                        _ => value.ToString() ?? string.Empty,
+                    };
+                }
+
+                // Compute totals from the last two numeric columns (usage + amount) when present.
+                decimal usageTotal = 0m;
+                decimal amountTotal = 0m;
+                foreach (var row in tplRows)
+                {
+                    if (row.Count >= 7)
+                    {
+                        if (row[5] is decimal u)
+                            usageTotal += u;
+                        else if (row[5] is double ud)
+                            usageTotal += (decimal)ud;
+
+                        if (row[6] is decimal a)
+                            amountTotal += a;
+                        else if (row[6] is double ad)
+                            amountTotal += (decimal)ad;
+                    }
+                }
+
+                var tr = CultureInfo.GetCultureInfo("tr-TR");
+                var footerCells = new[]
+                {
+                    new PdfReportWriter.TableFooterCell("GENEL TOPLAM", ColumnSpan: Math.Max(1, tplHeaders.Count - 2), Bold: true, AlignRight: true),
+                    new PdfReportWriter.TableFooterCell(usageTotal.ToString("0.000", tr), Bold: true, AlignRight: true),
+                    new PdfReportWriter.TableFooterCell(amountTotal.ToString("0.00", tr), Bold: true, AlignRight: true),
+                };
+
+                // Column widths tuned for the 7-column template: year, month, subscription, date, invoice no, usage, amount.
+                var weights = tplHeaders.Count == 7 ? new float[] { 1.0f, 1.4f, 2.4f, 1.6f, 3.2f, 1.6f, 1.8f } : null;
+
+                var rows = tplRows
+                    .Select(r => (IReadOnlyList<string>)r.Select(FormatCell).ToArray())
+                    .ToList();
+
+                PdfReportWriter.WriteSimpleTableReport(
+                    filePath,
+                    meta,
+                    summary: Array.Empty<PdfReportWriter.SummaryItem>(),
+                    headers: tplHeaders.ToList(),
+                    rows: rows,
+                    notes: GetPdfReportFilterText(),
+                    secondaryTitle: secondaryTitle,
+                    footerCells: footerCells,
+                    columnWeights: weights);
+            }
+            else
+            {
+                var (summary, primary, secondaryTitle, secondTable) = BuildPdfContent();
+
+                PdfReportWriter.WriteSimpleTableReport(
+                    filePath,
+                    meta,
+                    Array.Empty<PdfReportWriter.SummaryItem>(),
+                    primary.Headers,
+                    primary.Rows,
+                    notes: GetPdfReportFilterText(),
+                    secondaryTitle: secondaryTitle,
+                    secondTable: secondTable);
+            }
 
             SetPdfHint($"PDF yazıldı: exports/{fileName}");
         }
