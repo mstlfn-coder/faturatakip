@@ -1,4 +1,6 @@
+using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using FaturaTakip.App.Diagnostics;
 using FaturaTakip.App.Infrastructure;
@@ -14,22 +16,53 @@ public partial class App : Application
     {
         base.OnStartup(e);
 
+        var isHealthCheck = IsHealthCheck(e.Args);
+        var isSelfTest = IsSelfTest(e.Args);
+        var isCreateBackup = IsCreateBackup(e.Args);
+
         try
         {
-            if (IsSelfTest(e.Args))
+            // Command modes should run headlessly and exit. Keep them before UI init.
+            if (isSelfTest)
             {
                 new SelfTestRunner().Run();
                 Shutdown(0);
                 return;
             }
 
-            var startupStatus = new ApplicationBootstrapper().Initialize();
-            if (IsHealthCheck(e.Args))
+            if (isHealthCheck)
             {
+                _ = new ApplicationBootstrapper().Initialize();
                 Shutdown(0);
                 return;
             }
 
+            if (isCreateBackup)
+            {
+                var includeAttachments = !e.Args.Any(arg =>
+                    string.Equals(arg, "--backup-no-attachments", StringComparison.OrdinalIgnoreCase));
+                var includeExports = !e.Args.Any(arg =>
+                    string.Equals(arg, "--backup-no-exports", StringComparison.OrdinalIgnoreCase));
+
+                var result = BackupService.CreateBackup(new BackupService.BackupOptions(
+                    IncludeAttachments: includeAttachments,
+                    IncludeExports: includeExports));
+
+                try
+                {
+                    Console.WriteLine(result.Message);
+                    Console.WriteLine(result.ZipPath);
+                }
+                catch
+                {
+                    // Ignore console issues in WPF.
+                }
+
+                Shutdown(0);
+                return;
+            }
+
+            var startupStatus = new ApplicationBootstrapper().Initialize();
             var window = new MainWindow(startupStatus);
             MainWindow = window;
             window.Show();
@@ -38,11 +71,12 @@ public partial class App : Application
         {
             TryWriteStartupError(exception);
 
-            if (!IsHealthCheck(e.Args))
+            // Never block command-mode runs on a MessageBox (headless environments).
+            if (!isHealthCheck && !isSelfTest && !isCreateBackup)
             {
                 MessageBox.Show(
                     exception.Message,
-                    "Uygulama başlatılamadı",
+                    "Uygulama baslatilamadi",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
@@ -51,14 +85,19 @@ public partial class App : Application
         }
     }
 
-    private static bool IsHealthCheck(IEnumerable<string> args)
+    private static bool IsHealthCheck(string[] args)
     {
         return args.Any(arg => string.Equals(arg, "--health-check", StringComparison.OrdinalIgnoreCase));
     }
 
-    private static bool IsSelfTest(IEnumerable<string> args)
+    private static bool IsSelfTest(string[] args)
     {
         return args.Any(arg => string.Equals(arg, "--self-test", StringComparison.OrdinalIgnoreCase));
+    }
+
+    private static bool IsCreateBackup(string[] args)
+    {
+        return args.Any(arg => string.Equals(arg, "--create-backup", StringComparison.OrdinalIgnoreCase));
     }
 
     private static void TryWriteStartupError(Exception exception)
@@ -76,3 +115,4 @@ public partial class App : Application
         }
     }
 }
+
