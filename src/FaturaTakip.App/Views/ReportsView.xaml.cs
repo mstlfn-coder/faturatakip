@@ -203,7 +203,8 @@ public partial class ReportsView : UserControl
                     meta: meta,
                     summary: summary,
                     headers: primary.Headers,
-                    rows: primaryRows);
+                    rows: primaryRows,
+                    notes: GetExcelReportNotes());
             }
             else
             {
@@ -217,7 +218,8 @@ public partial class ReportsView : UserControl
                     rows: primaryRows,
                     secondSheetName: secondTable.Value.Title,
                     secondHeaders: secondTable.Value.Headers,
-                    secondRows: secondRows);
+                    secondRows: secondRows,
+                    notes: GetExcelReportNotes());
             }
 
             var hint = $"Excel yazıldı: exports/{fileName}";
@@ -325,6 +327,17 @@ public partial class ReportsView : UserControl
             ReportTab.TypeYearly => _typeYearly.Year == 0 ? string.Empty : $"{_typeYearly.Year}",
             _ => string.Empty,
         };
+    }
+
+    private string? GetExcelReportNotes()
+    {
+        // Use a short human hint similar to the example Excel templates.
+        var title = GetPdfReportTitle();
+        var period = GetPdfReportPeriod();
+        if (string.IsNullOrWhiteSpace(period))
+            return $"{title}";
+
+        return $"{title} ({period})";
     }
 
     private string GetPdfReportFilterText()
