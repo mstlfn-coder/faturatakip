@@ -317,6 +317,14 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
 | PDF footer varsayilan kapali | OK | Ornek PDF'lerde footer yok; `includeFooter=false` default |
 
+## v0.27 - Bagimlilik Uyari Temizligi (QuestPDF)
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` (0 hata, 0 uyari) |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| NU1603 yok | OK | QuestPDF paketi 2025.4.0'a sabitlendi |
+
 ## Test Geçmişi
 
 | Tarih | Faz | Sonuç | Not |
@@ -350,3 +358,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-06-01 | v0.24 | OK | CS8123 uyarilari temizlendi; build + self-test OK |
 | 2026-06-01 | v0.25 | OK | PDF rapor matbu stil + toplam satiri; build + self-test OK |
 | 2026-06-02 | v0.26 | OK | PDF footer varsayilan kapali; build + self-test OK |
+| 2026-06-02 | v0.27 | OK | QuestPDF NU1603 kaldirildi; build + self-test OK |
