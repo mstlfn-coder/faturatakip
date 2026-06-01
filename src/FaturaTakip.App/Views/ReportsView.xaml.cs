@@ -195,6 +195,30 @@ public partial class ReportsView : UserControl
             var summary = pdfSummary.Select(s => new ExcelExportWriter.SummaryItem(s.Label, s.Value, s.Detail)).ToList();
             var primaryRows = primary.Rows.Select(r => (IReadOnlyList<object?>)r.Cast<object?>().ToArray()).ToList();
 
+            // For Monthly Excel export, match the provided Excel template on the main sheet,
+            // and keep the richer detail table on a second sheet to avoid losing information.
+            if (_activeTab == ReportTab.Monthly)
+            {
+                var (tplHeaders, tplRows) = BuildExcelMonthlyTemplateRows();
+                ExcelExportWriter.WriteReportWithTwoSheets(
+                    filePath,
+                    mainSheetName: "Rapor",
+                    meta: meta,
+                    summary: summary,
+                    headers: tplHeaders,
+                    rows: tplRows,
+                    secondSheetName: "Detay",
+                    secondHeaders: primary.Headers,
+                    secondRows: primaryRows,
+                    notes: GetExcelReportNotes());
+
+                var monthlyHint = $"Excel yazıldı: exports/{fileName}";
+                MonthlyFilterHintText.Text = monthlyHint;
+                TypeYearlyHintText.Text = monthlyHint;
+                SubscriptionHintText.Text = monthlyHint;
+                return;
+            }
+
             if (secondTable is null)
             {
                 ExcelExportWriter.WriteReportWithHeader(
@@ -338,6 +362,35 @@ public partial class ReportsView : UserControl
             return $"{title}";
 
         return $"{title} ({period})";
+    }
+
+    private (IReadOnlyList<string> Headers, IReadOnlyList<IReadOnlyList<object?>> Rows) BuildExcelMonthlyTemplateRows()
+    {
+        // Template reference: docs/references/fatura-excel-ornekler.xlsx (sheet: aylikfaturalar)
+        // Keep column names aligned with the template.
+        var headers = (IReadOnlyList<string>)new[]
+        {
+            "Yıl",
+            "Ay",
+            "Abone Bilgisi",
+            "F. Tarihi",
+            "Fatura Numarası",
+            "Kullanım M.",
+            "Fatura Tutar",
+        };
+
+        var rows = _monthlyReport.Rows.Select(r => (IReadOnlyList<object?>)new object?[]
+        {
+            r.Invoice.InvoiceYear,
+            TurkishCulture.DateTimeFormat.GetMonthName(r.Invoice.InvoiceMonth),
+            r.Invoice.SubscriptionName,
+            r.Invoice.InvoiceDate,
+            r.Invoice.InvoiceNo,
+            r.Invoice.UsageAmount,
+            r.Invoice.Amount,
+        }).ToList();
+
+        return (headers, rows);
     }
 
     private string GetPdfReportFilterText()
