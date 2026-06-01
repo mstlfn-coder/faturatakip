@@ -32,7 +32,7 @@ public partial class BackupView : UserControl
 
             if (latest is null)
             {
-                BackupStatusText.Text = "HenÃƒÂ¼z yedek yok. Ãƒâ€“neri: gÃƒÂ¼nde 1 kez yedek alÃ„Â±n.";
+                BackupStatusText.Text = "Henüz yedek yok. Öneri: günde 1 kez yedek alın.";
                 return;
             }
 
@@ -47,7 +47,7 @@ public partial class BackupView : UserControl
         }
         catch (Exception ex)
         {
-            BackupStatusText.Text = $"Yedek durumu okunamadÃ„Â±: {ex.Message}";
+            BackupStatusText.Text = $"Yedek durumu okunamadı: {ex.Message}";
         }
     }
 
@@ -65,7 +65,7 @@ public partial class BackupView : UserControl
         catch (Exception ex)
         {
             MessageBox.Show(
-                $"Yedek oluÃ…Å¸turulamadÃ„Â±:\n{ex.Message}",
+                $"Yedek oluşturulamadı:\n{ex.Message}",
                 "Yedekleme",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
@@ -89,7 +89,7 @@ public partial class BackupView : UserControl
         catch (Exception ex)
         {
             MessageBox.Show(
-                $"KlasÃƒÂ¶r aÃƒÂ§Ã„Â±lamadÃ„Â±:\n{ex.Message}",
+                $"Klasör açılamadı:\n{ex.Message}",
                 "Yedekleme",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
@@ -107,8 +107,8 @@ public partial class BackupView : UserControl
 
             var dlg = new OpenFileDialog
             {
-                Title = "Yedek Zip SeÃ§",
-                Filter = "Zip (*.zip)|*.zip|TÃ¼m Dosyalar|*.*",
+                Title = "Yedek Zip Seç",
+                Filter = "Zip (*.zip)|*.zip|Tüm Dosyalar|*.*",
                 InitialDirectory = backupsDir,
                 CheckFileExists = true,
                 Multiselect = false,
@@ -123,8 +123,8 @@ public partial class BackupView : UserControl
         catch (Exception ex)
         {
             MessageBox.Show(
-                $"Zip seÃ§ilemedi:\n{ex.Message}",
-                "Geri YÃ¼kleme",
+                $"Zip seçilemedi:\n{ex.Message}",
+                "Geri Yükleme",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
         }
@@ -137,14 +137,14 @@ public partial class BackupView : UserControl
             var targetRoot = (RestoreTargetPathText.Text ?? "").Trim();
             if (string.IsNullOrWhiteSpace(targetRoot))
             {
-                MessageBox.Show("LÃ¼tfen hedef klasÃ¶r yolunu girin.", "Geri YÃ¼kleme", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Lütfen hedef klasör yolunu girin.", "Geri Yükleme", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             targetRoot = Path.GetFullPath(targetRoot);
             if (!Directory.Exists(targetRoot))
             {
-                MessageBox.Show("Hedef klasÃ¶r bulunamadÄ± (henÃ¼z oluÅŸmamÄ±ÅŸ olabilir).", "Geri YÃ¼kleme", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Hedef klasör bulunamadı (henüz oluşmamış olabilir).", "Geri Yükleme", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
@@ -157,8 +157,8 @@ public partial class BackupView : UserControl
         catch (Exception ex)
         {
             MessageBox.Show(
-                $"KlasÃ¶r aÃ§Ä±lamadÄ±:\n{ex.Message}",
-                "Geri YÃ¼kleme",
+                $"Klasör açılamadı:\n{ex.Message}",
+                "Geri Yükleme",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
         }
@@ -173,19 +173,19 @@ public partial class BackupView : UserControl
 
             if (string.IsNullOrWhiteSpace(zipPath))
             {
-                MessageBox.Show("LÃ¼tfen bir yedek zip seÃ§in.", "Geri YÃ¼kleme", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Lütfen bir yedek zip seçin.", "Geri Yükleme", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(targetRoot))
             {
-                MessageBox.Show("LÃ¼tfen boÅŸ bir hedef klasÃ¶r seÃ§in (yolunu yazÄ±n).", "Geri YÃ¼kleme", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Lütfen boş bir hedef klasör seçin (yolunu yazın).", "Geri Yükleme", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (!File.Exists(zipPath))
             {
-                MessageBox.Show("Yedek zip dosyasÄ± bulunamadÄ±.", "Geri YÃ¼kleme", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Yedek zip dosyası bulunamadı.", "Geri Yükleme", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -193,18 +193,18 @@ public partial class BackupView : UserControl
 
             if (Directory.Exists(targetRoot) && Directory.EnumerateFileSystemEntries(targetRoot).Any())
             {
-                RestoreStatusText.Text = "Hata: hedef klasÃ¶r boÅŸ deÄŸil.";
-                MessageBox.Show("GÃ¼venlik iÃ§in sadece boÅŸ klasÃ¶re geri yÃ¼kleme yapÄ±labilir.", "Geri YÃ¼kleme", MessageBoxButton.OK, MessageBoxImage.Warning);
+                RestoreStatusText.Text = "Hata: hedef klasör boş değil.";
+                MessageBox.Show("Güvenlik için sadece boş klasöre geri yükleme yapılabilir.", "Geri Yükleme", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             var confirm = MessageBox.Show(
-                "SeÃ§ilen zip boÅŸ bir klasÃ¶re geri yÃ¼klenecek.\n\n" +
+                "Seçilen zip boş bir klasöre geri yüklenecek.\n\n" +
                 $"Zip: {zipPath}\n" +
                 $"Hedef: {targetRoot}\n\n" +
-                "Not: Bu iÅŸlem hedef klasÃ¶r boÅŸ deÄŸilse Ã§alÄ±ÅŸmaz.\n\n" +
+                "Not: Bu işlem hedef klasör boş değilse çalışmaz.\n\n" +
                 "Devam edilsin mi?",
-                "Geri YÃ¼kleme OnayÄ±",
+                "Geri Yükleme Onayı",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning);
 
@@ -218,7 +218,7 @@ public partial class BackupView : UserControl
 
             MessageBox.Show(
                 result.Message,
-                "Geri YÃ¼kleme",
+                "Geri Yükleme",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information);
         }
@@ -226,8 +226,8 @@ public partial class BackupView : UserControl
         {
             RestoreStatusText.Text = "Hata: " + ex.Message;
             MessageBox.Show(
-                $"Geri yÃ¼kleme baÅŸarÄ±sÄ±z:\n{ex.Message}",
-                "Geri YÃ¼kleme",
+                $"Geri yükleme başarısız:\n{ex.Message}",
+                "Geri Yükleme",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
         }

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="FaturaTakip.App.Views.BackupView"
+<UserControl x:Class="FaturaTakip.App.Views.BackupView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -49,7 +49,7 @@
                        Foreground="#1F2937"
                        FontSize="28"
                        FontWeight="SemiBold" />
-            <TextBlock Text="VeritabanÃ„Â± + ekler + rapor ÃƒÂ§Ã„Â±ktÃ„Â±larÃ„Â± iÃƒÂ§in tek tÃ„Â±kla zip yedek"
+            <TextBlock Text="Veritabani + ekler + rapor ciktisi icin tek tikla zip yedek"
                        Style="{StaticResource MutedText}"
                        Margin="0,6,0,0" />
         </StackPanel>
@@ -84,11 +84,11 @@
 
                 <StackPanel Grid.Row="2"
                             Orientation="Horizontal">
-                    <Button Content="Yedek OluÃ…Å¸tur"
+                    <Button Content="Yedek Olustur"
                             Style="{StaticResource PrimaryButton}"
                             Margin="0,0,8,0"
                             Click="CreateBackupButton_Click" />
-                    <Button Content="KlasÃƒÂ¶rÃƒÂ¼ AÃƒÂ§"
+                    <Button Content="Klasoru Ac"
                             Style="{StaticResource SecondaryButton}"
                             Click="OpenBackupsFolderButton_Click" />
                 </StackPanel>
