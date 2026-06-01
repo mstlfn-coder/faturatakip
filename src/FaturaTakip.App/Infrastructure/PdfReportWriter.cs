@@ -183,6 +183,12 @@ public static class PdfReportWriter
 
     private static void ComposeTable(IContainer container, IReadOnlyList<string> headers, IReadOnlyList<IReadOnlyList<string>> rows)
     {
+        // Never render "filler" rows. If upstream accidentally produces an all-empty row,
+        // skip it so the PDF doesn't look like a pre-printed form.
+        var filteredRows = rows
+            .Where(r => r.Any(cell => !string.IsNullOrWhiteSpace(cell)))
+            .ToList();
+
         container.Table(table =>
         {
             table.ColumnsDefinition(cols =>
@@ -199,7 +205,7 @@ public static class PdfReportWriter
                 }
             });
 
-            foreach (var row in rows)
+            foreach (var row in filteredRows)
             {
                 for (var c = 0; c < headers.Count; c++)
                 {
