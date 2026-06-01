@@ -5,8 +5,8 @@ Bu dosya, yeni Codex chatlerinde kaldÄ±ÄŸÄ±mÄ±z yeri hÄ±zlÄ±ca anlam
 ## GÃ¼ncel KaldÄ±ÄŸÄ±mÄ±z Yer
 
 - Tarih: 2026-06-01
-- Aktif branch: `codex/v0.19-manuel-guvenli-yedekleme`
-- Son commit: `fbf6d96 feat: add --create-backup command`
+- Aktif branch: `master`
+- Son commit: `1417a8d squash: v0.19 backup + v0.20 consistency`
 - Son tamamlanan faz: `v0.19 - Manuel GÃ¼venli Yedekleme` (branch Ã¼zerinde)
 - SÄ±radaki faz: `v0.20 - TutarlÄ±lÄ±k Denetimi`
 - Durum: build + health-check + self-test OK. `--create-backup --backup-no-attachments --backup-no-exports` smoke testi OK (zip oluÅŸuyor).
