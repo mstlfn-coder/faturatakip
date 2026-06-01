@@ -9,6 +9,7 @@ public static class PdfReportWriter
 {
     public sealed record SummaryItem(string Label, string Value, string? Detail = null);
     public sealed record TableFooterCell(string Text, int ColumnSpan = 1, bool Bold = true, bool AlignRight = false);
+    public sealed record TableColumnStyle(bool AlignRight = false, bool AlignCenter = false);
 
     public sealed record ReportMeta(
         string AppTitle,
@@ -30,7 +31,8 @@ public static class PdfReportWriter
         (IReadOnlyList<string> Headers, IReadOnlyList<IReadOnlyList<string>> Rows, string Title)? secondTable = null,
         bool includeSignature = false,
         IReadOnlyList<TableFooterCell>? footerCells = null,
-        IReadOnlyList<float>? columnWeights = null)
+        IReadOnlyList<float>? columnWeights = null,
+        IReadOnlyList<TableColumnStyle>? columnStyles = null)
     {
         // Community license is enough for internal/business apps; required by QuestPDF runtime.
         QuestPDF.Settings.License = LicenseType.Community;
@@ -68,7 +70,7 @@ public static class PdfReportWriter
                             });
                         }
 
-                        col.Item().Element(x => ComposeTable(x, headers, rows, footerCells, columnWeights));
+                        col.Item().Element(x => ComposeTable(x, headers, rows, footerCells, columnWeights, columnStyles));
 
                         if (secondTable is not null)
                         {
@@ -161,14 +163,15 @@ public static class PdfReportWriter
     }
 
     private static void ComposeTable(IContainer container, IReadOnlyList<string> headers, IReadOnlyList<IReadOnlyList<string>> rows)
-        => ComposeTable(container, headers, rows, footerCells: null, columnWeights: null);
+        => ComposeTable(container, headers, rows, footerCells: null, columnWeights: null, columnStyles: null);
 
     private static void ComposeTable(
         IContainer container,
         IReadOnlyList<string> headers,
         IReadOnlyList<IReadOnlyList<string>> rows,
         IReadOnlyList<TableFooterCell>? footerCells,
-        IReadOnlyList<float>? columnWeights)
+        IReadOnlyList<float>? columnWeights,
+        IReadOnlyList<TableColumnStyle>? columnStyles)
     {
         // Never render "filler" rows. If upstream accidentally produces an all-empty row,
         // skip it so the PDF doesn't look like a pre-printed form.
@@ -205,7 +208,13 @@ public static class PdfReportWriter
                 for (var c = 0; c < headers.Count; c++)
                 {
                     var value = c < row.Count ? row[c] : string.Empty;
-                    table.Cell().Element(CellStyleBody).Text(value ?? string.Empty);
+                    var style = columnStyles is not null && c < columnStyles.Count ? columnStyles[c] : null;
+                    var cell = table.Cell().Element(CellStyleBody);
+                    if (style?.AlignRight == true)
+                        cell = cell.AlignRight();
+                    else if (style?.AlignCenter == true)
+                        cell = cell.AlignCenter();
+                    cell.Text(value ?? string.Empty);
                 }
             }
 
