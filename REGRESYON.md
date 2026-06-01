@@ -280,6 +280,18 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Hedef klasor yolu girilebiliyor | OK | TextBox editable |
 | Restore sadece bos klasore izin veriyor | OK | RestoreToEmptyRoot kontrol ediyor |
 
+## v0.23 - Rapor Export Sablon Hizalama (Excel/PDF)
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` (0 hata) |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| Self-test artifact saklama calisiyor | OK | `FATURATAKIP_SELFTEST_KEEP=1` iken test klasoru silinmez |
+| Raporlar Excel export'ta Aciklama satiri var | OK | Excel raporlarinda 6. satirda `Aciklama : ...` |
+| Excel export ana sayfa sablon kolonlari + Detay sayfasi | OK | Aylik, Abonelik Aylik/Yillik, Tur Yillik, Yillik Liste: ana sayfa sablon kolonlari + `Detay` |
+| Raporlar ekraninda `Yillik Liste` sekmesi var | TODO | UI uzerinden gorunurluk ve filtre davranisi manuel dogrulanacak |
+| PDF export halen calisiyor | OK | Build + self-test OK |
+
 ## Test Geçmişi
 
 | Tarih | Faz | Sonuç | Not |
@@ -309,3 +321,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-06-01 | v0.20 | OK | Tutarlılık denetimi eklendi; build, self-test, health-check ve `--consistency-check` smoke test doğrulandı |
 | 2026-06-01 | v0.21 | OK | Güvenli geri yükleme eklendi; `--restore-backup` smoke test doğrulandı |
 | 2026-06-01 | v0.22 | OK | Backup UI restore eklendi; build + self-test OK; restore hata durumda MessageBox yok |
+| 2026-06-01 | v0.23 | OK | Rapor export sablon hizalama + yillik liste sekmesi; build + self-test OK |

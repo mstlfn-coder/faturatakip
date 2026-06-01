@@ -395,3 +395,8 @@ v0.12 sonuÃ§ notu:
 2. Excel rapor cikti format iyilestirmeleri: baslik ortalama + freeze + toplam formulleri + formatlar (ExcelExportWriter).
 3. PDF rapor ozet alani 2 satira kadar genisletildi ve imza blogu opsiyonel hale getirildi (PdfReportWriter).
 4. Rapor meta bilgileri config/report-meta.json ile merkezi hale getirildi (kurum satirlari cok satirli destek).
+5. Raporlar ekraninda aksiyon raporlari (Odenmemis/Gecikmis/Yaklasan) export kolonlari genisletildi (odeme bilgisi kolonlari dahil) ve self-test icindeki bozuk ornek metinler duzeltildi.
+6. Excel export'lara ornek sablondaki gibi "Aciklama" (notes) satiri eklendi; Raporlar Excel export'unda otomatik kisa aciklama yaziliyor.
+7. `--self-test` icin `FATURATAKIP_SELFTEST_KEEP=1` env eklendi: test artifact klasoru silinmez ve path console'a yazilir; self-test Excel raporu artik tam baslik/meta + kolon ornegi uretiyor.
+8. Excel export ana sayfasi ornek sablon kolonlarina yaklastirildi ve bilgi kaybi olmamasi icin mevcut genis tablo `Detay` sayfasinda korundu (Aylik, Abonelik Aylik/Yillik, Tur Yillik).
+9. Raporlar ekranina `Yillik Liste` sekmesi eklendi; Excel export ana sayfasi `yillikfaturaraporu` sablon kolonlariyla hizalandi + `Detay` sayfasi korundu.
