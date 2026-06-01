@@ -83,6 +83,11 @@
                         Style="{StaticResource SecondaryButton}"
                         Margin="0,0,8,0"
                         Click="MonthlyTabButton_Click" />
+                <Button x:Name="YearlyTabButton"
+                        Content="Yıllık Liste"
+                        Style="{StaticResource SecondaryButton}"
+                        Margin="0,0,8,0"
+                        Click="YearlyTabButton_Click" />
                 <Button x:Name="SubscriptionTabButton"
                         Content="Abonelik"
                         Style="{StaticResource SecondaryButton}"

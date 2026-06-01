@@ -144,6 +144,11 @@ public partial class ReportsView : UserControl
         ApplyTab(ReportTab.Monthly);
     }
 
+    private void YearlyTabButton_Click(object sender, RoutedEventArgs e)
+    {
+        ApplyTab(ReportTab.YearlyAll);
+    }
+
     private void SubscriptionTabButton_Click(object sender, RoutedEventArgs e)
     {
         ApplyTab(ReportTab.Subscription);
@@ -197,11 +202,12 @@ public partial class ReportsView : UserControl
 
             // For some tabs, match the provided Excel templates on the main sheet,
             // and keep the existing export table on a second sheet to avoid losing information.
-            if (_activeTab is ReportTab.Monthly or ReportTab.Subscription or ReportTab.SubscriptionYearly or ReportTab.TypeYearly)
+            if (_activeTab is ReportTab.Monthly or ReportTab.YearlyAll or ReportTab.Subscription or ReportTab.SubscriptionYearly or ReportTab.TypeYearly)
             {
                 var (tplHeaders, tplRows) = _activeTab switch
                 {
                     ReportTab.Monthly => BuildExcelMonthlyTemplateRows(),
+                    ReportTab.YearlyAll => BuildExcelYearlyAllTemplateRows(),
                     ReportTab.Subscription => BuildExcelSubscriptionMonthlyTemplateRows(),
                     ReportTab.SubscriptionYearly => BuildExcelSubscriptionYearlyTemplateRows(),
                     _ => BuildExcelTypeYearlyTemplateRows(),
@@ -339,6 +345,7 @@ public partial class ReportsView : UserControl
             ReportTab.Overdue => "GECİKMİŞ FATURALAR RAPORU",
             ReportTab.Upcoming => "YAKLAŞAN ÖDEMELER RAPORU",
             ReportTab.Monthly => "AYLIK FATURA RAPORU",
+            ReportTab.YearlyAll => "YILLIK FATURA RAPORU",
             ReportTab.Subscription => "ABONELİK AYLIK FATURA RAPORU",
             ReportTab.SubscriptionYearly => "ABONELİK YILLIK FATURA RAPORU",
             ReportTab.TypeYearly => "TÜR YILLIK FATURA RAPORU",
@@ -352,6 +359,7 @@ public partial class ReportsView : UserControl
         return _activeTab switch
         {
             ReportTab.Monthly => $"{_monthlyReport.Year:D4}/{_monthlyReport.Month:D2}",
+            ReportTab.YearlyAll => $"{GetSelectedYear():D4}",
             ReportTab.Subscription => $"{_subscriptionComparison.Current.Year:D4}/{_subscriptionComparison.Current.Month:D2}",
             ReportTab.SubscriptionYearly => _subscriptionYearly.Year == 0 ? string.Empty : $"{_subscriptionYearly.Year}",
             ReportTab.TypeYearly => _typeYearly.Year == 0 ? string.Empty : $"{_typeYearly.Year}",
@@ -394,6 +402,51 @@ public partial class ReportsView : UserControl
             r.Invoice.InvoiceNo,
             r.Invoice.UsageAmount,
             r.Invoice.Amount,
+        }).ToList();
+
+        return (headers, rows);
+    }
+
+    private (IReadOnlyList<string> Headers, IReadOnlyList<IReadOnlyList<object?>> Rows) BuildExcelYearlyAllTemplateRows()
+    {
+        // Template reference: docs/references/fatura-excel-ornekler.xlsx (sheet: yillikfaturaraporu)
+        var headers = (IReadOnlyList<string>)new[]
+        {
+            "Yıl",
+            "Ay",
+            "Abone Bilgisi",
+            "F. Tarihi",
+            "Fatura Sayısı",
+            "Kullanım M.",
+            "Fatura Tutar",
+        };
+
+        if (_invoiceRepository is null)
+        {
+            return (headers, Array.Empty<IReadOnlyList<object?>>());
+        }
+
+        var year = GetSelectedYear();
+        var typeId = GetSelectedInvoiceTypeId();
+
+        var list = _invoiceRepository.GetAll()
+            .Where(i => i.InvoiceYear == year)
+            .Where(i => typeId is null || i.InvoiceTypeId == typeId.Value)
+            .OrderBy(i => i.InvoiceMonth)
+            .ThenBy(i => i.SubscriptionName, StringComparer.CurrentCultureIgnoreCase)
+            .ThenBy(i => i.InvoiceDate)
+            .ThenBy(i => i.InvoiceNo, StringComparer.CurrentCultureIgnoreCase)
+            .ToList();
+
+        var rows = list.Select(i => (IReadOnlyList<object?>)new object?[]
+        {
+            i.InvoiceYear,
+            TurkishCulture.DateTimeFormat.GetMonthName(i.InvoiceMonth),
+            string.IsNullOrWhiteSpace(i.SubscriptionName) ? i.SubscriptionId.ToString(CultureInfo.InvariantCulture) : i.SubscriptionName,
+            i.InvoiceDate,
+            i.InvoiceNo,
+            i.UsageAmount,
+            i.Amount,
         }).ToList();
 
         return (headers, rows);
@@ -539,6 +592,7 @@ public partial class ReportsView : UserControl
         return _activeTab switch
         {
             ReportTab.Monthly => $"Tür: {(GetSelectedInvoiceTypeLabel() ?? "Tüm Türler")}",
+            ReportTab.YearlyAll => $"Tür: {(GetSelectedInvoiceTypeLabel() ?? "Tüm Türler")}",
             ReportTab.Subscription => $"Abonelik: {(GetSelectedSubscriptionLabel() ?? string.Empty)}",
             ReportTab.SubscriptionYearly => $"Abonelik: {(GetSelectedSubscriptionLabel() ?? string.Empty)}",
             ReportTab.TypeYearly => $"Tür: {(GetSelectedTypeYearlyInvoiceType()?.Label ?? string.Empty)}",
@@ -968,13 +1022,15 @@ public partial class ReportsView : UserControl
         SetTabActive(OverdueTabButton, tab == ReportTab.Overdue);
         SetTabActive(UpcomingTabButton, tab == ReportTab.Upcoming);
         SetTabActive(MonthlyTabButton, tab == ReportTab.Monthly);
+        SetTabActive(YearlyTabButton, tab == ReportTab.YearlyAll);
         SetTabActive(SubscriptionTabButton, tab == ReportTab.Subscription);
         SetTabActive(SubscriptionYearlyTabButton, tab == ReportTab.SubscriptionYearly);
         SetTabActive(TypeYearlyTabButton, tab == ReportTab.TypeYearly);
         SetTabActive(DocumentHealthTabButton, tab == ReportTab.DocumentHealth);
         SetTabActive(ConsistencyTabButton, tab == ReportTab.Consistency);
 
-        MonthlyFilterPanel.Visibility = tab == ReportTab.Monthly ? Visibility.Visible : Visibility.Collapsed;
+        MonthlyFilterPanel.Visibility = tab is ReportTab.Monthly or ReportTab.YearlyAll ? Visibility.Visible : Visibility.Collapsed;
+        MonthlyMonthInput.Visibility = tab == ReportTab.YearlyAll ? Visibility.Collapsed : Visibility.Visible;
         SubscriptionFilterPanel.Visibility = tab is ReportTab.Subscription or ReportTab.SubscriptionYearly
             ? Visibility.Visible
             : Visibility.Collapsed;
@@ -986,6 +1042,7 @@ public partial class ReportsView : UserControl
             ReportTab.Overdue => _report.Overdue,
             ReportTab.Upcoming => _report.Upcoming,
             ReportTab.Monthly => Array.Empty<ActionableInvoice>(),
+            ReportTab.YearlyAll => Array.Empty<ActionableInvoice>(),
             ReportTab.Subscription => Array.Empty<ActionableInvoice>(),
             ReportTab.SubscriptionYearly => Array.Empty<ActionableInvoice>(),
             ReportTab.TypeYearly => Array.Empty<ActionableInvoice>(),
@@ -1002,6 +1059,37 @@ public partial class ReportsView : UserControl
             YearlyGrid.Visibility = Visibility.Collapsed;
             DistributionGrid.Visibility = Visibility.Collapsed;
             DocumentHealthGrid.Visibility = Visibility.Collapsed;
+        }
+        else if (tab == ReportTab.YearlyAll)
+        {
+            ApplyMonthlyTiles();
+            if (_invoiceRepository is null)
+            {
+                ReportGrid.ItemsSource = Array.Empty<ReportRow>();
+            }
+            else
+            {
+                var year = GetSelectedYear();
+                var typeId = GetSelectedInvoiceTypeId();
+                var invoices = _invoiceRepository.GetAll()
+                    .Where(i => i.InvoiceYear == year)
+                    .Where(i => typeId is null || i.InvoiceTypeId == typeId.Value)
+                    .OrderBy(i => i.InvoiceMonth)
+                    .ThenBy(i => i.SubscriptionName, StringComparer.CurrentCultureIgnoreCase)
+                    .ThenBy(i => i.InvoiceDate)
+                    .ThenBy(i => i.InvoiceNo, StringComparer.CurrentCultureIgnoreCase)
+                    .Select(i => new MonthlyInvoiceRow(i, GetInvoicePdfState(i)))
+                    .Select(ToMonthlyRow)
+                    .ToList();
+
+                ReportGrid.ItemsSource = invoices;
+            }
+
+            ReportGrid.Visibility = Visibility.Visible;
+            YearlyGrid.Visibility = Visibility.Collapsed;
+            DistributionGrid.Visibility = Visibility.Collapsed;
+            DocumentHealthGrid.Visibility = Visibility.Collapsed;
+            ConsistencyGrid.Visibility = Visibility.Collapsed;
         }
         else if (tab == ReportTab.Subscription)
         {
@@ -1061,6 +1149,21 @@ public partial class ReportsView : UserControl
             DocumentHealthGrid.Visibility = Visibility.Collapsed;
             ConsistencyGrid.Visibility = Visibility.Collapsed;
         }
+    }
+
+    private string GetInvoicePdfState(Invoice invoice)
+    {
+        if (!invoice.HasPdf)
+        {
+            return "PDF Yok";
+        }
+
+        if (_invoiceRepository is null)
+        {
+            return "PDF Var";
+        }
+
+        return _invoiceRepository.IsPdfMissing(invoice) ? "PDF Kayıp" : "PDF Var";
     }
 
     private static void SetTabActive(Button button, bool isActive)
@@ -1523,6 +1626,7 @@ public partial class ReportsView : UserControl
         Overdue,
         Upcoming,
         Monthly,
+        YearlyAll,
         Subscription,
         SubscriptionYearly,
         TypeYearly,
