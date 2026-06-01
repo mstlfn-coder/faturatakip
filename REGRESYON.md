@@ -292,6 +292,14 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Raporlar ekraninda `Yillik Liste` sekmesi var | TODO | UI uzerinden gorunurluk ve filtre davranisi manuel dogrulanacak |
 | PDF export halen calisiyor | OK | Build + self-test OK |
 
+## v0.24 - Build Uyari Temizligi (CS8123)
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` (0 hata) |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| CS8123 tuple isim uyari temizlendi | OK | `ReportsView.BuildPdfContent()` return tuple eleman isimleri hizalandi |
+
 ## Test Geçmişi
 
 | Tarih | Faz | Sonuç | Not |
@@ -322,3 +330,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-06-01 | v0.21 | OK | Güvenli geri yükleme eklendi; `--restore-backup` smoke test doğrulandı |
 | 2026-06-01 | v0.22 | OK | Backup UI restore eklendi; build + self-test OK; restore hata durumda MessageBox yok |
 | 2026-06-01 | v0.23 | OK | Rapor export sablon hizalama + yillik liste sekmesi; build + self-test OK |
+| 2026-06-01 | v0.24 | OK | CS8123 uyarilari temizlendi; build + self-test OK |
