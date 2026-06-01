@@ -309,6 +309,14 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | PDF imza blogu yok | OK | PDF raporlar bilgilendirme amacli; imza alanlari kaldirildi |
 | PDF tablo matbu stilde | OK | Siyah border, bos satir yok, template raporlarda `GENEL TOPLAM` footer satiri var |
 
+## v0.26 - PDF Footer Kapali
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` (0 hata) |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| PDF footer varsayilan kapali | OK | Ornek PDF'lerde footer yok; `includeFooter=false` default |
+
 ## Test Geçmişi
 
 | Tarih | Faz | Sonuç | Not |
@@ -341,3 +349,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-06-01 | v0.23 | OK | Rapor export sablon hizalama + yillik liste sekmesi; build + self-test OK |
 | 2026-06-01 | v0.24 | OK | CS8123 uyarilari temizlendi; build + self-test OK |
 | 2026-06-01 | v0.25 | OK | PDF rapor matbu stil + toplam satiri; build + self-test OK |
+| 2026-06-02 | v0.26 | OK | PDF footer varsayilan kapali; build + self-test OK |
