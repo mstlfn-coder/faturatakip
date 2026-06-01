@@ -364,20 +364,49 @@ public partial class ReportsView : UserControl
                 new("Kalan", FormatMoney(_monthlyReport.RemainingTotal), $"Ödenmemiş {_monthlyReport.UnpaidInvoiceCount}, Gecikmiş {_monthlyReport.OverdueInvoiceCount}"),
             };
 
-            var headers = new[] { "Dönem", "Tür", "Abonelik", "Kurum", "Durum", "Fatura No", "Son Ödeme", "Tutar", "Ödenen", "Kalan", "PDF" };
-            var rows = _monthlyReport.Rows.Select(r => (IReadOnlyList<string>)new[]
+            var headers = new[]
             {
-                r.Invoice.Period,
-                r.Invoice.InvoiceTypeName,
-                r.Invoice.SubscriptionName,
-                r.Invoice.InstitutionName,
-                r.Invoice.State,
-                r.Invoice.InvoiceNo,
-                r.Invoice.DueDate.ToString("dd.MM.yyyy", TurkishCulture),
-                FormatMoney(r.Invoice.Amount),
-                FormatMoney(r.Invoice.PaidAmount),
-                FormatMoney(r.Invoice.RemainingAmount),
-                r.PdfState,
+                "Dönem",
+                "Tür",
+                "Abonelik",
+                "Kurum",
+                "Durum",
+                "Fatura Tarihi",
+                "Son Ödeme",
+                "Fatura No",
+                "Tutar",
+                "Kullanım",
+                "Birim",
+                "Ödenen",
+                "Kalan",
+                "Fatura PDF",
+                "Ödeme Tarihi",
+                "Ödeme PDF",
+                "Açıklama",
+            };
+            var rows = _monthlyReport.Rows.Select(r =>
+            {
+                var (paymentDate, paymentPdfState) = GetPaymentInfo(r.Invoice.Id);
+                return (IReadOnlyList<string>)new[]
+                {
+                    r.Invoice.Period,
+                    r.Invoice.InvoiceTypeName,
+                    r.Invoice.SubscriptionName,
+                    r.Invoice.InstitutionName,
+                    r.Invoice.State,
+                    r.Invoice.InvoiceDate.ToString("dd.MM.yyyy", TurkishCulture),
+                    r.Invoice.DueDate.ToString("dd.MM.yyyy", TurkishCulture),
+                    r.Invoice.InvoiceNo,
+                    FormatMoney(r.Invoice.Amount),
+                    r.Invoice.UsageAmount.ToString("N2", TurkishCulture),
+                    r.Invoice.UsageUnit,
+                    FormatMoney(r.Invoice.PaidAmount),
+                    FormatMoney(r.Invoice.RemainingAmount),
+                    r.PdfState,
+                    paymentDate,
+                    paymentPdfState,
+                    r.Invoice.Description,
+                };
             }).ToList();
 
             return (summary, (headers, rows), secondaryTitle: null, secondTable: null);
