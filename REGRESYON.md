@@ -241,7 +241,7 @@ Sonuç etiketleri:
 | Yedekleme butonu görünüyor | OK | `MainWindow.xaml` içinde `BackupNavButton` mevcut ve `BackupNavButton_Click` bağlı |
 | ZIP yedek backups/ altına yazılıyor | OK | `--create-backup --backup-no-attachments --backup-no-exports` ile `backups/backup_YYYYMMDD_HHMMSS.zip` oluştu |
 | Veritabanı ZIP içinde | OK | ZIP içinde `database/fatura_takip.db` var (SQLite backup ile) |
-| Evraklar ZIP içinde | TODO | `attachments/` ve `exports/` büyükse süre uzayabilir; UI veya CLI ile doğrulanacak |
+| Evraklar ZIP içinde | OK | `--create-backup` ile `database/` + `attachments/` + `exports/` + `backup.json` doğrulandı |
 | CLI smoke test mevcut | OK | `dotnet run --no-build --project src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --create-backup --backup-no-attachments --backup-no-exports` |
 
 ## v0.10 ve Sonrası İçin Regresyon Başlıkları
