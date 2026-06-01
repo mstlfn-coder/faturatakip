@@ -92,12 +92,14 @@ public static class ExcelExportWriter
         sheet.Cell(4, 6).Value = ":";
         sheet.Cell(4, 7).Value = meta.FilterText;
 
-        sheet.Range(1, 1, 1, Math.Max(7, headers.Count)).Merge();
-        sheet.Range(2, 1, 2, Math.Max(7, headers.Count)).Merge();
+        var lastHeaderCol = Math.Max(7, headers.Count);
+        sheet.Range(1, 1, 1, lastHeaderCol).Merge();
+        sheet.Range(2, 1, 2, lastHeaderCol).Merge();
         sheet.Cell(1, 1).Style.Font.Bold = true;
         sheet.Cell(1, 1).Style.Font.FontSize = 14;
         sheet.Cell(2, 1).Style.Font.Bold = true;
         sheet.Cell(2, 1).Style.Font.FontSize = 16;
+        sheet.Range(1, 1, 2, lastHeaderCol).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
         // Row 7: table headers
         var headerRow = 7;
@@ -107,9 +109,12 @@ public static class ExcelExportWriter
         var headerRange = sheet.Range(headerRow, 1, headerRow, headers.Count);
         headerRange.Style.Font.Bold = true;
         headerRange.Style.Fill.BackgroundColor = XLColor.FromHtml("#E7EEF6");
+        headerRange.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
         // Row 8..: data
         var rowIndex = headerRow + 1;
+        var isNumericColumn = new bool[headers.Count];
+        var isDateColumn = new bool[headers.Count];
         foreach (var row in rows)
         {
             for (var col = 0; col < headers.Count; col++)
@@ -117,6 +122,11 @@ public static class ExcelExportWriter
                 var cell = sheet.Cell(rowIndex, col + 1);
                 var value = col < row.Count ? row[col] : null;
                 SetCellValue(cell, value);
+
+                if (value is int or long or decimal or double)
+                    isNumericColumn[col] = true;
+                if (value is DateTime or DateTimeOffset)
+                    isDateColumn[col] = true;
             }
 
             rowIndex++;
@@ -125,8 +135,24 @@ public static class ExcelExportWriter
         // Totals row (optional)
         if (!string.IsNullOrWhiteSpace(totalsLabel))
         {
-            sheet.Cell(rowIndex + 1, 1).Value = totalsLabel;
-            sheet.Cell(rowIndex + 1, 1).Style.Font.Bold = true;
+            var totalsRow = rowIndex + 1;
+            sheet.Cell(totalsRow, 1).Value = totalsLabel;
+            sheet.Range(totalsRow, 1, totalsRow, headers.Count).Style.Font.Bold = true;
+            sheet.Range(totalsRow, 1, totalsRow, headers.Count).Style.Fill.BackgroundColor = XLColor.FromHtml("#F3F4F6");
+
+            // Sum numeric columns over the data range
+            var firstDataRow = headerRow + 1;
+            var lastDataRow = Math.Max(firstDataRow, rowIndex - 1);
+            for (var col = 0; col < headers.Count; col++)
+            {
+                if (!isNumericColumn[col])
+                    continue;
+
+                var excelCol = col + 1;
+                var colLetter = XLHelper.GetColumnLetterFromNumber(excelCol);
+                sheet.Cell(totalsRow, excelCol).FormulaA1 = $"SUM({colLetter}{firstDataRow}:{colLetter}{lastDataRow})";
+                sheet.Cell(totalsRow, excelCol).Style.NumberFormat.Format = "#,##0.00";
+            }
         }
 
         // Summary block (top-right)
@@ -147,6 +173,19 @@ public static class ExcelExportWriter
         }
 
         sheet.Range(headerRow, 1, Math.Max(headerRow, rowIndex - 1), headers.Count).SetAutoFilter();
+        sheet.SheetView.FreezeRows(headerRow);
+
+        // Basic date/number formats
+        var firstRow = headerRow + 1;
+        var lastRow = Math.Max(firstRow, rowIndex - 1);
+        for (var col = 0; col < headers.Count; col++)
+        {
+            if (isDateColumn[col])
+                sheet.Column(col + 1).Style.DateFormat.Format = "dd.MM.yyyy";
+            if (isNumericColumn[col])
+                sheet.Column(col + 1).Style.NumberFormat.Format = "#,##0.00";
+        }
+
         sheet.Columns(1, Math.Max(headers.Count, 12)).AdjustToContents();
 
         workbook.SaveAs(filePath);
@@ -205,12 +244,14 @@ public static class ExcelExportWriter
         sheet.Cell(4, 6).Value = ":";
         sheet.Cell(4, 7).Value = meta.FilterText;
 
-        sheet.Range(1, 1, 1, Math.Max(7, headers.Count)).Merge();
-        sheet.Range(2, 1, 2, Math.Max(7, headers.Count)).Merge();
+        var lastHeaderCol = Math.Max(7, headers.Count);
+        sheet.Range(1, 1, 1, lastHeaderCol).Merge();
+        sheet.Range(2, 1, 2, lastHeaderCol).Merge();
         sheet.Cell(1, 1).Style.Font.Bold = true;
         sheet.Cell(1, 1).Style.Font.FontSize = 14;
         sheet.Cell(2, 1).Style.Font.Bold = true;
         sheet.Cell(2, 1).Style.Font.FontSize = 16;
+        sheet.Range(1, 1, 2, lastHeaderCol).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
         var headerRow = 7;
         for (var i = 0; i < headers.Count; i++)
@@ -219,8 +260,11 @@ public static class ExcelExportWriter
         var headerRange = sheet.Range(headerRow, 1, headerRow, headers.Count);
         headerRange.Style.Font.Bold = true;
         headerRange.Style.Fill.BackgroundColor = XLColor.FromHtml("#E7EEF6");
+        headerRange.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
 
         var rowIndex = headerRow + 1;
+        var isNumericColumn = new bool[headers.Count];
+        var isDateColumn = new bool[headers.Count];
         foreach (var row in rows)
         {
             for (var col = 0; col < headers.Count; col++)
@@ -228,6 +272,11 @@ public static class ExcelExportWriter
                 var cell = sheet.Cell(rowIndex, col + 1);
                 var value = col < row.Count ? row[col] : null;
                 SetCellValue(cell, value);
+
+                if (value is int or long or decimal or double)
+                    isNumericColumn[col] = true;
+                if (value is DateTime or DateTimeOffset)
+                    isDateColumn[col] = true;
             }
 
             rowIndex++;
@@ -235,8 +284,23 @@ public static class ExcelExportWriter
 
         if (!string.IsNullOrWhiteSpace(totalsLabel))
         {
-            sheet.Cell(rowIndex + 1, 1).Value = totalsLabel;
-            sheet.Cell(rowIndex + 1, 1).Style.Font.Bold = true;
+            var totalsRow = rowIndex + 1;
+            sheet.Cell(totalsRow, 1).Value = totalsLabel;
+            sheet.Range(totalsRow, 1, totalsRow, headers.Count).Style.Font.Bold = true;
+            sheet.Range(totalsRow, 1, totalsRow, headers.Count).Style.Fill.BackgroundColor = XLColor.FromHtml("#F3F4F6");
+
+            var firstDataRow = headerRow + 1;
+            var lastDataRow = Math.Max(firstDataRow, rowIndex - 1);
+            for (var col = 0; col < headers.Count; col++)
+            {
+                if (!isNumericColumn[col])
+                    continue;
+
+                var excelCol = col + 1;
+                var colLetter = XLHelper.GetColumnLetterFromNumber(excelCol);
+                sheet.Cell(totalsRow, excelCol).FormulaA1 = $"SUM({colLetter}{firstDataRow}:{colLetter}{lastDataRow})";
+                sheet.Cell(totalsRow, excelCol).Style.NumberFormat.Format = "#,##0.00";
+            }
         }
 
         if (summary.Count > 0)
@@ -256,6 +320,18 @@ public static class ExcelExportWriter
         }
 
         sheet.Range(headerRow, 1, Math.Max(headerRow, rowIndex - 1), headers.Count).SetAutoFilter();
+        sheet.SheetView.FreezeRows(headerRow);
+
+        var firstRow = headerRow + 1;
+        var lastRow = Math.Max(firstRow, rowIndex - 1);
+        for (var col = 0; col < headers.Count; col++)
+        {
+            if (isDateColumn[col])
+                sheet.Column(col + 1).Style.DateFormat.Format = "dd.MM.yyyy";
+            if (isNumericColumn[col])
+                sheet.Column(col + 1).Style.NumberFormat.Format = "#,##0.00";
+        }
+
         sheet.Columns(1, Math.Max(headers.Count, 12)).AdjustToContents();
     }
 
