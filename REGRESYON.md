@@ -300,6 +300,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
 | CS8123 tuple isim uyari temizlendi | OK | `ReportsView.BuildPdfContent()` return tuple eleman isimleri hizalandi |
 
+## v0.25 - PDF Rapor Matbu Stil + Toplam Satiri
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` (0 hata) |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| PDF imza blogu yok | OK | PDF raporlar bilgilendirme amacli; imza alanlari kaldirildi |
+| PDF tablo matbu stilde | OK | Siyah border, bos satir yok, template raporlarda `GENEL TOPLAM` footer satiri var |
+
 ## Test Geçmişi
 
 | Tarih | Faz | Sonuç | Not |
@@ -331,3 +340,4 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-06-01 | v0.22 | OK | Backup UI restore eklendi; build + self-test OK; restore hata durumda MessageBox yok |
 | 2026-06-01 | v0.23 | OK | Rapor export sablon hizalama + yillik liste sekmesi; build + self-test OK |
 | 2026-06-01 | v0.24 | OK | CS8123 uyarilari temizlendi; build + self-test OK |
+| 2026-06-01 | v0.25 | OK | PDF rapor matbu stil + toplam satiri; build + self-test OK |

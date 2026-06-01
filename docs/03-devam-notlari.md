@@ -400,3 +400,4 @@ v0.12 sonuÃ§ notu:
 7. `--self-test` icin `FATURATAKIP_SELFTEST_KEEP=1` env eklendi: test artifact klasoru silinmez ve path console'a yazilir; self-test Excel raporu artik tam baslik/meta + kolon ornegi uretiyor.
 8. Excel export ana sayfasi ornek sablon kolonlarina yaklastirildi ve bilgi kaybi olmamasi icin mevcut genis tablo `Detay` sayfasinda korundu (Aylik, Abonelik Aylik/Yillik, Tur Yillik).
 9. Raporlar ekranina `Yillik Liste` sekmesi eklendi; Excel export ana sayfasi `yillikfaturaraporu` sablon kolonlariyla hizalandi + `Detay` sayfasi korundu.
+10. PDF raporlar ornek matbu gorunume yaklastirildi: imza blogu kaldirildi, baslik duzeni (ortali kurum + `Tarih :`), `Açıklama :` satiri, tablo siyah border ve template raporlarinda `GENEL TOPLAM` footer satiri eklendi.
