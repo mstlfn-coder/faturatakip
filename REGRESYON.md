@@ -387,3 +387,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | PDF tablo baslik satiri daha kompakt | OK | Baslik hucrelerinin dikey padding degeri dusuruldu; tablo ust satiri daha sik gorunuyor |
 
 | 2026-06-02 | v0.30 | OK | PDF tablo baslik satiri sikilastirildi; build + self-test OK |
+
+## v0.31 - PDF Tablo Govde Sikiligi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| PDF govde satirlari daha kompakt | OK | Govde hucrelerinin dikey padding degeri dusuruldu; tablo satirlari daha sik gorunuyor |
+
+| 2026-06-02 | v0.31 | OK | PDF tablo govde satirlari sikilastirildi; build + self-test OK |
