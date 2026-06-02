@@ -629,6 +629,35 @@
                                          IsReadOnly="True" />
                             </StackPanel>
                         </Grid>
+                        <TextBlock Text="Alan Bazli Fark"
+                                   Foreground="#334155"
+                                   FontWeight="SemiBold"
+                                   Margin="0,12,0,6" />
+                        <DataGrid x:Name="AuditLogDiffGrid"
+                                  AutoGenerateColumns="False"
+                                  CanUserAddRows="False"
+                                  IsReadOnly="True"
+                                  SelectionMode="Single"
+                                  BorderBrush="#DDE4EC"
+                                  BorderThickness="1"
+                                  HeadersVisibility="Column"
+                                  GridLinesVisibility="Horizontal"
+                                  Height="180">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Alan"
+                                                    Binding="{Binding FieldName}"
+                                                    Width="1.1*" />
+                                <DataGridTextColumn Header="Eski"
+                                                    Binding="{Binding OldValue}"
+                                                    Width="1.2*" />
+                                <DataGridTextColumn Header="Yeni"
+                                                    Binding="{Binding NewValue}"
+                                                    Width="1.2*" />
+                                <DataGridTextColumn Header="Durum"
+                                                    Binding="{Binding ChangeType}"
+                                                    Width="120" />
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </StackPanel>
                 </Border>
             </Grid>

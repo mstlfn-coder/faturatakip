@@ -1765,6 +1765,7 @@ public partial class ReportsView : UserControl
             AuditLogDetailMetaText.Text = string.Empty;
             AuditLogOldValueTextBox.Text = string.Empty;
             AuditLogNewValueTextBox.Text = string.Empty;
+            AuditLogDiffGrid.ItemsSource = Array.Empty<AuditLogDiffRow>();
             return;
         }
 
@@ -1773,6 +1774,7 @@ public partial class ReportsView : UserControl
         AuditLogDetailMetaText.Text = $"Kayit Id: {log.RecordId} | Kullanici: {(string.IsNullOrWhiteSpace(log.UserName) ? "system" : log.UserName)} | Tarih: {(log.CreatedAt == DateTimeOffset.MinValue ? "-" : log.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm", TurkishCulture))}";
         AuditLogOldValueTextBox.Text = FormatAuditPayload(log.OldValue);
         AuditLogNewValueTextBox.Text = FormatAuditPayload(log.NewValue);
+        AuditLogDiffGrid.ItemsSource = BuildAuditLogDiffRows(log.OldValue, log.NewValue);
     }
 
     private static string FormatDelta(decimal value)
@@ -1914,6 +1916,108 @@ public partial class ReportsView : UserControl
         catch (JsonException)
         {
             return value.Trim();
+        }
+    }
+
+    private static IReadOnlyList<AuditLogDiffRow> BuildAuditLogDiffRows(string oldValue, string newValue)
+    {
+        var oldMap = FlattenAuditPayload(oldValue);
+        var newMap = FlattenAuditPayload(newValue);
+        var keys = oldMap.Keys
+            .Union(newMap.Keys, StringComparer.OrdinalIgnoreCase)
+            .OrderBy(key => key, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        if (keys.Count == 0)
+        {
+            return new[]
+            {
+                new AuditLogDiffRow("-", "Kayit yok", "Kayit yok", "Degisiklik yok"),
+            };
+        }
+
+        return keys.Select(key =>
+        {
+            oldMap.TryGetValue(key, out var oldText);
+            newMap.TryGetValue(key, out var newText);
+
+            var changeType = oldText switch
+            {
+                null when newText is not null => "Eklendi",
+                not null when newText is null => "Silindi",
+                _ when string.Equals(oldText, newText, StringComparison.Ordinal) => "Ayni",
+                _ => "Degisti",
+            };
+
+            return new AuditLogDiffRow(
+                key,
+                oldText ?? "-",
+                newText ?? "-",
+                changeType);
+        }).ToList();
+    }
+
+    private static Dictionary<string, string> FlattenAuditPayload(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        }
+
+        try
+        {
+            using var document = JsonDocument.Parse(value);
+            var map = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            FlattenJsonElement(document.RootElement, prefix: string.Empty, map);
+            return map;
+        }
+        catch (JsonException)
+        {
+            return new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["value"] = value.Trim(),
+            };
+        }
+    }
+
+    private static void FlattenJsonElement(JsonElement element, string prefix, IDictionary<string, string> map)
+    {
+        switch (element.ValueKind)
+        {
+            case JsonValueKind.Object:
+                foreach (var property in element.EnumerateObject())
+                {
+                    var childPrefix = string.IsNullOrWhiteSpace(prefix) ? property.Name : $"{prefix}.{property.Name}";
+                    FlattenJsonElement(property.Value, childPrefix, map);
+                }
+                break;
+            case JsonValueKind.Array:
+                var index = 0;
+                foreach (var item in element.EnumerateArray())
+                {
+                    FlattenJsonElement(item, $"{prefix}[{index}]", map);
+                    index++;
+                }
+                if (index == 0)
+                {
+                    map[prefix] = "[]";
+                }
+                break;
+            case JsonValueKind.String:
+                map[prefix] = element.GetString() ?? string.Empty;
+                break;
+            case JsonValueKind.Number:
+            case JsonValueKind.True:
+            case JsonValueKind.False:
+                map[prefix] = element.ToString();
+                break;
+            case JsonValueKind.Null:
+            case JsonValueKind.Undefined:
+                map[prefix] = "null";
+                break;
+            default:
+                map[prefix] = element.ToString();
+                break;
         }
     }
 
@@ -2301,5 +2405,11 @@ public partial class ReportsView : UserControl
         string RecordIdText,
         string Description,
         string UserName);
+
+    private sealed record AuditLogDiffRow(
+        string FieldName,
+        string OldValue,
+        string NewValue,
+        string ChangeType);
 }
 
