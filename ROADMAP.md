@@ -374,3 +374,9 @@ Her faz bittiğinde:
 - v0.38 tamamlandi: Islem Gecmisi raporu/gridi ve audit log export destegi eklendi.
 - v0.39 siradaki: Islem Gecmisi icin tarih / islem turu filtreleri.
 
+
+## Son Guncelleme (2026-06-02 / v0.39)
+
+- v0.39 tamamlandi: Islem Gecmisi icin islem turu + tarih filtreleri eklendi.
+- Siradaki mantikli faz: kullanici / varlik bazli ek filtre veya metin arama.
+

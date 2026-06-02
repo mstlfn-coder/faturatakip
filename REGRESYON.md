@@ -472,3 +472,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Audit log export'u destekleniyor | OK | Excel export generic tabloyu, PDF export `ISLEM GECMISI RAPORU` icerigini uretiyor |
 
 | 2026-06-02 | v0.38 | OK | Islem Gecmisi sekmesi eklendi; build + self-test OK |
+
+## v0.39 - Islem Gecmisi Filtreleri
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| Islem turu filtresi var | OK | `AuditLogActionInput` ile secili aksiyon turune gore daraltma yapiliyor |
+| Tarih araligi filtresi var | OK | Baslangic / bitis tarihleri secilebiliyor; ters aralikta bitis tarihi duzeltiliyor |
+| Audit log export'u filtreyi yansitiyor | OK | Grid ile ayni filtrelenmis satirlar export akisina gidiyor; not/filter metni guncellendi |
+
+| 2026-06-02 | v0.39 | OK | Islem Gecmisi filtreleri eklendi; build + self-test OK |

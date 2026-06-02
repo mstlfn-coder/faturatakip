@@ -17,6 +17,7 @@ Bu depo, kurum aboneliklerine ait elektrik, su, doğalgaz, telefon, internet ve 
 - `v0.36` restore için "boş olmayan hedef reddedilir" negatif smoke testi self-test kapsamına alındı.
 - `v0.37` audit log temeli eklendi; kritik veri işlemleri artık `audit_logs` tablosuna kaydediliyor.
 - `v0.38` `Raporlar > Islem Gecmisi` sekmesi eklendi; audit log kayitlari artik UI ve export uzerinden gorulebiliyor.
+- `v0.39` `Islem Gecmisi` sekmesine islem turu ve tarih filtreleri eklendi.
 - Solution dosyası: `FaturaTakip.sln`
 - Uygulama projesi: `src/FaturaTakip.App/FaturaTakip.App.csproj`
 - Geliştirme planı proje içine alındı: `docs/01-gelistirme-plani.md`
@@ -53,13 +54,13 @@ Get-ChildItem -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI'
 
 ## Son Tamamlanan Faz
 
-Son tamamlanan geliştirme fazı `v0.38 - Islem Gecmisi Raporu`.
+Son tamamlanan geliştirme fazı `v0.39 - Islem Gecmisi Filtreleri`.
 
-Bu fazda `Raporlar` ekranina `Islem Gecmisi` sekmesi eklendi; audit log verisi grid, Excel export ve PDF export uzerinden gorunur hale getirildi.
+Bu fazda `Islem Gecmisi` sekmesine islem turu ve baslangic/bitis tarihi filtreleri eklendi; grid ve export ciktilari secili filtreyi dikkate aliyor.
 
 ## Sıradaki İş
 
-Sıradaki mantıklı iş: `Islem Gecmisi` sekmesine tarih / islem turu filtreleri ekleyip kayit yogunlugu arttiginda taramayi hizlandirmak.
+Sıradaki mantıklı iş: `Islem Gecmisi` kayitlari için kullanici/varlik bazli ek filtre veya arama kutusu eklemek.
 
 Bu noktadan sonra yeni chatlerde önce `docs/03-devam-notlari.md` ve `REGRESYON.md` okunmalı; en güncel durum artık bu dosyalarda tutuluyor.
 
