@@ -19,6 +19,7 @@ Bu depo, kurum aboneliklerine ait elektrik, su, doğalgaz, telefon, internet ve 
 - `v0.38` `Raporlar > Islem Gecmisi` sekmesi eklendi; audit log kayitlari artik UI ve export uzerinden gorulebiliyor.
 - `v0.39` `Islem Gecmisi` sekmesine islem turu ve tarih filtreleri eklendi.
 - `v0.40` `Islem Gecmisi` icin varlik, kullanici ve metin arama filtreleri eklendi.
+- `v0.41` secili audit log satiri icin eski/yeni deger detay paneli eklendi.
 - Solution dosyası: `FaturaTakip.sln`
 - Uygulama projesi: `src/FaturaTakip.App/FaturaTakip.App.csproj`
 - Geliştirme planı proje içine alındı: `docs/01-gelistirme-plani.md`
@@ -55,13 +56,13 @@ Get-ChildItem -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI'
 
 ## Son Tamamlanan Faz
 
-Son tamamlanan geliştirme fazı `v0.40 - Islem Gecmisi Arama`.
+Son tamamlanan geliştirme fazı `v0.41 - Islem Gecmisi Detay Paneli`.
 
-Bu fazda `Islem Gecmisi` icin varlik, kullanici ve serbest metin aramasi eklendi; grid ve export ciktilari tum secili filtreleri birlikte dikkate aliyor.
+Bu fazda secili audit log satiri icin eski/yeni deger detay paneli eklendi; satira tiklayinca degisiklik icerigi daha okunur sekilde gorulebiliyor.
 
 ## Sıradaki İş
 
-Sıradaki mantıklı iş: audit log kayitlarinda satira tiklayinca eski/yeni deger detayini gosteren bir detay paneli eklemek.
+Sıradaki mantıklı iş: audit log detayinda eski/yeni JSON farkini daha okunur gostermek icin alan bazli karsilastirma veya renkli diff eklemek.
 
 Bu noktadan sonra yeni chatlerde önce `docs/03-devam-notlari.md` ve `REGRESYON.md` okunmalı; en güncel durum artık bu dosyalarda tutuluyor.
 

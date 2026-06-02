@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -31,6 +32,7 @@ public partial class ReportsView : UserControl
     private DocumentHealthReport _documentHealth = DocumentHealthReport.Empty;
     private ConsistencyReport _consistency = ConsistencyReport.Empty;
     private IReadOnlyList<AuditLog> _auditLogs = Array.Empty<AuditLog>();
+    private AuditLog? _selectedAuditLog;
     private ReportTab _activeTab = ReportTab.Unpaid;
     private Dictionary<long, List<Payment>> _paymentsByInvoice = new();
     private bool _isInitialized;
@@ -230,6 +232,19 @@ public partial class ReportsView : UserControl
         {
             ApplyTab(ReportTab.AuditLog);
         }
+    }
+
+    private void AuditLogGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (AuditLogGrid.SelectedItem is AuditLogRow row)
+        {
+            _selectedAuditLog = row.Source;
+            ApplyAuditLogDetail(row.Source);
+            return;
+        }
+
+        _selectedAuditLog = null;
+        ApplyAuditLogDetail(null);
     }
 
     private void ExportReportButton_Click(object sender, RoutedEventArgs e)
@@ -1388,6 +1403,7 @@ public partial class ReportsView : UserControl
         SubscriptionMonthInput.Visibility = tab == ReportTab.Subscription ? Visibility.Visible : Visibility.Collapsed;
         TypeYearlyFilterPanel.Visibility = tab == ReportTab.TypeYearly ? Visibility.Visible : Visibility.Collapsed;
         AuditLogFilterPanel.Visibility = tab == ReportTab.AuditLog ? Visibility.Visible : Visibility.Collapsed;
+        AuditLogDetailPanel.Visibility = Visibility.Collapsed;
 
         var items = tab switch
         {
@@ -1485,14 +1501,32 @@ public partial class ReportsView : UserControl
         }
         else if (tab == ReportTab.AuditLog)
         {
+            var rows = GetFilteredAuditLogs().Select(ToAuditLogRow).ToList();
             ApplyAuditLogTiles();
-            AuditLogGrid.ItemsSource = GetFilteredAuditLogs().Select(ToAuditLogRow).ToList();
+            AuditLogGrid.ItemsSource = rows;
+            if (_selectedAuditLog is not null)
+            {
+                var matchingRow = rows.FirstOrDefault(row => row.Source.Id == _selectedAuditLog.Id);
+                AuditLogGrid.SelectedItem = matchingRow;
+                ApplyAuditLogDetail(matchingRow?.Source);
+            }
+            else if (rows.Count > 0)
+            {
+                AuditLogGrid.SelectedItem = rows[0];
+                ApplyAuditLogDetail(rows[0].Source);
+            }
+            else
+            {
+                AuditLogGrid.SelectedItem = null;
+                ApplyAuditLogDetail(null);
+            }
             ReportGrid.Visibility = Visibility.Collapsed;
             YearlyGrid.Visibility = Visibility.Collapsed;
             DistributionGrid.Visibility = Visibility.Collapsed;
             DocumentHealthGrid.Visibility = Visibility.Collapsed;
             ConsistencyGrid.Visibility = Visibility.Collapsed;
             AuditLogGrid.Visibility = Visibility.Visible;
+            AuditLogDetailPanel.Visibility = rows.Count == 0 ? Visibility.Collapsed : AuditLogDetailPanel.Visibility;
         }
         else
         {
@@ -1504,6 +1538,7 @@ public partial class ReportsView : UserControl
             DocumentHealthGrid.Visibility = Visibility.Collapsed;
             ConsistencyGrid.Visibility = Visibility.Collapsed;
             AuditLogGrid.Visibility = Visibility.Collapsed;
+            AuditLogDetailPanel.Visibility = Visibility.Collapsed;
         }
     }
 
@@ -1721,6 +1756,25 @@ public partial class ReportsView : UserControl
         TypeYearlyHintText.Text = string.Empty;
     }
 
+    private void ApplyAuditLogDetail(AuditLog? log)
+    {
+        if (log is null)
+        {
+            AuditLogDetailPanel.Visibility = Visibility.Collapsed;
+            AuditLogDetailTitleText.Text = "Kayit detayi";
+            AuditLogDetailMetaText.Text = string.Empty;
+            AuditLogOldValueTextBox.Text = string.Empty;
+            AuditLogNewValueTextBox.Text = string.Empty;
+            return;
+        }
+
+        AuditLogDetailPanel.Visibility = Visibility.Visible;
+        AuditLogDetailTitleText.Text = $"{FormatAuditActionLabel(log.ActionType)} / {FormatAuditTableLabel(log.TableName)}";
+        AuditLogDetailMetaText.Text = $"Kayit Id: {log.RecordId} | Kullanici: {(string.IsNullOrWhiteSpace(log.UserName) ? "system" : log.UserName)} | Tarih: {(log.CreatedAt == DateTimeOffset.MinValue ? "-" : log.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm", TurkishCulture))}";
+        AuditLogOldValueTextBox.Text = FormatAuditPayload(log.OldValue);
+        AuditLogNewValueTextBox.Text = FormatAuditPayload(log.NewValue);
+    }
+
     private static string FormatDelta(decimal value)
     {
         var formatted = FormatMoney(Math.Abs(value));
@@ -1805,6 +1859,7 @@ public partial class ReportsView : UserControl
     private static AuditLogRow ToAuditLogRow(AuditLog log)
     {
         return new AuditLogRow(
+            log,
             log.CreatedAt == DateTimeOffset.MinValue
                 ? string.Empty
                 : log.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm", TurkishCulture),
@@ -1842,6 +1897,24 @@ public partial class ReportsView : UserControl
             "audit_logs" => "Audit Log",
             _ => value,
         };
+    }
+
+    private static string FormatAuditPayload(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return "Kayit yok";
+        }
+
+        try
+        {
+            using var document = JsonDocument.Parse(value);
+            return JsonSerializer.Serialize(document.RootElement, new JsonSerializerOptions { WriteIndented = true });
+        }
+        catch (JsonException)
+        {
+            return value.Trim();
+        }
     }
 
     private static string FormatMoney(decimal value)
@@ -2221,6 +2294,7 @@ public partial class ReportsView : UserControl
         string Note);
 
     private sealed record AuditLogRow(
+        AuditLog Source,
         string CreatedAtText,
         string ActionType,
         string TableName,

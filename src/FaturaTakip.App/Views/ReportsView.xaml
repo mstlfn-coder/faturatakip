@@ -553,6 +553,7 @@
                           CanUserAddRows="False"
                           IsReadOnly="True"
                           SelectionMode="Single"
+                          SelectionChanged="AuditLogGrid_SelectionChanged"
                           BorderBrush="#E5EAF1"
                           BorderThickness="1"
                           HeadersVisibility="Column"
@@ -578,6 +579,58 @@
                                             Width="100" />
                     </DataGrid.Columns>
                 </DataGrid>
+
+                <Border x:Name="AuditLogDetailPanel"
+                        Visibility="Collapsed"
+                        Margin="0,12,0,0"
+                        Padding="14"
+                        Background="#F8FAFC"
+                        BorderBrush="#DDE4EC"
+                        BorderThickness="1"
+                        CornerRadius="6">
+                    <StackPanel>
+                        <TextBlock x:Name="AuditLogDetailTitleText"
+                                   Text="Kayit detayi"
+                                   Foreground="#0F172A"
+                                   FontWeight="SemiBold"
+                                   FontSize="15" />
+                        <TextBlock x:Name="AuditLogDetailMetaText"
+                                   Text=""
+                                   Foreground="#64748B"
+                                   Margin="0,4,0,12" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="12" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="Eski Deger"
+                                           Foreground="#334155"
+                                           FontWeight="SemiBold"
+                                           Margin="0,0,0,6" />
+                                <TextBox x:Name="AuditLogOldValueTextBox"
+                                         Height="160"
+                                         AcceptsReturn="True"
+                                         TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Auto"
+                                         IsReadOnly="True" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <TextBlock Text="Yeni Deger"
+                                           Foreground="#334155"
+                                           FontWeight="SemiBold"
+                                           Margin="0,0,0,6" />
+                                <TextBox x:Name="AuditLogNewValueTextBox"
+                                         Height="160"
+                                         AcceptsReturn="True"
+                                         TextWrapping="Wrap"
+                                         VerticalScrollBarVisibility="Auto"
+                                         IsReadOnly="True" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
             </Grid>
         </Border>
     </Grid>
