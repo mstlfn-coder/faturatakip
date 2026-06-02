@@ -268,7 +268,7 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Kontrol | Durum | Not |
 |---|---|---|
 | CLI geri yükleme çalışıyor | OK | `--restore-backup <zip> --restore-target <emptyFolder>` |
-| Boş olmayan hedefe restore engelleniyor | TODO | Güvenlik kontrolü negatif senaryo |
+| Boş olmayan hedefe restore engelleniyor | OK | `--self-test` içinde negatif restore senaryosu ile doğrulandı |
 | Restore sonrası DB dosyası var | OK | `database/fatura_takip.db` hedefte mevcut |
 
 ## v0.22 - UI Backup Restore
@@ -437,3 +437,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | PDF gorsel ornekleri kontrol edildi | OK | Self-test PDF + ek aylik/ornek odenmemis PDF goruntulendi; yerlesim temiz bulundu |
 
 | 2026-06-02 | v0.35 | OK | PDF gorsel QA tamamlandi; build + self-test OK |
+
+## v0.36 - Restore Negatif Smoke
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| Bos olmayan hedefe restore engelleniyor | OK | Self-test icinde ornek restore zip + dolu hedef klasor senaryosu eklendi |
+
+| 2026-06-02 | v0.36 | OK | Restore negatif smoke self-test kapsamina alindi; build + self-test OK |

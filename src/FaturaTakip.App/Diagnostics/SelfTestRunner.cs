@@ -1058,6 +1058,26 @@ public sealed class SelfTestRunner
             Assert(File.Exists(reportPdfPath), "PDF export dosyasi olusmadi.");
             Assert(new FileInfo(reportPdfPath).Length > 1024, "PDF export dosyasi beklenenden kucuk.");
 
+            var restoreSourceRoot = Path.Combine(testRoot, "restore-source");
+            var restoreDatabaseDir = Path.Combine(restoreSourceRoot, "database");
+            Directory.CreateDirectory(restoreDatabaseDir);
+            File.Copy(databasePath, Path.Combine(restoreDatabaseDir, "fatura_takip.db"), overwrite: true);
+
+            var restoreZipPath = Path.Combine(testRoot, "restore-sample.zip");
+            System.IO.Compression.ZipFile.CreateFromDirectory(
+                restoreSourceRoot,
+                restoreZipPath,
+                System.IO.Compression.CompressionLevel.Optimal,
+                includeBaseDirectory: true);
+            Assert(File.Exists(restoreZipPath), "Restore self-test zip dosyasi olusturulamadi.");
+
+            var nonEmptyRestoreTarget = Path.Combine(testRoot, "restore-target-non-empty");
+            Directory.CreateDirectory(nonEmptyRestoreTarget);
+            File.WriteAllText(Path.Combine(nonEmptyRestoreTarget, "occupied.txt"), "not empty");
+            AssertThrows(
+                () => BackupRestoreService.RestoreToEmptyRoot(restoreZipPath, nonEmptyRestoreTarget),
+                "Bos olmayan hedefe restore engellenmedi.");
+
             AssertThrows(
                 () => invoiceRepository.Add(new InvoiceInput(
                     updatedSubscription.Id,
