@@ -201,7 +201,7 @@ public static class PdfReportWriter
             {
                 for (var i = 0; i < headers.Count; i++)
                 {
-                    header.Cell().Element(CellStyleHeader).AlignCenter().Text(headers[i]).SemiBold();
+                    header.Cell().Element(CellStyleHeader).AlignCenter().Text(headers[i]).FontSize(9).SemiBold();
                 }
             });
 
@@ -216,7 +216,7 @@ public static class PdfReportWriter
                         cell = cell.AlignRight();
                     else if (style?.AlignCenter == true)
                         cell = cell.AlignCenter();
-                    cell.Text(value ?? string.Empty);
+                    cell.Text(value ?? string.Empty).FontSize(9);
                 }
             }
 
@@ -228,7 +228,7 @@ public static class PdfReportWriter
                     {
                         var span = Math.Max(1, cell.ColumnSpan);
                         var c = footer.Cell().ColumnSpan((uint)span).Element(x => CellStyleFooter(x, cell.AlignRight));
-                        var text = c.Text(cell.Text ?? string.Empty);
+                        var text = c.Text(cell.Text ?? string.Empty).FontSize(9);
                         if (cell.Bold)
                             text.SemiBold();
                         if (cell.AlignRight)

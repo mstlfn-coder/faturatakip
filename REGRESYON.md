@@ -397,3 +397,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | PDF govde satirlari daha kompakt | OK | Govde hucrelerinin dikey padding degeri dusuruldu; tablo satirlari daha sik gorunuyor |
 
 | 2026-06-02 | v0.31 | OK | PDF tablo govde satirlari sikilastirildi; build + self-test OK |
+
+## v0.32 - PDF Tablo Yazi Boyutu Dengesi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| PDF tablo yazi boyutlari dengeli | OK | Baslik, govde ve footer hucreleri 9 puntoya cekildi; gorunum daha birornek oldu |
+
+| 2026-06-02 | v0.32 | OK | PDF tablo yazi boyutlari dengelendi; build + self-test OK |
