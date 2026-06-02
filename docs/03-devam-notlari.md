@@ -406,3 +406,4 @@ v0.12 sonuÃ§ notu:
 13. PDF tablo baslik satiri daha kompakt hale getirildi; ust satirdaki dikey bosluk azaltildi ve matbu gorunum biraz daha sikilastirildi.
 14. PDF tablo govde satirlari da biraz sikilastirildi; veri satirlarindaki dikey bosluk azaltildi ve baslik/govde dengesi iyilestirildi.
 15. PDF tablo yazi boyutlari dengelendi; baslik, govde ve toplam satiri 9 puntoya cekilerek daha birornek matbu gorunum elde edildi.
+16. PDF ust bolumde `Aciklama :` satiri ile tablo arasindaki bosluk daraltildi; rapor akisi daha butun gorunuyor.
