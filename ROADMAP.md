@@ -380,3 +380,9 @@ Her faz bittiğinde:
 - v0.39 tamamlandi: Islem Gecmisi icin islem turu + tarih filtreleri eklendi.
 - Siradaki mantikli faz: kullanici / varlik bazli ek filtre veya metin arama.
 
+
+## Son Guncelleme (2026-06-02 / v0.40)
+
+- v0.40 tamamlandi: Islem Gecmisi icin varlik, kullanici ve metin arama filtreleri eklendi.
+- Siradaki mantikli faz: audit log kaydi secilince eski/yeni deger detay paneli gostermek.
+

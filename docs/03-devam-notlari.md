@@ -424,3 +424,10 @@ v0.12 sonuÃ§ notu:
 28. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 29. Siradaki mantikli is: kullanici / varlik bazli ek filtre veya audit log arama kutusu eklemek.
 
+
+30. v0.40 olarak Islem Gecmisi ekranina varlik ve kullanici combobox filtreleri ile serbest metin arama kutusu eklendi.
+31. Filtre zinciri action + entity + user + tarih + arama olarak tek yerden calisiyor; export da ayni filtrelenmis listeyi kullaniyor.
+32. Smoke test: dotnet build -c Release OK.
+33. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+34. Siradaki mantikli is: secili audit log satiri icin eski/yeni deger detay paneli eklemek.
+
