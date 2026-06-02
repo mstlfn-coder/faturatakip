@@ -447,3 +447,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Bos olmayan hedefe restore engelleniyor | OK | Self-test icinde ornek restore zip + dolu hedef klasor senaryosu eklendi |
 
 | 2026-06-02 | v0.36 | OK | Restore negatif smoke self-test kapsamina alindi; build + self-test OK |
+
+## v0.37 - Audit Log Temeli
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| Audit log tablosu olusuyor | OK | `0008 - Create audit logs` migration'i eklendi |
+| Abonelik islemleri loglaniyor | OK | Olusturma, guncelleme ve aktif/pasif degisimi kayda dusuluyor |
+| Fatura islemleri loglaniyor | OK | Olusturma, guncelleme ve PDF ekleme/degistirme kayda dusuluyor |
+| Odeme islemleri loglaniyor | OK | Olusturma ve PDF ekleme/degistirme kayda dusuluyor |
+
+| 2026-06-02 | v0.37 | OK | Audit log temeli eklendi; build + self-test OK |

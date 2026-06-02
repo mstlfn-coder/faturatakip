@@ -32,6 +32,7 @@ public sealed class DatabaseInitializer
                 new InvoicePdfAttachmentMigration(),
                 new PaymentsSchemaMigration(),
                 new PaymentPdfAttachmentMigration(),
+                new AuditLogsSchemaMigration(),
             });
 
         return new DatabaseInitializationResult(appliedMigrations);

@@ -50,6 +50,7 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | v0.34 | Tamamlandi | PDF üst başlık dengesi | Kurum başlığı, rapor başlığı ve tarih hizası iyileşir |
 | v0.35 | Tamamlandi | PDF görsel QA | Self-test ve ek örnek PDF'ler gözle kontrol edilir |
 | v0.36 | Tamamlandi | Restore negatif smoke | Boş olmayan hedefe restore reddi self-test ile doğrulanır |
+| v0.37 | Tamamlandi | Audit log temeli | Kritik abonelik/fatura/ödeme işlemleri `audit_logs` tablosuna kaydedilir ve self-test ile doğrulanır |
 
 ## v0.1 Ayrıntılı Kapsam
 

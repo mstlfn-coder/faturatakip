@@ -410,3 +410,4 @@ v0.12 sonuÃ§ notu:
 17. PDF ust baslik blogu dengelendi; kurum satirlari ile rapor basligi arasindaki bosluk ve tarih kolonunun ust offset'i hafifce azaltildi.
 18. Gorsel QA icin self-test PDF ve iki ek ornek PDF uretildi; aylik sablon ve odenmemis raporu yerlesim olarak temiz bulundu, belirgin yeni duzeltme ihtiyaci gorulmedi.
 19. v0.21 altindaki eski restore TODO'su kapatildi: self-test icine "bos olmayan hedefe restore reddedilir" negatif smoke senaryosu eklendi.
+20. v0.37 baslangici olarak audit log temeli eklendi: `audit_logs` migration'i, `AuditLogRepository` ve abonelik/fatura/odeme islemlerinde temel kayit dusme akisi self-test kapsaminda dogrulandi.

@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
+using FaturaTakip.App.Data.AuditLogs;
 using Microsoft.Data.Sqlite;
 
 namespace FaturaTakip.App.Data.Payments;
@@ -10,12 +11,14 @@ public sealed class PaymentRepository
     private readonly string _databasePath;
     private readonly string _rootDirectory;
     private readonly string _paymentAttachmentDirectory;
+    private readonly AuditLogRepository _auditLogRepository;
 
     public PaymentRepository(string databasePath)
     {
         _databasePath = Path.GetFullPath(databasePath);
         _rootDirectory = ResolveRootDirectory(_databasePath);
         _paymentAttachmentDirectory = Path.Combine(_rootDirectory, "attachments", "payments");
+        _auditLogRepository = new AuditLogRepository(_databasePath);
     }
 
     public IReadOnlyList<Payment> GetAll()
@@ -142,15 +145,16 @@ public sealed class PaymentRepository
 
         var payment = ReadPayment(reader);
         transaction.Commit();
+        _auditLogRepository.Add("payment_created", "payments", payment.Id, null, payment, "Odeme kaydi olusturuldu.");
         return payment;
     }
 
     public Payment AttachPdf(long id, string sourcePdfPath)
     {
-        var payment = GetRequired(id);
+        var previous = GetRequired(id);
         var sourceFullPath = ValidatePdfSource(sourcePdfPath);
         var hash = ComputeSha256Hash(sourceFullPath);
-        var relativePath = CopyPdfToAttachmentDirectory(payment, sourceFullPath, hash);
+        var relativePath = CopyPdfToAttachmentDirectory(previous, sourceFullPath, hash);
         var originalFileName = Path.GetFileName(sourceFullPath);
         var now = DateTimeOffset.Now.ToString("O", CultureInfo.InvariantCulture);
 
@@ -179,7 +183,9 @@ public sealed class PaymentRepository
             throw new InvalidOperationException("PDF eklenecek ödeme kaydı bulunamadı.");
         }
 
-        return GetRequired(id);
+        var updated = GetRequired(id);
+        _auditLogRepository.Add("payment_pdf_attached", "payments", updated.Id, previous, updated, "Odeme PDF evraki eklendi veya degistirildi.");
+        return updated;
     }
 
     public string GetPdfAbsolutePath(Payment payment)

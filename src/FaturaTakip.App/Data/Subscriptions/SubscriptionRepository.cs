@@ -1,4 +1,5 @@
 using System.Globalization;
+using FaturaTakip.App.Data.AuditLogs;
 using Microsoft.Data.Sqlite;
 
 namespace FaturaTakip.App.Data.Subscriptions;
@@ -6,10 +7,12 @@ namespace FaturaTakip.App.Data.Subscriptions;
 public sealed class SubscriptionRepository
 {
     private readonly string _databasePath;
+    private readonly AuditLogRepository _auditLogRepository;
 
     public SubscriptionRepository(string databasePath)
     {
         _databasePath = databasePath;
+        _auditLogRepository = new AuditLogRepository(databasePath);
     }
 
     public IReadOnlyList<Subscription> GetAll()
@@ -105,13 +108,16 @@ public sealed class SubscriptionRepository
         command.Parameters.AddWithValue("$updatedAt", now);
 
         var id = Convert.ToInt64(command.ExecuteScalar(), CultureInfo.InvariantCulture);
-        return GetRequired(id);
+        var created = GetRequired(id);
+        _auditLogRepository.Add("subscription_created", "subscriptions", created.Id, null, created, "Abonelik olusturuldu.");
+        return created;
     }
 
     public Subscription Update(long id, SubscriptionInput input)
     {
         var normalized = Normalize(input);
         EnsureInvoiceTypeExists(normalized.InvoiceTypeId);
+        var previous = GetRequired(id);
 
         using var connection = SqliteConnectionFactory.Create(_databasePath);
         connection.Open();
@@ -142,14 +148,18 @@ public sealed class SubscriptionRepository
 
         if (command.ExecuteNonQuery() == 0)
         {
-            throw new InvalidOperationException("Güncellenecek abonelik bulunamadı.");
+            throw new InvalidOperationException("Guncellenecek abonelik bulunamadi.");
         }
 
-        return GetRequired(id);
+        var updated = GetRequired(id);
+        _auditLogRepository.Add("subscription_updated", "subscriptions", updated.Id, previous, updated, "Abonelik guncellendi.");
+        return updated;
     }
 
     public void SetActive(long id, bool isActive)
     {
+        var previous = GetRequired(id);
+
         using var connection = SqliteConnectionFactory.Create(_databasePath);
         connection.Open();
 
@@ -166,8 +176,17 @@ public sealed class SubscriptionRepository
 
         if (command.ExecuteNonQuery() == 0)
         {
-            throw new InvalidOperationException("Güncellenecek abonelik bulunamadı.");
+            throw new InvalidOperationException("Guncellenecek abonelik bulunamadi.");
         }
+
+        var updated = GetRequired(id);
+        _auditLogRepository.Add(
+            isActive ? "subscription_activated" : "subscription_deactivated",
+            "subscriptions",
+            updated.Id,
+            previous,
+            updated,
+            isActive ? "Abonelik aktif yapildi." : "Abonelik pasif yapildi.");
     }
 
     private Subscription GetRequired(long id)
@@ -205,7 +224,7 @@ public sealed class SubscriptionRepository
         using var reader = command.ExecuteReader();
         if (!reader.Read())
         {
-            throw new InvalidOperationException("Abonelik bulunamadı.");
+            throw new InvalidOperationException("Abonelik bulunamadi.");
         }
 
         return ReadSubscription(reader);
@@ -222,7 +241,7 @@ public sealed class SubscriptionRepository
 
         if (Convert.ToInt32(command.ExecuteScalar(), CultureInfo.InvariantCulture) == 0)
         {
-            throw new InvalidOperationException("Geçerli bir fatura türü seçin.");
+            throw new InvalidOperationException("Gecerli bir fatura turu secin.");
         }
     }
 
@@ -262,35 +281,35 @@ public sealed class SubscriptionRepository
 
         if (normalized.InvoiceTypeId <= 0)
         {
-            throw new InvalidOperationException("Fatura türü seçimi zorunludur.");
+            throw new InvalidOperationException("Fatura turu secimi zorunludur.");
         }
 
         if (string.IsNullOrWhiteSpace(normalized.SubscriptionName))
         {
-            throw new InvalidOperationException("Abonelik adı zorunludur.");
+            throw new InvalidOperationException("Abonelik adi zorunludur.");
         }
 
         if (string.IsNullOrWhiteSpace(normalized.InstitutionName))
         {
-            throw new InvalidOperationException("Kurum adı zorunludur.");
+            throw new InvalidOperationException("Kurum adi zorunludur.");
         }
 
         if (normalized.EndDate is not null &&
             normalized.StartDate is not null &&
             normalized.EndDate.Value.Date < normalized.StartDate.Value.Date)
         {
-            throw new InvalidOperationException("Bitiş tarihi başlangıç tarihinden önce olamaz.");
+            throw new InvalidOperationException("Bitis tarihi baslangic tarihinden once olamaz.");
         }
 
-        EnsureMaxLength(normalized.SubscriptionName, 150, "Abonelik adı");
-        EnsureMaxLength(normalized.InstitutionName, 150, "Kurum adı");
-        EnsureMaxLength(normalized.SubscriberNo, 80, "Abone numarası");
-        EnsureMaxLength(normalized.InstallationNo, 80, "Tesisat numarası");
-        EnsureMaxLength(normalized.MeterNo, 80, "Sayaç numarası");
-        EnsureMaxLength(normalized.ProviderCompany, 150, "Sağlayıcı firma");
-        EnsureMaxLength(normalized.UnitName, 150, "Birim / bina adı");
-        EnsureMaxLength(normalized.DefaultUsageUnit, 30, "Kullanım birimi");
-        EnsureMaxLength(normalized.Description, 500, "Açıklama");
+        EnsureMaxLength(normalized.SubscriptionName, 150, "Abonelik adi");
+        EnsureMaxLength(normalized.InstitutionName, 150, "Kurum adi");
+        EnsureMaxLength(normalized.SubscriberNo, 80, "Abone numarasi");
+        EnsureMaxLength(normalized.InstallationNo, 80, "Tesisat numarasi");
+        EnsureMaxLength(normalized.MeterNo, 80, "Sayac numarasi");
+        EnsureMaxLength(normalized.ProviderCompany, 150, "Saglayici firma");
+        EnsureMaxLength(normalized.UnitName, 150, "Birim / bina adi");
+        EnsureMaxLength(normalized.DefaultUsageUnit, 30, "Kullanim birimi");
+        EnsureMaxLength(normalized.Description, 500, "Aciklama");
 
         return normalized;
     }
