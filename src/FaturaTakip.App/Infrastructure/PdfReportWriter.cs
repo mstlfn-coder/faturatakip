@@ -130,10 +130,8 @@ public static class PdfReportWriter
                 });
             });
 
-            var title = string.IsNullOrWhiteSpace(secondaryTitle)
-                ? meta.ReportTitle
-                : $"{secondaryTitle} {meta.ReportTitle}";
-            col.Item().AlignCenter().Text(title).FontSize(13).Bold();
+            // Keep report titles simple; detail context is conveyed in the description line.
+            col.Item().AlignCenter().Text(meta.ReportTitle).FontSize(13).Bold();
         });
     }
 
