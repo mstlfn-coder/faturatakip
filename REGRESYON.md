@@ -496,3 +496,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Metin aramasi var | OK | Aciklama, islem, varlik, kayit id ve kullanici alanlarinda arama yapiliyor |
 
 | 2026-06-02 | v0.40 | OK | Islem Gecmisi arama filtreleri eklendi; build + self-test OK |
+
+## v0.41 - Islem Gecmisi Detay Paneli
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| Audit log satiri secilebiliyor | OK | `AuditLogGrid` secimiyle detay paneli guncelleniyor |
+| Eski/yeni deger paneli var | OK | Grid altinda `Eski Deger` ve `Yeni Deger` alanlari gosteriliyor |
+| JSON degerleri okunur gorunuyor | OK | Kayitli JSON varsa indent edilerek yazdiriliyor; bossa `Kayit yok` gosteriliyor |
+
+| 2026-06-02 | v0.41 | OK | Islem Gecmisi detay paneli eklendi; build + self-test OK |

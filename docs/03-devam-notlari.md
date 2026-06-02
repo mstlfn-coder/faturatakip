@@ -431,3 +431,10 @@ v0.12 sonuÃ§ notu:
 33. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 34. Siradaki mantikli is: secili audit log satiri icin eski/yeni deger detay paneli eklemek.
 
+
+35. v0.41 olarak AuditLogGrid altina detay paneli eklendi; secili kaydin eski ve yeni degerleri iki ayri kutuda gosteriliyor.
+36. JSON payload varsa indent edilerek yazdiriliyor, bos degerlerde Kayit yok gosteriliyor.
+37. Smoke test: dotnet build -c Release OK.
+38. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+39. Siradaki mantikli is: audit log detayinda alan bazli veya renkli diff gostermek.
+

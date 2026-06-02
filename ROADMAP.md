@@ -386,3 +386,9 @@ Her faz bittiğinde:
 - v0.40 tamamlandi: Islem Gecmisi icin varlik, kullanici ve metin arama filtreleri eklendi.
 - Siradaki mantikli faz: audit log kaydi secilince eski/yeni deger detay paneli gostermek.
 
+
+## Son Guncelleme (2026-06-02 / v0.41)
+
+- v0.41 tamamlandi: Islem Gecmisi icin secili kayit detay paneli eklendi.
+- Siradaki mantikli faz: eski/yeni degerler icin daha okunur diff gorunumu.
+
