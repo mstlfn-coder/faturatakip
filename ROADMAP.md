@@ -36,6 +36,20 @@ Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabi
 | v0.20 | Tamamlandı | Tutarlılık denetimi | Salt okunur veri tutarlılığı raporu çalışır (`Raporlar > Tutarlılık` + `--consistency-check`) |
 | v0.21 | Tamamlandı | Güvenli yedek geri yükleme | ZIP yedek boş klasöre geri yüklenir (`--restore-backup` + `--restore-target`) |
 | v0.22 | Tamamlandi | UI restore (backup) | Backup ekranindan zip secilip bos klasore restore edilebilir |
+| v0.23 | Tamamlandi | Rapor export şablon hizalama + Yıllık Liste | Excel/PDF rapor şablonları plana yaklaştırılır, `Yıllık Liste` sekmesi çalışır |
+| v0.24 | Tamamlandi | Derleme uyarı temizliği | CS8123 uyarıları kaldırılır, build temiz kalır |
+| v0.25 | Tamamlandi | PDF matbu stil başlangıcı | PDF başlık/tablo/toplam yapısı örneğe yaklaşır |
+| v0.26 | Tamamlandi | PDF footer sadeleştirme | Varsayılan footer kapatılır |
+| v0.27 | Tamamlandi | QuestPDF bağımlılık sabitleme | Build uyarısız hale gelir |
+| v0.28 | Tamamlandi | PDF açıklama cümleleri | `Açıklama :` satırı rapor diline uygun üretilir |
+| v0.29 | Tamamlandi | PDF başlık sadeliği | Başlık sade kalır, bağlam açıklama satırına taşınır |
+| v0.30 | Tamamlandi | PDF tablo başlık sıkılığı | Tablo header satırı kompaktlaşır |
+| v0.31 | Tamamlandi | PDF tablo gövde sıkılığı | Veri satırları kompaktlaşır |
+| v0.32 | Tamamlandi | PDF tablo yazı boyutu dengesi | Header/gövde/toplam satırı görsel olarak dengelenir |
+| v0.33 | Tamamlandi | PDF açıklama-tablo aralığı | Üst bölüm ile tablo arası sıkılaşır |
+| v0.34 | Tamamlandi | PDF üst başlık dengesi | Kurum başlığı, rapor başlığı ve tarih hizası iyileşir |
+| v0.35 | Tamamlandi | PDF görsel QA | Self-test ve ek örnek PDF'ler gözle kontrol edilir |
+| v0.36 | Tamamlandi | Restore negatif smoke | Boş olmayan hedefe restore reddi self-test ile doğrulanır |
 
 ## v0.1 Ayrıntılı Kapsam
 
