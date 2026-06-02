@@ -15,6 +15,7 @@ Bu depo, kurum aboneliklerine ait elektrik, su, doğalgaz, telefon, internet ve 
 - `v0.24` derleme uyarıları temizlendi.
 - `v0.25` - `v0.35` arası PDF rapor yerleşimi örnek matbu düzene yaklaştırıldı ve görsel QA yapıldı.
 - `v0.36` restore için "boş olmayan hedef reddedilir" negatif smoke testi self-test kapsamına alındı.
+- `v0.37` audit log temeli eklendi; kritik veri işlemleri artık `audit_logs` tablosuna kaydediliyor.
 - Solution dosyası: `FaturaTakip.sln`
 - Uygulama projesi: `src/FaturaTakip.App/FaturaTakip.App.csproj`
 - Geliştirme planı proje içine alındı: `docs/01-gelistirme-plani.md`
@@ -51,13 +52,13 @@ Get-ChildItem -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI'
 
 ## Son Tamamlanan Faz
 
-Son tamamlanan geliştirme fazı `v0.36 - Restore Negatif Smoke`.
+Son tamamlanan geliştirme fazı `v0.37 - Audit Log Temeli`.
 
-Bu fazda self-test içine "boş olmayan hedef klasöre restore reddedilir" güvenlik senaryosu eklendi; eski regresyon TODO'su kapatıldı.
+Bu fazda `audit_logs` migration'i ve temel audit kayıt altyapısı eklendi; abonelik, fatura ve ödeme işlemlerinin kritik adımları self-test ile doğrulandı.
 
 ## Sıradaki İş
 
-Sıradaki mantıklı iş: dokümantasyon ile uygulamanın kalan işlevsel geliştirme başlıklarını yeniden hizalamak ve bir sonraki gerçek ürün fazını netleştirmek.
+Sıradaki mantıklı iş: audit log verisini kullanıcıya görünür kılacak bir `İşlem Geçmişi` raporu veya ekranı eklemek.
 
 Bu noktadan sonra yeni chatlerde önce `docs/03-devam-notlari.md` ve `REGRESYON.md` okunmalı; en güncel durum artık bu dosyalarda tutuluyor.
 

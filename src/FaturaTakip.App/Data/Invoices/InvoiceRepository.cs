@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
+using FaturaTakip.App.Data.AuditLogs;
 using Microsoft.Data.Sqlite;
 
 namespace FaturaTakip.App.Data.Invoices;
@@ -10,12 +11,14 @@ public sealed class InvoiceRepository
     private readonly string _databasePath;
     private readonly string _rootDirectory;
     private readonly string _invoiceAttachmentDirectory;
+    private readonly AuditLogRepository _auditLogRepository;
 
     public InvoiceRepository(string databasePath)
     {
         _databasePath = Path.GetFullPath(databasePath);
         _rootDirectory = ResolveRootDirectory(_databasePath);
         _invoiceAttachmentDirectory = Path.Combine(_rootDirectory, "attachments", "invoices");
+        _auditLogRepository = new AuditLogRepository(_databasePath);
     }
 
     public IReadOnlyList<Invoice> GetAll()
@@ -88,7 +91,9 @@ public sealed class InvoiceRepository
         command.Parameters.AddWithValue("$updatedAt", now);
 
         var id = Convert.ToInt64(command.ExecuteScalar(), CultureInfo.InvariantCulture);
-        return GetRequired(id);
+        var created = GetRequired(id);
+        _auditLogRepository.Add("invoice_created", "invoices", created.Id, null, created, "Fatura olusturuldu.");
+        return created;
     }
 
     public Invoice Update(long id, InvoiceInput input)
@@ -96,6 +101,7 @@ public sealed class InvoiceRepository
         var normalized = Normalize(input);
         var subscription = GetSubscriptionSnapshot(normalized.SubscriptionId);
         EnsureUniqueInvoiceNo(normalized.SubscriptionId, normalized.InvoiceNo, id);
+        var previous = GetRequired(id);
 
         using var connection = SqliteConnectionFactory.Create(_databasePath);
         connection.Open();
@@ -132,15 +138,17 @@ public sealed class InvoiceRepository
             throw new InvalidOperationException("Güncellenecek fatura bulunamadı.");
         }
 
-        return GetRequired(id);
+        var updated = GetRequired(id);
+        _auditLogRepository.Add("invoice_updated", "invoices", updated.Id, previous, updated, "Fatura guncellendi.");
+        return updated;
     }
 
     public Invoice AttachPdf(long id, string sourcePdfPath)
     {
-        var invoice = GetRequired(id);
+        var previous = GetRequired(id);
         var sourceFullPath = ValidatePdfSource(sourcePdfPath);
         var hash = ComputeSha256Hash(sourceFullPath);
-        var relativePath = CopyPdfToAttachmentDirectory(invoice, sourceFullPath, hash);
+        var relativePath = CopyPdfToAttachmentDirectory(previous, sourceFullPath, hash);
         var originalFileName = Path.GetFileName(sourceFullPath);
         var now = DateTimeOffset.Now.ToString("O", CultureInfo.InvariantCulture);
 
@@ -169,7 +177,9 @@ public sealed class InvoiceRepository
             throw new InvalidOperationException("PDF eklenecek fatura bulunamadı.");
         }
 
-        return GetRequired(id);
+        var updated = GetRequired(id);
+        _auditLogRepository.Add("invoice_pdf_attached", "invoices", updated.Id, previous, updated, "Fatura PDF evraki eklendi veya degistirildi.");
+        return updated;
     }
 
     public string GetPdfAbsolutePath(Invoice invoice)

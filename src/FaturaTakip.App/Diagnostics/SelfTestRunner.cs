@@ -1,5 +1,6 @@
 ﻿﻿﻿﻿using System.IO;
 using FaturaTakip.App.Data;
+using FaturaTakip.App.Data.AuditLogs;
 using FaturaTakip.App.Data.Dashboard;
 using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.InvoiceTypes;
@@ -1136,6 +1137,18 @@ public sealed class SelfTestRunner
             subscriptionRepository.SetActive(updatedSubscription.Id, isActive: false);
             var passiveSubscription = subscriptionRepository.GetAll().Single(item => item.Id == updatedSubscription.Id);
             Assert(!passiveSubscription.IsActive, "Abonelik pasife alma basarisiz.");
+
+            var auditLogRepository = new AuditLogRepository(databasePath);
+            var auditLogs = auditLogRepository.GetAll();
+            Assert(auditLogs.Count >= 8, "Audit log kayitlari beklenenden az.");
+            Assert(auditLogs.Any(x => x.ActionType == "subscription_created"), "Audit log: subscription_created kaydi yok.");
+            Assert(auditLogs.Any(x => x.ActionType == "subscription_updated"), "Audit log: subscription_updated kaydi yok.");
+            Assert(auditLogs.Any(x => x.ActionType == "subscription_deactivated"), "Audit log: subscription_deactivated kaydi yok.");
+            Assert(auditLogs.Any(x => x.ActionType == "invoice_created"), "Audit log: invoice_created kaydi yok.");
+            Assert(auditLogs.Any(x => x.ActionType == "invoice_updated"), "Audit log: invoice_updated kaydi yok.");
+            Assert(auditLogs.Any(x => x.ActionType == "invoice_pdf_attached"), "Audit log: invoice_pdf_attached kaydi yok.");
+            Assert(auditLogs.Any(x => x.ActionType == "payment_created"), "Audit log: payment_created kaydi yok.");
+            Assert(auditLogs.Any(x => x.ActionType == "payment_pdf_attached"), "Audit log: payment_pdf_attached kaydi yok.");
         }
         finally
         {
