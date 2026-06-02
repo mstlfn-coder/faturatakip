@@ -417,3 +417,10 @@ v0.12 sonuÃ§ notu:
 23. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 24. Siradaki mantikli is: Islem Gecmisi icin tarih / islem turu filtreleri eklemek.
 
+
+25. v0.39 olarak Islem Gecmisi sekmesine islem turu combobox'i ile baslangic/bitis tarih filtreleri eklendi.
+26. Grid ve export akislarinda filtrelenmis audit log listesi kullaniliyor; export notu secili filtreyi yansitiyor.
+27. Smoke test: dotnet build -c Release OK.
+28. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+29. Siradaki mantikli is: kullanici / varlik bazli ek filtre veya audit log arama kutusu eklemek.
+

@@ -37,6 +37,7 @@ public partial class ReportsView : UserControl
     private bool _isRefreshingMonthlyFilters;
     private bool _isRefreshingSubscriptionFilters;
     private bool _isRefreshingTypeYearlyFilters;
+    private bool _isRefreshingAuditLogFilters;
 
     public ReportsView()
     {
@@ -136,6 +137,7 @@ public partial class ReportsView : UserControl
             .OrderByDescending(x => x.CreatedAt)
             .ThenByDescending(x => x.Id)
             .ToList();
+        EnsureAuditLogFiltersInitialized();
 
         ApplyTab(_activeTab);
     }
@@ -195,6 +197,28 @@ public partial class ReportsView : UserControl
         ApplyTab(ReportTab.AuditLog);
     }
 
+    private void AuditLogFilter_Changed(object? sender, SelectionChangedEventArgs e)
+    {
+        if (_isRefreshingAuditLogFilters)
+        {
+            return;
+        }
+
+        if (AuditLogStartDateInput.SelectedDate is DateTime start &&
+            AuditLogEndDateInput.SelectedDate is DateTime end &&
+            start.Date > end.Date)
+        {
+            _isRefreshingAuditLogFilters = true;
+            AuditLogEndDateInput.SelectedDate = start.Date;
+            _isRefreshingAuditLogFilters = false;
+        }
+
+        if (_activeTab == ReportTab.AuditLog)
+        {
+            ApplyTab(ReportTab.AuditLog);
+        }
+    }
+
     private void ExportReportButton_Click(object sender, RoutedEventArgs e)
     {
         try
@@ -245,7 +269,7 @@ public partial class ReportsView : UserControl
                     secondRows: primaryRows,
                     notes: GetExcelReportNotes());
 
-                var templateHint = $"Excel yazıldı: exports/{fileName}";
+                var templateHint = $"Excel yazÄ±ldÄ±: exports/{fileName}";
                 MonthlyFilterHintText.Text = templateHint;
                 TypeYearlyHintText.Text = templateHint;
                 SubscriptionHintText.Text = templateHint;
@@ -279,7 +303,7 @@ public partial class ReportsView : UserControl
                     notes: GetExcelReportNotes());
             }
 
-            var hint = $"Excel yazıldı: exports/{fileName}";
+            var hint = $"Excel yazÄ±ldÄ±: exports/{fileName}";
             switch (_activeTab)
             {
                 case ReportTab.Monthly:
@@ -300,7 +324,7 @@ public partial class ReportsView : UserControl
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidOperationException)
         {
-            // Raporlar ekranında ortak bir status bandı yok; ipucu alanını hata mesajı için kullanıyoruz.
+            // Raporlar ekranÄ±nda ortak bir status bandÄ± yok; ipucu alanÄ±nÄ± hata mesajÄ± iÃ§in kullanÄ±yoruz.
             var message = exception.Message;
             TypeYearlyHintText.Text = message;
             MonthlyFilterHintText.Text = message;
@@ -438,7 +462,7 @@ public partial class ReportsView : UserControl
                     secondTable: secondTable);
             }
 
-            SetPdfHint($"PDF yazıldı: exports/{fileName}");
+            SetPdfHint($"PDF yazÄ±ldÄ±: exports/{fileName}");
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidOperationException)
         {
@@ -448,7 +472,7 @@ public partial class ReportsView : UserControl
 
     private void SetPdfHint(string message)
     {
-        // Raporlar ekranında ortak bir status bandı yok; mevcut ipucu alanlarını kullanıyoruz.
+        // Raporlar ekranÄ±nda ortak bir status bandÄ± yok; mevcut ipucu alanlarÄ±nÄ± kullanÄ±yoruz.
         TypeYearlyHintText.Text = message;
         MonthlyFilterHintText.Text = message;
         SubscriptionHintText.Text = message;
@@ -458,14 +482,14 @@ public partial class ReportsView : UserControl
     {
         return _activeTab switch
         {
-            ReportTab.Unpaid => "ÖDENMEMİŞ FATURALAR RAPORU",
-            ReportTab.Overdue => "GECİKMİŞ FATURALAR RAPORU",
-            ReportTab.Upcoming => "YAKLAŞAN ÖDEMELER RAPORU",
+            ReportTab.Unpaid => "Ã–DENMEMÄ°Å FATURALAR RAPORU",
+            ReportTab.Overdue => "GECÄ°KMÄ°Å FATURALAR RAPORU",
+            ReportTab.Upcoming => "YAKLAÅAN Ã–DEMELER RAPORU",
             ReportTab.Monthly => "AYLIK FATURA RAPORU",
             ReportTab.YearlyAll => "YILLIK FATURA RAPORU",
-            ReportTab.Subscription => "ABONELİK AYLIK FATURA RAPORU",
-            ReportTab.SubscriptionYearly => "ABONELİK YILLIK FATURA RAPORU",
-            ReportTab.TypeYearly => "TÜR YILLIK FATURA RAPORU",
+            ReportTab.Subscription => "ABONELÄ°K AYLIK FATURA RAPORU",
+            ReportTab.SubscriptionYearly => "ABONELÄ°K YILLIK FATURA RAPORU",
+            ReportTab.TypeYearly => "TÃœR YILLIK FATURA RAPORU",
             ReportTab.DocumentHealth => "EVRAK KONTROL RAPORU",
             ReportTab.AuditLog => "ISLEM GECMISI RAPORU",
             _ => "RAPOR",
@@ -491,10 +515,13 @@ public partial class ReportsView : UserControl
         // Use a short human hint similar to the example Excel templates.
         var title = GetPdfReportTitle();
         var period = GetPdfReportPeriod();
+        var filter = GetPdfReportFilterText();
         if (string.IsNullOrWhiteSpace(period))
-            return $"{title}";
+        {
+            return string.IsNullOrWhiteSpace(filter) ? $"{title}" : $"{title} ({filter})";
+        }
 
-        return $"{title} ({period})";
+        return string.IsNullOrWhiteSpace(filter) ? $"{title} ({period})" : $"{title} ({period} / {filter})";
     }
 
     private (IReadOnlyList<string> Headers, IReadOnlyList<IReadOnlyList<object?>> Rows) BuildExcelMonthlyTemplateRows()
@@ -503,12 +530,12 @@ public partial class ReportsView : UserControl
         // Keep column names aligned with the template.
         var headers = (IReadOnlyList<string>)new[]
         {
-            "Yıl",
+            "YÄ±l",
             "Ay",
             "Abone Bilgisi",
             "F. Tarihi",
-            "Fatura Numarası",
-            "Kullanım M.",
+            "Fatura NumarasÄ±",
+            "KullanÄ±m M.",
             "Fatura Tutar",
         };
 
@@ -531,12 +558,12 @@ public partial class ReportsView : UserControl
         // Template reference: docs/references/fatura-excel-ornekler.xlsx (sheet: yillikfaturaraporu)
         var headers = (IReadOnlyList<string>)new[]
         {
-            "Yıl",
+            "YÄ±l",
             "Ay",
             "Abone Bilgisi",
             "F. Tarihi",
-            "Fatura Sayısı",
-            "Kullanım M.",
+            "Fatura SayÄ±sÄ±",
+            "KullanÄ±m M.",
             "Fatura Tutar",
         };
 
@@ -568,12 +595,12 @@ public partial class ReportsView : UserControl
         // Template reference: docs/references/fatura-excel-ornekler.xlsx (sheet: abonelikturuyillikfaturalar)
         var headers = (IReadOnlyList<string>)new[]
         {
-            "Yıl",
+            "YÄ±l",
             "Ay",
             "Abone Bilgisi",
             "F. Tarihi",
-            "Fatura Sayısı",
-            "Kullanım M.",
+            "Fatura SayÄ±sÄ±",
+            "KullanÄ±m M.",
             "Fatura Tutar",
         };
 
@@ -614,12 +641,12 @@ public partial class ReportsView : UserControl
         // Template reference: docs/references/fatura-excel-ornekler.xlsx (sheet: abonelikaylikfaturalar)
         var headers = (IReadOnlyList<string>)new[]
         {
-            "Yıl",
+            "YÄ±l",
             "Ay",
             "Abone Bilgisi",
             "F. Tarihi",
-            "Fatura Numarası",
-            "Kullanım M.",
+            "Fatura NumarasÄ±",
+            "KullanÄ±m M.",
             "Fatura Tutar",
         };
 
@@ -658,12 +685,12 @@ public partial class ReportsView : UserControl
         // Template reference: docs/references/fatura-excel-ornekler.xlsx (sheet: abonelikyillikfaturalar)
         var headers = (IReadOnlyList<string>)new[]
         {
-            "Yıl",
+            "YÄ±l",
             "Ay",
             "Abone Bilgisi",
             "F. Tarihi",
-            "Fatura Sayısı",
-            "Kullanım M.",
+            "Fatura SayÄ±sÄ±",
+            "KullanÄ±m M.",
             "Fatura Tutar",
         };
 
@@ -683,7 +710,7 @@ public partial class ReportsView : UserControl
             .ThenBy(i => i.InvoiceNo, StringComparer.CurrentCultureIgnoreCase)
             .ToList();
 
-        // Despite the "Fatura Sayısı" label in the template, the example data matches invoice no.
+        // Despite the "Fatura SayÄ±sÄ±" label in the template, the example data matches invoice no.
         var rows = list.Select(i => (IReadOnlyList<object?>)new object?[]
         {
             i.InvoiceYear,
@@ -702,12 +729,13 @@ public partial class ReportsView : UserControl
     {
         return _activeTab switch
         {
-            ReportTab.Monthly => $"Tür: {(GetSelectedInvoiceTypeLabel() ?? "Tüm Türler")}",
-            ReportTab.YearlyAll => $"Tür: {(GetSelectedInvoiceTypeLabel() ?? "Tüm Türler")}",
+            ReportTab.Monthly => $"Tur: {(GetSelectedInvoiceTypeLabel() ?? "Tum Turler")}",
+            ReportTab.YearlyAll => $"Tur: {(GetSelectedInvoiceTypeLabel() ?? "Tum Turler")}",
             ReportTab.Subscription => $"Abonelik: {(GetSelectedSubscriptionLabel() ?? string.Empty)}",
             ReportTab.SubscriptionYearly => $"Abonelik: {(GetSelectedSubscriptionLabel() ?? string.Empty)}",
-            ReportTab.TypeYearly => $"Tür: {(GetSelectedTypeYearlyInvoiceType()?.Label ?? string.Empty)}",
-            ReportTab.DocumentHealth => "Fatura + Ödeme evrak kontrolü",
+            ReportTab.TypeYearly => $"Tur: {(GetSelectedTypeYearlyInvoiceType()?.Label ?? string.Empty)}",
+            ReportTab.DocumentHealth => "Fatura + Odeme evrak kontrolu",
+            ReportTab.AuditLog => GetAuditLogFilterText(),
             _ => string.Empty,
         };
     }
@@ -724,17 +752,17 @@ public partial class ReportsView : UserControl
             _ => null,
         };
 
-        var typeSuffix = string.IsNullOrWhiteSpace(type) || string.Equals(type, "Tüm Türler", StringComparison.OrdinalIgnoreCase)
-            ? "tüm faturaların"
-            : $"tüm {type} faturalarının";
+        var typeSuffix = string.IsNullOrWhiteSpace(type) || string.Equals(type, "TÃ¼m TÃ¼rler", StringComparison.OrdinalIgnoreCase)
+            ? "tÃ¼m faturalarÄ±n"
+            : $"tÃ¼m {type} faturalarÄ±nÄ±n";
 
         return _activeTab switch
         {
-            ReportTab.Monthly => $"{inst} için {GetSelectedYear():D4} {tr.DateTimeFormat.GetMonthName(GetSelectedMonth())} ayında gelen {typeSuffix} listesidir.",
-            ReportTab.YearlyAll => $"{inst} için {GetSelectedYear():D4} yılında gelen {typeSuffix} listesidir.",
-            ReportTab.Subscription => $"{inst} için {GetSelectedSubscriptionYear():D4} {tr.DateTimeFormat.GetMonthName(GetSelectedSubscriptionMonth())} ayında {(GetSelectedSubscriptionLabel() ?? "seçili abonelik")} için gelen tüm faturaların listesidir.",
-            ReportTab.SubscriptionYearly => $"{inst} için {GetSelectedSubscriptionYear():D4} yılında {(GetSelectedSubscriptionLabel() ?? "seçili abonelik")} için gelen tüm faturaların listesidir.",
-            ReportTab.TypeYearly => $"{inst} için {GetSelectedTypeYearlyYear():D4} yılında gelen {typeSuffix} listesidir.",
+            ReportTab.Monthly => $"{inst} iÃ§in {GetSelectedYear():D4} {tr.DateTimeFormat.GetMonthName(GetSelectedMonth())} ayÄ±nda gelen {typeSuffix} listesidir.",
+            ReportTab.YearlyAll => $"{inst} iÃ§in {GetSelectedYear():D4} yÄ±lÄ±nda gelen {typeSuffix} listesidir.",
+            ReportTab.Subscription => $"{inst} iÃ§in {GetSelectedSubscriptionYear():D4} {tr.DateTimeFormat.GetMonthName(GetSelectedSubscriptionMonth())} ayÄ±nda {(GetSelectedSubscriptionLabel() ?? "seÃ§ili abonelik")} iÃ§in gelen tÃ¼m faturalarÄ±n listesidir.",
+            ReportTab.SubscriptionYearly => $"{inst} iÃ§in {GetSelectedSubscriptionYear():D4} yÄ±lÄ±nda {(GetSelectedSubscriptionLabel() ?? "seÃ§ili abonelik")} iÃ§in gelen tÃ¼m faturalarÄ±n listesidir.",
+            ReportTab.TypeYearly => $"{inst} iÃ§in {GetSelectedTypeYearlyYear():D4} yÄ±lÄ±nda gelen {typeSuffix} listesidir.",
             ReportTab.AuditLog => $"{inst} sisteminde kaydedilen islem gecmisi kayitlarinin listesidir.",
             _ => GetPdfReportFilterText(),
         };
@@ -750,6 +778,46 @@ public partial class ReportsView : UserControl
         return (SubscriptionInput.SelectedItem as SubscriptionOption)?.Label;
     }
 
+    private string? GetSelectedAuditLogActionType()
+    {
+        return (AuditLogActionInput.SelectedItem as AuditLogActionOption)?.ActionType;
+    }
+
+    private IReadOnlyList<AuditLog> GetFilteredAuditLogs()
+    {
+        var selectedAction = GetSelectedAuditLogActionType();
+        var start = AuditLogStartDateInput.SelectedDate?.Date;
+        var end = AuditLogEndDateInput.SelectedDate?.Date;
+
+        return _auditLogs
+            .Where(log => string.IsNullOrWhiteSpace(selectedAction) || string.Equals(log.ActionType, selectedAction, StringComparison.OrdinalIgnoreCase))
+            .Where(log => start is null || log.CreatedAt.LocalDateTime.Date >= start.Value)
+            .Where(log => end is null || log.CreatedAt.LocalDateTime.Date <= end.Value)
+            .ToList();
+    }
+
+    private string GetAuditLogFilterText()
+    {
+        var parts = new List<string>();
+        var action = AuditLogActionInput.SelectedItem as AuditLogActionOption;
+        if (action is not null && !string.IsNullOrWhiteSpace(action.ActionType))
+        {
+            parts.Add($"Islem: {action.Label}");
+        }
+
+        if (AuditLogStartDateInput.SelectedDate is DateTime start)
+        {
+            parts.Add($"Baslangic: {start:dd.MM.yyyy}");
+        }
+
+        if (AuditLogEndDateInput.SelectedDate is DateTime end)
+        {
+            parts.Add($"Bitis: {end:dd.MM.yyyy}");
+        }
+
+        return parts.Count == 0 ? "Tum audit log kayitlari" : string.Join(" | ", parts);
+    }
+
     private (IReadOnlyList<PdfReportWriter.SummaryItem> Summary,
         (IReadOnlyList<string> Headers, IReadOnlyList<IReadOnlyList<string>> Rows) Primary,
         string? SecondaryTitle,
@@ -760,29 +828,29 @@ public partial class ReportsView : UserControl
             var summary = new List<PdfReportWriter.SummaryItem>
             {
                 new("Toplam Fatura", _monthlyReport.TotalInvoiceCount.ToString(CultureInfo.InvariantCulture), $"Toplam {FormatMoney(_monthlyReport.TotalAmount)}"),
-                new("Ödenen", FormatMoney(_monthlyReport.PaidTotal), $"PDF eksik {_monthlyReport.MissingPdfCount}"),
-                new("Kalan", FormatMoney(_monthlyReport.RemainingTotal), $"Ödenmemiş {_monthlyReport.UnpaidInvoiceCount}, Gecikmiş {_monthlyReport.OverdueInvoiceCount}"),
+                new("Ã–denen", FormatMoney(_monthlyReport.PaidTotal), $"PDF eksik {_monthlyReport.MissingPdfCount}"),
+                new("Kalan", FormatMoney(_monthlyReport.RemainingTotal), $"Ã–denmemiÅŸ {_monthlyReport.UnpaidInvoiceCount}, GecikmiÅŸ {_monthlyReport.OverdueInvoiceCount}"),
             };
 
             var headers = new[]
             {
-                "Dönem",
-                "Tür",
+                "DÃ¶nem",
+                "TÃ¼r",
                 "Abonelik",
                 "Kurum",
                 "Durum",
                 "Fatura Tarihi",
-                "Son Ödeme",
+                "Son Ã–deme",
                 "Fatura No",
                 "Tutar",
-                "Kullanım",
+                "KullanÄ±m",
                 "Birim",
-                "Ödenen",
+                "Ã–denen",
                 "Kalan",
                 "Fatura PDF",
-                "Ödeme Tarihi",
-                "Ödeme PDF",
-                "Açıklama",
+                "Ã–deme Tarihi",
+                "Ã–deme PDF",
+                "AÃ§Ä±klama",
             };
             var rows = _monthlyReport.Rows.Select(r =>
             {
@@ -816,30 +884,30 @@ public partial class ReportsView : UserControl
         {
             var summary = new List<PdfReportWriter.SummaryItem>
             {
-                new("Toplam (YÄ±l)", _yearlyAllReport.TotalInvoiceCount.ToString(CultureInfo.InvariantCulture), $"Toplam {FormatMoney(_yearlyAllReport.TotalAmount)}"),
-                new("Ã–denen", FormatMoney(_yearlyAllReport.PaidTotal), $"PDF eksik {_yearlyAllReport.MissingPdfCount}"),
-                new("Kalan", FormatMoney(_yearlyAllReport.RemainingTotal), $"Ã–denmemiÅŸ {_yearlyAllReport.UnpaidInvoiceCount}, GecikmiÅŸ {_yearlyAllReport.OverdueInvoiceCount}"),
+                new("Toplam (YÃ„Â±l)", _yearlyAllReport.TotalInvoiceCount.ToString(CultureInfo.InvariantCulture), $"Toplam {FormatMoney(_yearlyAllReport.TotalAmount)}"),
+                new("Ãƒâ€“denen", FormatMoney(_yearlyAllReport.PaidTotal), $"PDF eksik {_yearlyAllReport.MissingPdfCount}"),
+                new("Kalan", FormatMoney(_yearlyAllReport.RemainingTotal), $"Ãƒâ€“denmemiÃ…Å¸ {_yearlyAllReport.UnpaidInvoiceCount}, GecikmiÃ…Å¸ {_yearlyAllReport.OverdueInvoiceCount}"),
             };
 
             var headers = new[]
             {
-                "DÃ¶nem",
-                "TÃ¼r",
+                "DÃƒÂ¶nem",
+                "TÃƒÂ¼r",
                 "Abonelik",
                 "Kurum",
                 "Durum",
                 "Fatura Tarihi",
-                "Son Ã–deme",
+                "Son Ãƒâ€“deme",
                 "Fatura No",
                 "Tutar",
-                "KullanÄ±m",
+                "KullanÃ„Â±m",
                 "Birim",
-                "Ã–denen",
+                "Ãƒâ€“denen",
                 "Kalan",
                 "Fatura PDF",
-                "Ã–deme Tarihi",
-                "Ã–deme PDF",
-                "AÃ§Ä±klama",
+                "Ãƒâ€“deme Tarihi",
+                "Ãƒâ€“deme PDF",
+                "AÃƒÂ§Ã„Â±klama",
             };
 
             var rows = _yearlyAllReport.Rows.Select(r =>
@@ -874,12 +942,12 @@ public partial class ReportsView : UserControl
         {
             var summary = new List<PdfReportWriter.SummaryItem>
             {
-                new("Toplam (Yıl)", FormatMoney(_typeYearly.TotalAmount), $"{_typeYearly.TotalInvoiceCount} fatura, Ödenen {FormatMoney(_typeYearly.PaidTotal)}, Kalan {FormatMoney(_typeYearly.RemainingTotal)}"),
-                new("En Yüksek Ay", _typeYearly.HighestMonth == 0 ? "-" : TurkishCulture.DateTimeFormat.GetMonthName(_typeYearly.HighestMonth), _typeYearly.HighestMonth == 0 ? "-" : $"Toplam {FormatMoney(_typeYearly.HighestMonthTotal)}"),
-                new("En Düşük Ay", _typeYearly.LowestMonth == 0 ? "-" : TurkishCulture.DateTimeFormat.GetMonthName(_typeYearly.LowestMonth), _typeYearly.LowestMonth == 0 ? "-" : $"Toplam {FormatMoney(_typeYearly.LowestMonthTotal)}"),
+                new("Toplam (YÄ±l)", FormatMoney(_typeYearly.TotalAmount), $"{_typeYearly.TotalInvoiceCount} fatura, Ã–denen {FormatMoney(_typeYearly.PaidTotal)}, Kalan {FormatMoney(_typeYearly.RemainingTotal)}"),
+                new("En YÃ¼ksek Ay", _typeYearly.HighestMonth == 0 ? "-" : TurkishCulture.DateTimeFormat.GetMonthName(_typeYearly.HighestMonth), _typeYearly.HighestMonth == 0 ? "-" : $"Toplam {FormatMoney(_typeYearly.HighestMonthTotal)}"),
+                new("En DÃ¼ÅŸÃ¼k Ay", _typeYearly.LowestMonth == 0 ? "-" : TurkishCulture.DateTimeFormat.GetMonthName(_typeYearly.LowestMonth), _typeYearly.LowestMonth == 0 ? "-" : $"Toplam {FormatMoney(_typeYearly.LowestMonthTotal)}"),
             };
 
-            var headers = new[] { "Ay", "Fatura", "Toplam", "Ödenen", "Kalan", "Ödenmemiş", "Gecikmiş", "PDF Eksik" };
+            var headers = new[] { "Ay", "Fatura", "Toplam", "Ã–denen", "Kalan", "Ã–denmemiÅŸ", "GecikmiÅŸ", "PDF Eksik" };
             var rows = _typeYearly.Months.Select(m => (IReadOnlyList<string>)new[]
             {
                 TurkishCulture.DateTimeFormat.GetMonthName(m.Month),
@@ -892,7 +960,7 @@ public partial class ReportsView : UserControl
                 m.MissingPdfCount.ToString(CultureInfo.InvariantCulture),
             }).ToList();
 
-            var distHeaders = new[] { "Abonelik", "Kurum", "Fatura", "Toplam", "Ödenen", "Kalan", "PDF Eksik" };
+            var distHeaders = new[] { "Abonelik", "Kurum", "Fatura", "Toplam", "Ã–denen", "Kalan", "PDF Eksik" };
             var distRows = _typeYearly.Distribution.Select(d => (IReadOnlyList<string>)new[]
             {
                 d.SubscriptionName,
@@ -904,7 +972,7 @@ public partial class ReportsView : UserControl
                 d.MissingPdfCount.ToString(CultureInfo.InvariantCulture),
             }).ToList();
 
-            var second = (Headers: (IReadOnlyList<string>)distHeaders, Rows: (IReadOnlyList<IReadOnlyList<string>>)distRows, Title: "Abonelik Dağılımı");
+            var second = (Headers: (IReadOnlyList<string>)distHeaders, Rows: (IReadOnlyList<IReadOnlyList<string>>)distRows, Title: "Abonelik DaÄŸÄ±lÄ±mÄ±");
             var secondaryTitle = _typeYearly.Year == 0 ? null : $"{_typeYearly.InvoiceTypeName} / {_typeYearly.Year}";
             return (summary, (headers, rows), secondaryTitle, second);
         }
@@ -913,12 +981,12 @@ public partial class ReportsView : UserControl
         {
             var summary = new List<PdfReportWriter.SummaryItem>
             {
-                new("Toplam (Yıl)", FormatMoney(_subscriptionYearly.TotalAmount), $"{_subscriptionYearly.TotalInvoiceCount} fatura, Ödenen {FormatMoney(_subscriptionYearly.PaidTotal)}, Kalan {FormatMoney(_subscriptionYearly.RemainingTotal)}"),
-                new("En Yüksek Ay", _subscriptionYearly.HighestMonth == 0 ? "-" : TurkishCulture.DateTimeFormat.GetMonthName(_subscriptionYearly.HighestMonth), _subscriptionYearly.HighestMonth == 0 ? "-" : $"Toplam {FormatMoney(_subscriptionYearly.HighestMonthTotal)}"),
-                new("En Düşük Ay", _subscriptionYearly.LowestMonth == 0 ? "-" : TurkishCulture.DateTimeFormat.GetMonthName(_subscriptionYearly.LowestMonth), _subscriptionYearly.LowestMonth == 0 ? "-" : $"Toplam {FormatMoney(_subscriptionYearly.LowestMonthTotal)}"),
+                new("Toplam (YÄ±l)", FormatMoney(_subscriptionYearly.TotalAmount), $"{_subscriptionYearly.TotalInvoiceCount} fatura, Ã–denen {FormatMoney(_subscriptionYearly.PaidTotal)}, Kalan {FormatMoney(_subscriptionYearly.RemainingTotal)}"),
+                new("En YÃ¼ksek Ay", _subscriptionYearly.HighestMonth == 0 ? "-" : TurkishCulture.DateTimeFormat.GetMonthName(_subscriptionYearly.HighestMonth), _subscriptionYearly.HighestMonth == 0 ? "-" : $"Toplam {FormatMoney(_subscriptionYearly.HighestMonthTotal)}"),
+                new("En DÃ¼ÅŸÃ¼k Ay", _subscriptionYearly.LowestMonth == 0 ? "-" : TurkishCulture.DateTimeFormat.GetMonthName(_subscriptionYearly.LowestMonth), _subscriptionYearly.LowestMonth == 0 ? "-" : $"Toplam {FormatMoney(_subscriptionYearly.LowestMonthTotal)}"),
             };
 
-            var headers = new[] { "Ay", "Fatura", "Toplam", "Ödenen", "Kalan", "Ödenmemiş", "Gecikmiş", "PDF Eksik" };
+            var headers = new[] { "Ay", "Fatura", "Toplam", "Ã–denen", "Kalan", "Ã–denmemiÅŸ", "GecikmiÅŸ", "PDF Eksik" };
             var rows = _subscriptionYearly.Months.Select(m => (IReadOnlyList<string>)new[]
             {
                 TurkishCulture.DateTimeFormat.GetMonthName(m.Month),
@@ -940,11 +1008,11 @@ public partial class ReportsView : UserControl
             var summary = new List<PdfReportWriter.SummaryItem>
             {
                 new("Toplam Fatura", current.TotalInvoiceCount.ToString(CultureInfo.InvariantCulture), $"Toplam {FormatMoney(current.TotalAmount)}"),
-                new("Ödenen", FormatMoney(current.PaidTotal), $"Önceki ay {FormatMoney(_subscriptionComparison.Previous.PaidTotal)}"),
-                new("Kalan", FormatMoney(current.RemainingTotal), $"Önceki ay {FormatMoney(_subscriptionComparison.Previous.RemainingTotal)}"),
+                new("Ã–denen", FormatMoney(current.PaidTotal), $"Ã–nceki ay {FormatMoney(_subscriptionComparison.Previous.PaidTotal)}"),
+                new("Kalan", FormatMoney(current.RemainingTotal), $"Ã–nceki ay {FormatMoney(_subscriptionComparison.Previous.RemainingTotal)}"),
             };
 
-            var headers = new[] { "Dönem", "Tür", "Abonelik", "Kurum", "Durum", "Fatura No", "Son Ödeme", "Tutar", "Ödenen", "Kalan", "PDF" };
+            var headers = new[] { "DÃ¶nem", "TÃ¼r", "Abonelik", "Kurum", "Durum", "Fatura No", "Son Ã–deme", "Tutar", "Ã–denen", "Kalan", "PDF" };
             var rows = current.Rows.Select(r => (IReadOnlyList<string>)new[]
             {
                 r.Invoice.Period,
@@ -967,12 +1035,12 @@ public partial class ReportsView : UserControl
         {
             var summary = new List<PdfReportWriter.SummaryItem>
             {
-                new("Fatura PDF", (_documentHealth.InvoiceNoPdfCount + _documentHealth.InvoiceMissingFileCount).ToString(CultureInfo.InvariantCulture), $"Yok {_documentHealth.InvoiceNoPdfCount}, Kayıp {_documentHealth.InvoiceMissingFileCount}"),
-                new("Ödeme PDF", (_documentHealth.PaymentNoPdfCount + _documentHealth.PaymentMissingFileCount).ToString(CultureInfo.InvariantCulture), $"Yok {_documentHealth.PaymentNoPdfCount}, Kayıp {_documentHealth.PaymentMissingFileCount}"),
-                new("Aynı Hash", (_documentHealth.DuplicateInvoiceHashItemCount + _documentHealth.DuplicatePaymentHashItemCount).ToString(CultureInfo.InvariantCulture), $"Fatura {_documentHealth.DuplicateInvoiceHashItemCount}, Ödeme {_documentHealth.DuplicatePaymentHashItemCount}"),
+                new("Fatura PDF", (_documentHealth.InvoiceNoPdfCount + _documentHealth.InvoiceMissingFileCount).ToString(CultureInfo.InvariantCulture), $"Yok {_documentHealth.InvoiceNoPdfCount}, KayÄ±p {_documentHealth.InvoiceMissingFileCount}"),
+                new("Ã–deme PDF", (_documentHealth.PaymentNoPdfCount + _documentHealth.PaymentMissingFileCount).ToString(CultureInfo.InvariantCulture), $"Yok {_documentHealth.PaymentNoPdfCount}, KayÄ±p {_documentHealth.PaymentMissingFileCount}"),
+                new("AynÄ± Hash", (_documentHealth.DuplicateInvoiceHashItemCount + _documentHealth.DuplicatePaymentHashItemCount).ToString(CultureInfo.InvariantCulture), $"Fatura {_documentHealth.DuplicateInvoiceHashItemCount}, Ã–deme {_documentHealth.DuplicatePaymentHashItemCount}"),
             };
 
-            var headers = new[] { "Uyarı", "Tip", "Dönem/Tarih", "Tür", "Abonelik", "Kurum", "Tutar", "PDF", "Yol", "Hash", "Not" };
+            var headers = new[] { "UyarÄ±", "Tip", "DÃ¶nem/Tarih", "TÃ¼r", "Abonelik", "Kurum", "Tutar", "PDF", "Yol", "Hash", "Not" };
             var rows = _documentHealth.Issues.Select(i => (IReadOnlyList<string>)new[]
             {
                 i.IssueType,
@@ -995,12 +1063,12 @@ public partial class ReportsView : UserControl
         {
             var summary = new List<PdfReportWriter.SummaryItem>
             {
-                new("ERROR", _consistency.ErrorCount.ToString(CultureInfo.InvariantCulture), "Kritik tutarsızlık"),
-                new("WARN", _consistency.WarningCount.ToString(CultureInfo.InvariantCulture), "Uyarı"),
+                new("ERROR", _consistency.ErrorCount.ToString(CultureInfo.InvariantCulture), "Kritik tutarsÄ±zlÄ±k"),
+                new("WARN", _consistency.WarningCount.ToString(CultureInfo.InvariantCulture), "UyarÄ±"),
                 new("Toplam", _consistency.TotalCount.ToString(CultureInfo.InvariantCulture), "Issue"),
             };
 
-            var headers = new[] { "Seviye", "Kod", "Varlık", "Id", "Mesaj" };
+            var headers = new[] { "Seviye", "Kod", "VarlÄ±k", "Id", "Mesaj" };
             var rows = _consistency.Issues.Select(i => (IReadOnlyList<string>)new[]
             {
                 i.Severity,
@@ -1015,16 +1083,17 @@ public partial class ReportsView : UserControl
 
         if (_activeTab == ReportTab.AuditLog)
         {
+            var filteredLogs = GetFilteredAuditLogs();
             var today = DateTime.Today;
             var summary = new List<PdfReportWriter.SummaryItem>
             {
-                new("Toplam Kayit", _auditLogs.Count.ToString(CultureInfo.InvariantCulture), $"Bugun {_auditLogs.Count(x => x.CreatedAt.LocalDateTime.Date == today)} kayit"),
-                new("Islem Turu", _auditLogs.Select(x => x.ActionType).Distinct(StringComparer.OrdinalIgnoreCase).Count().ToString(CultureInfo.InvariantCulture), "Farkli aksiyon sayisi"),
-                new("Varlik", _auditLogs.Select(x => x.TableName).Distinct(StringComparer.OrdinalIgnoreCase).Count().ToString(CultureInfo.InvariantCulture), "Kayit tutulan tablo sayisi"),
+                new("Toplam Kayit", filteredLogs.Count.ToString(CultureInfo.InvariantCulture), $"Bugun {filteredLogs.Count(x => x.CreatedAt.LocalDateTime.Date == today)} kayit"),
+                new("Islem Turu", filteredLogs.Select(x => x.ActionType).Distinct(StringComparer.OrdinalIgnoreCase).Count().ToString(CultureInfo.InvariantCulture), "Farkli aksiyon sayisi"),
+                new("Varlik", filteredLogs.Select(x => x.TableName).Distinct(StringComparer.OrdinalIgnoreCase).Count().ToString(CultureInfo.InvariantCulture), "Kayit tutulan tablo sayisi"),
             };
 
             var headers = new[] { "Tarih", "Islem", "Varlik", "Kayit Id", "Aciklama", "Kullanici" };
-            var rows = _auditLogs.Select(log => (IReadOnlyList<string>)new[]
+            var rows = filteredLogs.Select(log => (IReadOnlyList<string>)new[]
             {
                 log.CreatedAt == DateTimeOffset.MinValue
                     ? string.Empty
@@ -1056,23 +1125,23 @@ public partial class ReportsView : UserControl
         // Align actionable exports with the Excel/PDF report plan (richer invoice + payment columns).
         var defaultHeaders = new[]
         {
-            "Dönem",
-            "Tür",
+            "DÃ¶nem",
+            "TÃ¼r",
             "Abonelik",
             "Kurum",
             "Durum",
             "Fatura Tarihi",
-            "Son Ödeme",
+            "Son Ã–deme",
             "Fatura No",
             "Tutar",
-            "Kullanım",
+            "KullanÄ±m",
             "Birim",
-            "Ödenen",
+            "Ã–denen",
             "Kalan",
             "Fatura PDF",
-            "Ödeme Tarihi",
-            "Ödeme PDF",
-            "Açıklama",
+            "Ã–deme Tarihi",
+            "Ã–deme PDF",
+            "AÃ§Ä±klama",
         };
 
         var defaultRows = actionableItems.Select(i =>
@@ -1125,7 +1194,7 @@ public partial class ReportsView : UserControl
         }
 
         var anyMissing = list.Any(p => _paymentRepository.IsPdfMissing(p));
-        return (latestDate, anyMissing ? "PDF Kayıp" : "PDF Var");
+        return (latestDate, anyMissing ? "PDF KayÄ±p" : "PDF Var");
     }
 
     private void MonthlyFilter_Changed(object sender, SelectionChangedEventArgs e)
@@ -1267,6 +1336,7 @@ public partial class ReportsView : UserControl
             : Visibility.Collapsed;
         SubscriptionMonthInput.Visibility = tab == ReportTab.Subscription ? Visibility.Visible : Visibility.Collapsed;
         TypeYearlyFilterPanel.Visibility = tab == ReportTab.TypeYearly ? Visibility.Visible : Visibility.Collapsed;
+        AuditLogFilterPanel.Visibility = tab == ReportTab.AuditLog ? Visibility.Visible : Visibility.Collapsed;
 
         var items = tab switch
         {
@@ -1365,7 +1435,7 @@ public partial class ReportsView : UserControl
         else if (tab == ReportTab.AuditLog)
         {
             ApplyAuditLogTiles();
-            AuditLogGrid.ItemsSource = _auditLogs.Select(ToAuditLogRow).ToList();
+            AuditLogGrid.ItemsSource = GetFilteredAuditLogs().Select(ToAuditLogRow).ToList();
             ReportGrid.Visibility = Visibility.Collapsed;
             YearlyGrid.Visibility = Visibility.Collapsed;
             DistributionGrid.Visibility = Visibility.Collapsed;
@@ -1398,7 +1468,7 @@ public partial class ReportsView : UserControl
             return "PDF Var";
         }
 
-        return _invoiceRepository.IsPdfMissing(invoice) ? "PDF Kayıp" : "PDF Var";
+        return _invoiceRepository.IsPdfMissing(invoice) ? "PDF KayÄ±p" : "PDF Var";
     }
 
     private static void SetTabActive(Button button, bool isActive)
@@ -1410,15 +1480,15 @@ public partial class ReportsView : UserControl
 
     private void ApplyActionableTiles()
     {
-        Tile1LabelText.Text = "Ödenmemiş";
+        Tile1LabelText.Text = "Ã–denmemiÅŸ";
         Tile1ValueText.Text = _report.Unpaid.Count.ToString(CultureInfo.InvariantCulture);
         Tile1DetailText.Text = $"Kalan {FormatMoney(_report.UnpaidRemainingTotal)}";
 
-        Tile2LabelText.Text = "Gecikmiş";
+        Tile2LabelText.Text = "GecikmiÅŸ";
         Tile2ValueText.Text = _report.Overdue.Count.ToString(CultureInfo.InvariantCulture);
         Tile2DetailText.Text = $"Kalan {FormatMoney(_report.OverdueRemainingTotal)}";
 
-        Tile3LabelText.Text = "Yaklaşan (7 gün)";
+        Tile3LabelText.Text = "YaklaÅŸan (7 gÃ¼n)";
         Tile3ValueText.Text = _report.Upcoming.Count.ToString(CultureInfo.InvariantCulture);
         Tile3DetailText.Text = $"Kalan {FormatMoney(_report.UpcomingRemainingTotal)}";
 
@@ -1431,15 +1501,15 @@ public partial class ReportsView : UserControl
         Tile1ValueText.Text = _monthlyReport.TotalInvoiceCount.ToString(CultureInfo.InvariantCulture);
         Tile1DetailText.Text = $"Toplam {FormatMoney(_monthlyReport.TotalAmount)}";
 
-        Tile2LabelText.Text = "Ödenen";
+        Tile2LabelText.Text = "Ã–denen";
         Tile2ValueText.Text = FormatMoney(_monthlyReport.PaidTotal);
         Tile2DetailText.Text = $"PDF eksik {_monthlyReport.MissingPdfCount}";
 
         Tile3LabelText.Text = "Kalan";
         Tile3ValueText.Text = FormatMoney(_monthlyReport.RemainingTotal);
-        Tile3DetailText.Text = $"Ödenmemiş {_monthlyReport.UnpaidInvoiceCount}, Gecikmiş {_monthlyReport.OverdueInvoiceCount}";
+        Tile3DetailText.Text = $"Ã–denmemiÅŸ {_monthlyReport.UnpaidInvoiceCount}, GecikmiÅŸ {_monthlyReport.OverdueInvoiceCount}";
 
-        MonthlyFilterHintText.Text = $"{_monthlyReport.Year:D4}/{_monthlyReport.Month:D2} dönemi listeleniyor";
+        MonthlyFilterHintText.Text = $"{_monthlyReport.Year:D4}/{_monthlyReport.Month:D2} dÃ¶nemi listeleniyor";
         SubscriptionHintText.Text = string.Empty;
     }
 
@@ -1447,19 +1517,19 @@ public partial class ReportsView : UserControl
     {
         var year = _yearlyAllReport.Year == 0 ? GetSelectedYear() : _yearlyAllReport.Year;
 
-        Tile1LabelText.Text = "Toplam (YÄ±l)";
+        Tile1LabelText.Text = "Toplam (YÃ„Â±l)";
         Tile1ValueText.Text = _yearlyAllReport.TotalInvoiceCount.ToString(CultureInfo.InvariantCulture);
         Tile1DetailText.Text = $"Toplam {FormatMoney(_yearlyAllReport.TotalAmount)}";
 
-        Tile2LabelText.Text = "Ã–denen";
+        Tile2LabelText.Text = "Ãƒâ€“denen";
         Tile2ValueText.Text = FormatMoney(_yearlyAllReport.PaidTotal);
         Tile2DetailText.Text = $"PDF eksik {_yearlyAllReport.MissingPdfCount}";
 
         Tile3LabelText.Text = "Kalan";
         Tile3ValueText.Text = FormatMoney(_yearlyAllReport.RemainingTotal);
-        Tile3DetailText.Text = $"Ã–denmemiÅŸ {_yearlyAllReport.UnpaidInvoiceCount}, GecikmiÅŸ {_yearlyAllReport.OverdueInvoiceCount}";
+        Tile3DetailText.Text = $"Ãƒâ€“denmemiÃ…Å¸ {_yearlyAllReport.UnpaidInvoiceCount}, GecikmiÃ…Å¸ {_yearlyAllReport.OverdueInvoiceCount}";
 
-        MonthlyFilterHintText.Text = $"{year} yÄ±lÄ± listeleniyor";
+        MonthlyFilterHintText.Text = $"{year} yÃ„Â±lÃ„Â± listeleniyor";
         SubscriptionHintText.Text = string.Empty;
     }
 
@@ -1472,26 +1542,26 @@ public partial class ReportsView : UserControl
         Tile1ValueText.Text = current.TotalInvoiceCount.ToString(CultureInfo.InvariantCulture);
         Tile1DetailText.Text = $"Toplam {FormatMoney(current.TotalAmount)} ({FormatDelta(_subscriptionComparison.TotalAmountDelta)})";
 
-        Tile2LabelText.Text = "Ödenen";
+        Tile2LabelText.Text = "Ã–denen";
         Tile2ValueText.Text = FormatMoney(current.PaidTotal);
-        Tile2DetailText.Text = $"Önceki ay {FormatMoney(previous.PaidTotal)} ({FormatDelta(_subscriptionComparison.PaidDelta)})";
+        Tile2DetailText.Text = $"Ã–nceki ay {FormatMoney(previous.PaidTotal)} ({FormatDelta(_subscriptionComparison.PaidDelta)})";
 
         Tile3LabelText.Text = "Kalan";
         Tile3ValueText.Text = FormatMoney(current.RemainingTotal);
-        Tile3DetailText.Text = $"Önceki ay {FormatMoney(previous.RemainingTotal)} ({FormatDelta(_subscriptionComparison.RemainingDelta)})";
+        Tile3DetailText.Text = $"Ã–nceki ay {FormatMoney(previous.RemainingTotal)} ({FormatDelta(_subscriptionComparison.RemainingDelta)})";
 
         MonthlyFilterHintText.Text = string.Empty;
-        SubscriptionHintText.Text = $"{current.Year:D4}/{current.Month:D2} dönemi (önceki ay karşılaştırmalı)";
+        SubscriptionHintText.Text = $"{current.Year:D4}/{current.Month:D2} dÃ¶nemi (Ã¶nceki ay karÅŸÄ±laÅŸtÄ±rmalÄ±)";
     }
 
     private void ApplySubscriptionYearlyTiles()
     {
         var year = _subscriptionYearly.Year;
-        Tile1LabelText.Text = "Toplam (Yıl)";
+        Tile1LabelText.Text = "Toplam (YÄ±l)";
         Tile1ValueText.Text = FormatMoney(_subscriptionYearly.TotalAmount);
-        Tile1DetailText.Text = $"{_subscriptionYearly.TotalInvoiceCount} fatura, Ödenen {FormatMoney(_subscriptionYearly.PaidTotal)}, Kalan {FormatMoney(_subscriptionYearly.RemainingTotal)}";
+        Tile1DetailText.Text = $"{_subscriptionYearly.TotalInvoiceCount} fatura, Ã–denen {FormatMoney(_subscriptionYearly.PaidTotal)}, Kalan {FormatMoney(_subscriptionYearly.RemainingTotal)}";
 
-        Tile2LabelText.Text = "En Yüksek Ay";
+        Tile2LabelText.Text = "En YÃ¼ksek Ay";
         Tile2ValueText.Text = _subscriptionYearly.HighestMonth == 0
             ? "-"
             : $"{TurkishCulture.DateTimeFormat.GetMonthName(_subscriptionYearly.HighestMonth)}";
@@ -1499,7 +1569,7 @@ public partial class ReportsView : UserControl
             ? "-"
             : $"Toplam {FormatMoney(_subscriptionYearly.HighestMonthTotal)}";
 
-        Tile3LabelText.Text = "En Düşük Ay";
+        Tile3LabelText.Text = "En DÃ¼ÅŸÃ¼k Ay";
         Tile3ValueText.Text = _subscriptionYearly.LowestMonth == 0
             ? "-"
             : $"{TurkishCulture.DateTimeFormat.GetMonthName(_subscriptionYearly.LowestMonth)}";
@@ -1508,20 +1578,20 @@ public partial class ReportsView : UserControl
             : $"Toplam {FormatMoney(_subscriptionYearly.LowestMonthTotal)}";
 
         MonthlyFilterHintText.Text = string.Empty;
-        SubscriptionHintText.Text = year == 0 ? string.Empty : $"{year} yılı (12 ay)";
+        SubscriptionHintText.Text = year == 0 ? string.Empty : $"{year} yÄ±lÄ± (12 ay)";
     }
 
     private void ApplyTypeYearlyTiles()
     {
-        Tile1LabelText.Text = "Toplam (Yıl)";
+        Tile1LabelText.Text = "Toplam (YÄ±l)";
         Tile1ValueText.Text = FormatMoney(_typeYearly.TotalAmount);
-        Tile1DetailText.Text = $"{_typeYearly.TotalInvoiceCount} fatura, Ödenen {FormatMoney(_typeYearly.PaidTotal)}, Kalan {FormatMoney(_typeYearly.RemainingTotal)}";
+        Tile1DetailText.Text = $"{_typeYearly.TotalInvoiceCount} fatura, Ã–denen {FormatMoney(_typeYearly.PaidTotal)}, Kalan {FormatMoney(_typeYearly.RemainingTotal)}";
 
-        Tile2LabelText.Text = "En Yüksek Ay";
+        Tile2LabelText.Text = "En YÃ¼ksek Ay";
         Tile2ValueText.Text = _typeYearly.HighestMonth == 0 ? "-" : TurkishCulture.DateTimeFormat.GetMonthName(_typeYearly.HighestMonth);
         Tile2DetailText.Text = _typeYearly.HighestMonth == 0 ? "-" : $"Toplam {FormatMoney(_typeYearly.HighestMonthTotal)}";
 
-        Tile3LabelText.Text = "En Düşük Ay";
+        Tile3LabelText.Text = "En DÃ¼ÅŸÃ¼k Ay";
         Tile3ValueText.Text = _typeYearly.LowestMonth == 0 ? "-" : TurkishCulture.DateTimeFormat.GetMonthName(_typeYearly.LowestMonth);
         Tile3DetailText.Text = _typeYearly.LowestMonth == 0 ? "-" : $"Toplam {FormatMoney(_typeYearly.LowestMonthTotal)}";
 
@@ -1534,15 +1604,15 @@ public partial class ReportsView : UserControl
     {
         Tile1LabelText.Text = "Fatura PDF";
         Tile1ValueText.Text = (_documentHealth.InvoiceNoPdfCount + _documentHealth.InvoiceMissingFileCount).ToString(CultureInfo.InvariantCulture);
-        Tile1DetailText.Text = $"Yok {_documentHealth.InvoiceNoPdfCount}, Kayıp {_documentHealth.InvoiceMissingFileCount}";
+        Tile1DetailText.Text = $"Yok {_documentHealth.InvoiceNoPdfCount}, KayÄ±p {_documentHealth.InvoiceMissingFileCount}";
 
-        Tile2LabelText.Text = "Ödeme PDF";
+        Tile2LabelText.Text = "Ã–deme PDF";
         Tile2ValueText.Text = (_documentHealth.PaymentNoPdfCount + _documentHealth.PaymentMissingFileCount).ToString(CultureInfo.InvariantCulture);
-        Tile2DetailText.Text = $"Yok {_documentHealth.PaymentNoPdfCount}, Kayıp {_documentHealth.PaymentMissingFileCount}";
+        Tile2DetailText.Text = $"Yok {_documentHealth.PaymentNoPdfCount}, KayÄ±p {_documentHealth.PaymentMissingFileCount}";
 
-        Tile3LabelText.Text = "Aynı Hash";
+        Tile3LabelText.Text = "AynÄ± Hash";
         Tile3ValueText.Text = (_documentHealth.DuplicateInvoiceHashItemCount + _documentHealth.DuplicatePaymentHashItemCount).ToString(CultureInfo.InvariantCulture);
-        Tile3DetailText.Text = $"Fatura {_documentHealth.DuplicateInvoiceHashItemCount}, Ödeme {_documentHealth.DuplicatePaymentHashItemCount}";
+        Tile3DetailText.Text = $"Fatura {_documentHealth.DuplicateInvoiceHashItemCount}, Ã–deme {_documentHealth.DuplicatePaymentHashItemCount}";
 
         MonthlyFilterHintText.Text = string.Empty;
         SubscriptionHintText.Text = string.Empty;
@@ -1570,28 +1640,31 @@ public partial class ReportsView : UserControl
 
     private void ApplyAuditLogTiles()
     {
-        var todayCount = _auditLogs.Count(x => x.CreatedAt.LocalDateTime.Date == DateTime.Today);
-        var actionTypeCount = _auditLogs.Select(x => x.ActionType).Distinct(StringComparer.OrdinalIgnoreCase).Count();
-        var entityNames = _auditLogs
+        var filteredLogs = GetFilteredAuditLogs();
+        var todayCount = filteredLogs.Count(x => x.CreatedAt.LocalDateTime.Date == DateTime.Today);
+        var actionTypeCount = filteredLogs.Select(x => x.ActionType).Distinct(StringComparer.OrdinalIgnoreCase).Count();
+        var entityNames = filteredLogs
             .Select(x => FormatAuditTableLabel(x.TableName))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .Take(3)
             .ToList();
 
         Tile1LabelText.Text = "Toplam Kayit";
-        Tile1ValueText.Text = _auditLogs.Count.ToString(CultureInfo.InvariantCulture);
-        Tile1DetailText.Text = _auditLogs.Count == 0
+        Tile1ValueText.Text = filteredLogs.Count.ToString(CultureInfo.InvariantCulture);
+        Tile1DetailText.Text = filteredLogs.Count == 0
             ? "Kayit bulunmuyor"
-            : $"Son kayit {(_auditLogs[0].CreatedAt == DateTimeOffset.MinValue ? "-" : _auditLogs[0].CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm", TurkishCulture))}";
+            : $"Son kayit {(filteredLogs[0].CreatedAt == DateTimeOffset.MinValue ? "-" : filteredLogs[0].CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm", TurkishCulture))}";
 
         Tile2LabelText.Text = "Bugun";
         Tile2ValueText.Text = todayCount.ToString(CultureInfo.InvariantCulture);
         Tile2DetailText.Text = $"{actionTypeCount} farkli islem turu";
 
         Tile3LabelText.Text = "Varliklar";
-        Tile3ValueText.Text = _auditLogs.Select(x => x.TableName).Distinct(StringComparer.OrdinalIgnoreCase).Count().ToString(CultureInfo.InvariantCulture);
+        Tile3ValueText.Text = filteredLogs.Select(x => x.TableName).Distinct(StringComparer.OrdinalIgnoreCase).Count().ToString(CultureInfo.InvariantCulture);
         Tile3DetailText.Text = entityNames.Count == 0 ? "-" : string.Join(", ", entityNames);
 
+        var filterText = GetAuditLogFilterText();
+        AuditLogHintText.Text = filterText;
         MonthlyFilterHintText.Text = string.Empty;
         SubscriptionHintText.Text = string.Empty;
         TypeYearlyHintText.Text = string.Empty;
@@ -1733,7 +1806,7 @@ public partial class ReportsView : UserControl
             if (MonthlyInvoiceTypeInput.Items.Count == 0)
             {
                 var types = _invoiceTypeRepository?.GetAll() ?? Array.Empty<InvoiceType>();
-                var typeOptions = new List<InvoiceTypeOption> { new("Tüm Türler", null) };
+                var typeOptions = new List<InvoiceTypeOption> { new("TÃ¼m TÃ¼rler", null) };
                 typeOptions.AddRange(types.Select(item => new InvoiceTypeOption(item.Name, item.Id)));
                 MonthlyInvoiceTypeInput.ItemsSource = typeOptions;
                 MonthlyInvoiceTypeInput.DisplayMemberPath = nameof(InvoiceTypeOption.Label);
@@ -1861,6 +1934,44 @@ public partial class ReportsView : UserControl
         }
     }
 
+    private void EnsureAuditLogFiltersInitialized()
+    {
+        _isRefreshingAuditLogFilters = true;
+        try
+        {
+            var actionOptions = new List<AuditLogActionOption>
+            {
+                new("Tum Islemler", null),
+            };
+
+            actionOptions.AddRange(_auditLogs
+                .Select(log => log.ActionType)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .OrderBy(value => value, StringComparer.OrdinalIgnoreCase)
+                .Select(value => new AuditLogActionOption(FormatAuditActionLabel(value), value)));
+
+            AuditLogActionInput.ItemsSource = actionOptions;
+            AuditLogActionInput.DisplayMemberPath = nameof(AuditLogActionOption.Label);
+
+            if (AuditLogActionInput.SelectedItem is not AuditLogActionOption selectedAction ||
+                actionOptions.All(option => !string.Equals(option.ActionType, selectedAction.ActionType, StringComparison.OrdinalIgnoreCase)))
+            {
+                AuditLogActionInput.SelectedItem = actionOptions[0];
+            }
+
+            if (AuditLogStartDateInput.SelectedDate is DateTime start &&
+                AuditLogEndDateInput.SelectedDate is DateTime end &&
+                start.Date > end.Date)
+            {
+                AuditLogEndDateInput.SelectedDate = start.Date;
+            }
+        }
+        finally
+        {
+            _isRefreshingAuditLogFilters = false;
+        }
+    }
+
     private long? GetSelectedInvoiceTypeId()
     {
         if (MonthlyInvoiceTypeInput.SelectedItem is InvoiceTypeOption option)
@@ -1979,6 +2090,8 @@ public partial class ReportsView : UserControl
     private sealed record InvoiceTypeOption(string Label, long? InvoiceTypeId);
 
     private sealed record SubscriptionOption(string Label, long SubscriptionId);
+
+    private sealed record AuditLogActionOption(string Label, string? ActionType);
 
     private sealed record YearlyRow(
         string MonthName,
