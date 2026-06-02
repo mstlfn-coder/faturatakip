@@ -438,3 +438,10 @@ v0.12 sonuÃ§ notu:
 38. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 39. Siradaki mantikli is: audit log detayinda alan bazli veya renkli diff gostermek.
 
+
+40. v0.42 olarak audit log detay paneline alan bazli fark tablosu eklendi.
+41. JSON payload varsa flatten edilerek alan, eski deger, yeni deger ve durum kolonlariyla listeleniyor; parse edilemeyen icerikler ham olarak korunuyor.
+42. Smoke test: dotnet build -c Release OK.
+43. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+44. Siradaki mantikli is: diff tablosunda sadece degisen alanlari gosteren filtre veya renkli durum rozetleri eklemek.
+

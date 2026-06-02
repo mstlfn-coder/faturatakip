@@ -508,3 +508,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | JSON degerleri okunur gorunuyor | OK | Kayitli JSON varsa indent edilerek yazdiriliyor; bossa `Kayit yok` gosteriliyor |
 
 | 2026-06-02 | v0.41 | OK | Islem Gecmisi detay paneli eklendi; build + self-test OK |
+
+## v0.42 - Islem Gecmisi Alan Farki
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| Alan bazli fark tablosu var | OK | `AuditLogDiffGrid` alan, eski, yeni ve durum kolonlariyla gosteriliyor |
+| Eski/yeni JSON parse edilip karsilastiriliyor | OK | JSON alanlari flatten edilerek birlestirilmis key listesi uzerinden karsilastiriliyor |
+| JSON olmayan payload bozulmadan gosteriliyor | OK | Parse edilemeyen icerikler `value` alaninda korunuyor |
+
+| 2026-06-02 | v0.42 | OK | Audit log alan farki eklendi; build + self-test OK |

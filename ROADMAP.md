@@ -392,3 +392,9 @@ Her faz bittiğinde:
 - v0.41 tamamlandi: Islem Gecmisi icin secili kayit detay paneli eklendi.
 - Siradaki mantikli faz: eski/yeni degerler icin daha okunur diff gorunumu.
 
+
+## Son Guncelleme (2026-06-02 / v0.42)
+
+- v0.42 tamamlandi: Islem Gecmisi detayina alan bazli fark tablosu eklendi.
+- Siradaki mantikli faz: diff tablosunda sadece degisen alanlar veya renkli rozetler.
+
