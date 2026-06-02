@@ -520,3 +520,14 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | JSON olmayan payload bozulmadan gosteriliyor | OK | Parse edilemeyen icerikler `value` alaninda korunuyor |
 
 | 2026-06-02 | v0.42 | OK | Audit log alan farki eklendi; build + self-test OK |
+
+## v0.43 - Islem Gecmisi Diff Filtresi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| Sadece degisen alanlar filtresi var | OK | `AuditLogDiffChangedOnlyCheckBox` ile `Ayni` satirlari gizlenebiliyor |
+| Detay secimi korunuyor | OK | Kayit seciliyken filtre degisince ayni secili detay yeniden uygulanuyor |
+
+| 2026-06-02 | v0.43 | OK | Audit log diff filtresi eklendi; build + self-test OK |

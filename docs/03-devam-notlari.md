@@ -445,3 +445,10 @@ v0.12 sonuÃ§ notu:
 43. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 44. Siradaki mantikli is: diff tablosunda sadece degisen alanlari gosteren filtre veya renkli durum rozetleri eklemek.
 
+
+45. v0.43 olarak audit log diff tablosuna Sadece degisen alanlari goster filtresi eklendi.
+46. Ayni durumundaki satirlar gizlenebiliyor; secili audit log detay akisi korunuyor.
+47. Smoke test: dotnet build -c Release OK.
+48. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+49. Siradaki mantikli is: diff tablosunda renkli durum rozetleri veya vurgulu satirlar eklemek.
+

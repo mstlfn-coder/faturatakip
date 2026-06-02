@@ -633,6 +633,11 @@
                                    Foreground="#334155"
                                    FontWeight="SemiBold"
                                    Margin="0,12,0,6" />
+                        <CheckBox x:Name="AuditLogDiffChangedOnlyCheckBox"
+                                  Content="Sadece degisen alanlari goster"
+                                  Margin="0,0,0,8"
+                                  Checked="AuditLogDiffFilter_Changed"
+                                  Unchecked="AuditLogDiffFilter_Changed" />
                         <DataGrid x:Name="AuditLogDiffGrid"
                                   AutoGenerateColumns="False"
                                   CanUserAddRows="False"
