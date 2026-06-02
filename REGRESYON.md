@@ -417,3 +417,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | `Aciklama :` ile tablo arasi daha sik | OK | Ust icerik kolon spacing'i ve aciklama satiri ust boslugu azaltildi |
 
 | 2026-06-02 | v0.33 | OK | PDF `Aciklama :` satiri ile tablo arasi sikilastirildi; build + self-test OK |
+
+## v0.34 - PDF Ust Baslik Dengesi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| PDF ust baslik bosluklari daha dengeli | OK | Baslik blogu spacing'i ve tarih kolonunun ust padding degeri azaltildi |
+
+| 2026-06-02 | v0.34 | OK | PDF ust baslik bosluklari dengelendi; build + self-test OK |

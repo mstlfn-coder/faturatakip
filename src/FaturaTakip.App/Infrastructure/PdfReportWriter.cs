@@ -107,7 +107,7 @@ public static class PdfReportWriter
         // - Centered report title (optionally prefixed by secondary title)
         container.Column(col =>
         {
-            col.Spacing(10);
+            col.Spacing(8);
 
             col.Item().Row(r =>
             {
@@ -122,7 +122,7 @@ public static class PdfReportWriter
                 });
 
                 // Keep a fixed-width right column so the date aligns consistently.
-                r.ConstantItem(200).AlignRight().PaddingTop(34).Text(t =>
+                r.ConstantItem(200).AlignRight().PaddingTop(30).Text(t =>
                 {
                     t.Span("Tarih").FontSize(11);
                     t.Span("     :     ").FontSize(11);
