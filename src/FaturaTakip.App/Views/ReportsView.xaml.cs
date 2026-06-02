@@ -219,6 +219,19 @@ public partial class ReportsView : UserControl
         }
     }
 
+    private void AuditLogSearchInput_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (_isRefreshingAuditLogFilters)
+        {
+            return;
+        }
+
+        if (_activeTab == ReportTab.AuditLog)
+        {
+            ApplyTab(ReportTab.AuditLog);
+        }
+    }
+
     private void ExportReportButton_Click(object sender, RoutedEventArgs e)
     {
         try
@@ -783,16 +796,37 @@ public partial class ReportsView : UserControl
         return (AuditLogActionInput.SelectedItem as AuditLogActionOption)?.ActionType;
     }
 
+    private string? GetSelectedAuditLogEntity()
+    {
+        return (AuditLogEntityInput.SelectedItem as AuditLogEntityOption)?.TableName;
+    }
+
+    private string? GetSelectedAuditLogUser()
+    {
+        return (AuditLogUserInput.SelectedItem as AuditLogUserOption)?.UserName;
+    }
+
     private IReadOnlyList<AuditLog> GetFilteredAuditLogs()
     {
         var selectedAction = GetSelectedAuditLogActionType();
+        var selectedEntity = GetSelectedAuditLogEntity();
+        var selectedUser = GetSelectedAuditLogUser();
         var start = AuditLogStartDateInput.SelectedDate?.Date;
         var end = AuditLogEndDateInput.SelectedDate?.Date;
+        var search = AuditLogSearchInput.Text?.Trim();
 
         return _auditLogs
             .Where(log => string.IsNullOrWhiteSpace(selectedAction) || string.Equals(log.ActionType, selectedAction, StringComparison.OrdinalIgnoreCase))
+            .Where(log => string.IsNullOrWhiteSpace(selectedEntity) || string.Equals(log.TableName, selectedEntity, StringComparison.OrdinalIgnoreCase))
+            .Where(log => string.IsNullOrWhiteSpace(selectedUser) || string.Equals(log.UserName, selectedUser, StringComparison.OrdinalIgnoreCase))
             .Where(log => start is null || log.CreatedAt.LocalDateTime.Date >= start.Value)
             .Where(log => end is null || log.CreatedAt.LocalDateTime.Date <= end.Value)
+            .Where(log => string.IsNullOrWhiteSpace(search)
+                || log.Description.Contains(search, StringComparison.CurrentCultureIgnoreCase)
+                || log.ActionType.Contains(search, StringComparison.OrdinalIgnoreCase)
+                || log.TableName.Contains(search, StringComparison.OrdinalIgnoreCase)
+                || log.RecordId.ToString(CultureInfo.InvariantCulture).Contains(search, StringComparison.OrdinalIgnoreCase)
+                || log.UserName.Contains(search, StringComparison.CurrentCultureIgnoreCase))
             .ToList();
     }
 
@@ -805,6 +839,18 @@ public partial class ReportsView : UserControl
             parts.Add($"Islem: {action.Label}");
         }
 
+        var entity = AuditLogEntityInput.SelectedItem as AuditLogEntityOption;
+        if (entity is not null && !string.IsNullOrWhiteSpace(entity.TableName))
+        {
+            parts.Add($"Varlik: {entity.Label}");
+        }
+
+        var user = AuditLogUserInput.SelectedItem as AuditLogUserOption;
+        if (user is not null && !string.IsNullOrWhiteSpace(user.UserName))
+        {
+            parts.Add($"Kullanici: {user.Label}");
+        }
+
         if (AuditLogStartDateInput.SelectedDate is DateTime start)
         {
             parts.Add($"Baslangic: {start:dd.MM.yyyy}");
@@ -813,6 +859,11 @@ public partial class ReportsView : UserControl
         if (AuditLogEndDateInput.SelectedDate is DateTime end)
         {
             parts.Add($"Bitis: {end:dd.MM.yyyy}");
+        }
+
+        if (!string.IsNullOrWhiteSpace(AuditLogSearchInput.Text))
+        {
+            parts.Add($"Ara: {AuditLogSearchInput.Text.Trim()}");
         }
 
         return parts.Count == 0 ? "Tum audit log kayitlari" : string.Join(" | ", parts);
@@ -1959,6 +2010,46 @@ public partial class ReportsView : UserControl
                 AuditLogActionInput.SelectedItem = actionOptions[0];
             }
 
+            var entityOptions = new List<AuditLogEntityOption>
+            {
+                new("Tum Varliklar", null),
+            };
+
+            entityOptions.AddRange(_auditLogs
+                .Select(log => log.TableName)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .OrderBy(value => value, StringComparer.OrdinalIgnoreCase)
+                .Select(value => new AuditLogEntityOption(FormatAuditTableLabel(value), value)));
+
+            AuditLogEntityInput.ItemsSource = entityOptions;
+            AuditLogEntityInput.DisplayMemberPath = nameof(AuditLogEntityOption.Label);
+
+            if (AuditLogEntityInput.SelectedItem is not AuditLogEntityOption selectedEntity ||
+                entityOptions.All(option => !string.Equals(option.TableName, selectedEntity.TableName, StringComparison.OrdinalIgnoreCase)))
+            {
+                AuditLogEntityInput.SelectedItem = entityOptions[0];
+            }
+
+            var userOptions = new List<AuditLogUserOption>
+            {
+                new("Tum Kullanicilar", null),
+            };
+
+            userOptions.AddRange(_auditLogs
+                .Select(log => string.IsNullOrWhiteSpace(log.UserName) ? "system" : log.UserName.Trim())
+                .Distinct(StringComparer.CurrentCultureIgnoreCase)
+                .OrderBy(value => value, StringComparer.CurrentCultureIgnoreCase)
+                .Select(value => new AuditLogUserOption(value, value)));
+
+            AuditLogUserInput.ItemsSource = userOptions;
+            AuditLogUserInput.DisplayMemberPath = nameof(AuditLogUserOption.Label);
+
+            if (AuditLogUserInput.SelectedItem is not AuditLogUserOption selectedUser ||
+                userOptions.All(option => !string.Equals(option.UserName, selectedUser.UserName, StringComparison.CurrentCultureIgnoreCase)))
+            {
+                AuditLogUserInput.SelectedItem = userOptions[0];
+            }
+
             if (AuditLogStartDateInput.SelectedDate is DateTime start &&
                 AuditLogEndDateInput.SelectedDate is DateTime end &&
                 start.Date > end.Date)
@@ -2092,6 +2183,10 @@ public partial class ReportsView : UserControl
     private sealed record SubscriptionOption(string Label, long SubscriptionId);
 
     private sealed record AuditLogActionOption(string Label, string? ActionType);
+
+    private sealed record AuditLogEntityOption(string Label, string? TableName);
+
+    private sealed record AuditLogUserOption(string Label, string? UserName);
 
     private sealed record YearlyRow(
         string MonthName,

@@ -484,3 +484,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Audit log export'u filtreyi yansitiyor | OK | Grid ile ayni filtrelenmis satirlar export akisina gidiyor; not/filter metni guncellendi |
 
 | 2026-06-02 | v0.39 | OK | Islem Gecmisi filtreleri eklendi; build + self-test OK |
+
+## v0.40 - Islem Gecmisi Arama
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| Varlik filtresi var | OK | `AuditLogEntityInput` ile tablo/varlik bazinda daraltma yapiliyor |
+| Kullanici filtresi var | OK | `AuditLogUserInput` ile kaydi yazan kullanici bazinda daraltma yapiliyor |
+| Metin aramasi var | OK | Aciklama, islem, varlik, kayit id ve kullanici alanlarinda arama yapiliyor |
+
+| 2026-06-02 | v0.40 | OK | Islem Gecmisi arama filtreleri eklendi; build + self-test OK |
