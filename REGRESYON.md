@@ -460,3 +460,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Odeme islemleri loglaniyor | OK | Olusturma ve PDF ekleme/degistirme kayda dusuluyor |
 
 | 2026-06-02 | v0.37 | OK | Audit log temeli eklendi; build + self-test OK |
+
+## v0.38 - Islem Gecmisi Raporu
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| `Raporlar` ekraninda `Islem Gecmisi` sekmesi var | OK | `ReportsView` icine yeni sekme ve grid eklendi |
+| Audit log kayitlari listeleniyor | OK | `AuditLogRepository` verisi tarih, islem, varlik ve aciklama kolonlariyla gosteriliyor |
+| Audit log export'u destekleniyor | OK | Excel export generic tabloyu, PDF export `ISLEM GECMISI RAPORU` icerigini uretiyor |
+
+| 2026-06-02 | v0.38 | OK | Islem Gecmisi sekmesi eklendi; build + self-test OK |

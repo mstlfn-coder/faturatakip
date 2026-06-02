@@ -368,3 +368,9 @@ Her faz bittiğinde:
 3. `docs/03-devam-notlari.md` güncellenmeli.
 4. Bu roadmapte ilgili fazın durumu güncellenmeli.
 5. `git status --short --branch` çıktısı kontrol edilmeli.
+
+## Son Guncelleme (2026-06-02)
+
+- v0.38 tamamlandi: Islem Gecmisi raporu/gridi ve audit log export destegi eklendi.
+- v0.39 siradaki: Islem Gecmisi icin tarih / islem turu filtreleri.
+

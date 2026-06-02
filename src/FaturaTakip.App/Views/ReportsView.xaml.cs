@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using FaturaTakip.App.Data.AuditLogs;
 using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.InvoiceTypes;
 using FaturaTakip.App.Data.Payments;
@@ -20,6 +21,7 @@ public partial class ReportsView : UserControl
     private PaymentRepository? _paymentRepository;
     private InvoiceTypeRepository? _invoiceTypeRepository;
     private SubscriptionRepository? _subscriptionRepository;
+    private AuditLogRepository? _auditLogRepository;
     private ActionableInvoiceReport _report = ActionableInvoiceReport.Empty;
     private MonthlyInvoiceReport _monthlyReport = MonthlyInvoiceReport.Empty;
     private YearlyInvoiceListReport _yearlyAllReport = YearlyInvoiceListReport.Empty;
@@ -28,6 +30,7 @@ public partial class ReportsView : UserControl
     private InvoiceTypeYearlyReport _typeYearly = InvoiceTypeYearlyReport.Empty;
     private DocumentHealthReport _documentHealth = DocumentHealthReport.Empty;
     private ConsistencyReport _consistency = ConsistencyReport.Empty;
+    private IReadOnlyList<AuditLog> _auditLogs = Array.Empty<AuditLog>();
     private ReportTab _activeTab = ReportTab.Unpaid;
     private Dictionary<long, List<Payment>> _paymentsByInvoice = new();
     private bool _isInitialized;
@@ -46,6 +49,7 @@ public partial class ReportsView : UserControl
         _paymentRepository = new PaymentRepository(databasePath);
         _invoiceTypeRepository = new InvoiceTypeRepository(databasePath);
         _subscriptionRepository = new SubscriptionRepository(databasePath);
+        _auditLogRepository = new AuditLogRepository(databasePath);
         _isInitialized = true;
         Refresh();
     }
@@ -128,6 +132,11 @@ public partial class ReportsView : UserControl
             invoice => _invoiceRepository.PdfFileExists(invoice),
             payment => _paymentRepository.PdfFileExists(payment));
 
+        _auditLogs = (_auditLogRepository?.GetAll() ?? Array.Empty<AuditLog>())
+            .OrderByDescending(x => x.CreatedAt)
+            .ThenByDescending(x => x.Id)
+            .ToList();
+
         ApplyTab(_activeTab);
     }
 
@@ -179,6 +188,11 @@ public partial class ReportsView : UserControl
     private void ConsistencyTabButton_Click(object sender, RoutedEventArgs e)
     {
         ApplyTab(ReportTab.Consistency);
+    }
+
+    private void AuditLogTabButton_Click(object sender, RoutedEventArgs e)
+    {
+        ApplyTab(ReportTab.AuditLog);
     }
 
     private void ExportReportButton_Click(object sender, RoutedEventArgs e)
@@ -453,6 +467,7 @@ public partial class ReportsView : UserControl
             ReportTab.SubscriptionYearly => "ABONELİK YILLIK FATURA RAPORU",
             ReportTab.TypeYearly => "TÜR YILLIK FATURA RAPORU",
             ReportTab.DocumentHealth => "EVRAK KONTROL RAPORU",
+            ReportTab.AuditLog => "ISLEM GECMISI RAPORU",
             _ => "RAPOR",
         };
     }
@@ -466,6 +481,7 @@ public partial class ReportsView : UserControl
             ReportTab.Subscription => $"{_subscriptionComparison.Current.Year:D4}/{_subscriptionComparison.Current.Month:D2}",
             ReportTab.SubscriptionYearly => _subscriptionYearly.Year == 0 ? string.Empty : $"{_subscriptionYearly.Year}",
             ReportTab.TypeYearly => _typeYearly.Year == 0 ? string.Empty : $"{_typeYearly.Year}",
+            ReportTab.AuditLog => "Sistem islem gecmisi",
             _ => string.Empty,
         };
     }
@@ -719,6 +735,7 @@ public partial class ReportsView : UserControl
             ReportTab.Subscription => $"{inst} için {GetSelectedSubscriptionYear():D4} {tr.DateTimeFormat.GetMonthName(GetSelectedSubscriptionMonth())} ayında {(GetSelectedSubscriptionLabel() ?? "seçili abonelik")} için gelen tüm faturaların listesidir.",
             ReportTab.SubscriptionYearly => $"{inst} için {GetSelectedSubscriptionYear():D4} yılında {(GetSelectedSubscriptionLabel() ?? "seçili abonelik")} için gelen tüm faturaların listesidir.",
             ReportTab.TypeYearly => $"{inst} için {GetSelectedTypeYearlyYear():D4} yılında gelen {typeSuffix} listesidir.",
+            ReportTab.AuditLog => $"{inst} sisteminde kaydedilen islem gecmisi kayitlarinin listesidir.",
             _ => GetPdfReportFilterText(),
         };
     }
@@ -996,6 +1013,32 @@ public partial class ReportsView : UserControl
             return (summary, (headers, rows), SecondaryTitle: null, SecondTable: null);
         }
 
+        if (_activeTab == ReportTab.AuditLog)
+        {
+            var today = DateTime.Today;
+            var summary = new List<PdfReportWriter.SummaryItem>
+            {
+                new("Toplam Kayit", _auditLogs.Count.ToString(CultureInfo.InvariantCulture), $"Bugun {_auditLogs.Count(x => x.CreatedAt.LocalDateTime.Date == today)} kayit"),
+                new("Islem Turu", _auditLogs.Select(x => x.ActionType).Distinct(StringComparer.OrdinalIgnoreCase).Count().ToString(CultureInfo.InvariantCulture), "Farkli aksiyon sayisi"),
+                new("Varlik", _auditLogs.Select(x => x.TableName).Distinct(StringComparer.OrdinalIgnoreCase).Count().ToString(CultureInfo.InvariantCulture), "Kayit tutulan tablo sayisi"),
+            };
+
+            var headers = new[] { "Tarih", "Islem", "Varlik", "Kayit Id", "Aciklama", "Kullanici" };
+            var rows = _auditLogs.Select(log => (IReadOnlyList<string>)new[]
+            {
+                log.CreatedAt == DateTimeOffset.MinValue
+                    ? string.Empty
+                    : log.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm", TurkishCulture),
+                FormatAuditActionLabel(log.ActionType),
+                FormatAuditTableLabel(log.TableName),
+                log.RecordId.ToString(CultureInfo.InvariantCulture),
+                log.Description,
+                string.IsNullOrWhiteSpace(log.UserName) ? "system" : log.UserName,
+            }).ToList();
+
+            return (summary, (headers, rows), SecondaryTitle: null, SecondTable: null);
+        }
+
         // Default: actionable lists
         var actionableItems = _activeTab switch
         {
@@ -1215,6 +1258,7 @@ public partial class ReportsView : UserControl
         SetTabActive(TypeYearlyTabButton, tab == ReportTab.TypeYearly);
         SetTabActive(DocumentHealthTabButton, tab == ReportTab.DocumentHealth);
         SetTabActive(ConsistencyTabButton, tab == ReportTab.Consistency);
+        SetTabActive(AuditLogTabButton, tab == ReportTab.AuditLog);
 
         MonthlyFilterPanel.Visibility = tab is ReportTab.Monthly or ReportTab.YearlyAll ? Visibility.Visible : Visibility.Collapsed;
         MonthlyMonthInput.Visibility = tab == ReportTab.YearlyAll ? Visibility.Collapsed : Visibility.Visible;
@@ -1235,6 +1279,7 @@ public partial class ReportsView : UserControl
             ReportTab.TypeYearly => Array.Empty<ActionableInvoice>(),
             ReportTab.DocumentHealth => Array.Empty<ActionableInvoice>(),
             ReportTab.Consistency => Array.Empty<ActionableInvoice>(),
+            ReportTab.AuditLog => Array.Empty<ActionableInvoice>(),
             _ => _report.Unpaid,
         };
 
@@ -1246,6 +1291,8 @@ public partial class ReportsView : UserControl
             YearlyGrid.Visibility = Visibility.Collapsed;
             DistributionGrid.Visibility = Visibility.Collapsed;
             DocumentHealthGrid.Visibility = Visibility.Collapsed;
+            ConsistencyGrid.Visibility = Visibility.Collapsed;
+            AuditLogGrid.Visibility = Visibility.Collapsed;
         }
         else if (tab == ReportTab.YearlyAll)
         {
@@ -1257,6 +1304,7 @@ public partial class ReportsView : UserControl
             DistributionGrid.Visibility = Visibility.Collapsed;
             DocumentHealthGrid.Visibility = Visibility.Collapsed;
             ConsistencyGrid.Visibility = Visibility.Collapsed;
+            AuditLogGrid.Visibility = Visibility.Collapsed;
         }
         else if (tab == ReportTab.Subscription)
         {
@@ -1266,6 +1314,8 @@ public partial class ReportsView : UserControl
             YearlyGrid.Visibility = Visibility.Collapsed;
             DistributionGrid.Visibility = Visibility.Collapsed;
             DocumentHealthGrid.Visibility = Visibility.Collapsed;
+            ConsistencyGrid.Visibility = Visibility.Collapsed;
+            AuditLogGrid.Visibility = Visibility.Collapsed;
         }
         else if (tab == ReportTab.SubscriptionYearly)
         {
@@ -1275,6 +1325,8 @@ public partial class ReportsView : UserControl
             YearlyGrid.Visibility = Visibility.Visible;
             DistributionGrid.Visibility = Visibility.Collapsed;
             DocumentHealthGrid.Visibility = Visibility.Collapsed;
+            ConsistencyGrid.Visibility = Visibility.Collapsed;
+            AuditLogGrid.Visibility = Visibility.Collapsed;
         }
         else if (tab == ReportTab.TypeYearly)
         {
@@ -1285,6 +1337,8 @@ public partial class ReportsView : UserControl
             YearlyGrid.Visibility = Visibility.Visible;
             DistributionGrid.Visibility = Visibility.Visible;
             DocumentHealthGrid.Visibility = Visibility.Collapsed;
+            ConsistencyGrid.Visibility = Visibility.Collapsed;
+            AuditLogGrid.Visibility = Visibility.Collapsed;
         }
         else if (tab == ReportTab.DocumentHealth)
         {
@@ -1295,6 +1349,7 @@ public partial class ReportsView : UserControl
             DistributionGrid.Visibility = Visibility.Collapsed;
             DocumentHealthGrid.Visibility = Visibility.Visible;
             ConsistencyGrid.Visibility = Visibility.Collapsed;
+            AuditLogGrid.Visibility = Visibility.Collapsed;
         }
         else if (tab == ReportTab.Consistency)
         {
@@ -1305,6 +1360,18 @@ public partial class ReportsView : UserControl
             DistributionGrid.Visibility = Visibility.Collapsed;
             DocumentHealthGrid.Visibility = Visibility.Collapsed;
             ConsistencyGrid.Visibility = Visibility.Visible;
+            AuditLogGrid.Visibility = Visibility.Collapsed;
+        }
+        else if (tab == ReportTab.AuditLog)
+        {
+            ApplyAuditLogTiles();
+            AuditLogGrid.ItemsSource = _auditLogs.Select(ToAuditLogRow).ToList();
+            ReportGrid.Visibility = Visibility.Collapsed;
+            YearlyGrid.Visibility = Visibility.Collapsed;
+            DistributionGrid.Visibility = Visibility.Collapsed;
+            DocumentHealthGrid.Visibility = Visibility.Collapsed;
+            ConsistencyGrid.Visibility = Visibility.Collapsed;
+            AuditLogGrid.Visibility = Visibility.Visible;
         }
         else
         {
@@ -1315,6 +1382,7 @@ public partial class ReportsView : UserControl
             DistributionGrid.Visibility = Visibility.Collapsed;
             DocumentHealthGrid.Visibility = Visibility.Collapsed;
             ConsistencyGrid.Visibility = Visibility.Collapsed;
+            AuditLogGrid.Visibility = Visibility.Collapsed;
         }
     }
 
@@ -1500,6 +1568,35 @@ public partial class ReportsView : UserControl
         TypeYearlyHintText.Text = string.Empty;
     }
 
+    private void ApplyAuditLogTiles()
+    {
+        var todayCount = _auditLogs.Count(x => x.CreatedAt.LocalDateTime.Date == DateTime.Today);
+        var actionTypeCount = _auditLogs.Select(x => x.ActionType).Distinct(StringComparer.OrdinalIgnoreCase).Count();
+        var entityNames = _auditLogs
+            .Select(x => FormatAuditTableLabel(x.TableName))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .Take(3)
+            .ToList();
+
+        Tile1LabelText.Text = "Toplam Kayit";
+        Tile1ValueText.Text = _auditLogs.Count.ToString(CultureInfo.InvariantCulture);
+        Tile1DetailText.Text = _auditLogs.Count == 0
+            ? "Kayit bulunmuyor"
+            : $"Son kayit {(_auditLogs[0].CreatedAt == DateTimeOffset.MinValue ? "-" : _auditLogs[0].CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm", TurkishCulture))}";
+
+        Tile2LabelText.Text = "Bugun";
+        Tile2ValueText.Text = todayCount.ToString(CultureInfo.InvariantCulture);
+        Tile2DetailText.Text = $"{actionTypeCount} farkli islem turu";
+
+        Tile3LabelText.Text = "Varliklar";
+        Tile3ValueText.Text = _auditLogs.Select(x => x.TableName).Distinct(StringComparer.OrdinalIgnoreCase).Count().ToString(CultureInfo.InvariantCulture);
+        Tile3DetailText.Text = entityNames.Count == 0 ? "-" : string.Join(", ", entityNames);
+
+        MonthlyFilterHintText.Text = string.Empty;
+        SubscriptionHintText.Text = string.Empty;
+        TypeYearlyHintText.Text = string.Empty;
+    }
+
     private static string FormatDelta(decimal value)
     {
         var formatted = FormatMoney(Math.Abs(value));
@@ -1579,6 +1676,48 @@ public partial class ReportsView : UserControl
             issue.PdfFilePath,
             issue.PdfSha256Hash,
             issue.Note);
+    }
+
+    private static AuditLogRow ToAuditLogRow(AuditLog log)
+    {
+        return new AuditLogRow(
+            log.CreatedAt == DateTimeOffset.MinValue
+                ? string.Empty
+                : log.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm", TurkishCulture),
+            FormatAuditActionLabel(log.ActionType),
+            FormatAuditTableLabel(log.TableName),
+            log.RecordId.ToString(CultureInfo.InvariantCulture),
+            log.Description,
+            string.IsNullOrWhiteSpace(log.UserName) ? "system" : log.UserName);
+    }
+
+    private static string FormatAuditActionLabel(string value)
+    {
+        return value switch
+        {
+            "subscription_created" => "Abonelik Olusturuldu",
+            "subscription_updated" => "Abonelik Guncellendi",
+            "subscription_deactivated" => "Abonelik Pasif Yapildi",
+            "invoice_created" => "Fatura Olusturuldu",
+            "invoice_updated" => "Fatura Guncellendi",
+            "invoice_pdf_attached" => "Fatura PDF Eklendi",
+            "payment_created" => "Odeme Olusturuldu",
+            "payment_updated" => "Odeme Guncellendi",
+            "payment_pdf_attached" => "Odeme PDF Eklendi",
+            _ => value.Replace('_', ' '),
+        };
+    }
+
+    private static string FormatAuditTableLabel(string value)
+    {
+        return value switch
+        {
+            "subscriptions" => "Abonelik",
+            "invoices" => "Fatura",
+            "payments" => "Odeme",
+            "audit_logs" => "Audit Log",
+            _ => value,
+        };
     }
 
     private static string FormatMoney(decimal value)
@@ -1819,6 +1958,7 @@ public partial class ReportsView : UserControl
         TypeYearly,
         DocumentHealth,
         Consistency,
+        AuditLog,
     }
 
     private sealed record ReportRow(
@@ -1871,5 +2011,13 @@ public partial class ReportsView : UserControl
         string PdfFilePath,
         string PdfSha256Hash,
         string Note);
+
+    private sealed record AuditLogRow(
+        string CreatedAtText,
+        string ActionType,
+        string TableName,
+        string RecordIdText,
+        string Description,
+        string UserName);
 }
 
