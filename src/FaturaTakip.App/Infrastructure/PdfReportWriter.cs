@@ -244,7 +244,8 @@ public static class PdfReportWriter
         return container
             .Border(1)
             .BorderColor(Colors.Black)
-            .PaddingVertical(4)
+            // Keep the table header compact to better match the formal sample layout.
+            .PaddingVertical(2)
             .PaddingHorizontal(4);
     }
 
