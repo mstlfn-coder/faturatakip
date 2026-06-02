@@ -427,3 +427,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | PDF ust baslik bosluklari daha dengeli | OK | Baslik blogu spacing'i ve tarih kolonunun ust padding degeri azaltildi |
 
 | 2026-06-02 | v0.34 | OK | PDF ust baslik bosluklari dengelendi; build + self-test OK |
+
+## v0.35 - PDF Gorsel QA
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| PDF gorsel ornekleri kontrol edildi | OK | Self-test PDF + ek aylik/ornek odenmemis PDF goruntulendi; yerlesim temiz bulundu |
+
+| 2026-06-02 | v0.35 | OK | PDF gorsel QA tamamlandi; build + self-test OK |

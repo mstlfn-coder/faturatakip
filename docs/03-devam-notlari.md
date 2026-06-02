@@ -408,3 +408,4 @@ v0.12 sonuÃ§ notu:
 15. PDF tablo yazi boyutlari dengelendi; baslik, govde ve toplam satiri 9 puntoya cekilerek daha birornek matbu gorunum elde edildi.
 16. PDF ust bolumde `Aciklama :` satiri ile tablo arasindaki bosluk daraltildi; rapor akisi daha butun gorunuyor.
 17. PDF ust baslik blogu dengelendi; kurum satirlari ile rapor basligi arasindaki bosluk ve tarih kolonunun ust offset'i hafifce azaltildi.
+18. Gorsel QA icin self-test PDF ve iki ek ornek PDF uretildi; aylik sablon ve odenmemis raporu yerlesim olarak temiz bulundu, belirgin yeni duzeltme ihtiyaci gorulmedi.
