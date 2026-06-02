@@ -398,3 +398,9 @@ Her faz bittiğinde:
 - v0.42 tamamlandi: Islem Gecmisi detayina alan bazli fark tablosu eklendi.
 - Siradaki mantikli faz: diff tablosunda sadece degisen alanlar veya renkli rozetler.
 
+
+## Son Guncelleme (2026-06-02 / v0.43)
+
+- v0.43 tamamlandi: audit log diff tablosuna sadece degisen alanlar filtresi eklendi.
+- Siradaki mantikli faz: diff tablosunda renkli durum rozetleri veya vurgulu satirlar.
+

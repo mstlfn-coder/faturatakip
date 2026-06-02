@@ -247,6 +247,11 @@ public partial class ReportsView : UserControl
         ApplyAuditLogDetail(null);
     }
 
+    private void AuditLogDiffFilter_Changed(object sender, RoutedEventArgs e)
+    {
+        ApplyAuditLogDetail(_selectedAuditLog);
+    }
+
     private void ExportReportButton_Click(object sender, RoutedEventArgs e)
     {
         try
@@ -1774,7 +1779,13 @@ public partial class ReportsView : UserControl
         AuditLogDetailMetaText.Text = $"Kayit Id: {log.RecordId} | Kullanici: {(string.IsNullOrWhiteSpace(log.UserName) ? "system" : log.UserName)} | Tarih: {(log.CreatedAt == DateTimeOffset.MinValue ? "-" : log.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm", TurkishCulture))}";
         AuditLogOldValueTextBox.Text = FormatAuditPayload(log.OldValue);
         AuditLogNewValueTextBox.Text = FormatAuditPayload(log.NewValue);
-        AuditLogDiffGrid.ItemsSource = BuildAuditLogDiffRows(log.OldValue, log.NewValue);
+        var diffRows = BuildAuditLogDiffRows(log.OldValue, log.NewValue);
+        if (AuditLogDiffChangedOnlyCheckBox.IsChecked == true)
+        {
+            diffRows = diffRows.Where(row => !string.Equals(row.ChangeType, "Ayni", StringComparison.Ordinal)).ToList();
+        }
+
+        AuditLogDiffGrid.ItemsSource = diffRows;
     }
 
     private static string FormatDelta(decimal value)
