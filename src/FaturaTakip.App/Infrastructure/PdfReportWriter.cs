@@ -54,7 +54,7 @@ public static class PdfReportWriter
                 {
                     c.Column(col =>
                     {
-                        col.Spacing(10);
+                        col.Spacing(8);
 
                         if (summary.Count > 0)
                         {
@@ -63,7 +63,7 @@ public static class PdfReportWriter
 
                         if (!string.IsNullOrWhiteSpace(notes))
                         {
-                            col.Item().PaddingTop(4).Row(r =>
+                            col.Item().PaddingTop(2).Row(r =>
                             {
                                 r.ConstantItem(90).Text("Açıklama").FontSize(11);
                                 r.ConstantItem(20).AlignCenter().Text(":").FontSize(11);

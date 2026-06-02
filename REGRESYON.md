@@ -407,3 +407,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | PDF tablo yazi boyutlari dengeli | OK | Baslik, govde ve footer hucreleri 9 puntoya cekildi; gorunum daha birornek oldu |
 
 | 2026-06-02 | v0.32 | OK | PDF tablo yazi boyutlari dengelendi; build + self-test OK |
+
+## v0.33 - PDF Aciklama Tablo Araligi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| `Aciklama :` ile tablo arasi daha sik | OK | Ust icerik kolon spacing'i ve aciklama satiri ust boslugu azaltildi |
+
+| 2026-06-02 | v0.33 | OK | PDF `Aciklama :` satiri ile tablo arasi sikilastirildi; build + self-test OK |
