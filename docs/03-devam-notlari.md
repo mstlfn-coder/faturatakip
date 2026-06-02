@@ -411,3 +411,9 @@ v0.12 sonuÃ§ notu:
 18. Gorsel QA icin self-test PDF ve iki ek ornek PDF uretildi; aylik sablon ve odenmemis raporu yerlesim olarak temiz bulundu, belirgin yeni duzeltme ihtiyaci gorulmedi.
 19. v0.21 altindaki eski restore TODO'su kapatildi: self-test icine "bos olmayan hedefe restore reddedilir" negatif smoke senaryosu eklendi.
 20. v0.37 baslangici olarak audit log temeli eklendi: `audit_logs` migration'i, `AuditLogRepository` ve abonelik/fatura/odeme islemlerinde temel kayit dusme akisi self-test kapsaminda dogrulandi.
+
+21. v0.38 olarak Raporlar ekranina Islem Gecmisi sekmesi eklendi; audit log kayitlari grid, Excel export ve PDF export uzerinden gorunur hale getirildi.
+22. Smoke test: dotnet build -c Release OK.
+23. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+24. Siradaki mantikli is: Islem Gecmisi icin tarih / islem turu filtreleri eklemek.
+

@@ -112,6 +112,11 @@
                         Style="{StaticResource SecondaryButton}"
                         Margin="0,0,8,0"
                         Click="ConsistencyTabButton_Click" />
+                <Button x:Name="AuditLogTabButton"
+                        Content="Ä°ÅŸlem GeÃ§miÅŸi"
+                        Style="{StaticResource SecondaryButton}"
+                        Margin="0,0,8,0"
+                        Click="AuditLogTabButton_Click" />
                 <Button x:Name="ExportReportButton"
                         Content="Excel'e Aktar"
                         Style="{StaticResource SecondaryButton}"
@@ -486,6 +491,38 @@
                         <DataGridTextColumn Header="Mesaj"
                                             Binding="{Binding Message}"
                                             Width="1.5*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <DataGrid x:Name="AuditLogGrid"
+                          Visibility="Collapsed"
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="False"
+                          IsReadOnly="True"
+                          SelectionMode="Single"
+                          BorderBrush="#E5EAF1"
+                          BorderThickness="1"
+                          HeadersVisibility="Column"
+                          GridLinesVisibility="Horizontal">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Tarih"
+                                            Binding="{Binding CreatedAtText}"
+                                            Width="130" />
+                        <DataGridTextColumn Header="Ä°ÅŸlem"
+                                            Binding="{Binding ActionType}"
+                                            Width="170" />
+                        <DataGridTextColumn Header="VarlÄ±k"
+                                            Binding="{Binding TableName}"
+                                            Width="110" />
+                        <DataGridTextColumn Header="KayÄ±t Id"
+                                            Binding="{Binding RecordIdText}"
+                                            Width="90" />
+                        <DataGridTextColumn Header="AÃ§Ä±klama"
+                                            Binding="{Binding Description}"
+                                            Width="1.5*" />
+                        <DataGridTextColumn Header="KullanÄ±cÄ±"
+                                            Binding="{Binding UserName}"
+                                            Width="100" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
