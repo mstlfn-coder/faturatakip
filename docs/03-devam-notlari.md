@@ -403,3 +403,4 @@ v0.12 sonuÃ§ notu:
 10. PDF raporlar ornek matbu gorunume yaklastirildi: imza blogu kaldirildi, baslik duzeni (ortali kurum + `Tarih :`), `Açıklama :` satiri, tablo siyah border ve template raporlarinda `GENEL TOPLAM` footer satiri eklendi.
 11. PDF footer (sayfa numarasi ve otomatik metin) orneklerle uyum icin varsayilan kapali hale getirildi.
 12. PDF rapor basligi sade tutuldu; tur/abonelik/yil gibi ek baglamlar basliga eklenmeyip `Açıklama :` satirinda birakildi.
+13. PDF tablo baslik satiri daha kompakt hale getirildi; ust satirdaki dikey bosluk azaltildi ve matbu gorunum biraz daha sikilastirildi.

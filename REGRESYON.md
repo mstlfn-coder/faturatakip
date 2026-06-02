@@ -377,3 +377,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | 2026-06-02 | v0.27 | OK | QuestPDF NU1603 kaldirildi; build + self-test OK |
 | 2026-06-02 | v0.28 | OK | PDF aciklama satiri cumle olarak; build + self-test OK |
 | 2026-06-02 | v0.29 | OK | PDF başlığı sade bırakıldı; build + self-test OK |
+
+## v0.30 - PDF Tablo Baslik Sikiligi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| PDF tablo baslik satiri daha kompakt | OK | Baslik hucrelerinin dikey padding degeri dusuruldu; tablo ust satiri daha sik gorunuyor |
+
+| 2026-06-02 | v0.30 | OK | PDF tablo baslik satiri sikilastirildi; build + self-test OK |
