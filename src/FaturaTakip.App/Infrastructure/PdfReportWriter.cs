@@ -254,7 +254,7 @@ public static class PdfReportWriter
         return container
             .Border(1)
             .BorderColor(Colors.Black)
-            .PaddingVertical(3)
+            .PaddingVertical(2)
             .PaddingHorizontal(4);
     }
 

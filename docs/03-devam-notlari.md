@@ -404,3 +404,4 @@ v0.12 sonuÃ§ notu:
 11. PDF footer (sayfa numarasi ve otomatik metin) orneklerle uyum icin varsayilan kapali hale getirildi.
 12. PDF rapor basligi sade tutuldu; tur/abonelik/yil gibi ek baglamlar basliga eklenmeyip `Açıklama :` satirinda birakildi.
 13. PDF tablo baslik satiri daha kompakt hale getirildi; ust satirdaki dikey bosluk azaltildi ve matbu gorunum biraz daha sikilastirildi.
+14. PDF tablo govde satirlari da biraz sikilastirildi; veri satirlarindaki dikey bosluk azaltildi ve baslik/govde dengesi iyilestirildi.
