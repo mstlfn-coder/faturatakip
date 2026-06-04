@@ -590,3 +590,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Durum mesaji gosteriliyor | OK | Basari veya hata sonucu `AuditLogHintText` uzerinden iletiliyor |
 
 | 2026-06-04 | v0.48 | OK | Audit log exports klasoru acma aksiyonu eklendi; build + self-test OK |
+
+## v0.49 - Islem Gecmisi Filtre Tercihleri
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| Filtre tercihleri saklaniyor | OK | `AuditLogFilterPreferences` action, varlik, kullanici, arama ve tarih araligini `config` altina yazar |
+| Tercihler geri yukleniyor | OK | `ReportsView.Initialize` acilisinda kayitli filtreler tekrar UI'ya uygulanir |
+| Degisen alan filtresi de korunuyor | OK | `ChangedOnly` secimi de ayni preference kaydinda tutuluyor |
+
+| 2026-06-05 | v0.49 | OK | Audit log filtre tercihleri kalici hale getirildi; build + self-test OK |

@@ -37,8 +37,10 @@ public partial class ReportsView : UserControl
     private ConsistencyReport _consistency = ConsistencyReport.Empty;
     private IReadOnlyList<AuditLog> _auditLogs = Array.Empty<AuditLog>();
     private AuditLog? _selectedAuditLog;
+    private AuditLogFilterPreferences _auditLogFilterPreferences = AuditLogFilterPreferences.Default;
     private ReportTab _activeTab = ReportTab.Unpaid;
     private Dictionary<long, List<Payment>> _paymentsByInvoice = new();
+    private string _rootDirectory = string.Empty;
     private bool _isInitialized;
     private bool _isRefreshingMonthlyFilters;
     private bool _isRefreshingSubscriptionFilters;
@@ -52,6 +54,8 @@ public partial class ReportsView : UserControl
 
     public void Initialize(string databasePath)
     {
+        _rootDirectory = AppPaths.Resolve().RootDirectory;
+        _auditLogFilterPreferences = AuditLogFilterPreferences.LoadOrDefault(_rootDirectory);
         _invoiceRepository = new InvoiceRepository(databasePath);
         _paymentRepository = new PaymentRepository(databasePath);
         _invoiceTypeRepository = new InvoiceTypeRepository(databasePath);
@@ -223,6 +227,8 @@ public partial class ReportsView : UserControl
         {
             ApplyTab(ReportTab.AuditLog);
         }
+
+        SaveAuditLogFilterPreferences();
     }
 
     private void AuditLogSearchInput_TextChanged(object sender, TextChangedEventArgs e)
@@ -236,6 +242,8 @@ public partial class ReportsView : UserControl
         {
             ApplyTab(ReportTab.AuditLog);
         }
+
+        SaveAuditLogFilterPreferences();
     }
 
     private void AuditLogGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -253,7 +261,13 @@ public partial class ReportsView : UserControl
 
     private void AuditLogDiffFilter_Changed(object sender, RoutedEventArgs e)
     {
+        if (_isRefreshingAuditLogFilters)
+        {
+            return;
+        }
+
         ApplyAuditLogDetail(_selectedAuditLog);
+        SaveAuditLogFilterPreferences();
     }
 
     private void CopyOldAuditLogButton_Click(object sender, RoutedEventArgs e)
@@ -2364,6 +2378,10 @@ public partial class ReportsView : UserControl
         _isRefreshingAuditLogFilters = true;
         try
         {
+            var preferredActionType = GetSelectedAuditLogActionType() ?? _auditLogFilterPreferences.ActionType;
+            var preferredEntityName = GetSelectedAuditLogEntity() ?? _auditLogFilterPreferences.EntityName;
+            var preferredUserName = GetSelectedAuditLogUser() ?? _auditLogFilterPreferences.UserName;
+
             var actionOptions = new List<AuditLogActionOption>
             {
                 new("Tum Islemler", null),
@@ -2378,11 +2396,9 @@ public partial class ReportsView : UserControl
             AuditLogActionInput.ItemsSource = actionOptions;
             AuditLogActionInput.DisplayMemberPath = nameof(AuditLogActionOption.Label);
 
-            if (AuditLogActionInput.SelectedItem is not AuditLogActionOption selectedAction ||
-                actionOptions.All(option => !string.Equals(option.ActionType, selectedAction.ActionType, StringComparison.OrdinalIgnoreCase)))
-            {
-                AuditLogActionInput.SelectedItem = actionOptions[0];
-            }
+            AuditLogActionInput.SelectedItem = actionOptions.FirstOrDefault(option =>
+                string.Equals(option.ActionType, preferredActionType, StringComparison.OrdinalIgnoreCase))
+                ?? actionOptions[0];
 
             var entityOptions = new List<AuditLogEntityOption>
             {
@@ -2398,11 +2414,9 @@ public partial class ReportsView : UserControl
             AuditLogEntityInput.ItemsSource = entityOptions;
             AuditLogEntityInput.DisplayMemberPath = nameof(AuditLogEntityOption.Label);
 
-            if (AuditLogEntityInput.SelectedItem is not AuditLogEntityOption selectedEntity ||
-                entityOptions.All(option => !string.Equals(option.TableName, selectedEntity.TableName, StringComparison.OrdinalIgnoreCase)))
-            {
-                AuditLogEntityInput.SelectedItem = entityOptions[0];
-            }
+            AuditLogEntityInput.SelectedItem = entityOptions.FirstOrDefault(option =>
+                string.Equals(option.TableName, preferredEntityName, StringComparison.OrdinalIgnoreCase))
+                ?? entityOptions[0];
 
             var userOptions = new List<AuditLogUserOption>
             {
@@ -2418,11 +2432,25 @@ public partial class ReportsView : UserControl
             AuditLogUserInput.ItemsSource = userOptions;
             AuditLogUserInput.DisplayMemberPath = nameof(AuditLogUserOption.Label);
 
-            if (AuditLogUserInput.SelectedItem is not AuditLogUserOption selectedUser ||
-                userOptions.All(option => !string.Equals(option.UserName, selectedUser.UserName, StringComparison.CurrentCultureIgnoreCase)))
+            AuditLogUserInput.SelectedItem = userOptions.FirstOrDefault(option =>
+                string.Equals(option.UserName, preferredUserName, StringComparison.CurrentCultureIgnoreCase))
+                ?? userOptions[0];
+
+            AuditLogSearchInput.Text = string.IsNullOrWhiteSpace(AuditLogSearchInput.Text)
+                ? _auditLogFilterPreferences.SearchText ?? string.Empty
+                : AuditLogSearchInput.Text;
+
+            if (AuditLogStartDateInput.SelectedDate is null && _auditLogFilterPreferences.StartDate is not null)
             {
-                AuditLogUserInput.SelectedItem = userOptions[0];
+                AuditLogStartDateInput.SelectedDate = _auditLogFilterPreferences.StartDate.Value;
             }
+
+            if (AuditLogEndDateInput.SelectedDate is null && _auditLogFilterPreferences.EndDate is not null)
+            {
+                AuditLogEndDateInput.SelectedDate = _auditLogFilterPreferences.EndDate.Value;
+            }
+
+            AuditLogDiffChangedOnlyCheckBox.IsChecked = _auditLogFilterPreferences.ChangedOnly;
 
             if (AuditLogStartDateInput.SelectedDate is DateTime start &&
                 AuditLogEndDateInput.SelectedDate is DateTime end &&
@@ -2434,6 +2462,32 @@ public partial class ReportsView : UserControl
         finally
         {
             _isRefreshingAuditLogFilters = false;
+        }
+    }
+
+    private void SaveAuditLogFilterPreferences()
+    {
+        _auditLogFilterPreferences = new AuditLogFilterPreferences(
+            ActionType: GetSelectedAuditLogActionType(),
+            EntityName: GetSelectedAuditLogEntity(),
+            UserName: GetSelectedAuditLogUser(),
+            SearchText: string.IsNullOrWhiteSpace(AuditLogSearchInput.Text) ? null : AuditLogSearchInput.Text.Trim(),
+            StartDate: AuditLogStartDateInput.SelectedDate?.Date,
+            EndDate: AuditLogEndDateInput.SelectedDate?.Date,
+            ChangedOnly: AuditLogDiffChangedOnlyCheckBox.IsChecked == true);
+
+        if (string.IsNullOrWhiteSpace(_rootDirectory))
+        {
+            return;
+        }
+
+        try
+        {
+            _auditLogFilterPreferences.Save(_rootDirectory);
+        }
+        catch
+        {
+            // Filter preference save failures should never break the report screen.
         }
     }
 

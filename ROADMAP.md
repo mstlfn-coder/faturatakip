@@ -434,3 +434,9 @@ Her faz bittiğinde:
 - v0.48 tamamlandi: audit log araclarina exports klasorunu tek tikla acma aksiyonu eklendi.
 - Siradaki mantikli faz: audit log filtre tercihlerini hatirlama gibi kullanim rahatligi adimlari.
 
+
+## Son Guncelleme (2026-06-05 / v0.49)
+
+- v0.49 tamamlandi: audit log filtre tercihleri yeniden acilista hatirlanir hale getirildi.
+- Siradaki mantikli faz: filtreleri tek tikla sifirlama veya secili kayda hizli odaklanma aksiyonlari.
+

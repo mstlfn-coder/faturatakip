@@ -490,3 +490,11 @@ v0.12 sonuÃ§ notu:
 76. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 77. Siradaki mantikli is: audit log filtre tercihlerini hatirlama veya kayit odakli kisayollar eklemek.
 
+
+78. v0.49 olarak audit log filtre tercihleri `config/audit-log-filter-preferences.json` dosyasinda saklanmaya baslandi.
+79. Islem, varlik, kullanici, arama, baslangic/bitis tarihi ve `Sadece degisen alanlari goster` secimi yeni acilista geri yukleniyor.
+80. Self-test icine preference save/load dogrulamasi eklendi.
+81. Smoke test: dotnet build -c Release OK.
+82. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+83. Siradaki mantikli is: filtreleri tek tikla sifirlama veya secili kayda hizli odaklanma aksiyonlari eklemek.
+
