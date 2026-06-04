@@ -566,3 +566,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Diff meta bilgisi ekleniyor | OK | Islem, varlik, kayit id, kullanici ve tarih satirlari ustte yazdiriliyor |
 
 | 2026-06-04 | v0.46 | OK | Audit log diff toplu kopyalama aksiyonu eklendi; build + self-test OK |
+
+## v0.47 - Islem Gecmisi Disa Aktarma
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| TXT disa aktarma var | OK | `ExportAuditLogTxtButton` secili diff ozetini `exports` altina yazar |
+| JSON disa aktarma var | OK | `ExportAuditLogJsonButton` secili kaydi ve diff satirlarini yapisal olarak kaydeder |
+| Durum mesaji gosteriliyor | OK | Basari veya hata sonucu `AuditLogHintText` uzerinden iletiliyor |
+
+| 2026-06-04 | v0.47 | OK | Audit log txt/json disa aktarma aksiyonlari eklendi; build + self-test OK |

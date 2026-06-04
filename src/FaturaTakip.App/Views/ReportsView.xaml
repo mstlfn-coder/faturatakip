@@ -696,13 +696,27 @@
                                       DockPanel.Dock="Left"
                                       Checked="AuditLogDiffFilter_Changed"
                                       Unchecked="AuditLogDiffFilter_Changed" />
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        DockPanel.Dock="Right">
+                                <Button x:Name="ExportAuditLogTxtButton"
+                                        Content="TXT disa aktar"
+                                        MinWidth="118"
+                                        Padding="10,4"
+                                        Margin="0,0,8,0"
+                                        Click="ExportAuditLogTxtButton_Click" />
+                                <Button x:Name="ExportAuditLogJsonButton"
+                                        Content="JSON disa aktar"
+                                        MinWidth="126"
+                                        Padding="10,4"
+                                        Margin="0,0,8,0"
+                                        Click="ExportAuditLogJsonButton_Click" />
                             <Button x:Name="CopyAuditLogDiffButton"
                                     Content="Tum diff'i kopyala"
                                     MinWidth="132"
                                     Padding="10,4"
-                                    HorizontalAlignment="Right"
-                                    DockPanel.Dock="Right"
                                     Click="CopyAuditLogDiffButton_Click" />
+                            </StackPanel>
                         </DockPanel>
                         <DataGrid x:Name="AuditLogDiffGrid"
                                   AutoGenerateColumns="False"
