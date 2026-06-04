@@ -626,3 +626,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Geriye donuk bulma var | OK | Oturumda yol yoksa `exports` altindaki en yeni `audit-log-*` dosyasi aciliyor |
 
 | 2026-06-05 | v0.51 | OK | Audit log son disa aktarilan dosyayi acma aksiyonu eklendi; build + self-test OK |
+
+## v0.52 - Islem Gecmisi Hizli Odak
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Secili kayda git dugmesi var | OK | FocusSelectedAuditLogButton audit log filtre panelinde gosteriliyor |
+| Secili kayit gorunur alana getiriliyor | OK | ScrollIntoView ile secili row tekrar ekranda odaklaniyor |
+| Filtre degisince secim korununca da odak veriliyor | OK | ApplyTab(ReportTab.AuditLog) icinde eslesen secili satir bulunursa gorunur alana aliniyor |
+
+| 2026-06-05 | v0.52 | OK | Audit log secili kayda hizli odak aksiyonu eklendi; build + self-test OK |
+

@@ -513,3 +513,11 @@ v0.12 sonuÃ§ notu:
 93. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 94. Siradaki mantikli is: secili kayda hizli odaklanma veya export gecmisi rahatliklari eklemek.
 
+
+
+95. v0.52 olarak audit log filtre paneline Secili kayda git dugmesi eklendi.
+96. Dugme secili audit log kaydini grid icinde tekrar gorunur alana getiriyor; filtre yeniden uygulandiginda korunan secim de otomatik odaklaniyor.
+97. Smoke test: dotnet build -c Release OK.
+98. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+99. Siradaki mantikli is: export gecmisi rahatliklari veya son kullanilan kayda donus yardimcilari eklemek.
+

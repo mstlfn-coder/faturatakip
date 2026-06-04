@@ -332,6 +332,12 @@
                             Padding="12,6"
                             Margin="0,0,10,0"
                             Click="ResetAuditLogFiltersButton_Click" />
+                    <Button x:Name="FocusSelectedAuditLogButton"
+                            Content="Secili kayda git"
+                            MinWidth="128"
+                            Padding="12,6"
+                            Margin="0,0,10,0"
+                            Click="FocusSelectedAuditLogButton_Click" />
                     <TextBlock x:Name="AuditLogHintText"
                                Text=""
                                VerticalAlignment="Center"
