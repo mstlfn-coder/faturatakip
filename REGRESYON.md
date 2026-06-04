@@ -665,3 +665,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
 | 2026-06-05 | v0.54 | OK | Audit log export listesi yenileme rahatligi eklendi; build + self-test OK |
 
+
+## v0.55 - Islem Gecmisi Export Listesi Temizleme
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Listeyi temizle dugmesi var | OK | ClearAuditLogExportsButton export araclari icinde gosteriliyor |
+| Yalniz audit-log dosyalari siliniyor | OK | Directory.GetFiles(exportsDir, "audit-log-*.*") kullaniliyor |
+| Temizleme sonrasi liste tazeleniyor | OK | RefreshRecentAuditLogExports tekrar cagiriliyor |
+
+| 2026-06-05 | v0.55 | OK | Audit log export listesi temizleme rahatligi eklendi; build + self-test OK |
+
