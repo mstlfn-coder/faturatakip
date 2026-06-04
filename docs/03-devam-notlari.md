@@ -551,3 +551,10 @@ v0.12 sonuÃ§ notu:
 120. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 121. Siradaki mantikli is: son kullanilan kayda donus veya son N kaydi koruyup digerlerini temizleme yardimcilari eklemek.
 
+122. v0.57 olarak audit log export gecmisine Eskileri temizle dugmesi eklendi.
+123. Bu akis en yeni 5 audit export dosyasini koruyor; sadece daha eski `audit-log-*` dosyalari siliniyor.
+124. Temizlik sonrasi export listesi yeniden yukleniyor ve ipucu metni kac dosyanin silindigini belirtiyor.
+125. Smoke test: dotnet build -c Release OK.
+126. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+127. Siradaki mantikli is: son kullanilan kayda donus veya export gecmisi icin daha zengin secim/etiket yardimcilari eklemek.
+

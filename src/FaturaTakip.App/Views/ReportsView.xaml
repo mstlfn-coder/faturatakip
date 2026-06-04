@@ -741,6 +741,12 @@
                                         Padding="10,4"
                                         Margin="0,0,8,0"
                                         Click="DeleteSelectedAuditLogExportButton_Click" />
+                                <Button x:Name="TrimAuditLogExportsButton"
+                                        Content="Eskileri temizle"
+                                        MinWidth="118"
+                                        Padding="10,4"
+                                        Margin="0,0,8,0"
+                                        Click="TrimAuditLogExportsButton_Click" />
                                 <Button x:Name="OpenSelectedAuditLogExportButton"
                                         Content="Listeden ac"
                                         MinWidth="112"

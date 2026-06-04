@@ -483,3 +483,8 @@ Her faz bittiğinde:
 - v0.56 tamamlandi: audit log export gecmisinde secili dosyayi silme rahatligi eklendi.
 - Siradaki mantikli faz: son kullanilan kayda donus veya son N kaydi koruyup digerlerini temizleme yardimcilari.
 
+## Son Guncelleme (2026-06-05 / v0.57)
+
+- v0.57 tamamlandi: audit log export gecmisinde son 5 kaydi koruyup eskileri temizleme rahatligi eklendi.
+- Siradaki mantikli faz: son kullanilan kayda donus veya export gecmisi icin daha zengin secim/etiket yardimcilari.
+
