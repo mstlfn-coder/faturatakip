@@ -416,6 +416,40 @@ public partial class ReportsView : UserControl
             : $"Audit log export listesi guncellendi ({_recentAuditLogExports.Count} dosya).";
     }
 
+    private void ClearAuditLogExportsButton_Click(object sender, RoutedEventArgs e)
+    {
+        var exportsDir = Path.Combine(AppPaths.Resolve().RootDirectory, "exports");
+        Directory.CreateDirectory(exportsDir);
+
+        var files = Directory.GetFiles(exportsDir, "audit-log-*.*", SearchOption.TopDirectoryOnly);
+        if (files.Length == 0)
+        {
+            RefreshRecentAuditLogExports(exportsDir);
+            AuditLogHintText.Text = "Temizlenecek audit log export dosyasi bulunmadi.";
+            return;
+        }
+
+        var deletedCount = 0;
+        foreach (var file in files)
+        {
+            try
+            {
+                File.Delete(file);
+                deletedCount++;
+            }
+            catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
+            {
+                RefreshRecentAuditLogExports(exportsDir);
+                AuditLogHintText.Text = $"Liste kismen temizlendi ({deletedCount}/{files.Length}). Son hata: {exception.Message}";
+                return;
+            }
+        }
+
+        _lastAuditLogExportPath = null;
+        RefreshRecentAuditLogExports(exportsDir);
+        AuditLogHintText.Text = $"Audit log export listesi temizlendi ({deletedCount} dosya silindi).";
+    }
+
     private void ExportReportButton_Click(object sender, RoutedEventArgs e)
     {
         try
