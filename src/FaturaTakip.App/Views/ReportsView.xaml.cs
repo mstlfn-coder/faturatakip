@@ -485,6 +485,47 @@ public partial class ReportsView : UserControl
         }
     }
 
+    private void TrimAuditLogExportsButton_Click(object sender, RoutedEventArgs e)
+    {
+        var exportsDir = Path.Combine(AppPaths.Resolve().RootDirectory, "exports");
+        Directory.CreateDirectory(exportsDir);
+
+        var filesToDelete = Directory.GetFiles(exportsDir, "audit-log-*.*", SearchOption.TopDirectoryOnly)
+            .OrderByDescending(path => File.GetLastWriteTimeUtc(path))
+            .Skip(5)
+            .ToList();
+
+        if (filesToDelete.Count == 0)
+        {
+            RefreshRecentAuditLogExports(exportsDir);
+            AuditLogHintText.Text = "Temizlenecek eski audit log export dosyasi bulunmadi.";
+            return;
+        }
+
+        var deletedCount = 0;
+        foreach (var file in filesToDelete)
+        {
+            try
+            {
+                File.Delete(file);
+                deletedCount++;
+                if (string.Equals(_lastAuditLogExportPath, file, StringComparison.OrdinalIgnoreCase))
+                {
+                    _lastAuditLogExportPath = null;
+                }
+            }
+            catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
+            {
+                RefreshRecentAuditLogExports(exportsDir);
+                AuditLogHintText.Text = $"Eski export temizligi kismen tamamlandi ({deletedCount}/{filesToDelete.Count}). Son hata: {exception.Message}";
+                return;
+            }
+        }
+
+        RefreshRecentAuditLogExports(exportsDir);
+        AuditLogHintText.Text = $"Eski audit log export dosyalari temizlendi ({deletedCount} dosya silindi, son 5 korundu).";
+    }
+
     private void ExportReportButton_Click(object sender, RoutedEventArgs e)
     {
         try

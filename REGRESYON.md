@@ -691,3 +691,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
 | 2026-06-05 | v0.56 | OK | Audit log export gecmisinde secili dosyayi silme rahatligi eklendi; build + self-test OK |
 
+
+## v0.57 - Islem Gecmisi Export Eskileri Temizle
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Eskileri temizle dugmesi var | OK | TrimAuditLogExportsButton export araclari icinde gosteriliyor |
+| Son 5 kayit korunuyor | OK | OrderByDescending(...).Skip(5) ile sadece daha eski dosyalar siliniyor |
+| Temizlik sonrasi liste tazeleniyor | OK | RefreshRecentAuditLogExports tekrar cagiriliyor |
+
+| 2026-06-05 | v0.57 | OK | Audit log export gecmisinde son 5 kaydi koruyup eskileri temizleme rahatligi eklendi; build + self-test OK |
+
