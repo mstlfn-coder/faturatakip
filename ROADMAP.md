@@ -440,3 +440,9 @@ Her faz bittiğinde:
 - v0.49 tamamlandi: audit log filtre tercihleri yeniden acilista hatirlanir hale getirildi.
 - Siradaki mantikli faz: filtreleri tek tikla sifirlama veya secili kayda hizli odaklanma aksiyonlari.
 
+
+## Son Guncelleme (2026-06-05 / v0.50)
+
+- v0.50 tamamlandi: audit log ekranina filtreleri tek tikla sifirlama dugmesi eklendi.
+- Siradaki mantikli faz: secili kayda hizli odaklanma veya son disa aktarilan dosyayi acma aksiyonlari.
+

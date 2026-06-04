@@ -1,21 +1,21 @@
-# Kurum Fatura Takip ProgramÃ„Â±
+# Kurum Fatura Takip ProgramÃƒâ€Ã‚Â±
 
-Bu depo, kurum aboneliklerine ait elektrik, su, doÃ„Å¸algaz, telefon, internet ve benzeri faturalarÃ„Â±n takip edilmesi iÃƒÂ§in geliÃ…Å¸tirilecek masaÃƒÂ¼stÃƒÂ¼ uygulamanÃ„Â±n ÃƒÂ§alÃ„Â±Ã…Å¸ma alanÃ„Â±dÃ„Â±r.
+Bu depo, kurum aboneliklerine ait elektrik, su, doÃƒâ€Ã…Â¸algaz, telefon, internet ve benzeri faturalarÃƒâ€Ã‚Â±n takip edilmesi iÃƒÆ’Ã‚Â§in geliÃƒâ€¦Ã…Â¸tirilecek masaÃƒÆ’Ã‚Â¼stÃƒÆ’Ã‚Â¼ uygulamanÃƒâ€Ã‚Â±n ÃƒÆ’Ã‚Â§alÃƒâ€Ã‚Â±Ãƒâ€¦Ã…Â¸ma alanÃƒâ€Ã‚Â±dÃƒâ€Ã‚Â±r.
 
-## GÃƒÂ¼ncel Durum
+## GÃƒÆ’Ã‚Â¼ncel Durum
 
-- Proje klasÃƒÂ¶rÃƒÂ¼: `C:\Users\Asus\Documents\FATURA TAKÃ„Â°P PROGRAMI`
-- Git deposu hazÃ„Â±r.
-- `v0.1` - `v0.18` arasÃ„Â± temel uygulama, raporlar ve Excel/PDF export altyapÃ„Â±sÃ„Â± tamamlandÃ„Â±.
-- `v0.19` manuel gÃƒÂ¼venli yedekleme eklendi (`--create-backup` + UI).
-- `v0.20` tutarlÃ„Â±lÃ„Â±k denetimi eklendi (`Raporlar > TutarlÃ„Â±lÃ„Â±k` + `--consistency-check`).
-- `v0.21` gÃƒÂ¼venli yedek geri yÃƒÂ¼kleme eklendi (`--restore-backup` + `--restore-target`).
-- `v0.22` backup ekranÃ„Â±na UI restore akÃ„Â±Ã…Å¸Ã„Â± eklendi.
-- `v0.23` rapor export Ã…Å¸ablon hizalama ve `YÃ„Â±llÃ„Â±k Liste` sekmesi tamamlandÃ„Â±.
-- `v0.24` derleme uyarÃ„Â±larÃ„Â± temizlendi.
-- `v0.25` - `v0.35` arasÃ„Â± PDF rapor yerleÃ…Å¸imi ÃƒÂ¶rnek matbu dÃƒÂ¼zene yaklaÃ…Å¸tÃ„Â±rÃ„Â±ldÃ„Â± ve gÃƒÂ¶rsel QA yapÃ„Â±ldÃ„Â±.
-- `v0.36` restore iÃƒÂ§in "boÃ…Å¸ olmayan hedef reddedilir" negatif smoke testi self-test kapsamÃ„Â±na alÃ„Â±ndÃ„Â±.
-- `v0.37` audit log temeli eklendi; kritik veri iÃ…Å¸lemleri artÃ„Â±k `audit_logs` tablosuna kaydediliyor.
+- Proje klasÃƒÆ’Ã‚Â¶rÃƒÆ’Ã‚Â¼: `C:\Users\Asus\Documents\FATURA TAKÃƒâ€Ã‚Â°P PROGRAMI`
+- Git deposu hazÃƒâ€Ã‚Â±r.
+- `v0.1` - `v0.18` arasÃƒâ€Ã‚Â± temel uygulama, raporlar ve Excel/PDF export altyapÃƒâ€Ã‚Â±sÃƒâ€Ã‚Â± tamamlandÃƒâ€Ã‚Â±.
+- `v0.19` manuel gÃƒÆ’Ã‚Â¼venli yedekleme eklendi (`--create-backup` + UI).
+- `v0.20` tutarlÃƒâ€Ã‚Â±lÃƒâ€Ã‚Â±k denetimi eklendi (`Raporlar > TutarlÃƒâ€Ã‚Â±lÃƒâ€Ã‚Â±k` + `--consistency-check`).
+- `v0.21` gÃƒÆ’Ã‚Â¼venli yedek geri yÃƒÆ’Ã‚Â¼kleme eklendi (`--restore-backup` + `--restore-target`).
+- `v0.22` backup ekranÃƒâ€Ã‚Â±na UI restore akÃƒâ€Ã‚Â±Ãƒâ€¦Ã…Â¸Ãƒâ€Ã‚Â± eklendi.
+- `v0.23` rapor export Ãƒâ€¦Ã…Â¸ablon hizalama ve `YÃƒâ€Ã‚Â±llÃƒâ€Ã‚Â±k Liste` sekmesi tamamlandÃƒâ€Ã‚Â±.
+- `v0.24` derleme uyarÃƒâ€Ã‚Â±larÃƒâ€Ã‚Â± temizlendi.
+- `v0.25` - `v0.35` arasÃƒâ€Ã‚Â± PDF rapor yerleÃƒâ€¦Ã…Â¸imi ÃƒÆ’Ã‚Â¶rnek matbu dÃƒÆ’Ã‚Â¼zene yaklaÃƒâ€¦Ã…Â¸tÃƒâ€Ã‚Â±rÃƒâ€Ã‚Â±ldÃƒâ€Ã‚Â± ve gÃƒÆ’Ã‚Â¶rsel QA yapÃƒâ€Ã‚Â±ldÃƒâ€Ã‚Â±.
+- `v0.36` restore iÃƒÆ’Ã‚Â§in "boÃƒâ€¦Ã…Â¸ olmayan hedef reddedilir" negatif smoke testi self-test kapsamÃƒâ€Ã‚Â±na alÃƒâ€Ã‚Â±ndÃƒâ€Ã‚Â±.
+- `v0.37` audit log temeli eklendi; kritik veri iÃƒâ€¦Ã…Â¸lemleri artÃƒâ€Ã‚Â±k `audit_logs` tablosuna kaydediliyor.
 - `v0.38` `Raporlar > Islem Gecmisi` sekmesi eklendi; audit log kayitlari artik UI ve export uzerinden gorulebiliyor.
 - `v0.39` `Islem Gecmisi` sekmesine islem turu ve tarih filtreleri eklendi.
 - `v0.40` `Islem Gecmisi` icin varlik, kullanici ve metin arama filtreleri eklendi.
@@ -27,16 +27,16 @@ Bu depo, kurum aboneliklerine ait elektrik, su, doÃ„Å¸algaz, telefon, inter
 - `v0.46` audit log detayinda gorunen diff tablosunu topluca kopyalama aksiyonu eklendi.
 - `v0.47` audit log detayina `TXT` ve `JSON` disa aktarma aksiyonlari eklendi.
 - `v0.48` audit log araclarina `exports` klasorunu tek tikla acma aksiyonu eklendi.
-- Solution dosyasÃ„Â±: `FaturaTakip.sln`
+- Solution dosyasÃƒâ€Ã‚Â±: `FaturaTakip.sln`
 - Uygulama projesi: `src/FaturaTakip.App/FaturaTakip.App.csproj`
-- GeliÃ…Å¸tirme planÃ„Â± proje iÃƒÂ§ine alÃ„Â±ndÃ„Â±: `docs/01-gelistirme-plani.md`
-- Roadmap oluÃ…Å¸turuldu: `ROADMAP.md`
-- Regresyon kontrol dosyasÃ„Â± oluÃ…Å¸turuldu: `REGRESYON.md`
-- Yeni Codex chatlerinde devam edebilmek iÃƒÂ§in kÃ„Â±lavuz ve devam notlarÃ„Â± eklendi.
+- GeliÃƒâ€¦Ã…Â¸tirme planÃƒâ€Ã‚Â± proje iÃƒÆ’Ã‚Â§ine alÃƒâ€Ã‚Â±ndÃƒâ€Ã‚Â±: `docs/01-gelistirme-plani.md`
+- Roadmap oluÃƒâ€¦Ã…Â¸turuldu: `ROADMAP.md`
+- Regresyon kontrol dosyasÃƒâ€Ã‚Â± oluÃƒâ€¦Ã…Â¸turuldu: `REGRESYON.md`
+- Yeni Codex chatlerinde devam edebilmek iÃƒÆ’Ã‚Â§in kÃƒâ€Ã‚Â±lavuz ve devam notlarÃƒâ€Ã‚Â± eklendi.
 
-## Yeni Codex Chatinde Ã„Â°lk Okunacak Dosyalar
+## Yeni Codex Chatinde Ãƒâ€Ã‚Â°lk Okunacak Dosyalar
 
-Yeni bir Codex sohbetinde bu projeye devam ederken ÃƒÂ¶nce Ã…Å¸u dosyalar okunmalÃ„Â±:
+Yeni bir Codex sohbetinde bu projeye devam ederken ÃƒÆ’Ã‚Â¶nce Ãƒâ€¦Ã…Â¸u dosyalar okunmalÃƒâ€Ã‚Â±:
 
 1. `README.md`
 2. `docs/00-codex-devam-kilavuzu.md`
@@ -45,40 +45,40 @@ Yeni bir Codex sohbetinde bu projeye devam ederken ÃƒÂ¶nce Ã…Å¸u dosyal
 5. `REGRESYON.md`
 6. `docs/01-gelistirme-plani.md`
 
-ArdÃ„Â±ndan terminalde durum kontrolÃƒÂ¼ yapÃ„Â±lmalÃ„Â±:
+ArdÃƒâ€Ã‚Â±ndan terminalde durum kontrolÃƒÆ’Ã‚Â¼ yapÃƒâ€Ã‚Â±lmalÃƒâ€Ã‚Â±:
 
 ```powershell
 git status --short --branch
 ```
 
-## Yol ve Dosya AdÃ„Â± Ã„Â°lkesi
+## Yol ve Dosya AdÃƒâ€Ã‚Â± Ãƒâ€Ã‚Â°lkesi
 
-Proje klasÃƒÂ¶rÃƒÂ¼nÃƒÂ¼n adÃ„Â± TÃƒÂ¼rkÃƒÂ§e karakter iÃƒÂ§erdiÃ„Å¸i iÃƒÂ§in PowerShell komutlarÃ„Â±nda gerekirse `-LiteralPath` kullanÃ„Â±lmalÃ„Â±. Proje iÃƒÂ§indeki yeni dosya ve klasÃƒÂ¶r adlarÃ„Â± mÃƒÂ¼mkÃƒÂ¼n olduÃ„Å¸unca ASCII tutulacak.
+Proje klasÃƒÆ’Ã‚Â¶rÃƒÆ’Ã‚Â¼nÃƒÆ’Ã‚Â¼n adÃƒâ€Ã‚Â± TÃƒÆ’Ã‚Â¼rkÃƒÆ’Ã‚Â§e karakter iÃƒÆ’Ã‚Â§erdiÃƒâ€Ã…Â¸i iÃƒÆ’Ã‚Â§in PowerShell komutlarÃƒâ€Ã‚Â±nda gerekirse `-LiteralPath` kullanÃƒâ€Ã‚Â±lmalÃƒâ€Ã‚Â±. Proje iÃƒÆ’Ã‚Â§indeki yeni dosya ve klasÃƒÆ’Ã‚Â¶r adlarÃƒâ€Ã‚Â± mÃƒÆ’Ã‚Â¼mkÃƒÆ’Ã‚Â¼n olduÃƒâ€Ã…Â¸unca ASCII tutulacak.
 
-Ãƒâ€“rnek:
+ÃƒÆ’Ã¢â‚¬â€œrnek:
 
 ```powershell
-Get-ChildItem -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKÃ„Â°P PROGRAMI'
+Get-ChildItem -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKÃƒâ€Ã‚Â°P PROGRAMI'
 ```
 
 ## Son Tamamlanan Faz
 
-Son tamamlanan geliştirme fazı `v0.49 - Islem Gecmisi Filtre Tercihleri`.
+Son tamamlanan geliştirme fazı `v0.50 - Islem Gecmisi Filtre Sifirlama`.
 
-Bu fazda audit log filtreleri (islem, varlik, kullanici, arama, tarih araligi ve sadece degisen alanlar secimi) config dosyasina yazilarak yeni acilista geri yuklenir hale getirildi.
+Bu fazda audit log ekranina `Filtreleri sifirla` dugmesi eklendi; secili filtreler tek tikla varsayilan duruma donuyor ve kayitli preference dosyasi da buna gore guncelleniyor.
 
-## SÃ„Â±radaki Ã„Â°Ã…Å¸
+## SÃƒâ€Ã‚Â±radaki Ãƒâ€Ã‚Â°Ãƒâ€¦Ã…Â¸
 
-Sıradaki mantıklı iş: audit log ekranina filtreleri tek tikla sifirlama veya secili kayda hizli odaklanma gibi kullanim rahatligi iyilestirmeleri eklemek.
+Sıradaki mantıklı iş: audit log ekranina secili kayda hizli odaklanma veya son disa aktarilan dosyayi acma gibi kullanim rahatligi iyilestirmeleri eklemek.
 
-Bu noktadan sonra yeni chatlerde ÃƒÂ¶nce `docs/03-devam-notlari.md` ve `REGRESYON.md` okunmalÃ„Â±; en gÃƒÂ¼ncel durum artÃ„Â±k bu dosyalarda tutuluyor.
+Bu noktadan sonra yeni chatlerde ÃƒÆ’Ã‚Â¶nce `docs/03-devam-notlari.md` ve `REGRESYON.md` okunmalÃƒâ€Ã‚Â±; en gÃƒÆ’Ã‚Â¼ncel durum artÃƒâ€Ã‚Â±k bu dosyalarda tutuluyor.
 
-## Ãƒâ€¡alÃ„Â±Ã…Å¸ma KuralÃ„Â±
+## ÃƒÆ’Ã¢â‚¬Â¡alÃƒâ€Ã‚Â±Ãƒâ€¦Ã…Â¸ma KuralÃƒâ€Ã‚Â±
 
-Her faz sonunda Ã…Å¸u dosyalar gÃƒÂ¼ncellenmeli:
+Her faz sonunda Ãƒâ€¦Ã…Â¸u dosyalar gÃƒÆ’Ã‚Â¼ncellenmeli:
 
 - `docs/03-devam-notlari.md`
 - `ROADMAP.md`
 - `REGRESYON.md`
 
-BÃƒÂ¶ylece yeni Codex chatine geÃƒÂ§ildiÃ„Å¸inde nerede kalÃ„Â±ndÃ„Â±Ã„Å¸Ã„Â± dosyalardan anlaÃ…Å¸Ã„Â±lÃ„Â±r.
+BÃƒÆ’Ã‚Â¶ylece yeni Codex chatine geÃƒÆ’Ã‚Â§ildiÃƒâ€Ã…Â¸inde nerede kalÃƒâ€Ã‚Â±ndÃƒâ€Ã‚Â±Ãƒâ€Ã…Â¸Ãƒâ€Ã‚Â± dosyalardan anlaÃƒâ€¦Ã…Â¸Ãƒâ€Ã‚Â±lÃƒâ€Ã‚Â±r.

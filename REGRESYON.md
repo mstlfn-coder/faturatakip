@@ -602,3 +602,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Degisen alan filtresi de korunuyor | OK | `ChangedOnly` secimi de ayni preference kaydinda tutuluyor |
 
 | 2026-06-05 | v0.49 | OK | Audit log filtre tercihleri kalici hale getirildi; build + self-test OK |
+
+## v0.50 - Islem Gecmisi Filtre Sifirlama
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| Filtreleri sifirla dugmesi var | OK | `ResetAuditLogFiltersButton` audit log filtre panelinde gosteriliyor |
+| Tum filtre alanlari temizleniyor | OK | Islem, varlik, kullanici, tarih, arama ve `ChangedOnly` secimi varsayilana donuyor |
+| Preference kaydi da guncelleniyor | OK | Sifirlama sonrasi config dosyasi `Default` filtrelerle yeniden yaziliyor |
+
+| 2026-06-05 | v0.50 | OK | Audit log filtre sifirlama aksiyonu eklendi; build + self-test OK |

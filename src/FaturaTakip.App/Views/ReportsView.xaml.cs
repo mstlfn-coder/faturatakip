@@ -246,6 +246,20 @@ public partial class ReportsView : UserControl
         SaveAuditLogFilterPreferences();
     }
 
+    private void ResetAuditLogFiltersButton_Click(object sender, RoutedEventArgs e)
+    {
+        _auditLogFilterPreferences = AuditLogFilterPreferences.Default;
+        ResetAuditLogFilterInputs();
+
+        if (_activeTab == ReportTab.AuditLog)
+        {
+            ApplyTab(ReportTab.AuditLog);
+        }
+
+        SaveAuditLogFilterPreferences();
+        AuditLogHintText.Text = "Audit log filtreleri sifirlandi.";
+    }
+
     private void AuditLogGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (AuditLogGrid.SelectedItem is AuditLogRow row)
@@ -2458,6 +2472,37 @@ public partial class ReportsView : UserControl
             {
                 AuditLogEndDateInput.SelectedDate = start.Date;
             }
+        }
+        finally
+        {
+            _isRefreshingAuditLogFilters = false;
+        }
+    }
+
+    private void ResetAuditLogFilterInputs()
+    {
+        _isRefreshingAuditLogFilters = true;
+        try
+        {
+            if (AuditLogActionInput.Items.Count > 0)
+            {
+                AuditLogActionInput.SelectedIndex = 0;
+            }
+
+            if (AuditLogEntityInput.Items.Count > 0)
+            {
+                AuditLogEntityInput.SelectedIndex = 0;
+            }
+
+            if (AuditLogUserInput.Items.Count > 0)
+            {
+                AuditLogUserInput.SelectedIndex = 0;
+            }
+
+            AuditLogStartDateInput.SelectedDate = null;
+            AuditLogEndDateInput.SelectedDate = null;
+            AuditLogSearchInput.Text = string.Empty;
+            AuditLogDiffChangedOnlyCheckBox.IsChecked = false;
         }
         finally
         {
