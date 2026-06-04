@@ -506,3 +506,10 @@ v0.12 sonuÃ§ notu:
 88. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 89. Siradaki mantikli is: secili kayda hizli odaklanma veya son disa aktarilan dosyayi acma aksiyonlari eklemek.
 
+
+90. v0.51 olarak audit log araclarina `Son dosyayi ac` dugmesi eklendi.
+91. Disa aktarma sonrasi son yazilan dosya yolu hatirlaniyor; oturumda bilgi yoksa `exports` altindaki en yeni `audit-log-*` dosyasi bulunup aciliyor.
+92. Smoke test: dotnet build -c Release OK.
+93. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+94. Siradaki mantikli is: secili kayda hizli odaklanma veya export gecmisi rahatliklari eklemek.
+

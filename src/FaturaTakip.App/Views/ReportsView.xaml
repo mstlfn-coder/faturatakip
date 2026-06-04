@@ -711,6 +711,12 @@
                                         Padding="10,4"
                                         Margin="0,0,8,0"
                                         Click="OpenAuditLogExportsButton_Click" />
+                                <Button x:Name="OpenLastAuditLogExportButton"
+                                        Content="Son dosyayi ac"
+                                        MinWidth="128"
+                                        Padding="10,4"
+                                        Margin="0,0,8,0"
+                                        Click="OpenLastAuditLogExportButton_Click" />
                                 <Button x:Name="ExportAuditLogTxtButton"
                                         Content="TXT disa aktar"
                                         MinWidth="118"
