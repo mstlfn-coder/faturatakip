@@ -2189,6 +2189,16 @@ public partial class ReportsView : UserControl
             .Replace("\t", " ", StringComparison.Ordinal);
     }
 
+    private static string FormatAuditExportFileTypeLabel(string extension)
+    {
+        return extension.ToLowerInvariant() switch
+        {
+            ".json" => "JSON",
+            ".txt" => "TXT",
+            _ => extension.TrimStart('.').ToUpperInvariant()
+        };
+    }
+
     private string? ResolveLastAuditLogExportPath(string exportsDir)
     {
         if (!string.IsNullOrWhiteSpace(_lastAuditLogExportPath) && File.Exists(_lastAuditLogExportPath))
@@ -2208,7 +2218,9 @@ public partial class ReportsView : UserControl
                 .Take(5)
                 .Select(path => new AuditLogExportItem(
                     FilePath: path,
-                    DisplayName: $"{Path.GetFileName(path)} ({File.GetLastWriteTime(path):dd.MM HH:mm})"))
+                    FileName: Path.GetFileName(path),
+                    FileTypeLabel: FormatAuditExportFileTypeLabel(Path.GetExtension(path)),
+                    TimestampLabel: File.GetLastWriteTime(path).ToString("dd.MM HH:mm", TurkishCulture)))
                 .ToList()
             : [];
 
@@ -2971,6 +2983,11 @@ public partial class ReportsView : UserControl
 
     private sealed record AuditLogExportItem(
         string FilePath,
-        string DisplayName);
+        string FileName,
+        string FileTypeLabel,
+        string TimestampLabel)
+    {
+        public string DisplayName => $"{TimestampLabel} {FileName}";
+    }
 }
 

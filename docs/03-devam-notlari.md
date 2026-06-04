@@ -558,3 +558,9 @@ v0.12 sonuÃ§ notu:
 126. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 127. Siradaki mantikli is: son kullanilan kayda donus veya export gecmisi icin daha zengin secim/etiket yardimcilari eklemek.
 
+128. v0.58 olarak audit log export gecmisi listesine dosya tipi etiketi ve zaman bilgisi daha okunur bicimde eklendi.
+129. ComboBox item template icinde JSON/TXT tipi, zaman damgasi ve dosya adi ayri ayri gosteriliyor; tam yol tooltip olarak korunuyor.
+130. Smoke test: dotnet build -c Release OK.
+131. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+132. Siradaki mantikli is: son kullanilan kayda donus veya export gecmisi icin daha zengin secim/etiket yardimcilari eklemek.
+
