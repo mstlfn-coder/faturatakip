@@ -614,3 +614,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Preference kaydi da guncelleniyor | OK | Sifirlama sonrasi config dosyasi `Default` filtrelerle yeniden yaziliyor |
 
 | 2026-06-05 | v0.50 | OK | Audit log filtre sifirlama aksiyonu eklendi; build + self-test OK |
+
+## v0.51 - Islem Gecmisi Son Dosya Acma
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| Son dosyayi ac dugmesi var | OK | `OpenLastAuditLogExportButton` audit log araclari icinde gosteriliyor |
+| Son export yolu hatirlaniyor | OK | `ExportAuditLogDetail` son yazilan dosya yolunu `_lastAuditLogExportPath` icinde tutuyor |
+| Geriye donuk bulma var | OK | Oturumda yol yoksa `exports` altindaki en yeni `audit-log-*` dosyasi aciliyor |
+
+| 2026-06-05 | v0.51 | OK | Audit log son disa aktarilan dosyayi acma aksiyonu eklendi; build + self-test OK |

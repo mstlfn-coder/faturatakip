@@ -38,6 +38,7 @@ public partial class ReportsView : UserControl
     private IReadOnlyList<AuditLog> _auditLogs = Array.Empty<AuditLog>();
     private AuditLog? _selectedAuditLog;
     private AuditLogFilterPreferences _auditLogFilterPreferences = AuditLogFilterPreferences.Default;
+    private string? _lastAuditLogExportPath;
     private ReportTab _activeTab = ReportTab.Unpaid;
     private Dictionary<long, List<Payment>> _paymentsByInvoice = new();
     private string _rootDirectory = string.Empty;
@@ -343,6 +344,35 @@ public partial class ReportsView : UserControl
         catch (Exception exception) when (exception is Win32Exception or InvalidOperationException or IOException or UnauthorizedAccessException)
         {
             AuditLogHintText.Text = $"Klasor acilamadi: {exception.Message}";
+        }
+    }
+
+    private void OpenLastAuditLogExportButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var paths = AppPaths.Resolve();
+            var exportsDir = Path.Combine(paths.RootDirectory, "exports");
+            Directory.CreateDirectory(exportsDir);
+
+            var targetPath = ResolveLastAuditLogExportPath(exportsDir);
+            if (string.IsNullOrWhiteSpace(targetPath) || !File.Exists(targetPath))
+            {
+                AuditLogHintText.Text = "Acilacak audit log dosyasi bulunamadi.";
+                return;
+            }
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = targetPath,
+                UseShellExecute = true
+            });
+
+            AuditLogHintText.Text = $"Dosya acildi: {Path.GetFileName(targetPath)}";
+        }
+        catch (Exception exception) when (exception is Win32Exception or InvalidOperationException or IOException or UnauthorizedAccessException)
+        {
+            AuditLogHintText.Text = $"Dosya acilamadi: {exception.Message}";
         }
     }
 
@@ -1962,6 +1992,7 @@ public partial class ReportsView : UserControl
                 File.WriteAllText(filePath, text);
             }
 
+            _lastAuditLogExportPath = filePath;
             AuditLogHintText.Text = $"Disa aktarildi: exports/{fileName}";
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidOperationException)
@@ -2000,6 +2031,20 @@ public partial class ReportsView : UserControl
             .Replace("\r\n", " | ", StringComparison.Ordinal)
             .Replace("\n", " | ", StringComparison.Ordinal)
             .Replace("\t", " ", StringComparison.Ordinal);
+    }
+
+    private string? ResolveLastAuditLogExportPath(string exportsDir)
+    {
+        if (!string.IsNullOrWhiteSpace(_lastAuditLogExportPath) && File.Exists(_lastAuditLogExportPath))
+        {
+            return _lastAuditLogExportPath;
+        }
+
+        return Directory.Exists(exportsDir)
+            ? Directory.GetFiles(exportsDir, "audit-log-*.*", SearchOption.TopDirectoryOnly)
+                .OrderByDescending(path => File.GetLastWriteTimeUtc(path))
+                .FirstOrDefault()
+            : null;
     }
 
     private static string FormatDelta(decimal value)

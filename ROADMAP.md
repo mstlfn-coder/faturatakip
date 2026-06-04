@@ -446,3 +446,9 @@ Her faz bittiğinde:
 - v0.50 tamamlandi: audit log ekranina filtreleri tek tikla sifirlama dugmesi eklendi.
 - Siradaki mantikli faz: secili kayda hizli odaklanma veya son disa aktarilan dosyayi acma aksiyonlari.
 
+
+## Son Guncelleme (2026-06-05 / v0.51)
+
+- v0.51 tamamlandi: audit log araclarina son disa aktarilan dosyayi acma aksiyonu eklendi.
+- Siradaki mantikli faz: secili kayda hizli odaklanma veya export geÃ§misi rahatliklari.
+
