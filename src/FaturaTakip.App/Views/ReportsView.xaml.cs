@@ -2,6 +2,7 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Linq;
+using System.Text;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
@@ -261,6 +262,25 @@ public partial class ReportsView : UserControl
     private void CopyNewAuditLogButton_Click(object sender, RoutedEventArgs e)
     {
         CopyAuditLogText(AuditLogNewValueTextBox.Text, "Yeni deger kopyalandi.");
+    }
+
+    private void CopyAuditLogDiffButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_selectedAuditLog is null)
+        {
+            AuditLogHintText.Text = "Kopyalanacak diff kaydi yok.";
+            return;
+        }
+
+        var diffRows = (AuditLogDiffGrid.ItemsSource as IEnumerable<AuditLogDiffRow>)?.ToList() ?? new List<AuditLogDiffRow>();
+        if (diffRows.Count == 0)
+        {
+            AuditLogHintText.Text = "Kopyalanacak diff kaydi yok.";
+            return;
+        }
+
+        var clipboardText = BuildAuditLogDiffClipboardText(_selectedAuditLog, diffRows);
+        CopyAuditLogText(clipboardText, "Diff panoya kopyalandi.");
     }
 
     private void ExportReportButton_Click(object sender, RoutedEventArgs e)
@@ -1816,6 +1836,38 @@ public partial class ReportsView : UserControl
         {
             AuditLogHintText.Text = $"Kopyalama basarisiz: {exception.Message}";
         }
+    }
+
+    private static string BuildAuditLogDiffClipboardText(AuditLog log, IReadOnlyList<AuditLogDiffRow> diffRows)
+    {
+        var builder = new StringBuilder();
+        builder.AppendLine($"Islem: {FormatAuditActionLabel(log.ActionType)}");
+        builder.AppendLine($"Varlik: {FormatAuditTableLabel(log.TableName)}");
+        builder.AppendLine($"Kayit Id: {log.RecordId}");
+        builder.AppendLine($"Kullanici: {(string.IsNullOrWhiteSpace(log.UserName) ? "system" : log.UserName)}");
+        builder.AppendLine($"Tarih: {(log.CreatedAt == DateTimeOffset.MinValue ? "-" : log.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm", TurkishCulture))}");
+        if (!string.IsNullOrWhiteSpace(log.Description))
+        {
+            builder.AppendLine($"Aciklama: {log.Description}");
+        }
+
+        builder.AppendLine();
+        builder.AppendLine("Alan\tDurum\tEski\tYeni");
+
+        foreach (var row in diffRows)
+        {
+            builder.AppendLine($"{row.FieldName}\t{row.ChangeType}\t{NormalizeClipboardCell(row.OldValue)}\t{NormalizeClipboardCell(row.NewValue)}");
+        }
+
+        return builder.ToString().TrimEnd();
+    }
+
+    private static string NormalizeClipboardCell(string value)
+    {
+        return value
+            .Replace("\r\n", " | ", StringComparison.Ordinal)
+            .Replace("\n", " | ", StringComparison.Ordinal)
+            .Replace("\t", " ", StringComparison.Ordinal);
     }
 
     private static string FormatDelta(decimal value)

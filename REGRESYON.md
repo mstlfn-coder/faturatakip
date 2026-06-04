@@ -554,3 +554,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Kopyalama sonucu ipucu veriliyor | OK | Basari veya hata mesaji `AuditLogHintText` uzerinden gosteriliyor |
 
 | 2026-06-04 | v0.45 | OK | Audit log detay paneline kopyalama aksiyonlari eklendi; build + self-test OK |
+
+## v0.46 - Islem Gecmisi Diff Kopyalama
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| Tum diff kopyalanabiliyor | OK | `CopyAuditLogDiffButton` gorunen diff satirlarini topluca panoya yazar |
+| Filtrelenmis gorunum korunuyor | OK | `Sadece degisen alanlari goster` secimi acikken kopyalama ayni listeyi kullanir |
+| Diff meta bilgisi ekleniyor | OK | Islem, varlik, kayit id, kullanici ve tarih satirlari ustte yazdiriliyor |
+
+| 2026-06-04 | v0.46 | OK | Audit log diff toplu kopyalama aksiyonu eklendi; build + self-test OK |
