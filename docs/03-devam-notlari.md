@@ -474,3 +474,11 @@ v0.12 sonuÃ§ notu:
 64. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 65. Siradaki mantikli is: audit log detayini txt/json olarak disa aktarma aksiyonlari eklemek.
 
+
+66. v0.47 olarak audit log detay paneline `TXT disa aktar` ve `JSON disa aktar` dugmeleri eklendi.
+67. TXT cikti gorunen diff ozetini, JSON cikti ise secili kaydin ham detay + diff satirlarini `exports` klasorune yaziyor.
+68. Disa aktarma sonucu veya hata durumu `AuditLogHintText` uzerinden kullaniciya gosteriliyor.
+69. Smoke test: dotnet build -c Release OK.
+70. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+71. Siradaki mantikli is: audit log ciktilarina ac/kopyala klasor veya filtre tercihlerini hatirlama gibi kullanim rahatligi adimlari eklemek.
+

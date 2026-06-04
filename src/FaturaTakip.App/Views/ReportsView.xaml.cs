@@ -283,6 +283,16 @@ public partial class ReportsView : UserControl
         CopyAuditLogText(clipboardText, "Diff panoya kopyalandi.");
     }
 
+    private void ExportAuditLogTxtButton_Click(object sender, RoutedEventArgs e)
+    {
+        ExportAuditLogDetail("txt");
+    }
+
+    private void ExportAuditLogJsonButton_Click(object sender, RoutedEventArgs e)
+    {
+        ExportAuditLogDetail("json");
+    }
+
     private void ExportReportButton_Click(object sender, RoutedEventArgs e)
     {
         try
@@ -1835,6 +1845,75 @@ public partial class ReportsView : UserControl
         catch (Exception exception) when (exception is InvalidOperationException or ExternalException)
         {
             AuditLogHintText.Text = $"Kopyalama basarisiz: {exception.Message}";
+        }
+    }
+
+    private void ExportAuditLogDetail(string format)
+    {
+        if (_selectedAuditLog is null)
+        {
+            AuditLogHintText.Text = "Disa aktarilacak kayit yok.";
+            return;
+        }
+
+        var diffRows = (AuditLogDiffGrid.ItemsSource as IEnumerable<AuditLogDiffRow>)?.ToList() ?? new List<AuditLogDiffRow>();
+        if (diffRows.Count == 0)
+        {
+            AuditLogHintText.Text = "Disa aktarilacak diff kaydi yok.";
+            return;
+        }
+
+        try
+        {
+            var paths = AppPaths.Resolve();
+            var exportsDir = Path.Combine(paths.RootDirectory, "exports");
+            Directory.CreateDirectory(exportsDir);
+
+            var timestamp = DateTime.Now.ToString("yyyyMMdd-HHmmss", CultureInfo.InvariantCulture);
+            var baseName = $"audit-log-{_selectedAuditLog.Id}-{timestamp}";
+            var fileName = format == "json" ? $"{baseName}.json" : $"{baseName}.txt";
+            var filePath = Path.Combine(exportsDir, fileName);
+
+            if (format == "json")
+            {
+                var payload = new
+                {
+                    id = _selectedAuditLog.Id,
+                    action = FormatAuditActionLabel(_selectedAuditLog.ActionType),
+                    actionKey = _selectedAuditLog.ActionType,
+                    entity = FormatAuditTableLabel(_selectedAuditLog.TableName),
+                    entityKey = _selectedAuditLog.TableName,
+                    recordId = _selectedAuditLog.RecordId,
+                    user = string.IsNullOrWhiteSpace(_selectedAuditLog.UserName) ? "system" : _selectedAuditLog.UserName,
+                    createdAt = _selectedAuditLog.CreatedAt == DateTimeOffset.MinValue
+                        ? null
+                        : _selectedAuditLog.CreatedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss", TurkishCulture),
+                    description = _selectedAuditLog.Description,
+                    oldValue = AuditLogOldValueTextBox.Text,
+                    newValue = AuditLogNewValueTextBox.Text,
+                    diff = diffRows.Select(row => new
+                    {
+                        field = row.FieldName,
+                        changeType = row.ChangeType,
+                        oldValue = row.OldValue,
+                        newValue = row.NewValue
+                    }).ToList()
+                };
+
+                var json = JsonSerializer.Serialize(payload, new JsonSerializerOptions { WriteIndented = true });
+                File.WriteAllText(filePath, json);
+            }
+            else
+            {
+                var text = BuildAuditLogDiffClipboardText(_selectedAuditLog, diffRows);
+                File.WriteAllText(filePath, text);
+            }
+
+            AuditLogHintText.Text = $"Disa aktarildi: exports/{fileName}";
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidOperationException)
+        {
+            AuditLogHintText.Text = $"Disa aktarma basarisiz: {exception.Message}";
         }
     }
 

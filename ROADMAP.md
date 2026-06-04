@@ -422,3 +422,9 @@ Her faz bittiğinde:
 - v0.46 tamamlandi: audit log detayinda gorunen diff tablosunu topluca kopyalama aksiyonu eklendi.
 - Siradaki mantikli faz: detay txt/json disa aktarma aksiyonlari.
 
+
+## Son Guncelleme (2026-06-04 / v0.47)
+
+- v0.47 tamamlandi: audit log detayina TXT ve JSON disa aktarma aksiyonlari eklendi.
+- Siradaki mantikli faz: audit log ciktilarina ac/kopyala klasor gibi kullanim rahatligi aksiyonlari.
+
