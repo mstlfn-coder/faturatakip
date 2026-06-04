@@ -261,6 +261,23 @@ public partial class ReportsView : UserControl
         AuditLogHintText.Text = "Audit log filtreleri sifirlandi.";
     }
 
+    private void FocusSelectedAuditLogButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_selectedAuditLog is null)
+        {
+            AuditLogHintText.Text = "Odaklanacak secili kayit yok.";
+            return;
+        }
+
+        if (TryFocusSelectedAuditLog())
+        {
+            AuditLogHintText.Text = $"Kayit gorunur alana getirildi: {_selectedAuditLog.RecordId}";
+            return;
+        }
+
+        AuditLogHintText.Text = "Secili kayit mevcut filtrelerde gorunmuyor.";
+    }
+
     private void AuditLogGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (AuditLogGrid.SelectedItem is AuditLogRow row)
@@ -1638,6 +1655,10 @@ public partial class ReportsView : UserControl
                 var matchingRow = rows.FirstOrDefault(row => row.Source.Id == _selectedAuditLog.Id);
                 AuditLogGrid.SelectedItem = matchingRow;
                 ApplyAuditLogDetail(matchingRow?.Source);
+                if (matchingRow is not null)
+                {
+                    FocusAuditLogRow(matchingRow);
+                }
             }
             else if (rows.Count > 0)
             {
@@ -2579,6 +2600,28 @@ public partial class ReportsView : UserControl
         {
             // Filter preference save failures should never break the report screen.
         }
+    }
+
+    private bool TryFocusSelectedAuditLog()
+    {
+        var matchingRow = (AuditLogGrid.ItemsSource as IEnumerable<AuditLogRow>)?
+            .FirstOrDefault(row => row.Source.Id == _selectedAuditLog?.Id);
+
+        if (matchingRow is null)
+        {
+            return false;
+        }
+
+        AuditLogGrid.SelectedItem = matchingRow;
+        FocusAuditLogRow(matchingRow);
+        return true;
+    }
+
+    private void FocusAuditLogRow(AuditLogRow row)
+    {
+        AuditLogGrid.UpdateLayout();
+        AuditLogGrid.ScrollIntoView(row);
+        AuditLogGrid.Focus();
     }
 
     private long? GetSelectedInvoiceTypeId()
