@@ -704,3 +704,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
 | 2026-06-05 | v0.57 | OK | Audit log export gecmisinde son 5 kaydi koruyup eskileri temizleme rahatligi eklendi; build + self-test OK |
 
+
+## v0.58 - Islem Gecmisi Export Etiketli Liste Gorunumu
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Export listesinde tip etiketi var | OK | ComboBox item template icinde JSON/TXT tipi gosteriliyor |
+| Export listesinde zaman bilgisi var | OK | TimestampLabel dd.MM HH:mm biciminde gosteriliyor |
+| Dosya yolu tooltip olarak korunuyor | OK | ItemTemplate ToolTip ile FilePath gosteriyor |
+
+| 2026-06-05 | v0.58 | OK | Audit log export gecmisi etiketli liste gorunumu eklendi; build + self-test OK |
+

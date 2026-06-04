@@ -488,3 +488,8 @@ Her faz bittiğinde:
 - v0.57 tamamlandi: audit log export gecmisinde son 5 kaydi koruyup eskileri temizleme rahatligi eklendi.
 - Siradaki mantikli faz: son kullanilan kayda donus veya export gecmisi icin daha zengin secim/etiket yardimcilari.
 
+## Son Guncelleme (2026-06-05 / v0.58)
+
+- v0.58 tamamlandi: audit log export gecmisi listesine dosya tipi ve zaman bilgisini daha okunur gosteren etiketli gorunum eklendi.
+- Siradaki mantikli faz: son kullanilan kayda donus veya export gecmisi icin daha zengin secim/etiket yardimcilari.
+
