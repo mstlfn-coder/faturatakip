@@ -498,3 +498,11 @@ v0.12 sonuÃ§ notu:
 82. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 83. Siradaki mantikli is: filtreleri tek tikla sifirlama veya secili kayda hizli odaklanma aksiyonlari eklemek.
 
+
+84. v0.50 olarak audit log filtre paneline `Filtreleri sifirla` dugmesi eklendi.
+85. Dugme islem, varlik, kullanici, arama, tarih araligi ve `Sadece degisen alanlari goster` secimini varsayilana donduruyor.
+86. Sifirlama sonrasi preference dosyasi da varsayilan degerlerle yeniden kaydediliyor.
+87. Smoke test: dotnet build -c Release OK.
+88. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+89. Siradaki mantikli is: secili kayda hizli odaklanma veya son disa aktarilan dosyayi acma aksiyonlari eklemek.
+
