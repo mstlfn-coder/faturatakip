@@ -542,3 +542,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Diff okunabilirligi artti | OK | `Durum` kolonu template column ile daha belirgin hale geldi |
 
 | 2026-06-04 | v0.44 | OK | Audit log diff rozetleri eklendi; build + self-test OK |
+
+## v0.45 - Islem Gecmisi Kopyalama
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| Eski deger kopyalanabiliyor | OK | `CopyOldAuditLogButton` secili detaydaki metni panoya yazar |
+| Yeni deger kopyalanabiliyor | OK | `CopyNewAuditLogButton` secili detaydaki metni panoya yazar |
+| Kopyalama sonucu ipucu veriliyor | OK | Basari veya hata mesaji `AuditLogHintText` uzerinden gosteriliyor |
+
+| 2026-06-04 | v0.45 | OK | Audit log detay paneline kopyalama aksiyonlari eklendi; build + self-test OK |

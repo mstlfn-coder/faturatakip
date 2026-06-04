@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Linq;
 using System.Text.Json;
 using System.Windows;
@@ -250,6 +251,16 @@ public partial class ReportsView : UserControl
     private void AuditLogDiffFilter_Changed(object sender, RoutedEventArgs e)
     {
         ApplyAuditLogDetail(_selectedAuditLog);
+    }
+
+    private void CopyOldAuditLogButton_Click(object sender, RoutedEventArgs e)
+    {
+        CopyAuditLogText(AuditLogOldValueTextBox.Text, "Eski deger kopyalandi.");
+    }
+
+    private void CopyNewAuditLogButton_Click(object sender, RoutedEventArgs e)
+    {
+        CopyAuditLogText(AuditLogNewValueTextBox.Text, "Yeni deger kopyalandi.");
     }
 
     private void ExportReportButton_Click(object sender, RoutedEventArgs e)
@@ -1786,6 +1797,25 @@ public partial class ReportsView : UserControl
         }
 
         AuditLogDiffGrid.ItemsSource = diffRows;
+    }
+
+    private void CopyAuditLogText(string? value, string successMessage)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            AuditLogHintText.Text = "Kopyalanacak icerik yok.";
+            return;
+        }
+
+        try
+        {
+            Clipboard.SetText(value);
+            AuditLogHintText.Text = successMessage;
+        }
+        catch (Exception exception) when (exception is InvalidOperationException or ExternalException)
+        {
+            AuditLogHintText.Text = $"Kopyalama basarisiz: {exception.Message}";
+        }
     }
 
     private static string FormatDelta(decimal value)

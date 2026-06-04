@@ -410,3 +410,9 @@ Her faz bittiğinde:
 - v0.44 tamamlandi: audit log diff durumlari renkli rozetlerle gosterilmeye baslandi.
 - Siradaki mantikli faz: audit log detayinda kopyalama/disa aktarma aksiyonlari.
 
+
+## Son Guncelleme (2026-06-04 / v0.45)
+
+- v0.45 tamamlandi: audit log detay paneline eski ve yeni deger icin kopyalama dugmeleri eklendi.
+- Siradaki mantikli faz: tum diff'i kopyala veya detay txt/json disa aktarma aksiyonlari.
+
