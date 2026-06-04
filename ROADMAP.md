@@ -404,3 +404,9 @@ Her faz bittiğinde:
 - v0.43 tamamlandi: audit log diff tablosuna sadece degisen alanlar filtresi eklendi.
 - Siradaki mantikli faz: diff tablosunda renkli durum rozetleri veya vurgulu satirlar.
 
+
+## Son Guncelleme (2026-06-04 / v0.44)
+
+- v0.44 tamamlandi: audit log diff durumlari renkli rozetlerle gosterilmeye baslandi.
+- Siradaki mantikli faz: audit log detayinda kopyalama/disa aktarma aksiyonlari.
+

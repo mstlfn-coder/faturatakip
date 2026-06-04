@@ -22,6 +22,7 @@ Bu depo, kurum aboneliklerine ait elektrik, su, doğalgaz, telefon, internet ve 
 - `v0.41` secili audit log satiri icin eski/yeni deger detay paneli eklendi.
 - `v0.42` audit log detayinda alan bazli fark tablosu eklendi.
 - `v0.43` audit log diff tablosuna "sadece degisen alanlar" filtresi eklendi.
+- `v0.44` audit log diff `Durum` alani renkli rozetlerle gosterilmeye baslandi.
 - Solution dosyası: `FaturaTakip.sln`
 - Uygulama projesi: `src/FaturaTakip.App/FaturaTakip.App.csproj`
 - Geliştirme planı proje içine alındı: `docs/01-gelistirme-plani.md`
@@ -58,13 +59,13 @@ Get-ChildItem -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI'
 
 ## Son Tamamlanan Faz
 
-Son tamamlanan geliştirme fazı `v0.43 - Islem Gecmisi Diff Filtresi`.
+Son tamamlanan geliştirme fazı `v0.44 - Islem Gecmisi Diff Rozetleri`.
 
-Bu fazda audit log diff tablosuna "sadece degisen alanlar" secenegi eklendi; ayni kalan alanlar istenirse gizlenebiliyor.
+Bu fazda audit log diff tablosundaki durumlar renkli rozetlerle gosterilmeye baslandi; degisiklik tipi daha hizli taranabiliyor.
 
 ## Sıradaki İş
 
-Sıradaki mantıklı iş: diff tablosundaki `Durum` alanini renkli rozet gibi gosterip degisen alanlari daha hizli taratmak.
+Sıradaki mantıklı iş: audit log detay paneline kopyalama veya disa aktarma kolayligi icin `JSON kopyala` benzeri minik aksiyonlar eklemek.
 
 Bu noktadan sonra yeni chatlerde önce `docs/03-devam-notlari.md` ve `REGRESYON.md` okunmalı; en güncel durum artık bu dosyalarda tutuluyor.
 

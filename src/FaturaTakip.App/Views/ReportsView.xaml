@@ -35,6 +35,44 @@
             <Setter Property="MinWidth" Value="120" />
             <Setter Property="Cursor" Value="Hand" />
         </Style>
+        <Style x:Key="DiffBadgeBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="#E2E8F0" />
+            <Setter Property="CornerRadius" Value="999" />
+            <Setter Property="Padding" Value="8,3" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ChangeType}" Value="Degisti">
+                    <Setter Property="Background" Value="#FDE68A" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ChangeType}" Value="Eklendi">
+                    <Setter Property="Background" Value="#BBF7D0" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ChangeType}" Value="Silindi">
+                    <Setter Property="Background" Value="#FECACA" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ChangeType}" Value="Ayni">
+                    <Setter Property="Background" Value="#E2E8F0" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="DiffBadgeTextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#334155" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ChangeType}" Value="Degisti">
+                    <Setter Property="Foreground" Value="#92400E" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ChangeType}" Value="Eklendi">
+                    <Setter Property="Foreground" Value="#166534" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ChangeType}" Value="Silindi">
+                    <Setter Property="Foreground" Value="#991B1B" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ChangeType}" Value="Ayni">
+                    <Setter Property="Foreground" Value="#475569" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -658,9 +696,19 @@
                                 <DataGridTextColumn Header="Yeni"
                                                     Binding="{Binding NewValue}"
                                                     Width="1.2*" />
-                                <DataGridTextColumn Header="Durum"
-                                                    Binding="{Binding ChangeType}"
-                                                    Width="120" />
+                                <DataGridTemplateColumn Header="Durum"
+                                                        Width="120">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Border Style="{StaticResource DiffBadgeBorderStyle}"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding ChangeType}"
+                                                           Style="{StaticResource DiffBadgeTextStyle}" />
+                                            </Border>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>

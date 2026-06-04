@@ -531,3 +531,14 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Detay secimi korunuyor | OK | Kayit seciliyken filtre degisince ayni secili detay yeniden uygulanuyor |
 
 | 2026-06-02 | v0.43 | OK | Audit log diff filtresi eklendi; build + self-test OK |
+
+## v0.44 - Islem Gecmisi Diff Rozetleri
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| Diff durumlari renkli rozet olarak gorunuyor | OK | `Degisti`, `Eklendi`, `Silindi`, `Ayni` icin ayri renk stili tanimlandi |
+| Diff okunabilirligi artti | OK | `Durum` kolonu template column ile daha belirgin hale geldi |
+
+| 2026-06-04 | v0.44 | OK | Audit log diff rozetleri eklendi; build + self-test OK |
