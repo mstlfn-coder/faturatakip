@@ -578,3 +578,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Durum mesaji gosteriliyor | OK | Basari veya hata sonucu `AuditLogHintText` uzerinden iletiliyor |
 
 | 2026-06-04 | v0.47 | OK | Audit log txt/json disa aktarma aksiyonlari eklendi; build + self-test OK |
+
+## v0.48 - Islem Gecmisi Exports Kolayligi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | `dotnet build FaturaTakip.sln -c Release` |
+| `--self-test` basarili | OK | `dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test` |
+| Exports klasoru acilabiliyor | OK | `OpenAuditLogExportsButton` klasoru olusturup Windows Gezgini ile acar |
+| Klasor yoksa olusturuluyor | OK | `Directory.CreateDirectory(exportsDir)` ile guvence altina aliniyor |
+| Durum mesaji gosteriliyor | OK | Basari veya hata sonucu `AuditLogHintText` uzerinden iletiliyor |
+
+| 2026-06-04 | v0.48 | OK | Audit log exports klasoru acma aksiyonu eklendi; build + self-test OK |
