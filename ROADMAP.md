@@ -459,3 +459,10 @@ Her faz bittiğinde:
 - v0.52 tamamlandi: audit log ekranina secili kaydi gorunur alana getiren hizli odak aksiyonu eklendi.
 - Siradaki mantikli faz: export gecmisi rahatliklari veya son kullanilan kayda donus yardimcilari.
 
+
+
+## Son Guncelleme (2026-06-05 / v0.53)
+
+- v0.53 tamamlandi: audit log araclarina son export gecmisi listesi eklendi.
+- Siradaki mantikli faz: son kullanilan kayda donus veya export gecmisi temizleme rahatliklari.
+

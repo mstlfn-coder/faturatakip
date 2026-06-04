@@ -639,3 +639,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
 | 2026-06-05 | v0.52 | OK | Audit log secili kayda hizli odak aksiyonu eklendi; build + self-test OK |
 
+
+## v0.53 - Islem Gecmisi Export Gecmisi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Son export listesi var | OK | AuditLogRecentExportsInput son 5 audit export dosyasini gosteriyor |
+| Listeden ac aksiyonu var | OK | OpenSelectedAuditLogExportButton secilen export dosyasini aciyor |
+| Son dosya fallback korunuyor | OK | Son dosya yoksa en yeni export yine listeden/fallback ile bulunuyor |
+
+| 2026-06-05 | v0.53 | OK | Audit log export gecmisi rahatligi eklendi; build + self-test OK |
+
