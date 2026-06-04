@@ -643,10 +643,19 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
-                                <TextBlock Text="Eski Deger"
-                                           Foreground="#334155"
-                                           FontWeight="SemiBold"
-                                           Margin="0,0,0,6" />
+                                <DockPanel Margin="0,0,0,6">
+                                    <TextBlock Text="Eski Deger"
+                                               Foreground="#334155"
+                                               FontWeight="SemiBold"
+                                               VerticalAlignment="Center"
+                                               DockPanel.Dock="Left" />
+                                    <Button x:Name="CopyOldAuditLogButton"
+                                            Content="Kopyala"
+                                            MinWidth="78"
+                                            Padding="10,4"
+                                            HorizontalAlignment="Right"
+                                            Click="CopyOldAuditLogButton_Click" />
+                                </DockPanel>
                                 <TextBox x:Name="AuditLogOldValueTextBox"
                                          Height="160"
                                          AcceptsReturn="True"
@@ -655,10 +664,19 @@
                                          IsReadOnly="True" />
                             </StackPanel>
                             <StackPanel Grid.Column="2">
-                                <TextBlock Text="Yeni Deger"
-                                           Foreground="#334155"
-                                           FontWeight="SemiBold"
-                                           Margin="0,0,0,6" />
+                                <DockPanel Margin="0,0,0,6">
+                                    <TextBlock Text="Yeni Deger"
+                                               Foreground="#334155"
+                                               FontWeight="SemiBold"
+                                               VerticalAlignment="Center"
+                                               DockPanel.Dock="Left" />
+                                    <Button x:Name="CopyNewAuditLogButton"
+                                            Content="Kopyala"
+                                            MinWidth="78"
+                                            Padding="10,4"
+                                            HorizontalAlignment="Right"
+                                            Click="CopyNewAuditLogButton_Click" />
+                                </DockPanel>
                                 <TextBox x:Name="AuditLogNewValueTextBox"
                                          Height="160"
                                          AcceptsReturn="True"

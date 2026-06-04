@@ -459,3 +459,10 @@ v0.12 sonuÃ§ notu:
 53. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 54. Siradaki mantikli is: audit log detayina JSON kopyalama veya disa aktarma mini aksiyonlari eklemek.
 
+
+55. v0.45 olarak audit log detay paneline eski ve yeni deger icin `Kopyala` dugmeleri eklendi.
+56. Kopyalama basarisi veya hata durumu `AuditLogHintText` uzerinden kullaniciya gosteriliyor.
+57. Smoke test: dotnet build -c Release OK.
+58. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+59. Siradaki mantikli is: tum diff'i kopyala veya detay txt/json disa aktarma aksiyonlari eklemek.
+
