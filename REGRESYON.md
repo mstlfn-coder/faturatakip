@@ -652,3 +652,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
 | 2026-06-05 | v0.53 | OK | Audit log export gecmisi rahatligi eklendi; build + self-test OK |
 
+
+## v0.54 - Islem Gecmisi Export Listesi Yenileme
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Listeyi yenile dugmesi var | OK | RefreshAuditLogExportsButton export araclari icinde gosteriliyor |
+| Audit log sekmesinde liste tazeleniyor | OK | ApplyTab(ReportTab.AuditLog) icinde export listesi yeniden yukleniyor |
+| Bos liste durumu acik gosteriliyor | OK | Dosya yoksa ipucu metni kullaniciya bilgi veriyor |
+
+| 2026-06-05 | v0.54 | OK | Audit log export listesi yenileme rahatligi eklendi; build + self-test OK |
+

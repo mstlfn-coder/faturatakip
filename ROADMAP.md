@@ -466,3 +466,10 @@ Her faz bittiğinde:
 - v0.53 tamamlandi: audit log araclarina son export gecmisi listesi eklendi.
 - Siradaki mantikli faz: son kullanilan kayda donus veya export gecmisi temizleme rahatliklari.
 
+
+
+## Son Guncelleme (2026-06-05 / v0.54)
+
+- v0.54 tamamlandi: audit log export gecmisi icin liste yenileme rahatligi eklendi.
+- Siradaki mantikli faz: export gecmisi temizleme veya son kullanilan kayda donus yardimcilari.
+

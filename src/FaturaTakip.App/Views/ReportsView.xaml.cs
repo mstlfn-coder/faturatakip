@@ -406,6 +406,16 @@ public partial class ReportsView : UserControl
         TryOpenAuditLogPath(item.FilePath, $"Dosya acildi: {item.DisplayName}");
     }
 
+    private void RefreshAuditLogExportsButton_Click(object sender, RoutedEventArgs e)
+    {
+        var exportsDir = Path.Combine(AppPaths.Resolve().RootDirectory, "exports");
+        Directory.CreateDirectory(exportsDir);
+        RefreshRecentAuditLogExports(exportsDir);
+        AuditLogHintText.Text = _recentAuditLogExports.Count == 0
+            ? "Audit log export listesi guncellendi, dosya bulunmadi."
+            : $"Audit log export listesi guncellendi ({_recentAuditLogExports.Count} dosya).";
+    }
+
     private void ExportReportButton_Click(object sender, RoutedEventArgs e)
     {
         try
@@ -1662,6 +1672,7 @@ public partial class ReportsView : UserControl
         {
             var rows = GetFilteredAuditLogs().Select(ToAuditLogRow).ToList();
             ApplyAuditLogTiles();
+            RefreshRecentAuditLogExports(Path.Combine(AppPaths.Resolve().RootDirectory, "exports"));
             AuditLogGrid.ItemsSource = rows;
             if (_selectedAuditLog is not null)
             {
