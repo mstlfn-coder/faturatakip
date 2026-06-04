@@ -678,3 +678,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
 | 2026-06-05 | v0.55 | OK | Audit log export listesi temizleme rahatligi eklendi; build + self-test OK |
 
+
+## v0.56 - Islem Gecmisi Export Secileni Sil
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Secileni sil dugmesi var | OK | DeleteSelectedAuditLogExportButton export araclari icinde gosteriliyor |
+| Secimsiz durumda acik mesaj veriyor | OK | AuditLogRecentExportsInput secili degilse ipucu metni kullaniciya bilgi veriyor |
+| Silme sonrasi liste tazeleniyor | OK | Dosya silindikten sonra RefreshRecentAuditLogExports tekrar cagiriliyor |
+
+| 2026-06-05 | v0.56 | OK | Audit log export gecmisinde secili dosyayi silme rahatligi eklendi; build + self-test OK |
+
