@@ -482,3 +482,11 @@ v0.12 sonuÃ§ notu:
 70. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 71. Siradaki mantikli is: audit log ciktilarina ac/kopyala klasor veya filtre tercihlerini hatirlama gibi kullanim rahatligi adimlari eklemek.
 
+
+72. v0.48 olarak audit log araclarina `Exports klasorunu ac` dugmesi eklendi.
+73. Dugme `exports` klasorunu gerekirse olusturup Windows Gezgini ile dogrudan aciyor.
+74. Klasor acma basarisi veya hata durumu `AuditLogHintText` uzerinden kullaniciya gosteriliyor.
+75. Smoke test: dotnet build -c Release OK.
+76. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+77. Siradaki mantikli is: audit log filtre tercihlerini hatirlama veya kayit odakli kisayollar eklemek.
+

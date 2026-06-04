@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -291,6 +293,29 @@ public partial class ReportsView : UserControl
     private void ExportAuditLogJsonButton_Click(object sender, RoutedEventArgs e)
     {
         ExportAuditLogDetail("json");
+    }
+
+    private void OpenAuditLogExportsButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var paths = AppPaths.Resolve();
+            var exportsDir = Path.Combine(paths.RootDirectory, "exports");
+            Directory.CreateDirectory(exportsDir);
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "explorer.exe",
+                Arguments = $"\"{exportsDir}\"",
+                UseShellExecute = true
+            });
+
+            AuditLogHintText.Text = "Exports klasoru acildi.";
+        }
+        catch (Exception exception) when (exception is Win32Exception or InvalidOperationException or IOException or UnauthorizedAccessException)
+        {
+            AuditLogHintText.Text = $"Klasor acilamadi: {exception.Message}";
+        }
     }
 
     private void ExportReportButton_Click(object sender, RoutedEventArgs e)

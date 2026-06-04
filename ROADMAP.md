@@ -428,3 +428,9 @@ Her faz bittiğinde:
 - v0.47 tamamlandi: audit log detayina TXT ve JSON disa aktarma aksiyonlari eklendi.
 - Siradaki mantikli faz: audit log ciktilarina ac/kopyala klasor gibi kullanim rahatligi aksiyonlari.
 
+
+## Son Guncelleme (2026-06-04 / v0.48)
+
+- v0.48 tamamlandi: audit log araclarina exports klasorunu tek tikla acma aksiyonu eklendi.
+- Siradaki mantikli faz: audit log filtre tercihlerini hatirlama gibi kullanim rahatligi adimlari.
+
