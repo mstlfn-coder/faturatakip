@@ -39,6 +39,7 @@ public partial class ReportsView : UserControl
     private AuditLog? _selectedAuditLog;
     private AuditLogFilterPreferences _auditLogFilterPreferences = AuditLogFilterPreferences.Default;
     private string? _lastAuditLogExportPath;
+    private List<AuditLogExportItem> _recentAuditLogExports = [];
     private ReportTab _activeTab = ReportTab.Unpaid;
     private Dictionary<long, List<Payment>> _paymentsByInvoice = new();
     private string _rootDirectory = string.Empty;
@@ -371,6 +372,7 @@ public partial class ReportsView : UserControl
             var paths = AppPaths.Resolve();
             var exportsDir = Path.Combine(paths.RootDirectory, "exports");
             Directory.CreateDirectory(exportsDir);
+            RefreshRecentAuditLogExports(exportsDir);
 
             var targetPath = ResolveLastAuditLogExportPath(exportsDir);
             if (string.IsNullOrWhiteSpace(targetPath) || !File.Exists(targetPath))
@@ -391,6 +393,17 @@ public partial class ReportsView : UserControl
         {
             AuditLogHintText.Text = $"Dosya acilamadi: {exception.Message}";
         }
+    }
+
+    private void OpenSelectedAuditLogExportButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (AuditLogRecentExportsInput.SelectedItem is not AuditLogExportItem item || !File.Exists(item.FilePath))
+        {
+            AuditLogHintText.Text = "Acilacak export dosyasi secili degil.";
+            return;
+        }
+
+        TryOpenAuditLogPath(item.FilePath, $"Dosya acildi: {item.DisplayName}");
     }
 
     private void ExportReportButton_Click(object sender, RoutedEventArgs e)
@@ -2014,6 +2027,7 @@ public partial class ReportsView : UserControl
             }
 
             _lastAuditLogExportPath = filePath;
+            RefreshRecentAuditLogExports(exportsDir);
             AuditLogHintText.Text = $"Disa aktarildi: exports/{fileName}";
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidOperationException)
@@ -2061,11 +2075,49 @@ public partial class ReportsView : UserControl
             return _lastAuditLogExportPath;
         }
 
-        return Directory.Exists(exportsDir)
+        RefreshRecentAuditLogExports(exportsDir);
+        return _recentAuditLogExports.FirstOrDefault()?.FilePath;
+    }
+
+    private void RefreshRecentAuditLogExports(string exportsDir)
+    {
+        _recentAuditLogExports = Directory.Exists(exportsDir)
             ? Directory.GetFiles(exportsDir, "audit-log-*.*", SearchOption.TopDirectoryOnly)
                 .OrderByDescending(path => File.GetLastWriteTimeUtc(path))
-                .FirstOrDefault()
-            : null;
+                .Take(5)
+                .Select(path => new AuditLogExportItem(
+                    FilePath: path,
+                    DisplayName: $"{Path.GetFileName(path)} ({File.GetLastWriteTime(path):dd.MM HH:mm})"))
+                .ToList()
+            : [];
+
+        AuditLogRecentExportsInput.ItemsSource = _recentAuditLogExports;
+        if (_recentAuditLogExports.Count > 0)
+        {
+            AuditLogRecentExportsInput.SelectedIndex = 0;
+        }
+        else
+        {
+            AuditLogRecentExportsInput.SelectedItem = null;
+        }
+    }
+
+    private void TryOpenAuditLogPath(string filePath, string successMessage)
+    {
+        try
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = filePath,
+                UseShellExecute = true
+            });
+
+            AuditLogHintText.Text = successMessage;
+        }
+        catch (Exception exception) when (exception is Win32Exception or InvalidOperationException or IOException or UnauthorizedAccessException)
+        {
+            AuditLogHintText.Text = $"Dosya acilamadi: {exception.Message}";
+        }
     }
 
     private static string FormatDelta(decimal value)
@@ -2795,5 +2847,9 @@ public partial class ReportsView : UserControl
         string OldValue,
         string NewValue,
         string ChangeType);
+
+    private sealed record AuditLogExportItem(
+        string FilePath,
+        string DisplayName);
 }
 
