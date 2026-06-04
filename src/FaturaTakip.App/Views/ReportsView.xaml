@@ -735,6 +735,12 @@
                                         Padding="10,4"
                                         Margin="0,0,8,0"
                                         Click="ClearAuditLogExportsButton_Click" />
+                                <Button x:Name="DeleteSelectedAuditLogExportButton"
+                                        Content="Secileni sil"
+                                        MinWidth="108"
+                                        Padding="10,4"
+                                        Margin="0,0,8,0"
+                                        Click="DeleteSelectedAuditLogExportButton_Click" />
                                 <Button x:Name="OpenSelectedAuditLogExportButton"
                                         Content="Listeden ac"
                                         MinWidth="112"

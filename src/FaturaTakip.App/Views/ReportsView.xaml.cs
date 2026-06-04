@@ -450,6 +450,41 @@ public partial class ReportsView : UserControl
         AuditLogHintText.Text = $"Audit log export listesi temizlendi ({deletedCount} dosya silindi).";
     }
 
+    private void DeleteSelectedAuditLogExportButton_Click(object sender, RoutedEventArgs e)
+    {
+        var exportsDir = Path.Combine(AppPaths.Resolve().RootDirectory, "exports");
+        Directory.CreateDirectory(exportsDir);
+
+        if (AuditLogRecentExportsInput.SelectedItem is not AuditLogExportItem item)
+        {
+            AuditLogHintText.Text = "Silinecek export dosyasi secili degil.";
+            return;
+        }
+
+        if (!File.Exists(item.FilePath))
+        {
+            RefreshRecentAuditLogExports(exportsDir);
+            AuditLogHintText.Text = "Secilen export dosyasi artik bulunamiyor.";
+            return;
+        }
+
+        try
+        {
+            File.Delete(item.FilePath);
+            if (string.Equals(_lastAuditLogExportPath, item.FilePath, StringComparison.OrdinalIgnoreCase))
+            {
+                _lastAuditLogExportPath = null;
+            }
+
+            RefreshRecentAuditLogExports(exportsDir);
+            AuditLogHintText.Text = $"Secilen export silindi: {item.DisplayName}";
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException)
+        {
+            AuditLogHintText.Text = $"Secilen export silinemedi: {exception.Message}";
+        }
+    }
+
     private void ExportReportButton_Click(object sender, RoutedEventArgs e)
     {
         try
