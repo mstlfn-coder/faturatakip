@@ -689,11 +689,21 @@
                                    Foreground="#334155"
                                    FontWeight="SemiBold"
                                    Margin="0,12,0,6" />
-                        <CheckBox x:Name="AuditLogDiffChangedOnlyCheckBox"
-                                  Content="Sadece degisen alanlari goster"
-                                  Margin="0,0,0,8"
-                                  Checked="AuditLogDiffFilter_Changed"
-                                  Unchecked="AuditLogDiffFilter_Changed" />
+                        <DockPanel Margin="0,0,0,8">
+                            <CheckBox x:Name="AuditLogDiffChangedOnlyCheckBox"
+                                      Content="Sadece degisen alanlari goster"
+                                      VerticalAlignment="Center"
+                                      DockPanel.Dock="Left"
+                                      Checked="AuditLogDiffFilter_Changed"
+                                      Unchecked="AuditLogDiffFilter_Changed" />
+                            <Button x:Name="CopyAuditLogDiffButton"
+                                    Content="Tum diff'i kopyala"
+                                    MinWidth="132"
+                                    Padding="10,4"
+                                    HorizontalAlignment="Right"
+                                    DockPanel.Dock="Right"
+                                    Click="CopyAuditLogDiffButton_Click" />
+                        </DockPanel>
                         <DataGrid x:Name="AuditLogDiffGrid"
                                   AutoGenerateColumns="False"
                                   CanUserAddRows="False"

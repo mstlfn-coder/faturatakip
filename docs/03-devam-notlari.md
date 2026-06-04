@@ -466,3 +466,11 @@ v0.12 sonuÃ§ notu:
 58. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 59. Siradaki mantikli is: tum diff'i kopyala veya detay txt/json disa aktarma aksiyonlari eklemek.
 
+
+60. v0.46 olarak audit log detayindaki diff tablosuna `Tum diff'i kopyala` dugmesi eklendi.
+61. Kopyalanan metin; islem, varlik, kayit id, kullanici ve tarih ustbilgisiyle birlikte gorunen diff satirlarini tab ayrimli olarak iceriyor.
+62. `Sadece degisen alanlari goster` filtresi acikken kopyalama da ayni gorunur satirlari baz aliyor.
+63. Smoke test: dotnet build -c Release OK.
+64. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+65. Siradaki mantikli is: audit log detayini txt/json olarak disa aktarma aksiyonlari eklemek.
+
