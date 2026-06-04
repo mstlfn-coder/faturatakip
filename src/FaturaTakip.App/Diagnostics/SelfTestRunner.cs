@@ -1059,6 +1059,24 @@ public sealed class SelfTestRunner
             Assert(File.Exists(reportPdfPath), "PDF export dosyasi olusmadi.");
             Assert(new FileInfo(reportPdfPath).Length > 1024, "PDF export dosyasi beklenenden kucuk.");
 
+            var filterPreferences = new AuditLogFilterPreferences(
+                ActionType: "invoice_updated",
+                EntityName: "invoices",
+                UserName: "mstlfn",
+                SearchText: "gecikmis",
+                StartDate: new DateTime(2026, 6, 1),
+                EndDate: new DateTime(2026, 6, 5),
+                ChangedOnly: true);
+            filterPreferences.Save(testRoot);
+            var loadedPreferences = AuditLogFilterPreferences.LoadOrDefault(testRoot);
+            Assert(loadedPreferences.ActionType == "invoice_updated", "Audit log filtre tercihi action saklanmadi.");
+            Assert(loadedPreferences.EntityName == "invoices", "Audit log filtre tercihi varlik saklanmadi.");
+            Assert(loadedPreferences.UserName == "mstlfn", "Audit log filtre tercihi kullanici saklanmadi.");
+            Assert(loadedPreferences.SearchText == "gecikmis", "Audit log filtre tercihi arama metni saklanmadi.");
+            Assert(loadedPreferences.StartDate == new DateTime(2026, 6, 1), "Audit log filtre tercihi baslangic tarihi saklanmadi.");
+            Assert(loadedPreferences.EndDate == new DateTime(2026, 6, 5), "Audit log filtre tercihi bitis tarihi saklanmadi.");
+            Assert(loadedPreferences.ChangedOnly, "Audit log filtre tercihi degisen alan filtresi saklanmadi.");
+
             var restoreSourceRoot = Path.Combine(testRoot, "restore-source");
             var restoreDatabaseDir = Path.Combine(restoreSourceRoot, "database");
             Directory.CreateDirectory(restoreDatabaseDir);
