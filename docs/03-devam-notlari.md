@@ -588,3 +588,9 @@ v0.12 sonuÃ§ notu:
 151. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 152. Siradaki mantikli is: export gecmisi icin daha zengin secim/etiket yardimcilari veya son kullanilan kayda dogrudan donus akisi eklemek.
 
+153. v0.63 olarak audit log export gecmisine secili dosyayi Windows Gezgini icinde gosteren Klasorde goster dugmesi eklendi.
+154. Bu akis `explorer.exe /select` kullaniyor; kullanici secili exportu klasor icinde dogrudan odakta goruyor.
+155. Smoke test: dotnet build -c Release OK.
+156. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+157. Siradaki mantikli is: export gecmisi icin daha zengin secim/etiket yardimcilari veya son kullanilan kayda dogrudan donus akisi eklemek.
+

@@ -817,6 +817,12 @@
                                         Padding="10,4"
                                         Margin="0,0,8,0"
                                         Click="CopySelectedAuditLogExportPathButton_Click" />
+                                <Button x:Name="RevealSelectedAuditLogExportButton"
+                                        Content="Klasorde goster"
+                                        MinWidth="124"
+                                        Padding="10,4"
+                                        Margin="0,0,8,0"
+                                        Click="RevealSelectedAuditLogExportButton_Click" />
                                 <Button x:Name="OpenLastAuditLogExportButton"
                                         Content="Son dosyayi ac"
                                         MinWidth="128"
