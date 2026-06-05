@@ -416,6 +416,21 @@ public partial class ReportsView : UserControl
             : $"Audit log export listesi guncellendi ({_recentAuditLogExports.Count} dosya).";
     }
 
+    private void AuditLogExportTypeFilterInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        var exportsDir = Path.Combine(AppPaths.Resolve().RootDirectory, "exports");
+        Directory.CreateDirectory(exportsDir);
+        RefreshRecentAuditLogExports(exportsDir);
+        AuditLogHintText.Text = _recentAuditLogExports.Count == 0
+            ? "Secili export tipi icin dosya bulunmadi."
+            : $"Export listesi filtrelendi: {GetSelectedAuditLogExportTypeFilter()} ({_recentAuditLogExports.Count} dosya).";
+    }
+
     private void ClearAuditLogExportsButton_Click(object sender, RoutedEventArgs e)
     {
         var exportsDir = Path.Combine(AppPaths.Resolve().RootDirectory, "exports");
@@ -2210,10 +2225,17 @@ public partial class ReportsView : UserControl
         return _recentAuditLogExports.FirstOrDefault()?.FilePath;
     }
 
+    private string GetSelectedAuditLogExportTypeFilter()
+    {
+        return (AuditLogExportTypeFilterInput.SelectedItem as ComboBoxItem)?.Content?.ToString() ?? "Tum";
+    }
+
     private void RefreshRecentAuditLogExports(string exportsDir)
     {
+        var selectedType = GetSelectedAuditLogExportTypeFilter();
         _recentAuditLogExports = Directory.Exists(exportsDir)
             ? Directory.GetFiles(exportsDir, "audit-log-*.*", SearchOption.TopDirectoryOnly)
+                .Where(path => selectedType == "Tum" || string.Equals(FormatAuditExportFileTypeLabel(Path.GetExtension(path)), selectedType, StringComparison.OrdinalIgnoreCase))
                 .OrderByDescending(path => File.GetLastWriteTimeUtc(path))
                 .Take(5)
                 .Select(path => new AuditLogExportItem(

@@ -717,3 +717,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
 | 2026-06-05 | v0.58 | OK | Audit log export gecmisi etiketli liste gorunumu eklendi; build + self-test OK |
 
+
+## v0.59 - Islem Gecmisi Export Tip Filtresi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Tip filtresi var | OK | AuditLogExportTypeFilterInput Tum / JSON / TXT secenekleriyle gosteriliyor |
+| JSON/TXT filtresi listeyi daraltiyor | OK | RefreshRecentAuditLogExports icinde secili tipe gore Where filtresi uygulaniyor |
+| Bos sonuc acik mesaj veriyor | OK | Secili export tipi icin dosya bulunmadi ipucu metni kullaniliyor |
+
+| 2026-06-05 | v0.59 | OK | Audit log export gecmisine hizli tip filtresi eklendi; build + self-test OK |
+
