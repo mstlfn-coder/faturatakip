@@ -518,3 +518,8 @@ Her faz bittiğinde:
 - v0.63 tamamlandi: audit log export gecmisinde secili dosyayi Windows Gezgini icinde gosterme rahatligi eklendi.
 - Siradaki mantikli faz: export gecmisi icin daha zengin secim/etiket yardimcilari veya son kullanilan kayda dogrudan donus akisi.
 
+## Son Guncelleme (2026-06-05 / v0.64)
+
+- v0.64 tamamlandi: audit log export secim araçlari, seçim yoksa devre disi kalan daha anlatir bir duruma getirildi.
+- Siradaki mantikli faz: export gecmisi icin daha zengin secim/etiket yardimcilari veya son kullanilan kayda dogrudan donus akisi.
+

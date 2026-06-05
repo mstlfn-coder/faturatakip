@@ -594,3 +594,9 @@ v0.12 sonuÃ§ notu:
 156. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 157. Siradaki mantikli is: export gecmisi icin daha zengin secim/etiket yardimcilari veya son kullanilan kayda dogrudan donus akisi eklemek.
 
+158. v0.64 olarak audit log export secim araçlari, secim yoksa devre disi kalan daha anlatir bir duruma getirildi.
+159. Listeden ac, Yolu kopyala, Klasorde goster ve Secileni sil butonlari secim durumuna gore aktif/pasif oluyor.
+160. Smoke test: dotnet build -c Release OK.
+161. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+162. Siradaki mantikli is: export gecmisi icin daha zengin secim/etiket yardimcilari veya son kullanilan kayda dogrudan donus akisi eklemek.
+

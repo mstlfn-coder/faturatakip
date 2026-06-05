@@ -411,6 +411,11 @@ public partial class ReportsView : UserControl
         TryOpenAuditLogPath(item.FilePath, $"Dosya acildi: {item.DisplayName}");
     }
 
+    private void AuditLogRecentExportsInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        UpdateAuditLogExportActionStates();
+    }
+
     private void CopySelectedAuditLogExportPathButton_Click(object sender, RoutedEventArgs e)
     {
         if (AuditLogRecentExportsInput.SelectedItem is not AuditLogExportItem item)
@@ -2305,6 +2310,19 @@ public partial class ReportsView : UserControl
         {
             AuditLogRecentExportsInput.SelectedItem = preferredItem;
         }
+
+        UpdateAuditLogExportActionStates();
+    }
+
+    private void UpdateAuditLogExportActionStates()
+    {
+        var hasSelectedExport = AuditLogRecentExportsInput.SelectedItem is AuditLogExportItem item
+            && !string.IsNullOrWhiteSpace(item.FilePath);
+
+        OpenSelectedAuditLogExportButton.IsEnabled = hasSelectedExport;
+        CopySelectedAuditLogExportPathButton.IsEnabled = hasSelectedExport;
+        RevealSelectedAuditLogExportButton.IsEnabled = hasSelectedExport;
+        DeleteSelectedAuditLogExportButton.IsEnabled = hasSelectedExport;
     }
 
     private void TryOpenAuditLogPath(string filePath, string successMessage)
