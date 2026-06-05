@@ -422,6 +422,31 @@ public partial class ReportsView : UserControl
         CopyAuditLogText(item.FilePath, "Export dosya yolu panoya kopyalandi.");
     }
 
+    private void RevealSelectedAuditLogExportButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (AuditLogRecentExportsInput.SelectedItem is not AuditLogExportItem item || !File.Exists(item.FilePath))
+        {
+            AuditLogHintText.Text = "Klasorde gosterilecek export dosyasi secili degil.";
+            return;
+        }
+
+        try
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "explorer.exe",
+                Arguments = $"/select,\"{item.FilePath}\"",
+                UseShellExecute = true
+            });
+
+            AuditLogHintText.Text = $"Dosya klasorde gosterildi: {item.FileName}";
+        }
+        catch (Exception exception) when (exception is Win32Exception or InvalidOperationException or IOException or UnauthorizedAccessException)
+        {
+            AuditLogHintText.Text = $"Dosya klasorde gosterilemedi: {exception.Message}";
+        }
+    }
+
     private void RefreshAuditLogExportsButton_Click(object sender, RoutedEventArgs e)
     {
         var exportsDir = Path.Combine(AppPaths.Resolve().RootDirectory, "exports");

@@ -769,3 +769,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
 | 2026-06-05 | v0.62 | OK | Audit log export gecmisinde secili dosya yolunu kopyalama rahatligi eklendi; build + self-test OK |
 
+
+## v0.63 - Islem Gecmisi Export Klasorde Goster
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Klasorde goster dugmesi var | OK | RevealSelectedAuditLogExportButton export araclari icinde gosteriliyor |
+| Secimsiz durumda acik mesaj veriyor | OK | Export secili degilse ipucu metni kullaniciya bilgi veriyor |
+| Explorer secili dosyayla aciliyor | OK | explorer.exe /select kullaniliyor |
+
+| 2026-06-05 | v0.63 | OK | Audit log export gecmisinde secili dosyayi klasorde gosterme rahatligi eklendi; build + self-test OK |
+
