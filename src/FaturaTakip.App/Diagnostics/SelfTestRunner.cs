@@ -154,6 +154,32 @@ public sealed class SelfTestRunner
             Assert(yearRolloverDraft.InvoiceYear == 2027 && yearRolloverDraft.InvoiceMonth == 1, "Sonraki ay taslagi yil donusunu dogru tasimadi.");
             Assert(yearRolloverDraft.InvoiceDate == new DateTime(2027, 1, 31), "Sonraki ay taslagi ay sonu tarihini koruyamadi.");
 
+            var paymentSuggestion = PaymentEntrySuggestionBuilder.CreateDefault(updatedInvoice, new DateTime(2026, 2, 1));
+            Assert(paymentSuggestion.PaymentDate == new DateTime(2026, 2, 1), "Odeme varsayilan taslagi bugun tarihini kullanmadi.");
+            Assert(paymentSuggestion.Amount == updatedInvoice.RemainingAmount, "Odeme varsayilan taslagi kalan tutari kullanmadi.");
+            Assert(string.IsNullOrEmpty(paymentSuggestion.Description), "Odeme varsayilan taslagi aciklamayi bos baslatmadi.");
+
+            var recentPaymentSuggestion = PaymentEntrySuggestionBuilder.CreateFromRecentPayment(
+                updatedInvoice,
+                new[]
+                {
+                    new Payment { Id = 1, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 15), Amount = 100m, Description = "Ilk odeme" },
+                    new Payment { Id = 2, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 20), Amount = 150m, Description = "  Son aciklama  " },
+                },
+                new DateTime(2026, 2, 2));
+            Assert(recentPaymentSuggestion.PaymentDate == new DateTime(2026, 2, 2), "Son odemeden taslak bugun tarihini kullanmadi.");
+            Assert(recentPaymentSuggestion.Amount == updatedInvoice.RemainingAmount, "Son odemeden taslak kalan tutari kullanmadi.");
+            Assert(recentPaymentSuggestion.Description == "Son aciklama", "Son odemeden taslak en guncel aciklamayi getirmedi.");
+
+            var emptyDescriptionSuggestion = PaymentEntrySuggestionBuilder.CreateFromRecentPayment(
+                updatedInvoice,
+                new[]
+                {
+                    new Payment { Id = 3, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 25), Amount = 50m, Description = "   " },
+                },
+                new DateTime(2026, 2, 3));
+            Assert(string.IsNullOrEmpty(emptyDescriptionSuggestion.Description), "Bos son odeme aciklamasi bos donmeliydi.");
+
             var paymentRepository = new PaymentRepository(databasePath);
             var partialPayment = paymentRepository.Add(new PaymentInput(
                 updatedInvoice.Id,

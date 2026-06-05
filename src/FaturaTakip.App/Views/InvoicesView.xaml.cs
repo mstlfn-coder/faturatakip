@@ -524,6 +524,43 @@ public partial class InvoicesView : UserControl
         }
     }
 
+    private void FillRemainingPaymentButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_selectedInvoice is null)
+        {
+            SetInvoiceStatus("Kalan tutari doldurmak icin once bir fatura secin.", isError: true);
+            return;
+        }
+
+        ApplyPaymentSuggestion(PaymentEntrySuggestionBuilder.CreateDefault(_selectedInvoice, DateTime.Today));
+        SetInvoiceStatus("Odeme taslagi kalan tutarla guncellendi.", isError: false);
+    }
+
+    private void UseLastPaymentTemplateButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_selectedInvoice is null)
+        {
+            SetInvoiceStatus("Son odemeden doldurmak icin once bir fatura secin.", isError: true);
+            return;
+        }
+
+        if (_payments.Count == 0)
+        {
+            SetInvoiceStatus("Bu fatura icin daha once kaydedilmis odeme yok.", isError: true);
+            return;
+        }
+
+        var suggestion = PaymentEntrySuggestionBuilder.CreateFromRecentPayment(_selectedInvoice, _payments, DateTime.Today);
+        if (string.IsNullOrWhiteSpace(suggestion.Description))
+        {
+            SetInvoiceStatus("Son odemelerde kopyalanacak bir aciklama bulunamadi.", isError: true);
+            return;
+        }
+
+        ApplyPaymentSuggestion(suggestion);
+        SetInvoiceStatus("Odeme taslagi son aciklama ve kalan tutarla dolduruldu.", isError: false);
+    }
+
     private void PaymentGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (PaymentGrid.SelectedItem is Payment payment)
@@ -819,7 +856,16 @@ public partial class InvoicesView : UserControl
         PaymentDateInput.IsEnabled = isEnabled;
         PaymentAmountInput.IsEnabled = isEnabled;
         PaymentDescriptionInput.IsEnabled = isEnabled;
+        FillRemainingPaymentButton.IsEnabled = isEnabled;
+        UseLastPaymentTemplateButton.IsEnabled = isEnabled;
         SavePaymentButton.IsEnabled = isEnabled;
+    }
+
+    private void ApplyPaymentSuggestion(PaymentEntrySuggestion suggestion)
+    {
+        PaymentDateInput.SelectedDate = suggestion.PaymentDate;
+        PaymentAmountInput.Text = suggestion.Amount.ToString("N2", TurkishCulture);
+        PaymentDescriptionInput.Text = suggestion.Description;
     }
 
     private void SelectPayment(long? paymentId = null)

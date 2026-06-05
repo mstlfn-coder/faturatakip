@@ -535,3 +535,10 @@ Her faz bittiğinde:
 - v0.66 tamamlandi: Faturalar ekranina secili kayittan sonraki ayi taslak olarak hazirlayan Sonrakini Hazirla aksiyonu eklendi.
 - Taslak akisinda abonelik, tutar, kullanim, kullanim birimi ve aciklama korunuyor; fatura no ile PDF/odeme taraflari bos baslatiliyor.
 - Siradaki mantikli faz: v0.66 cekirdek is akisini odeme girisi rahatliklariyla derinlestirmek, sonra yedekleme UX fazina gecmek.
+
+
+## Son Guncelleme (2026-06-06 / v0.67)
+
+- v0.67 tamamlandi: Odeme formuna Kalani Doldur ve Son Odemeden Doldur yardimcilari eklendi.
+- Bu akis kalan tutari geri yaziyor ve varsa en guncel odeme aciklamasini yeni taslaga tasiyor.
+- Siradaki mantikli faz: odeme girisinde daha ileri rahatliklarin ardindan yedekleme UX fazina gecmek.

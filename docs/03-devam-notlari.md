@@ -613,3 +613,10 @@ v0.12 sonuÃ§ notu:
 171. Smoke test: dotnet build -c Release OK.
 172. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 173. Siradaki mantikli is: v0.66 cekirdek is akisini odeme girisi rahatliklariyla derinlestirmek.
+
+174. v0.67 olarak odeme formuna Kalani Doldur ve Son Odemeden Doldur dugmeleri eklendi.
+175. PaymentEntrySuggestionBuilder, yeni odeme taslaginda kalan tutari kullanip varsa en guncel bos olmayan aciklamayi oneriyor.
+176. Bos veya anlamsiz son aciklamalar yeni taslaga tasinmiyor; bu davranis self-test ile dogrulandi.
+177. Smoke test: dotnet build -c Release OK.
+178. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+179. Siradaki mantikli is: odeme girisi rahatliklarini biraz daha derinlestirip sonra yedekleme UX fazina gecmek.

@@ -822,3 +822,17 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Yil donusu korunuyor | OK | Aralik -> Ocak gecis senaryosu self-test ile dogrulandi |
 
 | 2026-06-06 | v0.66 | OK | Fatura girisinde secili kayittan sonraki ay taslagi hazirlama rahatligi eklendi; build + self-test OK |
+
+
+## v0.67 - Odeme Girisi Doldurma Yardimcilari
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Kalani Doldur dugmesi var | OK | Odeme formunda kalan tutari yeniden yazan yardim eklendi |
+| Son Odemeden Doldur dugmesi var | OK | Son odeme aciklamasini ve kalan tutari yeni taslaga tasiyor |
+| Son aciklama seciliyor | OK | PaymentEntrySuggestionBuilder en guncel bos olmayan aciklamayi kullaniyor |
+| Bos aciklama tasinmiyor | OK | Yalnizca bos olmayan son aciklama yeni taslaga oneriliyor |
+
+| 2026-06-06 | v0.67 | OK | Odeme formuna hizli doldurma yardimcilari eklendi; build + self-test OK |
