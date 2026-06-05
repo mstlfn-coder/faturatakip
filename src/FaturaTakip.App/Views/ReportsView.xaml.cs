@@ -462,6 +462,19 @@ public partial class ReportsView : UserControl
             : $"Audit log export listesi guncellendi ({_recentAuditLogExports.Count} dosya).";
     }
 
+    private void SelectLastUsedAuditLogExportButton_Click(object sender, RoutedEventArgs e)
+    {
+        var lastUsedItem = _recentAuditLogExports.FirstOrDefault(item => item.IsLastUsed);
+        if (lastUsedItem is null)
+        {
+            AuditLogHintText.Text = "Gorunur listede secilecek son kullanilan export bulunamadi.";
+            return;
+        }
+
+        AuditLogRecentExportsInput.SelectedItem = lastUsedItem;
+        AuditLogHintText.Text = $"Son kullanilan export secildi: {lastUsedItem.DisplayName}";
+    }
+
     private void AuditLogExportTypeFilterInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (!_isInitialized)
@@ -2318,11 +2331,13 @@ public partial class ReportsView : UserControl
     {
         var hasSelectedExport = AuditLogRecentExportsInput.SelectedItem is AuditLogExportItem item
             && !string.IsNullOrWhiteSpace(item.FilePath);
+        var hasVisibleLastUsed = _recentAuditLogExports.Any(item => item.IsLastUsed);
 
         OpenSelectedAuditLogExportButton.IsEnabled = hasSelectedExport;
         CopySelectedAuditLogExportPathButton.IsEnabled = hasSelectedExport;
         RevealSelectedAuditLogExportButton.IsEnabled = hasSelectedExport;
         DeleteSelectedAuditLogExportButton.IsEnabled = hasSelectedExport;
+        SelectLastUsedAuditLogExportButton.IsEnabled = hasVisibleLastUsed;
     }
 
     private void TryOpenAuditLogPath(string filePath, string successMessage)

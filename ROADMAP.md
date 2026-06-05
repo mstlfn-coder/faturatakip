@@ -523,3 +523,8 @@ Her faz bittiğinde:
 - v0.64 tamamlandi: audit log export secim araçlari, seçim yoksa devre disi kalan daha anlatir bir duruma getirildi.
 - Siradaki mantikli faz: export gecmisi icin daha zengin secim/etiket yardimcilari veya son kullanilan kayda dogrudan donus akisi.
 
+## Son Guncelleme (2026-06-05 / v0.65)
+
+- v0.65 tamamlandi: audit log export gecmisinde gorunur listedeki son kullanilan ogeyi tek tikla yeniden secme yardimi eklendi.
+- Siradaki mantikli faz: export gecmisi icin daha zengin secim/etiket yardimcilari veya son kullanilan kayda dogrudan donus akisi.
+
