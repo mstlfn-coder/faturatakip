@@ -273,6 +273,20 @@ public partial class InvoicesView : UserControl
         InvoiceNoInput.Focus();
     }
 
+    private void PrepareNextInvoiceButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_selectedInvoice is null)
+        {
+            SetInvoiceStatus("Sonraki ay taslagi icin once listeden bir fatura secin.", isError: true);
+            return;
+        }
+
+        var draft = InvoiceDraftTemplateBuilder.FromInvoice(_selectedInvoice);
+        ApplyInvoiceDraft(draft);
+        InvoiceNoInput.Focus();
+        SetInvoiceStatus("Secili faturadan sonraki ay icin taslak hazirlandi. Fatura no ve PDF alanlari bilincli olarak bos birakildi.", isError: false);
+    }
+
     private void SaveInvoiceButton_Click(object sender, RoutedEventArgs e)
     {
         if (_invoiceRepository is null)
@@ -659,6 +673,29 @@ public partial class InvoicesView : UserControl
         UpdatePdfControls(null);
         RefreshPaymentControls(null);
         SetInvoiceStatus("Yeni kayıt için alanları doldurun.", isError: false);
+    }
+
+    private void ApplyInvoiceDraft(InvoiceDraftTemplate draft)
+    {
+        _selectedInvoice = null;
+        _selectedPayment = null;
+        _pendingPdfSourcePath = null;
+        _isEditingExisting = false;
+        InvoiceGrid.SelectedItem = null;
+
+        InvoiceFormTitleText.Text = "Yeni Fatura";
+        InvoiceSubscriptionInput.SelectedValue = draft.SubscriptionId;
+        InvoiceYearInput.Text = draft.InvoiceYear.ToString(CultureInfo.InvariantCulture);
+        InvoiceMonthInput.SelectedValue = draft.InvoiceMonth;
+        InvoiceDateInput.SelectedDate = draft.InvoiceDate;
+        InvoiceDueDateInput.SelectedDate = draft.DueDate;
+        InvoiceNoInput.Text = draft.InvoiceNo;
+        InvoiceAmountInput.Text = draft.Amount.ToString("N2", TurkishCulture);
+        UsageAmountInput.Text = draft.UsageAmount.ToString("N2", TurkishCulture);
+        UsageUnitInput.Text = draft.UsageUnit;
+        InvoiceDescriptionInput.Text = draft.Description;
+        UpdatePdfControls(null);
+        RefreshPaymentControls(null);
     }
 
     private static decimal ParseDecimal(string value, string label)

@@ -606,3 +606,10 @@ v0.12 sonuÃ§ notu:
 166. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 167. Siradaki mantikli is: export gecmisi icin daha zengin secim/etiket yardimcilari veya son kullanilan kayda dogrudan donus akisi eklemek.
 
+
+168. v0.66 baslangici olarak Faturalar ekranina Sonrakini Hazirla dugmesi eklendi.
+169. Bu akis secili faturadan yeni kayit taslagi uretiyor; abonelik, tutar, kullanim, birim ve aciklama korunurken fatura no bos birakiliyor.
+170. Taslakta fatura tarihi ve son odeme tarihi bir ay ileri tasiniyor; yil donusu senaryosu InvoiceDraftTemplateBuilder self-test'i ile dogrulandi.
+171. Smoke test: dotnet build -c Release OK.
+172. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+173. Siradaki mantikli is: v0.66 cekirdek is akisini odeme girisi rahatliklariyla derinlestirmek.

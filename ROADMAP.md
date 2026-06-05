@@ -528,3 +528,10 @@ Her faz bittiğinde:
 - v0.65 tamamlandi: audit log export gecmisinde gorunur listedeki son kullanilan ogeyi tek tikla yeniden secme yardimi eklendi.
 - Siradaki mantikli faz: export gecmisi icin daha zengin secim/etiket yardimcilari veya son kullanilan kayda dogrudan donus akisi.
 
+
+
+## Son Guncelleme (2026-06-06 / v0.66)
+
+- v0.66 tamamlandi: Faturalar ekranina secili kayittan sonraki ayi taslak olarak hazirlayan Sonrakini Hazirla aksiyonu eklendi.
+- Taslak akisinda abonelik, tutar, kullanim, kullanim birimi ve aciklama korunuyor; fatura no ile PDF/odeme taraflari bos baslatiliyor.
+- Siradaki mantikli faz: v0.66 cekirdek is akisini odeme girisi rahatliklariyla derinlestirmek, sonra yedekleme UX fazina gecmek.

@@ -808,3 +808,17 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
 | 2026-06-05 | v0.65 | OK | Audit log export gecmisinde son kullanilan ogeyi hizli secme yardimi eklendi; build + self-test OK |
 
+
+
+## v0.66 - Fatura Girisinde Sonraki Ay Taslagi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Sonrakini Hazirla dugmesi var | OK | Faturalar ekraninda secili kayittan yeni taslak ureten aksiyon eklendi |
+| Taslak sonraki aya tasiniyor | OK | InvoiceDraftTemplateBuilder fatura ve son odeme tarihini AddMonths(1) ile tasiyor |
+| Fatura no bilincli olarak bos basliyor | OK | Yeni taslakta tekrar eden fatura no riski azaltildi |
+| Yil donusu korunuyor | OK | Aralik -> Ocak gecis senaryosu self-test ile dogrulandi |
+
+| 2026-06-06 | v0.66 | OK | Fatura girisinde secili kayittan sonraki ay taslagi hazirlama rahatligi eklendi; build + self-test OK |

@@ -114,6 +114,46 @@ public sealed class SelfTestRunner
                 "Self-test fatura guncellemesi"));
             Assert(updatedInvoice.Amount == 1300m, "Fatura duzenleme basarisiz.");
 
+            var nextDraft = InvoiceDraftTemplateBuilder.FromInvoice(updatedInvoice);
+            Assert(nextDraft.SubscriptionId == updatedInvoice.SubscriptionId, "Sonraki ay taslagi aboneligi korumadi.");
+            Assert(nextDraft.InvoiceYear == 2026 && nextDraft.InvoiceMonth == 2, "Sonraki ay taslagi donemi bir ileri tasimadi.");
+            Assert(nextDraft.InvoiceDate == new DateTime(2026, 2, 10), "Sonraki ay taslagi fatura tarihini bir ay ileri tasimadi.");
+            Assert(nextDraft.DueDate == new DateTime(2026, 2, 20), "Sonraki ay taslagi son odeme tarihini bir ay ileri tasimadi.");
+            Assert(string.IsNullOrEmpty(nextDraft.InvoiceNo), "Sonraki ay taslagi fatura numarasini bos birakmadi.");
+            Assert(nextDraft.Amount == updatedInvoice.Amount, "Sonraki ay taslagi tutari korumadi.");
+            Assert(nextDraft.UsageAmount == updatedInvoice.UsageAmount, "Sonraki ay taslagi kullanim miktarini korumadi.");
+            Assert(nextDraft.UsageUnit == updatedInvoice.UsageUnit, "Sonraki ay taslagi kullanim birimini korumadi.");
+
+            var yearRolloverInvoice = new Invoice
+            {
+                Id = updatedInvoice.Id,
+                SubscriptionId = updatedInvoice.SubscriptionId,
+                InvoiceTypeId = updatedInvoice.InvoiceTypeId,
+                InvoiceTypeName = updatedInvoice.InvoiceTypeName,
+                SubscriptionName = updatedInvoice.SubscriptionName,
+                InstitutionName = updatedInvoice.InstitutionName,
+                InvoiceYear = 2026,
+                InvoiceMonth = 12,
+                InvoiceDate = new DateTime(2026, 12, 31),
+                DueDate = new DateTime(2027, 1, 5),
+                InvoiceNo = updatedInvoice.InvoiceNo,
+                Amount = updatedInvoice.Amount,
+                PaidAmount = updatedInvoice.PaidAmount,
+                UsageAmount = updatedInvoice.UsageAmount,
+                UsageUnit = updatedInvoice.UsageUnit,
+                Status = updatedInvoice.Status,
+                Description = updatedInvoice.Description,
+                PdfFilePath = updatedInvoice.PdfFilePath,
+                PdfOriginalFileName = updatedInvoice.PdfOriginalFileName,
+                PdfSha256Hash = updatedInvoice.PdfSha256Hash,
+                PdfAttachedAt = updatedInvoice.PdfAttachedAt,
+                CreatedAt = updatedInvoice.CreatedAt,
+                UpdatedAt = updatedInvoice.UpdatedAt,
+            };
+            var yearRolloverDraft = InvoiceDraftTemplateBuilder.FromInvoice(yearRolloverInvoice);
+            Assert(yearRolloverDraft.InvoiceYear == 2027 && yearRolloverDraft.InvoiceMonth == 1, "Sonraki ay taslagi yil donusunu dogru tasimadi.");
+            Assert(yearRolloverDraft.InvoiceDate == new DateTime(2027, 1, 31), "Sonraki ay taslagi ay sonu tarihini koruyamadi.");
+
             var paymentRepository = new PaymentRepository(databasePath);
             var partialPayment = paymentRepository.Add(new PaymentInput(
                 updatedInvoice.Id,
