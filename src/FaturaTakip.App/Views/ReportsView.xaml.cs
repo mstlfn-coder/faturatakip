@@ -411,6 +411,17 @@ public partial class ReportsView : UserControl
         TryOpenAuditLogPath(item.FilePath, $"Dosya acildi: {item.DisplayName}");
     }
 
+    private void CopySelectedAuditLogExportPathButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (AuditLogRecentExportsInput.SelectedItem is not AuditLogExportItem item)
+        {
+            AuditLogHintText.Text = "Yolu kopyalanacak export dosyasi secili degil.";
+            return;
+        }
+
+        CopyAuditLogText(item.FilePath, "Export dosya yolu panoya kopyalandi.");
+    }
+
     private void RefreshAuditLogExportsButton_Click(object sender, RoutedEventArgs e)
     {
         var exportsDir = Path.Combine(AppPaths.Resolve().RootDirectory, "exports");
