@@ -381,6 +381,9 @@ public partial class ReportsView : UserControl
                 return;
             }
 
+            _lastAuditLogExportPath = targetPath;
+            RefreshRecentAuditLogExports(exportsDir);
+
             Process.Start(new ProcessStartInfo
             {
                 FileName = targetPath,
@@ -403,6 +406,8 @@ public partial class ReportsView : UserControl
             return;
         }
 
+        _lastAuditLogExportPath = item.FilePath;
+        RefreshRecentAuditLogExports(Path.Combine(AppPaths.Resolve().RootDirectory, "exports"));
         TryOpenAuditLogPath(item.FilePath, $"Dosya acildi: {item.DisplayName}");
     }
 
@@ -2242,7 +2247,9 @@ public partial class ReportsView : UserControl
                     FilePath: path,
                     FileName: Path.GetFileName(path),
                     FileTypeLabel: FormatAuditExportFileTypeLabel(Path.GetExtension(path)),
-                    TimestampLabel: File.GetLastWriteTime(path).ToString("dd.MM HH:mm", TurkishCulture)))
+                    TimestampLabel: File.GetLastWriteTime(path).ToString("dd.MM HH:mm", TurkishCulture),
+                    IsLastUsed: !string.IsNullOrWhiteSpace(_lastAuditLogExportPath)
+                        && string.Equals(_lastAuditLogExportPath, path, StringComparison.OrdinalIgnoreCase)))
                 .ToList()
             : [];
 
@@ -3007,7 +3014,8 @@ public partial class ReportsView : UserControl
         string FilePath,
         string FileName,
         string FileTypeLabel,
-        string TimestampLabel)
+        string TimestampLabel,
+        bool IsLastUsed)
     {
         public string DisplayName => $"{TimestampLabel} {FileName}";
     }
