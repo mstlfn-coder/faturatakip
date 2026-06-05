@@ -795,3 +795,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
 | 2026-06-05 | v0.64 | OK | Audit log export secim araclari durumlari daha anlatir hale getirildi; build + self-test OK |
 
+
+## v0.65 - Islem Gecmisi Son Kullanilani Sec
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Son kullanilani sec dugmesi var | OK | SelectLastUsedAuditLogExportButton export araclari icinde gosteriliyor |
+| Gorunur son kullanilan varsa seciliyor | OK | SelectLastUsedAuditLogExportButton_Click IsLastUsed ogeyi secili yapiyor |
+| Gorunur son kullanilan yoksa acik mesaj veriyor | OK | Uygun item yoksa ipucu metni kullaniciya bilgi veriyor |
+
+| 2026-06-05 | v0.65 | OK | Audit log export gecmisinde son kullanilan ogeyi hizli secme yardimi eklendi; build + self-test OK |
+

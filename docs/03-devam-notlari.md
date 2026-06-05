@@ -600,3 +600,9 @@ v0.12 sonuÃ§ notu:
 161. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 162. Siradaki mantikli is: export gecmisi icin daha zengin secim/etiket yardimcilari veya son kullanilan kayda dogrudan donus akisi eklemek.
 
+163. v0.65 olarak audit log export gecmisinde gorunur listedeki son kullanilan ogeyi tek tikla yeniden sececek yardim eklendi.
+164. Son kullanilani sec dugmesi yalnizca listede IsLastUsed isaretli bir oge gorunuyorsa aktif oluyor.
+165. Smoke test: dotnet build -c Release OK.
+166. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+167. Siradaki mantikli is: export gecmisi icin daha zengin secim/etiket yardimcilari veya son kullanilan kayda dogrudan donus akisi eklemek.
+
