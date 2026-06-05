@@ -743,3 +743,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
 | 2026-06-05 | v0.60 | OK | Audit log export gecmisinde son kullanilan dosya isareti eklendi; build + self-test OK |
 
+
+## v0.61 - Islem Gecmisi Son Kullanilani Secili Tutma
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Son kullanilan once seciliyor | OK | RefreshRecentAuditLogExports icinde IsLastUsed olan oge seciliyor |
+| Onceki secim fallback olarak korunuyor | OK | Son kullanilan gorunmuyorsa selectedPath ile eslesen oge seciliyor |
+| Bos listede secim temizleniyor | OK | Dosya yoksa SelectedItem null yapilip erken donuluyor |
+
+| 2026-06-05 | v0.61 | OK | Audit log export gecmisinde son kullanilan dosya secili tutuluyor; build + self-test OK |
+
