@@ -782,3 +782,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
 | 2026-06-05 | v0.63 | OK | Audit log export gecmisinde secili dosyayi klasorde gosterme rahatligi eklendi; build + self-test OK |
 
+
+## v0.64 - Islem Gecmisi Export Secim Araclari Durumlari
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Secim degisince durumlar guncelleniyor | OK | AuditLogRecentExportsInput_SelectionChanged icinde UpdateAuditLogExportActionStates cagiriliyor |
+| Yenileme sonrasi durumlar guncelleniyor | OK | RefreshRecentAuditLogExports sonunda UpdateAuditLogExportActionStates cagiriliyor |
+| Secimsiz durumda kritik dugmeler pasif | OK | Listeden ac, Yolu kopyala, Klasorde goster, Secileni sil butonlari devre disi kalabiliyor |
+
+| 2026-06-05 | v0.64 | OK | Audit log export secim araclari durumlari daha anlatir hale getirildi; build + self-test OK |
+

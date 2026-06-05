@@ -721,7 +721,8 @@
                                           Width="220"
                                           Height="32"
                                           VerticalContentAlignment="Center"
-                                          Margin="0,0,8,0">
+                                          Margin="0,0,8,0"
+                                          SelectionChanged="AuditLogRecentExportsInput_SelectionChanged">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal"
