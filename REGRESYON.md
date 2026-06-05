@@ -756,3 +756,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
 | 2026-06-05 | v0.61 | OK | Audit log export gecmisinde son kullanilan dosya secili tutuluyor; build + self-test OK |
 
+
+## v0.62 - Islem Gecmisi Export Yolunu Kopyala
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Yolu kopyala dugmesi var | OK | CopySelectedAuditLogExportPathButton export araclari icinde gosteriliyor |
+| Secimsiz durumda acik mesaj veriyor | OK | Export secili degilse ipucu metni kullaniciya bilgi veriyor |
+| Secili yol panoya alinabiliyor | OK | CopyAuditLogText ile FilePath dogrudan panoya yaziliyor |
+
+| 2026-06-05 | v0.62 | OK | Audit log export gecmisinde secili dosya yolunu kopyalama rahatligi eklendi; build + self-test OK |
+
