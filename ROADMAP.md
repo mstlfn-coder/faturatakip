@@ -493,3 +493,8 @@ Her faz bittiğinde:
 - v0.58 tamamlandi: audit log export gecmisi listesine dosya tipi ve zaman bilgisini daha okunur gosteren etiketli gorunum eklendi.
 - Siradaki mantikli faz: son kullanilan kayda donus veya export gecmisi icin daha zengin secim/etiket yardimcilari.
 
+## Son Guncelleme (2026-06-05 / v0.59)
+
+- v0.59 tamamlandi: audit log export gecmisine Tum / JSON / TXT hizli filtre secimi eklendi.
+- Siradaki mantikli faz: son kullanilan kayda donus veya export gecmisi icin daha zengin secim/etiket yardimcilari.
+

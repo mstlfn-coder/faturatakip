@@ -748,6 +748,17 @@
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
+                                <ComboBox x:Name="AuditLogExportTypeFilterInput"
+                                          Width="84"
+                                          Height="32"
+                                          VerticalContentAlignment="Center"
+                                          Margin="0,0,8,0"
+                                          SelectionChanged="AuditLogExportTypeFilterInput_SelectionChanged">
+                                    <ComboBoxItem Content="Tum"
+                                                  IsSelected="True" />
+                                    <ComboBoxItem Content="JSON" />
+                                    <ComboBoxItem Content="TXT" />
+                                </ComboBox>
                                 <Button x:Name="RefreshAuditLogExportsButton"
                                         Content="Listeyi yenile"
                                         MinWidth="118"
