@@ -498,3 +498,8 @@ Her faz bittiğinde:
 - v0.59 tamamlandi: audit log export gecmisine Tum / JSON / TXT hizli filtre secimi eklendi.
 - Siradaki mantikli faz: son kullanilan kayda donus veya export gecmisi icin daha zengin secim/etiket yardimcilari.
 
+## Son Guncelleme (2026-06-05 / v0.60)
+
+- v0.60 tamamlandi: audit log export gecmisinde son kullanilan dosyayi gorsel olarak isaretleyen yardim eklendi.
+- Siradaki mantikli faz: export gecmisi icin daha zengin secim/etiket yardimcilari veya son kullanilan kayda dogrudan donus akisi.
+

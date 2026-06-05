@@ -730,3 +730,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 
 | 2026-06-05 | v0.59 | OK | Audit log export gecmisine hizli tip filtresi eklendi; build + self-test OK |
 
+
+## v0.60 - Islem Gecmisi Son Kullanilan Export Isareti
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Son kullanilan etiketi var | OK | ItemTemplate icinde IsLastUsed bagli SON rozeti gosteriliyor |
+| Secili export acilinca isaret guncelleniyor | OK | OpenSelectedAuditLogExportButton_Click icinde _lastAuditLogExportPath yenileniyor |
+| Son dosya acilinca isaret guncelleniyor | OK | OpenLastAuditLogExportButton_Click icinde _lastAuditLogExportPath yenileniyor |
+
+| 2026-06-05 | v0.60 | OK | Audit log export gecmisinde son kullanilan dosya isareti eklendi; build + self-test OK |
+
