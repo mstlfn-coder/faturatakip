@@ -503,3 +503,8 @@ Her faz bittiğinde:
 - v0.60 tamamlandi: audit log export gecmisinde son kullanilan dosyayi gorsel olarak isaretleyen yardim eklendi.
 - Siradaki mantikli faz: export gecmisi icin daha zengin secim/etiket yardimcilari veya son kullanilan kayda dogrudan donus akisi.
 
+## Son Guncelleme (2026-06-05 / v0.61)
+
+- v0.61 tamamlandi: audit log export gecmisinde son kullanilan dosya gorunuyorsa otomatik secili kalma davranisi eklendi.
+- Siradaki mantikli faz: export gecmisi icin daha zengin secim/etiket yardimcilari veya son kullanilan kayda dogrudan donus akisi.
+

@@ -2238,6 +2238,7 @@ public partial class ReportsView : UserControl
     private void RefreshRecentAuditLogExports(string exportsDir)
     {
         var selectedType = GetSelectedAuditLogExportTypeFilter();
+        var selectedPath = (AuditLogRecentExportsInput.SelectedItem as AuditLogExportItem)?.FilePath;
         _recentAuditLogExports = Directory.Exists(exportsDir)
             ? Directory.GetFiles(exportsDir, "audit-log-*.*", SearchOption.TopDirectoryOnly)
                 .Where(path => selectedType == "Tum" || string.Equals(FormatAuditExportFileTypeLabel(Path.GetExtension(path)), selectedType, StringComparison.OrdinalIgnoreCase))
@@ -2254,13 +2255,19 @@ public partial class ReportsView : UserControl
             : [];
 
         AuditLogRecentExportsInput.ItemsSource = _recentAuditLogExports;
-        if (_recentAuditLogExports.Count > 0)
-        {
-            AuditLogRecentExportsInput.SelectedIndex = 0;
-        }
-        else
+        if (_recentAuditLogExports.Count == 0)
         {
             AuditLogRecentExportsInput.SelectedItem = null;
+            return;
+        }
+
+        var preferredItem = _recentAuditLogExports.FirstOrDefault(item => item.IsLastUsed)
+            ?? _recentAuditLogExports.FirstOrDefault(item => string.Equals(item.FilePath, selectedPath, StringComparison.OrdinalIgnoreCase))
+            ?? _recentAuditLogExports.FirstOrDefault();
+
+        if (preferredItem is not null)
+        {
+            AuditLogRecentExportsInput.SelectedItem = preferredItem;
         }
     }
 
