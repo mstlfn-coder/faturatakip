@@ -63,7 +63,7 @@ Get-ChildItem -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚
 
 ## Son Tamamlanan Faz
 
-Son tamamlanan geliþtirme fazý `v0.65 - Islem Gecmisi Son Kullanilani Sec`.
+Son tamamlanan geliþtirme fazý `v0.66 - Fatura Girisinde Sonraki Ay Taslagi`.
 
 Bu fazda audit log export gecmisine gorunur listedeki son kullanilan ogeyi tek tikla yeniden sececek `Son kullanilani sec` dugmesi eklendi; uygun oge yoksa ekran acik mesaj veriyor.
 
