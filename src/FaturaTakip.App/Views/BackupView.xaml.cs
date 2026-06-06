@@ -247,6 +247,52 @@ public partial class BackupView : UserControl
         }
     }
 
+    private void SelectRestoreTargetButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var initialDirectory = AppPaths.Resolve().RootDirectory;
+            var currentValue = (RestoreTargetPathText.Text ?? string.Empty).Trim();
+            if (!string.IsNullOrWhiteSpace(currentValue))
+            {
+                var normalizedCurrentValue = Path.GetFullPath(currentValue);
+                if (Directory.Exists(normalizedCurrentValue))
+                {
+                    initialDirectory = normalizedCurrentValue;
+                }
+                else
+                {
+                    var parent = Path.GetDirectoryName(normalizedCurrentValue);
+                    if (!string.IsNullOrWhiteSpace(parent) && Directory.Exists(parent))
+                    {
+                        initialDirectory = parent;
+                    }
+                }
+            }
+
+            var dialog = new OpenFolderDialog
+            {
+                Title = "Bos hedef klasor sec",
+                InitialDirectory = initialDirectory,
+                Multiselect = false,
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                RestoreTargetPathText.Text = dialog.FolderName;
+                RestoreStatusText.Text = "";
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                $"Hedef klasor secilemedi:\n{ex.Message}",
+                "Geri Yukleme",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
+    }
+
     private void RestoreBackupButton_Click(object sender, RoutedEventArgs e)
     {
         try

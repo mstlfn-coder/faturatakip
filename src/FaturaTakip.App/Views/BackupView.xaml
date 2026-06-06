@@ -176,6 +176,7 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <TextBox x:Name="RestoreZipPathText"
                                      IsReadOnly="True"
@@ -189,7 +190,12 @@
                             <TextBox Grid.Column="2"
                                      x:Name="RestoreTargetPathText"
                                      ToolTip="Bos hedef klasor yolunu yazin"
-                                     Margin="0,0,0,0" />
+                                     Margin="0,0,8,0" />
+                            <Button Grid.Column="3"
+                                    Content="Hedef Sec"
+                                    Style="{StaticResource SecondaryButton}"
+                                    MinWidth="110"
+                                    Click="SelectRestoreTargetButton_Click" />
                         </Grid>
 
                         <StackPanel Grid.Row="2"
