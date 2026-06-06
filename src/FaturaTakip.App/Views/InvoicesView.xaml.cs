@@ -561,6 +561,31 @@ public partial class InvoicesView : UserControl
         SetInvoiceStatus("Odeme taslagi son aciklama ve kalan tutarla dolduruldu.", isError: false);
     }
 
+    private void UseSelectedPaymentTemplateButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_selectedInvoice is null)
+        {
+            SetInvoiceStatus("Secili odemeden doldurmak icin once bir fatura secin.", isError: true);
+            return;
+        }
+
+        if (_selectedPayment is null)
+        {
+            SetInvoiceStatus("Secili odemeden doldurmak icin once odeme listesinden bir kayit secin.", isError: true);
+            return;
+        }
+
+        var suggestion = PaymentEntrySuggestionBuilder.CreateFromSelectedPayment(_selectedInvoice, _selectedPayment, DateTime.Today);
+        if (suggestion.Amount <= 0)
+        {
+            SetInvoiceStatus("Secili odemeden yeni taslak olusturulamadi; faturanin kalan tutari yok.", isError: true);
+            return;
+        }
+
+        ApplyPaymentSuggestion(suggestion);
+        SetInvoiceStatus("Odeme taslagi secili odemeye gore dolduruldu.", isError: false);
+    }
+
     private void PaymentGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (PaymentGrid.SelectedItem is Payment payment)
@@ -857,6 +882,7 @@ public partial class InvoicesView : UserControl
         PaymentAmountInput.IsEnabled = isEnabled;
         PaymentDescriptionInput.IsEnabled = isEnabled;
         FillRemainingPaymentButton.IsEnabled = isEnabled;
+        UseSelectedPaymentTemplateButton.IsEnabled = isEnabled && _selectedPayment is not null;
         UseLastPaymentTemplateButton.IsEnabled = isEnabled;
         SavePaymentButton.IsEnabled = isEnabled;
     }
@@ -881,6 +907,10 @@ public partial class InvoicesView : UserControl
 
     private void UpdatePaymentPdfControls(Payment? payment)
     {
+        if (UseSelectedPaymentTemplateButton is not null)
+        {
+            UseSelectedPaymentTemplateButton.IsEnabled = SavePaymentButton.IsEnabled && payment is not null;
+        }
         if (payment is null)
         {
             SetPaymentPdfInfo("PDF eklemek için ödeme kaydı seçin.", isError: false);
@@ -930,3 +960,4 @@ public partial class InvoicesView : UserControl
 
     private sealed record PdfStatusFilterOption(string Label, InvoicePdfStatusFilter Value);
 }
+

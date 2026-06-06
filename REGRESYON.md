@@ -836,3 +836,17 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Bos aciklama tasinmiyor | OK | Yalnizca bos olmayan son aciklama yeni taslaga oneriliyor |
 
 | 2026-06-06 | v0.67 | OK | Odeme formuna hizli doldurma yardimcilari eklendi; build + self-test OK |
+
+
+## v0.68 - Secili Odemeden Taslak Hazirlama
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Secili Odemeden Doldur dugmesi var | OK | Odeme formunda secili kayda gore yeni taslak ureten yardim eklendi |
+| Tutar kalanla sinirlaniyor | OK | PaymentEntrySuggestionBuilder secili odeme tutarini kalan tutari asmadan kullaniyor |
+| Aciklama trim edilerek tasiniyor | OK | Secili odemenin aciklamasi bosluklardan arindirilip taslaga yaziliyor |
+| Secimsiz durumda acik mesaj veriliyor | OK | Odeme listesinden kayit secilmemisse kullanici yonlendiriliyor |
+
+| 2026-06-06 | v0.68 | OK | Secili odemeden yeni odeme taslagi hazirlama rahatligi eklendi; build + self-test OK |

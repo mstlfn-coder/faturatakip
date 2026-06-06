@@ -542,3 +542,10 @@ Her faz bittiğinde:
 - v0.67 tamamlandi: Odeme formuna Kalani Doldur ve Son Odemeden Doldur yardimcilari eklendi.
 - Bu akis kalan tutari geri yaziyor ve varsa en guncel odeme aciklamasini yeni taslaga tasiyor.
 - Siradaki mantikli faz: odeme girisinde daha ileri rahatliklarin ardindan yedekleme UX fazina gecmek.
+
+
+## Son Guncelleme (2026-06-06 / v0.68)
+
+- v0.68 tamamlandi: Odeme formuna Secili Odemeden Doldur yardimi eklendi.
+- Bu akis secili odemenin aciklamasini ve tutarini, kalan tutari asmadan yeni taslaga tasiyor.
+- Siradaki mantikli faz: odeme girisi rahatliklarini tamamlayip yedekleme UX fazina gecmek.
