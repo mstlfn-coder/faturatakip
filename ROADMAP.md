@@ -579,3 +579,9 @@ Her faz bittiğinde:
 - v0.73 tamamlandi: Uygun olmayan restore hedefinde tek tikla bos klasor olusturma rahatligi eklendi.
 - Yeni klasor otomatik uretilip hedef alanina yaziliyor; ad cakismasi varsa benzersiz isim uretiliyor.
 - Siradaki mantikli faz: restore akisini ozetleyen son bir onizleme/ozet kutusu eklemek.
+
+## Son Guncelleme (2026-06-06 / v0.74)
+
+- v0.74 tamamlandi: Restore bolumune zip, hedef ve hazirlik durumunu tek yerde gosteren onizleme kutusu eklendi.
+- Boylece kullanici geri yukleme oncesi eksik adimi tek bakista gorebiliyor.
+- Siradaki mantikli faz: backup UX tarafini yeterince olgun kabul edip yeni bir urun fazina gecmek.

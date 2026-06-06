@@ -435,11 +435,28 @@ public partial class BackupView : UserControl
             ? System.Windows.Media.Brushes.DarkGreen
             : System.Windows.Media.Brushes.IndianRed;
 
+        var preview = BackupRestoreService.BuildPreviewSummary(RestoreZipPathText.Text, RestoreTargetPathText.Text);
+        if (RestorePreviewZipText is not null)
+        {
+            RestorePreviewZipText.Text = preview.ZipSummary;
+        }
+
+        if (RestorePreviewTargetText is not null)
+        {
+            RestorePreviewTargetText.Text = $"Hedef: {preview.TargetSummary}";
+        }
+
+        if (RestorePreviewReadyText is not null)
+        {
+            RestorePreviewReadyText.Text = preview.ReadinessSummary;
+            RestorePreviewReadyText.Foreground = preview.CanRestore
+                ? System.Windows.Media.Brushes.DarkGreen
+                : System.Windows.Media.Brushes.IndianRed;
+        }
+
         if (RestoreBackupButton is not null)
         {
-            RestoreBackupButton.IsEnabled =
-                assessment.CanRestore &&
-                !string.IsNullOrWhiteSpace(RestoreZipPathText.Text);
+            RestoreBackupButton.IsEnabled = preview.CanRestore;
         }
 
         if (CreateEmptyRestoreTargetButton is not null)
