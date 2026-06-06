@@ -850,3 +850,17 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Secimsiz durumda acik mesaj veriliyor | OK | Odeme listesinden kayit secilmemisse kullanici yonlendiriliyor |
 
 | 2026-06-06 | v0.68 | OK | Secili odemeden yeni odeme taslagi hazirlama rahatligi eklendi; build + self-test OK |
+
+
+## v0.69 - Backup Son Yedekler Listesi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Son 5 yedek listeleniyor | OK | BackupFileCatalog en guncel `backup_*.zip` dosyalarini ters tarihle getiriyor |
+| Secileni Kullan dugmesi var | OK | Secili yedek restore zip alanina tek tikla tasiniyor |
+| Zipi Ac dugmesi var | OK | Secili yedek dogrudan shell ile acilabiliyor |
+| Backup katalog self-test'i var | OK | Son N yedek siniri ve siralamasi self-test ile dogrulandi |
+
+| 2026-06-06 | v0.69 | OK | Backup ekranina son yedekler listesi ve secili yedegi kullan/ac rahatliklari eklendi; build + self-test OK |

@@ -2,8 +2,10 @@
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Collections.Generic;
 using Microsoft.Win32;
 using FaturaTakip.App.Infrastructure;
 
@@ -11,6 +13,8 @@ namespace FaturaTakip.App.Views;
 
 public partial class BackupView : UserControl
 {
+    private IReadOnlyList<BackupHistoryItem> _recentBackups = Array.Empty<BackupHistoryItem>();
+
     public BackupView()
     {
         InitializeComponent();
@@ -22,27 +26,33 @@ public partial class BackupView : UserControl
         try
         {
             var paths = AppPaths.Resolve();
-            var backupsDir = Path.Combine(paths.RootDirectory, "backups");
-            Directory.CreateDirectory(backupsDir);
+            _recentBackups = BackupFileCatalog.GetRecentBackups(paths.RootDirectory, take: 5);
+            RecentBackupsList.ItemsSource = _recentBackups;
 
-            var latest = new DirectoryInfo(backupsDir)
-                .GetFiles("backup_*.zip")
-                .OrderByDescending(f => f.LastWriteTimeUtc)
-                .FirstOrDefault();
+            var latest = _recentBackups.FirstOrDefault();
+            UpdateRecentBackupActions();
 
             if (latest is null)
             {
                 BackupStatusText.Text = "Henüz yedek yok. Öneri: günde 1 kez yedek alın.";
+                RecentBackupsStatusText.Text = "Liste bos. Ilk yedekten sonra burada son 5 zip gorunur.";
                 return;
             }
 
-            BackupStatusText.Text = $"Son yedek: {latest.Name} ({latest.LastWriteTime.ToString("dd.MM.yyyy HH:mm", CultureInfo.GetCultureInfo("tr-TR"))})";
+            BackupStatusText.Text = $"Son yedek: {latest.FileName} ({latest.LastWriteTime.ToString("dd.MM.yyyy HH:mm", CultureInfo.GetCultureInfo("tr-TR"))})";
+            RecentBackupsStatusText.Text = $"{_recentBackups.Count} yedek listelendi.";
 
             // Convenience: prefill restore zip with the latest backup.
             if (string.IsNullOrWhiteSpace(RestoreZipPathText.Text))
             {
-                RestoreZipPathText.Text = latest.FullName;
+                RestoreZipPathText.Text = latest.FullPath;
             }
+
+            if (RecentBackupsList.SelectedItem is null)
+            {
+                RecentBackupsList.SelectedIndex = 0;
+            }
+
             RestoreStatusText.Text = "";
         }
         catch (Exception ex)
@@ -61,6 +71,7 @@ public partial class BackupView : UserControl
 
             var result = BackupService.CreateBackup(options);
             BackupStatusText.Text = $"{result.Message} ({FormatBytes(result.ZipBytes)})";
+            Refresh();
         }
         catch (Exception ex)
         {
@@ -93,6 +104,53 @@ public partial class BackupView : UserControl
                 "Yedekleme",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
+        }
+    }
+
+    private void RefreshBackupsListButton_Click(object sender, RoutedEventArgs e)
+    {
+        Refresh();
+    }
+
+    private void RecentBackupsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        UpdateRecentBackupActions();
+    }
+
+    private void UseSelectedBackupButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (RecentBackupsList.SelectedItem is not BackupHistoryItem selected)
+        {
+            RecentBackupsStatusText.Text = "Once listeden bir yedek secin.";
+            return;
+        }
+
+        RestoreZipPathText.Text = selected.FullPath;
+        RecentBackupsStatusText.Text = $"Restore icin secildi: {selected.FileName}";
+        RestoreStatusText.Text = "";
+    }
+
+    private void OpenSelectedBackupButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            if (RecentBackupsList.SelectedItem is not BackupHistoryItem selected)
+            {
+                RecentBackupsStatusText.Text = "Acmak icin once listeden bir yedek secin.";
+                return;
+            }
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = selected.FullPath,
+                UseShellExecute = true,
+            });
+
+            RecentBackupsStatusText.Text = $"Acildi: {selected.FileName}";
+        }
+        catch (Exception ex)
+        {
+            RecentBackupsStatusText.Text = "Hata: " + ex.Message;
         }
     }
 
@@ -241,6 +299,21 @@ public partial class BackupView : UserControl
         if (mb < 1024) return $"{mb:N1} MB";
         var gb = mb / 1024d;
         return $"{gb:N2} GB";
+    }
+
+    private void UpdateRecentBackupActions()
+    {
+        var hasSelection = RecentBackupsList.SelectedItem is BackupHistoryItem;
+
+        if (UseSelectedBackupButton is not null)
+        {
+            UseSelectedBackupButton.IsEnabled = hasSelection;
+        }
+
+        if (OpenSelectedBackupButton is not null)
+        {
+            OpenSelectedBackupButton.IsEnabled = hasSelection;
+        }
     }
 }
 
