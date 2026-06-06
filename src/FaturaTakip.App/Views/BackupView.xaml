@@ -105,6 +105,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <TextBlock Text="Son Yedekler"
@@ -190,7 +191,8 @@
                             <TextBox Grid.Column="2"
                                      x:Name="RestoreTargetPathText"
                                      ToolTip="Bos hedef klasor yolunu yazin"
-                                     Margin="0,0,8,0" />
+                                     Margin="0,0,8,0"
+                                     TextChanged="RestoreTargetPathText_TextChanged" />
                             <Button Grid.Column="3"
                                     Content="Hedef Sec"
                                     Style="{StaticResource SecondaryButton}"
@@ -198,11 +200,18 @@
                                     Click="SelectRestoreTargetButton_Click" />
                         </Grid>
 
-                        <StackPanel Grid.Row="2"
+                        <TextBlock Grid.Row="2"
+                                   x:Name="RestoreTargetValidationText"
+                                   Style="{StaticResource MutedText}"
+                                   Margin="0,10,0,0"
+                                   TextWrapping="Wrap" />
+
+                        <StackPanel Grid.Row="3"
                                     Orientation="Horizontal"
                                     VerticalAlignment="Center"
                                     Margin="0,10,0,0">
-                            <Button Content="Geri Yukle"
+                            <Button x:Name="RestoreBackupButton"
+                                    Content="Geri Yukle"
                                     Style="{StaticResource PrimaryButton}"
                                     Margin="0,0,10,0"
                                     Click="RestoreBackupButton_Click" />

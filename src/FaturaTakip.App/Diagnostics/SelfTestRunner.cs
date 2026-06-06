@@ -1214,6 +1214,16 @@ public sealed class SelfTestRunner
             Assert(recentBackups[0].FileName == "backup_20260603_090000.zip", "Backup katalogu en guncel yedegi basa getirmedi.");
             Assert(recentBackups[1].FileName == "backup_20260602_090000.zip", "Backup katalogu siralamasi hatali.");
 
+            var newRestoreTargetAssessment = BackupRestoreService.EvaluateTargetRoot(Path.Combine(testRoot, "restore-empty"));
+            Assert(newRestoreTargetAssessment.CanRestore, "Henuz olusmamis restore hedefi uygun sayilmadi.");
+            Assert(newRestoreTargetAssessment.Message.Contains("olusturulacak", StringComparison.OrdinalIgnoreCase), "Yeni restore hedefi icin bilgilendirme mesaji bekleniyordu.");
+
+            var existingEmptyRestoreRoot = Path.Combine(testRoot, "restore-existing-empty");
+            Directory.CreateDirectory(existingEmptyRestoreRoot);
+            var existingEmptyAssessment = BackupRestoreService.EvaluateTargetRoot(existingEmptyRestoreRoot);
+            Assert(existingEmptyAssessment.CanRestore, "Mevcut bos restore hedefi uygun sayilmadi.");
+            Assert(existingEmptyAssessment.Message.Contains("uygun", StringComparison.OrdinalIgnoreCase), "Bos restore hedefi uygunluk mesaji vermedi.");
+
             var restoreSourceRoot = Path.Combine(testRoot, "restore-source");
             var restoreDatabaseDir = Path.Combine(restoreSourceRoot, "database");
             Directory.CreateDirectory(restoreDatabaseDir);
@@ -1230,6 +1240,9 @@ public sealed class SelfTestRunner
             var nonEmptyRestoreTarget = Path.Combine(testRoot, "restore-target-non-empty");
             Directory.CreateDirectory(nonEmptyRestoreTarget);
             File.WriteAllText(Path.Combine(nonEmptyRestoreTarget, "occupied.txt"), "not empty");
+            var nonEmptyAssessment = BackupRestoreService.EvaluateTargetRoot(nonEmptyRestoreTarget);
+            Assert(!nonEmptyAssessment.CanRestore, "Dolu restore hedefi yanlislikla uygun sayildi.");
+            Assert(nonEmptyAssessment.Message.Contains("bos degil", StringComparison.OrdinalIgnoreCase), "Dolu restore hedefi icin acik uyari mesaji uretilmedi.");
             AssertThrows(
                 () => BackupRestoreService.RestoreToEmptyRoot(restoreZipPath, nonEmptyRestoreTarget),
                 "Bos olmayan hedefe restore engellenmedi.");

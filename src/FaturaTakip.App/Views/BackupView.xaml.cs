@@ -36,6 +36,7 @@ public partial class BackupView : UserControl
             {
                 BackupStatusText.Text = "Henüz yedek yok. Öneri: günde 1 kez yedek alın.";
                 RecentBackupsStatusText.Text = "Liste bos. Ilk yedekten sonra burada son 5 zip gorunur.";
+                UpdateRestoreTargetValidation();
                 return;
             }
 
@@ -54,6 +55,7 @@ public partial class BackupView : UserControl
             }
 
             RestoreStatusText.Text = "";
+            UpdateRestoreTargetValidation();
         }
         catch (Exception ex)
         {
@@ -128,6 +130,7 @@ public partial class BackupView : UserControl
         RestoreZipPathText.Text = selected.FullPath;
         RecentBackupsStatusText.Text = $"Restore icin secildi: {selected.FileName}";
         RestoreStatusText.Text = "";
+        UpdateRestoreTargetValidation();
     }
 
     private void OpenSelectedBackupButton_Click(object sender, RoutedEventArgs e)
@@ -201,6 +204,7 @@ public partial class BackupView : UserControl
             {
                 RestoreZipPathText.Text = dlg.FileName;
                 RestoreStatusText.Text = "";
+                UpdateRestoreTargetValidation();
             }
         }
         catch (Exception ex)
@@ -293,6 +297,11 @@ public partial class BackupView : UserControl
         }
     }
 
+    private void RestoreTargetPathText_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        UpdateRestoreTargetValidation();
+    }
+
     private void RestoreBackupButton_Click(object sender, RoutedEventArgs e)
     {
         try
@@ -318,14 +327,15 @@ public partial class BackupView : UserControl
                 return;
             }
 
-            targetRoot = Path.GetFullPath(targetRoot);
-
-            if (Directory.Exists(targetRoot) && Directory.EnumerateFileSystemEntries(targetRoot).Any())
+            var assessment = BackupRestoreService.EvaluateTargetRoot(targetRoot);
+            if (!assessment.CanRestore)
             {
-                RestoreStatusText.Text = "Hata: hedef klasör boş değil.";
-                MessageBox.Show("Güvenlik için sadece boş klasöre geri yükleme yapılabilir.", "Geri Yükleme", MessageBoxButton.OK, MessageBoxImage.Warning);
+                RestoreStatusText.Text = "Hata: " + assessment.Message;
+                MessageBox.Show(assessment.Message, "Geri Yükleme", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
+
+            targetRoot = assessment.TargetRoot!;
 
             var confirm = MessageBox.Show(
                 "Seçilen zip boş bir klasöre geri yüklenecek.\n\n" +
@@ -389,6 +399,27 @@ public partial class BackupView : UserControl
         if (RevealSelectedBackupButton is not null)
         {
             RevealSelectedBackupButton.IsEnabled = hasSelection;
+        }
+    }
+
+    private void UpdateRestoreTargetValidation()
+    {
+        if (RestoreTargetValidationText is null)
+        {
+            return;
+        }
+
+        var assessment = BackupRestoreService.EvaluateTargetRoot(RestoreTargetPathText.Text);
+        RestoreTargetValidationText.Text = assessment.Message;
+        RestoreTargetValidationText.Foreground = assessment.CanRestore
+            ? System.Windows.Media.Brushes.DarkGreen
+            : System.Windows.Media.Brushes.IndianRed;
+
+        if (RestoreBackupButton is not null)
+        {
+            RestoreBackupButton.IsEnabled =
+                assessment.CanRestore &&
+                !string.IsNullOrWhiteSpace(RestoreZipPathText.Text);
         }
     }
 }

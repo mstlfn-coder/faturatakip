@@ -646,3 +646,10 @@ v0.12 sonuÃ§ notu:
 202. Smoke test: dotnet build -c Release OK.
 203. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 204. Siradaki mantikli is: secilen restore hedefinin bos/uygun oldugunu daha gorunur sekilde onceden gostermek.
+205. v0.72 olarak restore hedefi icin canli uygunluk metni eklendi.
+206. BackupRestoreService icine ortak hedef degerlendirme yordamı tasindi; UI ve restore akisi ayni kontrol mantigini kullaniyor.
+207. Hedef klasor henuz yoksa "olusturulacak", varsa ve bossa "uygun", doluysa "kullanilamaz" mesaji gosteriliyor.
+208. Geri Yukle dugmesi de bu uygunluk sonucuyla senkron pasif/aktif hale getirildi.
+209. Smoke test: dotnet build -c Release OK.
+210. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+211. Siradaki mantikli is: uygun olmayan restore hedefinde kullaniciyi bos klasor olusturmaya yonlendiren daha aktif bir rahatlik eklemek.
