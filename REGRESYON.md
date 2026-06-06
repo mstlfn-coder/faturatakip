@@ -919,3 +919,18 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Alan otomatik dolduruluyor | OK | Olusturulan klasor restore hedef kutusuna yaziliyor |
 
 | 2026-06-06 | v0.73 | OK | Uygun olmayan restore hedefinde tek tikla bos klasor olusturma yardimi eklendi; build + self-test OK |
+
+
+## v0.74 - Restore Onizleme Kutusu
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Onizleme kutusu var | OK | Zip, hedef ve hazirlik ozeti ayri satirlarda gosteriliyor |
+| Zip ozeti gosteriliyor | OK | Secilmedi / hazir / bulunamadi durumu yaziliyor |
+| Hedef ozeti gosteriliyor | OK | EvaluateTargetRoot sonucu hedef satirina tasiniyor |
+| Hazirlik ozeti gosteriliyor | OK | Geri yukleme icin hazir / ek adim gerekiyor mesaji var |
+| Preview self-test'i var | OK | BuildPreviewSummary davranisi self-test ile dogrulandi |
+
+| 2026-06-06 | v0.74 | OK | Restore bolumune onizleme kutusu eklendi; build + self-test OK |

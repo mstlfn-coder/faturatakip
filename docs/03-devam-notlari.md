@@ -660,3 +660,9 @@ v0.12 sonuÃ§ notu:
 216. Smoke test: dotnet build -c Release OK.
 217. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 218. Siradaki mantikli is: restore akisini zip + hedef + uygunluk ozetleyen son bir onizleme kutusuyla tamamlamak.
+219. v0.74 olarak restore bolumune onizleme kutusu eklendi.
+220. Bu kutu secili zip, hedef klasorun uygunluk mesaji ve geri yukleme hazirlik sonucunu tek bakista gosteriyor.
+221. BackupRestoreService icine BuildPreviewSummary yardimi eklendi; UI ve self-test ayni ozet mantigini kullaniyor.
+222. Smoke test: dotnet build -c Release OK.
+223. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+224. Siradaki mantikli is: backup UX tarafini yeterince olgun kabul edip yeni urun fazina gecmek.

@@ -19,6 +19,12 @@ public static class BackupRestoreService
         bool CanRestore,
         string Message);
 
+    public sealed record RestorePreviewSummary(
+        string ZipSummary,
+        string TargetSummary,
+        string ReadinessSummary,
+        bool CanRestore);
+
     public static RestoreTargetAssessment EvaluateTargetRoot(string? targetRoot)
     {
         if (string.IsNullOrWhiteSpace(targetRoot))
@@ -46,6 +52,26 @@ public static class BackupRestoreService
         {
             return new RestoreTargetAssessment(null, Exists: false, IsEmpty: false, CanRestore: false, Message: "Hedef klasor yolu gecersiz.");
         }
+    }
+
+    public static RestorePreviewSummary BuildPreviewSummary(string? zipPath, string? targetRoot)
+    {
+        var zipSummary = string.IsNullOrWhiteSpace(zipPath)
+            ? "Zip secilmedi."
+            : File.Exists(zipPath)
+                ? $"Zip hazir: {Path.GetFileName(zipPath)}"
+                : "Zip bulunamadi.";
+
+        var assessment = EvaluateTargetRoot(targetRoot);
+        var readiness = !string.IsNullOrWhiteSpace(zipPath) && File.Exists(zipPath) && assessment.CanRestore
+            ? "Geri yukleme icin hazir."
+            : "Geri yukleme icin ek adim gerekiyor.";
+
+        return new RestorePreviewSummary(
+            ZipSummary: zipSummary,
+            TargetSummary: assessment.Message,
+            ReadinessSummary: readiness,
+            CanRestore: !string.IsNullOrWhiteSpace(zipPath) && File.Exists(zipPath) && assessment.CanRestore);
     }
 
     public static string CreateSuggestedEmptyTarget(string baseDirectory, DateTime now)

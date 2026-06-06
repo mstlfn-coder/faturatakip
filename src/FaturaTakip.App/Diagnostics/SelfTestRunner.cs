@@ -1230,6 +1230,10 @@ public sealed class SelfTestRunner
             var secondSuggestedRestoreTarget = BackupRestoreService.CreateSuggestedEmptyTarget(suggestedRestoreBase, new DateTime(2026, 6, 6, 12, 0, 0));
             Assert(suggestedRestoreTarget != secondSuggestedRestoreTarget, "Ayni anda uretilen restore klasor adlari cakisti.");
 
+            var previewWithoutZip = BackupRestoreService.BuildPreviewSummary(null, existingEmptyRestoreRoot);
+            Assert(!previewWithoutZip.CanRestore, "Zip yokken restore preview hazir gorunmemeliydi.");
+            Assert(previewWithoutZip.ZipSummary.Contains("secilmedi", StringComparison.OrdinalIgnoreCase), "Zip secilmedi mesaji bekleniyordu.");
+
             var restoreSourceRoot = Path.Combine(testRoot, "restore-source");
             var restoreDatabaseDir = Path.Combine(restoreSourceRoot, "database");
             Directory.CreateDirectory(restoreDatabaseDir);
@@ -1249,6 +1253,9 @@ public sealed class SelfTestRunner
             var nonEmptyAssessment = BackupRestoreService.EvaluateTargetRoot(nonEmptyRestoreTarget);
             Assert(!nonEmptyAssessment.CanRestore, "Dolu restore hedefi yanlislikla uygun sayildi.");
             Assert(nonEmptyAssessment.Message.Contains("bos degil", StringComparison.OrdinalIgnoreCase), "Dolu restore hedefi icin acik uyari mesaji uretilmedi.");
+            var previewReady = BackupRestoreService.BuildPreviewSummary(restoreZipPath, existingEmptyRestoreRoot);
+            Assert(previewReady.CanRestore, "Gecerli zip + bos hedef icin restore preview hazir gorunmeliydi.");
+            Assert(previewReady.ReadinessSummary.Contains("hazir", StringComparison.OrdinalIgnoreCase), "Restore preview hazirlik mesaji bekleniyordu.");
             AssertThrows(
                 () => BackupRestoreService.RestoreToEmptyRoot(restoreZipPath, nonEmptyRestoreTarget),
                 "Bos olmayan hedefe restore engellenmedi.");
