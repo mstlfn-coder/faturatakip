@@ -591,3 +591,9 @@ Her faz bittiğinde:
 - v0.75 tamamlandi: Gosterge panelindeki odenmemis ve gecikmis kartlarina `Rapora Git` dugmeleri eklendi.
 - Bu kisa yol kullaniciyi dogrudan Raporlar ekraninda ilgili sekmeye goturuyor; gunluk takip akisinda daha hizli aksiyon alinabiliyor.
 - Siradaki mantikli faz: dashboard tarafinda eksik evrak veya aylik tahsilat icin de benzer hizli gecisler eklemek.
+
+## Son Guncelleme (2026-06-06 / v0.76)
+
+- v0.76 tamamlandi: Gosterge panelindeki bu ay fatura, bu ay odeme, fatura PDF eksik ve odeme PDF eksik kartlarina hizli gecis dugmeleri eklendi.
+- Aylik hareket kartlari dogrudan Aylik Liste sekmesine, evrak eksigi kartlari ise Evrak Kontrol sekmesine tasiniyor.
+- Siradaki mantikli faz: dashboard tarafinda aktif abonelik veya toplam fatura gibi kartlardan liste ekranlarina hizli gecis eklemek.

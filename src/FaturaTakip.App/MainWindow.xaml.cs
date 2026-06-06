@@ -96,6 +96,18 @@ public partial class MainWindow : Window
         ReportsPanel.ShowOverdueReport();
     }
 
+    private void OpenMonthlyReportFromDashboardButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowReports();
+        ReportsPanel.ShowMonthlyReport();
+    }
+
+    private void OpenDocumentHealthReportFromDashboardButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowReports();
+        ReportsPanel.ShowDocumentHealthReport();
+    }
+
     private void ShowDashboard()
     {
         DashboardPanel.Visibility = Visibility.Visible;

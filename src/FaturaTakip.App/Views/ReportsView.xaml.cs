@@ -176,6 +176,28 @@ public partial class ReportsView : UserControl
         ApplyTab(ReportTab.Overdue);
     }
 
+    public void ShowMonthlyReport()
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        Refresh();
+        ApplyTab(ReportTab.Monthly);
+    }
+
+    public void ShowDocumentHealthReport()
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        Refresh();
+        ApplyTab(ReportTab.DocumentHealth);
+    }
+
     private void UnpaidTabButton_Click(object sender, RoutedEventArgs e)
     {
         ApplyTab(ReportTab.Unpaid);
