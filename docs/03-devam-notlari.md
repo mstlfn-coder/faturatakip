@@ -634,3 +634,9 @@ v0.12 sonuÃ§ notu:
 190. Smoke test: dotnet build -c Release OK.
 191. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 192. Siradaki mantikli is: yedekleme UX tarafinda secili yedegi klasorde gosterme veya restore hedefi secmeyi kolaylastirma.
+193. v0.70 olarak backup listesindeki secili zip icin Klasorde Goster dugmesi eklendi.
+194. Bu akis `explorer.exe /select` ile dogrudan secili zip dosyasini Windows Gezgini icinde odakli aciyor.
+195. Dugme, secim yokken devre disi kaliyor; boylece backup listesindeki aksiyonlar daha kendini anlatir hale geldi.
+196. Smoke test: dotnet build -c Release OK.
+197. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+198. Siradaki mantikli is: restore hedef klasoru secimini daha rahat hale getirmek.
