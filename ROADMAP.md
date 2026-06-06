@@ -573,3 +573,9 @@ Her faz bittiğinde:
 - v0.72 tamamlandi: Restore hedefi icin canli bos/uygunluk dogrulamasi eklendi.
 - Secilen ya da yazilan klasor icin "olusturulacak / uygun / kullanilamaz / gecersiz" mesaji aninda gosteriliyor.
 - Siradaki mantikli faz: restore hedefi uygun degilse kullaniciyi bos klasor olusturmaya yonlendiren daha aktif bir rahatlik eklemek.
+
+## Son Guncelleme (2026-06-06 / v0.73)
+
+- v0.73 tamamlandi: Uygun olmayan restore hedefinde tek tikla bos klasor olusturma rahatligi eklendi.
+- Yeni klasor otomatik uretilip hedef alanina yaziliyor; ad cakismasi varsa benzersiz isim uretiliyor.
+- Siradaki mantikli faz: restore akisini ozetleyen son bir onizleme/ozet kutusu eklemek.

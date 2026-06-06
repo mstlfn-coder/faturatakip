@@ -1224,6 +1224,12 @@ public sealed class SelfTestRunner
             Assert(existingEmptyAssessment.CanRestore, "Mevcut bos restore hedefi uygun sayilmadi.");
             Assert(existingEmptyAssessment.Message.Contains("uygun", StringComparison.OrdinalIgnoreCase), "Bos restore hedefi uygunluk mesaji vermedi.");
 
+            var suggestedRestoreBase = Path.Combine(testRoot, "restore-suggested");
+            var suggestedRestoreTarget = BackupRestoreService.CreateSuggestedEmptyTarget(suggestedRestoreBase, new DateTime(2026, 6, 6, 12, 0, 0));
+            Assert(Directory.Exists(suggestedRestoreTarget), "Onerilen bos restore klasoru olusturulamadi.");
+            var secondSuggestedRestoreTarget = BackupRestoreService.CreateSuggestedEmptyTarget(suggestedRestoreBase, new DateTime(2026, 6, 6, 12, 0, 0));
+            Assert(suggestedRestoreTarget != secondSuggestedRestoreTarget, "Ayni anda uretilen restore klasor adlari cakisti.");
+
             var restoreSourceRoot = Path.Combine(testRoot, "restore-source");
             var restoreDatabaseDir = Path.Combine(restoreSourceRoot, "database");
             Directory.CreateDirectory(restoreDatabaseDir);

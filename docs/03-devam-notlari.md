@@ -653,3 +653,10 @@ v0.12 sonuÃ§ notu:
 209. Smoke test: dotnet build -c Release OK.
 210. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 211. Siradaki mantikli is: uygun olmayan restore hedefinde kullaniciyi bos klasor olusturmaya yonlendiren daha aktif bir rahatlik eklemek.
+212. v0.73 olarak restore alanina Bos Klasor Olustur dugmesi eklendi.
+213. Bu akis mevcut hedefe ya da parent klasore gore uygun bir temel klasor secip benzersiz bir `restore_target_yyyyMMdd_HHmmss` klasoru uretiyor.
+214. Olusturulan bos klasor hedef alanina otomatik yaziliyor; kullanici elle klasor olusturmak zorunda kalmiyor.
+215. Self-test icine benzersiz klasor adi uretilmesi ve klasorun fiziksel olarak olusmasi dogrulamasi eklendi.
+216. Smoke test: dotnet build -c Release OK.
+217. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+218. Siradaki mantikli is: restore akisini zip + hedef + uygunluk ozetleyen son bir onizleme kutusuyla tamamlamak.
