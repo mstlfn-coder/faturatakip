@@ -567,3 +567,9 @@ Her faz bittiğinde:
 - v0.71 tamamlandi: Restore hedef klasoru icin dosya yolu yazmak yerine klasor secici eklendi.
 - Mevcut yol varsa ayni klasorde, yoksa uygulama kokunde acilarak kullaniciyi daha az ugrastiriyor.
 - Siradaki mantikli faz: restore hedefi icin bos klasor uygunlugu konusunda daha gorunur on kontrol eklemek.
+
+## Son Guncelleme (2026-06-06 / v0.72)
+
+- v0.72 tamamlandi: Restore hedefi icin canli bos/uygunluk dogrulamasi eklendi.
+- Secilen ya da yazilan klasor icin "olusturulacak / uygun / kullanilamaz / gecersiz" mesaji aninda gosteriliyor.
+- Siradaki mantikli faz: restore hedefi uygun degilse kullaniciyi bos klasor olusturmaya yonlendiren daha aktif bir rahatlik eklemek.

@@ -890,3 +890,18 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Manuel yol yazma mecburiyeti azaldi | OK | Kullanici hedef klasoru secici ile doldurabiliyor |
 
 | 2026-06-06 | v0.71 | OK | Restore hedef klasoru secici eklendi; build + self-test OK |
+
+
+## v0.72 - Restore Hedefi Canli Uygunluk Kontrolu
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Canli hedef durum mesaji var | OK | Restore hedefi icin ayri durum metni eklendi |
+| Yeni klasor uygun sayiliyor | OK | Henuz olmayan hedef "olusturulacak" mesaji ile kabul ediliyor |
+| Bos mevcut klasor uygun sayiliyor | OK | Bos klasor "uygun" mesaji ile gosteriliyor |
+| Dolu klasor aninda uyari veriyor | OK | Bos olmayan hedef "kullanilamaz" olarak isaretleniyor |
+| Geri Yukle dugmesi uygunlukla senkron | OK | Uygun olmayan hedefte dugme pasif kaliyor |
+
+| 2026-06-06 | v0.72 | OK | Restore hedefi icin canli uygunluk kontrolu eklendi; build + self-test OK |

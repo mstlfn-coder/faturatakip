@@ -12,6 +12,42 @@ public static class BackupRestoreService
         string TargetRoot,
         string Message);
 
+    public sealed record RestoreTargetAssessment(
+        string? TargetRoot,
+        bool Exists,
+        bool IsEmpty,
+        bool CanRestore,
+        string Message);
+
+    public static RestoreTargetAssessment EvaluateTargetRoot(string? targetRoot)
+    {
+        if (string.IsNullOrWhiteSpace(targetRoot))
+        {
+            return new RestoreTargetAssessment(null, Exists: false, IsEmpty: false, CanRestore: false, Message: "Hedef klasor secilmedi.");
+        }
+
+        try
+        {
+            var normalizedTargetRoot = Path.GetFullPath(targetRoot);
+            if (!Directory.Exists(normalizedTargetRoot))
+            {
+                return new RestoreTargetAssessment(normalizedTargetRoot, Exists: false, IsEmpty: true, CanRestore: true, Message: "Klasor henuz yok. Geri yukleme sirasinda olusturulacak.");
+            }
+
+            var isEmpty = !Directory.EnumerateFileSystemEntries(normalizedTargetRoot).Any();
+            if (isEmpty)
+            {
+                return new RestoreTargetAssessment(normalizedTargetRoot, Exists: true, IsEmpty: true, CanRestore: true, Message: "Klasor bos. Geri yukleme icin uygun.");
+            }
+
+            return new RestoreTargetAssessment(normalizedTargetRoot, Exists: true, IsEmpty: false, CanRestore: false, Message: "Klasor bos degil. Guvenlik icin kullanilamaz.");
+        }
+        catch
+        {
+            return new RestoreTargetAssessment(null, Exists: false, IsEmpty: false, CanRestore: false, Message: "Hedef klasor yolu gecersiz.");
+        }
+    }
+
     public static RestoreResult RestoreToEmptyRoot(string zipPath, string targetRoot)
     {
         if (string.IsNullOrWhiteSpace(zipPath))
@@ -29,6 +65,13 @@ public static class BackupRestoreService
             throw new InvalidOperationException("Hedef klasör boş olamaz.");
         }
 
+        var assessment = EvaluateTargetRoot(targetRoot);
+        if (!assessment.CanRestore)
+        {
+            throw new InvalidOperationException(assessment.Message);
+        }
+
+        targetRoot = assessment.TargetRoot!;
         targetRoot = Path.GetFullPath(targetRoot);
 
         if (Directory.Exists(targetRoot) &&
