@@ -154,6 +154,31 @@ public partial class BackupView : UserControl
         }
     }
 
+    private void RevealSelectedBackupButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            if (RecentBackupsList.SelectedItem is not BackupHistoryItem selected)
+            {
+                RecentBackupsStatusText.Text = "Gostermek icin once listeden bir yedek secin.";
+                return;
+            }
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "explorer.exe",
+                Arguments = $"/select,\"{selected.FullPath}\"",
+                UseShellExecute = true,
+            });
+
+            RecentBackupsStatusText.Text = $"Klasorde gosterildi: {selected.FileName}";
+        }
+        catch (Exception ex)
+        {
+            RecentBackupsStatusText.Text = "Hata: " + ex.Message;
+        }
+    }
+
 
     private void SelectRestoreZipButton_Click(object sender, RoutedEventArgs e)
     {
@@ -313,6 +338,11 @@ public partial class BackupView : UserControl
         if (OpenSelectedBackupButton is not null)
         {
             OpenSelectedBackupButton.IsEnabled = hasSelection;
+        }
+
+        if (RevealSelectedBackupButton is not null)
+        {
+            RevealSelectedBackupButton.IsEnabled = hasSelection;
         }
     }
 }

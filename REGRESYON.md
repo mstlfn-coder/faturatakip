@@ -864,3 +864,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Backup katalog self-test'i var | OK | Son N yedek siniri ve siralamasi self-test ile dogrulandi |
 
 | 2026-06-06 | v0.69 | OK | Backup ekranina son yedekler listesi ve secili yedegi kullan/ac rahatliklari eklendi; build + self-test OK |
+
+
+## v0.70 - Backup Secili Zipi Klasorde Gosterme
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Klasorde Goster dugmesi var | OK | Backup listesindeki secili zip icin ayri aksiyon eklendi |
+| Secim yoksa devre disi | OK | Secili oge yokken yanlis tiklama engelleniyor |
+| Explorer select akisi kullaniliyor | OK | `explorer.exe /select` ile dogrudan hedef dosya odaklaniyor |
+
+| 2026-06-06 | v0.70 | OK | Backup listesindeki secili zipi klasorde gosterme rahatligi eklendi; build + self-test OK |

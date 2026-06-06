@@ -555,3 +555,9 @@ Her faz bittiğinde:
 - v0.69 tamamlandi: Yedekleme ekranina son 5 zip yedegi gosteren liste eklendi.
 - Liste uzerinden secili yedek restore zip alanina tasinabiliyor ve dogrudan acilabiliyor.
 - Siradaki mantikli faz: yedekleme UX tarafinda secili yedegi klasorde gosterme veya restore hedefi secimini kolaylastirma.
+
+## Son Guncelleme (2026-06-06 / v0.70)
+
+- v0.70 tamamlandi: Backup listesindeki secili zip dosyasi Windows Gezgini icinde dogrudan gosterilebilir hale geldi.
+- Boylece kullanici sadece zipi acmakla kalmadan dosyanin klasor konumuna da tek tikla inebiliyor.
+- Siradaki mantikli faz: restore hedef klasoru secimini daha rahat hale getirmek.
