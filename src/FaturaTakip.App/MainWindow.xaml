@@ -207,6 +207,11 @@
                                        Text="Kalan 0,00"
                                        Style="{StaticResource MutedText}"
                                        Margin="0,6,0,0" />
+                            <Button Content="Rapora Git"
+                                    Style="{StaticResource SecondaryButton}"
+                                    Margin="0,14,0,0"
+                                    HorizontalAlignment="Left"
+                                    Click="OpenUnpaidReportFromDashboardButton_Click" />
                         </StackPanel>
                     </Border>
                     <Border Style="{StaticResource TileBorder}">
@@ -223,6 +228,11 @@
                                        Text="Kalan 0,00"
                                        Style="{StaticResource MutedText}"
                                        Margin="0,6,0,0" />
+                            <Button Content="Rapora Git"
+                                    Style="{StaticResource SecondaryButton}"
+                                    Margin="0,14,0,0"
+                                    HorizontalAlignment="Left"
+                                    Click="OpenOverdueReportFromDashboardButton_Click" />
                         </StackPanel>
                     </Border>
                 </UniformGrid>

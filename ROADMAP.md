@@ -585,3 +585,9 @@ Her faz bittiğinde:
 - v0.74 tamamlandi: Restore bolumune zip, hedef ve hazirlik durumunu tek yerde gosteren onizleme kutusu eklendi.
 - Boylece kullanici geri yukleme oncesi eksik adimi tek bakista gorebiliyor.
 - Siradaki mantikli faz: backup UX tarafini yeterince olgun kabul edip yeni bir urun fazina gecmek.
+
+## Son Guncelleme (2026-06-06 / v0.75)
+
+- v0.75 tamamlandi: Gosterge panelindeki odenmemis ve gecikmis kartlarina `Rapora Git` dugmeleri eklendi.
+- Bu kisa yol kullaniciyi dogrudan Raporlar ekraninda ilgili sekmeye goturuyor; gunluk takip akisinda daha hizli aksiyon alinabiliyor.
+- Siradaki mantikli faz: dashboard tarafinda eksik evrak veya aylik tahsilat icin de benzer hizli gecisler eklemek.

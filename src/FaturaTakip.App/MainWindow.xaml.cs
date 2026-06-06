@@ -84,6 +84,18 @@ public partial class MainWindow : Window
         ShowBackup();
     }
 
+    private void OpenUnpaidReportFromDashboardButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowReports();
+        ReportsPanel.ShowUnpaidReport();
+    }
+
+    private void OpenOverdueReportFromDashboardButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowReports();
+        ReportsPanel.ShowOverdueReport();
+    }
+
     private void ShowDashboard()
     {
         DashboardPanel.Visibility = Visibility.Visible;

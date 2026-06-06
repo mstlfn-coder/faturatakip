@@ -154,6 +154,28 @@ public partial class ReportsView : UserControl
         ApplyTab(_activeTab);
     }
 
+    public void ShowUnpaidReport()
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        Refresh();
+        ApplyTab(ReportTab.Unpaid);
+    }
+
+    public void ShowOverdueReport()
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        Refresh();
+        ApplyTab(ReportTab.Overdue);
+    }
+
     private void UnpaidTabButton_Click(object sender, RoutedEventArgs e)
     {
         ApplyTab(ReportTab.Unpaid);

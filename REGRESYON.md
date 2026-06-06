@@ -934,3 +934,17 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Preview self-test'i var | OK | BuildPreviewSummary davranisi self-test ile dogrulandi |
 
 | 2026-06-06 | v0.74 | OK | Restore bolumune onizleme kutusu eklendi; build + self-test OK |
+
+
+## v0.75 - Dashboard Rapor Kisa Yollari
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Odenmemis kartinda kisa yol var | OK | Dashboard kartina `Rapora Git` dugmesi eklendi |
+| Gecikmis kartinda kisa yol var | OK | Dashboard kartina `Rapora Git` dugmesi eklendi |
+| Rapor paneli ilgili sekmeyi acabiliyor | OK | `ReportsView.ShowUnpaidReport()` ve `ShowOverdueReport()` yardimlari eklendi |
+| Gunluk aksiyon akisi hizlandi | OK | Gosterge panelinden ilgili rapor sekmesine tek tikla gecis saglandi |
+
+| 2026-06-06 | v0.75 | OK | Dashboard odenmemis/gecikmis kartlarina rapor kisayollari eklendi; build + self-test OK |
