@@ -666,3 +666,9 @@ v0.12 sonuÃ§ notu:
 222. Smoke test: dotnet build -c Release OK.
 223. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 224. Siradaki mantikli is: backup UX tarafini yeterince olgun kabul edip yeni urun fazina gecmek.
+225. v0.75 olarak gosterge panelindeki Odenmemis ve Gecikmis kartlarina Rapora Git dugmeleri eklendi.
+226. `MainWindow` tarafinda bu dugmeler Raporlar ekranini acip ilgili actionable rapor sekmesini secili hale getiriyor.
+227. `ReportsView` icine `ShowUnpaidReport()` ve `ShowOverdueReport()` yardimlari eklendi; panel kendi sekmesini dogrudan acabiliyor.
+228. Smoke test: dotnet build -c Release OK.
+229. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+230. Siradaki mantikli is: dashboard tarafinda eksik evrak veya aylik tahsilat icin de benzer hizli aksiyonlar eklemek.
