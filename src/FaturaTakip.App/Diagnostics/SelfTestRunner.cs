@@ -1197,6 +1197,23 @@ public sealed class SelfTestRunner
             Assert(loadedPreferences.EndDate == new DateTime(2026, 6, 5), "Audit log filtre tercihi bitis tarihi saklanmadi.");
             Assert(loadedPreferences.ChangedOnly, "Audit log filtre tercihi degisen alan filtresi saklanmadi.");
 
+            var backupsDir = Path.Combine(testRoot, "backups");
+            Directory.CreateDirectory(backupsDir);
+            var olderBackup = Path.Combine(backupsDir, "backup_20260601_090000.zip");
+            var newerBackup = Path.Combine(backupsDir, "backup_20260602_090000.zip");
+            var newestBackup = Path.Combine(backupsDir, "backup_20260603_090000.zip");
+            File.WriteAllText(olderBackup, "old");
+            File.WriteAllText(newerBackup, "newer");
+            File.WriteAllText(newestBackup, "newest");
+            File.SetLastWriteTimeUtc(olderBackup, new DateTime(2026, 6, 1, 9, 0, 0, DateTimeKind.Utc));
+            File.SetLastWriteTimeUtc(newerBackup, new DateTime(2026, 6, 2, 9, 0, 0, DateTimeKind.Utc));
+            File.SetLastWriteTimeUtc(newestBackup, new DateTime(2026, 6, 3, 9, 0, 0, DateTimeKind.Utc));
+
+            var recentBackups = BackupFileCatalog.GetRecentBackups(testRoot, take: 2);
+            Assert(recentBackups.Count == 2, "Backup katalogu son N yedegi sinirlayamadi.");
+            Assert(recentBackups[0].FileName == "backup_20260603_090000.zip", "Backup katalogu en guncel yedegi basa getirmedi.");
+            Assert(recentBackups[1].FileName == "backup_20260602_090000.zip", "Backup katalogu siralamasi hatali.");
+
             var restoreSourceRoot = Path.Combine(testRoot, "restore-source");
             var restoreDatabaseDir = Path.Combine(restoreSourceRoot, "database");
             Directory.CreateDirectory(restoreDatabaseDir);
