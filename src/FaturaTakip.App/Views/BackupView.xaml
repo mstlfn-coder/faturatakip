@@ -220,6 +220,12 @@
                                      MinWidth="110"
                                      Margin="0,0,10,0"
                                      Click="OpenRestoreTargetButton_Click" />
+                            <Button x:Name="CreateEmptyRestoreTargetButton"
+                                    Content="Bos Klasor Olustur"
+                                    Style="{StaticResource SecondaryButton}"
+                                    MinWidth="140"
+                                    Margin="0,0,10,0"
+                                    Click="CreateEmptyRestoreTargetButton_Click" />
                             <TextBlock x:Name="RestoreStatusText"
                                        Style="{StaticResource MutedText}"
                                        VerticalAlignment="Center"

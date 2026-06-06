@@ -905,3 +905,17 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Geri Yukle dugmesi uygunlukla senkron | OK | Uygun olmayan hedefte dugme pasif kaliyor |
 
 | 2026-06-06 | v0.72 | OK | Restore hedefi icin canli uygunluk kontrolu eklendi; build + self-test OK |
+
+
+## v0.73 - Bos Restore Klasoru Olusturma Yardimi
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Bos Klasor Olustur dugmesi var | OK | Restore alanina yardimci aksiyon eklendi |
+| Uygun olmayan durumda aktif | OK | Klasor dolu/gecersiz/bos secilmemis durumlarda yardim sunuluyor |
+| Benzersiz klasor adi uretiliyor | OK | Ayni zaman damgasinda ikinci klasor icin suffix ekleniyor |
+| Alan otomatik dolduruluyor | OK | Olusturulan klasor restore hedef kutusuna yaziliyor |
+
+| 2026-06-06 | v0.73 | OK | Uygun olmayan restore hedefinde tek tikla bos klasor olusturma yardimi eklendi; build + self-test OK |

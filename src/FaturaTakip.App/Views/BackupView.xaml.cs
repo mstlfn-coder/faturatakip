@@ -297,6 +297,26 @@ public partial class BackupView : UserControl
         }
     }
 
+    private void CreateEmptyRestoreTargetButton_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            var baseDirectory = ResolveSuggestedRestoreBaseDirectory();
+            var createdPath = BackupRestoreService.CreateSuggestedEmptyTarget(baseDirectory, DateTime.Now);
+            RestoreTargetPathText.Text = createdPath;
+            RestoreStatusText.Text = "Bos hedef klasor hazirlandi.";
+            UpdateRestoreTargetValidation();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                $"Bos hedef klasor olusturulamadi:\n{ex.Message}",
+                "Geri Yukleme",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
+    }
+
     private void RestoreTargetPathText_TextChanged(object sender, TextChangedEventArgs e)
     {
         UpdateRestoreTargetValidation();
@@ -421,6 +441,38 @@ public partial class BackupView : UserControl
                 assessment.CanRestore &&
                 !string.IsNullOrWhiteSpace(RestoreZipPathText.Text);
         }
+
+        if (CreateEmptyRestoreTargetButton is not null)
+        {
+            CreateEmptyRestoreTargetButton.IsEnabled = !assessment.CanRestore || string.IsNullOrWhiteSpace(RestoreTargetPathText.Text);
+        }
+    }
+
+    private string ResolveSuggestedRestoreBaseDirectory()
+    {
+        var currentValue = (RestoreTargetPathText.Text ?? string.Empty).Trim();
+        if (!string.IsNullOrWhiteSpace(currentValue))
+        {
+            try
+            {
+                var normalizedCurrentValue = Path.GetFullPath(currentValue);
+                if (Directory.Exists(normalizedCurrentValue))
+                {
+                    return normalizedCurrentValue;
+                }
+
+                var parent = Path.GetDirectoryName(normalizedCurrentValue);
+                if (!string.IsNullOrWhiteSpace(parent))
+                {
+                    return parent;
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        return Path.Combine(AppPaths.Resolve().RootDirectory, "restore-targets");
     }
 }
 

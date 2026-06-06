@@ -48,6 +48,30 @@ public static class BackupRestoreService
         }
     }
 
+    public static string CreateSuggestedEmptyTarget(string baseDirectory, DateTime now)
+    {
+        if (string.IsNullOrWhiteSpace(baseDirectory))
+        {
+            throw new InvalidOperationException("Temel klasor bos olamaz.");
+        }
+
+        var normalizedBaseDirectory = Path.GetFullPath(baseDirectory);
+        Directory.CreateDirectory(normalizedBaseDirectory);
+
+        var candidateName = $"restore_target_{now:yyyyMMdd_HHmmss}";
+        var candidatePath = Path.Combine(normalizedBaseDirectory, candidateName);
+        var suffix = 1;
+
+        while (Directory.Exists(candidatePath) || File.Exists(candidatePath))
+        {
+            candidatePath = Path.Combine(normalizedBaseDirectory, $"{candidateName}_{suffix}");
+            suffix++;
+        }
+
+        Directory.CreateDirectory(candidatePath);
+        return candidatePath;
+    }
+
     public static RestoreResult RestoreToEmptyRoot(string zipPath, string targetRoot)
     {
         if (string.IsNullOrWhiteSpace(zipPath))
