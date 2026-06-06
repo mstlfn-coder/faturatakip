@@ -159,6 +159,60 @@ public sealed class SelfTestRunner
             Assert(paymentSuggestion.Amount == updatedInvoice.RemainingAmount, "Odeme varsayilan taslagi kalan tutari kullanmadi.");
             Assert(string.IsNullOrEmpty(paymentSuggestion.Description), "Odeme varsayilan taslagi aciklamayi bos baslatmadi.");
 
+            var selectedPaymentSuggestion = PaymentEntrySuggestionBuilder.CreateFromSelectedPayment(
+                updatedInvoice,
+                new Payment
+                {
+                    Id = 4,
+                    InvoiceId = updatedInvoice.Id,
+                    PaymentDate = new DateTime(2026, 1, 30),
+                    Amount = 350m,
+                    Description = "  Secili odeme  ",
+                },
+                new DateTime(2026, 2, 4));
+            Assert(selectedPaymentSuggestion.PaymentDate == new DateTime(2026, 2, 4), "Secili odemeden taslak bugun tarihini kullanmadi.");
+            Assert(selectedPaymentSuggestion.Amount == 350m, "Secili odemeden taslak mevcut odeme tutarini korumadi.");
+            Assert(selectedPaymentSuggestion.Description == "Secili odeme", "Secili odemeden taslak aciklamayi trim etmedi.");
+
+            var lowRemainingInvoice = new Invoice
+            {
+                Id = updatedInvoice.Id,
+                SubscriptionId = updatedInvoice.SubscriptionId,
+                InvoiceTypeId = updatedInvoice.InvoiceTypeId,
+                InvoiceTypeName = updatedInvoice.InvoiceTypeName,
+                SubscriptionName = updatedInvoice.SubscriptionName,
+                InstitutionName = updatedInvoice.InstitutionName,
+                InvoiceYear = updatedInvoice.InvoiceYear,
+                InvoiceMonth = updatedInvoice.InvoiceMonth,
+                InvoiceDate = updatedInvoice.InvoiceDate,
+                DueDate = updatedInvoice.DueDate,
+                InvoiceNo = updatedInvoice.InvoiceNo,
+                Amount = 1500m,
+                PaidAmount = 1490m,
+                UsageAmount = updatedInvoice.UsageAmount,
+                UsageUnit = updatedInvoice.UsageUnit,
+                Status = updatedInvoice.Status,
+                Description = updatedInvoice.Description,
+                PdfFilePath = updatedInvoice.PdfFilePath,
+                PdfOriginalFileName = updatedInvoice.PdfOriginalFileName,
+                PdfSha256Hash = updatedInvoice.PdfSha256Hash,
+                PdfAttachedAt = updatedInvoice.PdfAttachedAt,
+                CreatedAt = updatedInvoice.CreatedAt,
+                UpdatedAt = updatedInvoice.UpdatedAt,
+            };
+            var clippedSelectedPaymentSuggestion = PaymentEntrySuggestionBuilder.CreateFromSelectedPayment(
+                lowRemainingInvoice,
+                new Payment
+                {
+                    Id = 5,
+                    InvoiceId = updatedInvoice.Id,
+                    PaymentDate = new DateTime(2026, 1, 31),
+                    Amount = 80m,
+                    Description = "Kucuk kalan",
+                },
+                new DateTime(2026, 2, 5));
+            Assert(clippedSelectedPaymentSuggestion.Amount == 10m, "Secili odemeden taslak kalan tutari asmayacak sekilde kirpmadi.");
+
             var recentPaymentSuggestion = PaymentEntrySuggestionBuilder.CreateFromRecentPayment(
                 updatedInvoice,
                 new[]

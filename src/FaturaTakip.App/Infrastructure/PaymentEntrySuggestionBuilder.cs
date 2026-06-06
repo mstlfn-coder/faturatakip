@@ -13,6 +13,17 @@ public static class PaymentEntrySuggestionBuilder
             Description: string.Empty);
     }
 
+    public static PaymentEntrySuggestion CreateFromSelectedPayment(
+        Invoice invoice,
+        Payment payment,
+        DateTime today)
+    {
+        return new PaymentEntrySuggestion(
+            PaymentDate: today.Date,
+            Amount: Math.Min(payment.Amount, invoice.RemainingAmount),
+            Description: payment.Description?.Trim() ?? string.Empty);
+    }
+
     public static PaymentEntrySuggestion CreateFromRecentPayment(
         Invoice invoice,
         IEnumerable<Payment> payments,

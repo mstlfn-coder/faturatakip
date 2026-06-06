@@ -423,6 +423,11 @@
                                                 Style="{StaticResource SecondaryButton}"
                                                 Margin="0,0,8,0"
                                                 Click="FillRemainingPaymentButton_Click" />
+                                        <Button x:Name="UseSelectedPaymentTemplateButton"
+                                                Content="Secili Odemeden Doldur"
+                                                Style="{StaticResource SecondaryButton}"
+                                                Margin="0,0,8,0"
+                                                Click="UseSelectedPaymentTemplateButton_Click" />
                                         <Button x:Name="UseLastPaymentTemplateButton"
                                                 Content="Son Odemeden Doldur"
                                                 Style="{StaticResource SecondaryButton}"

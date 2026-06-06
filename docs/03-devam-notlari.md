@@ -620,3 +620,10 @@ v0.12 sonuÃ§ notu:
 177. Smoke test: dotnet build -c Release OK.
 178. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 179. Siradaki mantikli is: odeme girisi rahatliklarini biraz daha derinlestirip sonra yedekleme UX fazina gecmek.
+
+180. v0.68 olarak odeme formuna Secili Odemeden Doldur dugmesi eklendi.
+181. Bu akis secili odemenin aciklamasini ve tutarini yeni taslaga tasiyor; tutar mevcut kalan odemeyi asmayacak sekilde kirpiliyor.
+182. Secili odeme yoksa ya da kalan tutar yoksa kullaniciya acik yonlendirme mesaji veriliyor.
+183. Smoke test: dotnet build -c Release OK.
+184. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+185. Siradaki mantikli is: odeme girisi rahatliklarini tamamlayip yedekleme UX fazina gecmek.
