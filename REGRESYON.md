@@ -948,3 +948,18 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Gunluk aksiyon akisi hizlandi | OK | Gosterge panelinden ilgili rapor sekmesine tek tikla gecis saglandi |
 
 | 2026-06-06 | v0.75 | OK | Dashboard odenmemis/gecikmis kartlarina rapor kisayollari eklendi; build + self-test OK |
+
+
+## v0.76 - Dashboard Ek Hizli Gecisler
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Bu ay fatura kartinda kisa yol var | OK | Dashboard kartina `Listeye Git` dugmesi eklendi |
+| Bu ay odeme kartinda kisa yol var | OK | Dashboard kartina `Listeye Git` dugmesi eklendi |
+| Fatura PDF eksik kartinda kisa yol var | OK | Dashboard kartina `Kontrole Git` dugmesi eklendi |
+| Odeme PDF eksik kartinda kisa yol var | OK | Dashboard kartina `Kontrole Git` dugmesi eklendi |
+| Rapor paneli aylik ve evrak sekmelerini acabiliyor | OK | `ReportsView.ShowMonthlyReport()` ve `ShowDocumentHealthReport()` yardimlari eklendi |
+
+| 2026-06-06 | v0.76 | OK | Dashboard aylik hareket ve evrak eksigi kartlarina hizli gecisler eklendi; build + self-test OK |

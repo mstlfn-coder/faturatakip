@@ -672,3 +672,10 @@ v0.12 sonuÃ§ notu:
 228. Smoke test: dotnet build -c Release OK.
 229. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 230. Siradaki mantikli is: dashboard tarafinda eksik evrak veya aylik tahsilat icin de benzer hizli aksiyonlar eklemek.
+231. v0.76 olarak dashboard uzerindeki Bu Ay Fatura ve Bu Ay Odeme kartlarina `Listeye Git` dugmeleri eklendi.
+232. Ayni turda Fatura PDF Eksik ve Odeme PDF Eksik kartlarina `Kontrole Git` dugmeleri eklendi.
+233. `MainWindow` bu kisayollari Raporlar ekranindaki Aylik Liste ve Evrak Kontrol sekmelerine bagliyor.
+234. `ReportsView` icine `ShowMonthlyReport()` ve `ShowDocumentHealthReport()` yardimlari eklendi.
+235. Smoke test: dotnet build -c Release OK.
+236. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+237. Siradaki mantikli is: dashboard tarafinda aktif abonelik veya toplam fatura gibi kartlardan liste ekranlarina hizli gecis eklemek.
