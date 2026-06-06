@@ -561,3 +561,9 @@ Her faz bittiğinde:
 - v0.70 tamamlandi: Backup listesindeki secili zip dosyasi Windows Gezgini icinde dogrudan gosterilebilir hale geldi.
 - Boylece kullanici sadece zipi acmakla kalmadan dosyanin klasor konumuna da tek tikla inebiliyor.
 - Siradaki mantikli faz: restore hedef klasoru secimini daha rahat hale getirmek.
+
+## Son Guncelleme (2026-06-06 / v0.71)
+
+- v0.71 tamamlandi: Restore hedef klasoru icin dosya yolu yazmak yerine klasor secici eklendi.
+- Mevcut yol varsa ayni klasorde, yoksa uygulama kokunde acilarak kullaniciyi daha az ugrastiriyor.
+- Siradaki mantikli faz: restore hedefi icin bos klasor uygunlugu konusunda daha gorunur on kontrol eklemek.

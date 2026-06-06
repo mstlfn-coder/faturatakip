@@ -640,3 +640,9 @@ v0.12 sonuÃ§ notu:
 196. Smoke test: dotnet build -c Release OK.
 197. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 198. Siradaki mantikli is: restore hedef klasoru secimini daha rahat hale getirmek.
+199. v0.71 olarak restore hedef alani icin Hedef Sec dugmesi eklendi.
+200. OpenFolderDialog ile bos klasor secme akisi, mevcut yol varsa orayi ya da parent klasoru baslangic noktasi olarak kullaniyor.
+201. Boylece geri yukleme hedefini elle yazma yukunu azalttik; hedef yolu seciciyle doldurmak daha hizli hale geldi.
+202. Smoke test: dotnet build -c Release OK.
+203. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+204. Siradaki mantikli is: secilen restore hedefinin bos/uygun oldugunu daha gorunur sekilde onceden gostermek.

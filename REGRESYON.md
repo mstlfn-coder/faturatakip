@@ -877,3 +877,16 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Explorer select akisi kullaniliyor | OK | `explorer.exe /select` ile dogrudan hedef dosya odaklaniyor |
 
 | 2026-06-06 | v0.70 | OK | Backup listesindeki secili zipi klasorde gosterme rahatligi eklendi; build + self-test OK |
+
+
+## v0.71 - Restore Hedef Klasoru Secici
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Hedef Sec dugmesi var | OK | Restore hedef kutusuna klasor secici baglandi |
+| Mevcut yola gore aciliyor | OK | Var olan klasor ya da parent klasor initial directory olarak kullaniliyor |
+| Manuel yol yazma mecburiyeti azaldi | OK | Kullanici hedef klasoru secici ile doldurabiliyor |
+
+| 2026-06-06 | v0.71 | OK | Restore hedef klasoru secici eklendi; build + self-test OK |
