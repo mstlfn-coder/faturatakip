@@ -1008,3 +1008,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Klasor yolu repository'de hesaplanıyor | OK | `InvoiceRepository.GetPdfDirectoryAbsolutePath()` eklendi |
 
 | 2026-06-07 | v0.79 | OK | Fatura PDF klasor kisayolu eklendi; build + self-test OK |
+
+## v0.80 - Filtreli Fatura Export Baglami
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | Self-test icinde export baglami slug dogrulamasi eklendi |
+| PDF Eksik export slug | OK | pdf-eksik dosya adi baglami uretiliyor |
+| Bu Ay export slug | OK | u-ay baglami dosya adina ekleniyor |
+| Filtreli export mesajlari | OK | Kullaniciya gorunur liste ve aktif filtre etiketiyle bilgi veriliyor |
+| 2026-06-07 | v0.80 | OK | Filtreli export baglami + build + self-test tamamlandi |

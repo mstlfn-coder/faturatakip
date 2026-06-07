@@ -615,3 +615,9 @@ Her faz bittiğinde:
 - v0.79 tamamlandi: Faturalar ekranindaki PDF bolumune `Klasorde Goster` dugmesi eklendi.
 - PDF varsa dosya Windows Gezgini icinde secili aciliyor; yoksa faturanin donemine gore beklenen ek klasoru aciliyor.
 - Siradaki mantikli faz: PDF Eksik veya Gecikmis hazir filtrelerini tek tikla disa aktarma ya da toplu kontrol turuna baglamak.
+
+## Son Guncelleme (2026-06-07 / v0.80)
+
+- v0.80 tamamlandi: Faturalar ekranindaki filtreli export akisi baglam bilgisiyle guclendirildi.
+- Excel/PDF export dosya adlari aktif filtreye gore pdf-eksik, gecikmis, u-ay gibi anlamli slug uretiyor.
+- Siradaki mantikli faz: filtreli listeyi toplu PDF kontrol ya da bir sonraki kayda hizli gecis akisi ile birlestirmek.

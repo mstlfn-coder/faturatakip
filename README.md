@@ -85,3 +85,10 @@ BÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â Ãƒ
 
 
 
+
+## v0.80 - Filtreli Fatura Export Baglami
+
+Bu fazda Faturalar ekranindaki export dugmeleri filtreli listeyi daha bilincli tasiyacak sekilde netlestirildi.
+Olusan Excel/PDF dosya adlari artik pdf-eksik, gecikmis, u-ay gibi aktif filtre baglamini koruyor.
+
+Sıradaki mantikli is: bu filtreli export akisini toplu PDF kontrol turu ya da bir sonraki kayda hizli gecis gibi daha akici bir inceleme adimiyla tamamlamak.

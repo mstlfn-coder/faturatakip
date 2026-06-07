@@ -76,13 +76,15 @@
                         Style="{StaticResource SecondaryButton}"
                         Margin="0,0,8,0"
                         Click="PrepareNextInvoiceButton_Click" />
-                <Button Content="Excel'e Aktar"
+                <Button Content="Filtreli Excel"
                         Style="{StaticResource SecondaryButton}"
                         Margin="0,0,8,0"
+                        ToolTip="Gorunur listedeki filtreli kayitlari Excel olarak aktarir."
                         Click="ExportInvoicesButton_Click" />
-                <Button Content="PDF'e Aktar"
+                <Button Content="Filtreli PDF"
                         Style="{StaticResource SecondaryButton}"
                         Margin="0,0,8,0"
+                        ToolTip="Gorunur listedeki filtreli kayitlari PDF raporu olarak aktarir."
                         Click="ExportInvoicesPdfButton_Click" />
                 <Button Content="Kaydet"
                         Style="{StaticResource PrimaryButton}"
