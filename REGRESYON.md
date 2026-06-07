@@ -963,3 +963,18 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Rapor paneli aylik ve evrak sekmelerini acabiliyor | OK | `ReportsView.ShowMonthlyReport()` ve `ShowDocumentHealthReport()` yardimlari eklendi |
 
 | 2026-06-06 | v0.76 | OK | Dashboard aylik hareket ve evrak eksigi kartlarina hizli gecisler eklendi; build + self-test OK |
+
+
+## v0.77 - Dashboard Liste Kisa Yollari
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Fatura turu kartinda kisa yol var | OK | Dashboard kartina `Turlere Git` dugmesi eklendi |
+| Aktif tur kartinda kisa yol var | OK | Dashboard kartina `Turlere Git` dugmesi eklendi |
+| Aktif abonelik kartinda kisa yol var | OK | Dashboard kartina `Aboneliklere Git` dugmesi eklendi |
+| Toplam fatura kartinda kisa yol var | OK | Dashboard kartina `Faturalara Git` dugmesi eklendi |
+| Kisayollar ilgili ekranlari aciyor | OK | `MainWindow` dashboard event'leri dogrudan hedef panellere baglandi |
+
+| 2026-06-07 | v0.77 | OK | Dashboard genel ozet kartlarina liste kisayollari eklendi; build + self-test OK |
