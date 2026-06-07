@@ -702,3 +702,8 @@ v0.12 sonuÃ§ notu:
 258. Export dugmeleri artik gorunur listeyi acikca hedefliyor ve durum mesajinda aktif filtre baglamini da yaziyor.
 259. Self-test icine filtreli export slug dogrulamalari eklendi.
 260. Siradaki mantikli is: filtreli listeyi toplu PDF kontrol ya da siradaki kayda hizli gecis akisi ile birlestirmek.
+261. v0.81 olarak Faturalar ekranindaki PDF alanina Onceki Kayit ve Sonraki Kayit dugmeleri eklendi.
+262. InvoiceReviewNavigator yardimcisi eklendi; filtreli liste icinde ileri/geri gezinme sinirlari tek noktadan kontrol ediliyor.
+263. Secili kaydin listedeki sirasi Kontrol sirasi: x/y metniyle gosteriliyor.
+264. Self-test icine kontrol turu ileri/geri ve sinir davranisi dogrulamalari eklendi.
+265. Siradaki mantikli is: bu gezinmeyi sadece PDF Eksik ya da Gecikmis akisina odaklayan daha yonlendirilmis bir inceleme modu ile tamamlamak.

@@ -262,6 +262,7 @@ public partial class InvoicesView : UserControl
         {
             InvoiceGrid.SelectedItem = null;
             ClearInvoiceForm();
+            UpdateInvoiceReviewNavigationControls();
             return;
         }
 
@@ -353,6 +354,16 @@ public partial class InvoicesView : UserControl
         UpdatePdfControls(invoice);
         RefreshPaymentControls(invoice);
         SetInvoiceStatus($"SeÃ§ili kayÄ±t: {invoice.InvoiceNo}", isError: false);
+    }
+
+    private void PreviousInvoiceButton_Click(object sender, RoutedEventArgs e)
+    {
+        MoveSelectedInvoice(-1);
+    }
+
+    private void NextInvoiceButton_Click(object sender, RoutedEventArgs e)
+    {
+        MoveSelectedInvoice(1);
     }
 
     private void NewInvoiceButton_Click(object sender, RoutedEventArgs e)
@@ -546,6 +557,59 @@ public partial class InvoicesView : UserControl
             DateTime.Today,
             (InvoiceTypeFilterInput.SelectedItem as InvoiceTypeFilterOption)?.Label,
             (InvoiceSubscriptionFilterInput.SelectedItem as SubscriptionFilterOption)?.Label);
+    }
+
+    private void MoveSelectedInvoice(int offset)
+    {
+        var visibleInvoices = GetVisibleInvoices();
+        if (_selectedInvoice is null || visibleInvoices.Count == 0)
+        {
+            SetInvoiceStatus("Liste icinde ilerlemek icin once bir fatura secin.", isError: true);
+            UpdateInvoiceReviewNavigationControls();
+            return;
+        }
+
+        var currentIndex = visibleInvoices.FindIndex(item => item.Id == _selectedInvoice.Id);
+        if (!InvoiceReviewNavigator.TryMove(currentIndex, visibleInvoices.Count, offset, out var targetIndex))
+        {
+            var boundaryLabel = offset < 0 ? "Ilk kayittasiniz." : "Son kayittasiniz.";
+            SetInvoiceStatus(boundaryLabel, isError: false);
+            UpdateInvoiceReviewNavigationControls();
+            return;
+        }
+
+        var targetInvoice = visibleInvoices[targetIndex];
+        InvoiceGrid.SelectedItem = targetInvoice;
+        InvoiceGrid.ScrollIntoView(targetInvoice);
+        ApplySelectedInvoice(targetInvoice);
+        SetInvoiceStatus($"Kontrol turu: {targetIndex + 1}/{visibleInvoices.Count} - {targetInvoice.InvoiceNo}", isError: false);
+    }
+
+    private void UpdateInvoiceReviewNavigationControls()
+    {
+        var visibleInvoices = GetVisibleInvoices();
+        if (_selectedInvoice is null || visibleInvoices.Count == 0)
+        {
+            PreviousInvoiceButton.IsEnabled = false;
+            NextInvoiceButton.IsEnabled = false;
+            InvoiceReviewHintText.Text = visibleInvoices.Count == 0
+                ? "Kontrol turu icin gorunur liste bos."
+                : "Kontrol turu icin once bir kayit secin.";
+            return;
+        }
+
+        var currentIndex = visibleInvoices.FindIndex(item => item.Id == _selectedInvoice.Id);
+        if (currentIndex < 0)
+        {
+            PreviousInvoiceButton.IsEnabled = false;
+            NextInvoiceButton.IsEnabled = false;
+            InvoiceReviewHintText.Text = "Secili kayit filtre sonucunda gorunmuyor.";
+            return;
+        }
+
+        PreviousInvoiceButton.IsEnabled = currentIndex > 0;
+        NextInvoiceButton.IsEnabled = currentIndex < visibleInvoices.Count - 1;
+        InvoiceReviewHintText.Text = $"Kontrol sirasi: {currentIndex + 1}/{visibleInvoices.Count}";
     }
     private void SelectInvoicePdfButton_Click(object sender, RoutedEventArgs e)
     {
@@ -932,6 +996,7 @@ public partial class InvoicesView : UserControl
             SetPdfInfo($"SeÃ§ili PDF: {Path.GetFileName(_pendingPdfSourcePath)}. Kaydet ile faturaya eklenecek.", isError: false);
             OpenInvoicePdfButton.IsEnabled = false;
             RevealInvoicePdfFolderButton.IsEnabled = true;
+            UpdateInvoiceReviewNavigationControls();
             return;
         }
 
@@ -940,6 +1005,7 @@ public partial class InvoicesView : UserControl
             SetPdfInfo("PDF eklemek iÃ§in dosya seÃ§in; kayÄ±t sÄ±rasÄ±nda faturaya baÄŸlanÄ±r.", isError: false);
             OpenInvoicePdfButton.IsEnabled = false;
             RevealInvoicePdfFolderButton.IsEnabled = false;
+            UpdateInvoiceReviewNavigationControls();
             return;
         }
 
@@ -948,6 +1014,7 @@ public partial class InvoicesView : UserControl
             SetPdfInfo("Bu faturaya PDF evrak eklenmemiÅŸ.", isError: false);
             OpenInvoicePdfButton.IsEnabled = false;
             RevealInvoicePdfFolderButton.IsEnabled = true;
+            UpdateInvoiceReviewNavigationControls();
             return;
         }
 
@@ -956,12 +1023,14 @@ public partial class InvoicesView : UserControl
             SetPdfInfo($"PDF kayÄ±tlÄ±: {invoice.PdfOriginalFileName}", isError: false);
             OpenInvoicePdfButton.IsEnabled = true;
             RevealInvoicePdfFolderButton.IsEnabled = true;
+            UpdateInvoiceReviewNavigationControls();
             return;
         }
 
         SetPdfInfo($"PDF kaydÄ± var ancak dosya bulunamadÄ±: {invoice.PdfFilePath}", isError: true);
         OpenInvoicePdfButton.IsEnabled = false;
         RevealInvoicePdfFolderButton.IsEnabled = true;
+        UpdateInvoiceReviewNavigationControls();
     }
 
     private void SetPdfInfo(string message, bool isError)
