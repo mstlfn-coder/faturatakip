@@ -151,7 +151,7 @@
                         Margin="0,0,8,0"
                         Click="ConsistencyTabButton_Click" />
                 <Button x:Name="AuditLogTabButton"
-                        Content="Ä°ÅŸlem GeÃ§miÅŸi"
+                        Content="İşlem Geçmişi"
                         Style="{StaticResource SecondaryButton}"
                         Margin="0,0,8,0"
                         Click="AuditLogTabButton_Click" />
@@ -289,7 +289,7 @@
                     Margin="0,0,0,12"
                     Visibility="Collapsed">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Ä°ÅŸlem:"
+                    <TextBlock Text="İşlem:"
                                VerticalAlignment="Center"
                                Foreground="#334155"
                                FontWeight="SemiBold"
@@ -612,19 +612,19 @@
                         <DataGridTextColumn Header="Tarih"
                                             Binding="{Binding CreatedAtText}"
                                             Width="130" />
-                        <DataGridTextColumn Header="Ä°ÅŸlem"
+                        <DataGridTextColumn Header="İşlem"
                                             Binding="{Binding ActionType}"
                                             Width="170" />
-                        <DataGridTextColumn Header="VarlÄ±k"
+                        <DataGridTextColumn Header="Varlık"
                                             Binding="{Binding TableName}"
                                             Width="110" />
-                        <DataGridTextColumn Header="KayÄ±t Id"
+                        <DataGridTextColumn Header="Kayıt Id"
                                             Binding="{Binding RecordIdText}"
                                             Width="90" />
-                        <DataGridTextColumn Header="AÃ§Ä±klama"
+                        <DataGridTextColumn Header="Açıklama"
                                             Binding="{Binding Description}"
                                             Width="1.5*" />
-                        <DataGridTextColumn Header="KullanÄ±cÄ±"
+                        <DataGridTextColumn Header="Kullanıcı"
                                             Binding="{Binding UserName}"
                                             Width="100" />
                     </DataGrid.Columns>

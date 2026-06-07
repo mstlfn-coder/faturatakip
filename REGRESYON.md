@@ -1068,3 +1068,14 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | UI kaydet/temizle akisi var | OK | Fatura PDF/Inceleme bolumunde not kaydetme ve isaret temizleme dugmeleri eklendi |
 | Audit log kaydi var | OK | `invoice_review_updated` kaydi olusuyor |
 | 2026-06-07 | v0.85 | OK | Fatura inceleme notu + build + self-test tamamlandi |
+
+## v0.86 - Bakildi Akisi ve Turkce Duzeltmeler
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Bakildi + Sonraki akisi var | OK | Secili fatura isaretlenip filtreli listedeki sonraki kayda geciliyor |
+| Inceleme notu korunuyor | OK | `Bakıldı + Sonraki` mevcut not metnini de review kaydina tasiyor |
+| Gorunur Turkce metinler duzeltildi | OK | Faturalar/Raporlar ekranlarindaki bozuk Turkce karakterler temizlendi |
+| PDF Kayıp metni duzeltildi | OK | Yillik liste raporu dahil PDF durum metinleri dogru Turkce karakterlerle gosteriliyor |
+| 2026-06-07 | v0.86 | OK | Bakildi akisi + Turkce metin duzeltmeleri + build + self-test tamamlandi |
