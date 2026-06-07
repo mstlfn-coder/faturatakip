@@ -194,6 +194,27 @@ public sealed class InvoiceRepository
             : Path.GetFullPath(Path.Combine(_rootDirectory, invoice.PdfFilePath));
     }
 
+    public string GetPdfDirectoryAbsolutePath(Invoice invoice)
+    {
+        if (invoice.HasPdf)
+        {
+            var pdfPath = GetPdfAbsolutePath(invoice);
+            if (!string.IsNullOrWhiteSpace(pdfPath))
+            {
+                var existingDirectory = Path.GetDirectoryName(pdfPath);
+                if (!string.IsNullOrWhiteSpace(existingDirectory))
+                {
+                    return existingDirectory;
+                }
+            }
+        }
+
+        return Path.Combine(
+            _invoiceAttachmentDirectory,
+            invoice.InvoiceYear.ToString("D4", CultureInfo.InvariantCulture),
+            invoice.InvoiceMonth.ToString("D2", CultureInfo.InvariantCulture));
+    }
+
     public bool PdfFileExists(Invoice invoice)
     {
         var path = GetPdfAbsolutePath(invoice);

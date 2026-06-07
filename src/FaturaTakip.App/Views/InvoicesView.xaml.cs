@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -580,6 +581,44 @@ public partial class InvoicesView : UserControl
         }
     }
 
+    private void RevealInvoicePdfFolderButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_invoiceRepository is null || _selectedInvoice is null)
+        {
+            return;
+        }
+
+        try
+        {
+            if (_selectedInvoice.HasPdf && _invoiceRepository.PdfFileExists(_selectedInvoice))
+            {
+                var pdfPath = _invoiceRepository.GetPdfAbsolutePath(_selectedInvoice);
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = "explorer.exe",
+                    Arguments = $"/select,\"{pdfPath}\"",
+                    UseShellExecute = true,
+                });
+                SetInvoiceStatus("Fatura PDF dosyasi klasorde gosterildi.", isError: false);
+                return;
+            }
+
+            var pdfDirectory = _invoiceRepository.GetPdfDirectoryAbsolutePath(_selectedInvoice);
+            Directory.CreateDirectory(pdfDirectory);
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "explorer.exe",
+                Arguments = $"\"{pdfDirectory}\"",
+                UseShellExecute = true,
+            });
+            SetInvoiceStatus("Fatura icin beklenen PDF klasoru acildi.", isError: false);
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidOperationException or Win32Exception)
+        {
+            SetInvoiceStatus(exception.Message, isError: true);
+        }
+    }
+
     private void SavePaymentButton_Click(object sender, RoutedEventArgs e)
     {
         if (_paymentRepository is null || _selectedInvoice is null)
@@ -878,6 +917,7 @@ public partial class InvoicesView : UserControl
         {
             SetPdfInfo($"Seçili PDF: {Path.GetFileName(_pendingPdfSourcePath)}. Kaydet ile faturaya eklenecek.", isError: false);
             OpenInvoicePdfButton.IsEnabled = false;
+            RevealInvoicePdfFolderButton.IsEnabled = true;
             return;
         }
 
@@ -885,6 +925,7 @@ public partial class InvoicesView : UserControl
         {
             SetPdfInfo("PDF eklemek için dosya seçin; kayıt sırasında faturaya bağlanır.", isError: false);
             OpenInvoicePdfButton.IsEnabled = false;
+            RevealInvoicePdfFolderButton.IsEnabled = false;
             return;
         }
 
@@ -892,6 +933,7 @@ public partial class InvoicesView : UserControl
         {
             SetPdfInfo("Bu faturaya PDF evrak eklenmemiş.", isError: false);
             OpenInvoicePdfButton.IsEnabled = false;
+            RevealInvoicePdfFolderButton.IsEnabled = true;
             return;
         }
 
@@ -899,11 +941,13 @@ public partial class InvoicesView : UserControl
         {
             SetPdfInfo($"PDF kayıtlı: {invoice.PdfOriginalFileName}", isError: false);
             OpenInvoicePdfButton.IsEnabled = true;
+            RevealInvoicePdfFolderButton.IsEnabled = true;
             return;
         }
 
         SetPdfInfo($"PDF kaydı var ancak dosya bulunamadı: {invoice.PdfFilePath}", isError: true);
         OpenInvoicePdfButton.IsEnabled = false;
+        RevealInvoicePdfFolderButton.IsEnabled = true;
     }
 
     private void SetPdfInfo(string message, bool isError)
@@ -1047,4 +1091,6 @@ public partial class InvoicesView : UserControl
 
     private sealed record PdfStatusFilterOption(string Label, InvoicePdfStatusFilter Value);
 }
+
+
 
