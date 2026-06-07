@@ -69,6 +69,13 @@ public partial class InvoicesView : UserControl
             new("PDF Eksik", InvoicePdfStatusFilter.MissingPdf),
         };
         InvoicePdfStatusFilterInput.SelectedIndex = 0;
+        InvoiceReviewStatusFilterInput.ItemsSource = new List<ReviewStatusFilterOption>
+        {
+            new("Tüm İnceleme", InvoiceReviewStatusFilter.All),
+            new("İncelendi", InvoiceReviewStatusFilter.Reviewed),
+            new("İncelenmedi", InvoiceReviewStatusFilter.Unreviewed),
+        };
+        InvoiceReviewStatusFilterInput.SelectedIndex = 0;
 
         RefreshSubscriptionLists();
         RefreshInvoices();
@@ -197,6 +204,7 @@ public partial class InvoicesView : UserControl
         InvoiceMonthFilterInput.SelectedIndex = 0;
         InvoicePaymentStatusFilterInput.SelectedIndex = 0;
         InvoicePdfStatusFilterInput.SelectedIndex = 0;
+        InvoiceReviewStatusFilterInput.SelectedIndex = 0;
         ApplyFiltersToGrid(_selectedInvoice?.Id);
     }
 
@@ -216,7 +224,7 @@ public partial class InvoicesView : UserControl
         ResetQuickFilters();
         SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Unpaid);
         ApplyFiltersToGrid(selectFirstIfAvailable: true);
-        SetInvoiceStatus("Odenmemis filtresi uygulandi; listede ilk kayda odaklanildi.", isError: false);
+        SetInvoiceStatus("Ödenmemiş filtresi uygulandi; listede ilk kayda odaklanildi.", isError: false);
     }
 
     private void QuickFilterOverdueButton_Click(object sender, RoutedEventArgs e)
@@ -225,7 +233,7 @@ public partial class InvoicesView : UserControl
         ResetQuickFilters();
         SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Overdue);
         ApplyFiltersToGrid(selectFirstIfAvailable: true);
-        SetInvoiceStatus("Gecikmis filtresi uygulandi; listede ilk kayda odaklanildi.", isError: false);
+        SetInvoiceStatus("Gecikmiş filtresi uygulandi; listede ilk kayda odaklanildi.", isError: false);
     }
 
     private void QuickFilterMissingPdfButton_Click(object sender, RoutedEventArgs e)
@@ -235,6 +243,15 @@ public partial class InvoicesView : UserControl
         SelectPdfStatusFilter(InvoicePdfStatusFilter.MissingPdf);
         ApplyFiltersToGrid(selectFirstIfAvailable: true);
         SetInvoiceStatus("PDF eksik filtresi uygulandi; listede ilk kayda odaklanildi.", isError: false);
+    }
+
+    private void QuickFilterUnreviewedButton_Click(object sender, RoutedEventArgs e)
+    {
+        _invoiceReviewModeLabel = null;
+        ResetQuickFilters();
+        SelectReviewStatusFilter(InvoiceReviewStatusFilter.Unreviewed);
+        ApplyFiltersToGrid(selectFirstIfAvailable: true);
+        SetInvoiceStatus("İncelenmedi filtresi uygulandı; listede ilk kayda odaklanıldı.", isError: false);
     }
 
     private void StartMissingPdfReviewButton_Click(object sender, RoutedEventArgs e)
@@ -248,9 +265,9 @@ public partial class InvoicesView : UserControl
     private void StartOverdueReviewButton_Click(object sender, RoutedEventArgs e)
     {
         StartInvoiceReviewMode(
-            "Gecikmis",
+            "Gecikmiş",
             () => SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Overdue),
-            "Gecikmis kontrol turu baslatildi; listede ilk kayda odaklanildi.");
+            "Gecikmiş kontrol turu baslatildi; listede ilk kayda odaklanildi.");
     }
 
     private InvoiceFilterCriteria ReadFilterCriteria()
@@ -262,6 +279,7 @@ public partial class InvoicesView : UserControl
             SubscriptionId: (InvoiceSubscriptionFilterInput.SelectedItem as SubscriptionFilterOption)?.SubscriptionId,
             PaymentStatus: (InvoicePaymentStatusFilterInput.SelectedItem as PaymentStatusFilterOption)?.Value ?? InvoicePaymentStatusFilter.All,
             PdfStatus: (InvoicePdfStatusFilterInput.SelectedItem as PdfStatusFilterOption)?.Value ?? InvoicePdfStatusFilter.All,
+            ReviewStatus: (InvoiceReviewStatusFilterInput.SelectedItem as ReviewStatusFilterOption)?.Value ?? InvoiceReviewStatusFilter.All,
             SearchText: InvoiceSearchInput.Text);
     }
 
@@ -304,6 +322,7 @@ public partial class InvoicesView : UserControl
         InvoiceMonthFilterInput.SelectedIndex = 0;
         InvoicePaymentStatusFilterInput.SelectedIndex = 0;
         InvoicePdfStatusFilterInput.SelectedIndex = 0;
+        InvoiceReviewStatusFilterInput.SelectedIndex = 0;
     }
 
     private void SelectYearFilter(int year)
@@ -347,6 +366,17 @@ public partial class InvoicesView : UserControl
         }
 
         InvoicePdfStatusFilterInput.SelectedItem = options.FirstOrDefault(item => item.Value == status)
+            ?? options.FirstOrDefault();
+    }
+
+    private void SelectReviewStatusFilter(InvoiceReviewStatusFilter status)
+    {
+        if (InvoiceReviewStatusFilterInput.ItemsSource is not IEnumerable<ReviewStatusFilterOption> options)
+        {
+            return;
+        }
+
+        InvoiceReviewStatusFilterInput.SelectedItem = options.FirstOrDefault(item => item.Value == status)
             ?? options.FirstOrDefault();
     }
 
@@ -1436,6 +1466,8 @@ public partial class InvoicesView : UserControl
     private sealed record PaymentStatusFilterOption(string Label, InvoicePaymentStatusFilter Value);
 
     private sealed record PdfStatusFilterOption(string Label, InvoicePdfStatusFilter Value);
+
+    private sealed record ReviewStatusFilterOption(string Label, InvoiceReviewStatusFilter Value);
 }
 
 

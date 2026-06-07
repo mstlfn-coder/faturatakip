@@ -738,3 +738,10 @@ v0.12 sonuÃ§ notu:
 294. Smoke test: dotnet build -c Release OK.
 295. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 296. Siradaki mantikli is: inceleme turu icin gerekirse “bakildi” durumuna gore filtreleme ya da daha hizli klavye yardimi eklemek.
+297. v0.87 olarak Faturalar ekranina `Tum Inceleme / Incelendi / Incelenmedi` review filtresi eklendi.
+298. Hazir filtre dugmelerine de `Incelenmedi` kisayolu eklendi; operator inceleme notu birakilmamis kayitlari tek tikla ayirabiliyor.
+299. `InvoiceFilter` artik reviewed/unreviewed ayrimini da yapiyor; self-test icine bu senaryolar eklendi.
+300. Bu turda Faturalar ekranindaki kalan gorunur Turkce etiket sorunlari da toparlandi.
+301. Smoke test: dotnet build -c Release OK.
+302. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+303. Siradaki mantikli is: inceleme durumunu dashboard veya rapor akislarina tasiyip daha ust seviye takip gorunumu sunmak.

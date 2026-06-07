@@ -131,3 +131,11 @@ Bu fazda Faturalar ekranindaki inceleme akisi `Bakıldı + Sonraki` yardimiyla h
 Ayni turda uygulamadaki gorunur bozuk Turkce karakter sorunlari temizlendi; fatura ve rapor ekranlarindaki kullanici metinleri dogru Turkce karakterlerle gosterilir hale getirildi.
 
 Sıradaki mantikli is: bu akis icin minik bir isaretleme/not rahatligi ekleyip kontrol edilen kayitlarda mikro takip kolayligi saglamak.
+
+## v0.87 - Inceleme Durumu Filtresi
+
+Bu fazda Faturalar ekranina `Tum Inceleme / Incelendi / Incelenmedi` filtresi eklendi.
+Hazir hizli filtrelere de `Incelenmedi` dugmesi eklendi; boylece operator inceleme notu birakilmamis kayitlari tek tikla ayirabiliyor.
+Bu akista Faturalar ekranindaki kalan gorunur Turkce metin sorunlari da toparlandi; dugme ve filtre etiketleri daha temiz hale geldi.
+
+Sıradaki mantikli is: bu yeni inceleme durumunu gerekirse dashboard veya rapor akislarina tasiyip operatore daha ust seviye takip gorunumu sunmak.

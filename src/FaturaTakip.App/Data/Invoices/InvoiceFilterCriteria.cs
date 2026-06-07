@@ -7,6 +7,7 @@ public sealed record InvoiceFilterCriteria(
     long? SubscriptionId = null,
     InvoicePaymentStatusFilter PaymentStatus = InvoicePaymentStatusFilter.All,
     InvoicePdfStatusFilter PdfStatus = InvoicePdfStatusFilter.All,
+    InvoiceReviewStatusFilter ReviewStatus = InvoiceReviewStatusFilter.All,
     string SearchText = "");
 
 public enum InvoicePaymentStatusFilter
@@ -23,4 +24,11 @@ public enum InvoicePdfStatusFilter
     All,
     HasPdf,
     MissingPdf,
+}
+
+public enum InvoiceReviewStatusFilter
+{
+    All,
+    Reviewed,
+    Unreviewed,
 }

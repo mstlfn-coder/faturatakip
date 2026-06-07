@@ -370,6 +370,8 @@ public sealed class SelfTestRunner
                     InvoiceNo = "ELK-001",
                     Status = "unpaid",
                     Description = "Ocak elektrik",
+                    ReviewNote = "Kontrol edildi",
+                    ReviewedAt = new DateTimeOffset(2026, 2, 1, 10, 0, 0, TimeSpan.FromHours(3)),
                     PdfFilePath = "attachments/invoices/2026/01/elk.pdf",
                     PdfOriginalFileName = "elk.pdf",
                 },
@@ -414,6 +416,8 @@ public sealed class SelfTestRunner
             Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PaymentStatus: InvoicePaymentStatusFilter.Overdue), filterToday).Single().InvoiceNo == "ELK-001", "Gecikmis fatura filtresi calismadi.");
             Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PdfStatus: InvoicePdfStatusFilter.HasPdf), filterToday).Single().InvoiceNo == "ELK-001", "PDF var filtresi calismadi.");
             Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PdfStatus: InvoicePdfStatusFilter.MissingPdf), filterToday).Count == 2, "PDF eksik filtresi calismadi.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(ReviewStatus: InvoiceReviewStatusFilter.Reviewed), filterToday).Single().InvoiceNo == "ELK-001", "Incelendi filtresi calismadi.");
+            Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(ReviewStatus: InvoiceReviewStatusFilter.Unreviewed), filterToday).Count == 2, "Incelenmedi filtresi calismadi.");
             Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(SearchText: "Ana ELK"), filterToday).Count == 2, "Metin arama filtresi calismadi.");
 
             var missingPdfExportContext = InvoiceExportContextBuilder.Build(

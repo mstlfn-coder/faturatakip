@@ -46,6 +46,13 @@ public static class InvoiceFilter
             _ => query,
         };
 
+        query = criteria.ReviewStatus switch
+        {
+            InvoiceReviewStatusFilter.Reviewed => query.Where(IsReviewed),
+            InvoiceReviewStatusFilter.Unreviewed => query.Where(invoice => !IsReviewed(invoice)),
+            _ => query,
+        };
+
         var searchTerms = criteria.SearchText
             .Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
         foreach (var term in searchTerms)
@@ -69,5 +76,10 @@ public static class InvoiceFilter
     private static bool Contains(string value, string term)
     {
         return value.Contains(term, StringComparison.CurrentCultureIgnoreCase);
+    }
+
+    private static bool IsReviewed(Invoice invoice)
+    {
+        return invoice.ReviewedAt is not null || !string.IsNullOrWhiteSpace(invoice.ReviewNote);
     }
 }
