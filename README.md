@@ -119,4 +119,10 @@ Sıradaki mantikli is: bu akisa minik bir klavye odakli kisayol ya da tek tikla 
 Bu fazda Faturalar ekranindaki inceleme turuna klavye kisayollari eklendi.
 Ctrl+Shift+Sol/Sag ile onceki/sonraki kayda gecilebiliyor; Ctrl+Shift+O ve Ctrl+Shift+K ile de birlesik aksiyonlar klavyeden tetiklenebiliyor.
 
+## v0.85 - Fatura Inceleme Notu
+
+Bu fazda Faturalar ekranindaki PDF/Inceleme bolumune kalici inceleme notu ve bakildi zamani eklendi.
+Kullanici secili faturaya kisa bir kontrol notu yazip kaydedebiliyor, isterse isareti temizleyebiliyor.
+Bu bilgi ayri alanlarda saklaniyor; self-test ve audit log ile de dogrulaniyor.
+
 Sıradaki mantikli is: bu akis icin minik bir isaretleme/not rahatligi ekleyip kontrol edilen kayitlarda mikro takip kolayligi saglamak.

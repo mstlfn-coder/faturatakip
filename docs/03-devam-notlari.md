@@ -722,3 +722,11 @@ v0.12 sonuÃ§ notu:
 278. Kontrol ipucu artik bu kisayollari da yaziyor; kullanici akisi ekrandan ogrenebiliyor.
 279. Self-test icine kisayol ipucu metni dogrulamasi eklendi.
 280. Siradaki mantikli is: inceleme akisina minik isaretleme/not rahatligi eklemek.
+281. v0.85 olarak Faturalar ekranindaki PDF/Inceleme bolumune kalici inceleme notu alani eklendi.
+282. Inceleme notu ve son inceleme zamani veritabaninda ayri alanlarda tutuluyor: `review_note` ve `reviewed_at`.
+283. Kullanici secili fatura icin not kaydedebiliyor, isterse tek tikla isareti temizleyebiliyor.
+284. InvoiceRepository icine `UpdateReviewStatus()` ve `ClearReviewStatus()` eklendi; audit log tarafinda `invoice_review_updated` kaydi olusuyor.
+285. Self-test icine inceleme notu kaydetme/temizleme ve audit log dogrulamasi eklendi.
+286. Smoke test: dotnet build -c Release OK.
+287. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+288. Siradaki mantikli is: bu not akisini operator ritmine daha da yaklastiracak "bakildi + sonraki kayit" gibi minik yardimlar dusunmek.

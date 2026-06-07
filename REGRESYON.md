@@ -1058,3 +1058,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Klavye ile birlesik aksiyon | OK | Ctrl+Shift+O ve Ctrl+Shift+K ile inceleme aksiyonlari tetikleniyor |
 | Kisayol ipucu | OK | Kontrol ipucunda aktif kisayollar gosteriliyor |
 | 2026-06-07 | v0.84 | OK | Inceleme turu kisayollari + build + self-test tamamlandi |
+
+## v0.85 - Fatura Inceleme Notu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | Fatura inceleme notu kaydet/temizle senaryosu self-test icine eklendi |
+| Inceleme notu saklaniyor | OK | `review_note` ve `reviewed_at` alanlari migration ile veritabanina eklendi |
+| UI kaydet/temizle akisi var | OK | Fatura PDF/Inceleme bolumunde not kaydetme ve isaret temizleme dugmeleri eklendi |
+| Audit log kaydi var | OK | `invoice_review_updated` kaydi olusuyor |
+| 2026-06-07 | v0.85 | OK | Fatura inceleme notu + build + self-test tamamlandi |

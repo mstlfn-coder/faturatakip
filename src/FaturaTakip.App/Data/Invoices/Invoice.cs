@@ -38,6 +38,10 @@ public sealed class Invoice
 
     public string Description { get; init; } = string.Empty;
 
+    public string ReviewNote { get; init; } = string.Empty;
+
+    public DateTimeOffset? ReviewedAt { get; init; }
+
     public string PdfFilePath { get; init; } = string.Empty;
 
     public string PdfOriginalFileName { get; init; } = string.Empty;
