@@ -633,3 +633,9 @@ Her faz bittiğinde:
 - v0.82 tamamlandi: Faturalar ekranina PDF Eksik Turu ve Gecikmis Turu odakli inceleme modlari eklendi.
 - Kontrol sirasi ipucu artik aktif mod adini da gosteriyor; kullanici hangi turda gezdigini kaybetmiyor.
 - Siradaki mantikli faz: inceleme modunu PDF Ac / Klasorde Goster / Sonraki Kayit ritmiyle daha da akici hale getirmek.
+
+## Son Guncelleme (2026-06-07 / v0.83)
+
+- v0.83 tamamlandi: Fatura inceleme turuna PDF Ac + Sonraki ve Klasor + Sonraki birlesik aksiyonlari eklendi.
+- Boylece PDF Ac / Klasorde Goster / Sonraki Kayit ritmi tek dugme zincirleriyle daha akici hale geldi.
+- Siradaki mantikli faz: bu operator akisina klavye odakli kisayol ya da mini isaretleme rahatligi eklemek.

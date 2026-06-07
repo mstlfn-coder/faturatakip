@@ -563,6 +563,16 @@
                                                 Style="{StaticResource SecondaryButton}"
                                                 Margin="0,0,8,0"
                                                 Click="RevealInvoicePdfFolderButton_Click" />
+                                        <Button x:Name="OpenInvoicePdfAndNextButton"
+                                                Content="PDF Ac + Sonraki"
+                                                Style="{StaticResource SecondaryButton}"
+                                                Margin="0,0,8,0"
+                                                Click="OpenInvoicePdfAndNextButton_Click" />
+                                        <Button x:Name="RevealInvoicePdfFolderAndNextButton"
+                                                Content="Klasor + Sonraki"
+                                                Style="{StaticResource SecondaryButton}"
+                                                Margin="0,0,8,0"
+                                                Click="RevealInvoicePdfFolderAndNextButton_Click" />
                                         <Button x:Name="PreviousInvoiceButton"
                                                 Content="Onceki Kayit"
                                                 Style="{StaticResource SecondaryButton}"
@@ -593,6 +603,7 @@
         </Grid>
     </Grid>
 </UserControl>
+
 
 
 

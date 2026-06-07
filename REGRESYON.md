@@ -1038,3 +1038,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Gecikmis Turu | OK | Tek tikla gecikmis alt kumesi icin kontrol modu baslatiliyor |
 | Modlu kontrol ipucu | OK | Kontrol modu: ... (x/y) metni aktif alt kume bilgisini gosteriyor |
 | 2026-06-07 | v0.82 | OK | Fatura inceleme modu + build + self-test tamamlandi |
+
+## v0.83 - Inceleme Turu Birlesik Aksiyonlari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | Mevcut inceleme modu ve gezinme self-test kapsamiyla birlikte temiz gecti |
+| PDF Ac + Sonraki | OK | PDF acma aksiyonu sonrasinda bir sonraki kayda otomatik geciliyor |
+| Klasor + Sonraki | OK | Klasor gosterme aksiyonu sonrasinda bir sonraki kayda otomatik geciliyor |
+| Tur sonu davranisi | OK | Son kayitta aksiyon korunuyor, ileri gecis yerine tur sonu mesaji veriliyor |
+| 2026-06-07 | v0.83 | OK | Inceleme turu birlesik aksiyonlari + build + self-test tamamlandi |
