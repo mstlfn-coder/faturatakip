@@ -415,6 +415,11 @@ public sealed class SelfTestRunner
                 filterToday);
             Assert(currentMonthExportContext.FileSlug.Contains("bu-ay", StringComparison.Ordinal), "Filtreli export baglami bu ay secimi icin beklenen slug uretmedi.");
 
+            Assert(InvoiceReviewNavigator.TryMove(1, 3, 1, out var nextIndex) && nextIndex == 2, "Kontrol turu sonraki kayda gecis hatali.");
+            Assert(InvoiceReviewNavigator.TryMove(1, 3, -1, out var previousIndex) && previousIndex == 0, "Kontrol turu onceki kayda gecis hatali.");
+            Assert(!InvoiceReviewNavigator.TryMove(0, 3, -1, out _), "Kontrol turu ilk kayittan geriye gecmemeli.");
+            Assert(!InvoiceReviewNavigator.TryMove(2, 3, 1, out _), "Kontrol turu son kayittan ileri gecmemeli.");
+
             var dashboardInvoices = new[]
             {
                 new Invoice

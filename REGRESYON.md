@@ -1018,3 +1018,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Bu Ay export slug | OK | u-ay baglami dosya adina ekleniyor |
 | Filtreli export mesajlari | OK | Kullaniciya gorunur liste ve aktif filtre etiketiyle bilgi veriliyor |
 | 2026-06-07 | v0.80 | OK | Filtreli export baglami + build + self-test tamamlandi |
+
+## v0.81 - Fatura Kontrol Turu Gezinmesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | Self-test icinde kontrol turu ileri/geri sinir dogrulamasi eklendi |
+| Onceki/sonraki gezinme | OK | Filtreli liste icinde secili kayit ileri geri tasinabiliyor |
+| Sinir davranisi | OK | Ilk kayittan geri, son kayittan ileri gecis engelleniyor |
+| Kontrol sirasi ipucu | OK | Secili kaydin gorunur listedeki konumu gosteriliyor |
+| 2026-06-07 | v0.81 | OK | Fatura kontrol turu gezinmesi + build + self-test tamamlandi |

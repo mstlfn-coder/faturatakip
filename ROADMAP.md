@@ -621,3 +621,9 @@ Her faz bittiğinde:
 - v0.80 tamamlandi: Faturalar ekranindaki filtreli export akisi baglam bilgisiyle guclendirildi.
 - Excel/PDF export dosya adlari aktif filtreye gore pdf-eksik, gecikmis, u-ay gibi anlamli slug uretiyor.
 - Siradaki mantikli faz: filtreli listeyi toplu PDF kontrol ya da bir sonraki kayda hizli gecis akisi ile birlestirmek.
+
+## Son Guncelleme (2026-06-07 / v0.81)
+
+- v0.81 tamamlandi: Faturalar ekranindaki PDF alanina filtreli liste icinde Onceki Kayit / Sonraki Kayit gezinmesi eklendi.
+- Kullanici secili kaydin listedeki sirasini goruyor ve ozellikle PDF Eksik turunde tek tek hizli ilerleyebiliyor.
+- Siradaki mantikli faz: kontrol turunu sadece PDF Eksik veya Gecikmis akisina daha net odaklayan mini bir inceleme modu eklemek.
