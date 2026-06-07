@@ -108,6 +108,21 @@ public partial class MainWindow : Window
         ReportsPanel.ShowDocumentHealthReport();
     }
 
+    private void OpenInvoiceTypesFromDashboardButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowInvoiceTypes();
+    }
+
+    private void OpenSubscriptionsFromDashboardButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowSubscriptions();
+    }
+
+    private void OpenInvoicesFromDashboardButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowInvoices();
+    }
+
     private void ShowDashboard()
     {
         DashboardPanel.Visibility = Visibility.Visible;

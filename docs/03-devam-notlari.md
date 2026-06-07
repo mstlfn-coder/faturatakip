@@ -679,3 +679,9 @@ v0.12 sonuÃ§ notu:
 235. Smoke test: dotnet build -c Release OK.
 236. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 237. Siradaki mantikli is: dashboard tarafinda aktif abonelik veya toplam fatura gibi kartlardan liste ekranlarina hizli gecis eklemek.
+238. v0.77 olarak dashboard uzerindeki Fatura Turu ve Aktif Tur kartlarina `Turlere Git` dugmeleri eklendi.
+239. Ayni turda Aktif Abonelik kartina `Aboneliklere Git`, Toplam Fatura kartina `Faturalara Git` dugmesi eklendi.
+240. Bu kisayollar `MainWindow` icinden ilgili ekran panellerini dogrudan aciyor; ek rapor sekmesi gerektirmiyor.
+241. Smoke test: dotnet build -c Release OK.
+242. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+243. Siradaki mantikli is: dashboard kisayollarini yeterince olgun kabul edip liste ekranlarinda toplu is akisi hizlandirmaya geri donmek.

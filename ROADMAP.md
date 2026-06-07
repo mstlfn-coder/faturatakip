@@ -597,3 +597,9 @@ Her faz bittiğinde:
 - v0.76 tamamlandi: Gosterge panelindeki bu ay fatura, bu ay odeme, fatura PDF eksik ve odeme PDF eksik kartlarina hizli gecis dugmeleri eklendi.
 - Aylik hareket kartlari dogrudan Aylik Liste sekmesine, evrak eksigi kartlari ise Evrak Kontrol sekmesine tasiniyor.
 - Siradaki mantikli faz: dashboard tarafinda aktif abonelik veya toplam fatura gibi kartlardan liste ekranlarina hizli gecis eklemek.
+
+## Son Guncelleme (2026-06-07 / v0.77)
+
+- v0.77 tamamlandi: Gosterge panelindeki fatura turu, aktif tur, aktif abonelik ve toplam fatura kartlarina hizli gecis dugmeleri eklendi.
+- Bu kisayollar dogrudan Fatura Turleri, Abonelikler ve Faturalar ekranlarina gidiyor; dashboard ana yonlendirme paneli gibi calisiyor.
+- Siradaki mantikli faz: dashboard kisayollarini yeterince olgun kabul edip liste ekranlarinda toplu is akisi hizlandirmaya geri donmek.
