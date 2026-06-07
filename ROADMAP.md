@@ -603,3 +603,9 @@ Her faz bittiğinde:
 - v0.77 tamamlandi: Gosterge panelindeki fatura turu, aktif tur, aktif abonelik ve toplam fatura kartlarina hizli gecis dugmeleri eklendi.
 - Bu kisayollar dogrudan Fatura Turleri, Abonelikler ve Faturalar ekranlarina gidiyor; dashboard ana yonlendirme paneli gibi calisiyor.
 - Siradaki mantikli faz: dashboard kisayollarini yeterince olgun kabul edip liste ekranlarinda toplu is akisi hizlandirmaya geri donmek.
+
+## Son Guncelleme (2026-06-07 / v0.78)
+
+- v0.78 tamamlandi: Faturalar ekranina Bu Ay, Odenmemis, Gecikmis ve PDF Eksik hazir filtre dugmeleri eklendi.
+- Bu kisayollar filtreleri tek tikla kuruyor, sonucu sayisal olarak gosteriyor ve varsa ilk kayda otomatik odaklaniyor.
+- Siradaki mantikli faz: fatura hizli filtrelerini disa aktarma veya toplu PDF kontrol akisiyla daha da guclendirmek.

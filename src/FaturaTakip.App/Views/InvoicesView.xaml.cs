@@ -123,22 +123,7 @@ public partial class InvoicesView : UserControl
         MissingPdfCountText.Text = missingPdfCount.ToString(CultureInfo.InvariantCulture);
 
         RefreshDynamicFilterOptions();
-
-        var filtered = ApplyFilters(_invoices).ToList();
-        InvoiceGrid.ItemsSource = filtered;
-
-        var selected = selectedId is null
-            ? null
-            : filtered.FirstOrDefault(item => item.Id == selectedId.Value);
-
-        if (selected is null)
-        {
-            ClearInvoiceForm();
-            return;
-        }
-
-        InvoiceGrid.SelectedItem = selected;
-        ApplySelectedInvoice(selected);
+        ApplyFiltersToGrid(selectedId);
     }
 
     private void RefreshDynamicFilterOptions()
@@ -195,20 +180,7 @@ public partial class InvoicesView : UserControl
             return;
         }
 
-        var selectedId = _selectedInvoice?.Id;
-        var filtered = ApplyFilters(_invoices).ToList();
-        InvoiceGrid.ItemsSource = filtered;
-
-        if (selectedId is null)
-        {
-            return;
-        }
-
-        var selected = filtered.FirstOrDefault(item => item.Id == selectedId.Value);
-        if (selected is not null)
-        {
-            InvoiceGrid.SelectedItem = selected;
-        }
+        ApplyFiltersToGrid(_selectedInvoice?.Id);
     }
 
     private void ClearInvoiceFiltersButton_Click(object sender, RoutedEventArgs e)
@@ -220,9 +192,40 @@ public partial class InvoicesView : UserControl
         InvoiceMonthFilterInput.SelectedIndex = 0;
         InvoicePaymentStatusFilterInput.SelectedIndex = 0;
         InvoicePdfStatusFilterInput.SelectedIndex = 0;
+        ApplyFiltersToGrid(_selectedInvoice?.Id);
+    }
 
-        var filtered = ApplyFilters(_invoices).ToList();
-        InvoiceGrid.ItemsSource = filtered;
+    private void QuickFilterCurrentMonthButton_Click(object sender, RoutedEventArgs e)
+    {
+        ResetQuickFilters();
+        SelectYearFilter(DateTime.Today.Year);
+        SelectMonthFilter(DateTime.Today.Month);
+        ApplyFiltersToGrid(selectFirstIfAvailable: true);
+        SetInvoiceStatus("Bu ay filtresi uygulandi; listede ilk kayda odaklanildi.", isError: false);
+    }
+
+    private void QuickFilterUnpaidButton_Click(object sender, RoutedEventArgs e)
+    {
+        ResetQuickFilters();
+        SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Unpaid);
+        ApplyFiltersToGrid(selectFirstIfAvailable: true);
+        SetInvoiceStatus("Odenmemis filtresi uygulandi; listede ilk kayda odaklanildi.", isError: false);
+    }
+
+    private void QuickFilterOverdueButton_Click(object sender, RoutedEventArgs e)
+    {
+        ResetQuickFilters();
+        SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Overdue);
+        ApplyFiltersToGrid(selectFirstIfAvailable: true);
+        SetInvoiceStatus("Gecikmis filtresi uygulandi; listede ilk kayda odaklanildi.", isError: false);
+    }
+
+    private void QuickFilterMissingPdfButton_Click(object sender, RoutedEventArgs e)
+    {
+        ResetQuickFilters();
+        SelectPdfStatusFilter(InvoicePdfStatusFilter.MissingPdf);
+        ApplyFiltersToGrid(selectFirstIfAvailable: true);
+        SetInvoiceStatus("PDF eksik filtresi uygulandi; listede ilk kayda odaklanildi.", isError: false);
     }
 
     private InvoiceFilterCriteria ReadFilterCriteria()
@@ -235,6 +238,90 @@ public partial class InvoicesView : UserControl
             PaymentStatus: (InvoicePaymentStatusFilterInput.SelectedItem as PaymentStatusFilterOption)?.Value ?? InvoicePaymentStatusFilter.All,
             PdfStatus: (InvoicePdfStatusFilterInput.SelectedItem as PdfStatusFilterOption)?.Value ?? InvoicePdfStatusFilter.All,
             SearchText: InvoiceSearchInput.Text);
+    }
+
+    private void ApplyFiltersToGrid(long? selectedId = null, bool selectFirstIfAvailable = false)
+    {
+        var filtered = ApplyFilters(_invoices).ToList();
+        InvoiceGrid.ItemsSource = filtered;
+        InvoiceFilterHintText.Text = filtered.Count == 0
+            ? "Filtre sonucunda kayit bulunamadi."
+            : $"{filtered.Count} kayit listeleniyor.";
+
+        var selected = selectedId is null
+            ? null
+            : filtered.FirstOrDefault(item => item.Id == selectedId.Value);
+
+        if (selected is null && selectFirstIfAvailable)
+        {
+            selected = filtered.FirstOrDefault();
+        }
+
+        if (selected is null)
+        {
+            InvoiceGrid.SelectedItem = null;
+            ClearInvoiceForm();
+            return;
+        }
+
+        InvoiceGrid.SelectedItem = selected;
+        InvoiceGrid.ScrollIntoView(selected);
+        ApplySelectedInvoice(selected);
+    }
+
+    private void ResetQuickFilters()
+    {
+        InvoiceSearchInput.Text = string.Empty;
+        InvoiceTypeFilterInput.SelectedIndex = 0;
+        InvoiceSubscriptionFilterInput.SelectedIndex = 0;
+        InvoiceYearFilterInput.SelectedIndex = 0;
+        InvoiceMonthFilterInput.SelectedIndex = 0;
+        InvoicePaymentStatusFilterInput.SelectedIndex = 0;
+        InvoicePdfStatusFilterInput.SelectedIndex = 0;
+    }
+
+    private void SelectYearFilter(int year)
+    {
+        if (InvoiceYearFilterInput.ItemsSource is not IEnumerable<YearFilterOption> options)
+        {
+            return;
+        }
+
+        InvoiceYearFilterInput.SelectedItem = options.FirstOrDefault(item => item.Year == year)
+            ?? options.FirstOrDefault();
+    }
+
+    private void SelectMonthFilter(int month)
+    {
+        if (InvoiceMonthFilterInput.ItemsSource is not IEnumerable<MonthFilterOption> options)
+        {
+            return;
+        }
+
+        InvoiceMonthFilterInput.SelectedItem = options.FirstOrDefault(item => item.Month == month)
+            ?? options.FirstOrDefault();
+    }
+
+    private void SelectPaymentStatusFilter(InvoicePaymentStatusFilter status)
+    {
+        if (InvoicePaymentStatusFilterInput.ItemsSource is not IEnumerable<PaymentStatusFilterOption> options)
+        {
+            return;
+        }
+
+        InvoicePaymentStatusFilterInput.SelectedItem = options.FirstOrDefault(item => item.Value == status)
+            ?? options.FirstOrDefault();
+    }
+
+    private void SelectPdfStatusFilter(InvoicePdfStatusFilter status)
+    {
+        if (InvoicePdfStatusFilterInput.ItemsSource is not IEnumerable<PdfStatusFilterOption> options)
+        {
+            return;
+        }
+
+        InvoicePdfStatusFilterInput.SelectedItem = options.FirstOrDefault(item => item.Value == status)
+            ?? options.FirstOrDefault();
     }
 
     private void InvoiceGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

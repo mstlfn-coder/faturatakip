@@ -685,3 +685,9 @@ v0.12 sonuÃ§ notu:
 241. Smoke test: dotnet build -c Release OK.
 242. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 243. Siradaki mantikli is: dashboard kisayollarini yeterince olgun kabul edip liste ekranlarinda toplu is akisi hizlandirmaya geri donmek.
+244. v0.78 olarak Faturalar ekranina Bu Ay, Odenmemis, Gecikmis ve PDF Eksik hizli filtre dugmeleri eklendi.
+245. Bu kisayollar mevcut filtreleri tek tikla kuruyor, sonuc listesini yeniliyor ve varsa ilk kayda otomatik odaklaniyor.
+246. Filtre sonucundaki kayit sayisi icin ayri bir ipucu metni eklendi; kullanici kac kayitla calistigini hemen gorebiliyor.
+247. Smoke test: dotnet build -c Release OK.
+248. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+249. Siradaki mantikli is: hazir filtre sonucunu tek tikla disa aktarma ya da toplu PDF kontrol akisiyla daha ileri hizlandirmak.

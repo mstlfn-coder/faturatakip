@@ -978,3 +978,19 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Kisayollar ilgili ekranlari aciyor | OK | `MainWindow` dashboard event'leri dogrudan hedef panellere baglandi |
 
 | 2026-06-07 | v0.77 | OK | Dashboard genel ozet kartlarina liste kisayollari eklendi; build + self-test OK |
+
+
+## v0.78 - Fatura Hizli Filtreler
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Bu Ay hizli filtresi var | OK | Yil ve ay filtrelerini bugunun donemine kuruyor |
+| Odenmemis hizli filtresi var | OK | Odeme durumu filtresini tek tikla `Unpaid` yapiyor |
+| Gecikmis hizli filtresi var | OK | Odeme durumu filtresini tek tikla `Overdue` yapiyor |
+| PDF Eksik hizli filtresi var | OK | PDF durumu filtresini tek tikla `MissingPdf` yapiyor |
+| Sonuc bilgisi gosteriliyor | OK | Filtre sonucundaki kayit sayisi ayri ipucu metninde yaziliyor |
+| Ilk kayda otomatik odaklanma var | OK | Hizli filtre sonrasi varsa ilk kayit secilip gorunur alana getiriliyor |
+
+| 2026-06-07 | v0.78 | OK | Faturalar ekranina hazir filtre kisayollari eklendi; build + self-test OK |
