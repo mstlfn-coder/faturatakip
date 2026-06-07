@@ -707,3 +707,8 @@ v0.12 sonuÃ§ notu:
 263. Secili kaydin listedeki sirasi Kontrol sirasi: x/y metniyle gosteriliyor.
 264. Self-test icine kontrol turu ileri/geri ve sinir davranisi dogrulamalari eklendi.
 265. Siradaki mantikli is: bu gezinmeyi sadece PDF Eksik ya da Gecikmis akisina odaklayan daha yonlendirilmis bir inceleme modu ile tamamlamak.
+266. v0.82 olarak Faturalar ekranina PDF Eksik Turu ve Gecikmis Turu kisayollari eklendi.
+267. Bu kisayollar filtreyi tek tikla kuruyor, ilk kayda odaklaniyor ve kontrol turunu aktif alt kume uzerinde baslatiyor.
+268. InvoiceReviewNavigator artik kontrol ipucu metnini de uretiyor; mod adi ve sira ayni yerde gorunuyor.
+269. Self-test icine inceleme modu ipucu dogrulamasi eklendi.
+270. Siradaki mantikli is: inceleme modunda operator ritmini daha da hizlandiracak PDF Ac / Klasorde Goster / Sonraki Kayit tipi akici kisayollar eklemek.

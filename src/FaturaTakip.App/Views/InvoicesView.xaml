@@ -250,6 +250,14 @@
                                 <Button Content="PDF Eksik"
                                         Style="{StaticResource SecondaryButton}"
                                         Click="QuickFilterMissingPdfButton_Click" />
+                                <Button Content="PDF Eksik Turu"
+                                        Style="{StaticResource SecondaryButton}"
+                                        Margin="8,0,8,0"
+                                        Click="StartMissingPdfReviewButton_Click" />
+                                <Button Content="Gecikmis Turu"
+                                        Style="{StaticResource SecondaryButton}"
+                                        Margin="0,0,8,0"
+                                        Click="StartOverdueReviewButton_Click" />
                             </WrapPanel>
 
                             <TextBlock x:Name="InvoiceFilterHintText"
@@ -585,6 +593,7 @@
         </Grid>
     </Grid>
 </UserControl>
+
 
 
 

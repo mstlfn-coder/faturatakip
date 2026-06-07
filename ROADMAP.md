@@ -627,3 +627,9 @@ Her faz bittiğinde:
 - v0.81 tamamlandi: Faturalar ekranindaki PDF alanina filtreli liste icinde Onceki Kayit / Sonraki Kayit gezinmesi eklendi.
 - Kullanici secili kaydin listedeki sirasini goruyor ve ozellikle PDF Eksik turunde tek tek hizli ilerleyebiliyor.
 - Siradaki mantikli faz: kontrol turunu sadece PDF Eksik veya Gecikmis akisina daha net odaklayan mini bir inceleme modu eklemek.
+
+## Son Guncelleme (2026-06-07 / v0.82)
+
+- v0.82 tamamlandi: Faturalar ekranina PDF Eksik Turu ve Gecikmis Turu odakli inceleme modlari eklendi.
+- Kontrol sirasi ipucu artik aktif mod adini da gosteriyor; kullanici hangi turda gezdigini kaybetmiyor.
+- Siradaki mantikli faz: inceleme modunu PDF Ac / Klasorde Goster / Sonraki Kayit ritmiyle daha da akici hale getirmek.

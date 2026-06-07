@@ -99,3 +99,10 @@ Bu fazda Faturalar ekranindaki PDF alanina Onceki Kayit ve Sonraki Kayit dugmele
 Boylece filtreli liste icinde, ozellikle PDF Eksik turunda, secili faturadan ayrilmadan hizli kayit kayit ilerlemek kolaylasti.
 
 Sıradaki mantikli is: bu kontrol turunu tek tikla sadece PDF Eksik ya da Gecikmis listesine odaklayan daha da yonlendirilmis bir inceleme akisiyla tamamlamak.
+
+## v0.82 - Fatura Inceleme Modu
+
+Bu fazda Faturalar ekranina PDF Eksik Turu ve Gecikmis Turu kisayollari eklendi.
+Bu akislarda filtre tek tikla kuruluyor ve kontrol sirasi ipucu artik aktif modla birlikte gorunuyor; boylece kayit kayit inceleme daha odakli ilerliyor.
+
+Sıradaki mantikli is: inceleme modundayken tek tikla PDF Ac / Klasorde Goster / Sonraki Kayit ritmini daha da hizlandiracak minik operator kisayollari eklemek.
