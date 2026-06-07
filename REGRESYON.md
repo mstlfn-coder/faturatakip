@@ -1079,3 +1079,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Gorunur Turkce metinler duzeltildi | OK | Faturalar/Raporlar ekranlarindaki bozuk Turkce karakterler temizlendi |
 | PDF Kayıp metni duzeltildi | OK | Yillik liste raporu dahil PDF durum metinleri dogru Turkce karakterlerle gosteriliyor |
 | 2026-06-07 | v0.86 | OK | Bakildi akisi + Turkce metin duzeltmeleri + build + self-test tamamlandi |
+
+## v0.87 - Inceleme Durumu Filtresi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Inceleme durumu filtresi var | OK | `Tum Inceleme / Incelendi / Incelenmedi` secenekleri eklendi |
+| Incelenmedi hizli filtresi var | OK | Hazir filtre dugmeleri arasina tek tiklik `Incelenmedi` akisi eklendi |
+| Filtre reset akisi guncellendi | OK | Temizle ve hizli filtre resetleri review filtresini de sifirliyor |
+| Filter self-test dogrulamasi var | OK | `InvoiceFilter` icin reviewed/unreviewed senaryolari eklendi |
+| Fatura ekraninda gorunur Turkce etiketler duzeltildi | OK | Dugme ve filtre etiketlerindeki kalan karakter sorunlari toparlandi |
+| 2026-06-07 | v0.87 | OK | Inceleme durumu filtresi + Turkce etiket duzeltmeleri + build + self-test tamamlandi |

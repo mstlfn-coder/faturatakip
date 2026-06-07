@@ -658,3 +658,11 @@ Her faz bittiğinde:
 - Bu akis secili faturayi inceleme notuyla birlikte isaretleyip filtreli listedeki bir sonraki kayda otomatik geciyor.
 - Ayni turda programdaki gorunur Turkce karakter sorunlari duzeltildi; ozellikle Faturalar ve Raporlar ekranlarindaki metinler dogru karakterlerle gosteriliyor.
 - Siradaki mantikli faz: inceleme turunu daha da rahatlatacak kucuk bir klavye/buton yardimi ya da raporlanabilir “bakildi” durumu filtresi eklemek.
+
+## Son Guncelleme (2026-06-07 / v0.87)
+
+- v0.87 tamamlandi: Faturalar ekranina `Tum Inceleme / Incelendi / Incelenmedi` review filtresi eklendi.
+- Hazir filtre dugmelerine de `Incelenmedi` kisayolu eklendi; operator inceleme notu birakilmamis kayitlara tek tikla odaklanabiliyor.
+- `InvoiceFilter` icine reviewed/unreviewed senaryolari eklendi ve self-test ile dogrulandi.
+- Faturalar ekranindaki kalan gorunur Turkce etiket sorunlari da bu turda toparlandi.
+- Siradaki mantikli faz: inceleme durumunu dashboard veya rapor akislarina tasiyip daha ust seviye takip gorunumu sunmak.
