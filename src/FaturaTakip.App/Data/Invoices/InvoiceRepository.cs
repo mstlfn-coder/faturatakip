@@ -186,7 +186,7 @@ public sealed class InvoiceRepository
     {
         var previous = GetRequired(id);
         var normalizedNote = (reviewNote ?? string.Empty).Trim();
-        EnsureMaxLength(normalizedNote, 500, "Inceleme notu");
+        EnsureMaxLength(normalizedNote, 500, "İnceleme notu");
 
         using var connection = SqliteConnectionFactory.Create(_databasePath);
         connection.Open();
@@ -206,11 +206,11 @@ public sealed class InvoiceRepository
 
         if (command.ExecuteNonQuery() == 0)
         {
-            throw new InvalidOperationException("Inceleme notu guncellenecek fatura bulunamadi.");
+            throw new InvalidOperationException("İnceleme notu güncellenecek fatura bulunamadı.");
         }
 
         var updated = GetRequired(id);
-        _auditLogRepository.Add("invoice_review_updated", "invoices", updated.Id, previous, updated, "Fatura inceleme notu guncellendi.");
+        _auditLogRepository.Add("invoice_review_updated", "invoices", updated.Id, previous, updated, "Fatura inceleme notu güncellendi.");
         return updated;
     }
 

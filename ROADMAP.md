@@ -651,3 +651,10 @@ Her faz bittiğinde:
 - v0.85 tamamlandi: Faturalar ekranina kalici inceleme notu ve son inceleme zamani eklendi.
 - Inceleme notu ayri alanlarda saklaniyor; kaydet/temizle akisi audit log ve self-test ile dogrulaniyor.
 - Siradaki mantikli faz: bu not akisini operator ritmine daha da yaklastiracak tek tiklik "bakildi ve sonraki kayit" gibi yardimlar dusunmek.
+
+## Son Guncelleme (2026-06-07 / v0.86)
+
+- v0.86 tamamlandi: Faturalar ekranina `Bakıldı + Sonraki` yardimi eklendi.
+- Bu akis secili faturayi inceleme notuyla birlikte isaretleyip filtreli listedeki bir sonraki kayda otomatik geciyor.
+- Ayni turda programdaki gorunur Turkce karakter sorunlari duzeltildi; ozellikle Faturalar ve Raporlar ekranlarindaki metinler dogru karakterlerle gosteriliyor.
+- Siradaki mantikli faz: inceleme turunu daha da rahatlatacak kucuk bir klavye/buton yardimi ya da raporlanabilir “bakildi” durumu filtresi eklemek.

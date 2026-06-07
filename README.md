@@ -125,4 +125,9 @@ Bu fazda Faturalar ekranindaki PDF/Inceleme bolumune kalici inceleme notu ve bak
 Kullanici secili faturaya kisa bir kontrol notu yazip kaydedebiliyor, isterse isareti temizleyebiliyor.
 Bu bilgi ayri alanlarda saklaniyor; self-test ve audit log ile de dogrulaniyor.
 
+## v0.86 - Bakildi Akisi ve Turkce Metin Duzeltmeleri
+
+Bu fazda Faturalar ekranindaki inceleme akisi `Bakıldı + Sonraki` yardimiyla hizlandirildi.
+Ayni turda uygulamadaki gorunur bozuk Turkce karakter sorunlari temizlendi; fatura ve rapor ekranlarindaki kullanici metinleri dogru Turkce karakterlerle gosterilir hale getirildi.
+
 Sıradaki mantikli is: bu akis icin minik bir isaretleme/not rahatligi ekleyip kontrol edilen kayitlarda mikro takip kolayligi saglamak.

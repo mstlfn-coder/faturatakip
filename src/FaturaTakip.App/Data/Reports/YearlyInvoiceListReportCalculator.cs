@@ -1,4 +1,4 @@
-using FaturaTakip.App.Data.Invoices;
+﻿using FaturaTakip.App.Data.Invoices;
 
 namespace FaturaTakip.App.Data.Reports;
 
@@ -49,7 +49,8 @@ public static class YearlyInvoiceListReportCalculator
             return "PDF Yok";
         }
 
-        return isPdfMissing(invoice) ? "PDF KayÄ±p" : "PDF Var";
+        return isPdfMissing(invoice) ? "PDF Kayıp" : "PDF Var";
     }
 }
+
 

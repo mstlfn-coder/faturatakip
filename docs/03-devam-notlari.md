@@ -730,3 +730,11 @@ v0.12 sonuÃ§ notu:
 286. Smoke test: dotnet build -c Release OK.
 287. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 288. Siradaki mantikli is: bu not akisini operator ritmine daha da yaklastiracak "bakildi + sonraki kayit" gibi minik yardimlar dusunmek.
+289. v0.86 olarak Faturalar ekranina `Bakıldı + Sonraki` yardimi eklendi.
+290. Bu akis secili faturanin inceleme notunu ve `reviewed_at` bilgisini kaydedip filtreli listedeki bir sonraki kayda otomatik geciyor.
+291. Tur sonunda ise kayit yine isaretleniyor ama kullaniciya turun bittigi acikca soyleniyor.
+292. Ayni turda programdaki gorunur Turkce karakter sorunlari duzeltildi.
+293. Ozellikle Faturalar ve Raporlar ekranlarindaki bozuk metinler ile `PDF Kayıp` gibi durum etiketleri dogru Turkce karakterlerle gosterilir hale getirildi.
+294. Smoke test: dotnet build -c Release OK.
+295. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+296. Siradaki mantikli is: inceleme turu icin gerekirse “bakildi” durumuna gore filtreleme ya da daha hizli klavye yardimi eklemek.

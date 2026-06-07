@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -48,23 +48,23 @@ public partial class InvoicesView : UserControl
         InvoiceMonthInput.ItemsSource = Enumerable.Range(1, 12)
             .Select(month => new MonthOption(month, TurkishCulture.DateTimeFormat.GetMonthName(month)))
             .ToList();
-        InvoiceMonthFilterInput.ItemsSource = new[] { new MonthFilterOption("TÃ¼m Aylar", null) }
+        InvoiceMonthFilterInput.ItemsSource = new[] { new MonthFilterOption("Tüm Aylar", null) }
             .Concat(Enumerable.Range(1, 12)
                 .Select(month => new MonthFilterOption(TurkishCulture.DateTimeFormat.GetMonthName(month), month)))
             .ToList();
         InvoiceMonthFilterInput.SelectedIndex = 0;
         InvoicePaymentStatusFilterInput.ItemsSource = new List<PaymentStatusFilterOption>
         {
-            new("TÃ¼m Durumlar", InvoicePaymentStatusFilter.All),
-            new("Ã–denmedi", InvoicePaymentStatusFilter.Unpaid),
-            new("Ã–dendi", InvoicePaymentStatusFilter.Paid),
-            new("Ä°ptal", InvoicePaymentStatusFilter.Canceled),
-            new("GecikmiÅŸ", InvoicePaymentStatusFilter.Overdue),
+            new("Tüm Durumlar", InvoicePaymentStatusFilter.All),
+            new("Ödenmedi", InvoicePaymentStatusFilter.Unpaid),
+            new("Ödendi", InvoicePaymentStatusFilter.Paid),
+            new("İptal", InvoicePaymentStatusFilter.Canceled),
+            new("Gecikmiş", InvoicePaymentStatusFilter.Overdue),
         };
         InvoicePaymentStatusFilterInput.SelectedIndex = 0;
         InvoicePdfStatusFilterInput.ItemsSource = new List<PdfStatusFilterOption>
         {
-            new("TÃ¼m PDF", InvoicePdfStatusFilter.All),
+            new("Tüm PDF", InvoicePdfStatusFilter.All),
             new("PDF Var", InvoicePdfStatusFilter.HasPdf),
             new("PDF Eksik", InvoicePdfStatusFilter.MissingPdf),
         };
@@ -98,7 +98,7 @@ public partial class InvoicesView : UserControl
 
         var filters = new List<SubscriptionFilterOption>
         {
-            new("TÃ¼m Abonelikler", null),
+            new("Tüm Abonelikler", null),
         };
         filters.AddRange(_subscriptions.Select(item => new SubscriptionFilterOption(
             $"{item.InvoiceTypeName} - {item.SubscriptionName}",
@@ -139,7 +139,7 @@ public partial class InvoicesView : UserControl
         {
             var years = new List<YearFilterOption>
             {
-                new("TÃ¼m YÄ±llar", null),
+                new("Tüm Yıllar", null),
             };
             years.AddRange(_invoices
                 .Select(item => item.InvoiceYear)
@@ -151,7 +151,7 @@ public partial class InvoicesView : UserControl
 
             var invoiceTypes = new List<InvoiceTypeFilterOption>
             {
-                new("TÃ¼m TÃ¼rler", null),
+                new("Tüm Türler", null),
             };
             invoiceTypes.AddRange(_invoices
                 .GroupBy(item => new { item.InvoiceTypeId, item.InvoiceTypeName })
@@ -400,7 +400,7 @@ public partial class InvoicesView : UserControl
         _pendingPdfSourcePath = null;
         _isEditingExisting = true;
 
-        InvoiceFormTitleText.Text = "FaturayÄ± DÃ¼zenle";
+        InvoiceFormTitleText.Text = "Faturayı Düzenle";
         InvoiceSubscriptionInput.SelectedValue = invoice.SubscriptionId;
         InvoiceYearInput.Text = invoice.InvoiceYear.ToString(CultureInfo.InvariantCulture);
         InvoiceMonthInput.SelectedValue = invoice.InvoiceMonth;
@@ -414,7 +414,7 @@ public partial class InvoicesView : UserControl
         UpdateInvoiceReviewNoteControls(invoice);
         UpdatePdfControls(invoice);
         RefreshPaymentControls(invoice);
-        SetInvoiceStatus($"SeÃ§ili kayÄ±t: {invoice.InvoiceNo}", isError: false);
+        SetInvoiceStatus($"Seçili kayıt: {invoice.InvoiceNo}", isError: false);
     }
 
     private void PreviousInvoiceButton_Click(object sender, RoutedEventArgs e)
@@ -441,7 +441,7 @@ public partial class InvoicesView : UserControl
     {
         if (_invoiceRepository is null || _selectedInvoice is null)
         {
-            SetInvoiceStatus("Inceleme notu kaydetmek icin once bir fatura secin.", isError: true);
+            SetInvoiceStatus("İnceleme notu kaydetmek için önce bir fatura seçin.", isError: true);
             return;
         }
 
@@ -450,7 +450,7 @@ public partial class InvoicesView : UserControl
             var updated = _invoiceRepository.UpdateReviewStatus(_selectedInvoice.Id, InvoiceReviewNoteInput.Text, DateTimeOffset.Now);
             RefreshInvoices(updated.Id);
             InvoicesChanged?.Invoke(this, EventArgs.Empty);
-            SetInvoiceStatus("Inceleme notu kaydedildi.", isError: false);
+            SetInvoiceStatus("İnceleme notu kaydedildi.", isError: false);
         }
         catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException)
         {
@@ -462,7 +462,7 @@ public partial class InvoicesView : UserControl
     {
         if (_invoiceRepository is null || _selectedInvoice is null)
         {
-            SetInvoiceStatus("Inceleme isaretini temizlemek icin once bir fatura secin.", isError: true);
+            SetInvoiceStatus("İnceleme işaretini temizlemek için önce bir fatura seçin.", isError: true);
             return;
         }
 
@@ -471,12 +471,17 @@ public partial class InvoicesView : UserControl
             var updated = _invoiceRepository.ClearReviewStatus(_selectedInvoice.Id);
             RefreshInvoices(updated.Id);
             InvoicesChanged?.Invoke(this, EventArgs.Empty);
-            SetInvoiceStatus("Inceleme isareti temizlendi.", isError: false);
+            SetInvoiceStatus("İnceleme işareti temizlendi.", isError: false);
         }
         catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException)
         {
             SetInvoiceStatus(exception.Message, isError: true);
         }
+    }
+
+    private void MarkReviewedAndNextButton_Click(object sender, RoutedEventArgs e)
+    {
+        MarkSelectedInvoiceReviewedAndMoveNext();
     }
 
     private void RevealInvoicePdfFolderAndNextButton_Click(object sender, RoutedEventArgs e)
@@ -535,7 +540,7 @@ public partial class InvoicesView : UserControl
             RefreshInvoices(saved.Id);
             InvoicesChanged?.Invoke(this, EventArgs.Empty);
             var successMessage = pdfAttached ? "Fatura ve PDF kaydedildi." : "Fatura kaydedildi.";
-            SetInvoiceStatus(warning is null ? successMessage : $"{successMessage} UyarÄ±: {warning}", isError: false);
+            SetInvoiceStatus(warning is null ? successMessage : $"{successMessage} Uyarı: {warning}", isError: false);
         }
         catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException or IOException or UnauthorizedAccessException)
         {
@@ -605,7 +610,7 @@ public partial class InvoicesView : UserControl
 
             var filterParts = new List<string>();
             if (InvoiceTypeFilterInput.SelectedItem is InvoiceTypeFilterOption typeOpt && typeOpt.InvoiceTypeId is not null)
-                filterParts.Add($"TÃ¼r: {typeOpt.Label}");
+                filterParts.Add($"Tür: {typeOpt.Label}");
             if (InvoiceSubscriptionFilterInput.SelectedItem is SubscriptionFilterOption subOpt && subOpt.SubscriptionId is not null)
                 filterParts.Add($"Abonelik: {subOpt.Label}");
             if (InvoicePaymentStatusFilterInput.SelectedItem is PaymentStatusFilterOption payOpt && payOpt.Value != InvoicePaymentStatusFilter.All)
@@ -615,16 +620,16 @@ public partial class InvoicesView : UserControl
             if (!string.IsNullOrWhiteSpace(criteria.SearchText))
                 filterParts.Add($"Ara: {criteria.SearchText.Trim()}");
 
-            var filterText = filterParts.Count == 0 ? "TÃ¼m KayÄ±tlar" : string.Join(" / ", filterParts);
+            var filterText = filterParts.Count == 0 ? "Tüm Kayıtlar" : string.Join(" / ", filterParts);
 
-            var headers = new[] { "DÃ¶nem", "TÃ¼r", "Abonelik", "Kurum", "Durum", "Fatura No", "Fatura Tarihi", "Son Ã–deme", "Tutar", "Ã–denen", "Kalan", "PDF" };
+            var headers = new[] { "Dönem", "Tür", "Abonelik", "Kurum", "Durum", "Fatura No", "Fatura Tarihi", "Son Ödeme", "Tutar", "Ödenen", "Kalan", "PDF" };
             var rows = list
                 .OrderBy(x => x.DueDate)
                 .ThenBy(x => x.InvoiceTypeName, StringComparer.CurrentCultureIgnoreCase)
                 .ThenBy(x => x.SubscriptionName, StringComparer.CurrentCultureIgnoreCase)
                 .Select(x =>
                 {
-                    var pdfState = !x.HasPdf ? "PDF Yok" : (_invoiceRepository.IsPdfMissing(x) ? "PDF KayÄ±p" : "PDF Var");
+                    var pdfState = !x.HasPdf ? "PDF Yok" : (_invoiceRepository.IsPdfMissing(x) ? "PDF Kayıp" : "PDF Var");
                     return (IReadOnlyList<string>)new[]
                     {
                         x.Period,
@@ -648,7 +653,7 @@ public partial class InvoicesView : UserControl
                 new PdfReportWriter.ReportMeta(
                     AppTitle: ReportMetaConfig.LoadOrDefault(AppPaths.Resolve().RootDirectory).AppTitle,
                     InstitutionName: ReportMetaConfig.LoadOrDefault(AppPaths.Resolve().RootDirectory).InstitutionName,
-                    ReportTitle: "FATURA LÄ°STESÄ°",
+                    ReportTitle: "FATURA LİSTESİ",
                     ReportPeriod: period,
                     ReportDate: DateTime.Today,
                     CreatedBy: Environment.UserName,
@@ -851,26 +856,68 @@ public partial class InvoicesView : UserControl
             InvoiceReviewNoteInput.Text = string.Empty;
             InvoiceReviewNoteInput.IsEnabled = false;
             SaveInvoiceReviewNoteButton.IsEnabled = false;
+            MarkReviewedAndNextButton.IsEnabled = false;
             ClearInvoiceReviewNoteButton.IsEnabled = false;
-            InvoiceReviewedAtText.Text = "Bu kayit icin inceleme isareti yok.";
+            InvoiceReviewedAtText.Text = "Bu kayıt için inceleme işareti yok.";
             return;
         }
 
         InvoiceReviewNoteInput.Text = invoice.ReviewNote;
         InvoiceReviewNoteInput.IsEnabled = true;
         SaveInvoiceReviewNoteButton.IsEnabled = true;
+        MarkReviewedAndNextButton.IsEnabled = true;
         ClearInvoiceReviewNoteButton.IsEnabled = !string.IsNullOrWhiteSpace(invoice.ReviewNote) || invoice.ReviewedAt is not null;
         InvoiceReviewedAtText.Text = invoice.ReviewedAt is null
-            ? "Bu kayit icin inceleme isareti yok."
+            ? "Bu kayıt için inceleme işareti yok."
             : $"Son inceleme: {invoice.ReviewedAt.Value.ToLocalTime():dd.MM.yyyy HH:mm}";
+    }
+
+    private void MarkSelectedInvoiceReviewedAndMoveNext()
+    {
+        if (_invoiceRepository is null || _selectedInvoice is null)
+        {
+            SetInvoiceStatus("Bakıldı işareti için önce bir fatura seçin.", isError: true);
+            return;
+        }
+
+        try
+        {
+            var visibleInvoices = GetVisibleInvoices();
+            var currentIndex = visibleInvoices.FindIndex(item => item.Id == _selectedInvoice.Id);
+            long? nextInvoiceId = null;
+            var nextPosition = 0;
+            var totalVisibleCount = visibleInvoices.Count;
+
+            if (InvoiceReviewNavigator.TryMove(currentIndex, totalVisibleCount, 1, out var nextIndex))
+            {
+                nextInvoiceId = visibleInvoices[nextIndex].Id;
+                nextPosition = nextIndex + 1;
+            }
+
+            var updated = _invoiceRepository.UpdateReviewStatus(_selectedInvoice.Id, InvoiceReviewNoteInput.Text, DateTimeOffset.Now);
+            RefreshInvoices(nextInvoiceId ?? updated.Id);
+            InvoicesChanged?.Invoke(this, EventArgs.Empty);
+
+            if (nextInvoiceId is null)
+            {
+                SetInvoiceStatus("Bakıldı işareti kaydedildi. Tur sonuna ulaşıldı.", isError: false);
+                return;
+            }
+
+            SetInvoiceStatus($"Bakıldı işareti kaydedildi. Sonraki kayda geçildi ({nextPosition}/{totalVisibleCount}).", isError: false);
+        }
+        catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException)
+        {
+            SetInvoiceStatus(exception.Message, isError: true);
+        }
     }
 
     private void SelectInvoicePdfButton_Click(object sender, RoutedEventArgs e)
     {
         var dialog = new OpenFileDialog
         {
-            Title = "Fatura PDF EvrakÄ± SeÃ§",
-            Filter = "PDF DosyalarÄ± (*.pdf)|*.pdf",
+            Title = "Fatura PDF Evrakı Seç",
+            Filter = "PDF Dosyaları (*.pdf)|*.pdf",
             CheckFileExists = true,
             Multiselect = false,
         };
@@ -882,7 +929,7 @@ public partial class InvoicesView : UserControl
 
         _pendingPdfSourcePath = dialog.FileName;
         UpdatePdfControls(_selectedInvoice);
-        SetInvoiceStatus("PDF seÃ§ildi. Kaydet dÃ¼ÄŸmesiyle faturaya eklenecek.", isError: false);
+        SetInvoiceStatus("PDF seçildi. Kaydet düğmesiyle faturaya eklenecek.", isError: false);
     }
 
     private void OpenInvoicePdfButton_Click(object sender, RoutedEventArgs e)
@@ -912,19 +959,19 @@ public partial class InvoicesView : UserControl
         {
             if (PaymentDateInput.SelectedDate is null)
             {
-                throw new InvalidOperationException("Ã–deme tarihi zorunludur.");
+                throw new InvalidOperationException("Ödeme tarihi zorunludur.");
             }
 
             var payment = _paymentRepository.Add(new PaymentInput(
                 _selectedInvoice.Id,
                 PaymentDateInput.SelectedDate.Value,
-                ParseDecimal(PaymentAmountInput.Text, "Ã–deme tutarÄ±"),
+                ParseDecimal(PaymentAmountInput.Text, "Ödeme tutarı"),
                 PaymentDescriptionInput.Text));
 
             RefreshInvoices(_selectedInvoice.Id);
             SelectPayment(payment.Id);
             InvoicesChanged?.Invoke(this, EventArgs.Empty);
-            SetInvoiceStatus($"Ã–deme kaydedildi: {payment.AmountText}", isError: false);
+            SetInvoiceStatus($"Ödeme kaydedildi: {payment.AmountText}", isError: false);
         }
         catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException)
         {
@@ -1016,8 +1063,8 @@ public partial class InvoicesView : UserControl
 
         var dialog = new OpenFileDialog
         {
-            Title = "Ã–deme PDF EvrakÄ± SeÃ§",
-            Filter = "PDF DosyalarÄ± (*.pdf)|*.pdf",
+            Title = "Ödeme PDF Evrakı Seç",
+            Filter = "PDF Dosyaları (*.pdf)|*.pdf",
             CheckFileExists = true,
             Multiselect = false,
         };
@@ -1032,7 +1079,7 @@ public partial class InvoicesView : UserControl
             var attached = _paymentRepository.AttachPdf(_selectedPayment.Id, dialog.FileName);
             RefreshPaymentControls(_selectedInvoice);
             SelectPayment(attached.Id);
-            SetInvoiceStatus("Ã–deme PDF evrakÄ± kaydedildi.", isError: false);
+            SetInvoiceStatus("Ödeme PDF evrakı kaydedildi.", isError: false);
         }
         catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException or IOException or UnauthorizedAccessException)
         {
@@ -1052,7 +1099,7 @@ public partial class InvoicesView : UserControl
             var pdfPath = _paymentRepository.GetPdfAbsolutePath(_selectedPayment);
             if (string.IsNullOrWhiteSpace(pdfPath) || !File.Exists(pdfPath))
             {
-                SetInvoiceStatus("Ã–deme PDF dosyasÄ± bulunamadÄ±.", isError: true);
+                SetInvoiceStatus("Ödeme PDF dosyası bulunamadı.", isError: true);
                 UpdatePaymentPdfControls(_selectedPayment);
                 return;
             }
@@ -1090,7 +1137,7 @@ public partial class InvoicesView : UserControl
 
         if (!int.TryParse(InvoiceYearInput.Text.Trim(), NumberStyles.Integer, CultureInfo.InvariantCulture, out var invoiceYear))
         {
-            throw new InvalidOperationException("DÃ¶nem yÄ±lÄ± geÃ§erli bir sayÄ± olmalÄ±dÄ±r.");
+            throw new InvalidOperationException("Dönem yılı geçerli bir sayı olmalıdır.");
         }
 
         var invoiceMonth = InvoiceMonthInput.SelectedValue is int selectedMonth
@@ -1104,7 +1151,7 @@ public partial class InvoicesView : UserControl
 
         if (InvoiceDueDateInput.SelectedDate is null)
         {
-            throw new InvalidOperationException("Son Ã¶deme tarihi zorunludur.");
+            throw new InvalidOperationException("Son ödeme tarihi zorunludur.");
         }
 
         return new InvoiceInput(
@@ -1114,8 +1161,8 @@ public partial class InvoicesView : UserControl
             InvoiceDateInput.SelectedDate.Value,
             InvoiceDueDateInput.SelectedDate.Value,
             InvoiceNoInput.Text,
-            ParseDecimal(InvoiceAmountInput.Text, "Fatura tutarÄ±"),
-            ParseDecimal(UsageAmountInput.Text, "KullanÄ±m miktarÄ±"),
+            ParseDecimal(InvoiceAmountInput.Text, "Fatura tutarı"),
+            ParseDecimal(UsageAmountInput.Text, "Kullanım miktarı"),
             UsageUnitInput.Text,
             InvoiceDescriptionInput.Text);
     }
@@ -1143,7 +1190,7 @@ public partial class InvoicesView : UserControl
         UpdateInvoiceReviewNoteControls(null);
         UpdatePdfControls(null);
         RefreshPaymentControls(null);
-        SetInvoiceStatus("Yeni kayÄ±t iÃ§in alanlarÄ± doldurun.", isError: false);
+        SetInvoiceStatus("Yeni kayıt için alanları doldurun.", isError: false);
     }
 
     private void ApplyInvoiceDraft(InvoiceDraftTemplate draft)
@@ -1184,7 +1231,7 @@ public partial class InvoicesView : UserControl
             return parsed;
         }
 
-        throw new InvalidOperationException($"{label} geÃ§erli bir sayÄ± olmalÄ±dÄ±r.");
+        throw new InvalidOperationException($"{label} geçerli bir sayı olmalıdır.");
     }
 
     private void SetInvoiceStatus(string message, bool isError)
@@ -1199,7 +1246,7 @@ public partial class InvoicesView : UserControl
     {
         if (!string.IsNullOrWhiteSpace(_pendingPdfSourcePath))
         {
-            SetPdfInfo($"SeÃ§ili PDF: {Path.GetFileName(_pendingPdfSourcePath)}. Kaydet ile faturaya eklenecek.", isError: false);
+            SetPdfInfo($"Seçili PDF: {Path.GetFileName(_pendingPdfSourcePath)}. Kaydet ile faturaya eklenecek.", isError: false);
             OpenInvoicePdfButton.IsEnabled = false;
             RevealInvoicePdfFolderButton.IsEnabled = true;
             OpenInvoicePdfAndNextButton.IsEnabled = false;
@@ -1210,7 +1257,7 @@ public partial class InvoicesView : UserControl
 
         if (invoice is null)
         {
-            SetPdfInfo("PDF eklemek iÃ§in dosya seÃ§in; kayÄ±t sÄ±rasÄ±nda faturaya baÄŸlanÄ±r.", isError: false);
+            SetPdfInfo("PDF eklemek için dosya seçin; kayıt sırasında faturaya bağlanır.", isError: false);
             OpenInvoicePdfButton.IsEnabled = false;
             RevealInvoicePdfFolderButton.IsEnabled = false;
             OpenInvoicePdfAndNextButton.IsEnabled = false;
@@ -1221,7 +1268,7 @@ public partial class InvoicesView : UserControl
 
         if (!invoice.HasPdf)
         {
-            SetPdfInfo("Bu faturaya PDF evrak eklenmemiÅŸ.", isError: false);
+            SetPdfInfo("Bu faturaya PDF evrak eklenmemiş.", isError: false);
             OpenInvoicePdfButton.IsEnabled = false;
             RevealInvoicePdfFolderButton.IsEnabled = true;
             OpenInvoicePdfAndNextButton.IsEnabled = false;
@@ -1232,7 +1279,7 @@ public partial class InvoicesView : UserControl
 
         if (_invoiceRepository?.PdfFileExists(invoice) == true)
         {
-            SetPdfInfo($"PDF kayÄ±tlÄ±: {invoice.PdfOriginalFileName}", isError: false);
+            SetPdfInfo($"PDF kayıtlı: {invoice.PdfOriginalFileName}", isError: false);
             OpenInvoicePdfButton.IsEnabled = true;
             RevealInvoicePdfFolderButton.IsEnabled = true;
             OpenInvoicePdfAndNextButton.IsEnabled = true;
@@ -1241,7 +1288,7 @@ public partial class InvoicesView : UserControl
             return;
         }
 
-        SetPdfInfo($"PDF kaydÄ± var ancak dosya bulunamadÄ±: {invoice.PdfFilePath}", isError: true);
+        SetPdfInfo($"PDF kaydı var ancak dosya bulunamadı: {invoice.PdfFilePath}", isError: true);
         OpenInvoicePdfButton.IsEnabled = false;
         RevealInvoicePdfFolderButton.IsEnabled = true;
         OpenInvoicePdfAndNextButton.IsEnabled = false;
@@ -1270,7 +1317,7 @@ public partial class InvoicesView : UserControl
 
         if (invoice is null)
         {
-            SetPaymentInfo("Ã–deme eklemek iÃ§in Ã¶nce faturayÄ± kaydedin.", isError: false);
+            SetPaymentInfo("Ödeme eklemek için önce faturayı kaydedin.", isError: false);
             SetPaymentInputEnabled(false);
             return;
         }
@@ -1281,14 +1328,14 @@ public partial class InvoicesView : UserControl
 
         if (invoice.Status == "canceled")
         {
-            SetPaymentInfo($"{invoice.PaymentSummaryText}. Ä°ptal faturaya Ã¶deme eklenemez.", isError: false);
+            SetPaymentInfo($"{invoice.PaymentSummaryText}. İptal faturaya ödeme eklenemez.", isError: false);
             SetPaymentInputEnabled(false);
             return;
         }
 
         if (invoice.RemainingAmount <= 0)
         {
-            SetPaymentInfo($"{invoice.PaymentSummaryText}. Fatura tamamen Ã¶dendi.", isError: false);
+            SetPaymentInfo($"{invoice.PaymentSummaryText}. Fatura tamamen ödendi.", isError: false);
             SetPaymentInputEnabled(false);
             return;
         }
@@ -1343,7 +1390,7 @@ public partial class InvoicesView : UserControl
         }
         if (payment is null)
         {
-            SetPaymentPdfInfo("PDF eklemek iÃ§in Ã¶deme kaydÄ± seÃ§in.", isError: false);
+            SetPaymentPdfInfo("PDF eklemek için ödeme kaydı seçin.", isError: false);
             SelectPaymentPdfButton.IsEnabled = false;
             OpenPaymentPdfButton.IsEnabled = false;
             return;
@@ -1352,19 +1399,19 @@ public partial class InvoicesView : UserControl
         SelectPaymentPdfButton.IsEnabled = true;
         if (!payment.HasPdf)
         {
-            SetPaymentPdfInfo("Bu Ã¶deme kaydÄ±na PDF evrak eklenmemiÅŸ.", isError: false);
+            SetPaymentPdfInfo("Bu ödeme kaydına PDF evrak eklenmemiş.", isError: false);
             OpenPaymentPdfButton.IsEnabled = false;
             return;
         }
 
         if (_paymentRepository?.PdfFileExists(payment) == true)
         {
-            SetPaymentPdfInfo($"PDF kayÄ±tlÄ±: {payment.PdfOriginalFileName}", isError: false);
+            SetPaymentPdfInfo($"PDF kayıtlı: {payment.PdfOriginalFileName}", isError: false);
             OpenPaymentPdfButton.IsEnabled = true;
             return;
         }
 
-        SetPaymentPdfInfo($"PDF kaydÄ± var ancak dosya bulunamadÄ±: {payment.PdfFilePath}", isError: true);
+        SetPaymentPdfInfo($"PDF kaydı var ancak dosya bulunamadı: {payment.PdfFilePath}", isError: true);
         OpenPaymentPdfButton.IsEnabled = false;
     }
 
