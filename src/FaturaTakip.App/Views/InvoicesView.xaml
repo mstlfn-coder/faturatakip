@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              d:DesignHeight="680"
-             d:DesignWidth="900">
+             d:DesignWidth="900" PreviewKeyDown="InvoicesView_PreviewKeyDown">
     <UserControl.Resources>
         <Style x:Key="MutedText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#5F6B7A" />
@@ -603,6 +603,7 @@
         </Grid>
     </Grid>
 </UserControl>
+
 
 
 

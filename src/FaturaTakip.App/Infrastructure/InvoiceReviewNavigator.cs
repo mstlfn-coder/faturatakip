@@ -21,7 +21,7 @@ public static class InvoiceReviewNavigator
         return true;
     }
 
-    public static string BuildHint(string? reviewModeLabel, int? currentIndex, int itemCount)
+    public static string BuildHint(string? reviewModeLabel, int? currentIndex, int itemCount, bool includeShortcuts = false)
     {
         var prefix = string.IsNullOrWhiteSpace(reviewModeLabel)
             ? "Kontrol sirasi"
@@ -29,14 +29,24 @@ public static class InvoiceReviewNavigator
 
         if (itemCount <= 0)
         {
-            return $"{prefix} - gorunur liste bos.";
+            return AppendShortcuts($"{prefix} - gorunur liste bos.", includeShortcuts);
         }
 
         if (currentIndex is null || currentIndex < 0 || currentIndex >= itemCount)
         {
-            return $"{prefix} - once bir kayit secin.";
+            return AppendShortcuts($"{prefix} - once bir kayit secin.", includeShortcuts);
         }
 
-        return $"{prefix} ({currentIndex.Value + 1}/{itemCount})";
+        return AppendShortcuts($"{prefix} ({currentIndex.Value + 1}/{itemCount})", includeShortcuts);
+    }
+
+    private static string AppendShortcuts(string baseText, bool includeShortcuts)
+    {
+        if (!includeShortcuts)
+        {
+            return baseText;
+        }
+
+        return $"{baseText} | Kisayollar: Ctrl+Shift+Sol/Sag, Ctrl+Shift+O, Ctrl+Shift+K";
     }
 }

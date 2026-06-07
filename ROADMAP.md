@@ -639,3 +639,9 @@ Her faz bittiğinde:
 - v0.83 tamamlandi: Fatura inceleme turuna PDF Ac + Sonraki ve Klasor + Sonraki birlesik aksiyonlari eklendi.
 - Boylece PDF Ac / Klasorde Goster / Sonraki Kayit ritmi tek dugme zincirleriyle daha akici hale geldi.
 - Siradaki mantikli faz: bu operator akisina klavye odakli kisayol ya da mini isaretleme rahatligi eklemek.
+
+## Son Guncelleme (2026-06-07 / v0.84)
+
+- v0.84 tamamlandi: Fatura inceleme turuna Ctrl+Shift tabanli klavye kisayollari eklendi.
+- Kullanici artik fareye daha az dokunarak kayitlar arasinda gezip birlesik aksiyonlari dogrudan klavyeden calistirabiliyor.
+- Siradaki mantikli faz: inceleme akisina minik isaretleme/not rahatligi eklemek.
