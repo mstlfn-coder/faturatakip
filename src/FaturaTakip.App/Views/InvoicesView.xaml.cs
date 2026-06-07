@@ -411,6 +411,7 @@ public partial class InvoicesView : UserControl
         UsageAmountInput.Text = invoice.UsageAmount.ToString("N2", TurkishCulture);
         UsageUnitInput.Text = invoice.UsageUnit;
         InvoiceDescriptionInput.Text = invoice.Description;
+        UpdateInvoiceReviewNoteControls(invoice);
         UpdatePdfControls(invoice);
         RefreshPaymentControls(invoice);
         SetInvoiceStatus($"SeÃ§ili kayÄ±t: {invoice.InvoiceNo}", isError: false);
@@ -434,6 +435,48 @@ public partial class InvoicesView : UserControl
         }
 
         CompleteInvoiceReviewAction(actionMessage);
+    }
+
+    private void SaveInvoiceReviewNoteButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_invoiceRepository is null || _selectedInvoice is null)
+        {
+            SetInvoiceStatus("Inceleme notu kaydetmek icin once bir fatura secin.", isError: true);
+            return;
+        }
+
+        try
+        {
+            var updated = _invoiceRepository.UpdateReviewStatus(_selectedInvoice.Id, InvoiceReviewNoteInput.Text, DateTimeOffset.Now);
+            RefreshInvoices(updated.Id);
+            InvoicesChanged?.Invoke(this, EventArgs.Empty);
+            SetInvoiceStatus("Inceleme notu kaydedildi.", isError: false);
+        }
+        catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException)
+        {
+            SetInvoiceStatus(exception.Message, isError: true);
+        }
+    }
+
+    private void ClearInvoiceReviewNoteButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_invoiceRepository is null || _selectedInvoice is null)
+        {
+            SetInvoiceStatus("Inceleme isaretini temizlemek icin once bir fatura secin.", isError: true);
+            return;
+        }
+
+        try
+        {
+            var updated = _invoiceRepository.ClearReviewStatus(_selectedInvoice.Id);
+            RefreshInvoices(updated.Id);
+            InvoicesChanged?.Invoke(this, EventArgs.Empty);
+            SetInvoiceStatus("Inceleme isareti temizlendi.", isError: false);
+        }
+        catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException)
+        {
+            SetInvoiceStatus(exception.Message, isError: true);
+        }
     }
 
     private void RevealInvoicePdfFolderAndNextButton_Click(object sender, RoutedEventArgs e)
@@ -801,6 +844,27 @@ public partial class InvoicesView : UserControl
         SetInvoiceStatus($"{actionMessage} Sonraki kayda gecildi ({targetIndex + 1}/{visibleInvoices.Count}).", isError: false);
     }
 
+    private void UpdateInvoiceReviewNoteControls(Invoice? invoice)
+    {
+        if (invoice is null)
+        {
+            InvoiceReviewNoteInput.Text = string.Empty;
+            InvoiceReviewNoteInput.IsEnabled = false;
+            SaveInvoiceReviewNoteButton.IsEnabled = false;
+            ClearInvoiceReviewNoteButton.IsEnabled = false;
+            InvoiceReviewedAtText.Text = "Bu kayit icin inceleme isareti yok.";
+            return;
+        }
+
+        InvoiceReviewNoteInput.Text = invoice.ReviewNote;
+        InvoiceReviewNoteInput.IsEnabled = true;
+        SaveInvoiceReviewNoteButton.IsEnabled = true;
+        ClearInvoiceReviewNoteButton.IsEnabled = !string.IsNullOrWhiteSpace(invoice.ReviewNote) || invoice.ReviewedAt is not null;
+        InvoiceReviewedAtText.Text = invoice.ReviewedAt is null
+            ? "Bu kayit icin inceleme isareti yok."
+            : $"Son inceleme: {invoice.ReviewedAt.Value.ToLocalTime():dd.MM.yyyy HH:mm}";
+    }
+
     private void SelectInvoicePdfButton_Click(object sender, RoutedEventArgs e)
     {
         var dialog = new OpenFileDialog
@@ -1076,6 +1140,7 @@ public partial class InvoicesView : UserControl
         UsageAmountInput.Text = "0,00";
         UsageUnitInput.Text = (InvoiceSubscriptionInput.SelectedItem as Subscription)?.DefaultUsageUnit ?? string.Empty;
         InvoiceDescriptionInput.Text = string.Empty;
+        UpdateInvoiceReviewNoteControls(null);
         UpdatePdfControls(null);
         RefreshPaymentControls(null);
         SetInvoiceStatus("Yeni kayÄ±t iÃ§in alanlarÄ± doldurun.", isError: false);
@@ -1100,6 +1165,7 @@ public partial class InvoicesView : UserControl
         UsageAmountInput.Text = draft.UsageAmount.ToString("N2", TurkishCulture);
         UsageUnitInput.Text = draft.UsageUnit;
         InvoiceDescriptionInput.Text = draft.Description;
+        UpdateInvoiceReviewNoteControls(null);
         UpdatePdfControls(null);
         RefreshPaymentControls(null);
     }

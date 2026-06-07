@@ -182,6 +182,43 @@ public sealed class InvoiceRepository
         return updated;
     }
 
+    public Invoice UpdateReviewStatus(long id, string reviewNote, DateTimeOffset? reviewedAt)
+    {
+        var previous = GetRequired(id);
+        var normalizedNote = (reviewNote ?? string.Empty).Trim();
+        EnsureMaxLength(normalizedNote, 500, "Inceleme notu");
+
+        using var connection = SqliteConnectionFactory.Create(_databasePath);
+        connection.Open();
+
+        using var command = connection.CreateCommand();
+        command.CommandText = """
+            UPDATE invoices
+            SET review_note = $reviewNote,
+                reviewed_at = $reviewedAt,
+                updated_at = $updatedAt
+            WHERE id = $id;
+            """;
+        command.Parameters.AddWithValue("$id", id);
+        command.Parameters.AddWithValue("$reviewNote", normalizedNote);
+        command.Parameters.AddWithValue("$reviewedAt", reviewedAt?.ToString("O", CultureInfo.InvariantCulture) ?? string.Empty);
+        command.Parameters.AddWithValue("$updatedAt", DateTimeOffset.Now.ToString("O", CultureInfo.InvariantCulture));
+
+        if (command.ExecuteNonQuery() == 0)
+        {
+            throw new InvalidOperationException("Inceleme notu guncellenecek fatura bulunamadi.");
+        }
+
+        var updated = GetRequired(id);
+        _auditLogRepository.Add("invoice_review_updated", "invoices", updated.Id, previous, updated, "Fatura inceleme notu guncellendi.");
+        return updated;
+    }
+
+    public Invoice ClearReviewStatus(long id)
+    {
+        return UpdateReviewStatus(id, string.Empty, reviewedAt: null);
+    }
+
     public string GetPdfAbsolutePath(Invoice invoice)
     {
         if (!invoice.HasPdf)
@@ -396,17 +433,19 @@ public sealed class InvoiceRepository
             DueDate = ParseDate(reader.GetString(9)),
             InvoiceNo = reader.GetString(10),
             Amount = ParseDecimal(reader.GetString(11)),
-            PaidAmount = ParseReaderDecimal(reader, 22),
             UsageAmount = ParseDecimal(reader.GetString(12)),
             UsageUnit = reader.GetString(13),
             Status = reader.GetString(14),
             Description = reader.GetString(15),
-            PdfFilePath = reader.GetString(16),
-            PdfOriginalFileName = reader.GetString(17),
-            PdfSha256Hash = reader.GetString(18),
-            PdfAttachedAt = ParseNullableDateTimeOffset(reader.GetString(19)),
-            CreatedAt = ParseDateTimeOffset(reader.GetString(20)),
-            UpdatedAt = ParseDateTimeOffset(reader.GetString(21)),
+            ReviewNote = reader.GetString(16),
+            ReviewedAt = ParseNullableDateTimeOffset(reader.GetString(17)),
+            PdfFilePath = reader.GetString(18),
+            PdfOriginalFileName = reader.GetString(19),
+            PdfSha256Hash = reader.GetString(20),
+            PdfAttachedAt = ParseNullableDateTimeOffset(reader.GetString(21)),
+            CreatedAt = ParseDateTimeOffset(reader.GetString(22)),
+            UpdatedAt = ParseDateTimeOffset(reader.GetString(23)),
+            PaidAmount = ParseReaderDecimal(reader, 24),
         };
     }
 
@@ -555,6 +594,8 @@ public sealed class InvoiceRepository
             i.usage_unit,
             i.status,
             i.description,
+            i.review_note,
+            i.reviewed_at,
             i.pdf_file_path,
             i.pdf_original_file_name,
             i.pdf_sha256_hash,

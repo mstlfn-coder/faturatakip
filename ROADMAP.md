@@ -645,3 +645,9 @@ Her faz bittiğinde:
 - v0.84 tamamlandi: Fatura inceleme turuna Ctrl+Shift tabanli klavye kisayollari eklendi.
 - Kullanici artik fareye daha az dokunarak kayitlar arasinda gezip birlesik aksiyonlari dogrudan klavyeden calistirabiliyor.
 - Siradaki mantikli faz: inceleme akisina minik isaretleme/not rahatligi eklemek.
+
+## Son Guncelleme (2026-06-07 / v0.85)
+
+- v0.85 tamamlandi: Faturalar ekranina kalici inceleme notu ve son inceleme zamani eklendi.
+- Inceleme notu ayri alanlarda saklaniyor; kaydet/temizle akisi audit log ve self-test ile dogrulaniyor.
+- Siradaki mantikli faz: bu not akisini operator ritmine daha da yaklastiracak tek tiklik "bakildi ve sonraki kayit" gibi yardimlar dusunmek.

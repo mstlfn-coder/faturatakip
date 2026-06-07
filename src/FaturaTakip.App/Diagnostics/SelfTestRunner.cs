@@ -114,6 +114,17 @@ public sealed class SelfTestRunner
                 "Self-test fatura guncellemesi"));
             Assert(updatedInvoice.Amount == 1300m, "Fatura duzenleme basarisiz.");
 
+            var reviewedInvoice = invoiceRepository.UpdateReviewStatus(
+                updatedInvoice.Id,
+                "Kontrol edildi",
+                new DateTimeOffset(2026, 2, 1, 10, 30, 0, TimeSpan.FromHours(3)));
+            Assert(reviewedInvoice.ReviewNote == "Kontrol edildi", "Inceleme notu kaydedilmedi.");
+            Assert(reviewedInvoice.ReviewedAt is not null, "Inceleme zamani kaydedilmedi.");
+
+            var clearedReviewInvoice = invoiceRepository.ClearReviewStatus(updatedInvoice.Id);
+            Assert(string.IsNullOrWhiteSpace(clearedReviewInvoice.ReviewNote), "Inceleme notu temizlenmedi.");
+            Assert(clearedReviewInvoice.ReviewedAt is null, "Inceleme zamani temizlenmedi.");
+
             var nextDraft = InvoiceDraftTemplateBuilder.FromInvoice(updatedInvoice);
             Assert(nextDraft.SubscriptionId == updatedInvoice.SubscriptionId, "Sonraki ay taslagi aboneligi korumadi.");
             Assert(nextDraft.InvoiceYear == 2026 && nextDraft.InvoiceMonth == 2, "Sonraki ay taslagi donemi bir ileri tasimadi.");
@@ -1348,6 +1359,7 @@ public sealed class SelfTestRunner
             Assert(auditLogs.Any(x => x.ActionType == "subscription_deactivated"), "Audit log: subscription_deactivated kaydi yok.");
             Assert(auditLogs.Any(x => x.ActionType == "invoice_created"), "Audit log: invoice_created kaydi yok.");
             Assert(auditLogs.Any(x => x.ActionType == "invoice_updated"), "Audit log: invoice_updated kaydi yok.");
+            Assert(auditLogs.Any(x => x.ActionType == "invoice_review_updated"), "Audit log: invoice_review_updated kaydi yok.");
             Assert(auditLogs.Any(x => x.ActionType == "invoice_pdf_attached"), "Audit log: invoice_pdf_attached kaydi yok.");
             Assert(auditLogs.Any(x => x.ActionType == "payment_created"), "Audit log: payment_created kaydi yok.");
             Assert(auditLogs.Any(x => x.ActionType == "payment_pdf_attached"), "Audit log: payment_pdf_attached kaydi yok.");
