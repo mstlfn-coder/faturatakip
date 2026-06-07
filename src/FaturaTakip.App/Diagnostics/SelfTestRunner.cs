@@ -405,6 +405,16 @@ public sealed class SelfTestRunner
             Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(PdfStatus: InvoicePdfStatusFilter.MissingPdf), filterToday).Count == 2, "PDF eksik filtresi calismadi.");
             Assert(InvoiceFilter.Apply(filterSamples, new InvoiceFilterCriteria(SearchText: "Ana ELK"), filterToday).Count == 2, "Metin arama filtresi calismadi.");
 
+            var missingPdfExportContext = InvoiceExportContextBuilder.Build(
+                new InvoiceFilterCriteria(PdfStatus: InvoicePdfStatusFilter.MissingPdf),
+                filterToday);
+            Assert(missingPdfExportContext.FileSlug == "pdf-eksik", "Filtreli export baglami PDF eksik icin dogru slug uretmedi.");
+
+            var currentMonthExportContext = InvoiceExportContextBuilder.Build(
+                new InvoiceFilterCriteria(Year: filterToday.Year, Month: filterToday.Month),
+                filterToday);
+            Assert(currentMonthExportContext.FileSlug.Contains("bu-ay", StringComparison.Ordinal), "Filtreli export baglami bu ay secimi icin beklenen slug uretmedi.");
+
             var dashboardInvoices = new[]
             {
                 new Invoice

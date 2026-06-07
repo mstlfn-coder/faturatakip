@@ -697,3 +697,8 @@ v0.12 sonuÃ§ notu:
 253. Smoke test: dotnet build -c Release OK.
 254. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 255. Siradaki mantikli is: `PDF Eksik` ya da `Gecikmis` hizli filtresini tek tikla disa aktarma veya toplu kontrol turuna baglamak.
+256. v0.80 olarak Faturalar ekranindaki export dugmeleri filtreli liste baglamini dosya adina tasiyacak sekilde guncellendi.
+257. InvoiceExportContextBuilder eklendi; pdf-eksik, gecikmis, u-ay gibi sluglar tek noktadan uretiliyor.
+258. Export dugmeleri artik gorunur listeyi acikca hedefliyor ve durum mesajinda aktif filtre baglamini da yaziyor.
+259. Self-test icine filtreli export slug dogrulamalari eklendi.
+260. Siradaki mantikli is: filtreli listeyi toplu PDF kontrol ya da siradaki kayda hizli gecis akisi ile birlestirmek.
