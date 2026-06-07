@@ -1028,3 +1028,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Sinir davranisi | OK | Ilk kayittan geri, son kayittan ileri gecis engelleniyor |
 | Kontrol sirasi ipucu | OK | Secili kaydin gorunur listedeki konumu gosteriliyor |
 | 2026-06-07 | v0.81 | OK | Fatura kontrol turu gezinmesi + build + self-test tamamlandi |
+
+## v0.82 - Fatura Inceleme Modu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | Self-test icinde inceleme modu ipucu ve gezinme dogrulamasi eklendi |
+| PDF Eksik Turu | OK | Tek tikla PDF eksik alt kumesi icin kontrol modu baslatiliyor |
+| Gecikmis Turu | OK | Tek tikla gecikmis alt kumesi icin kontrol modu baslatiliyor |
+| Modlu kontrol ipucu | OK | Kontrol modu: ... (x/y) metni aktif alt kume bilgisini gosteriyor |
+| 2026-06-07 | v0.82 | OK | Fatura inceleme modu + build + self-test tamamlandi |

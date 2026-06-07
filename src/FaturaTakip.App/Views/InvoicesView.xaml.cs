@@ -28,6 +28,7 @@ public partial class InvoicesView : UserControl
     private bool _isInitialized;
     private bool _isEditingExisting;
     private bool _isRefreshingFilterOptions;
+    private string? _invoiceReviewModeLabel;
 
     public event EventHandler? InvoicesChanged;
 
@@ -181,11 +182,13 @@ public partial class InvoicesView : UserControl
             return;
         }
 
+        _invoiceReviewModeLabel = null;
         ApplyFiltersToGrid(_selectedInvoice?.Id);
     }
 
     private void ClearInvoiceFiltersButton_Click(object sender, RoutedEventArgs e)
     {
+        _invoiceReviewModeLabel = null;
         InvoiceSearchInput.Text = string.Empty;
         InvoiceTypeFilterInput.SelectedIndex = 0;
         InvoiceSubscriptionFilterInput.SelectedIndex = 0;
@@ -198,6 +201,7 @@ public partial class InvoicesView : UserControl
 
     private void QuickFilterCurrentMonthButton_Click(object sender, RoutedEventArgs e)
     {
+        _invoiceReviewModeLabel = null;
         ResetQuickFilters();
         SelectYearFilter(DateTime.Today.Year);
         SelectMonthFilter(DateTime.Today.Month);
@@ -207,6 +211,7 @@ public partial class InvoicesView : UserControl
 
     private void QuickFilterUnpaidButton_Click(object sender, RoutedEventArgs e)
     {
+        _invoiceReviewModeLabel = null;
         ResetQuickFilters();
         SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Unpaid);
         ApplyFiltersToGrid(selectFirstIfAvailable: true);
@@ -215,6 +220,7 @@ public partial class InvoicesView : UserControl
 
     private void QuickFilterOverdueButton_Click(object sender, RoutedEventArgs e)
     {
+        _invoiceReviewModeLabel = null;
         ResetQuickFilters();
         SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Overdue);
         ApplyFiltersToGrid(selectFirstIfAvailable: true);
@@ -223,10 +229,27 @@ public partial class InvoicesView : UserControl
 
     private void QuickFilterMissingPdfButton_Click(object sender, RoutedEventArgs e)
     {
+        _invoiceReviewModeLabel = null;
         ResetQuickFilters();
         SelectPdfStatusFilter(InvoicePdfStatusFilter.MissingPdf);
         ApplyFiltersToGrid(selectFirstIfAvailable: true);
         SetInvoiceStatus("PDF eksik filtresi uygulandi; listede ilk kayda odaklanildi.", isError: false);
+    }
+
+    private void StartMissingPdfReviewButton_Click(object sender, RoutedEventArgs e)
+    {
+        StartInvoiceReviewMode(
+            "PDF Eksik",
+            () => SelectPdfStatusFilter(InvoicePdfStatusFilter.MissingPdf),
+            "PDF Eksik kontrol turu baslatildi; listede ilk kayda odaklanildi.");
+    }
+
+    private void StartOverdueReviewButton_Click(object sender, RoutedEventArgs e)
+    {
+        StartInvoiceReviewMode(
+            "Gecikmis",
+            () => SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Overdue),
+            "Gecikmis kontrol turu baslatildi; listede ilk kayda odaklanildi.");
     }
 
     private InvoiceFilterCriteria ReadFilterCriteria()
@@ -592,9 +615,7 @@ public partial class InvoicesView : UserControl
         {
             PreviousInvoiceButton.IsEnabled = false;
             NextInvoiceButton.IsEnabled = false;
-            InvoiceReviewHintText.Text = visibleInvoices.Count == 0
-                ? "Kontrol turu icin gorunur liste bos."
-                : "Kontrol turu icin once bir kayit secin.";
+            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count);
             return;
         }
 
@@ -603,13 +624,23 @@ public partial class InvoicesView : UserControl
         {
             PreviousInvoiceButton.IsEnabled = false;
             NextInvoiceButton.IsEnabled = false;
-            InvoiceReviewHintText.Text = "Secili kayit filtre sonucunda gorunmuyor.";
+            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count);
             return;
         }
 
         PreviousInvoiceButton.IsEnabled = currentIndex > 0;
         NextInvoiceButton.IsEnabled = currentIndex < visibleInvoices.Count - 1;
-        InvoiceReviewHintText.Text = $"Kontrol sirasi: {currentIndex + 1}/{visibleInvoices.Count}";
+        InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, currentIndex, visibleInvoices.Count);
+    }
+
+    private void StartInvoiceReviewMode(string reviewModeLabel, Action applyModeFilter, string successMessage)
+    {
+        ResetQuickFilters();
+        applyModeFilter();
+        _invoiceReviewModeLabel = reviewModeLabel;
+        ApplyFiltersToGrid(selectFirstIfAvailable: true);
+        UpdateInvoiceReviewNavigationControls();
+        SetInvoiceStatus(successMessage, isError: false);
     }
     private void SelectInvoicePdfButton_Click(object sender, RoutedEventArgs e)
     {
