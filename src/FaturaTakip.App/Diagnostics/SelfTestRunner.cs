@@ -421,6 +421,10 @@ public sealed class SelfTestRunner
             Assert(!InvoiceReviewNavigator.TryMove(2, 3, 1, out _), "Kontrol turu son kayittan ileri gecmemeli.");
             Assert(InvoiceReviewNavigator.BuildHint("PDF Eksik", 1, 4) == "Kontrol modu: PDF Eksik (2/4)", "Kontrol modu ipucu beklenen metni uretmedi.");
             Assert(InvoiceReviewNavigator.BuildHint("Gecikmis", null, 0) == "Kontrol modu: Gecikmis - gorunur liste bos.", "Bos kontrol modu ipucu beklenen metni uretmedi.");
+            Assert(
+                InvoiceReviewNavigator.BuildHint("PDF Eksik", 0, 3, includeShortcuts: true)
+                    == "Kontrol modu: PDF Eksik (1/3) | Kisayollar: Ctrl+Shift+Sol/Sag, Ctrl+Shift+O, Ctrl+Shift+K",
+                "Kontrol modu kisayol ipucu beklenen metni uretmedi.");
 
             var dashboardInvoices = new[]
             {

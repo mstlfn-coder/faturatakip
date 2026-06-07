@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.Payments;
@@ -357,6 +358,42 @@ public partial class InvoicesView : UserControl
         }
     }
 
+    private void InvoicesView_PreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        if ((Keyboard.Modifiers & (ModifierKeys.Control | ModifierKeys.Shift)) != (ModifierKeys.Control | ModifierKeys.Shift))
+        {
+            return;
+        }
+
+        switch (e.Key)
+        {
+            case Key.Right:
+                MoveSelectedInvoice(1);
+                e.Handled = true;
+                break;
+            case Key.Left:
+                MoveSelectedInvoice(-1);
+                e.Handled = true;
+                break;
+            case Key.O:
+                if (TryOpenSelectedInvoicePdf(out var openMessage))
+                {
+                    CompleteInvoiceReviewAction(openMessage);
+                }
+
+                e.Handled = true;
+                break;
+            case Key.K:
+                if (TryRevealSelectedInvoicePdfFolder(out var revealMessage))
+                {
+                    CompleteInvoiceReviewAction(revealMessage);
+                }
+
+                e.Handled = true;
+                break;
+        }
+    }
+
     private void ApplySelectedInvoice(Invoice invoice)
     {
         _selectedInvoice = invoice;
@@ -635,7 +672,7 @@ public partial class InvoicesView : UserControl
         {
             PreviousInvoiceButton.IsEnabled = false;
             NextInvoiceButton.IsEnabled = false;
-            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count);
+            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count, includeShortcuts: true);
             return;
         }
 
@@ -644,13 +681,13 @@ public partial class InvoicesView : UserControl
         {
             PreviousInvoiceButton.IsEnabled = false;
             NextInvoiceButton.IsEnabled = false;
-            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count);
+            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count, includeShortcuts: true);
             return;
         }
 
         PreviousInvoiceButton.IsEnabled = currentIndex > 0;
         NextInvoiceButton.IsEnabled = currentIndex < visibleInvoices.Count - 1;
-        InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, currentIndex, visibleInvoices.Count);
+        InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, currentIndex, visibleInvoices.Count, includeShortcuts: true);
     }
 
     private void StartInvoiceReviewMode(string reviewModeLabel, Action applyModeFilter, string successMessage)

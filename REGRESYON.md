@@ -1048,3 +1048,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Klasor + Sonraki | OK | Klasor gosterme aksiyonu sonrasinda bir sonraki kayda otomatik geciliyor |
 | Tur sonu davranisi | OK | Son kayitta aksiyon korunuyor, ileri gecis yerine tur sonu mesaji veriliyor |
 | 2026-06-07 | v0.83 | OK | Inceleme turu birlesik aksiyonlari + build + self-test tamamlandi |
+
+## v0.84 - Inceleme Turu Klavye Kisayollari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | Self-test icinde kisayol ipucu metni dogrulamasi eklendi |
+| Klavye ile onceki/sonraki | OK | Ctrl+Shift+Sol/Sag ile filtreli liste icinde gezinme destekleniyor |
+| Klavye ile birlesik aksiyon | OK | Ctrl+Shift+O ve Ctrl+Shift+K ile inceleme aksiyonlari tetikleniyor |
+| Kisayol ipucu | OK | Kontrol ipucunda aktif kisayollar gosteriliyor |
+| 2026-06-07 | v0.84 | OK | Inceleme turu kisayollari + build + self-test tamamlandi |

@@ -113,3 +113,10 @@ Bu fazda Faturalar ekranindaki inceleme turuna PDF Ac + Sonraki ve Klasor + Sonr
 Boylece operator ayni ritimde belgeyi acip hemen bir sonraki kayda gecebilir; tur sonuna gelindiginde de akisin bittigi net olarak gorulur.
 
 Sıradaki mantikli is: bu akisa minik bir klavye odakli kisayol ya da tek tikla sadece sonrakine gecmeden once isaretleme notu eklemek.
+
+## v0.84 - Inceleme Turu Klavye Kisayollari
+
+Bu fazda Faturalar ekranindaki inceleme turuna klavye kisayollari eklendi.
+Ctrl+Shift+Sol/Sag ile onceki/sonraki kayda gecilebiliyor; Ctrl+Shift+O ve Ctrl+Shift+K ile de birlesik aksiyonlar klavyeden tetiklenebiliyor.
+
+Sıradaki mantikli is: bu akis icin minik bir isaretleme/not rahatligi ekleyip kontrol edilen kayitlarda mikro takip kolayligi saglamak.

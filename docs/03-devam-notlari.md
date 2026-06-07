@@ -717,3 +717,8 @@ v0.12 sonuÃ§ notu:
 273. Son kayitta birlesik aksiyon yine calisiyor ama ileri gitmek yerine tur sonu mesaji veriyor.
 274. Boylece operator akisi ayri ayri PDF Ac / Klasorde Goster / Sonraki Kayit tiklari yerine daha seri bir ritme kavustu.
 275. Siradaki mantikli is: bu akisa klavye odakli kisayol ya da minik isaretleme rahatligi eklemek.
+276. v0.84 olarak Faturalar ekranindaki inceleme turuna klavye kisayollari eklendi.
+277. Ctrl+Shift+Sol/Sag onceki/sonraki kayit icin, Ctrl+Shift+O ve Ctrl+Shift+K ise birlesik inceleme aksiyonlari icin calisiyor.
+278. Kontrol ipucu artik bu kisayollari da yaziyor; kullanici akisi ekrandan ogrenebiliyor.
+279. Self-test icine kisayol ipucu metni dogrulamasi eklendi.
+280. Siradaki mantikli is: inceleme akisina minik isaretleme/not rahatligi eklemek.
