@@ -609,3 +609,9 @@ Her faz bittiğinde:
 - v0.78 tamamlandi: Faturalar ekranina Bu Ay, Odenmemis, Gecikmis ve PDF Eksik hazir filtre dugmeleri eklendi.
 - Bu kisayollar filtreleri tek tikla kuruyor, sonucu sayisal olarak gosteriyor ve varsa ilk kayda otomatik odaklaniyor.
 - Siradaki mantikli faz: fatura hizli filtrelerini disa aktarma veya toplu PDF kontrol akisiyla daha da guclendirmek.
+
+## Son Guncelleme (2026-06-07 / v0.79)
+
+- v0.79 tamamlandi: Faturalar ekranindaki PDF bolumune `Klasorde Goster` dugmesi eklendi.
+- PDF varsa dosya Windows Gezgini icinde secili aciliyor; yoksa faturanin donemine gore beklenen ek klasoru aciliyor.
+- Siradaki mantikli faz: PDF Eksik veya Gecikmis hazir filtrelerini tek tikla disa aktarma ya da toplu kontrol turuna baglamak.

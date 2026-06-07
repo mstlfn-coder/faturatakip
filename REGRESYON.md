@@ -994,3 +994,17 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Ilk kayda otomatik odaklanma var | OK | Hizli filtre sonrasi varsa ilk kayit secilip gorunur alana getiriliyor |
 
 | 2026-06-07 | v0.78 | OK | Faturalar ekranina hazir filtre kisayollari eklendi; build + self-test OK |
+
+
+## v0.79 - Fatura PDF Klasor Kisa Yolu
+
+| Kontrol | Durum | Not |
+|---|---|---|
+| Derleme basarili | OK | dotnet build FaturaTakip.sln -c Release |
+| --self-test basarili | OK | dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test |
+| Klasorde Goster dugmesi var | OK | Fatura PDF bolumune yeni yardimci dugme eklendi |
+| PDF varsa dosyayi secili aciyor | OK | `explorer.exe /select` ile hedef dosya odaklaniyor |
+| PDF yoksa beklenen klasoru aciyor | OK | Fatura yil/ay ek klasoru bulunup gerekirse olusturuluyor |
+| Klasor yolu repository'de hesaplanıyor | OK | `InvoiceRepository.GetPdfDirectoryAbsolutePath()` eklendi |
+
+| 2026-06-07 | v0.79 | OK | Fatura PDF klasor kisayolu eklendi; build + self-test OK |

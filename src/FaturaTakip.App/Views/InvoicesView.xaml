@@ -542,7 +542,12 @@
                                         <Button x:Name="OpenInvoicePdfButton"
                                                 Content="PDF Aç"
                                                 Style="{StaticResource SecondaryButton}"
+                                                Margin="0,0,8,0"
                                                 Click="OpenInvoicePdfButton_Click" />
+                                        <Button x:Name="RevealInvoicePdfFolderButton"
+                                                Content="Klasorde Goster"
+                                                Style="{StaticResource SecondaryButton}"
+                                                Click="RevealInvoicePdfFolderButton_Click" />
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -564,4 +569,5 @@
         </Grid>
     </Grid>
 </UserControl>
+
 

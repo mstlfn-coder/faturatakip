@@ -691,3 +691,9 @@ v0.12 sonuÃ§ notu:
 247. Smoke test: dotnet build -c Release OK.
 248. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 249. Siradaki mantikli is: hazir filtre sonucunu tek tikla disa aktarma ya da toplu PDF kontrol akisiyla daha ileri hizlandirmak.
+250. v0.79 olarak Faturalar ekranindaki PDF alanina `Klasorde Goster` dugmesi eklendi.
+251. PDF varsa dosya Windows Gezgini icinde secili aciliyor; yoksa faturanin yil/ay klasoru bulunup gerekirse olusturularak aciliyor.
+252. `InvoiceRepository` icine `GetPdfDirectoryAbsolutePath()` eklendi; UI beklenen ek klasorunu repository mantigiyla hesapliyor.
+253. Smoke test: dotnet build -c Release OK.
+254. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+255. Siradaki mantikli is: `PDF Eksik` ya da `Gecikmis` hizli filtresini tek tikla disa aktarma veya toplu kontrol turuna baglamak.
