@@ -106,3 +106,10 @@ Bu fazda Faturalar ekranina PDF Eksik Turu ve Gecikmis Turu kisayollari eklendi.
 Bu akislarda filtre tek tikla kuruluyor ve kontrol sirasi ipucu artik aktif modla birlikte gorunuyor; boylece kayit kayit inceleme daha odakli ilerliyor.
 
 Sıradaki mantikli is: inceleme modundayken tek tikla PDF Ac / Klasorde Goster / Sonraki Kayit ritmini daha da hizlandiracak minik operator kisayollari eklemek.
+
+## v0.83 - Inceleme Turu Birlesik Aksiyonlari
+
+Bu fazda Faturalar ekranindaki inceleme turuna PDF Ac + Sonraki ve Klasor + Sonraki dugmeleri eklendi.
+Boylece operator ayni ritimde belgeyi acip hemen bir sonraki kayda gecebilir; tur sonuna gelindiginde de akisin bittigi net olarak gorulur.
+
+Sıradaki mantikli is: bu akisa minik bir klavye odakli kisayol ya da tek tikla sadece sonrakine gecmeden once isaretleme notu eklemek.

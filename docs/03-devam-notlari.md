@@ -712,3 +712,8 @@ v0.12 sonuÃ§ notu:
 268. InvoiceReviewNavigator artik kontrol ipucu metnini de uretiyor; mod adi ve sira ayni yerde gorunuyor.
 269. Self-test icine inceleme modu ipucu dogrulamasi eklendi.
 270. Siradaki mantikli is: inceleme modunda operator ritmini daha da hizlandiracak PDF Ac / Klasorde Goster / Sonraki Kayit tipi akici kisayollar eklemek.
+271. v0.83 olarak Faturalar ekranindaki inceleme turuna PDF Ac + Sonraki ve Klasor + Sonraki dugmeleri eklendi.
+272. Bu birlesik aksiyonlar mevcut PDF acma ve klasor gosterme davranisini bozmayip hemen sonraki kayda gecisle birlestiriyor.
+273. Son kayitta birlesik aksiyon yine calisiyor ama ileri gitmek yerine tur sonu mesaji veriyor.
+274. Boylece operator akisi ayri ayri PDF Ac / Klasorde Goster / Sonraki Kayit tiklari yerine daha seri bir ritme kavustu.
+275. Siradaki mantikli is: bu akisa klavye odakli kisayol ya da minik isaretleme rahatligi eklemek.

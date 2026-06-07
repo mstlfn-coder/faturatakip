@@ -389,6 +389,26 @@ public partial class InvoicesView : UserControl
         MoveSelectedInvoice(1);
     }
 
+    private void OpenInvoicePdfAndNextButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (!TryOpenSelectedInvoicePdf(out var actionMessage))
+        {
+            return;
+        }
+
+        CompleteInvoiceReviewAction(actionMessage);
+    }
+
+    private void RevealInvoicePdfFolderAndNextButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (!TryRevealSelectedInvoicePdfFolder(out var actionMessage))
+        {
+            return;
+        }
+
+        CompleteInvoiceReviewAction(actionMessage);
+    }
+
     private void NewInvoiceButton_Click(object sender, RoutedEventArgs e)
     {
         ClearInvoiceForm();
@@ -642,6 +662,108 @@ public partial class InvoicesView : UserControl
         UpdateInvoiceReviewNavigationControls();
         SetInvoiceStatus(successMessage, isError: false);
     }
+
+    private bool TryOpenSelectedInvoicePdf(out string actionMessage)
+    {
+        actionMessage = string.Empty;
+
+        if (_invoiceRepository is null || _selectedInvoice is null)
+        {
+            return false;
+        }
+
+        try
+        {
+            var pdfPath = _invoiceRepository.GetPdfAbsolutePath(_selectedInvoice);
+            if (string.IsNullOrWhiteSpace(pdfPath) || !File.Exists(pdfPath))
+            {
+                SetInvoiceStatus("PDF dosyasi bulunamadi.", isError: true);
+                UpdatePdfControls(_selectedInvoice);
+                return false;
+            }
+
+            Process.Start(new ProcessStartInfo(pdfPath)
+            {
+                UseShellExecute = true,
+            });
+
+            actionMessage = "Fatura PDF dosyasi acildi.";
+            return true;
+        }
+        catch (Exception exception) when (exception is InvalidOperationException or IOException or UnauthorizedAccessException or Win32Exception)
+        {
+            SetInvoiceStatus(exception.Message, isError: true);
+            return false;
+        }
+    }
+
+    private bool TryRevealSelectedInvoicePdfFolder(out string actionMessage)
+    {
+        actionMessage = string.Empty;
+
+        if (_invoiceRepository is null || _selectedInvoice is null)
+        {
+            return false;
+        }
+
+        try
+        {
+            if (_selectedInvoice.HasPdf && _invoiceRepository.PdfFileExists(_selectedInvoice))
+            {
+                var pdfPath = _invoiceRepository.GetPdfAbsolutePath(_selectedInvoice);
+                Process.Start(new ProcessStartInfo
+                {
+                    FileName = "explorer.exe",
+                    Arguments = $"/select,\"{pdfPath}\"",
+                    UseShellExecute = true,
+                });
+                actionMessage = "Fatura PDF dosyasi klasorde gosterildi.";
+                return true;
+            }
+
+            var pdfDirectory = _invoiceRepository.GetPdfDirectoryAbsolutePath(_selectedInvoice);
+            Directory.CreateDirectory(pdfDirectory);
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "explorer.exe",
+                Arguments = $"\"{pdfDirectory}\"",
+                UseShellExecute = true,
+            });
+            actionMessage = "Fatura icin beklenen PDF klasoru acildi.";
+            return true;
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidOperationException or Win32Exception)
+        {
+            SetInvoiceStatus(exception.Message, isError: true);
+            return false;
+        }
+    }
+
+    private void CompleteInvoiceReviewAction(string actionMessage)
+    {
+        var visibleInvoices = GetVisibleInvoices();
+        if (_selectedInvoice is null || visibleInvoices.Count == 0)
+        {
+            SetInvoiceStatus(actionMessage, isError: false);
+            UpdateInvoiceReviewNavigationControls();
+            return;
+        }
+
+        var currentIndex = visibleInvoices.FindIndex(item => item.Id == _selectedInvoice.Id);
+        if (!InvoiceReviewNavigator.TryMove(currentIndex, visibleInvoices.Count, 1, out var targetIndex))
+        {
+            SetInvoiceStatus($"{actionMessage} Tur sonuna ulasildi.", isError: false);
+            UpdateInvoiceReviewNavigationControls();
+            return;
+        }
+
+        var targetInvoice = visibleInvoices[targetIndex];
+        InvoiceGrid.SelectedItem = targetInvoice;
+        InvoiceGrid.ScrollIntoView(targetInvoice);
+        ApplySelectedInvoice(targetInvoice);
+        SetInvoiceStatus($"{actionMessage} Sonraki kayda gecildi ({targetIndex + 1}/{visibleInvoices.Count}).", isError: false);
+    }
+
     private void SelectInvoicePdfButton_Click(object sender, RoutedEventArgs e)
     {
         var dialog = new OpenFileDialog
@@ -664,67 +786,17 @@ public partial class InvoicesView : UserControl
 
     private void OpenInvoicePdfButton_Click(object sender, RoutedEventArgs e)
     {
-        if (_invoiceRepository is null || _selectedInvoice is null)
+        if (TryOpenSelectedInvoicePdf(out var actionMessage))
         {
-            return;
-        }
-
-        try
-        {
-            var pdfPath = _invoiceRepository.GetPdfAbsolutePath(_selectedInvoice);
-            if (string.IsNullOrWhiteSpace(pdfPath) || !File.Exists(pdfPath))
-            {
-                SetInvoiceStatus("PDF dosyasÄ± bulunamadÄ±.", isError: true);
-                UpdatePdfControls(_selectedInvoice);
-                return;
-            }
-
-            Process.Start(new ProcessStartInfo(pdfPath)
-            {
-                UseShellExecute = true,
-            });
-        }
-        catch (Exception exception) when (exception is InvalidOperationException or IOException or UnauthorizedAccessException or System.ComponentModel.Win32Exception)
-        {
-            SetInvoiceStatus(exception.Message, isError: true);
+            SetInvoiceStatus(actionMessage, isError: false);
         }
     }
 
     private void RevealInvoicePdfFolderButton_Click(object sender, RoutedEventArgs e)
     {
-        if (_invoiceRepository is null || _selectedInvoice is null)
+        if (TryRevealSelectedInvoicePdfFolder(out var actionMessage))
         {
-            return;
-        }
-
-        try
-        {
-            if (_selectedInvoice.HasPdf && _invoiceRepository.PdfFileExists(_selectedInvoice))
-            {
-                var pdfPath = _invoiceRepository.GetPdfAbsolutePath(_selectedInvoice);
-                Process.Start(new ProcessStartInfo
-                {
-                    FileName = "explorer.exe",
-                    Arguments = $"/select,\"{pdfPath}\"",
-                    UseShellExecute = true,
-                });
-                SetInvoiceStatus("Fatura PDF dosyasi klasorde gosterildi.", isError: false);
-                return;
-            }
-
-            var pdfDirectory = _invoiceRepository.GetPdfDirectoryAbsolutePath(_selectedInvoice);
-            Directory.CreateDirectory(pdfDirectory);
-            Process.Start(new ProcessStartInfo
-            {
-                FileName = "explorer.exe",
-                Arguments = $"\"{pdfDirectory}\"",
-                UseShellExecute = true,
-            });
-            SetInvoiceStatus("Fatura icin beklenen PDF klasoru acildi.", isError: false);
-        }
-        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidOperationException or Win32Exception)
-        {
-            SetInvoiceStatus(exception.Message, isError: true);
+            SetInvoiceStatus(actionMessage, isError: false);
         }
     }
 
@@ -1027,6 +1099,8 @@ public partial class InvoicesView : UserControl
             SetPdfInfo($"SeÃ§ili PDF: {Path.GetFileName(_pendingPdfSourcePath)}. Kaydet ile faturaya eklenecek.", isError: false);
             OpenInvoicePdfButton.IsEnabled = false;
             RevealInvoicePdfFolderButton.IsEnabled = true;
+            OpenInvoicePdfAndNextButton.IsEnabled = false;
+            RevealInvoicePdfFolderAndNextButton.IsEnabled = false;
             UpdateInvoiceReviewNavigationControls();
             return;
         }
@@ -1036,6 +1110,8 @@ public partial class InvoicesView : UserControl
             SetPdfInfo("PDF eklemek iÃ§in dosya seÃ§in; kayÄ±t sÄ±rasÄ±nda faturaya baÄŸlanÄ±r.", isError: false);
             OpenInvoicePdfButton.IsEnabled = false;
             RevealInvoicePdfFolderButton.IsEnabled = false;
+            OpenInvoicePdfAndNextButton.IsEnabled = false;
+            RevealInvoicePdfFolderAndNextButton.IsEnabled = false;
             UpdateInvoiceReviewNavigationControls();
             return;
         }
@@ -1045,6 +1121,8 @@ public partial class InvoicesView : UserControl
             SetPdfInfo("Bu faturaya PDF evrak eklenmemiÅŸ.", isError: false);
             OpenInvoicePdfButton.IsEnabled = false;
             RevealInvoicePdfFolderButton.IsEnabled = true;
+            OpenInvoicePdfAndNextButton.IsEnabled = false;
+            RevealInvoicePdfFolderAndNextButton.IsEnabled = true;
             UpdateInvoiceReviewNavigationControls();
             return;
         }
@@ -1054,6 +1132,8 @@ public partial class InvoicesView : UserControl
             SetPdfInfo($"PDF kayÄ±tlÄ±: {invoice.PdfOriginalFileName}", isError: false);
             OpenInvoicePdfButton.IsEnabled = true;
             RevealInvoicePdfFolderButton.IsEnabled = true;
+            OpenInvoicePdfAndNextButton.IsEnabled = true;
+            RevealInvoicePdfFolderAndNextButton.IsEnabled = true;
             UpdateInvoiceReviewNavigationControls();
             return;
         }
@@ -1061,6 +1141,8 @@ public partial class InvoicesView : UserControl
         SetPdfInfo($"PDF kaydÄ± var ancak dosya bulunamadÄ±: {invoice.PdfFilePath}", isError: true);
         OpenInvoicePdfButton.IsEnabled = false;
         RevealInvoicePdfFolderButton.IsEnabled = true;
+        OpenInvoicePdfAndNextButton.IsEnabled = false;
+        RevealInvoicePdfFolderAndNextButton.IsEnabled = true;
         UpdateInvoiceReviewNavigationControls();
     }
 
