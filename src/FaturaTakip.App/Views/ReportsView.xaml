@@ -412,8 +412,9 @@
                     Padding="14,10"
                     Margin="0,12,0,0"
                     Visibility="Collapsed">
-                <DockPanel>
-                    <TextBlock Text="İncelenmedi raporundaki kayıtları Faturalar ekranında doğrudan inceleme akışıyla açabilirsiniz."
+                    <DockPanel>
+                    <TextBlock x:Name="ActionableReviewActionText"
+                               Text="İncelenmedi raporundaki kayıtları Faturalar ekranında doğrudan inceleme akışıyla açabilirsiniz."
                                Foreground="#1E3A8A"
                                VerticalAlignment="Center"
                                TextWrapping="Wrap"
@@ -423,7 +424,7 @@
                             Style="{StaticResource SecondaryButton}"
                             HorizontalAlignment="Right"
                             Margin="12,0,0,0"
-                            Click="OpenUnreviewedInvoicesReviewButton_Click" />
+                            Click="OpenActionableReviewButton_Click" />
                 </DockPanel>
             </Border>
         </StackPanel>

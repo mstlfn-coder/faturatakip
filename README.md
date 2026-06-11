@@ -166,3 +166,12 @@ Kullanici artik rapor ekraninda incelenmemis listeyi gorup tek tikla Faturalar e
 Bu akista `ReportsView` ana pencereye gecis istegi iletiyor, `MainWindow` de `InvoicesView` icindeki filtreli inceleme modunu baslatiyor.
 
 Sıradaki mantikli is: benzer cift yonlu gecisleri gerekirse gecikmis veya PDF eksik odakli raporlar icin de dusunmek.
+
+## v0.91 - Diger Inceleme Turlarina Hizli Gecis
+
+Bu fazda rapor ekranindaki hizli inceleme gecisi `Incelenmedi` ile sinirli kalmadi.
+Artik `Gecikmis` raporu ile `Evrak Kontrol` gorunumu de Faturalar ekranindaki ilgili inceleme modlarina tek tikla gecebiliyor.
+
+`ReportsView` aktif sekmeye gore dogru gecis istegini iletiyor; `MainWindow` da bunu Faturalar ekranindaki `Gecikmis` veya `PDF Eksik` inceleme turlarina bagliyor.
+
+Sıradaki mantikli is: bu akislari gerekirse secili satir veya alt kategori baglamini da koruyacak daha hedefli yonlendirmelerle zenginlestirmek.

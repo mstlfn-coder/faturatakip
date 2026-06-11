@@ -23,6 +23,8 @@ public partial class ReportsView : UserControl
 {
     private static readonly CultureInfo TurkishCulture = CultureInfo.GetCultureInfo("tr-TR");
     public event EventHandler? UnreviewedInvoiceReviewRequested;
+    public event EventHandler? OverdueInvoiceReviewRequested;
+    public event EventHandler? MissingPdfInvoiceReviewRequested;
 
     private InvoiceRepository? _invoiceRepository;
     private PaymentRepository? _paymentRepository;
@@ -231,15 +233,23 @@ public partial class ReportsView : UserControl
         ApplyTab(ReportTab.Unreviewed);
     }
 
-    private void OpenUnreviewedInvoicesReviewButton_Click(object sender, RoutedEventArgs e)
+    private void OpenActionableReviewButton_Click(object sender, RoutedEventArgs e)
     {
-        if (_activeTab != ReportTab.Unreviewed)
+        switch (_activeTab)
         {
-            SetPdfHint("Bu geçiş yalnızca incelenmedi raporu açıkken kullanılabilir.");
-            return;
+            case ReportTab.Unreviewed:
+                UnreviewedInvoiceReviewRequested?.Invoke(this, EventArgs.Empty);
+                return;
+            case ReportTab.Overdue:
+                OverdueInvoiceReviewRequested?.Invoke(this, EventArgs.Empty);
+                return;
+            case ReportTab.DocumentHealth:
+                MissingPdfInvoiceReviewRequested?.Invoke(this, EventArgs.Empty);
+                return;
+            default:
+                SetPdfHint("Bu geçiş aktif sekmede kullanılamaz.");
+                return;
         }
-
-        UnreviewedInvoiceReviewRequested?.Invoke(this, EventArgs.Empty);
     }
 
     private void MonthlyTabButton_Click(object sender, RoutedEventArgs e)
@@ -1833,7 +1843,10 @@ public partial class ReportsView : UserControl
         TypeYearlyFilterPanel.Visibility = tab == ReportTab.TypeYearly ? Visibility.Visible : Visibility.Collapsed;
         AuditLogFilterPanel.Visibility = tab == ReportTab.AuditLog ? Visibility.Visible : Visibility.Collapsed;
         AuditLogDetailPanel.Visibility = Visibility.Collapsed;
-        ActionableReviewActionPanel.Visibility = tab == ReportTab.Unreviewed ? Visibility.Visible : Visibility.Collapsed;
+        ActionableReviewActionPanel.Visibility = tab is ReportTab.Unreviewed or ReportTab.Overdue or ReportTab.DocumentHealth
+            ? Visibility.Visible
+            : Visibility.Collapsed;
+        ApplyActionableReviewActionPanel(tab);
 
         var items = tab switch
         {
@@ -2024,6 +2037,34 @@ public partial class ReportsView : UserControl
         }
 
         MonthlyFilterHintText.Text = string.Empty;
+    }
+
+    private void ApplyActionableReviewActionPanel(ReportTab tab)
+    {
+        if (ActionableReviewActionText is null || OpenUnreviewedInvoicesReviewButton is null)
+        {
+            return;
+        }
+
+        switch (tab)
+        {
+            case ReportTab.Unreviewed:
+                ActionableReviewActionText.Text = "İncelenmedi raporundaki kayıtları Faturalar ekranında doğrudan inceleme akışıyla açabilirsiniz.";
+                OpenUnreviewedInvoicesReviewButton.Content = "Faturalarda İncele";
+                break;
+            case ReportTab.Overdue:
+                ActionableReviewActionText.Text = "Gecikmiş raporundaki kayıtları Faturalar ekranında gecikmiş inceleme turuyla açabilirsiniz.";
+                OpenUnreviewedInvoicesReviewButton.Content = "Gecikmişleri İncele";
+                break;
+            case ReportTab.DocumentHealth:
+                ActionableReviewActionText.Text = "Evrak kontrol görünümünden sonra fatura PDF eksik kayıtlarını Faturalar ekranında odaklı inceleme turuyla açabilirsiniz.";
+                OpenUnreviewedInvoicesReviewButton.Content = "PDF Eksikleri İncele";
+                break;
+            default:
+                ActionableReviewActionText.Text = string.Empty;
+                OpenUnreviewedInvoicesReviewButton.Content = "Faturalarda İncele";
+                break;
+        }
     }
 
     private void ApplyMonthlyTiles()
