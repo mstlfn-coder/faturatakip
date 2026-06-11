@@ -753,3 +753,11 @@ Her faz bittiğinde:
 - `InvoiceReviewNavigator` kisayol ipucu metni yeni kombinasyonu da gosteriyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: inceleme baglami yardimlarini rapordan gelen operator gecislerinde daha gorunur hale getirmek.
+
+## Son Guncelleme (2026-06-12 / v0.99)
+
+- v0.99 tamamlandi: rapordan gelen inceleme baglami Faturalar ekraninda ayri bir bilgi paneli olarak gosterilmeye baslandi.
+- `Bağlamı Göster` acikken panel gorunuyor; kontrol ipucu satiri daha sade kalip gezinme/kisayol odagina donuyor.
+- Baglam yoksa `Bağlamı Kopyala` dugmesi pasif kaliyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: baglam panelini kisa rozetli ozetlerle daha taranabilir hale getirmek.

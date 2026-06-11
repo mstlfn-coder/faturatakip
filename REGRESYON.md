@@ -1200,3 +1200,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Buton ve klavye ayni akisi kullaniyor | OK | Kopyalama davranisi tek yardimci metoda tasindi |
 | Kontrol ipucu yeni kisayolu gosteriyor | OK | `InvoiceReviewNavigator.BuildHint()` ciktiya `Ctrl+Shift+C` eklendi |
 | 2026-06-12 | v0.98 | OK | Baglam kopyalama kisayolu + build + self-test tamamlandi |
+
+## v0.99 - Baglam Paneli
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release tamamlandi; calisan exe nedeniyle tek seferlik kopyalama uyarisi goruldu |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baglam ayri panelde gorunuyor | OK | `Bağlamı Göster` acikken rapor gecis baglami ayri blokta gosteriliyor |
+| Kontrol ipucu sade kaldi | OK | Inceleme ipucu gezinme ve kisayol odagina dondu |
+| Baglam yoksa kopyalama pasif | OK | `Bağlamı Kopyala` dugmesi baglam olmadiginda devre disi |
+| 2026-06-12 | v0.99 | OK | Baglam paneli + build + self-test tamamlandi |
