@@ -1113,3 +1113,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Rapor sayimi genislendi | OK | `ActionableInvoiceReport` icine `Unreviewed` liste ve kalan toplam alani eklendi |
 | Self-test rapor dogrulamasi var | OK | Actionable rapor self-test'i incelenmedi sayisi ve kalan toplamini kontrol ediyor |
 | 2026-06-11 | v0.89 | OK | Raporlarda incelenmedi sekmesi + build + self-test tamamlandi |
+
+## v0.90 - Rapordan Inceleme Akisina Gecis
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Raporda gecis dugmesi var | OK | `Incelenmedi` sekmesinde `Faturalarda İncele` dugmesi gosteriliyor |
+| Ana pencere yonlendirmesi var | OK | `ReportsView` istegi `MainWindow` uzerinden Faturalar ekranina tasiniyor |
+| Inceleme modu aciliyor | OK | `InvoicesView.StartUnreviewedReviewMode()` review mod etiketini kurup ilk kayda odaklaniyor |
+| 2026-06-11 | v0.90 | OK | Rapordan inceleme akisina gecis + build + self-test tamamlandi |

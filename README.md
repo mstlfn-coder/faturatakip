@@ -157,3 +157,12 @@ Boylece operator veya yonetici, inceleme notu birakilmamis kayitlari rapor ekran
 Actionable rapor hesaplamasi `Unreviewed` kumesini ve kalan tutar toplamini uretir hale getirildi; self-test de bu yeni rapor sayimini dogruluyor.
 
 Sıradaki mantikli is: bu inceleme raporunu dashboard veya rapor ekranindan Faturalar ekranindaki filtreli inceleme akisi ile cift yonlu baglamak.
+
+## v0.90 - Rapordan Inceleme Akisina Gecis
+
+Bu fazda Raporlar ekranindaki `Incelenmedi` sekmesine, Faturalar ekranindaki inceleme akisini dogrudan acan bir gecis dugmesi eklendi.
+Kullanici artik rapor ekraninda incelenmemis listeyi gorup tek tikla Faturalar ekranina gecebilir; ekran `Incelenmedi Inceleme` modunda acilarak ilk kayda odaklanir.
+
+Bu akista `ReportsView` ana pencereye gecis istegi iletiyor, `MainWindow` de `InvoicesView` icindeki filtreli inceleme modunu baslatiyor.
+
+Sıradaki mantikli is: benzer cift yonlu gecisleri gerekirse gecikmis veya PDF eksik odakli raporlar icin de dusunmek.

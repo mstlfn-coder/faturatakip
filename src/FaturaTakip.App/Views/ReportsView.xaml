@@ -403,6 +403,29 @@
                 </StackPanel>
             </Border>
             </UniformGrid>
+
+            <Border x:Name="ActionableReviewActionPanel"
+                    Background="#EEF4FF"
+                    BorderBrush="#BFDBFE"
+                    BorderThickness="1"
+                    CornerRadius="6"
+                    Padding="14,10"
+                    Margin="0,12,0,0"
+                    Visibility="Collapsed">
+                <DockPanel>
+                    <TextBlock Text="İncelenmedi raporundaki kayıtları Faturalar ekranında doğrudan inceleme akışıyla açabilirsiniz."
+                               Foreground="#1E3A8A"
+                               VerticalAlignment="Center"
+                               TextWrapping="Wrap"
+                               DockPanel.Dock="Left" />
+                    <Button x:Name="OpenUnreviewedInvoicesReviewButton"
+                            Content="Faturalarda İncele"
+                            Style="{StaticResource SecondaryButton}"
+                            HorizontalAlignment="Right"
+                            Margin="12,0,0,0"
+                            Click="OpenUnreviewedInvoicesReviewButton_Click" />
+                </DockPanel>
+            </Border>
         </StackPanel>
 
         <Border Grid.Row="2" Style="{StaticResource TileBorder}">

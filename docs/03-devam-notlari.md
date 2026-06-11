@@ -759,3 +759,9 @@ v0.12 sonuÃ§ notu:
 315. Smoke test: dotnet build -c Release OK.
 316. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 317. Siradaki mantikli is: rapor ekranindaki bu incelenmedi gorunumunu Faturalar ekranindaki filtreli inceleme akisi ile cift yonlu baglamak.
+318. v0.90 olarak `Incelenmedi` rapor sekmesine `Faturalarda Incele` gecis dugmesi eklendi.
+319. `ReportsView` bu gecis icin bir event yayinliyor; `MainWindow` bunu yakalayip `InvoicesView.StartUnreviewedReviewMode()` akisini calistiriyor.
+320. Faturalar ekrani bu akista `Incelenmedi Inceleme` moduyla aciliyor; filtre kuruluyor, hizli filtreler sifirlaniyor ve ilk kayda odaklaniliyor.
+321. Smoke test: dotnet build -c Release OK.
+322. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+323. Siradaki mantikli is: benzer rapordan inceleme akisina gecisleri gecikmis veya PDF eksik odakli operator turlarina da yaymak.
