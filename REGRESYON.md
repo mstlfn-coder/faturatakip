@@ -1153,3 +1153,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Kontrol ipucu baglam gosteriyor | OK | `InvoiceReviewNavigator.BuildHint()` ciktiya `Baglam: ...` ekleyebiliyor |
 | Self-test ipucu dogrulamasi var | OK | Yeni baglamli kontrol ipucu string'i self-test ile dogrulaniyor |
 | 2026-06-11 | v0.93 | OK | Gecis baglami ipuclari + build + self-test tamamlandi |
+
+## v0.94 - Kayit Ozetli Gecis Baglami
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Actionable baglam ozeti var | OK | `Rapor: ... > Tur / FaturaNo` ozeti secili satirdan uretiliyor |
+| Evrak kontrol baglam ozeti var | OK | `IssueType / EntityType / PeriodOrDate` ozeti secili satirdan uretiliyor |
+| 2026-06-11 | v0.94 | OK | Kayit ozetli gecis baglami + build + self-test tamamlandi |

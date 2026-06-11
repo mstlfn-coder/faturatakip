@@ -2084,11 +2084,21 @@ public partial class ReportsView : UserControl
     {
         return _activeTab switch
         {
-            ReportTab.Unreviewed => "Rapor: İncelenmedi",
-            ReportTab.Overdue => "Rapor: Gecikmiş",
+            ReportTab.Unreviewed => BuildActionableContextLabel("Rapor: İncelenmedi"),
+            ReportTab.Overdue => BuildActionableContextLabel("Rapor: Gecikmiş"),
             ReportTab.DocumentHealth => BuildDocumentHealthContextLabel(),
             _ => "Rapor",
         };
+    }
+
+    private string BuildActionableContextLabel(string baseLabel)
+    {
+        if (ReportGrid.SelectedItem is not ReportRow row)
+        {
+            return baseLabel;
+        }
+
+        return $"{baseLabel} > {row.InvoiceTypeName} / {row.InvoiceNo}";
     }
 
     private string BuildDocumentHealthContextLabel()
@@ -2098,7 +2108,7 @@ public partial class ReportsView : UserControl
             return "Rapor: Evrak Kontrol";
         }
 
-        return $"Rapor: Evrak Kontrol > {row.IssueType}";
+        return $"Rapor: Evrak Kontrol > {row.IssueType} / {row.EntityType} / {row.PeriodOrDate}";
     }
 
     private void ApplyMonthlyTiles()

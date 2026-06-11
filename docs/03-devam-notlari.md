@@ -785,3 +785,9 @@ v0.12 sonuÃ§ notu:
 341. Smoke test: dotnet build -c Release OK.
 342. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 343. Siradaki mantikli is: aktif alt filtre veya secili export baglamini da bu ipucu zincirine katmak.
+344. v0.94 olarak baglam etiketi secili kayit ozetiyle genisletildi.
+345. Actionable raporlarda secili satirdan `Tur / Fatura No`, evrak kontrolde ise `IssueType / EntityType / PeriodOrDate` ozeti baglama eklendi.
+346. Boylece operator inceleme ekraninda neden o akisa geldigini daha somut okuyabiliyor.
+347. Smoke test: dotnet build -c Release OK.
+348. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+349. Siradaki mantikli is: bu baglami kopyalama ya da gorunurluk tercihi gibi minik operator rahatliklariyla tamamlamak.
