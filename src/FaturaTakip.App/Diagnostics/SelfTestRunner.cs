@@ -462,6 +462,8 @@ public sealed class SelfTestRunner
                     PaidAmount = 200m,
                     DueDate = new DateTime(2026, 2, 20),
                     Status = "paid",
+                    ReviewNote = "Kontrol edildi",
+                    ReviewedAt = new DateTimeOffset(2026, 2, 14, 9, 0, 0, TimeSpan.FromHours(3)),
                     PdfFilePath = "attachments/invoices/2026/02/paid.pdf",
                 },
                 new Invoice
@@ -503,6 +505,7 @@ public sealed class SelfTestRunner
             Assert(dashboardSummary.MonthlyInvoiceTotal == 300m, "Dashboard aylik fatura toplami hatali.");
             Assert(dashboardSummary.MonthlyPaymentCount == 2, "Dashboard aylik odeme sayisi hatali.");
             Assert(dashboardSummary.MonthlyPaymentTotal == 225m, "Dashboard aylik odeme toplami hatali.");
+            Assert(dashboardSummary.UnreviewedInvoiceCount == 2, "Dashboard incelenmedi fatura sayisi hatali.");
             Assert(dashboardSummary.UnpaidInvoiceCount == 2, "Dashboard odenmemis fatura sayisi hatali.");
             Assert(dashboardSummary.UnpaidRemainingTotal == 125m, "Dashboard odenmemis kalan toplami hatali.");
             Assert(dashboardSummary.OverdueInvoiceCount == 1, "Dashboard gecikmis fatura sayisi hatali.");

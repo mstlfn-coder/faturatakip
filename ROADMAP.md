@@ -666,3 +666,11 @@ Her faz bittiğinde:
 - `InvoiceFilter` icine reviewed/unreviewed senaryolari eklendi ve self-test ile dogrulandi.
 - Faturalar ekranindaki kalan gorunur Turkce etiket sorunlari da bu turda toparlandi.
 - Siradaki mantikli faz: inceleme durumunu dashboard veya rapor akislarina tasiyip daha ust seviye takip gorunumu sunmak.
+
+## Son Guncelleme (2026-06-11 / v0.88)
+
+- v0.88 tamamlandi: Dashboard uzerine `Inceleme Bekleyen` karti eklendi.
+- Kartta incelenmedi fatura sayisi gosteriliyor ve `Faturalara Git` dugmesi Faturalar ekranini dogrudan `Incelenmedi` filtresiyle aciyor.
+- `DashboardSummary` ve hesaplayici katmani incelenmedi sayisini da uretir hale getirildi.
+- Self-test dashboard ozetinde incelenmedi fatura sayisini da dogruluyor.
+- Siradaki mantikli faz: inceleme durumunu rapor/export akislarina tasiyip daha ust seviye raporlama gorunumu sunmak.

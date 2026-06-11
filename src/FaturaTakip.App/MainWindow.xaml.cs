@@ -96,6 +96,12 @@ public partial class MainWindow : Window
         ReportsPanel.ShowOverdueReport();
     }
 
+    private void OpenUnreviewedInvoicesFromDashboardButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowInvoices();
+        InvoicesPanel.ShowUnreviewedInvoices();
+    }
+
     private void OpenMonthlyReportFromDashboardButton_Click(object sender, RoutedEventArgs e)
     {
         ShowReports();
@@ -318,6 +324,7 @@ public partial class MainWindow : Window
         DashboardMonthlyInvoiceCountText.Text = $"{summary.MonthlyInvoiceCount} kayıt";
         DashboardMonthlyPaymentTotalText.Text = FormatMoney(summary.MonthlyPaymentTotal);
         DashboardMonthlyPaymentCountText.Text = $"{summary.MonthlyPaymentCount} kayıt";
+        DashboardUnreviewedInvoiceCountText.Text = summary.UnreviewedInvoiceCount.ToString(CultureInfo.InvariantCulture);
         DashboardUnpaidInvoiceCountText.Text = summary.UnpaidInvoiceCount.ToString(CultureInfo.InvariantCulture);
         DashboardUnpaidRemainingText.Text = $"Kalan {FormatMoney(summary.UnpaidRemainingTotal)}";
         DashboardOverdueInvoiceCountText.Text = summary.OverdueInvoiceCount.ToString(CultureInfo.InvariantCulture);

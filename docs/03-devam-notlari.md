@@ -745,3 +745,10 @@ v0.12 sonuÃ§ notu:
 301. Smoke test: dotnet build -c Release OK.
 302. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 303. Siradaki mantikli is: inceleme durumunu dashboard veya rapor akislarina tasiyip daha ust seviye takip gorunumu sunmak.
+304. v0.88 olarak dashboard uzerine `Inceleme Bekleyen` karti eklendi.
+305. Bu kart `DashboardSummary` icindeki incelenmedi fatura sayisini gosteriyor ve `Faturalara Git` dugmesiyle Faturalar ekranini dogrudan `Incelenmedi` filtresiyle aciyor.
+306. `InvoicesView` icine `ShowUnreviewedInvoices()` yardimi eklendi; dashboard yonlendirmesi filtreyi kurup listeyi ilk kayda odakliyor.
+307. Self-test icine dashboard ozetinde incelenmedi sayisi dogrulamasi eklendi.
+308. Smoke test: dotnet build -c Release OK.
+309. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+310. Siradaki mantikli is: inceleme durumunu rapor/export akislarina da tasiyip ust seviye takip gorunumu olusturmak.

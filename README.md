@@ -139,3 +139,12 @@ Hazir hizli filtrelere de `Incelenmedi` dugmesi eklendi; boylece operator incele
 Bu akista Faturalar ekranindaki kalan gorunur Turkce metin sorunlari da toparlandi; dugme ve filtre etiketleri daha temiz hale geldi.
 
 Sıradaki mantikli is: bu yeni inceleme durumunu gerekirse dashboard veya rapor akislarina tasiyip operatore daha ust seviye takip gorunumu sunmak.
+
+## v0.88 - Dashboard Incelenmedi Kisayolu
+
+Bu fazda dashboard uzerine `Inceleme Bekleyen` karti eklendi.
+Kart, inceleme notu olmayan kayit sayisini gosteriyor ve `Faturalara Git` dugmesiyle Faturalar ekranini dogrudan `Incelenmedi` filtresiyle aciyor.
+
+Dashboard ozet hesabina incelenmedi sayisi eklendi; self-test de bu yeni sayimi dogruluyor.
+
+Sıradaki mantikli is: ayni inceleme durumunu rapor akislarina da tasiyip export veya rapor tarafinda yonetsel takip gorunumu sunmak.
