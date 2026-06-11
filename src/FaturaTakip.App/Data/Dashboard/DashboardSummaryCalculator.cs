@@ -25,6 +25,9 @@ public static class DashboardSummaryCalculator
         var unpaidInvoices = invoiceList
             .Where(item => string.Equals(item.Status, "unpaid", StringComparison.OrdinalIgnoreCase))
             .ToList();
+        var unreviewedInvoices = invoiceList
+            .Where(item => item.ReviewedAt is null && string.IsNullOrWhiteSpace(item.ReviewNote))
+            .ToList();
         var overdueInvoices = unpaidInvoices
             .Where(item => item.DueDate.Date < today.Date)
             .ToList();
@@ -34,6 +37,7 @@ public static class DashboardSummaryCalculator
             monthlyInvoices.Sum(item => item.Amount),
             monthlyPayments.Count,
             monthlyPayments.Sum(item => item.Amount),
+            unreviewedInvoices.Count,
             unpaidInvoices.Count,
             unpaidInvoices.Sum(item => item.RemainingAmount),
             overdueInvoices.Count,

@@ -159,7 +159,7 @@
                 </Grid>
 
                 <UniformGrid Grid.Row="1"
-                             Columns="4"
+                             Columns="5"
                              Margin="0,24,0,24">
                     <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
                         <StackPanel>
@@ -201,6 +201,26 @@
                                     Margin="0,14,0,0"
                                     HorizontalAlignment="Left"
                                     Click="OpenMonthlyReportFromDashboardButton_Click" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
+                        <StackPanel>
+                            <TextBlock Text="İnceleme Bekleyen"
+                                       Style="{StaticResource MutedText}" />
+                            <TextBlock x:Name="DashboardUnreviewedInvoiceCountText"
+                                       Text="0"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="30"
+                                       FontWeight="SemiBold" />
+                            <TextBlock Text="İncelenmedi kayıtlar"
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,6,0,0" />
+                            <Button Content="Faturalara Git"
+                                    Style="{StaticResource SecondaryButton}"
+                                    Margin="0,14,0,0"
+                                    HorizontalAlignment="Left"
+                                    Click="OpenUnreviewedInvoicesFromDashboardButton_Click" />
                         </StackPanel>
                     </Border>
                     <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">

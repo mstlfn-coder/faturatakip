@@ -92,6 +92,22 @@ public partial class InvoicesView : UserControl
         RefreshInvoices(_selectedInvoice?.Id);
     }
 
+    public void ShowUnreviewedInvoices()
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        RefreshSubscriptionLists();
+        RefreshInvoices(_selectedInvoice?.Id);
+        _invoiceReviewModeLabel = null;
+        ResetQuickFilters();
+        SelectReviewStatusFilter(InvoiceReviewStatusFilter.Unreviewed);
+        ApplyFiltersToGrid(selectFirstIfAvailable: true);
+        SetInvoiceStatus("İncelenmedi filtresi dashboard üzerinden uygulandı.", isError: false);
+    }
+
     private void RefreshSubscriptionLists()
     {
         if (_subscriptionRepository is null)

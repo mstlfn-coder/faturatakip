@@ -1091,3 +1091,14 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Filter self-test dogrulamasi var | OK | `InvoiceFilter` icin reviewed/unreviewed senaryolari eklendi |
 | Fatura ekraninda gorunur Turkce etiketler duzeltildi | OK | Dugme ve filtre etiketlerindeki kalan karakter sorunlari toparlandi |
 | 2026-06-07 | v0.87 | OK | Inceleme durumu filtresi + Turkce etiket duzeltmeleri + build + self-test tamamlandi |
+
+## v0.88 - Dashboard Incelenmedi Kisayolu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Dashboard karti var | OK | `Inceleme Bekleyen` karti incelenmedi kayit sayisini gosteriyor |
+| Dashboard kisayolu filtreli aciyor | OK | `Faturalara Git` dugmesi Faturalar ekranini `Incelenmedi` filtresiyle aciyor |
+| Dashboard summary sayimi var | OK | `DashboardSummary` icine `UnreviewedInvoiceCount` alani eklendi |
+| Dashboard self-test dogrulamasi var | OK | Self-test dashboard ozetinde incelenmedi sayisini kontrol ediyor |
+| 2026-06-11 | v0.88 | OK | Dashboard incelenmedi kisayolu + build + self-test tamamlandi |

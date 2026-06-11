@@ -5,6 +5,7 @@ public sealed record DashboardSummary(
     decimal MonthlyInvoiceTotal,
     int MonthlyPaymentCount,
     decimal MonthlyPaymentTotal,
+    int UnreviewedInvoiceCount,
     int UnpaidInvoiceCount,
     decimal UnpaidRemainingTotal,
     int OverdueInvoiceCount,
