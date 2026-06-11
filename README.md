@@ -239,3 +239,17 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: baglam kopyalama aksiyonunu da benzer bir klavye rahatligiyla tamamlamak.
+
+## v0.98 - Baglami Kopyalama Kisayolu
+
+Bu fazda inceleme turuna `Ctrl+Shift+C` kisayolu eklendi.
+Boylece operator mevcut baglami fare kullanmadan dogrudan panoya kopyalayabiliyor.
+
+Buton ve klavye ayni yardimci davranisi kullaniyor; boylece kopyalama akisi tek noktadan korunuyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: inceleme akisindaki bu baglam yardimlarini rapordan gelen operator gecislerinde daha gorunur hale getirmek.

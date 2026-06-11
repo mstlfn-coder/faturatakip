@@ -499,6 +499,10 @@ public partial class InvoicesView : UserControl
                 ToggleInvoiceReviewContextVisibility();
                 e.Handled = true;
                 break;
+            case Key.C:
+                CopyInvoiceReviewContextToClipboard();
+                e.Handled = true;
+                break;
         }
     }
 
@@ -874,6 +878,11 @@ public partial class InvoicesView : UserControl
     }
 
     private void CopyInvoiceReviewContextButton_Click(object sender, RoutedEventArgs e)
+    {
+        CopyInvoiceReviewContextToClipboard();
+    }
+
+    private void CopyInvoiceReviewContextToClipboard()
     {
         if (string.IsNullOrWhiteSpace(_invoiceReviewContextLabel))
         {
