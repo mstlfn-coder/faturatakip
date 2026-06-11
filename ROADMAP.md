@@ -682,3 +682,11 @@ Her faz bittiğinde:
 - `ActionableInvoiceReport` ve hesaplayici katmani incelenmedi liste + kalan toplam mantigiyla genisletildi.
 - Self-test actionable rapor ozetinde incelenmedi sayisi ve kalan toplamini da dogruluyor.
 - Siradaki mantikli faz: bu rapor sekmesini Faturalar ekranindaki filtreli inceleme moduna dogrudan gecisle cift yonlu baglamak.
+
+## Son Guncelleme (2026-06-11 / v0.90)
+
+- v0.90 tamamlandi: `Incelenmedi` rapor sekmesine Faturalar ekranindaki inceleme akisina gecis dugmesi eklendi.
+- `ReportsView` icindeki istek, `MainWindow` uzerinden `InvoicesView.StartUnreviewedReviewMode()` akisina baglandi.
+- Faturalar ekrani bu geciste `Incelenmedi Inceleme` moduyla aciliyor; filtre kuruluyor ve liste ilk kayda odaklaniyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: benzer rapordan inceleme akisina gecisleri gecikmis veya PDF eksik gibi baska operator akislarina da genisletmek.

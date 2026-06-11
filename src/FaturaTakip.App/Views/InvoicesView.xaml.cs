@@ -108,6 +108,21 @@ public partial class InvoicesView : UserControl
         SetInvoiceStatus("İncelenmedi filtresi dashboard üzerinden uygulandı.", isError: false);
     }
 
+    public void StartUnreviewedReviewMode()
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        RefreshSubscriptionLists();
+        RefreshInvoices(_selectedInvoice?.Id);
+        StartInvoiceReviewMode(
+            reviewModeLabel: "İncelenmedi İnceleme",
+            applyModeFilter: () => SelectReviewStatusFilter(InvoiceReviewStatusFilter.Unreviewed),
+            successMessage: "İncelenmedi inceleme akışı rapor üzerinden başlatıldı.");
+    }
+
     private void RefreshSubscriptionLists()
     {
         if (_subscriptionRepository is null)

@@ -22,6 +22,8 @@ namespace FaturaTakip.App.Views;
 public partial class ReportsView : UserControl
 {
     private static readonly CultureInfo TurkishCulture = CultureInfo.GetCultureInfo("tr-TR");
+    public event EventHandler? UnreviewedInvoiceReviewRequested;
+
     private InvoiceRepository? _invoiceRepository;
     private PaymentRepository? _paymentRepository;
     private InvoiceTypeRepository? _invoiceTypeRepository;
@@ -227,6 +229,17 @@ public partial class ReportsView : UserControl
     private void UnreviewedTabButton_Click(object sender, RoutedEventArgs e)
     {
         ApplyTab(ReportTab.Unreviewed);
+    }
+
+    private void OpenUnreviewedInvoicesReviewButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_activeTab != ReportTab.Unreviewed)
+        {
+            SetPdfHint("Bu geçiş yalnızca incelenmedi raporu açıkken kullanılabilir.");
+            return;
+        }
+
+        UnreviewedInvoiceReviewRequested?.Invoke(this, EventArgs.Empty);
     }
 
     private void MonthlyTabButton_Click(object sender, RoutedEventArgs e)
@@ -1820,6 +1833,7 @@ public partial class ReportsView : UserControl
         TypeYearlyFilterPanel.Visibility = tab == ReportTab.TypeYearly ? Visibility.Visible : Visibility.Collapsed;
         AuditLogFilterPanel.Visibility = tab == ReportTab.AuditLog ? Visibility.Visible : Visibility.Collapsed;
         AuditLogDetailPanel.Visibility = Visibility.Collapsed;
+        ActionableReviewActionPanel.Visibility = tab == ReportTab.Unreviewed ? Visibility.Visible : Visibility.Collapsed;
 
         var items = tab switch
         {

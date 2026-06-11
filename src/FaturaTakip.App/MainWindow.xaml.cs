@@ -33,6 +33,7 @@ public partial class MainWindow : Window
         SubscriptionsPanel.Initialize(startupStatus.DatabasePath);
         InvoicesPanel.Initialize(startupStatus.DatabasePath);
         ReportsPanel.Initialize(startupStatus.DatabasePath);
+        ReportsPanel.UnreviewedInvoiceReviewRequested += ReportsPanel_UnreviewedInvoiceReviewRequested;
         ApplyStartupStatus(startupStatus);
         RefreshInvoiceTypes();
         RefreshDashboardSubscriptionCounts();
@@ -127,6 +128,12 @@ public partial class MainWindow : Window
     private void OpenInvoicesFromDashboardButton_Click(object sender, RoutedEventArgs e)
     {
         ShowInvoices();
+    }
+
+    private void ReportsPanel_UnreviewedInvoiceReviewRequested(object? sender, EventArgs e)
+    {
+        ShowInvoices();
+        InvoicesPanel.StartUnreviewedReviewMode();
     }
 
     private void ShowDashboard()
