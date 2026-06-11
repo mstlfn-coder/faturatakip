@@ -184,3 +184,12 @@ Actionable raporlarda secili fatura varsa ayni `invoice id` inceleme turuna akta
 Evrak Kontrol gorunumunde de secili satir bir fatura issue'su ise ayni baglam korunuyor; odeme issue'larinda uygun bir fatura kimligi olmadiginda akış ilk uygun kayittan devam ediyor.
 
 Sıradaki mantikli is: bu baglami secili export, issue tipi veya rapor alt filtresi gibi daha zengin operator ipuclariyla bir adim daha detaylandirmak.
+
+## v0.93 - Gecis Baglami Ipuclari
+
+Bu fazda rapordan Faturalar ekranindaki inceleme akışına geçince, kontrol ipucu artık geldiği rapor bağlamını da gösteriyor.
+Örneğin operatör `Gecikmiş` raporundan geldiyse `Baglam: Rapor: Gecikmiş`, evrak kontrol içinden `PDF Kayıp` satırından geldiyse `Baglam: Rapor: Evrak Kontrol > PDF Kayıp` bilgisini görüyor.
+
+Bu bilgi `InvoiceReviewNavigator` ipucuna eklendi ve rapordan gelen navigation event'leri ile Faturalar ekranına taşınıyor.
+
+Sıradaki mantikli is: bu geçişe gerekirse aktif alt filtre veya seçili export bağlamını da ekleyip operatöre daha güçlü iz bırakmak.

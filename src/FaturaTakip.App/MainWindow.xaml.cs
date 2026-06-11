@@ -135,19 +135,19 @@ public partial class MainWindow : Window
     private void ReportsPanel_UnreviewedInvoiceReviewRequested(object? sender, Views.ReportsView.InvoiceReviewNavigationRequestEventArgs e)
     {
         ShowInvoices();
-        InvoicesPanel.StartUnreviewedReviewMode(e.PreferredInvoiceId);
+        InvoicesPanel.StartUnreviewedReviewMode(e.PreferredInvoiceId, e.ContextLabel);
     }
 
     private void ReportsPanel_OverdueInvoiceReviewRequested(object? sender, Views.ReportsView.InvoiceReviewNavigationRequestEventArgs e)
     {
         ShowInvoices();
-        InvoicesPanel.StartOverdueReviewMode(e.PreferredInvoiceId);
+        InvoicesPanel.StartOverdueReviewMode(e.PreferredInvoiceId, e.ContextLabel);
     }
 
     private void ReportsPanel_MissingPdfInvoiceReviewRequested(object? sender, Views.ReportsView.InvoiceReviewNavigationRequestEventArgs e)
     {
         ShowInvoices();
-        InvoicesPanel.StartMissingPdfReviewMode(e.PreferredInvoiceId);
+        InvoicesPanel.StartMissingPdfReviewMode(e.PreferredInvoiceId, e.ContextLabel);
     }
 
     private void ShowDashboard()

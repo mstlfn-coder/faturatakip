@@ -440,6 +440,10 @@ public sealed class SelfTestRunner
                 InvoiceReviewNavigator.BuildHint("PDF Eksik", 0, 3, includeShortcuts: true)
                     == "Kontrol modu: PDF Eksik (1/3) | Kisayollar: Ctrl+Shift+Sol/Sag, Ctrl+Shift+O, Ctrl+Shift+K",
                 "Kontrol modu kisayol ipucu beklenen metni uretmedi.");
+            Assert(
+                InvoiceReviewNavigator.BuildHint("PDF Eksik", 0, 3, includeShortcuts: false, contextLabel: "Rapor: Evrak Kontrol > PDF Kayip")
+                    == "Kontrol modu: PDF Eksik (1/3) | Baglam: Rapor: Evrak Kontrol > PDF Kayip",
+                "Kontrol modu baglam ipucu beklenen metni uretmedi.");
 
             var dashboardInvoices = new[]
             {

@@ -30,6 +30,7 @@ public partial class InvoicesView : UserControl
     private bool _isEditingExisting;
     private bool _isRefreshingFilterOptions;
     private string? _invoiceReviewModeLabel;
+    private string? _invoiceReviewContextLabel;
 
     public event EventHandler? InvoicesChanged;
 
@@ -108,7 +109,7 @@ public partial class InvoicesView : UserControl
         SetInvoiceStatus("İncelenmedi filtresi dashboard üzerinden uygulandı.", isError: false);
     }
 
-    public void StartUnreviewedReviewMode(long? preferredInvoiceId = null)
+    public void StartUnreviewedReviewMode(long? preferredInvoiceId = null, string? contextLabel = null)
     {
         if (!_isInitialized)
         {
@@ -121,10 +122,11 @@ public partial class InvoicesView : UserControl
             reviewModeLabel: "İncelenmedi İnceleme",
             applyModeFilter: () => SelectReviewStatusFilter(InvoiceReviewStatusFilter.Unreviewed),
             successMessage: "İncelenmedi inceleme akışı rapor üzerinden başlatıldı.",
-            preferredInvoiceId: preferredInvoiceId);
+            preferredInvoiceId: preferredInvoiceId,
+            contextLabel: contextLabel);
     }
 
-    public void StartOverdueReviewMode(long? preferredInvoiceId = null)
+    public void StartOverdueReviewMode(long? preferredInvoiceId = null, string? contextLabel = null)
     {
         if (!_isInitialized)
         {
@@ -137,10 +139,11 @@ public partial class InvoicesView : UserControl
             reviewModeLabel: "Gecikmiş",
             applyModeFilter: () => SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Overdue),
             successMessage: "Gecikmiş inceleme akışı rapor üzerinden başlatıldı.",
-            preferredInvoiceId: preferredInvoiceId);
+            preferredInvoiceId: preferredInvoiceId,
+            contextLabel: contextLabel);
     }
 
-    public void StartMissingPdfReviewMode(long? preferredInvoiceId = null)
+    public void StartMissingPdfReviewMode(long? preferredInvoiceId = null, string? contextLabel = null)
     {
         if (!_isInitialized)
         {
@@ -153,7 +156,8 @@ public partial class InvoicesView : UserControl
             reviewModeLabel: "PDF Eksik",
             applyModeFilter: () => SelectPdfStatusFilter(InvoicePdfStatusFilter.MissingPdf),
             successMessage: "PDF eksik inceleme akışı rapor üzerinden başlatıldı.",
-            preferredInvoiceId: preferredInvoiceId);
+            preferredInvoiceId: preferredInvoiceId,
+            contextLabel: contextLabel);
     }
 
     private void RefreshSubscriptionLists()
@@ -814,7 +818,7 @@ public partial class InvoicesView : UserControl
         {
             PreviousInvoiceButton.IsEnabled = false;
             NextInvoiceButton.IsEnabled = false;
-            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count, includeShortcuts: true);
+            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count, includeShortcuts: true, contextLabel: _invoiceReviewContextLabel);
             return;
         }
 
@@ -823,20 +827,21 @@ public partial class InvoicesView : UserControl
         {
             PreviousInvoiceButton.IsEnabled = false;
             NextInvoiceButton.IsEnabled = false;
-            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count, includeShortcuts: true);
+            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count, includeShortcuts: true, contextLabel: _invoiceReviewContextLabel);
             return;
         }
 
         PreviousInvoiceButton.IsEnabled = currentIndex > 0;
         NextInvoiceButton.IsEnabled = currentIndex < visibleInvoices.Count - 1;
-        InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, currentIndex, visibleInvoices.Count, includeShortcuts: true);
+        InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, currentIndex, visibleInvoices.Count, includeShortcuts: true, contextLabel: _invoiceReviewContextLabel);
     }
 
-    private void StartInvoiceReviewMode(string reviewModeLabel, Action applyModeFilter, string successMessage, long? preferredInvoiceId = null)
+    private void StartInvoiceReviewMode(string reviewModeLabel, Action applyModeFilter, string successMessage, long? preferredInvoiceId = null, string? contextLabel = null)
     {
         ResetQuickFilters();
         applyModeFilter();
         _invoiceReviewModeLabel = reviewModeLabel;
+        _invoiceReviewContextLabel = contextLabel;
         ApplyFiltersToGrid(selectedId: preferredInvoiceId, selectFirstIfAvailable: true);
         UpdateInvoiceReviewNavigationControls();
         SetInvoiceStatus(successMessage, isError: false);
