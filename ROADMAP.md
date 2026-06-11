@@ -714,3 +714,11 @@ Her faz bittiğinde:
 - `InvoiceReviewNavigator.BuildHint()` baglam bilgisini de ekleyebiliyor; self-test bu yeni ipucu formatini dogruluyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: aktif alt filtre veya export baglamini da ayni gecis ipucuna katmak.
+
+## Son Guncelleme (2026-06-11 / v0.94)
+
+- v0.94 tamamlandi: gecis baglami secili kayit ozetiyle genisletildi.
+- `Incelenmedi` ve `Gecikmis` raporlarinda baglam etiketi secili satirdan `Tur / Fatura No` ozetini ekliyor.
+- `Evrak Kontrol` gorunumunde baglam etiketi `IssueType / EntityType / PeriodOrDate` ozetini ekliyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: bu baglami kullanici tarafinda gorunur sekilde kopyalama veya temizleme rahatligi ile desteklemek.

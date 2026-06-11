@@ -193,3 +193,12 @@ Bu fazda rapordan Faturalar ekranindaki inceleme akışına geçince, kontrol ip
 Bu bilgi `InvoiceReviewNavigator` ipucuna eklendi ve rapordan gelen navigation event'leri ile Faturalar ekranına taşınıyor.
 
 Sıradaki mantikli is: bu geçişe gerekirse aktif alt filtre veya seçili export bağlamını da ekleyip operatöre daha güçlü iz bırakmak.
+
+## v0.94 - Kayit Ozetli Gecis Baglami
+
+Bu fazda inceleme akışına taşınan bağlam bir adım daha zenginleştirildi.
+Artık actionable raporlardan geçerken bağlam etiketi mümkünse `Tür / Fatura No`, evrak kontrol görünümünden geçerken ise `IssueType / EntityType / PeriodOrDate` özetini de içeriyor.
+
+Boylece operator Faturalar ekranina gectiginde sadece hangi rapordan geldigini degil, hangi kayit ozetinden geldigini de kontrol ipucunda gorebiliyor.
+
+Sıradaki mantikli is: bu gecis zincirine gerekirse kullanici tarafinda kapatilabilir ya da kopyalanabilir baglam yardimlari eklemek.
