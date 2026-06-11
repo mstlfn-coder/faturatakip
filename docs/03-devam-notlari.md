@@ -752,3 +752,10 @@ v0.12 sonuÃ§ notu:
 308. Smoke test: dotnet build -c Release OK.
 309. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 310. Siradaki mantikli is: inceleme durumunu rapor/export akislarina da tasiyip ust seviye takip gorunumu olusturmak.
+311. v0.89 olarak Raporlar ekranindaki actionable sekmelere `Incelenmedi` sekmesi eklendi.
+312. `ActionableInvoiceReport` icine incelenmedi liste ve kalan toplam alani eklendi; `ReportsView` bu sekmeyi grid, tile ve export basligina bagliyor.
+313. `ShowUnreviewedReport()` yardimi da eklendi; boylece ileride dashboard veya baska yonlendirmeler rapor ekranini dogrudan bu sekmeyle acabilecek.
+314. Self-test icine actionable rapor tarafinda incelenmedi sayisi ve kalan toplam dogrulamasi eklendi.
+315. Smoke test: dotnet build -c Release OK.
+316. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+317. Siradaki mantikli is: rapor ekranindaki bu incelenmedi gorunumunu Faturalar ekranindaki filtreli inceleme akisi ile cift yonlu baglamak.

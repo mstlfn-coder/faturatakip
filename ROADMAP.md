@@ -674,3 +674,11 @@ Her faz bittiğinde:
 - `DashboardSummary` ve hesaplayici katmani incelenmedi sayisini da uretir hale getirildi.
 - Self-test dashboard ozetinde incelenmedi fatura sayisini da dogruluyor.
 - Siradaki mantikli faz: inceleme durumunu rapor/export akislarina tasiyip daha ust seviye raporlama gorunumu sunmak.
+
+## Son Guncelleme (2026-06-11 / v0.89)
+
+- v0.89 tamamlandi: Raporlar ekranindaki actionable sekmelere `Incelenmedi` sekmesi eklendi.
+- Bu sekme incelenmemis kayitlari ayni rapor grid'inde listeliyor; Excel ve PDF export dosyalari da aktif sekmeye gore `unreviewed` baglamiyla uretilebiliyor.
+- `ActionableInvoiceReport` ve hesaplayici katmani incelenmedi liste + kalan toplam mantigiyla genisletildi.
+- Self-test actionable rapor ozetinde incelenmedi sayisi ve kalan toplamini da dogruluyor.
+- Siradaki mantikli faz: bu rapor sekmesini Faturalar ekranindaki filtreli inceleme moduna dogrudan gecisle cift yonlu baglamak.
