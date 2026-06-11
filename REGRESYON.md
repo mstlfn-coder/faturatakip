@@ -1133,3 +1133,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Evrak kontrol gecisi var | OK | `PDF Eksikleri İncele` dugmesi Faturalar ekranindaki PDF eksik turunu aciyor |
 | Ana pencere yonlendirmeleri var | OK | `MainWindow` rapordan gelen iki yeni istegi ilgili inceleme modlarina bagliyor |
 | 2026-06-11 | v0.91 | OK | Gecikmis + PDF eksik rapor gecisleri + build + self-test tamamlandi |
+
+## v0.92 - Secili Kayit Baglamini Tasima
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Actionable secim baglami tasiniyor | OK | `ReportRow` artik `SourceInvoiceId` tasiyor ve review gecisine ekliyor |
+| Evrak kontrol baglami tasiniyor | OK | Fatura issue satirlari `DocumentHealthRow.SourceInvoiceId` ile odakli gecis sagliyor |
+| Faturalar ekrani tercih edilen kaydi seciyor | OK | Review modu filtreyi kurduktan sonra varsa ayni kayda odaklaniyor |
+| 2026-06-11 | v0.92 | OK | Secili kayit baglami + build + self-test tamamlandi |
