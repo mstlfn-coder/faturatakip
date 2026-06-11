@@ -495,6 +495,10 @@ public partial class InvoicesView : UserControl
 
                 e.Handled = true;
                 break;
+            case Key.B:
+                ToggleInvoiceReviewContextVisibility();
+                e.Handled = true;
+                break;
         }
     }
 
@@ -852,6 +856,21 @@ public partial class InvoicesView : UserControl
             ShowContext: ShowInvoiceReviewContextCheckBox.IsChecked == true);
         TrySaveInvoiceReviewPreferences();
         UpdateInvoiceReviewNavigationControls();
+    }
+
+    private void ToggleInvoiceReviewContextVisibility()
+    {
+        if (ShowInvoiceReviewContextCheckBox is null)
+        {
+            return;
+        }
+
+        ShowInvoiceReviewContextCheckBox.IsChecked = ShowInvoiceReviewContextCheckBox.IsChecked != true;
+        SetInvoiceStatus(
+            ShowInvoiceReviewContextCheckBox.IsChecked == true
+                ? "Inceleme baglami gosteriliyor."
+                : "Inceleme baglami gizlendi.",
+            isError: false);
     }
 
     private void CopyInvoiceReviewContextButton_Click(object sender, RoutedEventArgs e)

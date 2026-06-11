@@ -1181,3 +1181,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Son secim geri yukleniyor | OK | `Bağlamı Göster` kutusu acilista kaydedilen degere gore kuruluyor |
 | Self-test tercih saklamasini dogruluyor | OK | `InvoiceReviewPreferences` load/save roundtrip eklendi |
 | 2026-06-12 | v0.96 | OK | Baglam tercihi kaliciligi + build + self-test tamamlandi |
+
+## v0.97 - Baglam Kisayolu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release tamamlandi; calisan exe nedeniyle tek seferlik kopyalama uyarisi goruldu |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Klavye ile baglam gorunurlugu degisiyor | OK | `Ctrl+Shift+B` `Bağlamı Göster` kutusunu acip kapatiyor |
+| Kontrol ipucu yeni kisayolu gosteriyor | OK | `InvoiceReviewNavigator.BuildHint()` ciktiya `Ctrl+Shift+B` eklendi |
+| 2026-06-12 | v0.97 | OK | Baglam kisayolu + build + self-test tamamlandi |

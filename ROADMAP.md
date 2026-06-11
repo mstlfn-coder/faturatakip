@@ -737,3 +737,11 @@ Her faz bittiğinde:
 - Self-test tercih dosyasi icin load/save smoke dogrulamasi da yapiyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: bu inceleme yardimlarini klavye kisayolu veya daha hizli operator aksiyonlariyla tamamlamak.
+
+## Son Guncelleme (2026-06-12 / v0.97)
+
+- v0.97 tamamlandi: inceleme turuna `Ctrl+Shift+B` ile baglam gorunurlugunu ac/kapat kisayolu eklendi.
+- `InvoiceReviewNavigator` kisayol ipucu metni yeni kombinasyonu da gosteriyor.
+- Self-test kisayol ipucu metnini yeni formatla dogruluyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: baglam kopyalama aksiyonunu da klavye rahatligiyla tamamlamak.

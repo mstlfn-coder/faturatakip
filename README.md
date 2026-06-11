@@ -225,3 +225,17 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: bu inceleme yardimlarini klavye kisayolu veya daha hizli operator aksiyonlariyla tamamlamak.
+
+## v0.97 - Baglam Kisayolu
+
+Bu fazda inceleme turuna `Ctrl+Shift+B` kisayolu eklendi.
+Kullanici artik `Bağlamı Göster` secimini fareye gitmeden klavyeden acip kapatabiliyor.
+
+Kontrol ipucundaki kisayol metni de guncellendi; boylece operator hangi kombinasyonun ne yaptigini ekrandan gorebiliyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: baglam kopyalama aksiyonunu da benzer bir klavye rahatligiyla tamamlamak.

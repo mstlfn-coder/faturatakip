@@ -803,3 +803,10 @@ v0.12 sonuÃ§ notu:
 359. Smoke test: dotnet build -c Release OK.
 360. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 361. Siradaki mantikli is: bu inceleme yardimlarini klavye kisayolu veya daha hizli operator aksiyonlariyla tamamlamak.
+362. v0.97 olarak inceleme turuna `Ctrl+Shift+B` ile baglam gorunurlugunu ac/kapat kisayolu eklendi.
+363. `InvoicesView` icinde bu kisayol `Bağlamı Göster` kutusunu tersleyip kullaniciya durum mesaji veriyor.
+364. `InvoiceReviewNavigator` kisayol ipucu metni de yeni kombinasyonu gosterecek sekilde guncellendi.
+365. Self-test icindeki kontrol modu kisayol ipucu dogrulamasi yeni metne gore guncellendi.
+366. Smoke test: dotnet build -c Release OK (calisan exe nedeniyle tek seferlik kopyalama uyarisi goruldu, build basarili tamamladi).
+367. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+368. Siradaki mantikli is: baglam kopyalama aksiyonunu da klavye rahatligiyla tamamlamak.
