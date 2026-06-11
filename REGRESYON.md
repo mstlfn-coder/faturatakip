@@ -1143,3 +1143,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Evrak kontrol baglami tasiniyor | OK | Fatura issue satirlari `DocumentHealthRow.SourceInvoiceId` ile odakli gecis sagliyor |
 | Faturalar ekrani tercih edilen kaydi seciyor | OK | Review modu filtreyi kurduktan sonra varsa ayni kayda odaklaniyor |
 | 2026-06-11 | v0.92 | OK | Secili kayit baglami + build + self-test tamamlandi |
+
+## v0.93 - Gecis Baglami Ipuclari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Gecis baglami tasiniyor | OK | Navigation event args artik `ContextLabel` da tasiyor |
+| Kontrol ipucu baglam gosteriyor | OK | `InvoiceReviewNavigator.BuildHint()` ciktiya `Baglam: ...` ekleyebiliyor |
+| Self-test ipucu dogrulamasi var | OK | Yeni baglamli kontrol ipucu string'i self-test ile dogrulaniyor |
+| 2026-06-11 | v0.93 | OK | Gecis baglami ipuclari + build + self-test tamamlandi |

@@ -706,3 +706,11 @@ Her faz bittiğinde:
 - `MainWindow` bu tercih edilen kaydi Faturalar ekranindaki ilgili review moduna aktariyor; filtreli liste icinde varsa ayni kayit seciliyor, yoksa ilk uygun kayda dusuluyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: secili rapor satirinin issue tipi veya alt filtre baglamini da UI ipucu olarak tasiyip operatora daha net yonlendirme sunmak.
+
+## Son Guncelleme (2026-06-11 / v0.93)
+
+- v0.93 tamamlandi: rapordan Faturalar ekranina geciste kontrol ipucuna `Baglam:` alani eklendi.
+- `InvoiceReviewNavigationRequestEventArgs` artik ek bir `ContextLabel` tasiyor; `ReportsView` aktif sekmeye ve secili issue tipine gore bu baglami uretiyor.
+- `InvoiceReviewNavigator.BuildHint()` baglam bilgisini de ekleyebiliyor; self-test bu yeni ipucu formatini dogruluyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: aktif alt filtre veya export baglamini da ayni gecis ipucuna katmak.

@@ -21,7 +21,7 @@ public static class InvoiceReviewNavigator
         return true;
     }
 
-    public static string BuildHint(string? reviewModeLabel, int? currentIndex, int itemCount, bool includeShortcuts = false)
+    public static string BuildHint(string? reviewModeLabel, int? currentIndex, int itemCount, bool includeShortcuts = false, string? contextLabel = null)
     {
         var prefix = string.IsNullOrWhiteSpace(reviewModeLabel)
             ? "Kontrol sirasi"
@@ -29,15 +29,22 @@ public static class InvoiceReviewNavigator
 
         if (itemCount <= 0)
         {
-            return AppendShortcuts($"{prefix} - gorunur liste bos.", includeShortcuts);
+            return AppendShortcuts(AppendContext($"{prefix} - gorunur liste bos.", contextLabel), includeShortcuts);
         }
 
         if (currentIndex is null || currentIndex < 0 || currentIndex >= itemCount)
         {
-            return AppendShortcuts($"{prefix} - once bir kayit secin.", includeShortcuts);
+            return AppendShortcuts(AppendContext($"{prefix} - once bir kayit secin.", contextLabel), includeShortcuts);
         }
 
-        return AppendShortcuts($"{prefix} ({currentIndex.Value + 1}/{itemCount})", includeShortcuts);
+        return AppendShortcuts(AppendContext($"{prefix} ({currentIndex.Value + 1}/{itemCount})", contextLabel), includeShortcuts);
+    }
+
+    private static string AppendContext(string baseText, string? contextLabel)
+    {
+        return string.IsNullOrWhiteSpace(contextLabel)
+            ? baseText
+            : $"{baseText} | Baglam: {contextLabel}";
     }
 
     private static string AppendShortcuts(string baseText, bool includeShortcuts)

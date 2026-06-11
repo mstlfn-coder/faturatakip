@@ -778,3 +778,10 @@ v0.12 sonuÃ§ notu:
 334. Smoke test: dotnet build -c Release OK.
 335. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 336. Siradaki mantikli is: secili issue tipi veya rapor alt filtresi gibi daha zengin operator baglamlarini da gecis ipucuna eklemek.
+337. v0.93 olarak rapordan gelen gecis istegine `ContextLabel` bilgisi eklendi.
+338. `ReportsView` bu etiketi aktif sekmeye gore uretiyor; evrak kontrolde secili satirin issue tipi varsa `Rapor: Evrak Kontrol > ...` seklinde detaylandiriyor.
+339. `InvoiceReviewNavigator` artik kontrol ipucuna `Baglam: ...` alanini da ekleyebiliyor; Faturalar ekraninda operator neden o akisa geldigini kaybetmiyor.
+340. Self-test icine yeni baglamli kontrol ipucu dogrulamasi eklendi.
+341. Smoke test: dotnet build -c Release OK.
+342. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+343. Siradaki mantikli is: aktif alt filtre veya secili export baglamini da bu ipucu zincirine katmak.

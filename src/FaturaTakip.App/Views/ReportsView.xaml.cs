@@ -236,17 +236,18 @@ public partial class ReportsView : UserControl
     private void OpenActionableReviewButton_Click(object sender, RoutedEventArgs e)
     {
         var preferredInvoiceId = GetPreferredInvoiceIdForCurrentReviewAction();
+        var contextLabel = GetReviewContextLabelForCurrentAction();
 
         switch (_activeTab)
         {
             case ReportTab.Unreviewed:
-                UnreviewedInvoiceReviewRequested?.Invoke(this, new InvoiceReviewNavigationRequestEventArgs(preferredInvoiceId));
+                UnreviewedInvoiceReviewRequested?.Invoke(this, new InvoiceReviewNavigationRequestEventArgs(preferredInvoiceId, contextLabel));
                 return;
             case ReportTab.Overdue:
-                OverdueInvoiceReviewRequested?.Invoke(this, new InvoiceReviewNavigationRequestEventArgs(preferredInvoiceId));
+                OverdueInvoiceReviewRequested?.Invoke(this, new InvoiceReviewNavigationRequestEventArgs(preferredInvoiceId, contextLabel));
                 return;
             case ReportTab.DocumentHealth:
-                MissingPdfInvoiceReviewRequested?.Invoke(this, new InvoiceReviewNavigationRequestEventArgs(preferredInvoiceId));
+                MissingPdfInvoiceReviewRequested?.Invoke(this, new InvoiceReviewNavigationRequestEventArgs(preferredInvoiceId, contextLabel));
                 return;
             default:
                 SetPdfHint("Bu geçiş aktif sekmede kullanılamaz.");
@@ -2079,6 +2080,27 @@ public partial class ReportsView : UserControl
         };
     }
 
+    private string GetReviewContextLabelForCurrentAction()
+    {
+        return _activeTab switch
+        {
+            ReportTab.Unreviewed => "Rapor: İncelenmedi",
+            ReportTab.Overdue => "Rapor: Gecikmiş",
+            ReportTab.DocumentHealth => BuildDocumentHealthContextLabel(),
+            _ => "Rapor",
+        };
+    }
+
+    private string BuildDocumentHealthContextLabel()
+    {
+        if (DocumentHealthGrid.SelectedItem is not DocumentHealthRow row)
+        {
+            return "Rapor: Evrak Kontrol";
+        }
+
+        return $"Rapor: Evrak Kontrol > {row.IssueType}";
+    }
+
     private void ApplyMonthlyTiles()
     {
         Tile1LabelText.Text = "Toplam Fatura";
@@ -3217,9 +3239,10 @@ public partial class ReportsView : UserControl
         string PdfSha256Hash,
         string Note);
 
-    public sealed class InvoiceReviewNavigationRequestEventArgs(long? preferredInvoiceId) : EventArgs
+    public sealed class InvoiceReviewNavigationRequestEventArgs(long? preferredInvoiceId, string? contextLabel) : EventArgs
     {
         public long? PreferredInvoiceId { get; } = preferredInvoiceId;
+        public string? ContextLabel { get; } = contextLabel;
     }
 
     private sealed record AuditLogRow(
