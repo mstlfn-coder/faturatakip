@@ -566,6 +566,8 @@ public sealed class SelfTestRunner
             Assert(report.UnpaidRemainingTotal == 335m, "Rapor odenmemis kalan toplami hatali.");
             Assert(report.Overdue.Count == 1, "Rapor gecikmis sayisi hatali.");
             Assert(report.OverdueRemainingTotal == 75m, "Rapor gecikmis kalan toplami hatali.");
+            Assert(report.Unreviewed.Count == 4, "Rapor incelenmedi sayisi hatali.");
+            Assert(report.UnreviewedRemainingTotal == 335m, "Rapor incelenmedi kalan toplami hatali.");
             Assert(report.Upcoming.Count == 1, "Rapor yaklasan sayisi hatali.");
             Assert(report.UpcomingRemainingTotal == 200m, "Rapor yaklasan kalan toplami hatali.");
 

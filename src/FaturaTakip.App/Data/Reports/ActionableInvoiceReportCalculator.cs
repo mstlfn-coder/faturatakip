@@ -22,6 +22,10 @@ public static class ActionableInvoiceReportCalculator
             .Where(item => item.DueDate.Date < todayDate)
             .ToList();
 
+        var unreviewed = invoiceList
+            .Where(item => item.ReviewedAt is null && string.IsNullOrWhiteSpace(item.ReviewNote))
+            .ToList();
+
         var upcoming = unpaid
             .Where(item => item.DueDate.Date >= todayDate && item.DueDate.Date <= upcomingEnd)
             .ToList();
@@ -38,6 +42,7 @@ public static class ActionableInvoiceReportCalculator
 
         var unpaidRows = Map(unpaid);
         var overdueRows = Map(overdue);
+        var unreviewedRows = Map(unreviewed);
         var upcomingRows = Map(upcoming);
 
         return new ActionableInvoiceReport(
@@ -45,6 +50,8 @@ public static class ActionableInvoiceReportCalculator
             unpaidRows.Sum(item => item.Invoice.RemainingAmount),
             overdueRows,
             overdueRows.Sum(item => item.Invoice.RemainingAmount),
+            unreviewedRows,
+            unreviewedRows.Sum(item => item.Invoice.RemainingAmount),
             upcomingRows,
             upcomingRows.Sum(item => item.Invoice.RemainingAmount));
     }

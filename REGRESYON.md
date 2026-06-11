@@ -1102,3 +1102,14 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Dashboard summary sayimi var | OK | `DashboardSummary` icine `UnreviewedInvoiceCount` alani eklendi |
 | Dashboard self-test dogrulamasi var | OK | Self-test dashboard ozetinde incelenmedi sayisini kontrol ediyor |
 | 2026-06-11 | v0.88 | OK | Dashboard incelenmedi kisayolu + build + self-test tamamlandi |
+
+## v0.89 - Raporlarda Incelenmedi Sekmesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rapor sekmesi var | OK | Actionable raporlara `Incelenmedi` sekmesi eklendi |
+| Export basligi var | OK | Excel/PDF export aktif sekmede `İNCELENMEDİ FATURALAR RAPORU` basligini kullaniyor |
+| Rapor sayimi genislendi | OK | `ActionableInvoiceReport` icine `Unreviewed` liste ve kalan toplam alani eklendi |
+| Self-test rapor dogrulamasi var | OK | Actionable rapor self-test'i incelenmedi sayisi ve kalan toplamini kontrol ediyor |
+| 2026-06-11 | v0.89 | OK | Raporlarda incelenmedi sekmesi + build + self-test tamamlandi |

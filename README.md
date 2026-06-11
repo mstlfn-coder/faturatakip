@@ -148,3 +148,12 @@ Kart, inceleme notu olmayan kayit sayisini gosteriyor ve `Faturalara Git` dugmes
 Dashboard ozet hesabina incelenmedi sayisi eklendi; self-test de bu yeni sayimi dogruluyor.
 
 Sıradaki mantikli is: ayni inceleme durumunu rapor akislarina da tasiyip export veya rapor tarafinda yonetsel takip gorunumu sunmak.
+
+## v0.89 - Raporlarda Incelenmedi Sekmesi
+
+Bu fazda Raporlar ekranindaki actionable sekmelere `Incelenmedi` sekmesi eklendi.
+Boylece operator veya yonetici, inceleme notu birakilmamis kayitlari rapor ekranindan da listeleyebiliyor; ayni ekranin Excel ve PDF export akislari da bu sekmeyi destekliyor.
+
+Actionable rapor hesaplamasi `Unreviewed` kumesini ve kalan tutar toplamini uretir hale getirildi; self-test de bu yeni rapor sayimini dogruluyor.
+
+Sıradaki mantikli is: bu inceleme raporunu dashboard veya rapor ekranindan Faturalar ekranindaki filtreli inceleme akisi ile cift yonlu baglamak.

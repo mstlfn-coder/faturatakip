@@ -176,6 +176,17 @@ public partial class ReportsView : UserControl
         ApplyTab(ReportTab.Overdue);
     }
 
+    public void ShowUnreviewedReport()
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        Refresh();
+        ApplyTab(ReportTab.Unreviewed);
+    }
+
     public void ShowMonthlyReport()
     {
         if (!_isInitialized)
@@ -211,6 +222,11 @@ public partial class ReportsView : UserControl
     private void UpcomingTabButton_Click(object sender, RoutedEventArgs e)
     {
         ApplyTab(ReportTab.Upcoming);
+    }
+
+    private void UnreviewedTabButton_Click(object sender, RoutedEventArgs e)
+    {
+        ApplyTab(ReportTab.Unreviewed);
     }
 
     private void MonthlyTabButton_Click(object sender, RoutedEventArgs e)
@@ -909,6 +925,7 @@ public partial class ReportsView : UserControl
         {
             ReportTab.Unpaid => "ÖDENMEMİŞ FATURALAR RAPORU",
             ReportTab.Overdue => "GECİKMİŞ FATURALAR RAPORU",
+            ReportTab.Unreviewed => "İNCELENMEDİ FATURALAR RAPORU",
             ReportTab.Upcoming => "YAKLAŞAN ÖDEMELER RAPORU",
             ReportTab.Monthly => "AYLIK FATURA RAPORU",
             ReportTab.YearlyAll => "YILLIK FATURA RAPORU",
@@ -1575,6 +1592,7 @@ public partial class ReportsView : UserControl
         var actionableItems = _activeTab switch
         {
             ReportTab.Overdue => _report.Overdue,
+            ReportTab.Unreviewed => _report.Unreviewed,
             ReportTab.Upcoming => _report.Upcoming,
             _ => _report.Unpaid,
         };
@@ -1783,6 +1801,7 @@ public partial class ReportsView : UserControl
         SetTabActive(UnpaidTabButton, tab == ReportTab.Unpaid);
         SetTabActive(OverdueTabButton, tab == ReportTab.Overdue);
         SetTabActive(UpcomingTabButton, tab == ReportTab.Upcoming);
+        SetTabActive(UnreviewedTabButton, tab == ReportTab.Unreviewed);
         SetTabActive(MonthlyTabButton, tab == ReportTab.Monthly);
         SetTabActive(YearlyTabButton, tab == ReportTab.YearlyAll);
         SetTabActive(SubscriptionTabButton, tab == ReportTab.Subscription);
@@ -1805,6 +1824,7 @@ public partial class ReportsView : UserControl
         var items = tab switch
         {
             ReportTab.Overdue => _report.Overdue,
+            ReportTab.Unreviewed => _report.Unreviewed,
             ReportTab.Upcoming => _report.Upcoming,
             ReportTab.Monthly => Array.Empty<ActionableInvoice>(),
             ReportTab.YearlyAll => Array.Empty<ActionableInvoice>(),
@@ -1976,9 +1996,18 @@ public partial class ReportsView : UserControl
         Tile2ValueText.Text = _report.Overdue.Count.ToString(CultureInfo.InvariantCulture);
         Tile2DetailText.Text = $"Kalan {FormatMoney(_report.OverdueRemainingTotal)}";
 
-        Tile3LabelText.Text = "Yaklaşan (7 gün)";
-        Tile3ValueText.Text = _report.Upcoming.Count.ToString(CultureInfo.InvariantCulture);
-        Tile3DetailText.Text = $"Kalan {FormatMoney(_report.UpcomingRemainingTotal)}";
+        if (_activeTab == ReportTab.Unreviewed)
+        {
+            Tile3LabelText.Text = "İncelenmedi";
+            Tile3ValueText.Text = _report.Unreviewed.Count.ToString(CultureInfo.InvariantCulture);
+            Tile3DetailText.Text = $"Kalan {FormatMoney(_report.UnreviewedRemainingTotal)}";
+        }
+        else
+        {
+            Tile3LabelText.Text = "Yaklaşan (7 gün)";
+            Tile3ValueText.Text = _report.Upcoming.Count.ToString(CultureInfo.InvariantCulture);
+            Tile3DetailText.Text = $"Kalan {FormatMoney(_report.UpcomingRemainingTotal)}";
+        }
 
         MonthlyFilterHintText.Text = string.Empty;
     }
@@ -3047,6 +3076,7 @@ public partial class ReportsView : UserControl
     {
         Unpaid,
         Overdue,
+        Unreviewed,
         Upcoming,
         Monthly,
         YearlyAll,

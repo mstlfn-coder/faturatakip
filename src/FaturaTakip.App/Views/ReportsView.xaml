@@ -116,6 +116,11 @@
                         Style="{StaticResource SecondaryButton}"
                         Margin="0,0,8,0"
                         Click="UpcomingTabButton_Click" />
+                <Button x:Name="UnreviewedTabButton"
+                        Content="İncelenmedi"
+                        Style="{StaticResource SecondaryButton}"
+                        Margin="0,0,8,0"
+                        Click="UnreviewedTabButton_Click" />
                 <Button x:Name="MonthlyTabButton"
                         Content="Aylık Liste"
                         Style="{StaticResource SecondaryButton}"
