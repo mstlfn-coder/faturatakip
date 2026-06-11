@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -814,11 +815,15 @@ public partial class InvoicesView : UserControl
     private void UpdateInvoiceReviewNavigationControls()
     {
         var visibleInvoices = GetVisibleInvoices();
+        var contextLabel = ShowInvoiceReviewContextCheckBox?.IsChecked == true
+            ? _invoiceReviewContextLabel
+            : null;
+
         if (_selectedInvoice is null || visibleInvoices.Count == 0)
         {
             PreviousInvoiceButton.IsEnabled = false;
             NextInvoiceButton.IsEnabled = false;
-            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count, includeShortcuts: true, contextLabel: _invoiceReviewContextLabel);
+            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count, includeShortcuts: true, contextLabel: contextLabel);
             return;
         }
 
@@ -827,13 +832,37 @@ public partial class InvoicesView : UserControl
         {
             PreviousInvoiceButton.IsEnabled = false;
             NextInvoiceButton.IsEnabled = false;
-            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count, includeShortcuts: true, contextLabel: _invoiceReviewContextLabel);
+            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count, includeShortcuts: true, contextLabel: contextLabel);
             return;
         }
 
         PreviousInvoiceButton.IsEnabled = currentIndex > 0;
         NextInvoiceButton.IsEnabled = currentIndex < visibleInvoices.Count - 1;
-        InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, currentIndex, visibleInvoices.Count, includeShortcuts: true, contextLabel: _invoiceReviewContextLabel);
+        InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, currentIndex, visibleInvoices.Count, includeShortcuts: true, contextLabel: contextLabel);
+    }
+
+    private void ShowInvoiceReviewContextCheckBox_Changed(object sender, RoutedEventArgs e)
+    {
+        UpdateInvoiceReviewNavigationControls();
+    }
+
+    private void CopyInvoiceReviewContextButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(_invoiceReviewContextLabel))
+        {
+            SetInvoiceStatus("Kopyalanacak baglam bilgisi yok.", isError: true);
+            return;
+        }
+
+        try
+        {
+            Clipboard.SetText(_invoiceReviewContextLabel);
+            SetInvoiceStatus("Inceleme baglami panoya kopyalandi.", isError: false);
+        }
+        catch (Exception exception) when (exception is ExternalException or InvalidOperationException)
+        {
+            SetInvoiceStatus($"Baglam panoya kopyalanamadi: {exception.Message}", isError: true);
+        }
     }
 
     private void StartInvoiceReviewMode(string reviewModeLabel, Action applyModeFilter, string successMessage, long? preferredInvoiceId = null, string? contextLabel = null)

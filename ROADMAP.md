@@ -722,3 +722,10 @@ Her faz bittiğinde:
 - `Evrak Kontrol` gorunumunde baglam etiketi `IssueType / EntityType / PeriodOrDate` ozetini ekliyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: bu baglami kullanici tarafinda gorunur sekilde kopyalama veya temizleme rahatligi ile desteklemek.
+
+## Son Guncelleme (2026-06-12 / v0.95)
+
+- v0.95 tamamlandi: inceleme ipucuna `Bağlamı Göster` ve `Bağlamı Kopyala` rahatliklari eklendi.
+- Baglam gorunurlugu operator tarafinda anlik olarak sadeleştirilebiliyor; kopyalama aksiyonu mevcut context label'ı panoya tasiyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: bu yardimlari kalici kullanici tercihlerine baglamak veya kisayolla desteklemek.

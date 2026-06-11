@@ -202,3 +202,12 @@ Artık actionable raporlardan geçerken bağlam etiketi mümkünse `Tür / Fatur
 Boylece operator Faturalar ekranina gectiginde sadece hangi rapordan geldigini degil, hangi kayit ozetinden geldigini de kontrol ipucunda gorebiliyor.
 
 Sıradaki mantikli is: bu gecis zincirine gerekirse kullanici tarafinda kapatilabilir ya da kopyalanabilir baglam yardimlari eklemek.
+
+## v0.95 - Baglami Kopyala ve Gizle
+
+Bu fazda Faturalar ekranindaki inceleme ipucuna iki minik operator rahatligi eklendi.
+Kullanici isterse `Bağlamı Göster` kutusuyla gecis baglamini ipucundan gecici olarak gizleyebiliyor; isterse `Bağlamı Kopyala` dugmesiyle mevcut baglami panoya alabiliyor.
+
+Boylece uzun inceleme turlarinda ipucu alani sade tutulabiliyor ve gerekince baglam metni baska yere kolayca tasinabiliyor.
+
+Sıradaki mantikli is: bu inceleme yardimlarini istenirse kalici kullanici tercihlerine baglamak.

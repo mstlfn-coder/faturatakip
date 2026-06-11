@@ -1162,3 +1162,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Actionable baglam ozeti var | OK | `Rapor: ... > Tur / FaturaNo` ozeti secili satirdan uretiliyor |
 | Evrak kontrol baglam ozeti var | OK | `IssueType / EntityType / PeriodOrDate` ozeti secili satirdan uretiliyor |
 | 2026-06-11 | v0.94 | OK | Kayit ozetli gecis baglami + build + self-test tamamlandi |
+
+## v0.95 - Baglami Kopyala ve Gizle
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baglam gorunurluk kontrolu var | OK | `Bağlamı Göster` kutusu ipucudaki baglam alanini acip kapatabiliyor |
+| Baglam kopyalama aksiyonu var | OK | `Bağlamı Kopyala` dugmesi mevcut context label'i panoya yaziyor |
+| 2026-06-12 | v0.95 | OK | Baglami kopyala/gizle + build + self-test tamamlandi |
