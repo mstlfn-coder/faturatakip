@@ -132,22 +132,22 @@ public partial class MainWindow : Window
         ShowInvoices();
     }
 
-    private void ReportsPanel_UnreviewedInvoiceReviewRequested(object? sender, EventArgs e)
+    private void ReportsPanel_UnreviewedInvoiceReviewRequested(object? sender, Views.ReportsView.InvoiceReviewNavigationRequestEventArgs e)
     {
         ShowInvoices();
-        InvoicesPanel.StartUnreviewedReviewMode();
+        InvoicesPanel.StartUnreviewedReviewMode(e.PreferredInvoiceId);
     }
 
-    private void ReportsPanel_OverdueInvoiceReviewRequested(object? sender, EventArgs e)
+    private void ReportsPanel_OverdueInvoiceReviewRequested(object? sender, Views.ReportsView.InvoiceReviewNavigationRequestEventArgs e)
     {
         ShowInvoices();
-        InvoicesPanel.StartOverdueReviewMode();
+        InvoicesPanel.StartOverdueReviewMode(e.PreferredInvoiceId);
     }
 
-    private void ReportsPanel_MissingPdfInvoiceReviewRequested(object? sender, EventArgs e)
+    private void ReportsPanel_MissingPdfInvoiceReviewRequested(object? sender, Views.ReportsView.InvoiceReviewNavigationRequestEventArgs e)
     {
         ShowInvoices();
-        InvoicesPanel.StartMissingPdfReviewMode();
+        InvoicesPanel.StartMissingPdfReviewMode(e.PreferredInvoiceId);
     }
 
     private void ShowDashboard()

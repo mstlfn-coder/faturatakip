@@ -698,3 +698,11 @@ Her faz bittiğinde:
 - `MainWindow` bu istekleri Faturalar ekranindaki `StartOverdueReviewMode()` ve `StartMissingPdfReviewMode()` akislarina bagliyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: rapordan inceleme akisina geciste secili satir veya alt issue baglamini da koruyan daha hedefli yonlendirmeler dusunmek.
+
+## Son Guncelleme (2026-06-11 / v0.92)
+
+- v0.92 tamamlandi: rapordan inceleme akisina geciste secili kaydin `invoice id` baglami da tasiniyor.
+- Actionable raporlardaki secili satir `ReportRow.SourceInvoiceId` ile, evrak kontrol satirlari ise uygunsa `DocumentHealthRow.SourceInvoiceId` ile gecis istegine ekleniyor.
+- `MainWindow` bu tercih edilen kaydi Faturalar ekranindaki ilgili review moduna aktariyor; filtreli liste icinde varsa ayni kayit seciliyor, yoksa ilk uygun kayda dusuluyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: secili rapor satirinin issue tipi veya alt filtre baglamini da UI ipucu olarak tasiyip operatora daha net yonlendirme sunmak.

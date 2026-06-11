@@ -108,7 +108,7 @@ public partial class InvoicesView : UserControl
         SetInvoiceStatus("İncelenmedi filtresi dashboard üzerinden uygulandı.", isError: false);
     }
 
-    public void StartUnreviewedReviewMode()
+    public void StartUnreviewedReviewMode(long? preferredInvoiceId = null)
     {
         if (!_isInitialized)
         {
@@ -120,10 +120,11 @@ public partial class InvoicesView : UserControl
         StartInvoiceReviewMode(
             reviewModeLabel: "İncelenmedi İnceleme",
             applyModeFilter: () => SelectReviewStatusFilter(InvoiceReviewStatusFilter.Unreviewed),
-            successMessage: "İncelenmedi inceleme akışı rapor üzerinden başlatıldı.");
+            successMessage: "İncelenmedi inceleme akışı rapor üzerinden başlatıldı.",
+            preferredInvoiceId: preferredInvoiceId);
     }
 
-    public void StartOverdueReviewMode()
+    public void StartOverdueReviewMode(long? preferredInvoiceId = null)
     {
         if (!_isInitialized)
         {
@@ -135,10 +136,11 @@ public partial class InvoicesView : UserControl
         StartInvoiceReviewMode(
             reviewModeLabel: "Gecikmiş",
             applyModeFilter: () => SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Overdue),
-            successMessage: "Gecikmiş inceleme akışı rapor üzerinden başlatıldı.");
+            successMessage: "Gecikmiş inceleme akışı rapor üzerinden başlatıldı.",
+            preferredInvoiceId: preferredInvoiceId);
     }
 
-    public void StartMissingPdfReviewMode()
+    public void StartMissingPdfReviewMode(long? preferredInvoiceId = null)
     {
         if (!_isInitialized)
         {
@@ -150,7 +152,8 @@ public partial class InvoicesView : UserControl
         StartInvoiceReviewMode(
             reviewModeLabel: "PDF Eksik",
             applyModeFilter: () => SelectPdfStatusFilter(InvoicePdfStatusFilter.MissingPdf),
-            successMessage: "PDF eksik inceleme akışı rapor üzerinden başlatıldı.");
+            successMessage: "PDF eksik inceleme akışı rapor üzerinden başlatıldı.",
+            preferredInvoiceId: preferredInvoiceId);
     }
 
     private void RefreshSubscriptionLists()
@@ -829,12 +832,12 @@ public partial class InvoicesView : UserControl
         InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, currentIndex, visibleInvoices.Count, includeShortcuts: true);
     }
 
-    private void StartInvoiceReviewMode(string reviewModeLabel, Action applyModeFilter, string successMessage)
+    private void StartInvoiceReviewMode(string reviewModeLabel, Action applyModeFilter, string successMessage, long? preferredInvoiceId = null)
     {
         ResetQuickFilters();
         applyModeFilter();
         _invoiceReviewModeLabel = reviewModeLabel;
-        ApplyFiltersToGrid(selectFirstIfAvailable: true);
+        ApplyFiltersToGrid(selectedId: preferredInvoiceId, selectFirstIfAvailable: true);
         UpdateInvoiceReviewNavigationControls();
         SetInvoiceStatus(successMessage, isError: false);
     }

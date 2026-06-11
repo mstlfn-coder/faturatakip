@@ -175,3 +175,12 @@ Artik `Gecikmis` raporu ile `Evrak Kontrol` gorunumu de Faturalar ekranindaki il
 `ReportsView` aktif sekmeye gore dogru gecis istegini iletiyor; `MainWindow` da bunu Faturalar ekranindaki `Gecikmis` veya `PDF Eksik` inceleme turlarina bagliyor.
 
 Sıradaki mantikli is: bu akislari gerekirse secili satir veya alt kategori baglamini da koruyacak daha hedefli yonlendirmelerle zenginlestirmek.
+
+## v0.92 - Secili Kayit Baglamini Tasima
+
+Bu fazda rapordan Faturalar ekranindaki inceleme akisina geciste secili satirin baglami da tasinmaya baslandi.
+Actionable raporlarda secili fatura varsa ayni `invoice id` inceleme turuna aktariliyor; Faturalar ekrani filtreyi kurduktan sonra dogrudan o kayda odaklanmaya calisiyor.
+
+Evrak Kontrol gorunumunde de secili satir bir fatura issue'su ise ayni baglam korunuyor; odeme issue'larinda uygun bir fatura kimligi olmadiginda akış ilk uygun kayittan devam ediyor.
+
+Sıradaki mantikli is: bu baglami secili export, issue tipi veya rapor alt filtresi gibi daha zengin operator ipuclariyla bir adim daha detaylandirmak.

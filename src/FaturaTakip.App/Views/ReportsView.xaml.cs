@@ -22,9 +22,9 @@ namespace FaturaTakip.App.Views;
 public partial class ReportsView : UserControl
 {
     private static readonly CultureInfo TurkishCulture = CultureInfo.GetCultureInfo("tr-TR");
-    public event EventHandler? UnreviewedInvoiceReviewRequested;
-    public event EventHandler? OverdueInvoiceReviewRequested;
-    public event EventHandler? MissingPdfInvoiceReviewRequested;
+    public event EventHandler<InvoiceReviewNavigationRequestEventArgs>? UnreviewedInvoiceReviewRequested;
+    public event EventHandler<InvoiceReviewNavigationRequestEventArgs>? OverdueInvoiceReviewRequested;
+    public event EventHandler<InvoiceReviewNavigationRequestEventArgs>? MissingPdfInvoiceReviewRequested;
 
     private InvoiceRepository? _invoiceRepository;
     private PaymentRepository? _paymentRepository;
@@ -235,16 +235,18 @@ public partial class ReportsView : UserControl
 
     private void OpenActionableReviewButton_Click(object sender, RoutedEventArgs e)
     {
+        var preferredInvoiceId = GetPreferredInvoiceIdForCurrentReviewAction();
+
         switch (_activeTab)
         {
             case ReportTab.Unreviewed:
-                UnreviewedInvoiceReviewRequested?.Invoke(this, EventArgs.Empty);
+                UnreviewedInvoiceReviewRequested?.Invoke(this, new InvoiceReviewNavigationRequestEventArgs(preferredInvoiceId));
                 return;
             case ReportTab.Overdue:
-                OverdueInvoiceReviewRequested?.Invoke(this, EventArgs.Empty);
+                OverdueInvoiceReviewRequested?.Invoke(this, new InvoiceReviewNavigationRequestEventArgs(preferredInvoiceId));
                 return;
             case ReportTab.DocumentHealth:
-                MissingPdfInvoiceReviewRequested?.Invoke(this, EventArgs.Empty);
+                MissingPdfInvoiceReviewRequested?.Invoke(this, new InvoiceReviewNavigationRequestEventArgs(preferredInvoiceId));
                 return;
             default:
                 SetPdfHint("Bu geçiş aktif sekmede kullanılamaz.");
@@ -2067,6 +2069,16 @@ public partial class ReportsView : UserControl
         }
     }
 
+    private long? GetPreferredInvoiceIdForCurrentReviewAction()
+    {
+        return _activeTab switch
+        {
+            ReportTab.Unreviewed or ReportTab.Overdue => (ReportGrid.SelectedItem as ReportRow)?.SourceInvoiceId,
+            ReportTab.DocumentHealth => (DocumentHealthGrid.SelectedItem as DocumentHealthRow)?.SourceInvoiceId,
+            _ => null,
+        };
+    }
+
     private void ApplyMonthlyTiles()
     {
         Tile1LabelText.Text = "Toplam Fatura";
@@ -2496,6 +2508,7 @@ public partial class ReportsView : UserControl
     {
         var statusText = invoice.Invoice.State;
         return new ReportRow(
+            invoice.Invoice.Id,
             invoice.Invoice.Period,
             invoice.Invoice.InvoiceTypeName,
             invoice.Invoice.SubscriptionName,
@@ -2513,6 +2526,7 @@ public partial class ReportsView : UserControl
     {
         var invoice = row.Invoice;
         return new ReportRow(
+            invoice.Id,
             invoice.Period,
             invoice.InvoiceTypeName,
             invoice.SubscriptionName,
@@ -2554,6 +2568,7 @@ public partial class ReportsView : UserControl
     private static DocumentHealthRow ToDocumentHealthRow(DocumentHealthIssue issue)
     {
         return new DocumentHealthRow(
+            issue.EntityType == "Fatura" ? issue.EntityId : null,
             issue.IssueType,
             issue.EntityType,
             issue.PeriodOrDate,
@@ -3144,6 +3159,7 @@ public partial class ReportsView : UserControl
     }
 
     private sealed record ReportRow(
+        long SourceInvoiceId,
         string Period,
         string InvoiceTypeName,
         string SubscriptionName,
@@ -3188,6 +3204,7 @@ public partial class ReportsView : UserControl
         string MissingPdfCountText);
 
     private sealed record DocumentHealthRow(
+        long? SourceInvoiceId,
         string IssueType,
         string EntityType,
         string PeriodOrDate,
@@ -3199,6 +3216,11 @@ public partial class ReportsView : UserControl
         string PdfFilePath,
         string PdfSha256Hash,
         string Note);
+
+    public sealed class InvoiceReviewNavigationRequestEventArgs(long? preferredInvoiceId) : EventArgs
+    {
+        public long? PreferredInvoiceId { get; } = preferredInvoiceId;
+    }
 
     private sealed record AuditLogRow(
         AuditLog Source,

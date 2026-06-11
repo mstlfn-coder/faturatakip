@@ -772,3 +772,9 @@ v0.12 sonuÃ§ notu:
 328. Smoke test: dotnet build -c Release OK.
 329. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 330. Siradaki mantikli is: rapordan inceleme akisina geciste secili satir veya issue baglamini da koruyacak daha hedefli yonlendirmeler dusunmek.
+331. v0.92 olarak rapordan inceleme akisina geciste secili kaydin `invoice id` baglami da tasinmaya baslandi.
+332. `ReportRow` ve `DocumentHealthRow` kaynak fatura kimligini tasiyor; review gecis dugmesi aktif sekmeye gore bu kimligi event args icine koyuyor.
+333. `MainWindow` tercih edilen kaydi `InvoicesView` review moduna iletiyor; filtreli listede varsa ayni kayit seciliyor, yoksa ilk uygun kayitla akış devam ediyor.
+334. Smoke test: dotnet build -c Release OK.
+335. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+336. Siradaki mantikli is: secili issue tipi veya rapor alt filtresi gibi daha zengin operator baglamlarini da gecis ipucuna eklemek.
