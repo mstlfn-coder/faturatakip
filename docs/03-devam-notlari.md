@@ -791,3 +791,8 @@ v0.12 sonuÃ§ notu:
 347. Smoke test: dotnet build -c Release OK.
 348. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 349. Siradaki mantikli is: bu baglami kopyalama ya da gorunurluk tercihi gibi minik operator rahatliklariyla tamamlamak.
+350. v0.95 olarak inceleme ipucuna `Bağlamı Göster` kutusu ve `Bağlamı Kopyala` dugmesi eklendi.
+351. Baglam gorunurlugu artik operator tarafinda anlik sadeleştirilebiliyor; kopyalama aksiyonu mevcut context label'i panoya tasiyor.
+352. Smoke test: dotnet build -c Release OK.
+353. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+354. Siradaki mantikli is: bu yardimlari kalici tercih veya klavye rahatligi ile tamamlamak.
