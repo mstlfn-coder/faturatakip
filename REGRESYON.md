@@ -1190,3 +1190,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Klavye ile baglam gorunurlugu degisiyor | OK | `Ctrl+Shift+B` `Bağlamı Göster` kutusunu acip kapatiyor |
 | Kontrol ipucu yeni kisayolu gosteriyor | OK | `InvoiceReviewNavigator.BuildHint()` ciktiya `Ctrl+Shift+B` eklendi |
 | 2026-06-12 | v0.97 | OK | Baglam kisayolu + build + self-test tamamlandi |
+
+## v0.98 - Baglami Kopyalama Kisayolu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release tamamlandi; calisan exe nedeniyle tek seferlik kopyalama uyarisi goruldu |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Klavye ile baglam kopyalanabiliyor | OK | `Ctrl+Shift+C` mevcut baglami panoya kopyaliyor |
+| Buton ve klavye ayni akisi kullaniyor | OK | Kopyalama davranisi tek yardimci metoda tasindi |
+| Kontrol ipucu yeni kisayolu gosteriyor | OK | `InvoiceReviewNavigator.BuildHint()` ciktiya `Ctrl+Shift+C` eklendi |
+| 2026-06-12 | v0.98 | OK | Baglam kopyalama kisayolu + build + self-test tamamlandi |

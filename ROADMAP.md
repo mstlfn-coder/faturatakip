@@ -745,3 +745,11 @@ Her faz bittiğinde:
 - Self-test kisayol ipucu metnini yeni formatla dogruluyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: baglam kopyalama aksiyonunu da klavye rahatligiyla tamamlamak.
+
+## Son Guncelleme (2026-06-12 / v0.98)
+
+- v0.98 tamamlandi: inceleme turuna `Ctrl+Shift+C` ile baglami panoya kopyalama kisayolu eklendi.
+- Buton ve klavye ayni kopyalama yordamını kullaniyor.
+- `InvoiceReviewNavigator` kisayol ipucu metni yeni kombinasyonu da gosteriyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: inceleme baglami yardimlarini rapordan gelen operator gecislerinde daha gorunur hale getirmek.

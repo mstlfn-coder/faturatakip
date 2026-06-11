@@ -810,3 +810,10 @@ v0.12 sonuÃ§ notu:
 366. Smoke test: dotnet build -c Release OK (calisan exe nedeniyle tek seferlik kopyalama uyarisi goruldu, build basarili tamamladi).
 367. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 368. Siradaki mantikli is: baglam kopyalama aksiyonunu da klavye rahatligiyla tamamlamak.
+369. v0.98 olarak inceleme turuna `Ctrl+Shift+C` ile baglam kopyalama kisayolu eklendi.
+370. `CopyInvoiceReviewContextButton_Click()` akisi tek yardimci metoda tasindi; buton ve klavye ayni davranisi kullaniyor.
+371. `InvoiceReviewNavigator` kisayol ipucu metni `Ctrl+Shift+C` bilgisini de gosterecek sekilde guncellendi.
+372. Self-test icindeki kontrol modu kisayol ipucu dogrulamasi yeni metne gore guncellendi.
+373. Smoke test: dotnet build -c Release OK (calisan exe nedeniyle tek seferlik kopyalama uyarisi goruldu, build basarili tamamladi).
+374. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+375. Siradaki mantikli is: inceleme baglami yardimlarini rapordan gelen operator gecislerinde daha gorunur hale getirmek.
