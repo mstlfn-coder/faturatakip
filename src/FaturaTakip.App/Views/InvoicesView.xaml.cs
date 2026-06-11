@@ -32,6 +32,8 @@ public partial class InvoicesView : UserControl
     private bool _isRefreshingFilterOptions;
     private string? _invoiceReviewModeLabel;
     private string? _invoiceReviewContextLabel;
+    private string _rootDirectory = string.Empty;
+    private InvoiceReviewPreferences _invoiceReviewPreferences = InvoiceReviewPreferences.Default;
 
     public event EventHandler? InvoicesChanged;
 
@@ -42,6 +44,8 @@ public partial class InvoicesView : UserControl
 
     public void Initialize(string databasePath)
     {
+        _rootDirectory = AppPaths.Resolve().RootDirectory;
+        _invoiceReviewPreferences = InvoiceReviewPreferences.LoadOrDefault(_rootDirectory);
         _invoiceRepository = new InvoiceRepository(databasePath);
         _paymentRepository = new PaymentRepository(databasePath);
         _subscriptionRepository = new SubscriptionRepository(databasePath);
@@ -78,6 +82,7 @@ public partial class InvoicesView : UserControl
             new("İncelenmedi", InvoiceReviewStatusFilter.Unreviewed),
         };
         InvoiceReviewStatusFilterInput.SelectedIndex = 0;
+        ShowInvoiceReviewContextCheckBox.IsChecked = _invoiceReviewPreferences.ShowContext;
 
         RefreshSubscriptionLists();
         RefreshInvoices();
@@ -843,6 +848,9 @@ public partial class InvoicesView : UserControl
 
     private void ShowInvoiceReviewContextCheckBox_Changed(object sender, RoutedEventArgs e)
     {
+        _invoiceReviewPreferences = new InvoiceReviewPreferences(
+            ShowContext: ShowInvoiceReviewContextCheckBox.IsChecked == true);
+        TrySaveInvoiceReviewPreferences();
         UpdateInvoiceReviewNavigationControls();
     }
 
@@ -862,6 +870,23 @@ public partial class InvoicesView : UserControl
         catch (Exception exception) when (exception is ExternalException or InvalidOperationException)
         {
             SetInvoiceStatus($"Baglam panoya kopyalanamadi: {exception.Message}", isError: true);
+        }
+    }
+
+    private void TrySaveInvoiceReviewPreferences()
+    {
+        if (string.IsNullOrWhiteSpace(_rootDirectory))
+        {
+            return;
+        }
+
+        try
+        {
+            _invoiceReviewPreferences.Save(_rootDirectory);
+        }
+        catch
+        {
+            // Tercih kaydi basarisiz olsa da inceleme ekrani calismaya devam etmeli.
         }
     }
 

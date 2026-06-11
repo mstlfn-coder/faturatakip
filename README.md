@@ -211,3 +211,17 @@ Kullanici isterse `Bağlamı Göster` kutusuyla gecis baglamini ipucundan gecici
 Boylece uzun inceleme turlarinda ipucu alani sade tutulabiliyor ve gerekince baglam metni baska yere kolayca tasinabiliyor.
 
 Sıradaki mantikli is: bu inceleme yardimlarini istenirse kalici kullanici tercihlerine baglamak.
+
+## v0.96 - Baglam Tercihini Hatirla
+
+Bu fazda `Bağlamı Göster` secimi kalici kullanici tercihine baglandi.
+Uygulama kapanip yeniden acildiginda operatorun son gorunurluk tercihi `config/invoice-review-preferences.json` icinden geri yukleniyor.
+
+Boylece inceleme ipucu her acilista yeniden ayarlanmak zorunda kalmiyor; onceki calisma ritmi korunuyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: bu inceleme yardimlarini klavye kisayolu veya daha hizli operator aksiyonlariyla tamamlamak.

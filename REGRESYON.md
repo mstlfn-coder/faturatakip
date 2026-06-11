@@ -1171,3 +1171,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Baglam gorunurluk kontrolu var | OK | `Bağlamı Göster` kutusu ipucudaki baglam alanini acip kapatabiliyor |
 | Baglam kopyalama aksiyonu var | OK | `Bağlamı Kopyala` dugmesi mevcut context label'i panoya yaziyor |
 | 2026-06-12 | v0.95 | OK | Baglami kopyala/gizle + build + self-test tamamlandi |
+
+## v0.96 - Baglam Tercihini Hatirla
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tercih dosyasi olusuyor | OK | `config/invoice-review-preferences.json` uzerinden saklama yapiliyor |
+| Son secim geri yukleniyor | OK | `Bağlamı Göster` kutusu acilista kaydedilen degere gore kuruluyor |
+| Self-test tercih saklamasini dogruluyor | OK | `InvoiceReviewPreferences` load/save roundtrip eklendi |
+| 2026-06-12 | v0.96 | OK | Baglam tercihi kaliciligi + build + self-test tamamlandi |

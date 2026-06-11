@@ -796,3 +796,10 @@ v0.12 sonuÃ§ notu:
 352. Smoke test: dotnet build -c Release OK.
 353. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 354. Siradaki mantikli is: bu yardimlari kalici tercih veya klavye rahatligi ile tamamlamak.
+355. v0.96 olarak `Bağlamı Göster` secimi kalici kullanici tercihine baglandi.
+356. `InvoiceReviewPreferences` eklendi; tercih `config/invoice-review-preferences.json` icine yazilip acilista geri okunuyor.
+357. `InvoicesView` kutuyu son kaydedilen secime gore kuruyor; kaydetme hatasi olursa ekran akisi bozulmuyor.
+358. Self-test icine inceleme baglami gorunurluk tercihinin load/save dogrulamasi eklendi.
+359. Smoke test: dotnet build -c Release OK.
+360. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+361. Siradaki mantikli is: bu inceleme yardimlarini klavye kisayolu veya daha hizli operator aksiyonlariyla tamamlamak.
