@@ -34,6 +34,8 @@ public partial class MainWindow : Window
         InvoicesPanel.Initialize(startupStatus.DatabasePath);
         ReportsPanel.Initialize(startupStatus.DatabasePath);
         ReportsPanel.UnreviewedInvoiceReviewRequested += ReportsPanel_UnreviewedInvoiceReviewRequested;
+        ReportsPanel.OverdueInvoiceReviewRequested += ReportsPanel_OverdueInvoiceReviewRequested;
+        ReportsPanel.MissingPdfInvoiceReviewRequested += ReportsPanel_MissingPdfInvoiceReviewRequested;
         ApplyStartupStatus(startupStatus);
         RefreshInvoiceTypes();
         RefreshDashboardSubscriptionCounts();
@@ -134,6 +136,18 @@ public partial class MainWindow : Window
     {
         ShowInvoices();
         InvoicesPanel.StartUnreviewedReviewMode();
+    }
+
+    private void ReportsPanel_OverdueInvoiceReviewRequested(object? sender, EventArgs e)
+    {
+        ShowInvoices();
+        InvoicesPanel.StartOverdueReviewMode();
+    }
+
+    private void ReportsPanel_MissingPdfInvoiceReviewRequested(object? sender, EventArgs e)
+    {
+        ShowInvoices();
+        InvoicesPanel.StartMissingPdfReviewMode();
     }
 
     private void ShowDashboard()

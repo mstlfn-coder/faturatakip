@@ -123,6 +123,36 @@ public partial class InvoicesView : UserControl
             successMessage: "İncelenmedi inceleme akışı rapor üzerinden başlatıldı.");
     }
 
+    public void StartOverdueReviewMode()
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        RefreshSubscriptionLists();
+        RefreshInvoices(_selectedInvoice?.Id);
+        StartInvoiceReviewMode(
+            reviewModeLabel: "Gecikmiş",
+            applyModeFilter: () => SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Overdue),
+            successMessage: "Gecikmiş inceleme akışı rapor üzerinden başlatıldı.");
+    }
+
+    public void StartMissingPdfReviewMode()
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        RefreshSubscriptionLists();
+        RefreshInvoices(_selectedInvoice?.Id);
+        StartInvoiceReviewMode(
+            reviewModeLabel: "PDF Eksik",
+            applyModeFilter: () => SelectPdfStatusFilter(InvoicePdfStatusFilter.MissingPdf),
+            successMessage: "PDF eksik inceleme akışı rapor üzerinden başlatıldı.");
+    }
+
     private void RefreshSubscriptionLists()
     {
         if (_subscriptionRepository is null)

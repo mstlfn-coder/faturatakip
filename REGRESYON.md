@@ -1123,3 +1123,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Ana pencere yonlendirmesi var | OK | `ReportsView` istegi `MainWindow` uzerinden Faturalar ekranina tasiniyor |
 | Inceleme modu aciliyor | OK | `InvoicesView.StartUnreviewedReviewMode()` review mod etiketini kurup ilk kayda odaklaniyor |
 | 2026-06-11 | v0.90 | OK | Rapordan inceleme akisina gecis + build + self-test tamamlandi |
+
+## v0.91 - Diger Inceleme Turlarina Hizli Gecis
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Gecikmis rapor gecisi var | OK | `Gecikmisleri İncele` dugmesi Faturalar ekranindaki gecikmis turunu aciyor |
+| Evrak kontrol gecisi var | OK | `PDF Eksikleri İncele` dugmesi Faturalar ekranindaki PDF eksik turunu aciyor |
+| Ana pencere yonlendirmeleri var | OK | `MainWindow` rapordan gelen iki yeni istegi ilgili inceleme modlarina bagliyor |
+| 2026-06-11 | v0.91 | OK | Gecikmis + PDF eksik rapor gecisleri + build + self-test tamamlandi |

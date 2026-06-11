@@ -765,3 +765,10 @@ v0.12 sonuÃ§ notu:
 321. Smoke test: dotnet build -c Release OK.
 322. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 323. Siradaki mantikli is: benzer rapordan inceleme akisina gecisleri gecikmis veya PDF eksik odakli operator turlarina da yaymak.
+324. v0.91 olarak rapordaki hizli inceleme paneli `Gecikmis` ve `Evrak Kontrol` sekmelerinde de aktif hale getirildi.
+325. `ReportsView` aktif sekmeye gore artik `OverdueInvoiceReviewRequested` ve `MissingPdfInvoiceReviewRequested` event'lerini de yayinlayabiliyor.
+326. `MainWindow` bu event'leri `InvoicesView.StartOverdueReviewMode()` ve `InvoicesView.StartMissingPdfReviewMode()` akislarina bagladi.
+327. Boylece rapor ekranindan gecikmis veya PDF eksik inceleme turlarina tek tikla gecis saglandi.
+328. Smoke test: dotnet build -c Release OK.
+329. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+330. Siradaki mantikli is: rapordan inceleme akisina geciste secili satir veya issue baglamini da koruyacak daha hedefli yonlendirmeler dusunmek.

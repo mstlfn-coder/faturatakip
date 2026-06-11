@@ -690,3 +690,11 @@ Her faz bittiğinde:
 - Faturalar ekrani bu geciste `Incelenmedi Inceleme` moduyla aciliyor; filtre kuruluyor ve liste ilk kayda odaklaniyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: benzer rapordan inceleme akisina gecisleri gecikmis veya PDF eksik gibi baska operator akislarina da genisletmek.
+
+## Son Guncelleme (2026-06-11 / v0.91)
+
+- v0.91 tamamlandi: rapordaki hizli inceleme gecisi `Gecikmis` ve `Evrak Kontrol` sekmelerine de genisletildi.
+- `ReportsView` aktif sekmeye gore `OverdueInvoiceReviewRequested` ve `MissingPdfInvoiceReviewRequested` isteklerini uretiyor.
+- `MainWindow` bu istekleri Faturalar ekranindaki `StartOverdueReviewMode()` ve `StartMissingPdfReviewMode()` akislarina bagliyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: rapordan inceleme akisina geciste secili satir veya alt issue baglamini da koruyan daha hedefli yonlendirmeler dusunmek.
