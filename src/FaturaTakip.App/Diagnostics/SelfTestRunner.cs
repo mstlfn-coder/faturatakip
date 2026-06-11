@@ -1242,6 +1242,11 @@ public sealed class SelfTestRunner
             Assert(loadedPreferences.EndDate == new DateTime(2026, 6, 5), "Audit log filtre tercihi bitis tarihi saklanmadi.");
             Assert(loadedPreferences.ChangedOnly, "Audit log filtre tercihi degisen alan filtresi saklanmadi.");
 
+            var invoiceReviewPreferences = new InvoiceReviewPreferences(ShowContext: false);
+            invoiceReviewPreferences.Save(testRoot);
+            var loadedInvoiceReviewPreferences = InvoiceReviewPreferences.LoadOrDefault(testRoot);
+            Assert(!loadedInvoiceReviewPreferences.ShowContext, "Inceleme baglami gorunurluk tercihi saklanmadi.");
+
             var backupsDir = Path.Combine(testRoot, "backups");
             Directory.CreateDirectory(backupsDir);
             var olderBackup = Path.Combine(backupsDir, "backup_20260601_090000.zip");

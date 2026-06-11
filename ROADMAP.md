@@ -729,3 +729,11 @@ Her faz bittiğinde:
 - Baglam gorunurlugu operator tarafinda anlik olarak sadeleştirilebiliyor; kopyalama aksiyonu mevcut context label'ı panoya tasiyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: bu yardimlari kalici kullanici tercihlerine baglamak veya kisayolla desteklemek.
+
+## Son Guncelleme (2026-06-12 / v0.96)
+
+- v0.96 tamamlandi: `Bağlamı Göster` secimi kalici kullanici tercihine baglandi.
+- Faturalar ekrani acilirken `config/invoice-review-preferences.json` okunuyor; kutu son secime gore geri yukleniyor.
+- Self-test tercih dosyasi icin load/save smoke dogrulamasi da yapiyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: bu inceleme yardimlarini klavye kisayolu veya daha hizli operator aksiyonlariyla tamamlamak.
