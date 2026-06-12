@@ -913,3 +913,11 @@ Her faz bittiğinde:
 - Degisiklik islevi bozmadan operator tarafinda kesfedilebilirligi artirdi.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: baglam aksiyonlarini daha derli toplu gosterecek kompakt toolbar duzeni dusunmek.
+
+## Son Guncelleme (2026-06-12 / v1.18)
+
+- v1.18 tamamlandi: baglam aksiyon satiri `WrapPanel` ile daha dayanikli hale getirildi.
+- Checkbox ve baglam dugmeleri dar alanlarda alt satira akarak okunabilirligini koruyor.
+- UI davranisi degismeden panelin duzen kararliligi artirildi.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: baglam aksiyonlari icin daha belirgin bir birincil/ikincil grup hiyerarsisi kurmak.

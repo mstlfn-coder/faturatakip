@@ -951,3 +951,10 @@ v0.12 sonuÃ§ notu:
 499. Smoke test: dotnet build -c Release OK.
 500. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 501. Siradaki mantikli is: baglam aksiyonlarini daha derli toplu gosterecek kompakt toolbar duzeni dusunmek.
+
+502. v1.18 olarak baglam aksiyon satiri `WrapPanel` tabanli daha dayanikli bir duzene alindi.
+503. Checkbox ve baglam dugmeleri dar alanda alt satira akabilecek hale getirildi.
+504. Bu tur davranis degistirmeden duzen kararliligini artirdi.
+505. Smoke test: dotnet build -c Release OK.
+506. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+507. Siradaki mantikli is: baglam aksiyonlari icin daha belirgin bir birincil/ikincil grup hiyerarsisi kurmak.

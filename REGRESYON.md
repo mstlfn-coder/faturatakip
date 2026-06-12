@@ -1381,3 +1381,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Tooltip'ler eklendi | OK | Baglam panelindeki butonlar kisa aciklamalar gosteriyor |
 | Kisayol gorunur | OK | `Bağlamdan İncele` tooltip'i `Ctrl+Shift+I` bilgisini de tasiyor |
 | 2026-06-12 | v1.17 | OK | Baglam aksiyon tooltipleri + build + self-test tamamlandi |
+
+## v1.18 - Baglam Aksiyon Satir Duzeni
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| WrapPanel duzeni var | OK | Baglam aksiyon satiri dar alanlarda alt satira akiyor |
+| Buton bosluklari tutarli | OK | Aksiyonlar arasinda daha dengeli yatay/dikey bosluk verildi |
+| 2026-06-12 | v1.18 | OK | Baglam aksiyon satir duzeni + build + self-test tamamlandi |

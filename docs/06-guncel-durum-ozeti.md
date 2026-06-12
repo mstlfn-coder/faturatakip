@@ -17,6 +17,7 @@ Son guncelleme tarihi: 2026-06-12
   - `v1.15` Baglamdan Inceleme Akisi
   - `v1.16` Baglam Inceleme Kisayolu
   - `v1.17` Baglam Aksiyon Tooltipleri
+  - `v1.18` Baglam Aksiyon Satir Duzeni
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -36,6 +37,7 @@ Son guncelleme tarihi: 2026-06-12
 11. `Bağlamdan İncele` aksiyonu review modunu ve ikincil baglam ipuclarini tek akista kurar hale getirildi.
 12. `Ctrl+Shift+I` ile baglamdan inceleme akisi klavyeden tetiklenebilir hale getirildi.
 13. Baglam paneli aksiyonlarina aciklayici tooltip'ler eklendi.
+14. Baglam aksiyon satiri `WrapPanel` ile dar alanlarda daha dayanikli hale getirildi.
 
 ## Son 5 Commit
 

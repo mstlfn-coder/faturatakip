@@ -537,3 +537,18 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: baglam aksiyonlarini daha derli toplu gosterecek kompakt bir toolbar veya satir duzeni iyilestirmesi yapmak.
+
+## v1.18 - Baglam Aksiyon Satir Duzeni
+
+Bu fazda baglam aksiyon satiri daha dayanikli bir duzene alindi.
+Tek satira sikisan yatay yerlesim yerine `WrapPanel` kullanildi; boylece checkbox ve aksiyon dugmeleri dar alanlarda alt satira akarak okunabilirligini koruyor.
+
+Bu iyilestirme davranis degistirmeden paneli daha stabil hale getiriyor.
+Ozellikle pencere daraldiginda veya uzun buton etiketlerinde tasma hissi azaltilmis oldu.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: bu baglam aksiyonlari icin daha belirgin bir birincil/ikincil grup hiyerarsisi kurmak.
