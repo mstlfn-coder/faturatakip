@@ -352,6 +352,22 @@ Smoke test:
 
 Sıradaki mantikli is: issue tipi veya varlik tipine gore daha ince alt filtre aksiyonlari eklemek.
 
+## v1.08 - Baglam Turu Filtresi
+
+Bu fazda inceleme baglam paneline `Bağlam Türü` aksiyonu eklendi.
+Rapordan gelen baglam `Rapor: İncelenmedi > Elektrik / INV-001` veya `Rapor: Gecikmiş > Su / INV-002` gibi bir kaynaktan geliyorsa,
+kullanici tek tikla Faturalar ekranindaki mevcut fatura turu filtresini bu baglamdan kurabiliyor.
+
+Bu sayede operator rapordan geldikten sonra listeyi sadece ilgili turde daraltip daha hizli tarama yapabiliyor.
+Evrak Kontrol baglamlari ise yanlis yorumlanmasin diye bu aksiyonu etkinlestirmiyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: baglamdan fatura no veya daha ince kayit detayini da ayristirip ek hedefli aksiyonlar dusunmek.
+
 ## v1.05 - Baglam Filtresi Aksiyonu
 
 Bu fazda inceleme baglam paneline `Bağlam Filtresi` aksiyonu eklendi.

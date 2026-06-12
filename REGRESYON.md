@@ -1286,3 +1286,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Panel aksiyonu var | OK | `Bağlam Dönemi` dugmesi yil/ay filtresini tek tikla kuruyor |
 | Donem yoksa aksiyon pasif | OK | Baglamda donem bilgisi yoksa dugme devre disi |
 | 2026-06-12 | v1.07 | OK | Baglam donemi filtresi + build + self-test tamamlandi |
+
+## v1.08 - Baglam Turu Filtresi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tur cikarimi var | OK | `TryResolveInvoiceTypeName()` actionable rapor baglamindan fatura turunu ayristiriyor |
+| Panel aksiyonu var | OK | `Bağlam Türü` dugmesi mevcut fatura turu filtresini tek tikla kuruyor |
+| Evrak kontrol baglami disarida | OK | `Rapor: Evrak Kontrol` baglamlari bu aksiyonu aktiflestirmiyor |
+| 2026-06-12 | v1.08 | OK | Baglam turu filtresi + build + self-test tamamlandi |

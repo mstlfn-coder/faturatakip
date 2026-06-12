@@ -475,6 +475,13 @@ public sealed class SelfTestRunner
                 periodYear == 2026 &&
                 periodMonth == 1,
                 "Inceleme baglamindan donem filtresi cikartilamadi.");
+            Assert(
+                InvoiceReviewContextFormatter.TryResolveInvoiceTypeName("Rapor: İncelenmedi > Elektrik / INV-001", out var invoiceTypeName) &&
+                invoiceTypeName == "Elektrik",
+                "Inceleme baglamindan fatura turu cikartilamadi.");
+            Assert(
+                !InvoiceReviewContextFormatter.TryResolveInvoiceTypeName("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01", out _),
+                "Evrak kontrol baglami yanlislikla fatura turu gibi yorumlandi.");
             var reorderedReviewContextChips = InvoiceReviewContextFormatter.BuildChips("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01 > PDF Kayip / Fatura / 2026-01");
             Assert(reorderedReviewContextChips.Count == 4, "Inceleme baglam rozetleri tekrar eden parcayi tekillestiremedi.");
             Assert(reorderedReviewContextChips[0].Kind == "report", "Inceleme baglam rozetleri rapor basligini basa tasimadi.");

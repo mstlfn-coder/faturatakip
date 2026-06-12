@@ -878,3 +878,11 @@ v0.12 sonuÃ§ notu:
 434. Smoke test: dotnet build -c Release OK.
 435. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 436. Siradaki mantikli is: issue tipi veya varlik tipine gore daha ince alt filtre aksiyonlari eklemek.
+437. v1.08 olarak inceleme baglam paneline `Bağlam Türü` aksiyonu eklendi.
+438. `InvoiceReviewContextFormatter.TryResolveInvoiceTypeName()` actionable rapor baglamindan fatura turunu ayristiriyor.
+439. `InvoicesView` icindeki yeni dugme mevcut fatura turu filtresini bu baglama gore secip gorunur listeyi yeniliyor.
+440. Evrak Kontrol baglamlari yanlis pozitif olmasin diye kapsam disi tutuldu.
+441. Self-test hem tur cikarimini hem de negatif senaryoyu dogruluyor.
+442. Smoke test: dotnet build -c Release OK.
+443. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+444. Siradaki mantikli is: baglamdan daha ince kayit detayi veya ek hedefli aksiyonlar cikarmak.

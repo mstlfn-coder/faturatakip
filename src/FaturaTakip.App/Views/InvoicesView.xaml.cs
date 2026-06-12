@@ -422,6 +422,25 @@ public partial class InvoicesView : UserControl
             ?? options.FirstOrDefault();
     }
 
+    private bool SelectInvoiceTypeFilter(string invoiceTypeName)
+    {
+        if (InvoiceTypeFilterInput.ItemsSource is not IEnumerable<InvoiceTypeFilterOption> options)
+        {
+            return false;
+        }
+
+        var match = options.FirstOrDefault(item =>
+            item.InvoiceTypeId is not null &&
+            string.Equals(item.Label, invoiceTypeName, StringComparison.CurrentCultureIgnoreCase));
+        if (match is null)
+        {
+            return false;
+        }
+
+        InvoiceTypeFilterInput.SelectedItem = match;
+        return true;
+    }
+
     private void SelectPaymentStatusFilter(InvoicePaymentStatusFilter status)
     {
         if (InvoicePaymentStatusFilterInput.ItemsSource is not IEnumerable<PaymentStatusFilterOption> options)
@@ -899,6 +918,11 @@ public partial class InvoicesView : UserControl
         ApplyInvoiceReviewContextPeriod();
     }
 
+    private void ApplyInvoiceReviewContextTypeButton_Click(object sender, RoutedEventArgs e)
+    {
+        ApplyInvoiceReviewContextType();
+    }
+
     private void CopyInvoiceReviewContextToClipboard()
     {
         if (string.IsNullOrWhiteSpace(_invoiceReviewContextLabel))
@@ -998,12 +1022,33 @@ public partial class InvoicesView : UserControl
         SetInvoiceStatus($"Baglamdan donem filtresi uygulandi: {year:D4}-{month:D2}", isError: false);
     }
 
+    private void ApplyInvoiceReviewContextType()
+    {
+        if (!InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out var invoiceTypeName))
+        {
+            SetInvoiceStatus("Baglamdan uygulanabilir bir fatura turu cikarilamadi.", isError: true);
+            return;
+        }
+
+        _invoiceReviewModeLabel = null;
+        ResetQuickFilters();
+        if (!SelectInvoiceTypeFilter(invoiceTypeName))
+        {
+            SetInvoiceStatus($"Baglamdaki fatura turu listede bulunamadi: {invoiceTypeName}", isError: true);
+            return;
+        }
+
+        ApplyFiltersToGrid(selectFirstIfAvailable: true);
+        SetInvoiceStatus($"Baglamdan fatura turu filtresi uygulandi: {invoiceTypeName}", isError: false);
+    }
+
     private void UpdateInvoiceReviewContextPresentation(string? contextLabel)
     {
         var hasContext = !string.IsNullOrWhiteSpace(contextLabel);
         var hasSuggestedFilter = InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out _);
         var hasPreferredInvoice = _invoiceReviewPreferredInvoiceId is not null;
         var hasPeriod = InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out _, out _);
+        var hasInvoiceType = InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out _);
 
         if (InvoiceReviewContextBorder is not null)
         {
@@ -1040,6 +1085,11 @@ public partial class InvoicesView : UserControl
         if (ApplyInvoiceReviewContextPeriodButton is not null)
         {
             ApplyInvoiceReviewContextPeriodButton.IsEnabled = hasPeriod;
+        }
+
+        if (ApplyInvoiceReviewContextTypeButton is not null)
+        {
+            ApplyInvoiceReviewContextTypeButton.IsEnabled = hasInvoiceType;
         }
     }
 

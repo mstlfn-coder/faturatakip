@@ -813,6 +813,16 @@ Her faz bittiğinde:
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: issue tipi veya varlik tipine gore daha ince alt filtre aksiyonlari eklemek.
 
+## Son Guncelleme (2026-06-12 / v1.08)
+
+- v1.08 tamamlandi: inceleme baglam paneline `Bağlam Türü` dugmesi eklendi.
+- `InvoiceReviewContextFormatter.TryResolveInvoiceTypeName()` actionable rapor baglamindan fatura turunu ayristiriyor.
+- Faturalar ekrani bu turu mevcut `InvoiceTypeFilterInput` uzerinden tek tikla uygulayabiliyor.
+- Evrak Kontrol baglamlari bu aksiyonu yanlis tetiklemesin diye kapsam disi birakildi.
+- Self-test baglamdan tur cikarimi ve negatif senaryoyu da dogruluyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: baglamdan daha ince kayit detayi veya ek hedefli aksiyonlar cikarmak.
+
 ## Son Guncelleme (2026-06-12 / v1.05)
 
 - v1.05 tamamlandi: inceleme baglam paneline `Bağlam Filtresi` dugmesi eklendi.

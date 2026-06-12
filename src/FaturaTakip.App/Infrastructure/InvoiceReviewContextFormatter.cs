@@ -162,6 +162,39 @@ public static class InvoiceReviewContextFormatter
         return false;
     }
 
+    public static bool TryResolveInvoiceTypeName(string? contextLabel, out string invoiceTypeName)
+    {
+        invoiceTypeName = string.Empty;
+        if (string.IsNullOrWhiteSpace(contextLabel))
+        {
+            return false;
+        }
+
+        var chips = BuildChips(contextLabel);
+        if (chips.Count < 2)
+        {
+            return false;
+        }
+
+        var reportChip = chips.FirstOrDefault(chip => string.Equals(chip.Kind, "report", StringComparison.OrdinalIgnoreCase));
+        if (reportChip is null ||
+            !ContainsAny(reportChip.Text, "İncelenmedi", "Incelenmedi", "Gecikmiş", "Gecikmis"))
+        {
+            return false;
+        }
+
+        var detailChip = chips.FirstOrDefault(chip => string.Equals(chip.Kind, "issue", StringComparison.OrdinalIgnoreCase));
+        if (detailChip is null ||
+            string.IsNullOrWhiteSpace(detailChip.Text) ||
+            LooksLikePeriod(detailChip.Text))
+        {
+            return false;
+        }
+
+        invoiceTypeName = detailChip.Text.Trim();
+        return invoiceTypeName.Length > 0;
+    }
+
     private static bool ContainsAny(string text, params string[] values)
     {
         return values.Any(value => text.IndexOf(value, StringComparison.CurrentCultureIgnoreCase) >= 0);

@@ -701,6 +701,11 @@
                                                 Style="{StaticResource SecondaryButton}"
                                                 Margin="12,0,0,0"
                                                 Click="ApplyInvoiceReviewContextPeriodButton_Click" />
+                                        <Button x:Name="ApplyInvoiceReviewContextTypeButton"
+                                                Content="BaÄŸlam TÃ¼rÃ¼"
+                                                Style="{StaticResource SecondaryButton}"
+                                                Margin="12,0,0,0"
+                                                Click="ApplyInvoiceReviewContextTypeButton_Click" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal"
                                                 Margin="0,10,0,0">
