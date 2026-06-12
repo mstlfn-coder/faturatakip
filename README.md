@@ -415,3 +415,18 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: bu panelden dogrudan secili baglama gore filtre/odak aksiyonu uretmek.
+
+## v1.10 - Baglam Paneli Turkce Metin Temizligi
+
+Bu fazda `Faturalar` ekranindaki baglam paneli ve ilgili durum mesajlarinda kalan bozuk Turkce karakterler temizlendi.
+`Bağlamı Kopyala`, `Bağlam Dönemi`, `Bağlam Türü`, `Bağlam No` gibi aksiyon etiketleri ve onlara ait durum metinleri artik dogru Turkce karakterlerle gorunuyor.
+
+Ayni turda, baglam parser'indaki donem algisi da daraltildi.
+Boylece `INV-001` gibi fatura numaralari yanlislikla `yyyy-MM` donemi gibi yorumlanmiyor; `Bağlam Türü` ve `Bağlam No` aksiyonlari daha guvenilir calisiyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: benzer gorunur Turkce metin bozulmalarini `ReportsView` ve ortak uygulama metinlerinde de ayni disiplinle toparlamak.

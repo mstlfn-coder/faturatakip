@@ -894,3 +894,11 @@ v0.12 sonuÃ§ notu:
 450. Smoke test: dotnet build -c Release OK.
 451. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 452. Siradaki mantikli is: baglam paneli metinlerini ve Turkce karakter temizliklerini sistematik bicimde toparlamak.
+
+453. v1.10 olarak `InvoicesView` baglam panelindeki gorunur Turkce metinler temizlendi.
+454. Baglam aksiyon dugmeleri ve ilgili durum mesajlari dogru Turkce karakterlerle gosterilir hale getirildi.
+455. `LooksLikePeriod()` mantigi yalnizca gercek `yyyy-MM` formatini donem sayacak sekilde daraltildi.
+456. Boylece `INV-001` gibi fatura numaralari `Bağlam Türü` ve `Bağlam No` parser'inda yanlislikla donem sayilmiyor.
+457. Smoke test: dotnet build -c Release OK.
+458. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+459. Siradaki mantikli is: benzer gorunur Turkce metin bozulmalarini `ReportsView` ve ortak uygulama metinlerinde toparlamak.

@@ -848,3 +848,12 @@ Her faz bittiğinde:
 - Bu duzeltme v1.03 sonrasinda yakalanan self-test regresyonunu kapatti.
 - Smoke test olarak build ve self-test tekrar temiz gecti.
 - Siradaki mantikli faz: bu panelden dogrudan baglama dayali filtre veya odak aksiyonu cikarmak.
+
+## Son Guncelleme (2026-06-12 / v1.10)
+
+- v1.10 tamamlandi: `InvoicesView` baglam panelindeki gorunur Turkce metinler temizlendi.
+- `Bağlamı Kopyala`, `Bağlam Kaydına Git`, `Bağlam Dönemi`, `Bağlam Türü`, `Bağlam No` ve ilgili durum mesajlari dogru karakterlerle gosterilir hale geldi.
+- `InvoiceReviewContextFormatter.LooksLikePeriod()` mantigi yalnizca gercek `yyyy-MM` formatini donem sayacak sekilde daraltildi.
+- Boylece `INV-001` gibi fatura numaralari baglam turu/no parser'inda yanlis negatif uretmiyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: benzer gorunur Turkce metin bozulmalarini `ReportsView` ve ortak uygulama metinlerinde toparlamak.

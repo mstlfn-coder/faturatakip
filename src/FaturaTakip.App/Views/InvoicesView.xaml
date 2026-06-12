@@ -1,4 +1,4 @@
-<UserControl x:Class="FaturaTakip.App.Views.InvoicesView"
+﻿<UserControl x:Class="FaturaTakip.App.Views.InvoicesView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -702,7 +702,7 @@
                                                 Margin="12,0,0,0"
                                                 Click="ApplyInvoiceReviewContextPeriodButton_Click" />
                                         <Button x:Name="ApplyInvoiceReviewContextTypeButton"
-                                                Content="BaÄŸlam TÃ¼rÃ¼"
+                                                Content="Bağlam Türü"
                                                 Style="{StaticResource SecondaryButton}"
                                                 Margin="12,0,0,0"
                                                 Click="ApplyInvoiceReviewContextTypeButton_Click" />
@@ -783,6 +783,8 @@
         </Grid>
     </Grid>
 </UserControl>
+
+
 
 
 

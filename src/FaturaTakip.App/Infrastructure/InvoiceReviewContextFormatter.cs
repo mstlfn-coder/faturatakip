@@ -69,7 +69,12 @@ public static class InvoiceReviewContextFormatter
 
     private static bool LooksLikePeriod(string text)
     {
-        return text.Count(ch => ch == '-') == 1 && text.Any(char.IsDigit);
+        var parts = text.Split('-', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        return parts.Length == 2 &&
+               parts[0].Length == 4 &&
+               parts[1].Length == 2 &&
+               parts[0].All(char.IsDigit) &&
+               parts[1].All(char.IsDigit);
     }
 
     private static string ResolvePrefix(string kind)

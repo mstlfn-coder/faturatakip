@@ -1306,3 +1306,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Panel aksiyonu var | OK | `Bağlam No` dugmesi arama kutusunu baglamdaki fatura no ile dolduruyor |
 | Evrak kontrol baglami disarida | OK | `Rapor: Evrak Kontrol` baglamlari bu aksiyonu aktiflestirmiyor |
 | 2026-06-12 | v1.09 | OK | Baglam no aramasi + build + self-test tamamlandi |
+
+## v1.10 - Baglam Paneli Turkce Metin Temizligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baglam dugmeleri dogru Turkce | OK | `Bağlamı Kopyala`, `Bağlam Dönemi`, `Bağlam Türü`, `Bağlam No` metinleri duzeltildi |
+| Baglam durum mesajlari dogru Turkce | OK | Kopyalama, filtre, donem, tur ve no aksiyon durum mesajlari duzeltildi |
+| Donem algisi daraltildi | OK | `INV-001` gibi numaralar artik yanlislikla donem gibi yorumlanmiyor |
+| 2026-06-12 | v1.10 | OK | Baglam paneli Turkce temizlik + parser duzeltmesi + build + self-test tamamlandi |
