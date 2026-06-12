@@ -1220,3 +1220,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Rozet parcalama dogru | OK | `InvoiceReviewContextFormatter.BuildChips()` self-test ile dogrulandi |
 | Tam metin korunuyor | OK | Rozetlere ek olarak tam baglam metni de panelde gorunmeye devam ediyor |
 | 2026-06-12 | v1.00 | OK | Baglam rozetleri + build + self-test tamamlandi |
+
+## v1.01 - Baglam Rozet Tipleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozet renkleri tipe gore ayrisiyor | OK | Report / issue / entity / period tipleri farkli renk ailesi kullaniyor |
+| Tip atamasi dogru | OK | `InvoiceReviewContextFormatter.BuildChips()` self-test ile tipleri de dogruluyor |
+| 2026-06-12 | v1.01 | OK | Baglam rozet tipleri + build + self-test tamamlandi |

@@ -47,11 +47,43 @@
             <Setter Property="CornerRadius" Value="999" />
             <Setter Property="Padding" Value="8,3" />
             <Setter Property="Margin" Value="0,0,6,6" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Kind}" Value="report">
+                    <Setter Property="Background" Value="#DBEAFE" />
+                    <Setter Property="BorderBrush" Value="#93C5FD" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="issue">
+                    <Setter Property="Background" Value="#FEE2E2" />
+                    <Setter Property="BorderBrush" Value="#FCA5A5" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="entity">
+                    <Setter Property="Background" Value="#DCFCE7" />
+                    <Setter Property="BorderBrush" Value="#86EFAC" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="period">
+                    <Setter Property="Background" Value="#FEF3C7" />
+                    <Setter Property="BorderBrush" Value="#FCD34D" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="ContextChipText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#1D4ED8" />
             <Setter Property="FontSize" Value="12" />
             <Setter Property="FontWeight" Value="SemiBold" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Kind}" Value="report">
+                    <Setter Property="Foreground" Value="#1D4ED8" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="issue">
+                    <Setter Property="Foreground" Value="#B91C1C" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="entity">
+                    <Setter Property="Foreground" Value="#15803D" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="period">
+                    <Setter Property="Foreground" Value="#B45309" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
 
@@ -605,7 +637,7 @@
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
                                                         <Border Style="{StaticResource ContextChipBorder}">
-                                                            <TextBlock Text="{Binding}"
+                                                            <TextBlock Text="{Binding Text}"
                                                                        Style="{StaticResource ContextChipText}" />
                                                         </Border>
                                                     </DataTemplate>

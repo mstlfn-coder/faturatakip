@@ -769,3 +769,12 @@ Her faz bittiğinde:
 - Self-test baglam rozet parcalama mantigini dogruluyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: rozetlerde renk farkliligi veya ikonla daha belirgin tur ayrimi yapmak.
+
+## Son Guncelleme (2026-06-12 / v1.01)
+
+- v1.01 tamamlandi: baglam rozetlerine tur bazli renk ayrimi eklendi.
+- `InvoiceReviewContextFormatter` artik her parcaya `report / issue / entity / period / detail` tipi atiyor.
+- `InvoicesView` icindeki chip stilleri bu tipe gore farkli arka plan ve metin rengi kullaniyor.
+- Self-test rozet metninin yaninda tip atamalarini da dogruluyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: rozetlere hafif ikon veya kisaltma ekleyip taramayi daha da hizlandirmak.

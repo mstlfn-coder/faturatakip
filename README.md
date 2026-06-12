@@ -281,3 +281,17 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: bu rozetlerde rapor tipi ve issue turu icin renk farkliligi ya da ikonlu ayrim dusunmek.
+
+## v1.01 - Baglam Rozet Tipleri
+
+Bu fazda baglam rozetleri turlerine gore renk ayrimi kazandi.
+Rapor, issue, varlik ve donem ozetleri artik ayni chip gorunumunu paylasiyor ama farkli renk ailesiyle ayristiriliyor.
+
+Boylece operator rozet metnini okumadan once bile hangi parcaya baktigini daha hizli anlayabiliyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: bu rozetlere hafif ikon ya da kisaltma ekleyip taramayi bir adim daha hizlandirmak.
