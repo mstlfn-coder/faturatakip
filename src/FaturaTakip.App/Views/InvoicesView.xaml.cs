@@ -32,6 +32,7 @@ public partial class InvoicesView : UserControl
     private bool _isRefreshingFilterOptions;
     private string? _invoiceReviewModeLabel;
     private string? _invoiceReviewContextLabel;
+    private long? _invoiceReviewPreferredInvoiceId;
     private string _rootDirectory = string.Empty;
     private InvoiceReviewPreferences _invoiceReviewPreferences = InvoiceReviewPreferences.Default;
 
@@ -888,6 +889,11 @@ public partial class InvoicesView : UserControl
         ApplyInvoiceReviewContextFilter();
     }
 
+    private void FocusInvoiceFromReviewContextButton_Click(object sender, RoutedEventArgs e)
+    {
+        FocusInvoiceFromReviewContext();
+    }
+
     private void CopyInvoiceReviewContextToClipboard()
     {
         if (string.IsNullOrWhiteSpace(_invoiceReviewContextLabel))
@@ -938,10 +944,44 @@ public partial class InvoicesView : UserControl
         }
     }
 
+    private void FocusInvoiceFromReviewContext()
+    {
+        if (_invoiceReviewPreferredInvoiceId is null)
+        {
+            SetInvoiceStatus("Baglamdan odaklanacak bir kayit bulunamadi.", isError: true);
+            return;
+        }
+
+        switch (InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out var suggestedFilter))
+        {
+            case true when suggestedFilter == InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed:
+                StartUnreviewedReviewMode(_invoiceReviewPreferredInvoiceId, _invoiceReviewContextLabel);
+                break;
+            case true when suggestedFilter == InvoiceReviewContextFormatter.SuggestedFilter.Overdue:
+                StartOverdueReviewMode(_invoiceReviewPreferredInvoiceId, _invoiceReviewContextLabel);
+                break;
+            case true when suggestedFilter == InvoiceReviewContextFormatter.SuggestedFilter.MissingPdf:
+                StartMissingPdfReviewMode(_invoiceReviewPreferredInvoiceId, _invoiceReviewContextLabel);
+                break;
+            default:
+                ApplyFiltersToGrid(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: false);
+                break;
+        }
+
+        if (_selectedInvoice?.Id == _invoiceReviewPreferredInvoiceId)
+        {
+            SetInvoiceStatus($"Baglam kaydina odaklanildi: {_selectedInvoice.InvoiceNo}", isError: false);
+            return;
+        }
+
+        SetInvoiceStatus("Baglam kaydi mevcut filtre icinde bulunamadi.", isError: true);
+    }
+
     private void UpdateInvoiceReviewContextPresentation(string? contextLabel)
     {
         var hasContext = !string.IsNullOrWhiteSpace(contextLabel);
         var hasSuggestedFilter = InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out _);
+        var hasPreferredInvoice = _invoiceReviewPreferredInvoiceId is not null;
 
         if (InvoiceReviewContextBorder is not null)
         {
@@ -969,6 +1009,11 @@ public partial class InvoicesView : UserControl
         {
             ApplyInvoiceReviewContextFilterButton.IsEnabled = hasSuggestedFilter;
         }
+
+        if (FocusInvoiceFromReviewContextButton is not null)
+        {
+            FocusInvoiceFromReviewContextButton.IsEnabled = hasPreferredInvoice;
+        }
     }
 
     private void TrySaveInvoiceReviewPreferences()
@@ -994,6 +1039,7 @@ public partial class InvoicesView : UserControl
         applyModeFilter();
         _invoiceReviewModeLabel = reviewModeLabel;
         _invoiceReviewContextLabel = contextLabel;
+        _invoiceReviewPreferredInvoiceId = preferredInvoiceId;
         ApplyFiltersToGrid(selectedId: preferredInvoiceId, selectFirstIfAvailable: true);
         UpdateInvoiceReviewNavigationControls();
         SetInvoiceStatus(successMessage, isError: false);

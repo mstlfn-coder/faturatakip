@@ -864,3 +864,10 @@ v0.12 sonuÃ§ notu:
 420. Smoke test: dotnet build -c Release OK.
 421. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 422. Siradaki mantikli is: baglama dayali daha odakli alt filtre veya secili kayda donus aksiyonlari eklemek.
+423. v1.06 olarak inceleme baglam paneline `Bağlam Kaydına Git` aksiyonu eklendi.
+424. `InvoicesView` rapor gecisinden gelen `preferred invoice id` bilgisini ayri alanda tutuyor.
+425. Panel aksiyonu uygun review baglami varsa ilgili modu yeniden kurup ayni kayda odaklanmaya calisiyor.
+426. Tercihli kayit yoksa ya da mevcut filtre icinde bulunamiyorsa kullaniciya acik durum mesaji veriliyor.
+427. Smoke test: dotnet build -c Release OK.
+428. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+429. Siradaki mantikli is: baglam panelinden alt filtre, donem veya issue bazli daha ince odak aksiyonlari eklemek.

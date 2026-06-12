@@ -796,6 +796,14 @@ Her faz bittiğinde:
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: bu panelden dogrudan baglama dayali filtre veya odak aksiyonu cikarmak.
 
+## Son Guncelleme (2026-06-12 / v1.06)
+
+- v1.06 tamamlandi: inceleme baglam paneline `Bağlam Kaydına Git` dugmesi eklendi.
+- Rapor gecisinden gelen `preferred invoice id` saklaniyor; panel aksiyonu uygun review filtresiyle birlikte ayni kayda yeniden odaklanabiliyor.
+- Baglamda uygulanabilir odak yoksa dugme pasif kaliyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: baglam panelinden alt filtre, donem veya issue bazli daha ince odak aksiyonlari eklemek.
+
 ## Son Guncelleme (2026-06-12 / v1.05)
 
 - v1.05 tamamlandi: inceleme baglam paneline `Bağlam Filtresi` dugmesi eklendi.
