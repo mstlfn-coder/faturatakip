@@ -1247,3 +1247,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Rozetler sabit oncelikle siralaniyor | OK | `report -> issue -> entity -> detail -> period` sirasiyla gosteriliyor |
 | Tekrar eden rozetler tekillesiyor | OK | Ayni kind+text parcasi panelde bir kez tutuluyor |
 | 2026-06-12 | v1.03 | OK | Baglam rozet sirasi + build + self-test tamamlandi |
+
+## v1.04 - Baglam Rozet Tekillestirme Duzeltmesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release tamamlandi; calisan exe nedeniyle tek seferlik kopyalama uyarisi gorulse de basarili bitti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tekillestirme stabil | OK | `GroupBy(...).First()` ile tekrar eden kind+text parcalari sabit sekilde tekillestiriliyor |
+| v1.03 regresyonu kapandi | OK | Self-test tekrar eden baglam parcasi senaryosunda yesil |
+| 2026-06-12 | v1.04 | OK | Baglam rozet tekillestirme duzeltmesi + build + self-test tamamlandi |
