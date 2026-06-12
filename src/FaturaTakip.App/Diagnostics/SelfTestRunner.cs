@@ -470,6 +470,11 @@ public sealed class SelfTestRunner
                 InvoiceReviewContextFormatter.TryResolveSuggestedFilter("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01", out var missingPdfFilter) &&
                 missingPdfFilter == InvoiceReviewContextFormatter.SuggestedFilter.MissingPdf,
                 "Inceleme baglamindan 'PDF Eksik' filtresi cikartilamadi.");
+            Assert(
+                InvoiceReviewContextFormatter.TryResolvePeriod("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01", out var periodYear, out var periodMonth) &&
+                periodYear == 2026 &&
+                periodMonth == 1,
+                "Inceleme baglamindan donem filtresi cikartilamadi.");
             var reorderedReviewContextChips = InvoiceReviewContextFormatter.BuildChips("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01 > PDF Kayip / Fatura / 2026-01");
             Assert(reorderedReviewContextChips.Count == 4, "Inceleme baglam rozetleri tekrar eden parcayi tekillestiremedi.");
             Assert(reorderedReviewContextChips[0].Kind == "report", "Inceleme baglam rozetleri rapor basligini basa tasimadi.");

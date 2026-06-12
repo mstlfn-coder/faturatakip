@@ -804,6 +804,15 @@ Her faz bittiğinde:
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: baglam panelinden alt filtre, donem veya issue bazli daha ince odak aksiyonlari eklemek.
 
+## Son Guncelleme (2026-06-12 / v1.07)
+
+- v1.07 tamamlandi: inceleme baglam paneline `Bağlam Dönemi` dugmesi eklendi.
+- `InvoiceReviewContextFormatter.TryResolvePeriod()` baglam metninden `yyyy-MM` donemini ayristiriyor.
+- Faturalar ekrani bu donemi yil/ay filtresine cevirip tek tikla uygulayabiliyor.
+- Self-test baglamdan donem cikarimi mantigini da dogruluyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: issue tipi veya varlik tipine gore daha ince alt filtre aksiyonlari eklemek.
+
 ## Son Guncelleme (2026-06-12 / v1.05)
 
 - v1.05 tamamlandi: inceleme baglam paneline `Bağlam Filtresi` dugmesi eklendi.

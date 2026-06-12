@@ -871,3 +871,10 @@ v0.12 sonuÃ§ notu:
 427. Smoke test: dotnet build -c Release OK.
 428. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 429. Siradaki mantikli is: baglam panelinden alt filtre, donem veya issue bazli daha ince odak aksiyonlari eklemek.
+430. v1.07 olarak inceleme baglam paneline `Bağlam Dönemi` aksiyonu eklendi.
+431. `InvoiceReviewContextFormatter.TryResolvePeriod()` baglam rozetlerinden `yyyy-MM` donem bilgisini ayristiriyor.
+432. `InvoicesView` icindeki yeni dugme yil ve ay filtresini bu doneme gore kurup gorunur listeyi yeniliyor.
+433. Self-test baglamdan `2026-01` donemi cikarimini dogruluyor.
+434. Smoke test: dotnet build -c Release OK.
+435. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+436. Siradaki mantikli is: issue tipi veya varlik tipine gore daha ince alt filtre aksiyonlari eklemek.

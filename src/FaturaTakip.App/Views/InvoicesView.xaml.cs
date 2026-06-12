@@ -894,6 +894,11 @@ public partial class InvoicesView : UserControl
         FocusInvoiceFromReviewContext();
     }
 
+    private void ApplyInvoiceReviewContextPeriodButton_Click(object sender, RoutedEventArgs e)
+    {
+        ApplyInvoiceReviewContextPeriod();
+    }
+
     private void CopyInvoiceReviewContextToClipboard()
     {
         if (string.IsNullOrWhiteSpace(_invoiceReviewContextLabel))
@@ -977,11 +982,28 @@ public partial class InvoicesView : UserControl
         SetInvoiceStatus("Baglam kaydi mevcut filtre icinde bulunamadi.", isError: true);
     }
 
+    private void ApplyInvoiceReviewContextPeriod()
+    {
+        if (!InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out var year, out var month))
+        {
+            SetInvoiceStatus("Baglamdan uygulanabilir bir donem cikarilamadi.", isError: true);
+            return;
+        }
+
+        _invoiceReviewModeLabel = null;
+        ResetQuickFilters();
+        SelectYearFilter(year);
+        SelectMonthFilter(month);
+        ApplyFiltersToGrid(selectFirstIfAvailable: true);
+        SetInvoiceStatus($"Baglamdan donem filtresi uygulandi: {year:D4}-{month:D2}", isError: false);
+    }
+
     private void UpdateInvoiceReviewContextPresentation(string? contextLabel)
     {
         var hasContext = !string.IsNullOrWhiteSpace(contextLabel);
         var hasSuggestedFilter = InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out _);
         var hasPreferredInvoice = _invoiceReviewPreferredInvoiceId is not null;
+        var hasPeriod = InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out _, out _);
 
         if (InvoiceReviewContextBorder is not null)
         {
@@ -1013,6 +1035,11 @@ public partial class InvoicesView : UserControl
         if (FocusInvoiceFromReviewContextButton is not null)
         {
             FocusInvoiceFromReviewContextButton.IsEnabled = hasPreferredInvoice;
+        }
+
+        if (ApplyInvoiceReviewContextPeriodButton is not null)
+        {
+            ApplyInvoiceReviewContextPeriodButton.IsEnabled = hasPeriod;
         }
     }
 
