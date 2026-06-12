@@ -529,6 +529,10 @@ public partial class InvoicesView : UserControl
                 CopyInvoiceReviewContextToClipboard();
                 e.Handled = true;
                 break;
+            case Key.I:
+                FocusInvoiceFromReviewContext();
+                e.Handled = true;
+                break;
         }
     }
 

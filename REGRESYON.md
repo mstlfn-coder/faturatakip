@@ -1363,3 +1363,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Guclu baglam aksiyonu var | OK | `Bağlamdan İncele` uygun oldugunda ilgili review modunu dogrudan kuruyor |
 | Ikincil baglam ipuclari uygulaniyor | OK | Donem, tur ve fatura no ayni akista uygulanip secim odagi korunuyor |
 | 2026-06-12 | v1.15 | OK | Baglamdan inceleme akisi + build + self-test tamamlandi |
+
+## v1.16 - Baglam Inceleme Kisayolu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kisayol aktif | OK | `Ctrl+Shift+I` ile `Bağlamdan İncele` akisi tetikleniyor |
+| Inceleme ipucu guncel | OK | Kisa yol listesi yeni aksiyonu da gosteriyor |
+| 2026-06-12 | v1.16 | OK | Baglam inceleme kisayolu + build + self-test tamamlandi |

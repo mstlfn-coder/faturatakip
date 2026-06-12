@@ -507,3 +507,18 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: bu baglam akisi icin klavye kisayolu veya daha gorunur operator ipucu eklemek.
+
+## v1.16 - Baglam Inceleme Kisayolu
+
+Bu fazda `Bağlamdan İncele` akisina klavye kisayolu eklendi.
+Operator artik `Ctrl+Shift+I` ile baglamdan inceleme akisini fare kullanmadan tetikleyebiliyor; inceleme ipucu satiri ve self-test beklentisi de buna gore guncellendi.
+
+Boylece review akisi icinde baglamdan geri donus daha hizli hale geldi.
+Ozellikle liste ustunde seri kontrol yapan operator icin akisin temposu korunuyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: baglam aksiyonlarini ekranda daha fark edilir kilacak kucuk bir operator ipucu veya tooltip katmani eklemek.

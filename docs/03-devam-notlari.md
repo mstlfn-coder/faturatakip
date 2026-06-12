@@ -937,3 +937,10 @@ v0.12 sonuÃ§ notu:
 487. Smoke test: dotnet build -c Release OK.
 488. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 489. Siradaki mantikli is: bu akis icin klavye kisayolu veya daha belirgin operator ipucu eklemek.
+
+490. v1.16 olarak `Bağlamdan İncele` akisina `Ctrl+Shift+I` kisayolu eklendi.
+491. Inceleme ipucu satirindaki kisayol listesi guncellendi.
+492. Self-test beklentisi yeni kisayolu kapsayacak sekilde guncellendi.
+493. Smoke test: dotnet build -c Release OK.
+494. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+495. Siradaki mantikli is: baglam aksiyonlari icin daha gorunur operator ipucu veya tooltip katmani eklemek.

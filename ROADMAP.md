@@ -897,3 +897,11 @@ Her faz bittiğinde:
 - Donem, tur ve fatura no gibi ikincil ipuclari da ayni akista uygulanip en uygun kayda odaklaniyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: bu akis icin klavye kisayolu veya daha belirgin operator ipucu eklemek.
+
+## Son Guncelleme (2026-06-12 / v1.16)
+
+- v1.16 tamamlandi: `Bağlamdan İncele` akisina `Ctrl+Shift+I` kisayolu eklendi.
+- Inceleme ipucu satirindaki kisayol listesi guncellendi.
+- Self-test beklentisi yeni kisayolu kapsayacak sekilde guncellendi.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: baglam aksiyonlari icin daha gorunur operator ipucu veya tooltip katmani eklemek.

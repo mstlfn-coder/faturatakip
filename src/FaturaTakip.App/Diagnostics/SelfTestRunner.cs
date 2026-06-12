@@ -438,7 +438,7 @@ public sealed class SelfTestRunner
             Assert(InvoiceReviewNavigator.BuildHint("Gecikmis", null, 0) == "Kontrol modu: Gecikmis - gorunur liste bos.", "Bos kontrol modu ipucu beklenen metni uretmedi.");
             Assert(
                 InvoiceReviewNavigator.BuildHint("PDF Eksik", 0, 3, includeShortcuts: true)
-                    == "Kontrol modu: PDF Eksik (1/3) | Kisayollar: Ctrl+Shift+Sol/Sag, Ctrl+Shift+O, Ctrl+Shift+K, Ctrl+Shift+B, Ctrl+Shift+C",
+                    == "Kontrol modu: PDF Eksik (1/3) | Kisayollar: Ctrl+Shift+Sol/Sag, Ctrl+Shift+O, Ctrl+Shift+K, Ctrl+Shift+B, Ctrl+Shift+C, Ctrl+Shift+I",
                 "Kontrol modu kisayol ipucu beklenen metni uretmedi.");
             Assert(
                 InvoiceReviewNavigator.BuildHint("PDF Eksik", 0, 3, includeShortcuts: false, contextLabel: "Rapor: Evrak Kontrol > PDF Kayip")
