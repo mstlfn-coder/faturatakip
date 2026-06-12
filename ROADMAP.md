@@ -857,3 +857,11 @@ Her faz bittiğinde:
 - Boylece `INV-001` gibi fatura numaralari baglam turu/no parser'inda yanlis negatif uretmiyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: benzer gorunur Turkce metin bozulmalarini `ReportsView` ve ortak uygulama metinlerinde toparlamak.
+
+## Son Guncelleme (2026-06-12 / v1.11)
+
+- v1.11 tamamlandi: `ReportsView` icindeki gorunur Turkce rapor metinleri temizlendi.
+- Sekme/alt baslik metinleri ile PDF rapor basliklarindaki `Ödenmemiş`, `Gecikmiş`, `Yaklaşan`, `İncelenmedi`, `İşlem Geçmişi` ifadeleri duzeltildi.
+- `App.xaml.cs` icindeki acilis hata basligi `Uygulama başlatılamadı` olarak guncellendi.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: dokuman dosyalarindaki encoding kalintilarini ayri bir turda toparlamak.

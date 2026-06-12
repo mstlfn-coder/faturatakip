@@ -430,3 +430,18 @@ Smoke test:
 - `dotnet run -c Release --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: benzer gorunur Turkce metin bozulmalarini `ReportsView` ve ortak uygulama metinlerinde de ayni disiplinle toparlamak.
+
+## v1.11 - ReportsView Turkce Metin Temizligi
+
+Bu fazda `ReportsView` icindeki gorunur sekme, baslik ve filtre metinlerinde kalan bozuk Turkce karakterler temizlendi.
+Rapor basligindaki `Ödenmemiş`, `Gecikmiş`, `Yaklaşan`, `İncelenmedi`, `İşlem Geçmişi` gibi ifadeler dogru sekilde gosterilir hale geldi.
+
+Ayni turda ortak uygulama metinlerinden biri olan acilis hata basligi da `Uygulama başlatılamadı` olarak duzeltildi.
+Boylece rapor ve komut kipleri etrafindaki kullaniciya gorunen metinler daha tutarli hale geldi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: kalan dokuman dosyalarindaki encoding kalintilarini ayri bir dokuman temizlik turunda toparlamak.

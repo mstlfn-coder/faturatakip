@@ -1316,3 +1316,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Baglam durum mesajlari dogru Turkce | OK | Kopyalama, filtre, donem, tur ve no aksiyon durum mesajlari duzeltildi |
 | Donem algisi daraltildi | OK | `INV-001` gibi numaralar artik yanlislikla donem gibi yorumlanmiyor |
 | 2026-06-12 | v1.10 | OK | Baglam paneli Turkce temizlik + parser duzeltmesi + build + self-test tamamlandi |
+
+## v1.11 - ReportsView Turkce Metin Temizligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| ReportsView sekme/metinleri duzgun | OK | `Ödenmemiş`, `Gecikmiş`, `Yaklaşan`, `İncelenmedi` metinleri duzeltildi |
+| PDF rapor basliklari duzgun | OK | `ÖDENMEMİŞ`, `GECİKMİŞ`, `YAKLAŞAN`, `İŞLEM GEÇMİŞİ` basliklari duzeltildi |
+| Ortak hata basligi duzgun | OK | `Uygulama başlatılamadı` metni guncellendi |
+| 2026-06-12 | v1.11 | OK | ReportsView Turkce temizlik + build + self-test tamamlandi |

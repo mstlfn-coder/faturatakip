@@ -902,3 +902,10 @@ v0.12 sonuÃ§ notu:
 457. Smoke test: dotnet build -c Release OK.
 458. Smoke test: dotnet run -c Release --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 459. Siradaki mantikli is: benzer gorunur Turkce metin bozulmalarini `ReportsView` ve ortak uygulama metinlerinde toparlamak.
+
+460. v1.11 olarak `ReportsView` icindeki gorunur Turkce rapor metinleri temizlendi.
+461. Sekme/alt baslik metinleri ile PDF rapor basliklarindaki `Ödenmemiş`, `Gecikmiş`, `Yaklaşan`, `İncelenmedi`, `İşlem Geçmişi` ifadeleri duzeltildi.
+462. `App.xaml.cs` icindeki acilis hata basligi `Uygulama başlatılamadı` olarak guncellendi.
+463. Smoke test: dotnet build -c Release OK.
+464. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+465. Siradaki mantikli is: dokuman dosyalarindaki encoding kalintilarini ayri bir turda toparlamak.
