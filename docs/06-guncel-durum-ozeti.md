@@ -14,6 +14,7 @@ Son guncelleme tarihi: 2026-06-12
   - `v1.12` Temiz Handoff Ozet Dosyasi
   - `v1.13` Baglami Tek Tikla Daraltma
   - `v1.14` Daraltma Sonrasi Otomatik Odak
+  - `v1.15` Baglamdan Inceleme Akisi
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -30,6 +31,7 @@ Son guncelleme tarihi: 2026-06-12
 8. Yeni chatler icin temiz handoff ozet dosyasi eklendi.
 9. Baglam paneline tek tikla daraltma aksiyonu eklendi.
 10. Daraltma sonrasi tercihli baglam kaydina otomatik odak davranisi netlestirildi.
+11. `Bağlamdan İncele` aksiyonu review modunu ve ikincil baglam ipuclarini tek akista kurar hale getirildi.
 
 ## Son 5 Commit
 

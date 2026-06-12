@@ -1354,3 +1354,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Tercihli kayda odak var | OK | Baglam kaydi gorunur listedeyse `Bağlamı Daralt` dogrudan o kaydi seciyor |
 | Fallback secim var | OK | Tercihli kayit bulunamazsa ilk uygun kayda dusulup kullaniciya acik mesaj veriliyor |
 | 2026-06-12 | v1.14 | OK | Daraltma sonrasi otomatik odak + build + self-test tamamlandi |
+
+## v1.15 - Baglamdan Inceleme Akisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Guclu baglam aksiyonu var | OK | `Bağlamdan İncele` uygun oldugunda ilgili review modunu dogrudan kuruyor |
+| Ikincil baglam ipuclari uygulaniyor | OK | Donem, tur ve fatura no ayni akista uygulanip secim odagi korunuyor |
+| 2026-06-12 | v1.15 | OK | Baglamdan inceleme akisi + build + self-test tamamlandi |

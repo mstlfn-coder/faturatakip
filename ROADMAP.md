@@ -889,3 +889,11 @@ Her faz bittiğinde:
 - Baglam kaydi gorunmezse akis ilk uygun kayda dusuyor ve durum mesaji fallback bilgisini acikca veriyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: tek tikla review modunu yeniden kuran daha guclu bir baglam aksiyonu eklemek.
+
+## Son Guncelleme (2026-06-12 / v1.15)
+
+- v1.15 tamamlandi: baglam panelindeki aksiyon `Bağlamdan İncele` olarak guclendirildi.
+- Uygun baglamlarda ilgili review modu otomatik kuruluyor.
+- Donem, tur ve fatura no gibi ikincil ipuclari da ayni akista uygulanip en uygun kayda odaklaniyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: bu akis icin klavye kisayolu veya daha belirgin operator ipucu eklemek.

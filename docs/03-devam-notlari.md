@@ -930,3 +930,10 @@ v0.12 sonuÃ§ notu:
 481. Smoke test: dotnet build -c Release OK.
 482. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 483. Siradaki mantikli is: tek tikla review modunu yeniden kuran daha guclu bir baglam aksiyonu eklemek.
+
+484. v1.15 olarak baglam panelindeki aksiyon `Bağlamdan İncele` olacak sekilde guclendirildi.
+485. Uygun baglamlarda ilgili review modu otomatik kuruluyor.
+486. Donem, tur ve fatura no gibi ikincil ipuclari ayni akis icinde uygulanip en uygun kayda odaklaniliyor.
+487. Smoke test: dotnet build -c Release OK.
+488. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+489. Siradaki mantikli is: bu akis icin klavye kisayolu veya daha belirgin operator ipucu eklemek.

@@ -939,6 +939,32 @@ public partial class InvoicesView : UserControl
         ApplyInvoiceReviewContextInvoiceNo();
     }
 
+    private List<string> ApplyInvoiceReviewContextSecondaryHints()
+    {
+        var appliedParts = new List<string>();
+
+        if (InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out var year, out var month))
+        {
+            SelectYearFilter(year);
+            SelectMonthFilter(month);
+            appliedParts.Add($"{year:D4}-{month:D2}");
+        }
+
+        if (InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out var invoiceTypeName) &&
+            SelectInvoiceTypeFilter(invoiceTypeName))
+        {
+            appliedParts.Add(invoiceTypeName);
+        }
+
+        if (InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out var invoiceNumber))
+        {
+            InvoiceSearchInput.Text = invoiceNumber;
+            appliedParts.Add(invoiceNumber);
+        }
+
+        return appliedParts;
+    }
+
     private void CopyInvoiceReviewContextToClipboard()
     {
         if (string.IsNullOrWhiteSpace(_invoiceReviewContextLabel))
@@ -1067,13 +1093,21 @@ public partial class InvoicesView : UserControl
 
     private void FocusInvoiceFromReviewContext()
     {
-        if (_invoiceReviewPreferredInvoiceId is null)
+        var hasSuggestedFilter = InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out var suggestedFilter);
+        var hasPreferredInvoice = _invoiceReviewPreferredInvoiceId is not null;
+        var appliedSecondaryParts = Array.Empty<string>();
+
+        if (!hasSuggestedFilter &&
+            !hasPreferredInvoice &&
+            !InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out _, out _) &&
+            !InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out _) &&
+            !InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out _))
         {
-            SetInvoiceStatus("Bağlamdan odaklanacak bir kayıt bulunamadı.", isError: true);
+            SetInvoiceStatus("Bağlamdan kurulacak bir inceleme akışı çıkarılamadı.", isError: true);
             return;
         }
 
-        switch (InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out var suggestedFilter))
+        switch (hasSuggestedFilter)
         {
             case true when suggestedFilter == InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed:
                 StartUnreviewedReviewMode(_invoiceReviewPreferredInvoiceId, _invoiceReviewContextLabel);
@@ -1085,17 +1119,50 @@ public partial class InvoicesView : UserControl
                 StartMissingPdfReviewMode(_invoiceReviewPreferredInvoiceId, _invoiceReviewContextLabel);
                 break;
             default:
-                ApplyFiltersToGrid(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: false);
+                ResetQuickFilters();
+                _invoiceReviewModeLabel = null;
+                ApplyFiltersToGrid(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: hasPreferredInvoice);
                 break;
         }
 
-        if (_selectedInvoice?.Id == _invoiceReviewPreferredInvoiceId)
+        appliedSecondaryParts = ApplyInvoiceReviewContextSecondaryHints().ToArray();
+        var selectedInvoice = ApplyFiltersToGridCore(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: true);
+
+        if (selectedInvoice is null)
         {
-            SetInvoiceStatus($"Bağlam kaydına odaklanıldı: {_selectedInvoice.InvoiceNo}", isError: false);
+            var detailText = appliedSecondaryParts.Length == 0
+                ? string.Empty
+                : $" ({string.Join(" + ", appliedSecondaryParts)})";
+            SetInvoiceStatus($"Bağlamdan inceleme görünümü kuruldu fakat eslesen kayit bulunamadi{detailText}.", isError: true);
             return;
         }
 
-        SetInvoiceStatus("Bağlam kaydı mevcut filtre içinde bulunamadı.", isError: true);
+        var modeLabel = hasSuggestedFilter
+            ? suggestedFilter switch
+            {
+                InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed => "İncelenmedi",
+                InvoiceReviewContextFormatter.SuggestedFilter.Overdue => "Gecikmiş",
+                InvoiceReviewContextFormatter.SuggestedFilter.MissingPdf => "PDF Eksik",
+                _ => "Bağlam"
+            }
+            : "Bağlam";
+        var suffix = appliedSecondaryParts.Length == 0
+            ? string.Empty
+            : $" ({string.Join(" + ", appliedSecondaryParts)})";
+
+        if (hasPreferredInvoice && selectedInvoice.Id == _invoiceReviewPreferredInvoiceId)
+        {
+            SetInvoiceStatus($"Bağlamdan {modeLabel} incelemesi kuruldu ve kayda odaklanıldı{suffix}: {selectedInvoice.InvoiceNo}", isError: false);
+            return;
+        }
+
+        if (hasPreferredInvoice)
+        {
+            SetInvoiceStatus($"Bağlamdan {modeLabel} incelemesi kuruldu; baglam kaydi bulunamadigi icin en uygun kayda gecildi{suffix}: {selectedInvoice.InvoiceNo}", isError: false);
+            return;
+        }
+
+        SetInvoiceStatus($"Bağlamdan {modeLabel} incelemesi kuruldu{suffix}: {selectedInvoice.InvoiceNo}", isError: false);
     }
 
     private void ApplyInvoiceReviewContextPeriod()
@@ -1193,7 +1260,7 @@ public partial class InvoicesView : UserControl
 
         if (FocusInvoiceFromReviewContextButton is not null)
         {
-            FocusInvoiceFromReviewContextButton.IsEnabled = hasPreferredInvoice;
+            FocusInvoiceFromReviewContextButton.IsEnabled = hasSuggestedFilter || hasPreferredInvoice || hasPeriod || hasInvoiceType || hasInvoiceNumber;
         }
 
         if (ApplyInvoiceReviewContextPeriodButton is not null)

@@ -492,3 +492,18 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: bu akisi istersek tek tikla inceleme modunu yeniden kuran daha guclu bir baglam aksiyonuna tasimak.
+
+## v1.15 - Baglamdan Inceleme Akisi
+
+Bu fazda baglam panelindeki `Bağlam Kaydına Git` aksiyonu daha guclu bir is akisina donusturulup `Bağlamdan İncele` olarak guncellendi.
+Bu aksiyon artik uygun oldugunda dogrudan ilgili kontrol modunu kuruyor; ardindan donem, tur ve fatura no gibi ikincil baglam ipuclarini da uygulayip en uygun kayda odaklaniyor.
+
+Boylece kullanici baglamdan once review modunu sonra alt filtreleri elle kurmak zorunda kalmiyor.
+Tek tikla daha tam bir geri donus akisi elde edildi; baglam kaydi bulunamazsa da en uygun kayda duzgun fallback yapiliyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: bu baglam akisi icin klavye kisayolu veya daha gorunur operator ipucu eklemek.
