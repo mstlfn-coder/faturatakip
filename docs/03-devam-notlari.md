@@ -944,3 +944,10 @@ v0.12 sonuÃ§ notu:
 493. Smoke test: dotnet build -c Release OK.
 494. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 495. Siradaki mantikli is: baglam aksiyonlari icin daha gorunur operator ipucu veya tooltip katmani eklemek.
+
+496. v1.17 olarak baglam panelindeki aksiyonlara aciklayici tooltip'ler eklendi.
+497. `Bağlamdan İncele` tooltip'i davranis ozetini ve `Ctrl+Shift+I` kisayolunu gosterir hale getirildi.
+498. Bu tur islev degistirmeden kesfedilebilirligi artirdi.
+499. Smoke test: dotnet build -c Release OK.
+500. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+501. Siradaki mantikli is: baglam aksiyonlarini daha derli toplu gosterecek kompakt toolbar duzeni dusunmek.

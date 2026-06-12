@@ -1372,3 +1372,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Kisayol aktif | OK | `Ctrl+Shift+I` ile `Bağlamdan İncele` akisi tetikleniyor |
 | Inceleme ipucu guncel | OK | Kisa yol listesi yeni aksiyonu da gosteriyor |
 | 2026-06-12 | v1.16 | OK | Baglam inceleme kisayolu + build + self-test tamamlandi |
+
+## v1.17 - Baglam Aksiyon Tooltipleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tooltip'ler eklendi | OK | Baglam panelindeki butonlar kisa aciklamalar gosteriyor |
+| Kisayol gorunur | OK | `Bağlamdan İncele` tooltip'i `Ctrl+Shift+I` bilgisini de tasiyor |
+| 2026-06-12 | v1.17 | OK | Baglam aksiyon tooltipleri + build + self-test tamamlandi |

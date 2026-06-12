@@ -522,3 +522,18 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: baglam aksiyonlarini ekranda daha fark edilir kilacak kucuk bir operator ipucu veya tooltip katmani eklemek.
+
+## v1.17 - Baglam Aksiyon Tooltipleri
+
+Bu fazda inceleme baglam panelindeki aksiyonlara kisa aciklayici tooltip'ler eklendi.
+Ozellikle `Bağlamdan İncele` dugmesi artik ne yaptigini ve `Ctrl+Shift+I` kisayolunu dogrudan gosteriyor.
+
+Boylece operator buton etiketlerini ezberlemek zorunda kalmadan akis mantigini ekrandan okuyabiliyor.
+Bu degisiklik davranisi degistirmeden kesfedilebilirligi artiriyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: baglam aksiyonlarini daha derli toplu gosterecek kompakt bir toolbar veya satir duzeni iyilestirmesi yapmak.

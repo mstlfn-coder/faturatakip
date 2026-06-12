@@ -16,6 +16,7 @@ Son guncelleme tarihi: 2026-06-12
   - `v1.14` Daraltma Sonrasi Otomatik Odak
   - `v1.15` Baglamdan Inceleme Akisi
   - `v1.16` Baglam Inceleme Kisayolu
+  - `v1.17` Baglam Aksiyon Tooltipleri
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -34,6 +35,7 @@ Son guncelleme tarihi: 2026-06-12
 10. Daraltma sonrasi tercihli baglam kaydina otomatik odak davranisi netlestirildi.
 11. `Bağlamdan İncele` aksiyonu review modunu ve ikincil baglam ipuclarini tek akista kurar hale getirildi.
 12. `Ctrl+Shift+I` ile baglamdan inceleme akisi klavyeden tetiklenebilir hale getirildi.
+13. Baglam paneli aksiyonlarina aciklayici tooltip'ler eklendi.
 
 ## Son 5 Commit
 

@@ -905,3 +905,11 @@ Her faz bittiğinde:
 - Self-test beklentisi yeni kisayolu kapsayacak sekilde guncellendi.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: baglam aksiyonlari icin daha gorunur operator ipucu veya tooltip katmani eklemek.
+
+## Son Guncelleme (2026-06-12 / v1.17)
+
+- v1.17 tamamlandi: baglam panelindeki aksiyonlara aciklayici tooltip'ler eklendi.
+- `Bağlamdan İncele` tooltip'i davranis ozetini ve `Ctrl+Shift+I` kisayolunu gosteriyor.
+- Degisiklik islevi bozmadan operator tarafinda kesfedilebilirligi artirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: baglam aksiyonlarini daha derli toplu gosterecek kompakt toolbar duzeni dusunmek.
