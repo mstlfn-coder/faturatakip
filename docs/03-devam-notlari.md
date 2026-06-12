@@ -857,3 +857,10 @@ v0.12 sonuÃ§ notu:
 413. Smoke test: dotnet build -c Release OK.
 414. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 415. Siradaki mantikli is: bu panelden dogrudan baglama dayali filtre veya odak aksiyonu cikarmak.
+416. v1.05 olarak inceleme baglam paneline `Bağlam Filtresi` aksiyonu eklendi.
+417. `InvoiceReviewContextFormatter.TryResolveSuggestedFilter()` baglam metninden `Unreviewed`, `Overdue` veya `MissingPdf` onerisi cikariyor.
+418. `InvoicesView` icindeki yeni dugme bu oneriyi uygun filtreye cevirip tek tikla uyguluyor; onerisi olmayan baglamlarda pasif kaliyor.
+419. Self-test baglamdan filtre cikarimi icin incelenmedi, gecikmis ve evrak kontrol senaryolarini dogruluyor.
+420. Smoke test: dotnet build -c Release OK.
+421. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+422. Siradaki mantikli is: baglama dayali daha odakli alt filtre veya secili kayda donus aksiyonlari eklemek.

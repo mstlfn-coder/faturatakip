@@ -2,6 +2,13 @@ namespace FaturaTakip.App.Infrastructure;
 
 public static class InvoiceReviewContextFormatter
 {
+    public enum SuggestedFilter
+    {
+        Unreviewed,
+        Overdue,
+        MissingPdf,
+    }
+
     public static IReadOnlyList<ContextChip> BuildChips(string? contextLabel)
     {
         if (string.IsNullOrWhiteSpace(contextLabel))
@@ -88,6 +95,40 @@ public static class InvoiceReviewContextFormatter
             "period" => 4,
             _ => 5,
         };
+    }
+
+    public static bool TryResolveSuggestedFilter(string? contextLabel, out SuggestedFilter filter)
+    {
+        filter = default;
+        if (string.IsNullOrWhiteSpace(contextLabel))
+        {
+            return false;
+        }
+
+        if (ContainsAny(contextLabel, "İncelenmedi", "Incelenmedi"))
+        {
+            filter = SuggestedFilter.Unreviewed;
+            return true;
+        }
+
+        if (ContainsAny(contextLabel, "Gecikmiş", "Gecikmis"))
+        {
+            filter = SuggestedFilter.Overdue;
+            return true;
+        }
+
+        if (ContainsAny(contextLabel, "Evrak Kontrol", "PDF Kayıp", "PDF Kayip", "PDF Eksik", "PDF Yok"))
+        {
+            filter = SuggestedFilter.MissingPdf;
+            return true;
+        }
+
+        return false;
+    }
+
+    private static bool ContainsAny(string text, params string[] values)
+    {
+        return values.Any(value => text.IndexOf(value, StringComparison.CurrentCultureIgnoreCase) >= 0);
     }
 
     public sealed record ContextChip(string Text, string Kind, string Prefix);

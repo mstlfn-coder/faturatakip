@@ -686,6 +686,11 @@
                                                 Style="{StaticResource SecondaryButton}"
                                                 Margin="12,0,0,0"
                                                 Click="CopyInvoiceReviewContextButton_Click" />
+                                        <Button x:Name="ApplyInvoiceReviewContextFilterButton"
+                                                Content="Bağlam Filtresi"
+                                                Style="{StaticResource SecondaryButton}"
+                                                Margin="12,0,0,0"
+                                                Click="ApplyInvoiceReviewContextFilterButton_Click" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal"
                                                 Margin="0,10,0,0">

@@ -324,6 +324,24 @@ Smoke test:
 
 Sıradaki mantikli is: bu panelden dogrudan secili baglama gore filtre/odak aksiyonu uretmek.
 
+## v1.05 - Baglam Filtresi Aksiyonu
+
+Bu fazda inceleme baglam paneline `Bağlam Filtresi` aksiyonu eklendi.
+Panel artik sadece bilgi gostermiyor; rapordan gelen baglama gore uygun filtreyi tek tikla yeniden kurabiliyor.
+
+Su an icin desteklenen baglamlar:
+
+- `İncelenmedi`
+- `Gecikmiş`
+- `Evrak Kontrol / PDF Kayıp / PDF Eksik`
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: bu panelden baglama gore secili kayda donus ya da daha odakli alt filtre aksiyonlari cikarmak.
+
 ## v1.04 - Baglam Rozet Tekillestirme Duzeltmesi
 
 Bu fazda baglam rozetlerinin tekillestirme mantigi sadeleştirildi ve sabitlendi.
