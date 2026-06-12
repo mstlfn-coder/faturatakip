@@ -5,7 +5,7 @@ Son guncelleme tarihi: 2026-06-12
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son commit: `42e4695 docs: add clean handoff summary`
+- Son commit: `git log --oneline -1` ile teyit et; bu dosya hizli handoff ozeti olarak tutulur
 - Son tamamlanan temiz fazlar:
   - `v1.08` Baglam Turu Filtresi
   - `v1.09` Baglam No Aramasi
