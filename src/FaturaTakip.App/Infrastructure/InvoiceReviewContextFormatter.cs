@@ -30,7 +30,11 @@ public static class InvoiceReviewContextFormatter
             }
         }
 
-        return chips;
+        return chips
+            .DistinctBy(chip => (chip.Kind, chip.Text), ContextChipComparer.Instance)
+            .OrderBy(chip => GetKindOrder(chip.Kind))
+            .ThenBy(chip => chip.Text, StringComparer.CurrentCultureIgnoreCase)
+            .ToList();
     }
 
     private static string ResolveKind(int sectionIndex, int partIndex, string text)
@@ -68,6 +72,37 @@ public static class InvoiceReviewContextFormatter
             "period" => "DNM",
             _ => "DET",
         };
+    }
+
+    private static int GetKindOrder(string kind)
+    {
+        return kind switch
+        {
+            "report" => 0,
+            "issue" => 1,
+            "entity" => 2,
+            "detail" => 3,
+            "period" => 4,
+            _ => 5,
+        };
+    }
+
+    private sealed class ContextChipComparer : IEqualityComparer<(string Kind, string Text)>
+    {
+        public static ContextChipComparer Instance { get; } = new();
+
+        public bool Equals((string Kind, string Text) x, (string Kind, string Text) y)
+        {
+            return string.Equals(x.Kind, y.Kind, StringComparison.OrdinalIgnoreCase) &&
+                   string.Equals(x.Text, y.Text, StringComparison.CurrentCultureIgnoreCase);
+        }
+
+        public int GetHashCode((string Kind, string Text) obj)
+        {
+            return HashCode.Combine(
+                StringComparer.OrdinalIgnoreCase.GetHashCode(obj.Kind),
+                StringComparer.CurrentCultureIgnoreCase.GetHashCode(obj.Text));
+        }
     }
 
     public sealed record ContextChip(string Text, string Kind, string Prefix);

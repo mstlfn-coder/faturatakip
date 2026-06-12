@@ -309,3 +309,17 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: rozetlerin gorunur sirasini rapor turune gore daha anlamli hale getirmek veya secili baglamdan ek odak aksiyonlari cikarmak.
+
+## v1.03 - Baglam Rozet Sirasi
+
+Bu fazda baglam rozetlerinin gorunur sirasi daha tutarli hale getirildi.
+Rozetler artik `report -> issue -> entity -> detail -> period` onceligiyle siralaniyor ve tekrar eden parcalar tekilleştiriliyor.
+
+Boylece uzun baglamlarda panel daha derli toplu ve daha az tekrarli gorunuyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: bu panelden dogrudan secili baglama gore filtre/odak aksiyonu uretmek.

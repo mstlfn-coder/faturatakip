@@ -787,3 +787,11 @@ Her faz bittiğinde:
 - Self-test on ek atamalarini da dogruluyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: rozet sirasini daha baglam-duyarli hale getirmek veya bu panelden ek odak aksiyonlari uretmek.
+
+## Son Guncelleme (2026-06-12 / v1.03)
+
+- v1.03 tamamlandi: baglam rozetleri sabit bir tip onceligine gore siralanir hale getirildi.
+- Ayni tur ve metne sahip tekrar eden rozetler tekillestiriliyor.
+- Self-test rozet tekillestirme ve siralama onceligini dogruluyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: bu panelden dogrudan baglama dayali filtre veya odak aksiyonu cikarmak.

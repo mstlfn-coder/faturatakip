@@ -845,3 +845,9 @@ v0.12 sonuÃ§ notu:
 401. Smoke test: dotnet build -c Release OK.
 402. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 403. Siradaki mantikli is: rozetlerin sirasini daha baglam-duyarli hale getirmek veya bu panelden ek odak aksiyonlari uretmek.
+404. v1.03 olarak baglam rozetleri sabit tip onceligine gore siralanir hale getirildi.
+405. `InvoiceReviewContextFormatter` tekrar eden kind+text rozetlerini tekillestirip `report -> issue -> entity -> detail -> period` sirasiyla donduruyor.
+406. Self-test icine daginik ve tekrarli bir baglam etiketinden uretilen rozetlerin sayi ve sira dogrulamasi eklendi.
+407. Smoke test: dotnet build -c Release OK.
+408. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+409. Siradaki mantikli is: bu panelden dogrudan baglama dayali filtre veya odak aksiyonu cikarmak.

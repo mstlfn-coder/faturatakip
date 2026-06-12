@@ -1238,3 +1238,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | On ekler gorunuyor | OK | `RPR`, `ISS`, `VAR`, `DNM` tip bazli rozet on ekleri eklendi |
 | On ek atamasi dogru | OK | `InvoiceReviewContextFormatter.BuildChips()` self-test ile Prefix alanlarini da dogruluyor |
 | 2026-06-12 | v1.02 | OK | Baglam rozet on ekleri + build + self-test tamamlandi |
+
+## v1.03 - Baglam Rozet Sirasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozetler sabit oncelikle siralaniyor | OK | `report -> issue -> entity -> detail -> period` sirasiyla gosteriliyor |
+| Tekrar eden rozetler tekillesiyor | OK | Ayni kind+text parcasi panelde bir kez tutuluyor |
+| 2026-06-12 | v1.03 | OK | Baglam rozet sirasi + build + self-test tamamlandi |
