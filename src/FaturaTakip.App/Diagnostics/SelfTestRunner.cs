@@ -444,6 +444,12 @@ public sealed class SelfTestRunner
                 InvoiceReviewNavigator.BuildHint("PDF Eksik", 0, 3, includeShortcuts: false, contextLabel: "Rapor: Evrak Kontrol > PDF Kayip")
                     == "Kontrol modu: PDF Eksik (1/3) | Baglam: Rapor: Evrak Kontrol > PDF Kayip",
                 "Kontrol modu baglam ipucu beklenen metni uretmedi.");
+            var reviewContextChips = InvoiceReviewContextFormatter.BuildChips("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01");
+            Assert(reviewContextChips.Count == 4, "Inceleme baglam rozet sayisi beklenen parcayi uretmedi.");
+            Assert(reviewContextChips[0] == "Rapor: Evrak Kontrol", "Inceleme baglam rozetinde rapor basligi korunmadi.");
+            Assert(reviewContextChips[1] == "PDF Kayip", "Inceleme baglam rozetinde issue tipi ayristirilamadi.");
+            Assert(reviewContextChips[2] == "Fatura", "Inceleme baglam rozetinde entity tipi ayristirilamadi.");
+            Assert(reviewContextChips[3] == "2026-01", "Inceleme baglam rozetinde donem ozeti ayristirilamadi.");
 
             var dashboardInvoices = new[]
             {

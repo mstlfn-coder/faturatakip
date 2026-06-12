@@ -40,6 +40,19 @@
             <Setter Property="MinWidth" Value="96" />
             <Setter Property="Cursor" Value="Hand" />
         </Style>
+        <Style x:Key="ContextChipBorder" TargetType="Border">
+            <Setter Property="Background" Value="#DBEAFE" />
+            <Setter Property="BorderBrush" Value="#BFDBFE" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="999" />
+            <Setter Property="Padding" Value="8,3" />
+            <Setter Property="Margin" Value="0,0,6,6" />
+        </Style>
+        <Style x:Key="ContextChipText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#1D4ED8" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -582,6 +595,22 @@
                                         <StackPanel>
                                             <TextBlock Text="Rapor Geçiş Bağlamı"
                                                        Style="{StaticResource FieldLabel}" />
+                                            <ItemsControl x:Name="InvoiceReviewContextChips"
+                                                          Margin="0,4,0,0">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel />
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border Style="{StaticResource ContextChipBorder}">
+                                                            <TextBlock Text="{Binding}"
+                                                                       Style="{StaticResource ContextChipText}" />
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
                                             <TextBlock x:Name="InvoiceReviewContextText"
                                                        Style="{StaticResource MutedText}"
                                                        TextWrapping="Wrap"
