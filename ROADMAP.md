@@ -796,6 +796,15 @@ Her faz bittiğinde:
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: bu panelden dogrudan baglama dayali filtre veya odak aksiyonu cikarmak.
 
+## Son Guncelleme (2026-06-12 / v1.05)
+
+- v1.05 tamamlandi: inceleme baglam paneline `Bağlam Filtresi` dugmesi eklendi.
+- `InvoiceReviewContextFormatter.TryResolveSuggestedFilter()` baglam metninden onerilen filtreyi cikariyor.
+- Faturalar ekrani bu oneriyi `İncelenmedi`, `Gecikmiş` veya `PDF Eksik` filtresine cevirip tek tikla uygulayabiliyor.
+- Self-test baglamdan filtre cikarma mantigini da dogruluyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: baglama dayali daha odakli alt filtre veya secili kayda donus aksiyonlari eklemek.
+
 ## Son Guncelleme (2026-06-12 / v1.04)
 
 - v1.04 tamamlandi: baglam rozetleri icin tekillestirme mantigi GroupBy tabanli daha deterministik bir akisla sabitlendi.

@@ -1256,3 +1256,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Tekillestirme stabil | OK | `GroupBy(...).First()` ile tekrar eden kind+text parcalari sabit sekilde tekillestiriliyor |
 | v1.03 regresyonu kapandi | OK | Self-test tekrar eden baglam parcasi senaryosunda yesil |
 | 2026-06-12 | v1.04 | OK | Baglam rozet tekillestirme duzeltmesi + build + self-test tamamlandi |
+
+## v1.05 - Baglam Filtresi Aksiyonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baglamdan filtre cikariliyor | OK | `TryResolveSuggestedFilter()` unreviewed / overdue / missing-pdf baglamlarini ayristiriyor |
+| Panel aksiyonu var | OK | `Bağlam Filtresi` dugmesi onerilen filtreyi tek tikla uyguluyor |
+| Baglam yoksa aksiyon pasif | OK | Uygulanabilir onerisi olmayan baglamlarda dugme devre disi |
+| 2026-06-12 | v1.05 | OK | Baglam filtresi aksiyonu + build + self-test tamamlandi |

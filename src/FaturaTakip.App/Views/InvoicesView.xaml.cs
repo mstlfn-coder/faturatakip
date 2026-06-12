@@ -883,6 +883,11 @@ public partial class InvoicesView : UserControl
         CopyInvoiceReviewContextToClipboard();
     }
 
+    private void ApplyInvoiceReviewContextFilterButton_Click(object sender, RoutedEventArgs e)
+    {
+        ApplyInvoiceReviewContextFilter();
+    }
+
     private void CopyInvoiceReviewContextToClipboard()
     {
         if (string.IsNullOrWhiteSpace(_invoiceReviewContextLabel))
@@ -902,9 +907,41 @@ public partial class InvoicesView : UserControl
         }
     }
 
+    private void ApplyInvoiceReviewContextFilter()
+    {
+        if (!InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out var suggestedFilter))
+        {
+            SetInvoiceStatus("Baglamdan uygulanabilir bir filtre cikarilamadi.", isError: true);
+            return;
+        }
+
+        _invoiceReviewModeLabel = null;
+        ResetQuickFilters();
+
+        switch (suggestedFilter)
+        {
+            case InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed:
+                SelectReviewStatusFilter(InvoiceReviewStatusFilter.Unreviewed);
+                ApplyFiltersToGrid(selectFirstIfAvailable: true);
+                SetInvoiceStatus("Baglamdan 'Incelenmedi' filtresi uygulandi.", isError: false);
+                break;
+            case InvoiceReviewContextFormatter.SuggestedFilter.Overdue:
+                SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Overdue);
+                ApplyFiltersToGrid(selectFirstIfAvailable: true);
+                SetInvoiceStatus("Baglamdan 'Gecikmis' filtresi uygulandi.", isError: false);
+                break;
+            case InvoiceReviewContextFormatter.SuggestedFilter.MissingPdf:
+                SelectPdfStatusFilter(InvoicePdfStatusFilter.MissingPdf);
+                ApplyFiltersToGrid(selectFirstIfAvailable: true);
+                SetInvoiceStatus("Baglamdan 'PDF Eksik' filtresi uygulandi.", isError: false);
+                break;
+        }
+    }
+
     private void UpdateInvoiceReviewContextPresentation(string? contextLabel)
     {
         var hasContext = !string.IsNullOrWhiteSpace(contextLabel);
+        var hasSuggestedFilter = InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out _);
 
         if (InvoiceReviewContextBorder is not null)
         {
@@ -926,6 +963,11 @@ public partial class InvoicesView : UserControl
         if (CopyInvoiceReviewContextButton is not null)
         {
             CopyInvoiceReviewContextButton.IsEnabled = !string.IsNullOrWhiteSpace(_invoiceReviewContextLabel);
+        }
+
+        if (ApplyInvoiceReviewContextFilterButton is not null)
+        {
+            ApplyInvoiceReviewContextFilterButton.IsEnabled = hasSuggestedFilter;
         }
     }
 
