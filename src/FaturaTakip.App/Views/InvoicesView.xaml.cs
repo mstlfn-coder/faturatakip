@@ -857,6 +857,13 @@ public partial class InvoicesView : UserControl
 
     private void UpdateInvoiceReviewNavigationControls()
     {
+        if (PreviousInvoiceButton is null ||
+            NextInvoiceButton is null ||
+            InvoiceReviewHintText is null)
+        {
+            return;
+        }
+
         var visibleInvoices = GetVisibleInvoices();
         var contextLabel = ShowInvoiceReviewContextCheckBox?.IsChecked == true
             ? _invoiceReviewContextLabel

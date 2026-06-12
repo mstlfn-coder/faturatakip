@@ -929,3 +929,9 @@ Her faz bittiğinde:
 - Daraltma ve hizli filtre ana akista, donem/tur/no ise ikincil grup icinde toplandi.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: baglam panelinde secili aksiyonlara daha belirgin gorsel vurgu eklemek.
+
+## Son Guncelleme (2026-06-12 / v1.19.1)
+
+- v1.19.1 hotfix tamamlandi: uygulama acilisindaki inceleme baglam paneli `NullReferenceException` hatasi kapatildi.
+- `Bağlamı Göster` eventi XAML yuklenirken erken tetiklense bile eksik UI elemanlari icin guvenli erken cikis eklendi.
+- Build, self-test ve health-check temiz gecti.

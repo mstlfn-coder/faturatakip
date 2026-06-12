@@ -965,3 +965,10 @@ v0.12 sonuÃ§ notu:
 511. Smoke test: dotnet build -c Release OK.
 512. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 513. Siradaki mantikli is: baglam panelinde secili aksiyonlara daha belirgin gorsel vurgu eklemek.
+
+514. v1.19.1 hotfix olarak uygulama acilisindaki `TargetInvocationException` / `NullReferenceException` hatasi kapatildi.
+515. Sorun, `Bağlamı Göster` eventi XAML yuklenirken navigasyon kontrolleri daha hazir olmadan tetiklenmesiydi.
+516. `UpdateInvoiceReviewNavigationControls()` icine erken cikis korumasi eklendi.
+517. Smoke test: dotnet build -c Release OK.
+518. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+519. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --health-check OK.

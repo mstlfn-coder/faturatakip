@@ -19,6 +19,7 @@ Son guncelleme tarihi: 2026-06-12
   - `v1.17` Baglam Aksiyon Tooltipleri
   - `v1.18` Baglam Aksiyon Satir Duzeni
   - `v1.19` Baglam Aksiyon Hiyerarsisi
+  - `v1.19.1` Acilis NullReference Hotfix
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -40,6 +41,7 @@ Son guncelleme tarihi: 2026-06-12
 13. Baglam paneli aksiyonlarina aciklayici tooltip'ler eklendi.
 14. Baglam aksiyon satiri `WrapPanel` ile dar alanlarda daha dayanikli hale getirildi.
 15. Baglam aksiyonlari ana ve detay gruplarina ayrilarak birincil akis daha belirgin hale getirildi.
+16. Acilista `Bağlamı Göster` eventi erken geldiginde olusan `NullReferenceException` hotfix ile kapatildi.
 
 ## Son 5 Commit
 

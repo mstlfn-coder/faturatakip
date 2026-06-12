@@ -567,3 +567,17 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: inceleme baglam panelinde secili aksiyonlari daha belirginlestirecek durum renkleri veya rozetli bir vurgu dusunmek.
+
+## v1.19.1 - Acilis NullReference Hotfix
+
+Bu hotfix turunda uygulama acilisinda gorulen `TargetInvocationException` / `NullReferenceException` hatasi kapatildi.
+Sorun, `Bağlamı Göster` checkbox eventi XAML yuklenirken erken tetiklendigi icin inceleme navigasyon kontrolleri daha olusmadan guncelleme akisinin calismasindan kaynaklaniyordu.
+
+`UpdateInvoiceReviewNavigationControls()` icine erken cikis korumasi eklendi.
+Boylece acilis sirasinda henuz olusmamis buton veya ipucu alanlari yuzunden uygulama dusmuyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check`

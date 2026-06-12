@@ -1399,3 +1399,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Ana/ikincil grup var | OK | Baglam aksiyonlari iki ayri baslik altinda toplandi |
 | Birincil aksiyon vurgusu var | OK | `Bağlamdan İncele` artik `PrimaryButton` ile one cikiyor |
 | 2026-06-12 | v1.19 | OK | Baglam aksiyon hiyerarsisi + build + self-test tamamlandi |
+
+## v1.19.1 - Acilis NullReference Hotfix
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| --health-check basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --health-check temiz gecti |
+| Acilis korumasi var | OK | Inceleme navigasyon kontrolleri daha olusmadan gelen event akisi guvenli sekilde atlanıyor |
+| 2026-06-12 | v1.19.1 | OK | Acilis NullReference hotfix + build + self-test + health-check tamamlandi |
