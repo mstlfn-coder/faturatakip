@@ -126,6 +126,42 @@ public static class InvoiceReviewContextFormatter
         return false;
     }
 
+    public static bool TryResolvePeriod(string? contextLabel, out int year, out int month)
+    {
+        year = 0;
+        month = 0;
+        if (string.IsNullOrWhiteSpace(contextLabel))
+        {
+            return false;
+        }
+
+        foreach (var chip in BuildChips(contextLabel))
+        {
+            if (!string.Equals(chip.Kind, "period", StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
+            var parts = chip.Text.Split('-', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length != 2)
+            {
+                continue;
+            }
+
+            if (int.TryParse(parts[0], out year) &&
+                int.TryParse(parts[1], out month) &&
+                month >= 1 &&
+                month <= 12)
+            {
+                return true;
+            }
+        }
+
+        year = 0;
+        month = 0;
+        return false;
+    }
+
     private static bool ContainsAny(string text, params string[] values)
     {
         return values.Any(value => text.IndexOf(value, StringComparison.CurrentCultureIgnoreCase) >= 0);

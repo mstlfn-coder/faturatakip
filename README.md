@@ -338,6 +338,20 @@ Smoke test:
 
 Sıradaki mantikli is: baglam panelinden alt filtre, donem veya issue bazli daha ince odak aksiyonlari cikarmak.
 
+## v1.07 - Baglam Donemi Filtresi
+
+Bu fazda inceleme baglam paneline `Bağlam Dönemi` aksiyonu eklendi.
+Baglamda `2026-01` gibi bir donem bilgisi varsa, kullanici tek tikla yil/ay filtresini bu degere gore kurabiliyor.
+
+Bu ozellikle evrak kontrol veya donem odakli rapor gecislerinde kayda tekrar hizli daralma sagliyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: issue tipi veya varlik tipine gore daha ince alt filtre aksiyonlari eklemek.
+
 ## v1.05 - Baglam Filtresi Aksiyonu
 
 Bu fazda inceleme baglam paneline `Bağlam Filtresi` aksiyonu eklendi.

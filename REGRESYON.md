@@ -1276,3 +1276,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Review filtresiyle birlikte calisiyor | OK | Uygunsa once baglam filtresi kurulup sonra tercihli kayda gidiliyor |
 | Tercihli kayit yoksa aksiyon pasif | OK | `preferred invoice id` yoksa dugme devre disi |
 | 2026-06-12 | v1.06 | OK | Baglam kaydina git + build + self-test tamamlandi |
+
+## v1.07 - Baglam Donemi Filtresi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Donem cikarimi var | OK | `TryResolvePeriod()` baglamdan `yyyy-MM` bilgisini ayristiriyor |
+| Panel aksiyonu var | OK | `Bağlam Dönemi` dugmesi yil/ay filtresini tek tikla kuruyor |
+| Donem yoksa aksiyon pasif | OK | Baglamda donem bilgisi yoksa dugme devre disi |
+| 2026-06-12 | v1.07 | OK | Baglam donemi filtresi + build + self-test tamamlandi |
