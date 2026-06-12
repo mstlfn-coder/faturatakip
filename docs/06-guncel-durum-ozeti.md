@@ -21,6 +21,7 @@ Son guncelleme tarihi: 2026-06-12
   - `v1.19` Baglam Aksiyon Hiyerarsisi
   - `v1.19.1` Acilis NullReference Hotfix
   - `v1.20` Baglam Aksiyon Durum Vurgulari
+  - `v1.21` Hazir Aksiyon Ozeti
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -44,6 +45,7 @@ Son guncelleme tarihi: 2026-06-12
 15. Baglam aksiyonlari ana ve detay gruplarina ayrilarak birincil akis daha belirgin hale getirildi.
 16. Acilista `Bağlamı Göster` eventi erken geldiginde olusan `NullReferenceException` hotfix ile kapatildi.
 17. Baglam panelindeki uygulanabilir aksiyonlara renkli durum vurgulari eklendi.
+18. Baglam paneline hazir aksiyon sayisini ve aktif aksiyon adlarini gosteren ozet satiri eklendi.
 
 ## Son 5 Commit
 

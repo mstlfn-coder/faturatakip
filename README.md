@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.21 - Hazir Aksiyon Ozeti
+
+Bu fazda inceleme baglam paneline kisa bir hazir aksiyon ozeti eklendi.
+Panel artik baglamdan o anda kac aksiyonun uygulanabilir oldugunu ve hangilerinin hazir oldugunu tek satirda gosteriyor.
+
+Boylece kullanici renk vurgularini yalniz gorsel sezgiyle degil, acik bir metin ozetle de destekli goruyor.
+Ozellikle yogun baglamlarda panelin anlasilirligi daha da artti.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 Sıradaki mantikli is: baglamdan fatura no veya daha ince kayit detayini da ayristirip ek hedefli aksiyonlar dusunmek.
 
 ## v1.09 - Baglam No Aramasi

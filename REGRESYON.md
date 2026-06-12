@@ -1417,3 +1417,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Renkli durum vurgusu var | OK | Uygulanabilir baglam aksiyonlari baglam tipine gore renkleniyor |
 | Pasif aksiyonlar soluk | OK | Islenemeyen butonlar daha dusuk vurgu ile gosteriliyor |
 | 2026-06-13 | v1.20 | OK | Baglam aksiyon durum vurgulari + build + self-test tamamlandi |
+
+## v1.21 - Hazir Aksiyon Ozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ozet satiri var | OK | Hazir aksiyon sayisi ve aksiyon adlari panelde metin olarak gosteriliyor |
+| Baglam yoksa gizleniyor | OK | Ozet satiri yalnizca baglam gorunuyorsa aktif |
+| 2026-06-13 | v1.21 | OK | Hazir aksiyon ozeti + build + self-test tamamlandi |

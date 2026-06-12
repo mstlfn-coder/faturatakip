@@ -978,3 +978,9 @@ v0.12 sonuÃ§ notu:
 522. Uygulanamayan aksiyonlar daha soluk gosterilerek gorsel ayrim artirildi.
 523. Smoke test: dotnet build -c Release OK.
 524. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+525. v1.21 olarak baglam paneline hazir aksiyon ozeti eklendi.
+526. Ozet satiri hazir aksiyon sayisini ve aktif aksiyon adlarini metin olarak gosteriyor.
+527. Renkli durum vurgulari artik metinsel bir ozetle de destekleniyor.
+528. Smoke test: dotnet build -c Release OK.
+529. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

@@ -942,3 +942,10 @@ Her faz bittiğinde:
 - `Bağlamdan İncele` birincil akista mavi, hizli filtre yesil, donem sari, detay araclari mor tonla belirginlesiyor.
 - Uygulanamayan aksiyonlar daha soluk tutularak gorsel ayrim guclendirildi.
 - Smoke test olarak build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-13 / v1.21)
+
+- v1.21 tamamlandi: baglam paneline hazir aksiyon ozeti eklendi.
+- Panel artik hazir aksiyon sayisini ve mevcut aksiyon adlarini metin olarak da gosteriyor.
+- Renkli vurguya ek olarak metinsel okunabilirlik artirildi.
+- Smoke test olarak build ve self-test temiz gecti.

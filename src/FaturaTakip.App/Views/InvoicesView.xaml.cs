@@ -1236,6 +1236,31 @@ public partial class InvoicesView : UserControl
         var hasInvoiceType = InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out _);
         var hasInvoiceNumber = InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out _);
         var hasAnyNarrowing = hasSuggestedFilter || hasPeriod || hasInvoiceType || hasInvoiceNumber;
+        var availableActions = new List<string>();
+        if (hasSuggestedFilter || hasPreferredInvoice || hasPeriod || hasInvoiceType || hasInvoiceNumber)
+        {
+            availableActions.Add("Baglamdan Incele");
+        }
+        if (hasAnyNarrowing)
+        {
+            availableActions.Add("Baglami Daralt");
+        }
+        if (hasSuggestedFilter)
+        {
+            availableActions.Add("Baglam Filtresi");
+        }
+        if (hasPeriod)
+        {
+            availableActions.Add("Baglam Donemi");
+        }
+        if (hasInvoiceType)
+        {
+            availableActions.Add("Baglam Turu");
+        }
+        if (hasInvoiceNumber)
+        {
+            availableActions.Add("Baglam No");
+        }
 
         if (InvoiceReviewContextBorder is not null)
         {
@@ -1245,6 +1270,16 @@ public partial class InvoicesView : UserControl
         if (InvoiceReviewContextText is not null)
         {
             InvoiceReviewContextText.Text = hasContext ? contextLabel : string.Empty;
+        }
+
+        if (InvoiceReviewActionSummaryText is not null)
+        {
+            InvoiceReviewActionSummaryText.Text = availableActions.Count == 0
+                ? "Hazir aksiyon yok."
+                : $"Hazir aksiyonlar ({availableActions.Count}): {string.Join(", ", availableActions)}";
+            InvoiceReviewActionSummaryText.Visibility = hasContext
+                ? System.Windows.Visibility.Visible
+                : System.Windows.Visibility.Collapsed;
         }
 
         if (InvoiceReviewContextChips is not null)

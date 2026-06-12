@@ -736,6 +736,10 @@
                                                        Style="{StaticResource MutedText}"
                                                        TextWrapping="Wrap"
                                                        Margin="0,4,0,0" />
+                                            <TextBlock x:Name="InvoiceReviewActionSummaryText"
+                                                       Style="{StaticResource MutedText}"
+                                                       TextWrapping="Wrap"
+                                                       Margin="0,8,0,0" />
                                         </StackPanel>
                                     </Border>
                                     <StackPanel Margin="0,8,0,0">
