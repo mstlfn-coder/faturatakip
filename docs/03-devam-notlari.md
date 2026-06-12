@@ -909,3 +909,10 @@ v0.12 sonuÃ§ notu:
 463. Smoke test: dotnet build -c Release OK.
 464. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 465. Siradaki mantikli is: dokuman dosyalarindaki encoding kalintilarini ayri bir turda toparlamak.
+
+466. v1.12 olarak `docs/06-guncel-durum-ozeti.md` olusturuldu.
+467. `docs/00-codex-devam-kilavuzu.md` temiz UTF-8 icerikle yeniden yazildi.
+468. Yeni chatlerde once temiz ozet dosyasinin okunmasi esas alindi.
+469. Smoke test: dotnet build -c Release OK.
+470. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+471. Siradaki mantikli is: tarihsel dokumanlardaki encoding kalintilarini parca parca temizlemek veya uygulama akisinda yeni kucuk iyilestirmeye gecmek.

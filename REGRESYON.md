@@ -1326,3 +1326,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | PDF rapor basliklari duzgun | OK | `ÖDENMEMİŞ`, `GECİKMİŞ`, `YAKLAŞAN`, `İŞLEM GEÇMİŞİ` basliklari duzeltildi |
 | Ortak hata basligi duzgun | OK | `Uygulama başlatılamadı` metni guncellendi |
 | 2026-06-12 | v1.11 | OK | ReportsView Turkce temizlik + build + self-test tamamlandi |
+
+## v1.12 - Temiz Handoff Ozet Dosyasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Temiz ozet dosyasi var | OK | `docs/06-guncel-durum-ozeti.md` olusturuldu |
+| Temiz devam kilavuzu var | OK | `docs/00-codex-devam-kilavuzu.md` yeniden yazildi |
+| Handoff okuma sirasi guncel | OK | Yeni chatlerde once temiz ozet dosyasi okunacak |
+| 2026-06-12 | v1.12 | OK | Temiz handoff ozet dosyasi + build + self-test tamamlandi |

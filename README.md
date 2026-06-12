@@ -445,3 +445,20 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: kalan dokuman dosyalarindaki encoding kalintilarini ayri bir dokuman temizlik turunda toparlamak.
+
+## Temiz Handoff Notu
+
+Yeni chatlerde once `docs/06-guncel-durum-ozeti.md` okunmalidir.
+Eski tarihsel dokumanlar korunuyor, ancak bazi bolumlerde encoding kalintilari bulunabilir.
+
+## v1.12 - Temiz Handoff Ozet Dosyasi
+
+Bu fazda yeni chatlerde hizli baslangic icin `docs/06-guncel-durum-ozeti.md` olusturuldu.
+Ayri olarak `docs/00-codex-devam-kilavuzu.md` temiz UTF-8 icerikle yeniden yazildi ve okuma sirasi bu yeni ozet dosyaya gore guncellendi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: eski tarihsel dokumanlarda kalan encoding kalintilarini parca parca temizlemek veya uygulama akisindaki bir sonraki islevsel iyilestirmeye gecmek.

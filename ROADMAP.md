@@ -865,3 +865,11 @@ Her faz bittiğinde:
 - `App.xaml.cs` icindeki acilis hata basligi `Uygulama başlatılamadı` olarak guncellendi.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: dokuman dosyalarindaki encoding kalintilarini ayri bir turda toparlamak.
+
+## Son Guncelleme (2026-06-12 / v1.12)
+
+- v1.12 tamamlandi: yeni chatler icin temiz `docs/06-guncel-durum-ozeti.md` eklendi.
+- `docs/00-codex-devam-kilavuzu.md` temiz UTF-8 icerikle yeniden yazildi.
+- Handoff icin eski bozuk tarihce yerine yeni temiz ozet dosyasi referans noktasi yapildi.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: tarihsel dokuman encoding kalintilarini parca parca temizlemek veya uygulama akisinda yeni kucuk iyilestirmeye gecmek.
