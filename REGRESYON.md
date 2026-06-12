@@ -1345,3 +1345,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Birlesik daraltma aksiyonu var | OK | `Bağlamı Daralt` dugmesi filtre + donem + tur + no ipuclarini tek tikta uyguluyor |
 | Parser Turkce eslesmeleri temiz | OK | `İncelenmedi`, `Gecikmiş`, `PDF Kayıp` baglamlari dogru ayristiriliyor |
 | 2026-06-12 | v1.13 | OK | Baglami tek tikla daraltma + build + self-test tamamlandi |
+
+## v1.14 - Daraltma Sonrasi Otomatik Odak
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tercihli kayda odak var | OK | Baglam kaydi gorunur listedeyse `Bağlamı Daralt` dogrudan o kaydi seciyor |
+| Fallback secim var | OK | Tercihli kayit bulunamazsa ilk uygun kayda dusulup kullaniciya acik mesaj veriliyor |
+| 2026-06-12 | v1.14 | OK | Daraltma sonrasi otomatik odak + build + self-test tamamlandi |

@@ -477,3 +477,18 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: bu daraltma aksiyonuna gerekirse otomatik secili kayda atlama veya tek tikla inceleme modunu yeniden kurma rahatligi eklemek.
+
+## v1.14 - Daraltma Sonrasi Otomatik Odak
+
+Bu fazda `Bağlamı Daralt` aksiyonunun secim davranisi netlestirildi.
+Daraltma uygulandiktan sonra baglamdan gelen tercihli kayit gorunur listede varsa dogrudan o kayda odaklaniliyor; yoksa ilk uygun kayda dusuluyor ve durum mesaji bunu acikca belirtiyor.
+
+Boylece operator daraltma sonrasi hangi kaydin acildigini tahmin etmek zorunda kalmiyor.
+Baglam kaydi bulunamazsa bile akis boslukta kalmiyor; uygun ilk kayit secilerek kontrol turu kesintisiz devam ediyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: bu akisi istersek tek tikla inceleme modunu yeniden kuran daha guclu bir baglam aksiyonuna tasimak.

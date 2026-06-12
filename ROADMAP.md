@@ -881,3 +881,11 @@ Her faz bittiğinde:
 - `InvoiceReviewContextFormatter` icindeki Turkce baglam eslesmeleri de temizlenerek parser daha tutarli hale getirildi.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: daraltma aksiyonunu secili kayda otomatik atlama veya review modunu yeniden kurma rahatligiyla zenginlestirmek.
+
+## Son Guncelleme (2026-06-12 / v1.14)
+
+- v1.14 tamamlandi: `Bağlamı Daralt` sonrasi secim davranisi netlestirildi.
+- Tercihli baglam kaydi gorunur listede varsa dogrudan ona odaklaniliyor.
+- Baglam kaydi gorunmezse akis ilk uygun kayda dusuyor ve durum mesaji fallback bilgisini acikca veriyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: tek tikla review modunu yeniden kuran daha guclu bir baglam aksiyonu eklemek.

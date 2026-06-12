@@ -923,3 +923,10 @@ v0.12 sonuÃ§ notu:
 475. Smoke test: dotnet build -c Release OK.
 476. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 477. Siradaki mantikli is: daraltma aksiyonunu secili kayda otomatik atlama veya review modunu yeniden kurma rahatligiyla zenginlestirmek.
+
+478. v1.14 olarak `Bağlamı Daralt` sonrasi secim davranisi netlestirildi.
+479. Baglamdan gelen tercihli kayit filtre sonucunda listede varsa dogrudan o kayda odaklaniliyor.
+480. Tercihli kayit bulunamazsa akis ilk uygun kayda dusuyor ve durum mesaji fallback bilgisini acikca veriyor.
+481. Smoke test: dotnet build -c Release OK.
+482. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+483. Siradaki mantikli is: tek tikla review modunu yeniden kuran daha guclu bir baglam aksiyonu eklemek.

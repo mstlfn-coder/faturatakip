@@ -358,7 +358,7 @@ public partial class InvoicesView : UserControl
             SearchText: InvoiceSearchInput.Text);
     }
 
-    private void ApplyFiltersToGrid(long? selectedId = null, bool selectFirstIfAvailable = false)
+    private Invoice? ApplyFiltersToGridCore(long? selectedId = null, bool selectFirstIfAvailable = false)
     {
         var filtered = ApplyFilters(_invoices).ToList();
         InvoiceGrid.ItemsSource = filtered;
@@ -380,12 +380,18 @@ public partial class InvoicesView : UserControl
             InvoiceGrid.SelectedItem = null;
             ClearInvoiceForm();
             UpdateInvoiceReviewNavigationControls();
-            return;
+            return null;
         }
 
         InvoiceGrid.SelectedItem = selected;
         InvoiceGrid.ScrollIntoView(selected);
         ApplySelectedInvoice(selected);
+        return selected;
+    }
+
+    private void ApplyFiltersToGrid(long? selectedId = null, bool selectFirstIfAvailable = false)
+    {
+        _ = ApplyFiltersToGridCore(selectedId, selectFirstIfAvailable);
     }
 
     private void ResetQuickFilters()
@@ -1037,7 +1043,25 @@ public partial class InvoicesView : UserControl
             appliedParts.Add(invoiceNumber);
         }
 
-        ApplyFiltersToGrid(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: true);
+        var selectedInvoice = ApplyFiltersToGridCore(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: true);
+        if (selectedInvoice is null)
+        {
+            SetInvoiceStatus($"Bağlam daraltması uygulandı fakat eslesen kayit bulunamadi: {string.Join(" + ", appliedParts)}", isError: true);
+            return;
+        }
+
+        if (_invoiceReviewPreferredInvoiceId is not null && selectedInvoice.Id == _invoiceReviewPreferredInvoiceId.Value)
+        {
+            SetInvoiceStatus($"Bağlam daraltması uygulandı ve baglam kaydina odaklanildi: {selectedInvoice.InvoiceNo}", isError: false);
+            return;
+        }
+
+        if (_invoiceReviewPreferredInvoiceId is not null)
+        {
+            SetInvoiceStatus($"Bağlam daraltması uygulandı; baglam kaydi bulunamadigi icin en uygun kayda odaklanildi: {selectedInvoice.InvoiceNo}", isError: false);
+            return;
+        }
+
         SetInvoiceStatus($"Bağlam daraltması uygulandı: {string.Join(" + ", appliedParts)}", isError: false);
     }
 

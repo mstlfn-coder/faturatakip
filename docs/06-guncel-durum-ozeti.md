@@ -13,6 +13,7 @@ Son guncelleme tarihi: 2026-06-12
   - `v1.11` ReportsView Turkce Metin Temizligi
   - `v1.12` Temiz Handoff Ozet Dosyasi
   - `v1.13` Baglami Tek Tikla Daraltma
+  - `v1.14` Daraltma Sonrasi Otomatik Odak
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -28,6 +29,7 @@ Son guncelleme tarihi: 2026-06-12
 7. ReportsView ve bazi ortak uygulama metinlerindeki gorunur Turkce karakter bozulmalari temizlendi.
 8. Yeni chatler icin temiz handoff ozet dosyasi eklendi.
 9. Baglam paneline tek tikla daraltma aksiyonu eklendi.
+10. Daraltma sonrasi tercihli baglam kaydina otomatik odak davranisi netlestirildi.
 
 ## Son 5 Commit
 
