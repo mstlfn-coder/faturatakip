@@ -686,6 +686,11 @@
                                                 Style="{StaticResource SecondaryButton}"
                                                 Margin="12,0,0,0"
                                                 Click="CopyInvoiceReviewContextButton_Click" />
+                                        <Button x:Name="ApplyInvoiceReviewContextNarrowButton"
+                                                Content="Bağlamı Daralt"
+                                                Style="{StaticResource SecondaryButton}"
+                                                Margin="12,0,0,0"
+                                                Click="ApplyInvoiceReviewContextNarrowButton_Click" />
                                         <Button x:Name="ApplyInvoiceReviewContextFilterButton"
                                                 Content="Bağlam Filtresi"
                                                 Style="{StaticResource SecondaryButton}"

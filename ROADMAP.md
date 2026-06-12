@@ -873,3 +873,11 @@ Her faz bittiğinde:
 - Handoff icin eski bozuk tarihce yerine yeni temiz ozet dosyasi referans noktasi yapildi.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: tarihsel dokuman encoding kalintilarini parca parca temizlemek veya uygulama akisinda yeni kucuk iyilestirmeye gecmek.
+
+## Son Guncelleme (2026-06-12 / v1.13)
+
+- v1.13 tamamlandi: inceleme baglam paneline `Bağlamı Daralt` dugmesi eklendi.
+- Baglamdan cozulebilen filtre, donem, fatura turu ve fatura no ipuclari tek aksiyonda birlestirildi.
+- `InvoiceReviewContextFormatter` icindeki Turkce baglam eslesmeleri de temizlenerek parser daha tutarli hale getirildi.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: daraltma aksiyonunu secili kayda otomatik atlama veya review modunu yeniden kurma rahatligiyla zenginlestirmek.

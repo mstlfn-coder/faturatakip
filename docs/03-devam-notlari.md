@@ -916,3 +916,10 @@ v0.12 sonuÃ§ notu:
 469. Smoke test: dotnet build -c Release OK.
 470. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 471. Siradaki mantikli is: tarihsel dokumanlardaki encoding kalintilarini parca parca temizlemek veya uygulama akisinda yeni kucuk iyilestirmeye gecmek.
+
+472. v1.13 olarak inceleme baglam paneline `Bağlamı Daralt` aksiyonu eklendi.
+473. Bu aksiyon baglamdan cozulebilen filtre, donem, fatura turu ve fatura no ipuclarini tek seferde uyguluyor.
+474. `InvoiceReviewContextFormatter` icindeki Turkce baglam eslesmeleri de temizlenerek parser daha tutarli hale getirildi.
+475. Smoke test: dotnet build -c Release OK.
+476. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+477. Siradaki mantikli is: daraltma aksiyonunu secili kayda otomatik atlama veya review modunu yeniden kurma rahatligiyla zenginlestirmek.

@@ -1336,3 +1336,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Temiz devam kilavuzu var | OK | `docs/00-codex-devam-kilavuzu.md` yeniden yazildi |
 | Handoff okuma sirasi guncel | OK | Yeni chatlerde once temiz ozet dosyasi okunacak |
 | 2026-06-12 | v1.12 | OK | Temiz handoff ozet dosyasi + build + self-test tamamlandi |
+
+## v1.13 - Baglami Tek Tikla Daraltma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Birlesik daraltma aksiyonu var | OK | `Bağlamı Daralt` dugmesi filtre + donem + tur + no ipuclarini tek tikta uyguluyor |
+| Parser Turkce eslesmeleri temiz | OK | `İncelenmedi`, `Gecikmiş`, `PDF Kayıp` baglamlari dogru ayristiriliyor |
+| 2026-06-12 | v1.13 | OK | Baglami tek tikla daraltma + build + self-test tamamlandi |

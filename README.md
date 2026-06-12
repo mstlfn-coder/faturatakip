@@ -462,3 +462,18 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: eski tarihsel dokumanlarda kalan encoding kalintilarini parca parca temizlemek veya uygulama akisindaki bir sonraki islevsel iyilestirmeye gecmek.
+
+## v1.13 - Baglami Tek Tikla Daraltma
+
+Bu fazda inceleme baglam paneline `Bağlamı Daralt` aksiyonu eklendi.
+Bu dugme baglamdan cikarilabilen ipuclarini tek seferde birlestiriyor: uygun filtre, donem, fatura turu ve fatura no varsa birlikte uygulaniyor.
+
+Boylece operator artik baglamdan gelen bilgiyi tek tek dugmelerle kurmak yerine, tek tikla daha dar bir listeye ulasabiliyor.
+Ozellikle actionable rapordan gelen gecislerde `İncelenmedi + Elektrik + INV-001` gibi daraltmalar hizli sekilde kuruluyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: bu daraltma aksiyonuna gerekirse otomatik secili kayda atlama veya tek tikla inceleme modunu yeniden kurma rahatligi eklemek.

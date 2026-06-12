@@ -908,6 +908,11 @@ public partial class InvoicesView : UserControl
         ApplyInvoiceReviewContextFilter();
     }
 
+    private void ApplyInvoiceReviewContextNarrowButton_Click(object sender, RoutedEventArgs e)
+    {
+        ApplyInvoiceReviewContextNarrow();
+    }
+
     private void FocusInvoiceFromReviewContextButton_Click(object sender, RoutedEventArgs e)
     {
         FocusInvoiceFromReviewContext();
@@ -976,6 +981,64 @@ public partial class InvoicesView : UserControl
                 SetInvoiceStatus("Bağlamdan 'PDF Eksik' filtresi uygulandı.", isError: false);
                 break;
         }
+    }
+
+    private void ApplyInvoiceReviewContextNarrow()
+    {
+        var hasSuggestedFilter = InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out var suggestedFilter);
+        var hasPeriod = InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out var year, out var month);
+        var hasInvoiceType = InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out var invoiceTypeName);
+        var hasInvoiceNumber = InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out var invoiceNumber);
+
+        if (!hasSuggestedFilter && !hasPeriod && !hasInvoiceType && !hasInvoiceNumber)
+        {
+            SetInvoiceStatus("Bağlamdan daraltılacak bir ipucu çıkarılamadı.", isError: true);
+            return;
+        }
+
+        _invoiceReviewModeLabel = null;
+        ResetQuickFilters();
+
+        var appliedParts = new List<string>();
+        if (hasSuggestedFilter)
+        {
+            switch (suggestedFilter)
+            {
+                case InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed:
+                    SelectReviewStatusFilter(InvoiceReviewStatusFilter.Unreviewed);
+                    appliedParts.Add("İncelenmedi");
+                    break;
+                case InvoiceReviewContextFormatter.SuggestedFilter.Overdue:
+                    SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Overdue);
+                    appliedParts.Add("Gecikmiş");
+                    break;
+                case InvoiceReviewContextFormatter.SuggestedFilter.MissingPdf:
+                    SelectPdfStatusFilter(InvoicePdfStatusFilter.MissingPdf);
+                    appliedParts.Add("PDF Eksik");
+                    break;
+            }
+        }
+
+        if (hasPeriod)
+        {
+            SelectYearFilter(year);
+            SelectMonthFilter(month);
+            appliedParts.Add($"{year:D4}-{month:D2}");
+        }
+
+        if (hasInvoiceType && SelectInvoiceTypeFilter(invoiceTypeName))
+        {
+            appliedParts.Add(invoiceTypeName);
+        }
+
+        if (hasInvoiceNumber)
+        {
+            InvoiceSearchInput.Text = invoiceNumber;
+            appliedParts.Add(invoiceNumber);
+        }
+
+        ApplyFiltersToGrid(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: true);
+        SetInvoiceStatus($"Bağlam daraltması uygulandı: {string.Join(" + ", appliedParts)}", isError: false);
     }
 
     private void FocusInvoiceFromReviewContext()
@@ -1070,6 +1133,7 @@ public partial class InvoicesView : UserControl
         var hasPeriod = InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out _, out _);
         var hasInvoiceType = InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out _);
         var hasInvoiceNumber = InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out _);
+        var hasAnyNarrowing = hasSuggestedFilter || hasPeriod || hasInvoiceType || hasInvoiceNumber;
 
         if (InvoiceReviewContextBorder is not null)
         {
@@ -1096,6 +1160,11 @@ public partial class InvoicesView : UserControl
         if (ApplyInvoiceReviewContextFilterButton is not null)
         {
             ApplyInvoiceReviewContextFilterButton.IsEnabled = hasSuggestedFilter;
+        }
+
+        if (ApplyInvoiceReviewContextNarrowButton is not null)
+        {
+            ApplyInvoiceReviewContextNarrowButton.IsEnabled = hasAnyNarrowing;
         }
 
         if (FocusInvoiceFromReviewContextButton is not null)

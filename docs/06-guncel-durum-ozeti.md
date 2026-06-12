@@ -5,12 +5,14 @@ Son guncelleme tarihi: 2026-06-12
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son commit: `c208e4e fix: clean report view turkish text`
+- Son commit: `42e4695 docs: add clean handoff summary`
 - Son tamamlanan temiz fazlar:
   - `v1.08` Baglam Turu Filtresi
   - `v1.09` Baglam No Aramasi
   - `v1.10` Baglam Paneli Turkce Metin Temizligi
   - `v1.11` ReportsView Turkce Metin Temizligi
+  - `v1.12` Temiz Handoff Ozet Dosyasi
+  - `v1.13` Baglami Tek Tikla Daraltma
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -23,7 +25,9 @@ Son guncelleme tarihi: 2026-06-12
 4. `InvoiceReviewContextFormatter` icinde baglamdan donem, tur ve fatura no ayristirma yardimcilari eklendi.
 5. Donem parser'i daraltildi; `INV-001` gibi numaralar artik donem sayilmiyor.
 6. `InvoicesView` baglam panelindeki gorunur Turkce metinler temizlendi.
-7. `ReportsView` ve bazi ortak uygulama metinlerindeki gorunur Turkce karakter bozulmalari temizlendi.
+7. ReportsView ve bazi ortak uygulama metinlerindeki gorunur Turkce karakter bozulmalari temizlendi.
+8. Yeni chatler icin temiz handoff ozet dosyasi eklendi.
+9. Baglam paneline tek tikla daraltma aksiyonu eklendi.
 
 ## Son 5 Commit
 
@@ -55,4 +59,3 @@ Bu projede once docs/06-guncel-durum-ozeti.md dosyasini oku. Sonra README.md, RO
 
 `docs/03-devam-notlari.md`, `ROADMAP.md`, `REGRESYON.md` ve `README.md` icinde eski fazlardan gelen encoding kalintilari bulunabilir.
 Bu dosya, yeni chatlerde hizli ve temiz handoff noktasi olarak tutulur.
-
