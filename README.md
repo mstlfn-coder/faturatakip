@@ -581,3 +581,16 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check`
+
+## v1.20 - Baglam Aksiyon Durum Vurgulari
+
+Bu fazda inceleme baglam panelindeki uygulanabilir aksiyonlara renkli durum vurgulari eklendi.
+Artik aktif hale gelen butonlar baglam tipine gore farkli tonlarla one cikiyor: hizli filtre yesil, baglam akisi mavi, donem sari, detay araclari mor. Uygulanamayan aksiyonlar ise daha soluk gorunuyor.
+
+Boylece operator bir bakista hangi butonun su anda anlamli oldugunu daha kolay ayirt ediyor.
+Davranis ayni kalirken karar hizi ve panel okunabilirligi iyilesti.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

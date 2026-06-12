@@ -935,3 +935,10 @@ Her faz bittiğinde:
 - v1.19.1 hotfix tamamlandi: uygulama acilisindaki inceleme baglam paneli `NullReferenceException` hatasi kapatildi.
 - `Bağlamı Göster` eventi XAML yuklenirken erken tetiklense bile eksik UI elemanlari icin guvenli erken cikis eklendi.
 - Build, self-test ve health-check temiz gecti.
+
+## Son Guncelleme (2026-06-13 / v1.20)
+
+- v1.20 tamamlandi: baglam panelindeki uygulanabilir aksiyonlara renkli durum vurgulari eklendi.
+- `Bağlamdan İncele` birincil akista mavi, hizli filtre yesil, donem sari, detay araclari mor tonla belirginlesiyor.
+- Uygulanamayan aksiyonlar daha soluk tutularak gorsel ayrim guclendirildi.
+- Smoke test olarak build ve self-test temiz gecti.

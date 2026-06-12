@@ -1408,3 +1408,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | --health-check basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --health-check temiz gecti |
 | Acilis korumasi var | OK | Inceleme navigasyon kontrolleri daha olusmadan gelen event akisi guvenli sekilde atlanıyor |
 | 2026-06-12 | v1.19.1 | OK | Acilis NullReference hotfix + build + self-test + health-check tamamlandi |
+
+## v1.20 - Baglam Aksiyon Durum Vurgulari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Renkli durum vurgusu var | OK | Uygulanabilir baglam aksiyonlari baglam tipine gore renkleniyor |
+| Pasif aksiyonlar soluk | OK | Islenemeyen butonlar daha dusuk vurgu ile gosteriliyor |
+| 2026-06-13 | v1.20 | OK | Baglam aksiyon durum vurgulari + build + self-test tamamlandi |

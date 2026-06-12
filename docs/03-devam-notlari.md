@@ -972,3 +972,9 @@ v0.12 sonuÃ§ notu:
 517. Smoke test: dotnet build -c Release OK.
 518. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 519. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --health-check OK.
+
+520. v1.20 olarak inceleme baglam panelindeki uygulanabilir aksiyonlara renkli durum vurgulari eklendi.
+521. Hizli filtre yesil, baglam akisi mavi, donem sari, detay araclari mor tonla one cikacak sekilde stiller ayrildi.
+522. Uygulanamayan aksiyonlar daha soluk gosterilerek gorsel ayrim artirildi.
+523. Smoke test: dotnet build -c Release OK.
+524. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
