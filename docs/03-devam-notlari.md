@@ -851,3 +851,9 @@ v0.12 sonuÃ§ notu:
 407. Smoke test: dotnet build -c Release OK.
 408. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 409. Siradaki mantikli is: bu panelden dogrudan baglama dayali filtre veya odak aksiyonu cikarmak.
+410. v1.04 olarak baglam rozet tekillestirme mantigi sadeleştirildi.
+411. `InvoiceReviewContextFormatter` icindeki `DistinctBy` tabanli tuple karsilastirmasi yerine `GroupBy(...).First()` akisi kullanildi.
+412. Bu duzeltme, v1.03 sonrasinda self-testte yakalanan tekrarli baglam parcasi regresyonunu kapatti.
+413. Smoke test: dotnet build -c Release OK.
+414. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+415. Siradaki mantikli is: bu panelden dogrudan baglama dayali filtre veya odak aksiyonu cikarmak.

@@ -31,7 +31,10 @@ public static class InvoiceReviewContextFormatter
         }
 
         return chips
-            .DistinctBy(chip => (chip.Kind, chip.Text), ContextChipComparer.Instance)
+            .GroupBy(
+                chip => $"{chip.Kind}\u001F{chip.Text}",
+                StringComparer.CurrentCultureIgnoreCase)
+            .Select(group => group.First())
             .OrderBy(chip => GetKindOrder(chip.Kind))
             .ThenBy(chip => chip.Text, StringComparer.CurrentCultureIgnoreCase)
             .ToList();
@@ -85,24 +88,6 @@ public static class InvoiceReviewContextFormatter
             "period" => 4,
             _ => 5,
         };
-    }
-
-    private sealed class ContextChipComparer : IEqualityComparer<(string Kind, string Text)>
-    {
-        public static ContextChipComparer Instance { get; } = new();
-
-        public bool Equals((string Kind, string Text) x, (string Kind, string Text) y)
-        {
-            return string.Equals(x.Kind, y.Kind, StringComparison.OrdinalIgnoreCase) &&
-                   string.Equals(x.Text, y.Text, StringComparison.CurrentCultureIgnoreCase);
-        }
-
-        public int GetHashCode((string Kind, string Text) obj)
-        {
-            return HashCode.Combine(
-                StringComparer.OrdinalIgnoreCase.GetHashCode(obj.Kind),
-                StringComparer.CurrentCultureIgnoreCase.GetHashCode(obj.Text));
-        }
     }
 
     public sealed record ContextChip(string Text, string Kind, string Prefix);

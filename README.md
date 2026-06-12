@@ -323,3 +323,17 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: bu panelden dogrudan secili baglama gore filtre/odak aksiyonu uretmek.
+
+## v1.04 - Baglam Rozet Tekillestirme Duzeltmesi
+
+Bu fazda baglam rozetlerinin tekillestirme mantigi sadeleştirildi ve sabitlendi.
+`DistinctBy` tabanli karsilastirma yerine daha acik bir `GroupBy(...).First()` akisi kullanildi; boylece tekrar eden baglam parcalari daha öngörülebilir sekilde tekilleştiriliyor.
+
+Bu duzeltme, v1.03 sonrasinda yakalanan self-test regresyonunu kapatmak icin eklendi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: bu panelden dogrudan secili baglama gore filtre/odak aksiyonu uretmek.

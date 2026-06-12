@@ -795,3 +795,10 @@ Her faz bittiğinde:
 - Self-test rozet tekillestirme ve siralama onceligini dogruluyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: bu panelden dogrudan baglama dayali filtre veya odak aksiyonu cikarmak.
+
+## Son Guncelleme (2026-06-12 / v1.04)
+
+- v1.04 tamamlandi: baglam rozetleri icin tekillestirme mantigi GroupBy tabanli daha deterministik bir akisla sabitlendi.
+- Bu duzeltme v1.03 sonrasinda yakalanan self-test regresyonunu kapatti.
+- Smoke test olarak build ve self-test tekrar temiz gecti.
+- Siradaki mantikli faz: bu panelden dogrudan baglama dayali filtre veya odak aksiyonu cikarmak.
