@@ -1210,3 +1210,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Kontrol ipucu sade kaldi | OK | Inceleme ipucu gezinme ve kisayol odagina dondu |
 | Baglam yoksa kopyalama pasif | OK | `Bağlamı Kopyala` dugmesi baglam olmadiginda devre disi |
 | 2026-06-12 | v0.99 | OK | Baglam paneli + build + self-test tamamlandi |
+
+## v1.00 - Baglam Rozetleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release tamamlandi; calisan exe nedeniyle tek seferlik kopyalama uyarisi goruldu |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baglam rozetleri gorunuyor | OK | Baglam paneli `>` ve `/` parcalarini ayri chip olarak gosteriyor |
+| Rozet parcalama dogru | OK | `InvoiceReviewContextFormatter.BuildChips()` self-test ile dogrulandi |
+| Tam metin korunuyor | OK | Rozetlere ek olarak tam baglam metni de panelde gorunmeye devam ediyor |
+| 2026-06-12 | v1.00 | OK | Baglam rozetleri + build + self-test tamamlandi |

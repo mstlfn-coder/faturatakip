@@ -267,3 +267,17 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: bu baglam panelini gerekiyorsa secili rapor sekmesi veya issue tipi icin daha kisa rozetli ozetlerle zenginlestirmek.
+
+## v1.00 - Baglam Rozetleri
+
+Bu fazda inceleme baglam paneli rozetli ozetlerle zenginlestirildi.
+Rapor gecis baglami artik `>` ve `/` ayrimlarina gore parcarlanip taranabilir kucuk etiketler halinde gosteriliyor.
+
+Ornegin rapor tipi, issue tipi, varlik tipi ve donem ozeti tek satir yerine ayri rozetlerde okunabiliyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: bu rozetlerde rapor tipi ve issue turu icin renk farkliligi ya da ikonlu ayrim dusunmek.

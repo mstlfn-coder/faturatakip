@@ -761,3 +761,11 @@ Her faz bittiğinde:
 - Baglam yoksa `Bağlamı Kopyala` dugmesi pasif kaliyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: baglam panelini kisa rozetli ozetlerle daha taranabilir hale getirmek.
+
+## Son Guncelleme (2026-06-12 / v1.00)
+
+- v1.00 tamamlandi: inceleme baglami paneline rozetli ozetler eklendi.
+- `InvoiceReviewContextFormatter` baglam etiketini `>` ve `/` ayrimlarina gore parcaliyor; panel bu parcalari chip olarak gosteriyor.
+- Self-test baglam rozet parcalama mantigini dogruluyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: rozetlerde renk farkliligi veya ikonla daha belirgin tur ayrimi yapmak.

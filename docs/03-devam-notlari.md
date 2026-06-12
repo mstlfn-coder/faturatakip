@@ -824,3 +824,10 @@ v0.12 sonuÃ§ notu:
 380. Smoke test: dotnet build -c Release OK (calisan exe nedeniyle tek seferlik kopyalama uyarisi goruldu, build basarili tamamladi).
 381. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 382. Siradaki mantikli is: bu baglam panelini secili issue tipi veya rapor sekmesi icin daha kisa rozetli ozetlerle zenginlestirmek.
+383. v1.00 olarak inceleme baglam paneline rozetli ozetler eklendi.
+384. `InvoiceReviewContextFormatter` yeni yardimcisi baglam etiketini once `>` ile, sonra gerekirse `/` ile parcalayip chip listesi uretiyor.
+385. `InvoicesView` baglam panelinde bu rozetleri `ItemsControl + WrapPanel` ile gosteriyor; tam metin de altta korunuyor.
+386. Self-test icine `Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01` ornegiyle rozet parcasi dogrulamasi eklendi.
+387. Smoke test: dotnet build -c Release OK (calisan exe nedeniyle tek seferlik kopyalama uyarisi goruldu, build basarili tamamladi).
+388. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+389. Siradaki mantikli is: rozetlerde rapor tipi veya issue turu icin renk farkliligi ya da ikonlu ayrim dusunmek.

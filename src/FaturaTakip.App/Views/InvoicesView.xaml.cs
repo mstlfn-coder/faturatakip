@@ -916,6 +916,13 @@ public partial class InvoicesView : UserControl
             InvoiceReviewContextText.Text = hasContext ? contextLabel : string.Empty;
         }
 
+        if (InvoiceReviewContextChips is not null)
+        {
+            InvoiceReviewContextChips.ItemsSource = hasContext
+                ? InvoiceReviewContextFormatter.BuildChips(contextLabel)
+                : Array.Empty<string>();
+        }
+
         if (CopyInvoiceReviewContextButton is not null)
         {
             CopyInvoiceReviewContextButton.IsEnabled = !string.IsNullOrWhiteSpace(_invoiceReviewContextLabel);
