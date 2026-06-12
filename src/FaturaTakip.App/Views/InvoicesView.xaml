@@ -170,6 +170,71 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="ActionBadgeBorder" TargetType="Border">
+            <Setter Property="Background" Value="#F8FAFC" />
+            <Setter Property="BorderBrush" Value="#CBD5E1" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="999" />
+            <Setter Property="Padding" Value="8,3" />
+            <Setter Property="Margin" Value="0,0,6,6" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Kind}" Value="filter">
+                    <Setter Property="Background" Value="#DCFCE7" />
+                    <Setter Property="BorderBrush" Value="#86EFAC" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="context">
+                    <Setter Property="Background" Value="#DBEAFE" />
+                    <Setter Property="BorderBrush" Value="#93C5FD" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="period">
+                    <Setter Property="Background" Value="#FEF3C7" />
+                    <Setter Property="BorderBrush" Value="#FCD34D" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="detail">
+                    <Setter Property="Background" Value="#F3E8FF" />
+                    <Setter Property="BorderBrush" Value="#D8B4FE" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ActionBadgePrefixText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#475569" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="0,0,6,0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Kind}" Value="filter">
+                    <Setter Property="Foreground" Value="#166534" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="context">
+                    <Setter Property="Foreground" Value="#1E40AF" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="period">
+                    <Setter Property="Foreground" Value="#92400E" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="detail">
+                    <Setter Property="Foreground" Value="#6B21A8" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ActionBadgeText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#334155" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Kind}" Value="filter">
+                    <Setter Property="Foreground" Value="#166534" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="context">
+                    <Setter Property="Foreground" Value="#1D4ED8" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="period">
+                    <Setter Property="Foreground" Value="#B45309" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="detail">
+                    <Setter Property="Foreground" Value="#7E22CE" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -736,10 +801,26 @@
                                                        Style="{StaticResource MutedText}"
                                                        TextWrapping="Wrap"
                                                        Margin="0,4,0,0" />
-                                            <TextBlock x:Name="InvoiceReviewActionSummaryText"
-                                                       Style="{StaticResource MutedText}"
-                                                       TextWrapping="Wrap"
-                                                       Margin="0,8,0,0" />
+                                            <ItemsControl x:Name="InvoiceReviewActionBadges"
+                                                          Margin="0,8,0,0">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel />
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border Style="{StaticResource ActionBadgeBorder}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Text="{Binding Prefix}"
+                                                                           Style="{StaticResource ActionBadgePrefixText}" />
+                                                                <TextBlock Text="{Binding Text}"
+                                                                           Style="{StaticResource ActionBadgeText}" />
+                                                            </StackPanel>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
                                         </StackPanel>
                                     </Border>
                                     <StackPanel Margin="0,8,0,0">

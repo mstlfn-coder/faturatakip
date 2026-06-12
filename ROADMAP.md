@@ -949,3 +949,10 @@ Her faz bittiğinde:
 - Panel artik hazir aksiyon sayisini ve mevcut aksiyon adlarini metin olarak da gosteriyor.
 - Renkli vurguya ek olarak metinsel okunabilirlik artirildi.
 - Smoke test olarak build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-13 / v1.22)
+
+- v1.22 tamamlandi: hazir aksiyon ozeti rozetli mini gostergelere donusturuldu.
+- Aksiyon ozetleri artik kendi baglam tiplerinin rengiyle uyumlu kucuk etiketler halinde gosteriliyor.
+- Panelin gorsel yogunlugu azaltildi ve taranabilirligi iyilesti.
+- Smoke test olarak build ve self-test temiz gecti.

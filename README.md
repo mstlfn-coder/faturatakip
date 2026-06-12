@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.22 - Rozetli Hazir Aksiyon Ozeti
+
+Bu fazda hazir aksiyon ozeti duz metinden rozetli mini gostergelere donusturuldu.
+Baglam paneli artik uygulanabilir aksiyonlari kucuk etiket rozetleriyle gosteriyor; her rozet kendi aksiyon turunun rengine uyumlu kaldigi icin panel daha hizli taranabiliyor.
+
+Boylece metin yogunlugu azaldi ve onceki renk vurgulari daha anlamli bir ozet katmaniyla birlesti.
+Ozellikle yogun baglamlarda panel artik daha derli toplu gorunuyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.21 - Hazir Aksiyon Ozeti
 
 Bu fazda inceleme baglam paneline kisa bir hazir aksiyon ozeti eklendi.

@@ -1236,30 +1236,30 @@ public partial class InvoicesView : UserControl
         var hasInvoiceType = InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out _);
         var hasInvoiceNumber = InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out _);
         var hasAnyNarrowing = hasSuggestedFilter || hasPeriod || hasInvoiceType || hasInvoiceNumber;
-        var availableActions = new List<string>();
+        var availableActionBadges = new List<ReviewActionBadge>();
         if (hasSuggestedFilter || hasPreferredInvoice || hasPeriod || hasInvoiceType || hasInvoiceNumber)
         {
-            availableActions.Add("Baglamdan Incele");
+            availableActionBadges.Add(new ReviewActionBadge("AKS", "Baglamdan Incele", "context"));
         }
         if (hasAnyNarrowing)
         {
-            availableActions.Add("Baglami Daralt");
+            availableActionBadges.Add(new ReviewActionBadge("DAR", "Baglami Daralt", "context"));
         }
         if (hasSuggestedFilter)
         {
-            availableActions.Add("Baglam Filtresi");
+            availableActionBadges.Add(new ReviewActionBadge("FLT", "Baglam Filtresi", "filter"));
         }
         if (hasPeriod)
         {
-            availableActions.Add("Baglam Donemi");
+            availableActionBadges.Add(new ReviewActionBadge("DNM", "Baglam Donemi", "period"));
         }
         if (hasInvoiceType)
         {
-            availableActions.Add("Baglam Turu");
+            availableActionBadges.Add(new ReviewActionBadge("TUR", "Baglam Turu", "detail"));
         }
         if (hasInvoiceNumber)
         {
-            availableActions.Add("Baglam No");
+            availableActionBadges.Add(new ReviewActionBadge("NO", "Baglam No", "detail"));
         }
 
         if (InvoiceReviewContextBorder is not null)
@@ -1272,12 +1272,12 @@ public partial class InvoicesView : UserControl
             InvoiceReviewContextText.Text = hasContext ? contextLabel : string.Empty;
         }
 
-        if (InvoiceReviewActionSummaryText is not null)
+        if (InvoiceReviewActionBadges is not null)
         {
-            InvoiceReviewActionSummaryText.Text = availableActions.Count == 0
-                ? "Hazir aksiyon yok."
-                : $"Hazir aksiyonlar ({availableActions.Count}): {string.Join(", ", availableActions)}";
-            InvoiceReviewActionSummaryText.Visibility = hasContext
+            InvoiceReviewActionBadges.ItemsSource = hasContext
+                ? availableActionBadges
+                : Array.Empty<ReviewActionBadge>();
+            InvoiceReviewActionBadges.Visibility = hasContext
                 ? System.Windows.Visibility.Visible
                 : System.Windows.Visibility.Collapsed;
         }
@@ -2044,6 +2044,8 @@ public partial class InvoicesView : UserControl
     private sealed record PdfStatusFilterOption(string Label, InvoicePdfStatusFilter Value);
 
     private sealed record ReviewStatusFilterOption(string Label, InvoiceReviewStatusFilter Value);
+
+    private sealed record ReviewActionBadge(string Prefix, string Text, string Kind);
 }
 
 

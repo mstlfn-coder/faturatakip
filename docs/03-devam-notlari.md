@@ -984,3 +984,9 @@ v0.12 sonuÃ§ notu:
 527. Renkli durum vurgulari artik metinsel bir ozetle de destekleniyor.
 528. Smoke test: dotnet build -c Release OK.
 529. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+530. v1.22 olarak hazir aksiyon ozeti mini rozetlere donusturuldu.
+531. Hazir aksiyonlar artik baglam tipiyle uyumlu renkli kucuk etiketler halinde gosteriliyor.
+532. Bu tur panelin metin yogunlugunu azaltip taranabilirligini artirdi.
+533. Smoke test: dotnet build -c Release OK.
+534. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
