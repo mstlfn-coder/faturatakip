@@ -324,6 +324,20 @@ Smoke test:
 
 Sıradaki mantikli is: bu panelden dogrudan secili baglama gore filtre/odak aksiyonu uretmek.
 
+## v1.06 - Baglam Kaydına Git
+
+Bu fazda inceleme baglam paneline `Bağlam Kaydına Git` aksiyonu eklendi.
+Rapor gecisinde belirli bir fatura kimligi tasinmis ise, kullanici panelden tek tikla o baglam kaydina yeniden odaklanabiliyor.
+
+Uygun baglam filtresi de varsa once ilgili review akisi kuruluyor, sonra ayni kayda gidilmeye calisiliyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: baglam panelinden alt filtre, donem veya issue bazli daha ince odak aksiyonlari cikarmak.
+
 ## v1.05 - Baglam Filtresi Aksiyonu
 
 Bu fazda inceleme baglam paneline `Bağlam Filtresi` aksiyonu eklendi.

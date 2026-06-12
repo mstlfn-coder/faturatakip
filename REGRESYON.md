@@ -1266,3 +1266,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Panel aksiyonu var | OK | `Bağlam Filtresi` dugmesi onerilen filtreyi tek tikla uyguluyor |
 | Baglam yoksa aksiyon pasif | OK | Uygulanabilir onerisi olmayan baglamlarda dugme devre disi |
 | 2026-06-12 | v1.05 | OK | Baglam filtresi aksiyonu + build + self-test tamamlandi |
+
+## v1.06 - Baglam Kaydına Git
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baglam kaydina donus aksiyonu var | OK | `Bağlam Kaydına Git` dugmesi rapordan gelen tercihli kayda odaklaniyor |
+| Review filtresiyle birlikte calisiyor | OK | Uygunsa once baglam filtresi kurulup sonra tercihli kayda gidiliyor |
+| Tercihli kayit yoksa aksiyon pasif | OK | `preferred invoice id` yoksa dugme devre disi |
+| 2026-06-12 | v1.06 | OK | Baglam kaydina git + build + self-test tamamlandi |
