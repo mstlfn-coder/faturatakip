@@ -831,3 +831,10 @@ v0.12 sonuÃ§ notu:
 387. Smoke test: dotnet build -c Release OK (calisan exe nedeniyle tek seferlik kopyalama uyarisi goruldu, build basarili tamamladi).
 388. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 389. Siradaki mantikli is: rozetlerde rapor tipi veya issue turu icin renk farkliligi ya da ikonlu ayrim dusunmek.
+390. v1.01 olarak baglam rozetlerine tur bazli renk ayrimi eklendi.
+391. `InvoiceReviewContextFormatter` her rozet icin `report`, `issue`, `entity`, `period` veya `detail` tipi uretiyor.
+392. `InvoicesView.xaml` icindeki chip stilleri `DataTrigger` ile bu tipe gore arka plan ve yazi rengini degistiriyor.
+393. Self-test rozet parcalarinin yalnizca metnini degil, tip atamalarini da dogrulayacak sekilde genisletildi.
+394. Smoke test: dotnet build -c Release OK.
+395. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+396. Siradaki mantikli is: rozetlere hafif ikon veya kisaltma ekleyip taramayi daha da hizlandirmak.

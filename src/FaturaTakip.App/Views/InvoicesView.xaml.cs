@@ -920,7 +920,7 @@ public partial class InvoicesView : UserControl
         {
             InvoiceReviewContextChips.ItemsSource = hasContext
                 ? InvoiceReviewContextFormatter.BuildChips(contextLabel)
-                : Array.Empty<string>();
+                : Array.Empty<InvoiceReviewContextFormatter.ContextChip>();
         }
 
         if (CopyInvoiceReviewContextButton is not null)

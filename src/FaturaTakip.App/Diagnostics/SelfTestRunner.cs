@@ -446,10 +446,14 @@ public sealed class SelfTestRunner
                 "Kontrol modu baglam ipucu beklenen metni uretmedi.");
             var reviewContextChips = InvoiceReviewContextFormatter.BuildChips("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01");
             Assert(reviewContextChips.Count == 4, "Inceleme baglam rozet sayisi beklenen parcayi uretmedi.");
-            Assert(reviewContextChips[0] == "Rapor: Evrak Kontrol", "Inceleme baglam rozetinde rapor basligi korunmadi.");
-            Assert(reviewContextChips[1] == "PDF Kayip", "Inceleme baglam rozetinde issue tipi ayristirilamadi.");
-            Assert(reviewContextChips[2] == "Fatura", "Inceleme baglam rozetinde entity tipi ayristirilamadi.");
-            Assert(reviewContextChips[3] == "2026-01", "Inceleme baglam rozetinde donem ozeti ayristirilamadi.");
+            Assert(reviewContextChips[0].Text == "Rapor: Evrak Kontrol", "Inceleme baglam rozetinde rapor basligi korunmadi.");
+            Assert(reviewContextChips[0].Kind == "report", "Inceleme baglam rozetinde rapor tipi isaretlenmedi.");
+            Assert(reviewContextChips[1].Text == "PDF Kayip", "Inceleme baglam rozetinde issue tipi ayristirilamadi.");
+            Assert(reviewContextChips[1].Kind == "issue", "Inceleme baglam rozetinde issue tipi atanamadi.");
+            Assert(reviewContextChips[2].Text == "Fatura", "Inceleme baglam rozetinde entity tipi ayristirilamadi.");
+            Assert(reviewContextChips[2].Kind == "entity", "Inceleme baglam rozetinde entity tipi atanamadi.");
+            Assert(reviewContextChips[3].Text == "2026-01", "Inceleme baglam rozetinde donem ozeti ayristirilamadi.");
+            Assert(reviewContextChips[3].Kind == "period", "Inceleme baglam rozetinde donem tipi atanamadi.");
 
             var dashboardInvoices = new[]
             {
