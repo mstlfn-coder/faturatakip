@@ -85,6 +85,26 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="ContextChipPrefixText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#475569" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="0,0,6,0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Kind}" Value="report">
+                    <Setter Property="Foreground" Value="#1E40AF" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="issue">
+                    <Setter Property="Foreground" Value="#991B1B" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="entity">
+                    <Setter Property="Foreground" Value="#166534" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="period">
+                    <Setter Property="Foreground" Value="#92400E" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -637,8 +657,12 @@
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
                                                         <Border Style="{StaticResource ContextChipBorder}">
-                                                            <TextBlock Text="{Binding Text}"
-                                                                       Style="{StaticResource ContextChipText}" />
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Text="{Binding Prefix}"
+                                                                           Style="{StaticResource ContextChipPrefixText}" />
+                                                                <TextBlock Text="{Binding Text}"
+                                                                           Style="{StaticResource ContextChipText}" />
+                                                            </StackPanel>
                                                         </Border>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>

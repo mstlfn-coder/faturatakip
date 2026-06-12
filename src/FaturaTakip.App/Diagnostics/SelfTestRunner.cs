@@ -448,12 +448,16 @@ public sealed class SelfTestRunner
             Assert(reviewContextChips.Count == 4, "Inceleme baglam rozet sayisi beklenen parcayi uretmedi.");
             Assert(reviewContextChips[0].Text == "Rapor: Evrak Kontrol", "Inceleme baglam rozetinde rapor basligi korunmadi.");
             Assert(reviewContextChips[0].Kind == "report", "Inceleme baglam rozetinde rapor tipi isaretlenmedi.");
+            Assert(reviewContextChips[0].Prefix == "RPR", "Inceleme baglam rozetinde rapor on eki atanamadi.");
             Assert(reviewContextChips[1].Text == "PDF Kayip", "Inceleme baglam rozetinde issue tipi ayristirilamadi.");
             Assert(reviewContextChips[1].Kind == "issue", "Inceleme baglam rozetinde issue tipi atanamadi.");
+            Assert(reviewContextChips[1].Prefix == "ISS", "Inceleme baglam rozetinde issue on eki atanamadi.");
             Assert(reviewContextChips[2].Text == "Fatura", "Inceleme baglam rozetinde entity tipi ayristirilamadi.");
             Assert(reviewContextChips[2].Kind == "entity", "Inceleme baglam rozetinde entity tipi atanamadi.");
+            Assert(reviewContextChips[2].Prefix == "VAR", "Inceleme baglam rozetinde entity on eki atanamadi.");
             Assert(reviewContextChips[3].Text == "2026-01", "Inceleme baglam rozetinde donem ozeti ayristirilamadi.");
             Assert(reviewContextChips[3].Kind == "period", "Inceleme baglam rozetinde donem tipi atanamadi.");
+            Assert(reviewContextChips[3].Prefix == "DNM", "Inceleme baglam rozetinde donem on eki atanamadi.");
 
             var dashboardInvoices = new[]
             {
