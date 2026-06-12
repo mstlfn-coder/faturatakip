@@ -1229,3 +1229,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Rozet renkleri tipe gore ayrisiyor | OK | Report / issue / entity / period tipleri farkli renk ailesi kullaniyor |
 | Tip atamasi dogru | OK | `InvoiceReviewContextFormatter.BuildChips()` self-test ile tipleri de dogruluyor |
 | 2026-06-12 | v1.01 | OK | Baglam rozet tipleri + build + self-test tamamlandi |
+
+## v1.02 - Baglam Rozet On Ekleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| On ekler gorunuyor | OK | `RPR`, `ISS`, `VAR`, `DNM` tip bazli rozet on ekleri eklendi |
+| On ek atamasi dogru | OK | `InvoiceReviewContextFormatter.BuildChips()` self-test ile Prefix alanlarini da dogruluyor |
+| 2026-06-12 | v1.02 | OK | Baglam rozet on ekleri + build + self-test tamamlandi |

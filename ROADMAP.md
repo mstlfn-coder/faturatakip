@@ -778,3 +778,12 @@ Her faz bittiğinde:
 - Self-test rozet metninin yaninda tip atamalarini da dogruluyor.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: rozetlere hafif ikon veya kisaltma ekleyip taramayi daha da hizlandirmak.
+
+## Son Guncelleme (2026-06-12 / v1.02)
+
+- v1.02 tamamlandi: baglam rozetlerine tip bazli kisa on ekler eklendi.
+- `InvoiceReviewContextFormatter` artik her chip icin `Prefix` de uretiyor: `RPR`, `ISS`, `VAR`, `DNM`, `DET`.
+- `InvoicesView` bu on ekleri rozet icinde ayri bir kucuk metin olarak gosteriyor.
+- Self-test on ek atamalarini da dogruluyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: rozet sirasini daha baglam-duyarli hale getirmek veya bu panelden ek odak aksiyonlari uretmek.

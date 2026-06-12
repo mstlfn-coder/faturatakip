@@ -295,3 +295,17 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: bu rozetlere hafif ikon ya da kisaltma ekleyip taramayi bir adim daha hizlandirmak.
+
+## v1.02 - Baglam Rozet On Ekleri
+
+Bu fazda baglam rozetlerine kisa on ekler eklendi.
+Rapor, issue, varlik ve donem rozetleri artik sirasiyla `RPR`, `ISS`, `VAR` ve `DNM` on ekleriyle gosteriliyor.
+
+Boylece renk ayrimina ek olarak, metin taramasi da daha hizli hale geldi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: rozetlerin gorunur sirasini rapor turune gore daha anlamli hale getirmek veya secili baglamdan ek odak aksiyonlari cikarmak.

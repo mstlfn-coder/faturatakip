@@ -838,3 +838,10 @@ v0.12 sonuÃ§ notu:
 394. Smoke test: dotnet build -c Release OK.
 395. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 396. Siradaki mantikli is: rozetlere hafif ikon veya kisaltma ekleyip taramayi daha da hizlandirmak.
+397. v1.02 olarak baglam rozetlerine tip bazli kisa on ekler eklendi.
+398. `InvoiceReviewContextFormatter` her rozet icin `Prefix` uretiyor: `RPR`, `ISS`, `VAR`, `DNM`, `DET`.
+399. `InvoicesView.xaml` rozet icinde bu on eki kucuk ama belirgin bir yardimci metin olarak gosteriyor.
+400. Self-test metin ve tip atamasina ek olarak Prefix atamalarini da dogruluyor.
+401. Smoke test: dotnet build -c Release OK.
+402. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+403. Siradaki mantikli is: rozetlerin sirasini daha baglam-duyarli hale getirmek veya bu panelden ek odak aksiyonlari uretmek.

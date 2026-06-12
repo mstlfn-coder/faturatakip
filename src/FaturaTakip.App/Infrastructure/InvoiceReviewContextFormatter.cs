@@ -24,7 +24,8 @@ public static class InvoiceReviewContextFormatter
                 var part = parts[partIndex];
                 if (!string.IsNullOrWhiteSpace(part))
                 {
-                    chips.Add(new ContextChip(part, ResolveKind(sectionIndex, partIndex, part)));
+                    var kind = ResolveKind(sectionIndex, partIndex, part);
+                    chips.Add(new ContextChip(part, kind, ResolvePrefix(kind)));
                 }
             }
         }
@@ -57,5 +58,17 @@ public static class InvoiceReviewContextFormatter
         return text.Count(ch => ch == '-') == 1 && text.Any(char.IsDigit);
     }
 
-    public sealed record ContextChip(string Text, string Kind);
+    private static string ResolvePrefix(string kind)
+    {
+        return kind switch
+        {
+            "report" => "RPR",
+            "issue" => "ISS",
+            "entity" => "VAR",
+            "period" => "DNM",
+            _ => "DET",
+        };
+    }
+
+    public sealed record ContextChip(string Text, string Kind, string Prefix);
 }
