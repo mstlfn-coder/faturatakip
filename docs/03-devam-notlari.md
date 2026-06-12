@@ -958,3 +958,10 @@ v0.12 sonuÃ§ notu:
 505. Smoke test: dotnet build -c Release OK.
 506. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 507. Siradaki mantikli is: baglam aksiyonlari icin daha belirgin bir birincil/ikincil grup hiyerarsisi kurmak.
+
+508. v1.19 olarak baglam aksiyonlari `Ana Aksiyonlar` ve `Detay Araçlari` olarak ayrildi.
+509. `Bağlamdan İncele` birincil dugme yapilarak ana akis daha belirgin hale getirildi.
+510. Donem, tur ve no aksiyonlari ikincil satira alinarak panel daha okunur hale getirildi.
+511. Smoke test: dotnet build -c Release OK.
+512. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+513. Siradaki mantikli is: baglam panelinde secili aksiyonlara daha belirgin gorsel vurgu eklemek.

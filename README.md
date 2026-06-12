@@ -552,3 +552,18 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: bu baglam aksiyonlari icin daha belirgin bir birincil/ikincil grup hiyerarsisi kurmak.
+
+## v1.19 - Baglam Aksiyon Hiyerarsisi
+
+Bu fazda baglam aksiyonlari iki gruba ayrildi: `Ana Aksiyonlar` ve `Detay Araçlari`.
+`Bağlamdan İncele` birincil dugme yapildi; daraltma, hizli filtre ve kopyalama ayni ana grup icinde tutuldu. Donem, tur ve no aksiyonlari ise ikinci satirdaki detay araclarina ayrildi.
+
+Boylece operatör ilk bakista hangi dugmenin ana akis oldugunu daha rahat goruyor.
+Panel davranisi korunurken karar anindaki bilişsel yuk azaldi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: inceleme baglam panelinde secili aksiyonlari daha belirginlestirecek durum renkleri veya rozetli bir vurgu dusunmek.

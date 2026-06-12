@@ -1390,3 +1390,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | WrapPanel duzeni var | OK | Baglam aksiyon satiri dar alanlarda alt satira akiyor |
 | Buton bosluklari tutarli | OK | Aksiyonlar arasinda daha dengeli yatay/dikey bosluk verildi |
 | 2026-06-12 | v1.18 | OK | Baglam aksiyon satir duzeni + build + self-test tamamlandi |
+
+## v1.19 - Baglam Aksiyon Hiyerarsisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ana/ikincil grup var | OK | Baglam aksiyonlari iki ayri baslik altinda toplandi |
+| Birincil aksiyon vurgusu var | OK | `Bağlamdan İncele` artik `PrimaryButton` ile one cikiyor |
+| 2026-06-12 | v1.19 | OK | Baglam aksiyon hiyerarsisi + build + self-test tamamlandi |

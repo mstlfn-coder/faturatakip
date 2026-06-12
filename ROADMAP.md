@@ -921,3 +921,11 @@ Her faz bittiğinde:
 - UI davranisi degismeden panelin duzen kararliligi artirildi.
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: baglam aksiyonlari icin daha belirgin bir birincil/ikincil grup hiyerarsisi kurmak.
+
+## Son Guncelleme (2026-06-12 / v1.19)
+
+- v1.19 tamamlandi: baglam aksiyonlari `Ana Aksiyonlar` ve `Detay Araçlari` olarak ayrildi.
+- `Bağlamdan İncele` birincil dugme olarak one cikarildi.
+- Daraltma ve hizli filtre ana akista, donem/tur/no ise ikincil grup icinde toplandi.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: baglam panelinde secili aksiyonlara daha belirgin gorsel vurgu eklemek.
