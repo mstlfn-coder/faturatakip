@@ -458,6 +458,12 @@ public sealed class SelfTestRunner
             Assert(reviewContextChips[3].Text == "2026-01", "Inceleme baglam rozetinde donem ozeti ayristirilamadi.");
             Assert(reviewContextChips[3].Kind == "period", "Inceleme baglam rozetinde donem tipi atanamadi.");
             Assert(reviewContextChips[3].Prefix == "DNM", "Inceleme baglam rozetinde donem on eki atanamadi.");
+            var reorderedReviewContextChips = InvoiceReviewContextFormatter.BuildChips("Rapor: Evrak Kontrol > 2026-01 / PDF Kayip / Fatura / PDF Kayip");
+            Assert(reorderedReviewContextChips.Count == 4, "Inceleme baglam rozetleri tekrar eden parcayi tekillestiremedi.");
+            Assert(reorderedReviewContextChips[0].Kind == "report", "Inceleme baglam rozetleri rapor basligini basa tasimadi.");
+            Assert(reorderedReviewContextChips[1].Kind == "issue", "Inceleme baglam rozetleri issue tipini ikinci siraya getirmedi.");
+            Assert(reorderedReviewContextChips[2].Kind == "entity", "Inceleme baglam rozetleri entity tipini issue sonrasina getirmedi.");
+            Assert(reorderedReviewContextChips[3].Kind == "period", "Inceleme baglam rozetleri donem etiketini sona tasimadi.");
 
             var dashboardInvoices = new[]
             {
