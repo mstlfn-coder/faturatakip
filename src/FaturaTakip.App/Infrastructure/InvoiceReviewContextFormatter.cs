@@ -165,34 +165,60 @@ public static class InvoiceReviewContextFormatter
     public static bool TryResolveInvoiceTypeName(string? contextLabel, out string invoiceTypeName)
     {
         invoiceTypeName = string.Empty;
+        if (!TryResolveActionableReportParts(contextLabel, out _, out var invoiceTypePart, out _))
+        {
+            return false;
+        }
+
+        invoiceTypeName = invoiceTypePart;
+        return invoiceTypeName.Length > 0;
+    }
+
+    public static bool TryResolveInvoiceNumber(string? contextLabel, out string invoiceNumber)
+    {
+        invoiceNumber = string.Empty;
+        if (!TryResolveActionableReportParts(contextLabel, out _, out _, out var invoiceNumberPart))
+        {
+            return false;
+        }
+
+        invoiceNumber = invoiceNumberPart;
+        return invoiceNumber.Length > 0;
+    }
+
+    private static bool TryResolveActionableReportParts(string? contextLabel, out string reportLabel, out string firstPart, out string secondPart)
+    {
+        reportLabel = string.Empty;
+        firstPart = string.Empty;
+        secondPart = string.Empty;
         if (string.IsNullOrWhiteSpace(contextLabel))
         {
             return false;
         }
 
-        var chips = BuildChips(contextLabel);
-        if (chips.Count < 2)
+        var sections = contextLabel
+            .Split('>', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        if (sections.Length < 2)
         {
             return false;
         }
 
-        var reportChip = chips.FirstOrDefault(chip => string.Equals(chip.Kind, "report", StringComparison.OrdinalIgnoreCase));
-        if (reportChip is null ||
-            !ContainsAny(reportChip.Text, "İncelenmedi", "Incelenmedi", "Gecikmiş", "Gecikmis"))
+        reportLabel = sections[0].Trim();
+        if (!ContainsAny(reportLabel, "İncelenmedi", "Incelenmedi", "Gecikmiş", "Gecikmis"))
         {
             return false;
         }
 
-        var detailChip = chips.FirstOrDefault(chip => string.Equals(chip.Kind, "issue", StringComparison.OrdinalIgnoreCase));
-        if (detailChip is null ||
-            string.IsNullOrWhiteSpace(detailChip.Text) ||
-            LooksLikePeriod(detailChip.Text))
+        var parts = sections[1]
+            .Split('/', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length < 2)
         {
             return false;
         }
 
-        invoiceTypeName = detailChip.Text.Trim();
-        return invoiceTypeName.Length > 0;
+        firstPart = parts[0].Trim();
+        secondPart = parts[1].Trim();
+        return firstPart.Length > 0 && secondPart.Length > 0 && !LooksLikePeriod(secondPart);
     }
 
     private static bool ContainsAny(string text, params string[] values)

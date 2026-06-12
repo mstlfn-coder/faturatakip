@@ -368,6 +368,22 @@ Smoke test:
 
 Sıradaki mantikli is: baglamdan fatura no veya daha ince kayit detayini da ayristirip ek hedefli aksiyonlar dusunmek.
 
+## v1.09 - Baglam No Aramasi
+
+Bu fazda inceleme baglam paneline `Bağlam No` aksiyonu eklendi.
+Actionable raporlardan gelen baglam `Rapor: Gecikmiş > Su / INV-002` gibi bir yapi tasiyorsa,
+kullanici tek tikla Faturalar ekranindaki arama kutusunu bu fatura numarasiyla doldurup gorunur listeyi daraltabiliyor.
+
+Bu adim, `preferred invoice id` olmayan veya listeyi metinsel olarak da hizla teyit etmek istedigimiz gecislerde is akisini destekliyor.
+Evrak Kontrol baglamlari yine kapsam disi tutuldu.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: baglam panelindeki metinleri ve bozuk gorunen Turkce karakterleri daha sistematik bir UTF-8 temizlik turunda toparlamak.
+
 ## v1.05 - Baglam Filtresi Aksiyonu
 
 Bu fazda inceleme baglam paneline `Bağlam Filtresi` aksiyonu eklendi.

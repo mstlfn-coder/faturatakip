@@ -923,6 +923,11 @@ public partial class InvoicesView : UserControl
         ApplyInvoiceReviewContextType();
     }
 
+    private void ApplyInvoiceReviewContextInvoiceNoButton_Click(object sender, RoutedEventArgs e)
+    {
+        ApplyInvoiceReviewContextInvoiceNo();
+    }
+
     private void CopyInvoiceReviewContextToClipboard()
     {
         if (string.IsNullOrWhiteSpace(_invoiceReviewContextLabel))
@@ -1042,6 +1047,21 @@ public partial class InvoicesView : UserControl
         SetInvoiceStatus($"Baglamdan fatura turu filtresi uygulandi: {invoiceTypeName}", isError: false);
     }
 
+    private void ApplyInvoiceReviewContextInvoiceNo()
+    {
+        if (!InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out var invoiceNumber))
+        {
+            SetInvoiceStatus("Baglamdan uygulanabilir bir fatura no cikarilamadi.", isError: true);
+            return;
+        }
+
+        _invoiceReviewModeLabel = null;
+        ResetQuickFilters();
+        InvoiceSearchInput.Text = invoiceNumber;
+        ApplyFiltersToGrid(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: true);
+        SetInvoiceStatus($"Baglamdan fatura no aramasi uygulandi: {invoiceNumber}", isError: false);
+    }
+
     private void UpdateInvoiceReviewContextPresentation(string? contextLabel)
     {
         var hasContext = !string.IsNullOrWhiteSpace(contextLabel);
@@ -1049,6 +1069,7 @@ public partial class InvoicesView : UserControl
         var hasPreferredInvoice = _invoiceReviewPreferredInvoiceId is not null;
         var hasPeriod = InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out _, out _);
         var hasInvoiceType = InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out _);
+        var hasInvoiceNumber = InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out _);
 
         if (InvoiceReviewContextBorder is not null)
         {
@@ -1090,6 +1111,11 @@ public partial class InvoicesView : UserControl
         if (ApplyInvoiceReviewContextTypeButton is not null)
         {
             ApplyInvoiceReviewContextTypeButton.IsEnabled = hasInvoiceType;
+        }
+
+        if (ApplyInvoiceReviewContextInvoiceNoButton is not null)
+        {
+            ApplyInvoiceReviewContextInvoiceNoButton.IsEnabled = hasInvoiceNumber;
         }
     }
 

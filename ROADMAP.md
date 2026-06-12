@@ -823,6 +823,16 @@ Her faz bittiğinde:
 - Smoke test olarak build ve self-test temiz gecti.
 - Siradaki mantikli faz: baglamdan daha ince kayit detayi veya ek hedefli aksiyonlar cikarmak.
 
+## Son Guncelleme (2026-06-12 / v1.09)
+
+- v1.09 tamamlandi: inceleme baglam paneline `Bağlam No` dugmesi eklendi.
+- `InvoiceReviewContextFormatter.TryResolveInvoiceNumber()` actionable rapor baglamindan fatura numarasini ayristiriyor.
+- Faturalar ekrani bu numarayi arama kutusuna uygulayip gorunur listeyi tek tikla daraltabiliyor.
+- Evrak Kontrol baglamlari yine bu aksiyonun kapsami disinda tutuldu.
+- Self-test baglamdan fatura no cikarimini ve negatif senaryoyu da dogruluyor.
+- Smoke test olarak build ve self-test temiz gecti.
+- Siradaki mantikli faz: baglam paneli metinlerini ve Turkce karakter temizliklerini sistematik bicimde toparlamak.
+
 ## Son Guncelleme (2026-06-12 / v1.05)
 
 - v1.05 tamamlandi: inceleme baglam paneline `Bağlam Filtresi` dugmesi eklendi.

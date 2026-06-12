@@ -480,8 +480,15 @@ public sealed class SelfTestRunner
                 invoiceTypeName == "Elektrik",
                 "Inceleme baglamindan fatura turu cikartilamadi.");
             Assert(
+                InvoiceReviewContextFormatter.TryResolveInvoiceNumber("Rapor: Gecikmiş > Su / INV-002", out var invoiceNumber) &&
+                invoiceNumber == "INV-002",
+                "Inceleme baglamindan fatura no cikartilamadi.");
+            Assert(
                 !InvoiceReviewContextFormatter.TryResolveInvoiceTypeName("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01", out _),
                 "Evrak kontrol baglami yanlislikla fatura turu gibi yorumlandi.");
+            Assert(
+                !InvoiceReviewContextFormatter.TryResolveInvoiceNumber("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01", out _),
+                "Evrak kontrol baglami yanlislikla fatura no gibi yorumlandi.");
             var reorderedReviewContextChips = InvoiceReviewContextFormatter.BuildChips("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01 > PDF Kayip / Fatura / 2026-01");
             Assert(reorderedReviewContextChips.Count == 4, "Inceleme baglam rozetleri tekrar eden parcayi tekillestiremedi.");
             Assert(reorderedReviewContextChips[0].Kind == "report", "Inceleme baglam rozetleri rapor basligini basa tasimadi.");

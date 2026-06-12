@@ -1296,3 +1296,13 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Panel aksiyonu var | OK | `Bağlam Türü` dugmesi mevcut fatura turu filtresini tek tikla kuruyor |
 | Evrak kontrol baglami disarida | OK | `Rapor: Evrak Kontrol` baglamlari bu aksiyonu aktiflestirmiyor |
 | 2026-06-12 | v1.08 | OK | Baglam turu filtresi + build + self-test tamamlandi |
+
+## v1.09 - Baglam No Aramasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Fatura no cikarimi var | OK | `TryResolveInvoiceNumber()` actionable rapor baglamindan fatura no ayristiriyor |
+| Panel aksiyonu var | OK | `Bağlam No` dugmesi arama kutusunu baglamdaki fatura no ile dolduruyor |
+| Evrak kontrol baglami disarida | OK | `Rapor: Evrak Kontrol` baglamlari bu aksiyonu aktiflestirmiyor |
+| 2026-06-12 | v1.09 | OK | Baglam no aramasi + build + self-test tamamlandi |

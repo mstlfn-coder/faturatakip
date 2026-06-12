@@ -886,3 +886,11 @@ v0.12 sonuÃ§ notu:
 442. Smoke test: dotnet build -c Release OK.
 443. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 444. Siradaki mantikli is: baglamdan daha ince kayit detayi veya ek hedefli aksiyonlar cikarmak.
+445. v1.09 olarak inceleme baglam paneline `Bağlam No` aksiyonu eklendi.
+446. `InvoiceReviewContextFormatter.TryResolveInvoiceNumber()` actionable rapor baglamindan fatura numarasini ayristiriyor.
+447. `InvoicesView` icindeki yeni dugme arama kutusunu bu numarayla doldurup gorunur listeyi yeniliyor.
+448. Evrak Kontrol baglamlari bu aksiyon icin kapsam disi tutuldu.
+449. Self-test hem fatura no cikarimini hem de negatif senaryoyu dogruluyor.
+450. Smoke test: dotnet build -c Release OK.
+451. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+452. Siradaki mantikli is: baglam paneli metinlerini ve Turkce karakter temizliklerini sistematik bicimde toparlamak.
