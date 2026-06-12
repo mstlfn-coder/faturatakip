@@ -571,6 +571,23 @@
                                                Style="{StaticResource MutedText}"
                                                TextWrapping="Wrap"
                                                Margin="0,8,0,0" />
+                                    <Border x:Name="InvoiceReviewContextBorder"
+                                            Background="#EFF6FF"
+                                            BorderBrush="#BFDBFE"
+                                            BorderThickness="1"
+                                            CornerRadius="6"
+                                            Padding="10"
+                                            Margin="0,8,0,0"
+                                            Visibility="Collapsed">
+                                        <StackPanel>
+                                            <TextBlock Text="Rapor Geçiş Bağlamı"
+                                                       Style="{StaticResource FieldLabel}" />
+                                            <TextBlock x:Name="InvoiceReviewContextText"
+                                                       Style="{StaticResource MutedText}"
+                                                       TextWrapping="Wrap"
+                                                       Margin="0,4,0,0" />
+                                        </StackPanel>
+                                    </Border>
                                     <StackPanel Orientation="Horizontal"
                                                 Margin="0,8,0,0">
                                         <CheckBox x:Name="ShowInvoiceReviewContextCheckBox"

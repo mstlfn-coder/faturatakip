@@ -831,12 +831,13 @@ public partial class InvoicesView : UserControl
         var contextLabel = ShowInvoiceReviewContextCheckBox?.IsChecked == true
             ? _invoiceReviewContextLabel
             : null;
+        UpdateInvoiceReviewContextPresentation(contextLabel);
 
         if (_selectedInvoice is null || visibleInvoices.Count == 0)
         {
             PreviousInvoiceButton.IsEnabled = false;
             NextInvoiceButton.IsEnabled = false;
-            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count, includeShortcuts: true, contextLabel: contextLabel);
+            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count, includeShortcuts: true);
             return;
         }
 
@@ -845,13 +846,13 @@ public partial class InvoicesView : UserControl
         {
             PreviousInvoiceButton.IsEnabled = false;
             NextInvoiceButton.IsEnabled = false;
-            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count, includeShortcuts: true, contextLabel: contextLabel);
+            InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, null, visibleInvoices.Count, includeShortcuts: true);
             return;
         }
 
         PreviousInvoiceButton.IsEnabled = currentIndex > 0;
         NextInvoiceButton.IsEnabled = currentIndex < visibleInvoices.Count - 1;
-        InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, currentIndex, visibleInvoices.Count, includeShortcuts: true, contextLabel: contextLabel);
+        InvoiceReviewHintText.Text = InvoiceReviewNavigator.BuildHint(_invoiceReviewModeLabel, currentIndex, visibleInvoices.Count, includeShortcuts: true);
     }
 
     private void ShowInvoiceReviewContextCheckBox_Changed(object sender, RoutedEventArgs e)
@@ -898,6 +899,26 @@ public partial class InvoicesView : UserControl
         catch (Exception exception) when (exception is ExternalException or InvalidOperationException)
         {
             SetInvoiceStatus($"Baglam panoya kopyalanamadi: {exception.Message}", isError: true);
+        }
+    }
+
+    private void UpdateInvoiceReviewContextPresentation(string? contextLabel)
+    {
+        var hasContext = !string.IsNullOrWhiteSpace(contextLabel);
+
+        if (InvoiceReviewContextBorder is not null)
+        {
+            InvoiceReviewContextBorder.Visibility = hasContext ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+        }
+
+        if (InvoiceReviewContextText is not null)
+        {
+            InvoiceReviewContextText.Text = hasContext ? contextLabel : string.Empty;
+        }
+
+        if (CopyInvoiceReviewContextButton is not null)
+        {
+            CopyInvoiceReviewContextButton.IsEnabled = !string.IsNullOrWhiteSpace(_invoiceReviewContextLabel);
         }
     }
 

@@ -253,3 +253,17 @@ Smoke test:
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 Sıradaki mantikli is: inceleme akisindaki bu baglam yardimlarini rapordan gelen operator gecislerinde daha gorunur hale getirmek.
+
+## v0.99 - Baglam Paneli
+
+Bu fazda rapordan gelen inceleme baglami, kontrol ipucunun icinden ayrilarak ayri bir bilgi paneline tasindi.
+`Bağlamı Göster` acikken operator artik baglami daha okunur bir blokta goruyor; ipucu satiri ise yeniden sadece gezinme ve kisayol bilgisina odaklaniyor.
+
+Ek olarak baglam yoksa `Bağlamı Kopyala` aksiyonu pasif kaliyor; boylece gereksiz tiklar azaltildi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+Sıradaki mantikli is: bu baglam panelini gerekiyorsa secili rapor sekmesi veya issue tipi icin daha kisa rozetli ozetlerle zenginlestirmek.

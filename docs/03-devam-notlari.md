@@ -817,3 +817,10 @@ v0.12 sonuÃ§ notu:
 373. Smoke test: dotnet build -c Release OK (calisan exe nedeniyle tek seferlik kopyalama uyarisi goruldu, build basarili tamamladi).
 374. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 375. Siradaki mantikli is: inceleme baglami yardimlarini rapordan gelen operator gecislerinde daha gorunur hale getirmek.
+376. v0.99 olarak rapordan gelen inceleme baglami Faturalar ekraninda ayri bir bilgi paneline tasindi.
+377. `Bağlamı Göster` acikken bu panel gorunuyor; kontrol ipucu satiri ise tekrar sadece gezinme ve kisayol bilgisini veriyor.
+378. `UpdateInvoiceReviewContextPresentation()` eklendi; panel gorunurlugu, panel metni ve `Bağlamı Kopyala` dugmesinin aktif/pasif durumu tek noktadan yonetiliyor.
+379. Baglam yoksa kopyalama dugmesi pasif kaliyor; baglam varsa okunur bir blokta ozet sunuluyor.
+380. Smoke test: dotnet build -c Release OK (calisan exe nedeniyle tek seferlik kopyalama uyarisi goruldu, build basarili tamamladi).
+381. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+382. Siradaki mantikli is: bu baglam panelini secili issue tipi veya rapor sekmesi icin daha kisa rozetli ozetlerle zenginlestirmek.
