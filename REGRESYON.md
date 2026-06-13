@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.90 - Yardim Durum Satiri Kisa Yol Ipuclari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satirinda klavye ipucu var | OK | `Enter/Space ile tekrar.` ifadesi gorunuyor |
+| PDF yardimi durum satirinda klavye ipucu var | OK | `Enter/Space ile tekrar.` ifadesi gorunuyor |
+| 2026-06-13 | v1.90 | OK | Yardim durum satiri kisa yol ipuclari + build + self-test tamamlandi |
+
 ## v1.89 - Durum Satiri Tooltip Birlesimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

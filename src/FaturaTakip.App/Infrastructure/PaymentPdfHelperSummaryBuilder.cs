@@ -18,8 +18,8 @@ public static class PaymentPdfHelperSummaryBuilder
     {
         return selectedActionKey switch
         {
-            "select_pdf" => "Secili yardim: PDF Sec hazir.",
-            "open_pdf" => "Secili yardim: PDF Ac hazir.",
+            "select_pdf" => "Secili yardim: PDF Sec hazir. Enter/Space ile tekrar.",
+            "open_pdf" => "Secili yardim: PDF Ac hazir. Enter/Space ile tekrar.",
             _ => string.Empty,
         };
     }

@@ -20,9 +20,9 @@ public static class PaymentEntryHelperSummaryBuilder
     {
         return selectedActionKey switch
         {
-            "fill_remaining" => "Secili yardim: Kalan Tutar hazir.",
-            "use_last" => "Secili yardim: Son Aciklama hazir.",
-            "use_selected" => "Secili yardim: Secili Odeme hazir.",
+            "fill_remaining" => "Secili yardim: Kalan Tutar hazir. Enter/Space ile tekrar.",
+            "use_last" => "Secili yardim: Son Aciklama hazir. Enter/Space ile tekrar.",
+            "use_selected" => "Secili yardim: Secili Odeme hazir. Enter/Space ile tekrar.",
             _ => string.Empty,
         };
     }

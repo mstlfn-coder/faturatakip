@@ -1390,3 +1390,9 @@ Her faz bittiğinde:
 - Boylece yardim durumu ve tekrar calistirma yonu ayni hover alaninda daha tutarli gorunuyor.
 - Yardim dili katmanlari arasindaki ayrim biraz daha azaldi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.90)
+
+- v1.90 tamamlandi: secili yardim durum satirina `Enter/Space` klavye ipucu eklendi.
+- Boylece durum metni sadece yardimin hazir oldugunu degil, klavyeden nasil tekrar calistirilacagini da soyluyor.
+- Kisa yol gorunurlugu yardim akisina dogrudan tasinmis oldu.
+- Smoke test olarak build ve self-test temiz gecti.
