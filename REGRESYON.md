@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.61 - Mikro Kisayol Tekrar Geri Bildirimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim tekrar geri bildirimi var | OK | Mikro kisayol tekrarlandiginda satir gecici olarak `yeniden tetiklendi` eki aliyor |
+| PDF yardim tekrar geri bildirimi var | OK | Mikro kisayol tekrarlandiginda satir gecici olarak `yeniden tetiklendi` eki aliyor |
+| 2026-06-13 | v1.61 | OK | Tekrar geri bildirimi + build + self-test tamamlandi |
+
 ## v1.60 - Aktif Prefix Rozet Vurgusu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

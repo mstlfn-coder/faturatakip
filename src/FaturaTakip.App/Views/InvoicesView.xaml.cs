@@ -43,6 +43,8 @@ public partial class InvoicesView : UserControl
     private DispatcherTimer? _invoiceStatusHighlightTimer;
     private DispatcherTimer? _paymentHelperLastActionHighlightTimer;
     private DispatcherTimer? _paymentPdfHelperLastActionHighlightTimer;
+    private DispatcherTimer? _paymentHelperReplayFeedbackTimer;
+    private DispatcherTimer? _paymentPdfReplayFeedbackTimer;
     private string? _lastInvokedReviewActionKey;
     private string? _lastInvokedReviewContextChipKey;
     private string? _pendingReviewContextStatusLead;
@@ -50,6 +52,8 @@ public partial class InvoicesView : UserControl
     private string? _lastInvokedPaymentPdfHelperActionKey;
     private string? _pendingPaymentStatusLead;
     private string? _pendingPaymentPdfStatusLead;
+    private bool _isPaymentHelperReplayFeedbackActive;
+    private bool _isPaymentPdfReplayFeedbackActive;
     private string? _lastReviewContextSignature;
     private string _rootDirectory = string.Empty;
     private InvoiceReviewPreferences _invoiceReviewPreferences = InvoiceReviewPreferences.Default;
@@ -2762,6 +2766,7 @@ public partial class InvoicesView : UserControl
     {
         var helperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(invoice, _payments, _selectedPayment, _lastInvokedPaymentHelperActionKey);
         var lastActionText = PaymentEntryHelperSummaryBuilder.BuildLastActionText(_lastInvokedPaymentHelperActionKey);
+        lastActionText = PaymentEntryHelperSummaryBuilder.BuildReplayFeedbackText(lastActionText, _isPaymentHelperReplayFeedbackActive);
         var lastActionToolTip = PaymentEntryHelperSummaryBuilder.BuildLastActionToolTip(_lastInvokedPaymentHelperActionKey);
         var lastActionPrefix = PaymentEntryHelperSummaryBuilder.BuildLastActionPrefix(_lastInvokedPaymentHelperActionKey);
 
@@ -2853,6 +2858,8 @@ public partial class InvoicesView : UserControl
                 UseSelectedPaymentTemplateButton_Click(sender, e);
                 break;
         }
+
+        ActivatePaymentHelperReplayFeedback();
     }
 
     private void SetPaymentStatusSuccess(string message)
@@ -2947,6 +2954,7 @@ public partial class InvoicesView : UserControl
     {
         var helperBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(payment, paymentPdfExists, _lastInvokedPaymentPdfHelperActionKey);
         var lastActionText = PaymentPdfHelperSummaryBuilder.BuildLastActionText(_lastInvokedPaymentPdfHelperActionKey);
+        lastActionText = PaymentPdfHelperSummaryBuilder.BuildReplayFeedbackText(lastActionText, _isPaymentPdfReplayFeedbackActive);
         var lastActionToolTip = PaymentPdfHelperSummaryBuilder.BuildLastActionToolTip(_lastInvokedPaymentPdfHelperActionKey);
         var lastActionPrefix = PaymentPdfHelperSummaryBuilder.BuildLastActionPrefix(_lastInvokedPaymentPdfHelperActionKey);
 
@@ -3016,6 +3024,8 @@ public partial class InvoicesView : UserControl
                 OpenPaymentPdfButton_Click(sender, e);
                 break;
         }
+
+        ActivatePaymentPdfReplayFeedback();
     }
 
     private void SetPaymentPdfStatusSuccess(string message)
@@ -3077,6 +3087,28 @@ public partial class InvoicesView : UserControl
         PaymentHelperLastActionText.Foreground = new SolidColorBrush(Color.FromRgb(22, 101, 52));
     }
 
+    private void ActivatePaymentHelperReplayFeedback()
+    {
+        _isPaymentHelperReplayFeedbackActive = true;
+        UpdatePaymentHelperSummary(_selectedInvoice);
+
+        _paymentHelperReplayFeedbackTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(2)
+        };
+        _paymentHelperReplayFeedbackTimer.Tick -= PaymentHelperReplayFeedbackTimer_Tick;
+        _paymentHelperReplayFeedbackTimer.Tick += PaymentHelperReplayFeedbackTimer_Tick;
+        _paymentHelperReplayFeedbackTimer.Stop();
+        _paymentHelperReplayFeedbackTimer.Start();
+    }
+
+    private void PaymentHelperReplayFeedbackTimer_Tick(object? sender, EventArgs e)
+    {
+        _paymentHelperReplayFeedbackTimer?.Stop();
+        _isPaymentHelperReplayFeedbackActive = false;
+        UpdatePaymentHelperSummary(_selectedInvoice);
+    }
+
     private void StartPaymentPdfHelperLastActionHighlight()
     {
         if (PaymentPdfHelperLastActionText is null)
@@ -3112,6 +3144,30 @@ public partial class InvoicesView : UserControl
 
         PaymentPdfHelperLastActionText.FontWeight = FontWeights.SemiBold;
         PaymentPdfHelperLastActionText.Foreground = new SolidColorBrush(Color.FromRgb(3, 105, 161));
+    }
+
+    private void ActivatePaymentPdfReplayFeedback()
+    {
+        _isPaymentPdfReplayFeedbackActive = true;
+        var paymentPdfExists = _selectedPayment is not null && _paymentRepository?.PdfFileExists(_selectedPayment) == true;
+        UpdatePaymentPdfHelperSummary(_selectedPayment, paymentPdfExists);
+
+        _paymentPdfReplayFeedbackTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(2)
+        };
+        _paymentPdfReplayFeedbackTimer.Tick -= PaymentPdfReplayFeedbackTimer_Tick;
+        _paymentPdfReplayFeedbackTimer.Tick += PaymentPdfReplayFeedbackTimer_Tick;
+        _paymentPdfReplayFeedbackTimer.Stop();
+        _paymentPdfReplayFeedbackTimer.Start();
+    }
+
+    private void PaymentPdfReplayFeedbackTimer_Tick(object? sender, EventArgs e)
+    {
+        _paymentPdfReplayFeedbackTimer?.Stop();
+        _isPaymentPdfReplayFeedbackActive = false;
+        var paymentPdfExists = _selectedPayment is not null && _paymentRepository?.PdfFileExists(_selectedPayment) == true;
+        UpdatePaymentPdfHelperSummary(_selectedPayment, paymentPdfExists);
     }
 
     private sealed record MonthOption(int Value, string Label);

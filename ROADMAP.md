@@ -1216,3 +1216,9 @@ Her faz bittiğinde:
 - Hover durumunda daha canli renk, klavye odaginda ise daha belirgin kenarlik ve arka plan kullaniliyor.
 - Boylece son kullanilan yardim izi daha kolay taranabilir hale geldi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.61)
+
+- v1.61 tamamlandi: mikro kisayollar tekrar kullanildiginda satir ici `yeniden tetiklendi` geri bildirimi eklendi.
+- Geri bildirim kisa sure gorunup otomatik olarak temizleniyor.
+- Boylece tekrar aksiyonlari sadece durum cubugunda degil, ayni satir icinde de fark edilir oldu.
+- Smoke test olarak build ve self-test temiz gecti.

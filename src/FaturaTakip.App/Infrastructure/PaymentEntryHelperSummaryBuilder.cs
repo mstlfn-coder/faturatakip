@@ -38,6 +38,18 @@ public static class PaymentEntryHelperSummaryBuilder
         };
     }
 
+    public static string BuildReplayFeedbackText(string? baseText, bool isReplayActive)
+    {
+        if (string.IsNullOrWhiteSpace(baseText))
+        {
+            return string.Empty;
+        }
+
+        return isReplayActive
+            ? $"{baseText} (yeniden tetiklendi)"
+            : baseText;
+    }
+
     public static IReadOnlyList<PaymentHelperBadge> BuildBadges(
         Invoice? invoice,
         IEnumerable<Payment> payments,

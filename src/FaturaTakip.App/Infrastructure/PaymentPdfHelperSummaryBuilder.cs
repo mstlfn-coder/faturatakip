@@ -34,6 +34,18 @@ public static class PaymentPdfHelperSummaryBuilder
         };
     }
 
+    public static string BuildReplayFeedbackText(string? baseText, bool isReplayActive)
+    {
+        if (string.IsNullOrWhiteSpace(baseText))
+        {
+            return string.Empty;
+        }
+
+        return isReplayActive
+            ? $"{baseText} (yeniden tetiklendi)"
+            : baseText;
+    }
+
     public static IReadOnlyList<PaymentPdfHelperBadge> BuildBadges(
         Payment? selectedPayment,
         bool paymentPdfExists,

@@ -1098,3 +1098,13 @@ Boylece son kullanilan yardim izi sadece mevcut olmakla kalmiyor, ayni zamanda d
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.61 - Mikro Kisayol Tekrar Geri Bildirimi
+
+Bu fazda odeme yardim ve odeme PDF yardim mikro kisayollari tekrar tetiklendiklerinde kisa bir satir ici geri bildirim gostermeye basladi.
+Son aksiyon metni kisa sureligine `yeniden tetiklendi` eki aliyor, sonra normal haline geri donuyor.
+
+Boylece kullanici ayni mikro kisayolu tekrar kullandiginda aksiyonun yeniden cagrildigini satir uzerinde de goruyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
