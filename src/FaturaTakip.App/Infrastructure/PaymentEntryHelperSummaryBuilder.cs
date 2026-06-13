@@ -20,7 +20,7 @@ public static class PaymentEntryHelperSummaryBuilder
                 "KLN",
                 "Kalan Tutar",
                 "filter",
-                $"Kalani Doldur yardimi kalan tutari {invoice.RemainingAmountText} olarak hazirlar.",
+                $"Tikla veya Enter/Space ile kalan tutari {invoice.RemainingAmountText} olarak doldur.",
                 "fill_remaining",
                 IsSelected: string.Equals(selectedActionKey, "fill_remaining", StringComparison.Ordinal)));
         }
@@ -36,7 +36,7 @@ public static class PaymentEntryHelperSummaryBuilder
                 "SON",
                 "Son Aciklama",
                 "context",
-                $"Son Odemeden Doldur yardimi son aciklamayi getirir: {recentDescription}",
+                $"Tikla veya Enter/Space ile son odeme aciklamasini doldur: {recentDescription}",
                 "use_last",
                 IsSelected: string.Equals(selectedActionKey, "use_last", StringComparison.Ordinal)));
         }
@@ -47,7 +47,7 @@ public static class PaymentEntryHelperSummaryBuilder
                 "SEC",
                 "Secili Odeme",
                 "detail",
-                $"Secili Odemeden Doldur yardimi {selectedPayment.AmountText} tutarli odemeyi temel alir.",
+                $"Tikla veya Enter/Space ile secili odemeyi temel al: {selectedPayment.AmountText}",
                 "use_selected",
                 IsSelected: string.Equals(selectedActionKey, "use_selected", StringComparison.Ordinal)));
         }

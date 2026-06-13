@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.51 - Odeme Yardim Rozeti Klavye Gorunurlugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tooltip klavye ipucu tasiyor | OK | Odeme yardim rozetleri tooltip icinde `Enter/Space` ipucunu gosteriyor |
+| Odak gorunurlugu eklendi | OK | Odakli rozet daha belirgin cerceveyle gorunuyor |
+| 2026-06-13 | v1.51 | OK | Odeme yardim rozeti klavye gorunurlugu + build + self-test tamamlandi |
+
 ## v1.50 - Tiklanabilir Odeme Yardim Rozetleri
 | Kontrol | Durum | Not |
 | --- | --- | --- |

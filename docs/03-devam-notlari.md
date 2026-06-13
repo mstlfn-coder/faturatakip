@@ -1159,3 +1159,9 @@ v0.12 sonuÃ§ notu:
 673. Son kullanilan yardim rozeti hafif secim vurgusuyla izlenmeye baslandi.
 674. Smoke test: dotnet build -c Release OK.
 675. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+676. v1.51 olarak odeme yardim rozetlerine klavye odak gorunurlugu ve tooltip ipuclari eklendi.
+677. Tooltip metinleri `Enter/Space` ile ayni yardimin tetiklenebilecegini anlatiyor; odakli rozet daha belirgin gorunuyor.
+678. Boylece odeme ana akisinda klavye kesfedilebilirligi bir adim daha guclendi.
+679. Smoke test: dotnet build -c Release OK.
+680. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

@@ -94,6 +94,7 @@ Son guncelleme tarihi: 2026-06-13
 45. Review baglam cipi akislarini hizli dogrulamak icin ayri UI smoke checklist dokumani eklendi.
 46. Odemeler ana akisina gecis icin odeme formuna hazir yardim ozet rozetleri eklendi.
 47. Odeme yardim rozetleri tiklanabilir hizli yol ve secim geri bildirimi kazandi.
+48. Odeme yardim rozetleri klavyede daha belirgin odak ve `Enter/Space` tooltip ipucu kazandi.
 
 ## Son 5 Commit
 
@@ -117,7 +118,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Odemeler tarafinda yardim rozetleri de tiklanabilir oldugu icin bir sonraki mantikli kucuk adim odeme klavye akislarini guclendirmek veya odeme PDF tarafina benzer mini yardimlar eklemek olabilir.
+- Odemeler tarafinda rozet klavye gorunurlugu de geldigi icin bir sonraki mantikli kucuk adim odeme PDF tarafina benzer mini yardimlar eklemek veya odeme durum mesajlarini daha baglamsal hale getirmek olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

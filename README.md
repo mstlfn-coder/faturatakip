@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.51 - Odeme Yardim Rozeti Klavye Gorunurlugu
+
+Bu fazda odeme yardim rozetlerinin klavyede daha rahat kullanilmasi icin gorunur odak ve tooltip ipuclari eklendi.
+Rozet odak aldiginda daha belirgin cerceveyle gorunuyor; tooltip metinleri de `Enter/Space` ile ayni yardimin tetiklenebilecegini acikliyor.
+
+Boylece odeme akisindaki hizli yardimlar sadece fareyle degil, klavyeyle de daha rahat kesfediliyor.
+Var olan tiklanabilir rozet davranisi korunurken klavye tarafinda okunabilirlik arttirildi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.50 - Tiklanabilir Odeme Yardim Rozetleri
 
 Bu fazda odeme yardim rozetleri sadece bilgi gostermekle kalmayip dogrudan hizli yol haline getirildi.

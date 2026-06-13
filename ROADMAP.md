@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.51)
+
+- v1.51 tamamlandi: odeme yardim rozetlerine klavye odak gorunurlugu ve tooltip ipuclari eklendi.
+- Rozetler odak aldiginda belirginlesiyor; tooltip icinde `Enter/Space` ile tetiklenebilecekleri anlatiliyor.
+- Boylece odeme ana akisinda klavye kesfedilebilirligi biraz daha guclendi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.50)
 
 - v1.50 tamamlandi: odeme yardim rozetleri tiklanabilir hizli yol haline getirildi.

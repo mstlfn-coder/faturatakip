@@ -259,6 +259,7 @@ public sealed class SelfTestRunner
             Assert(paymentHelperBadges.Any(item => item.ActionKey == "fill_remaining"), "Kalan tutar yardim rozeti aksiyon anahtari tasimiyor.");
             Assert(paymentHelperBadges.Any(item => item.ActionKey == "use_last"), "Son aciklama yardim rozeti aksiyon anahtari tasimiyor.");
             Assert(paymentHelperBadges.Any(item => item.ActionKey == "use_selected"), "Secili odeme yardim rozeti aksiyon anahtari tasimiyor.");
+            Assert(paymentHelperBadges.Any(item => item.ToolTip.Contains("Enter/Space", StringComparison.Ordinal)), "Odeme yardim rozetlerinde klavye tooltip ipucu eksik.");
             var selectedPaymentHelperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(
                 updatedInvoice,
                 new[] { new Payment { Id = 10, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 21), Amount = 40m, Description = "Aciklama" } },

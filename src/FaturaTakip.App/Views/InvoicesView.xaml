@@ -217,6 +217,10 @@
             <Setter Property="Padding" Value="8,3" />
             <Setter Property="Margin" Value="0,0,6,6" />
             <Style.Triggers>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="#0F172A" />
+                </DataTrigger>
                 <DataTrigger Binding="{Binding IsSelected}" Value="True">
                     <Setter Property="BorderThickness" Value="2" />
                 </DataTrigger>
