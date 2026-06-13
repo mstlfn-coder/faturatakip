@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.83 - Replay Indicator UI Smoke Checklist
+
+Bu fazda replay indicator kullanan odeme yardimi ve PDF yardimi alanlari icin ayri bir UI smoke checklist dokumani eklendi.
+Boylece build ve self-test yanina, replay mini isareti ve tooltip dili icin kisa bir manuel kontrol rotasi da eklendi.
+
+Dokuman: `docs/08-replay-indicator-ui-smoke-checklist.md`
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.82 - Replay Indicator Self-Test
 
 Bu fazda yeni `ReplayPreferenceIndicatorFormatter` helperi icin dar kapsamli self-testler eklendi.

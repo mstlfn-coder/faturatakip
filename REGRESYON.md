@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.83 - Replay Indicator UI Smoke Checklist
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Replay indicator UI smoke checklist var | OK | `docs/08-replay-indicator-ui-smoke-checklist.md` eklendi |
+| Replay odeme/PDF akis adimlari belgeli | OK | Odeme yardimi, PDF yardimi ve bos durum kontrol adimlari yazildi |
+| 2026-06-13 | v1.83 | OK | Replay indicator UI smoke checklist + build + self-test tamamlandi |
+
 ## v1.82 - Replay Indicator Self-Test
 | Kontrol | Durum | Not |
 | --- | --- | --- |

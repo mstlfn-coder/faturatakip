@@ -1348,3 +1348,9 @@ Her faz bittiğinde:
 - Indicator deseni, action adi ve tooltip metin dallari artik dogrudan assert ediliyor.
 - Boylece replay yardim tonundaki degisiklikler daha erken ve daha hedefli yakalanacak.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.83)
+
+- v1.83 tamamlandi: replay indicator kullanan alanlar icin ayri UI smoke checklist dokumani eklendi.
+- Odeme yardimi, PDF yardimi ve bos durum replay akislarini elle dogrulayan kisa bir kontrol rotasi tanimlandi.
+- Boylece replay indicator UX halkasi yeni chatlerde daha kolay devralinabilir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
