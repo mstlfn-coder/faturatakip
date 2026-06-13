@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.25 - Rozet Secim Temizleme
+
+Bu fazda secili rozet vurgusunun baglam degistiginde otomatik temizlenmesi saglandi.
+Yani onceki baglamda tiklanan bir rozet, yeni bir rapor baglami geldikten sonra secili kalmiyor; secim yalnizca ayni baglam icinde korunuyor.
+
+Boylece eski aksiyon izi yeni baglama tasinmiyor.
+Panel daha dogru durum bilgisi vermeye basladi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.24 - Rozet Secim Geri Bildirimi
 
 Bu fazda tiklanan hazir aksiyon rozetine kisa gorsel geri bildirim eklendi.

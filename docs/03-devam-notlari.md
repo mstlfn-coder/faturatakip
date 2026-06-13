@@ -1002,3 +1002,9 @@ v0.12 sonuÃ§ notu:
 542. Bu tur hizli ardışık kullanimi daha okunur hale getirdi.
 543. Smoke test: dotnet build -c Release OK.
 544. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+545. v1.25 olarak secili rozet vurgusunun baglam degistiginde otomatik temizlenmesi saglandi.
+546. Rozet secimi baglam metni ve tercihli kayit kimliginden turetilen imzaya baglandi.
+547. Boylece eski baglam vurgusu yeni baglama tasinmiyor.
+548. Smoke test: dotnet build -c Release OK.
+549. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

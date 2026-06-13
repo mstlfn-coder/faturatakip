@@ -1453,3 +1453,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Secili rozet vurgusu var | OK | Son tiklanan rozet daha belirgin kenarlik ve tonla gosteriliyor |
 | Rozet secimi korunuyor | OK | Son calistirilan aksiyon anahtarina gore rozet secimi guncelleniyor |
 | 2026-06-13 | v1.24 | OK | Rozet secim geri bildirimi + build + self-test tamamlandi |
+
+## v1.25 - Rozet Secim Temizleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baglam degisiminde sifirlaniyor | OK | Yeni baglam imzasi gelince eski secili rozet vurgusu temizleniyor |
+| Ayni baglamda korunuyor | OK | Ayni baglam icinde son tiklanan aksiyon rozet vurgusu korunuyor |
+| 2026-06-13 | v1.25 | OK | Rozet secim temizleme + build + self-test tamamlandi |

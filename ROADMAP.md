@@ -970,3 +970,10 @@ Her faz bittiğinde:
 - Son calistirilan rozet daha belirgin kenarlik ve tonla secili gibi gosteriliyor.
 - Hızlı ardışık kullanımda panel okunabilirligi arttı.
 - Smoke test olarak build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-13 / v1.25)
+
+- v1.25 tamamlandi: secili rozet vurgusu baglam degistiginde otomatik temizlenir hale getirildi.
+- Rozet secimi artik baglam imzasina bagli tutuluyor.
+- Eski baglam vurgusunun yeni rapor gecisine tasinmasi engellendi.
+- Smoke test olarak build ve self-test temiz gecti.

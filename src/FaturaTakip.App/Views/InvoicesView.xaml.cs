@@ -34,6 +34,7 @@ public partial class InvoicesView : UserControl
     private string? _invoiceReviewContextLabel;
     private long? _invoiceReviewPreferredInvoiceId;
     private string? _lastInvokedReviewActionKey;
+    private string? _lastReviewContextSignature;
     private string _rootDirectory = string.Empty;
     private InvoiceReviewPreferences _invoiceReviewPreferences = InvoiceReviewPreferences.Default;
 
@@ -1263,6 +1264,15 @@ public partial class InvoicesView : UserControl
 
     private void UpdateInvoiceReviewContextPresentation(string? contextLabel)
     {
+        var currentContextSignature = string.IsNullOrWhiteSpace(contextLabel)
+            ? null
+            : $"{contextLabel}|{_invoiceReviewPreferredInvoiceId?.ToString(CultureInfo.InvariantCulture) ?? "-"}";
+        if (!string.Equals(_lastReviewContextSignature, currentContextSignature, StringComparison.Ordinal))
+        {
+            _lastInvokedReviewActionKey = null;
+            _lastReviewContextSignature = currentContextSignature;
+        }
+
         var hasContext = !string.IsNullOrWhiteSpace(contextLabel);
         var hasSuggestedFilter = InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out _);
         var hasPreferredInvoice = _invoiceReviewPreferredInvoiceId is not null;
