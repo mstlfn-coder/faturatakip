@@ -1396,3 +1396,9 @@ Her faz bittiğinde:
 - Boylece durum metni sadece yardimin hazir oldugunu degil, klavyeden nasil tekrar calistirilacagini da soyluyor.
 - Kisa yol gorunurlugu yardim akisina dogrudan tasinmis oldu.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.91)
+
+- v1.91 tamamlandi: secili yardim durum satiri degistiginde kisa sureli mikro vurgu eklendi.
+- Durum satiri bir anligina daha belirgin renk ve agirlik alarak son degisimi hissettiriyor.
+- Boylece rozet ve metin katmani birlikte daha iyi geri bildirim veriyor.
+- Smoke test olarak build ve self-test temiz gecti.

@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.91 - Yardim Durum Satiri Mikro Vurgu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satiri mikro vurgu aliyor | OK | Secili durum satiri kisa sureli daha belirginlesiyor |
+| PDF yardimi durum satiri mikro vurgu aliyor | OK | Secili durum satiri kisa sureli daha belirginlesiyor |
+| 2026-06-13 | v1.91 | OK | Yardim durum satiri mikro vurgu + build + self-test tamamlandi |
+
 ## v1.90 - Yardim Durum Satiri Kisa Yol Ipuclari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

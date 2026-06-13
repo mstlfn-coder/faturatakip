@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.91 - Yardim Durum Satiri Mikro Vurgu
+
+Bu fazda secili yardim durum satiri degistiginde kisa sureli bir satir ici vurgu eklendi.
+Rozet tarafindaki mikro vurguya benzer sekilde, durum satiri bir anligina daha belirgin renk ve agirlik aliyor, sonra normal haline donuyor.
+
+Boylece son degisen yardim durumunu gozle yakalamak daha kolaylasti.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.90 - Yardim Durum Satiri Kisa Yol Ipuclari
 
 Bu fazda secili yardim durum satirina kisa bir `Enter/Space` ipucu eklendi.
