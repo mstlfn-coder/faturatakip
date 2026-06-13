@@ -313,6 +313,30 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="ActionBadgeStateText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#0F172A" />
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="6,0,0,0" />
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="filter">
+                    <Setter Property="Foreground" Value="#166534" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="context">
+                    <Setter Property="Foreground" Value="#1D4ED8" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="period">
+                    <Setter Property="Foreground" Value="#B45309" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="detail">
+                    <Setter Property="Foreground" Value="#7E22CE" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="ReviewFocusMarkerBorder" TargetType="Border">
             <Setter Property="Background" Value="#DBEAFE" />
             <Setter Property="BorderBrush" Value="#93C5FD" />
@@ -951,6 +975,8 @@
                                                                        Style="{StaticResource ActionBadgePrefixText}" />
                                                             <TextBlock Text="{Binding Text}"
                                                                        Style="{StaticResource ActionBadgeText}" />
+                                                            <TextBlock Text="AKTIF"
+                                                                       Style="{StaticResource ActionBadgeStateText}" />
                                                         </StackPanel>
                                                     </Border>
                                                 </Button>
@@ -1073,6 +1099,8 @@
                                                                        Style="{StaticResource ActionBadgePrefixText}" />
                                                             <TextBlock Text="{Binding Text}"
                                                                        Style="{StaticResource ActionBadgeText}" />
+                                                            <TextBlock Text="AKTIF"
+                                                                       Style="{StaticResource ActionBadgeStateText}" />
                                                         </StackPanel>
                                                     </Border>
                                                 </Button>

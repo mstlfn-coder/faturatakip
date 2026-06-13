@@ -1360,3 +1360,9 @@ Her faz bittiğinde:
 - Kullanici artik sadece mini indicatoru degil, ozet metnini hover ederek de ayni replay aciklamasini okuyabiliyor.
 - Boylece replay yardim alaninin hover hedefi daha rahat hale geldi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.85)
+
+- v1.85 tamamlandi: odeme yardimi ve PDF yardimi rozetlerinde secili aksiyon icin `AKTIF` etiketi eklendi.
+- Renk vurgusu korunurken secili durum artik metinle de daha net gorunuyor.
+- Boylece yardim rozetleri hizli taramada daha acik hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.

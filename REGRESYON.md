@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.85 - Secili Yardim Rozeti Ipuclari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi secili rozette aktif etiketi var | OK | Secili rozetlerde `AKTIF` isareti gorunuyor |
+| PDF yardimi secili rozette aktif etiketi var | OK | Secili rozetlerde `AKTIF` isareti gorunuyor |
+| 2026-06-13 | v1.85 | OK | Secili yardim rozeti ipuclari + build + self-test tamamlandi |
+
 ## v1.84 - Replay Ozet Tooltip Genisleme
 | Kontrol | Durum | Not |
 | --- | --- | --- |

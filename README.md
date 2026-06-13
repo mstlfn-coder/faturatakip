@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.85 - Secili Yardim Rozeti Ipuclari
+
+Bu fazda odeme yardimi ve PDF yardimi rozetlerinde secili aksiyon icin minik bir `AKTIF` durumu gosterilmeye baslandi.
+Rozet rengi korunurken, secili durum artik metinle de daha hizli fark ediliyor.
+
+Bu, kucuk ama goz taramasini rahatlatan bir gorunur durum ipucu oldu.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.84 - Replay Ozet Tooltip Genisleme
 
 Bu fazda replay tooltipi sadece mini indicator ve prefixte degil, replay ozet metninin tamaminda da gorunur hale getirildi.
