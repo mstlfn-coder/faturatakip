@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.38 - Cip Davranis Isareti
+
+Bu fazda review baglam ciplerinde hangi ciplere tiklandiginda aksiyon calisacagi ve hangilerinin sadece kopyalayacagi daha gorunur hale getirildi.
+Aksiyonlu ciplerde kucuk `UYG`, sadece kopyalama yapan ciplerde ise `KPY` isareti gosteriliyor; tooltip aciklamalari da buna paralel sekilde korunuyor.
+
+Boylece kullanici baglam panelinde tiklamadan once ne olacagini daha rahat tahmin edebiliyor.
+Mikro isaret eklenirken mevcut ciplere ve renk diline sadik kalindi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.37 - Aksiyonlu Baglam Cipleri
 
 Bu fazda uygun review baglam cipleri sadece kopyalama degil, dogrudan mikro aksiyon tetikleme yetenegi kazandi.

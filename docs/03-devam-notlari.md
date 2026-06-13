@@ -1080,3 +1080,9 @@ v0.12 sonuÃ§ notu:
 607. Boylece baglam paneli daha aktif bir hizli yol yuzeyi haline geldi.
 608. Smoke test: dotnet build -c Release OK.
 609. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+610. v1.38 olarak review baglam ciplerine davranis tipini gosteren mikro isaretler eklendi.
+611. Aksiyon calistiran ciplere `UYG`, sadece kopyalayan ciplere `KPY` etiketi verildi.
+612. Boylece kullanici tiklamadan once cip davranisini daha rahat ayirt edebiliyor.
+613. Smoke test: dotnet build -c Release OK.
+614. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

@@ -1472,6 +1472,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Normal moda donus var | OK | Filtreler varsayilan akisina geri donuyor |
 | 2026-06-13 | v1.26 | OK | Baglami temizle aksiyonu + build + self-test tamamlandi |
 
+## v1.38 - Cip Davranis Isareti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Davranis isareti var | OK | Aksiyonlu ciplere `UYG`, kopyalama ciplere `KPY` etiketi eklendi |
+| Tooltip uyumu var | OK | Mikro isaret ile tooltip davranis bilgisi birbiriyle uyumlu |
+| 2026-06-13 | v1.38 | OK | Cip davranis isareti + build + self-test tamamlandi |
+
 ## v1.37 - Aksiyonlu Baglam Cipleri
 | Kontrol | Durum | Not |
 | --- | --- | --- |

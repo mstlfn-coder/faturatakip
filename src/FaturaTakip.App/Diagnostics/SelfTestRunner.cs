@@ -449,6 +449,7 @@ public sealed class SelfTestRunner
             Assert(reviewContextChips[0].Text == "Rapor: Evrak Kontrol", "Inceleme baglam rozetinde rapor basligi korunmadi.");
             Assert(reviewContextChips[0].Kind == "report", "Inceleme baglam rozetinde rapor tipi isaretlenmedi.");
             Assert(reviewContextChips[0].Prefix == "RPR", "Inceleme baglam rozetinde rapor on eki atanamadi.");
+            Assert(reviewContextChips[0].ActionBadge == "UYG", "Aksiyonlu baglam cipinde beklenen isaret bulunamadi.");
             Assert(reviewContextChips[1].Text == "PDF Kayip", "Inceleme baglam rozetinde issue tipi ayristirilamadi.");
             Assert(reviewContextChips[1].Kind == "issue", "Inceleme baglam rozetinde issue tipi atanamadi.");
             Assert(reviewContextChips[1].Prefix == "ISS", "Inceleme baglam rozetinde issue on eki atanamadi.");
@@ -458,6 +459,7 @@ public sealed class SelfTestRunner
             Assert(reviewContextChips[3].Text == "2026-01", "Inceleme baglam rozetinde donem ozeti ayristirilamadi.");
             Assert(reviewContextChips[3].Kind == "period", "Inceleme baglam rozetinde donem tipi atanamadi.");
             Assert(reviewContextChips[3].Prefix == "DNM", "Inceleme baglam rozetinde donem on eki atanamadi.");
+            Assert(reviewContextChips[2].ActionBadge == "KPY", "Kopyalama cipinde beklenen isaret bulunamadi.");
             Assert(reviewContextChips[0].ActionKey == "apply_filter", "Rapor cipi beklenen filtre aksiyonunu uretmedi.");
             Assert(reviewContextChips[3].ActionKey == "apply_period", "Donem cipi beklenen donem aksiyonunu uretmedi.");
             Assert(

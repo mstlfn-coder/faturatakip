@@ -38,6 +38,7 @@ Son guncelleme tarihi: 2026-06-13
   - `v1.35` Baglam Ozet/Detay Gorunumu
   - `v1.36` Baglam Cipi Hizli Kopyalama
   - `v1.37` Aksiyonlu Baglam Cipleri
+  - `v1.38` Cip Davranis Isareti
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -78,6 +79,7 @@ Son guncelleme tarihi: 2026-06-13
 32. Review baglam metni icin ozet ve detay gorunumu arasinda gecis eklendi.
 33. Review baglam cipleri tiklanabilir hizli kopyalama aracina donusturuldu.
 34. Uygun review baglam cipleri ilgili filtre aksiyonlarini dogrudan tetikler hale getirildi.
+35. Review baglam ciplerine davranis tipini gosteren `UYG` / `KPY` mikro isaretleri eklendi.
 
 ## Son 5 Commit
 
@@ -101,7 +103,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Baglam cipleri dogrudan aksiyon da tetikleyebildigi icin bir sonraki mantikli adim, cip uzerinde hangi davranisin calisacagini daha acik gosteren minik ikon/tooltip ayrimi olabilir.
+- Cip davranis farki da gorunur hale geldigi icin bir sonraki mantikli adim, uygun cip turlerinde cift tikla alternatif davranis veya sag tik menusu gibi daha ileri mikro kisayollar olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

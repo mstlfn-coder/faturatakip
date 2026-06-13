@@ -985,6 +985,13 @@ Her faz bittiğinde:
 - Rapor gecisinden normal calisma moduna donus tek tikla kolaylasti.
 - Smoke test olarak build ve self-test temiz gecti.
 
+## Son Guncelleme (2026-06-13 / v1.38)
+
+- v1.38 tamamlandi: review baglam ciplerine davranis tipini gosteren mikro isaretler eklendi.
+- Aksiyon calistiran ciplerde `UYG`, sadece kopyalayanlarda `KPY` etiketi gorunuyor.
+- Tooltip ve gorunur isaret birlikte calisarak cip davranisini tiklamadan once daha acik anlatir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.37)
 
 - v1.37 tamamlandi: uygun review baglam cipleri tek tikla aksiyon tetikler hale getirildi.

@@ -33,7 +33,13 @@ public static class InvoiceReviewContextFormatter
                 {
                     var kind = ResolveKind(sectionIndex, partIndex, part);
                     var actionKey = ResolveActionKey(contextLabel, sectionIndex, partIndex, kind, part);
-                    chips.Add(new ContextChip(part, kind, ResolvePrefix(kind), ResolveToolTip(actionKey, part), actionKey));
+                    chips.Add(new ContextChip(
+                        part,
+                        kind,
+                        ResolvePrefix(kind),
+                        ResolveToolTip(actionKey, part),
+                        actionKey,
+                        ResolveActionBadge(actionKey)));
                 }
             }
         }
@@ -140,6 +146,11 @@ public static class InvoiceReviewContextFormatter
             "apply_invoice_no" => $"Tikla ve fatura no aramasini uygula: {text}",
             _ => $"Tikla ve bu baglam parcasini kopyala: {text}"
         };
+    }
+
+    private static string ResolveActionBadge(string actionKey)
+    {
+        return actionKey == "copy" ? "KPY" : "UYG";
     }
 
     public static bool TryResolveSuggestedFilter(string? contextLabel, out SuggestedFilter filter)
@@ -271,5 +282,5 @@ public static class InvoiceReviewContextFormatter
         return values.Any(value => text.IndexOf(value, StringComparison.CurrentCultureIgnoreCase) >= 0);
     }
 
-    public sealed record ContextChip(string Text, string Kind, string Prefix, string ToolTip, string ActionKey);
+    public sealed record ContextChip(string Text, string Kind, string Prefix, string ToolTip, string ActionKey, string ActionBadge);
 }
