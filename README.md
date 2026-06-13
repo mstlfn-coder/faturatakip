@@ -1048,6 +1048,12 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.95 - Yardim Durum Satiri Klavye Odak Cercevesi
+
+- Odeme yardimi ve PDF yardimi durum satirlari icin belirgin bir klavye odak cercevesi eklendi.
+- Durum satiri klavyeyle odak aldiginda mavi sinir ve yumusak arka plan vurgusu gorunuyor.
+- Boylece yardim satirinin tekrar calistirilabilir oldugu klavye akisinda daha rahat fark ediliyor.
+
 ## v1.94 - Yardim Durum Satiri Hover Focus Ipuclari
 
 - Odeme yardimi ve PDF yardimi durum satirlari, mevcut tiklanabilir davranisi daha belirgin gosterecek hover/focus ipuclari aldi.

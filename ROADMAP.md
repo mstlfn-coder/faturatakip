@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.95)
+
+- v1.95 tamamlandi: secili yardim durum satirlarina daha belirgin klavye odak cercevesi eklendi.
+- Yardim satiri odak aldiginda mavi sinir ve yumusak arka plan vurgusu ayni anda gorunuyor.
+- Boylece klavye ile gezen kullanici icin yardim satirinin aktif bir tekrar aksiyonu oldugu daha rahat anlasiliyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.94)
 
 - v1.94 tamamlandi: secili yardim durum satirlari hover ve klavye odaginda daha belirgin hale getirildi.

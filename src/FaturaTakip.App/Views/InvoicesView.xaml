@@ -421,6 +421,34 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="SelectedActionStatusButton" TargetType="Button" BasedOn="{StaticResource InlineShortcutButton}">
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#ECFDF5" />
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="Background" Value="#DCFCE7" />
+                    <Setter Property="BorderBrush" Value="#2563EB" />
+                    <Setter Property="BorderThickness" Value="1.5" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="PaymentHelperLastActionTextStyle" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
             <Setter Property="Foreground" Value="#166534" />
             <Setter Property="FontWeight" Value="SemiBold" />
@@ -1023,7 +1051,7 @@
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
                                     <Button x:Name="PaymentHelperSelectedActionStatusButton"
-                                            Style="{StaticResource InlineShortcutButton}"
+                                            Style="{StaticResource SelectedActionStatusButton}"
                                             Margin="0,4,0,0"
                                             ToolTip="Secili yardimi yeniden calistir"
                                             Visibility="Collapsed"
@@ -1165,7 +1193,7 @@
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
                                     <Button x:Name="PaymentPdfSelectedActionStatusButton"
-                                            Style="{StaticResource InlineShortcutButton}"
+                                            Style="{StaticResource SelectedActionStatusButton}"
                                             Margin="0,4,0,0"
                                             ToolTip="Secili PDF yardimini yeniden calistir"
                                             Visibility="Collapsed"

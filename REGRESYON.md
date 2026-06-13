@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.95 - Yardim Durum Satiri Klavye Odak Cercevesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satiri odak cercevesi gorunuyor | OK | Klavye odaginda mavi cerceve ve hafif vurgu cikiyor |
+| PDF yardimi durum satiri odak cercevesi gorunuyor | OK | Klavye odaginda mavi cerceve ve hafif vurgu cikiyor |
+| 2026-06-13 | v1.95 | OK | Yardim durum satiri klavye odak cercevesi + build + self-test tamamlandi |
+
 ## v1.94 - Yardim Durum Satiri Hover Focus Ipuclari
 | Kontrol | Durum | Not |
 | --- | --- | --- |
