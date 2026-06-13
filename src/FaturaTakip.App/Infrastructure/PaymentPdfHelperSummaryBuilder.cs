@@ -52,7 +52,7 @@ public static class PaymentPdfHelperSummaryBuilder
         {
             "select_pdf" => "PDF Sec",
             "open_pdf" => "PDF Ac",
-            _ => "PDF yardimi"
+            _ => string.Empty
         };
 
         var emphasisLabel = emphasis switch
@@ -62,7 +62,9 @@ public static class PaymentPdfHelperSummaryBuilder
             _ => "orta"
         };
 
-        return $"{actionLabel} replay ayari: {seconds} sn, {emphasisLabel} vurgu.";
+        return string.IsNullOrWhiteSpace(actionLabel)
+            ? $"Replay ayari hazir: {seconds} sn, {emphasisLabel} vurgu."
+            : $"{actionLabel} replay ayari: {seconds} sn, {emphasisLabel} vurgu.";
     }
 
     public static IReadOnlyList<PaymentPdfHelperBadge> BuildBadges(

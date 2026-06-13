@@ -57,7 +57,7 @@ public static class PaymentEntryHelperSummaryBuilder
             "fill_remaining" => "Kalan Tutar",
             "use_last" => "Son Aciklama",
             "use_selected" => "Secili Odeme",
-            _ => "Hazir yardim"
+            _ => string.Empty
         };
 
         var emphasisLabel = emphasis switch
@@ -67,7 +67,9 @@ public static class PaymentEntryHelperSummaryBuilder
             _ => "orta"
         };
 
-        return $"{actionLabel} replay ayari: {seconds} sn, {emphasisLabel} vurgu.";
+        return string.IsNullOrWhiteSpace(actionLabel)
+            ? $"Replay ayari hazir: {seconds} sn, {emphasisLabel} vurgu."
+            : $"{actionLabel} replay ayari: {seconds} sn, {emphasisLabel} vurgu.";
     }
 
     public static IReadOnlyList<PaymentHelperBadge> BuildBadges(

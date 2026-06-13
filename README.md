@@ -1148,3 +1148,13 @@ Boylece kullanici replay ayarinin tam olarak hangi hizli aksiyona bagli okundugu
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.66 - Replay Bos Durum Metni
+
+Bu fazda replay tercih ozet satiri, son aksiyon yokken daha sakin bir bos durum metni gostermeye basladi.
+Artik ilgili aksiyon bilinmiyorsa yine tercih bilgisi gorunuyor, ama daha yumusak bir `Replay ayari hazir` ifadesi kullaniliyor.
+
+Boylece yardim alani ilk bakista daha dogal okunuyor ve kullaniciyi gereksiz yere belirli bir aksiyon varmis gibi yonlendirmiyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

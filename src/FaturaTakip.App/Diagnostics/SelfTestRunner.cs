@@ -281,6 +281,9 @@ public sealed class SelfTestRunner
             Assert(
                 PaymentEntryHelperSummaryBuilder.BuildReplayPreferenceSummaryText("use_selected", 3, "high") == "Secili Odeme replay ayari: 3 sn, guclu vurgu.",
                 "Odeme yardim replay tercih ozeti beklenen formati uretmedi.");
+            Assert(
+                PaymentEntryHelperSummaryBuilder.BuildReplayPreferenceSummaryText(null, 2, "medium") == "Replay ayari hazir: 2 sn, orta vurgu.",
+                "Odeme yardim bos durum replay ozeti beklenen formati uretmedi.");
             var selectedPaymentHelperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(
                 updatedInvoice,
                 new[] { new Payment { Id = 10, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 21), Amount = 40m, Description = "Aciklama" } },
@@ -340,6 +343,9 @@ public sealed class SelfTestRunner
             Assert(
                 PaymentPdfHelperSummaryBuilder.BuildReplayPreferenceSummaryText("open_pdf", 2, "medium") == "PDF Ac replay ayari: 2 sn, orta vurgu.",
                 "Odeme PDF replay tercih ozeti beklenen formati uretmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildReplayPreferenceSummaryText(null, 2, "low") == "Replay ayari hazir: 2 sn, dusuk vurgu.",
+                "Odeme PDF bos durum replay ozeti beklenen formati uretmedi.");
             var replayPreferences = new InvoiceReviewPreferences
             {
                 ShowContext = true,

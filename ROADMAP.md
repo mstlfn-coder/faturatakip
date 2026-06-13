@@ -1246,3 +1246,9 @@ Her faz bittiğinde:
 - Odeme yardimi ve PDF yardimi tarafinda artik aksiyon adi daha net okunuyor.
 - Boylece replay ayarinin hangi hizli akisla ilgili oldugu daha hizli anlasiliyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.66)
+
+- v1.66 tamamlandi: replay tercih ozet satiri son aksiyon yokken daha sakin bir bos durum ifadesi kullanmaya basladi.
+- Tercih bilgisi korunuyor ama aksiyon adi bilinmiyorsa daha yumusak bir dil tercih ediliyor.
+- Boylece yardim alani ilk gorunumde daha dogal okunuyor.
+- Smoke test olarak build ve self-test temiz gecti.

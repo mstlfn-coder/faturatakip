@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.66 - Replay Bos Durum Metni
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim bos durum replay ozeti sakin | OK | Son aksiyon yokken `Replay ayari hazir` ifadesi kullaniliyor |
+| PDF yardim bos durum replay ozeti sakin | OK | Son aksiyon yokken `Replay ayari hazir` ifadesi kullaniliyor |
+| 2026-06-13 | v1.66 | OK | Replay bos durum metni + build + self-test tamamlandi |
+
 ## v1.65 - Baglamsal Replay Ozet Satiri
 | Kontrol | Durum | Not |
 | --- | --- | --- |
