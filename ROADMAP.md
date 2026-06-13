@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.49)
+
+- v1.49 tamamlandi: odeme girisi alanina hazir yardim ozet rozetleri eklendi.
+- Kalan tutar, son aciklama ve secili odeme yardimlari uygunluk durumuna gore tek bakista gorunur hale geldi.
+- Boylece review baglam UX sonrasinda odemeler ana akisina gorunur bir giris yapildi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.48)
 
 - v1.48 tamamlandi: review baglam cipi akislarina ozel tekrar kullanilabilir UI smoke checklist dokumani eklendi.

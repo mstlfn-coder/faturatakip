@@ -1147,3 +1147,9 @@ v0.12 sonuÃ§ notu:
 663. Smoke test: dotnet build -c Release OK.
 664. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
 665. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --health-check OK.
+
+666. v1.49 olarak odeme girisi alanina hazir yardim ozet rozetleri eklendi.
+667. `Kalan Tutar`, `Son Aciklama`, `Secili Odeme` yardimlari uygunluk durumuna gore odeme formunda gorunur hale geldi.
+668. Boylece review baglam UX sonrasinda odemeler ana akisina gorunur bir ilk adim atildi.
+669. Smoke test: dotnet build -c Release OK.
+670. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

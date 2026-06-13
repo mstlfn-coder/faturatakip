@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.49 - Odeme Yardim Ozeti
+
+Bu fazda odeme girisi alanina hazir yardimlari tek bakista gosteren mini ozet rozetleri eklendi.
+Artik operator kalan tutar, son aciklama ve secili odeme yardimlarindan hangilerinin o an kullanilabilir oldugunu odeme butonlarina inmeden gorebiliyor.
+
+Boylece odeme ana akisina giriste yon bulmak kolaylasti.
+Bu, odemeler tarafindaki ilk yeni ana akis adimi olarak operatore daha gorunur rehberlik sagliyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.48 - Review Context UI Smoke Checklist
 
 Bu fazda review baglam cipi akislarini elle ama hizli sekilde dogrulamak icin ayri bir UI smoke checklist dokumani eklendi.

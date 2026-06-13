@@ -92,6 +92,7 @@ Son guncelleme tarihi: 2026-06-13
 43. Review baglam cipi tooltip ve kisa durum mesajlari self-test icinde dogrudan dogrulanmaya baslandi.
 44. Review baglam cipi kaynakli durum mesajlari alt durum cubugunda kisa sureli renk vurgusu almaya basladi.
 45. Review baglam cipi akislarini hizli dogrulamak icin ayri UI smoke checklist dokumani eklendi.
+46. Odemeler ana akisina gecis icin odeme formuna hazir yardim ozet rozetleri eklendi.
 
 ## Son 5 Commit
 
@@ -115,7 +116,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- UI smoke checklist de eklendigi icin review baglam cipi tarafinda iyi bir durma noktasi olustu; istersek buradan bir sonraki ana is akisina gecebiliriz.
+- Odemeler tarafinda gorunur ilk adim atildi; bir sonraki mantikli kucuk adim bu yardim rozetlerini tiklanabilir hizli yol haline getirmek veya odeme klavye akislarini guclendirmek olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

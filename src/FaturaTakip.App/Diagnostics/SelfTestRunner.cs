@@ -245,6 +245,27 @@ public sealed class SelfTestRunner
                 new DateTime(2026, 2, 3));
             Assert(string.IsNullOrEmpty(emptyDescriptionSuggestion.Description), "Bos son odeme aciklamasi bos donmeliydi.");
 
+            var paymentHelperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(
+                updatedInvoice,
+                new[]
+                {
+                    new Payment { Id = 7, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 18), Amount = 120m, Description = "Son odeme aciklamasi" },
+                },
+                new Payment { Id = 8, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 19), Amount = 95m, Description = "Secili odeme" });
+            Assert(paymentHelperBadges.Count == 3, "Odeme yardim rozetleri beklenen yardimlari uretmedi.");
+            Assert(paymentHelperBadges.Any(item => item.Prefix == "KLN" && item.Text == "Kalan Tutar"), "Kalan tutar yardim rozeti uretilmedi.");
+            Assert(paymentHelperBadges.Any(item => item.Prefix == "SON" && item.Text == "Son Aciklama"), "Son aciklama yardim rozeti uretilmedi.");
+            Assert(paymentHelperBadges.Any(item => item.Prefix == "SEC" && item.Text == "Secili Odeme"), "Secili odeme yardim rozeti uretilmedi.");
+            Assert(
+                PaymentEntryHelperSummaryBuilder.BuildSummaryText(
+                    updatedInvoice,
+                    new[] { new Payment { Id = 9, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 20), Amount = 50m, Description = "Aciklama" } },
+                    null) == "Hazir yardimlar: Kalan Tutar, Son Aciklama.",
+                "Odeme yardim ozet metni beklenen sirayi uretmedi.");
+            Assert(
+                PaymentEntryHelperSummaryBuilder.BuildSummaryText(null, Array.Empty<Payment>(), null) == "Hazir odeme yardimi yok.",
+                "Bos odeme yardim ozeti beklenen metni uretmedi.");
+
             var paymentRepository = new PaymentRepository(databasePath);
             var partialPayment = paymentRepository.Add(new PaymentInput(
                 updatedInvoice.Id,

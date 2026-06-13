@@ -2360,11 +2360,13 @@ public partial class InvoicesView : UserControl
         {
             _selectedPayment = payment;
             UpdatePaymentPdfControls(payment);
+            UpdatePaymentHelperSummary(_selectedInvoice);
             return;
         }
 
         _selectedPayment = null;
         UpdatePaymentPdfControls(null);
+        UpdatePaymentHelperSummary(_selectedInvoice);
     }
 
     private void SelectPaymentPdfButton_Click(object sender, RoutedEventArgs e)
@@ -2681,6 +2683,7 @@ public partial class InvoicesView : UserControl
         PaymentAmountInput.Text = "0,00";
         PaymentDescriptionInput.Text = string.Empty;
         UpdatePaymentPdfControls(null);
+        UpdatePaymentHelperSummary(invoice);
 
         if (invoice is null)
         {
@@ -2692,6 +2695,7 @@ public partial class InvoicesView : UserControl
         _payments = _paymentRepository?.GetForInvoice(invoice.Id) ?? Array.Empty<Payment>();
         PaymentGrid.ItemsSource = _payments;
         SelectPayment();
+        UpdatePaymentHelperSummary(invoice);
 
         if (invoice.Status == "canceled")
         {
@@ -2710,6 +2714,24 @@ public partial class InvoicesView : UserControl
         PaymentAmountInput.Text = invoice.RemainingAmount.ToString("N2", TurkishCulture);
         SetPaymentInfo(invoice.PaymentSummaryText, isError: false);
         SetPaymentInputEnabled(true);
+    }
+
+    private void UpdatePaymentHelperSummary(Invoice? invoice)
+    {
+        var helperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(invoice, _payments, _selectedPayment);
+
+        if (PaymentHelperSummaryText is not null)
+        {
+            PaymentHelperSummaryText.Text = PaymentEntryHelperSummaryBuilder.BuildSummaryText(invoice, _payments, _selectedPayment);
+        }
+
+        if (PaymentHelperBadges is not null)
+        {
+            PaymentHelperBadges.ItemsSource = helperBadges;
+            PaymentHelperBadges.Visibility = helperBadges.Count > 0
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
     }
 
     private void SetPaymentInfo(string message, bool isError)

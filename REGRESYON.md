@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.49 - Odeme Yardim Ozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardim rozetleri uretiliyor | OK | `Kalan Tutar`, `Son Aciklama`, `Secili Odeme` yardimlari uygun kosullarda ozet rozetlere donusuyor |
+| Bos durum metni var | OK | Yardim yoksa `Hazir odeme yardimi yok.` metni kullaniliyor |
+| 2026-06-13 | v1.49 | OK | Odeme yardim ozeti + build + self-test tamamlandi |
+
 ## v1.48 - Review Context UI Smoke Checklist
 | Kontrol | Durum | Not |
 | --- | --- | --- |
