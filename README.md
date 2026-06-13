@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.73 - Replay Isaret Tooltipi
+
+Bu fazda replay mini isaretine kisa bir tooltip baglandi.
+Tooltip, vurgu seviyesini, replay suresini ve action varsa neden daha canli bir sekil kullanildigini tek cumlede acikliyor.
+
+Boylece sembol dili ilk bakista daha kolay kesfediliyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.72 - Replay Sekil Ayrimi
 
 Bu fazda replay mini isareti, action durumu varsa daha net cizgilerle, action yoksa daha sakin noktalı izlerle farklilastirildi.

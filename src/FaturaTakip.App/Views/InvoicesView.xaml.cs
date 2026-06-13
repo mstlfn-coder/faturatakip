@@ -2839,18 +2839,27 @@ public partial class InvoicesView : UserControl
 
         if (PaymentHelperReplayPreferenceLevelText is not null)
         {
+            var hasAction = !string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey);
             PaymentHelperReplayPreferenceLevelText.Text = BuildReplayLevelIndicator(
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
-                !string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey));
+                hasAction);
+            PaymentHelperReplayPreferenceLevelText.ToolTip = BuildReplayLevelToolTip(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                hasAction);
             PaymentHelperReplayPreferenceLevelText.Foreground = new SolidColorBrush(
-                string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
-                    ? Color.FromRgb(95, 107, 122)
-                    : Color.FromRgb(22, 101, 52));
+                hasAction
+                    ? Color.FromRgb(22, 101, 52)
+                    : Color.FromRgb(95, 107, 122));
         }
 
         if (PaymentHelperReplayPreferencePrefixBorder is not null)
         {
+            PaymentHelperReplayPreferencePrefixBorder.ToolTip = BuildReplayLevelToolTip(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                !string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey));
             PaymentHelperReplayPreferencePrefixBorder.Background = new SolidColorBrush(
                 string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
                     ? Color.FromRgb(248, 250, 252)
@@ -3076,18 +3085,27 @@ public partial class InvoicesView : UserControl
 
         if (PaymentPdfReplayPreferenceLevelText is not null)
         {
+            var hasAction = !string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey);
             PaymentPdfReplayPreferenceLevelText.Text = BuildReplayLevelIndicator(
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
-                !string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey));
+                hasAction);
+            PaymentPdfReplayPreferenceLevelText.ToolTip = BuildReplayLevelToolTip(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                hasAction);
             PaymentPdfReplayPreferenceLevelText.Foreground = new SolidColorBrush(
-                string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
-                    ? Color.FromRgb(95, 107, 122)
-                    : Color.FromRgb(3, 105, 161));
+                hasAction
+                    ? Color.FromRgb(3, 105, 161)
+                    : Color.FromRgb(95, 107, 122));
         }
 
         if (PaymentPdfReplayPreferencePrefixBorder is not null)
         {
+            PaymentPdfReplayPreferencePrefixBorder.ToolTip = BuildReplayLevelToolTip(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                !string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey));
             PaymentPdfReplayPreferencePrefixBorder.Background = new SolidColorBrush(
                 string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
                     ? Color.FromRgb(248, 250, 252)
@@ -3524,6 +3542,22 @@ public partial class InvoicesView : UserControl
         var secondsGlyph = hasAction ? "|" : ":";
         var secondsIndicator = string.Concat(Enumerable.Repeat(secondsGlyph, Math.Clamp(seconds, 1, 4)));
         return $"{emphasisIndicator}{secondsIndicator}";
+    }
+
+    private static string BuildReplayLevelToolTip(string emphasis, int seconds, bool hasAction)
+    {
+        var emphasisLabel = emphasis switch
+        {
+            "low" => "dusuk vurgu",
+            "high" => "guclu vurgu",
+            _ => "orta vurgu"
+        };
+
+        var actionLabel = hasAction
+            ? "Action mevcut; sure izi daha net gosterilir."
+            : "Henuz action yok; sure izi daha sakin gosterilir.";
+
+        return $"Replay isareti: {emphasisLabel}, {seconds} sn. {actionLabel}";
     }
 
     private sealed record MonthOption(int Value, string Label);

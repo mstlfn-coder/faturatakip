@@ -1288,3 +1288,9 @@ Her faz bittiğinde:
 - Action varsa sure izi daha net dik cizgilerle, action yoksa daha sakin noktalı izlerle gosteriliyor.
 - Boylece uygulama yardim dili sadece renk degil sembol formu ile de aktiflik bilgisini aktariyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.73)
+
+- v1.73 tamamlandi: replay mini isaretine tooltip aciklamasi baglandi.
+- Tooltip, vurgu seviyesini, replay suresini ve action baglamini tek cumlede anlatiyor.
+- Boylece sembol dili ilk kullanimda daha kolay kesfedilebilir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.

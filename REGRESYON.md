@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.73 - Replay Isaret Tooltipi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme replay tooltipi var | OK | Mini isaret ve prefix alani tooltip ile aciklama veriyor |
+| PDF replay tooltipi var | OK | Mini isaret ve prefix alani tooltip ile aciklama veriyor |
+| 2026-06-13 | v1.73 | OK | Replay isaret tooltipi + build + self-test tamamlandi |
+
 ## v1.72 - Replay Sekil Ayrimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
