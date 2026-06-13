@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.97 - Yardim Durum Satiri Kisayol Etiketi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satirinda kisayol etiketi var | OK | `Enter/Space` etiketi gorunur halde |
+| PDF yardimi durum satirinda kisayol etiketi var | OK | `Enter/Space` etiketi gorunur halde |
+| 2026-06-14 | v1.97 | OK | Yardim durum satiri kisayol etiketi + build + self-test tamamlandi |
+
 ## v1.96 - Yardim Tooltip Dili Sadelestirme
 | Kontrol | Durum | Not |
 | --- | --- | --- |

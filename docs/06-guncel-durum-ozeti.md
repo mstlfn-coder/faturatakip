@@ -7,6 +7,7 @@ Son guncelleme tarihi: 2026-06-13
 - Aktif branch: `codex/v1.08-review-context-issue-action`
 - Son commit: `git log --oneline -1` ile teyit et; bu dosya hizli handoff ozeti olarak tutulur
 - Son tamamlanan temiz fazlar:
+  - `v1.97` Yardim Durum Satiri Kisayol Etiketi
   - `v1.96` Yardim Tooltip Dili Sadelestirme
   - `v1.95` Yardim Durum Satiri Klavye Odak Cercevesi
   - `v1.94` Yardim Durum Satiri Hover Focus Ipuclari

@@ -1048,6 +1048,12 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.97 - Yardim Durum Satiri Kisayol Etiketi
+
+- Secili yardim durum satirlarina gorunur `Enter/Space` etiketi eklendi.
+- Boylece tekrar aksiyonunun klavye ile de tetiklenebilecegi tooltip beklemeden anlasiliyor.
+- Etiket hover ve klavye odaginda yardim satiriyla ayni vurgu diline katiliyor.
+
 ## v1.96 - Yardim Tooltip Dili Sadelestirme
 
 - Secili yardim durum satirlarinin tooltip dili kisaltilip tek bir yonlendirme cumlesine indirildi.

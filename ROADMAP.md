@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.97)
+
+- v1.97 tamamlandi: secili yardim durum satirlarina gorunur `Enter/Space` kisayol etiketi eklendi.
+- Yardim satiri artik hem tiklanabilir oldugunu hem de klavyeyle tekrar calistirilabilecegini daha dogrudan gosteriyor.
+- Hover ve odak halinde kisayol etiketi de ayni vurgu diline katiliyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.96)
 
 - v1.96 tamamlandi: secili yardim durum satirlarinin tooltip dili kisaltildi ve tek cumleye indirildi.
