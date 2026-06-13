@@ -1050,3 +1050,9 @@ v0.12 sonuÃ§ notu:
 582. Boylece paneldeki son hareket daha sakin ama daha acik bir sekilde okunabiliyor.
 583. Smoke test: dotnet build -c Release OK.
 584. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+585. v1.33 olarak son kullanilan review baglam ana aksiyon dugmesine hafif ama kalici bir vurgu eklendi.
+586. Dugme kenarligi ve yazi agirligi, `Son aksiyon` metniyle ayni aksiyon anahtarindan besleniyor.
+587. Boylece son hareket panelde hem metin hem dugme yuzeyi uzerinden ayni anda okunabiliyor.
+588. Smoke test: dotnet build -c Release OK.
+589. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

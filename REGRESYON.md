@@ -1472,6 +1472,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Normal moda donus var | OK | Filtreler varsayilan akisina geri donuyor |
 | 2026-06-13 | v1.26 | OK | Baglami temizle aksiyonu + build + self-test tamamlandi |
 
+## v1.33 - Son Aksiyon Dugme Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Dugme vurgusu var | OK | Son kullanilan ana baglam aksiyon dugmesi kenarlik ve yazi agirligi ile ayristiriliyor |
+| Kaynak birligi var | OK | Dugme vurgusu `Son aksiyon` metniyle ayni aksiyon anahtarini kullaniyor |
+| 2026-06-13 | v1.33 | OK | Son aksiyon dugme vurgusu + build + self-test tamamlandi |
+
 ## v1.32 - Son Baglam Aksiyonu Gosterimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -1580,6 +1580,62 @@ public partial class InvoicesView : UserControl
         };
     }
 
+    private void UpdateReviewContextPrimaryActionButtonEmphasis()
+    {
+        ResetReviewContextActionButtonEmphasis(FocusInvoiceFromReviewContextButton);
+        ResetReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextNarrowButton);
+        ResetReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextFilterButton);
+        ResetReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextPeriodButton);
+        ResetReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextTypeButton);
+        ResetReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextInvoiceNoButton);
+
+        switch (_lastInvokedReviewActionKey)
+        {
+            case "focus":
+                ApplyReviewContextActionButtonEmphasis(FocusInvoiceFromReviewContextButton, "#1E40AF");
+                break;
+            case "narrow":
+                ApplyReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextNarrowButton, "#2563EB");
+                break;
+            case "filter":
+                ApplyReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextFilterButton, "#16A34A");
+                break;
+            case "period":
+                ApplyReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextPeriodButton, "#D97706");
+                break;
+            case "type":
+                ApplyReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextTypeButton, "#9333EA");
+                break;
+            case "invoice_no":
+                ApplyReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextInvoiceNoButton, "#9333EA");
+                break;
+        }
+    }
+
+    private static void ResetReviewContextActionButtonEmphasis(Button? button)
+    {
+        if (button is null)
+        {
+            return;
+        }
+
+        button.ClearValue(Control.BorderBrushProperty);
+        button.ClearValue(Control.BorderThicknessProperty);
+        button.ClearValue(Control.FontWeightProperty);
+    }
+
+    private static void ApplyReviewContextActionButtonEmphasis(Button? button, string borderHex)
+    {
+        if (button is null)
+        {
+            return;
+        }
+
+        button.BorderBrush = (Brush)new BrushConverter().ConvertFromString(borderHex)!;
+        button.BorderThickness = new Thickness(2);
+        button.FontWeight = FontWeights.Bold;
+    }
+
     private void UpdateInvoiceReviewContextPresentation(string? contextLabel)
     {
         var currentContextSignature = string.IsNullOrWhiteSpace(contextLabel)
@@ -1706,6 +1762,8 @@ public partial class InvoicesView : UserControl
         {
             ApplyInvoiceReviewContextInvoiceNoButton.IsEnabled = hasInvoiceNumber;
         }
+
+        UpdateReviewContextPrimaryActionButtonEmphasis();
     }
 
     private void TrySaveInvoiceReviewPreferences()

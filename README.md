@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.33 - Son Aksiyon Dugme Vurgusu
+
+Bu fazda review baglam panelindeki ana aksiyon dugmelerinden son kullanilan olana hafif bir gorsel vurgu eklendi.
+`Bağlamdan Incele`, `Bağlamı Daralt`, `Bağlam Filtresi`, `Bağlam Donemi`, `Bağlam Turu` ve `Bağlam No` dugmelerinden hangisi son calistirildiysa, o dugme daha tok bir kenarlik ve daha guclu metin agirligi ile ayristiriliyor.
+
+Boylece paneldeki `Son aksiyon: ...` metni ile dugme yuzeyi ayni geri bildirimi birlikte veriyor.
+Yerlesim degismeden, sadece son hareket biraz daha hizli fark edilir hale geldi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.32 - Son Baglam Aksiyonu Gosterimi
 
 Bu fazda review baglam paneline son calistirilan aksiyonu gosteren sakin bir mikro satir eklendi.
