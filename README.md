@@ -1108,3 +1108,13 @@ Boylece kullanici ayni mikro kisayolu tekrar kullandiginda aksiyonun yeniden cag
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.62 - Prefix Rozette Tekrar Canlanmasi
+
+Bu fazda mikro kisayol tekrar tetiklendiginde sadece metin degil, prefix rozetin kendisi de kisa sureli canlanma aliyor.
+Rozet arka plani ve kenarligi kisa sureligine gucleniyor; metin de daha kontrastli hale geliyor.
+
+Boylece tekrar aksiyonu satirin iki parcasinda birden okunuyor: hem metinde hem rozette.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

@@ -1222,3 +1222,9 @@ Her faz bittiğinde:
 - Geri bildirim kisa sure gorunup otomatik olarak temizleniyor.
 - Boylece tekrar aksiyonlari sadece durum cubugunda degil, ayni satir icinde de fark edilir oldu.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.62)
+
+- v1.62 tamamlandi: mikro kisayol tekrar geri bildirimi prefix rozet tarafinda da kisa sureli canlanma ile desteklendi.
+- Tekrar aninda rozet arka plani, kenarligi ve yazi rengi daha belirgin hale geliyor.
+- Boylece ayni geri bildirim satirin iki farkli bolgesinde eszamanli okunuyor.
+- Smoke test olarak build ve self-test temiz gecti.

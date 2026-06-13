@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.62 - Prefix Rozette Tekrar Canlanmasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim prefix replay canlanmasi var | OK | Tekrar aksiyonunda yesil rozet gecici olarak daha parlak ve beyaz yazili oluyor |
+| PDF yardim prefix replay canlanmasi var | OK | Tekrar aksiyonunda mavi rozet gecici olarak daha parlak ve beyaz yazili oluyor |
+| 2026-06-13 | v1.62 | OK | Prefix replay canlanmasi + build + self-test tamamlandi |
+
 ## v1.61 - Mikro Kisayol Tekrar Geri Bildirimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

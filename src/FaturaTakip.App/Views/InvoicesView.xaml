@@ -900,7 +900,8 @@
                                             Visibility="Collapsed"
                                             Click="PaymentHelperLastActionButton_Click">
                                         <StackPanel Orientation="Horizontal">
-                                            <Border Style="{StaticResource PaymentHelperPrefixBorderStyle}">
+                                            <Border x:Name="PaymentHelperLastActionPrefixBorder"
+                                                    Style="{StaticResource PaymentHelperPrefixBorderStyle}">
                                                 <TextBlock x:Name="PaymentHelperLastActionPrefixText"
                                                            Style="{StaticResource PaymentHelperPrefixTextStyle}" />
                                             </Border>
@@ -998,7 +999,8 @@
                                             Visibility="Collapsed"
                                             Click="PaymentPdfHelperLastActionButton_Click">
                                         <StackPanel Orientation="Horizontal">
-                                            <Border Style="{StaticResource PaymentPdfPrefixBorderStyle}">
+                                            <Border x:Name="PaymentPdfHelperLastActionPrefixBorder"
+                                                    Style="{StaticResource PaymentPdfPrefixBorderStyle}">
                                                 <TextBlock x:Name="PaymentPdfHelperLastActionPrefixText"
                                                            Style="{StaticResource PaymentPdfPrefixTextStyle}" />
                                             </Border>

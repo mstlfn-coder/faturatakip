@@ -2785,6 +2785,8 @@ public partial class InvoicesView : UserControl
             PaymentHelperLastActionPrefixText.Text = lastActionPrefix;
         }
 
+        ApplyPaymentHelperPrefixReplayVisualState(_isPaymentHelperReplayFeedbackActive);
+
         if (PaymentHelperLastActionButton is not null)
         {
             PaymentHelperLastActionButton.Tag = _lastInvokedPaymentHelperActionKey;
@@ -2972,6 +2974,8 @@ public partial class InvoicesView : UserControl
         {
             PaymentPdfHelperLastActionPrefixText.Text = lastActionPrefix;
         }
+
+        ApplyPaymentPdfPrefixReplayVisualState(_isPaymentPdfReplayFeedbackActive);
 
         if (PaymentPdfHelperLastActionButton is not null)
         {
@@ -3168,6 +3172,46 @@ public partial class InvoicesView : UserControl
         _isPaymentPdfReplayFeedbackActive = false;
         var paymentPdfExists = _selectedPayment is not null && _paymentRepository?.PdfFileExists(_selectedPayment) == true;
         UpdatePaymentPdfHelperSummary(_selectedPayment, paymentPdfExists);
+    }
+
+    private void ApplyPaymentHelperPrefixReplayVisualState(bool isReplayActive)
+    {
+        if (PaymentHelperLastActionPrefixBorder is not null)
+        {
+            PaymentHelperLastActionPrefixBorder.Background = new SolidColorBrush(
+                isReplayActive ? Color.FromRgb(34, 197, 94) : Color.FromRgb(220, 252, 231));
+            PaymentHelperLastActionPrefixBorder.BorderBrush = new SolidColorBrush(
+                isReplayActive ? Color.FromRgb(21, 128, 61) : Color.FromRgb(134, 239, 172));
+            PaymentHelperLastActionPrefixBorder.BorderThickness = isReplayActive
+                ? new Thickness(2)
+                : new Thickness(1);
+        }
+
+        if (PaymentHelperLastActionPrefixText is not null)
+        {
+            PaymentHelperLastActionPrefixText.Foreground = new SolidColorBrush(
+                isReplayActive ? Colors.White : Color.FromRgb(22, 101, 52));
+        }
+    }
+
+    private void ApplyPaymentPdfPrefixReplayVisualState(bool isReplayActive)
+    {
+        if (PaymentPdfHelperLastActionPrefixBorder is not null)
+        {
+            PaymentPdfHelperLastActionPrefixBorder.Background = new SolidColorBrush(
+                isReplayActive ? Color.FromRgb(14, 165, 233) : Color.FromRgb(224, 242, 254));
+            PaymentPdfHelperLastActionPrefixBorder.BorderBrush = new SolidColorBrush(
+                isReplayActive ? Color.FromRgb(3, 105, 161) : Color.FromRgb(125, 211, 252));
+            PaymentPdfHelperLastActionPrefixBorder.BorderThickness = isReplayActive
+                ? new Thickness(2)
+                : new Thickness(1);
+        }
+
+        if (PaymentPdfHelperLastActionPrefixText is not null)
+        {
+            PaymentPdfHelperLastActionPrefixText.Foreground = new SolidColorBrush(
+                isReplayActive ? Colors.White : Color.FromRgb(3, 105, 161));
+        }
     }
 
     private sealed record MonthOption(int Value, string Label);
