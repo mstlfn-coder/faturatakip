@@ -463,6 +463,34 @@ public sealed class SelfTestRunner
             Assert(reviewContextChips[0].ActionKey == "apply_filter", "Rapor cipi beklenen filtre aksiyonunu uretmedi.");
             Assert(reviewContextChips[3].ActionKey == "apply_period", "Donem cipi beklenen donem aksiyonunu uretmedi.");
             Assert(
+                reviewContextChips[0].ToolTip.Contains("Enter/Space", StringComparison.Ordinal) &&
+                reviewContextChips[0].ToolTip.Contains("Ctrl+C", StringComparison.Ordinal) &&
+                reviewContextChips[0].ToolTip.Contains("Shift+F10", StringComparison.Ordinal),
+                "Aksiyonlu baglam cipi tooltip'inde beklenen kisayol ipuclari bulunamadi.");
+            Assert(
+                reviewContextChips[2].ToolTip.Contains("Enter/Space", StringComparison.Ordinal) &&
+                reviewContextChips[2].ToolTip.Contains("Ctrl+C", StringComparison.Ordinal) &&
+                reviewContextChips[2].ToolTip.Contains("Shift+F10", StringComparison.Ordinal),
+                "Kopyalama baglam cipi tooltip'inde beklenen kisayol ipuclari bulunamadi.");
+            Assert(
+                ReviewContextStatusMessageFormatter.BuildCopySuccess("INV-001", "Klavye") == "Klavye: INV-001 kopyalandı.",
+                "Klavye baglam cipi kopyalama mesaji beklenen kisa formati uretmedi.");
+            Assert(
+                ReviewContextStatusMessageFormatter.BuildCopySuccess("INV-001", null) == "Bağlam çipi panoya kopyalandı: INV-001",
+                "Varsayilan baglam cipi kopyalama mesaji bozuldu.");
+            Assert(
+                ReviewContextStatusMessageFormatter.BuildCopyError("Pano kilitli", "Menü") == "Menü: Kopyalama başarısız - Pano kilitli",
+                "Menu baglam cipi kopyalama hata mesaji beklenen formati uretmedi.");
+            Assert(
+                ReviewContextStatusMessageFormatter.BuildActionSuccess("Filtre uygulandı", "PDF Eksik", "Çip") == "Çip: Filtre uygulandı - PDF Eksik.",
+                "Cip baglam aksiyon basari mesaji beklenen kisa formati uretmedi.");
+            Assert(
+                ReviewContextStatusMessageFormatter.BuildActionSuccess("Filtre uygulandı", "PDF Eksik", null) == "Bağlam: Filtre uygulandı - PDF Eksik.",
+                "Varsayilan baglam aksiyon basari mesaji bozuldu.");
+            Assert(
+                ReviewContextStatusMessageFormatter.BuildActionError("Bağlamdan uygulanabilir bir filtre çıkarılamadı.", "Klavye") == "Klavye: Bağlamdan uygulanabilir bir filtre çıkarılamadı.",
+                "Klavye baglam aksiyon hata mesaji beklenen kisa formati uretmedi.");
+            Assert(
                 InvoiceReviewContextFormatter.TryResolveSuggestedFilter("Rapor: İncelenmedi > Elektrik / INV-001", out var unreviewedFilter) &&
                 unreviewedFilter == InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed,
                 "Inceleme baglamindan 'Incelenmedi' filtresi cikartilamadi.");

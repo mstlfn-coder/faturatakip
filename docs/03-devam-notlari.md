@@ -1128,3 +1128,9 @@ v0.12 sonuÃ§ notu:
 647. Ana baglam dugmelerinin mevcut mesaj dili korunurken sadece ciplere ait geri bildirim sadeleştirildi.
 648. Smoke test: dotnet build -c Release OK.
 649. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+650. v1.46 olarak review baglam cipi klavye ve mesaj rahatliklari self-test ile daha gorunur sekilde guvenceye alindi.
+651. Tooltip kisayol ipuclari ile `Çip`, `Klavye`, `Menü` kisa mesaj bicimleri artik otomatik olarak dogrulaniyor.
+652. Boylece son UX iyilestirmeleri regresyonlarda daha erken yakalanabilir hale geldi.
+653. Smoke test: dotnet build -c Release OK.
+654. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

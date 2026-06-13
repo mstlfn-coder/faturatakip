@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.46 - Baglam Cipi Self-Test Guvencesi
+
+Bu fazda review baglam cipi akislari icin self-test kapsami genisletildi.
+Tooltip kisayol ipuclari ile kisa durum mesaji bicimleri artik self-test icinde dogrudan dogrulaniyor.
+
+Boylece son eklenen klavye ve mesaj rahatliklari sadece arayuzde degil, otomatik kontrolde de korunur hale geldi.
+Ozellikle `Çip`, `Klavye`, `Menü` kisa mesajlari ve tooltip icerigi icin daha gorunur bir guvence eklendi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.45 - Baglam Cipi Kisa Durum Mesajlari
 
 Bu fazda review baglam ciplerinden tetiklenen aksiyonlar icin durum cubugu mesajlari kisaltildi ve kaynak odakli hale getirildi.

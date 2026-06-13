@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.46)
+
+- v1.46 tamamlandi: review baglam cipi klavye ve mesaj rahatliklari self-test ile daha gorunur guvenceye alindi.
+- Tooltip kisayol ipuclari ve `Çip` / `Klavye` / `Menü` durum mesaji bicimleri dogrudan dogrulaniyor.
+- Boylece son UX iyilestirmeleri regresyona karsi daha erken yakalanabilir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.45)
 
 - v1.45 tamamlandi: review baglam cipi aksiyonlarinin durum mesaji dili kisaltildi.

@@ -1140,20 +1140,12 @@ public partial class InvoicesView : UserControl
         {
             Clipboard.SetText(chipText);
             var lead = statusLead ?? _pendingReviewContextStatusLead;
-            SetInvoiceStatus(
-                string.IsNullOrWhiteSpace(lead)
-                    ? $"Bağlam çipi panoya kopyalandı: {chipText}"
-                    : $"{lead}: {chipText} kopyalandı.",
-                isError: false);
+            SetInvoiceStatus(ReviewContextStatusMessageFormatter.BuildCopySuccess(chipText, lead), isError: false);
         }
         catch (Exception exception) when (exception is ExternalException or InvalidOperationException)
         {
             var lead = statusLead ?? _pendingReviewContextStatusLead;
-            SetInvoiceStatus(
-                string.IsNullOrWhiteSpace(lead)
-                    ? $"Bağlam çipi panoya kopyalanamadı: {exception.Message}"
-                    : $"{lead}: Kopyalama başarısız - {exception.Message}",
-                isError: true);
+            SetInvoiceStatus(ReviewContextStatusMessageFormatter.BuildCopyError(exception.Message, lead), isError: true);
         }
         finally
         {
@@ -1322,16 +1314,9 @@ public partial class InvoicesView : UserControl
 
     private void SetReviewContextActionSuccess(string actionLabel, string? detail = null)
     {
-        var suffix = string.IsNullOrWhiteSpace(detail)
-            ? string.Empty
-            : $" - {detail}";
         var lead = _pendingReviewContextStatusLead;
         _pendingReviewContextStatusLead = null;
-        SetInvoiceStatus(
-            string.IsNullOrWhiteSpace(lead)
-                ? $"Bağlam: {actionLabel}{suffix}."
-                : $"{lead}: {actionLabel}{suffix}.",
-            isError: false);
+        SetInvoiceStatus(ReviewContextStatusMessageFormatter.BuildActionSuccess(actionLabel, detail, lead), isError: false);
     }
 
     private void RememberReviewContextAction(string actionKey)
@@ -1344,11 +1329,7 @@ public partial class InvoicesView : UserControl
     {
         var lead = _pendingReviewContextStatusLead;
         _pendingReviewContextStatusLead = null;
-        SetInvoiceStatus(
-            string.IsNullOrWhiteSpace(lead)
-                ? message
-                : $"{lead}: {message}",
-            isError: true);
+        SetInvoiceStatus(ReviewContextStatusMessageFormatter.BuildActionError(message, lead), isError: true);
     }
 
     private void ApplyInvoiceReviewContextFilter()

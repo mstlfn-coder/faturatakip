@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.46 - Baglam Cipi Self-Test Guvencesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tooltip kisayollari dogrulaniyor | OK | Baglam cipi tooltip'lerinde `Enter/Space`, `Ctrl+C`, `Shift+F10` ipuclari self-test ile kontrol ediliyor |
+| Kisa mesaj bicimleri dogrulaniyor | OK | `Çip`, `Klavye`, `Menü` kisa durum mesaji formatlari self-test ile kontrol ediliyor |
+| 2026-06-13 | v1.46 | OK | Baglam cipi self-test guvencesi + build + self-test tamamlandi |
+
 ## v1.45 - Baglam Cipi Kisa Durum Mesajlari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

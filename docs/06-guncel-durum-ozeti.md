@@ -89,6 +89,7 @@ Son guncelleme tarihi: 2026-06-13
 40. Review baglam cipi tooltip'lerine `Enter/Space`, `Ctrl+C`, `Shift+F10` kisayol ipuclari eklendi.
 41. Review baglam ciplerinde `Esc` ile panel icinde notr odaga donus eklendi.
 42. Review baglam cipi aksiyonlarinda durum cubugu mesaji `Çip`, `Klavye`, `Menü` etiketiyle kisaltildi.
+43. Review baglam cipi tooltip ve kisa durum mesajlari self-test icinde dogrudan dogrulanmaya baslandi.
 
 ## Son 5 Commit
 
@@ -112,7 +113,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Kisa durum mesaji da eklendigi icin bir sonraki mantikli kucuk adim, odaktaki cipe `Ctrl+Enter` gibi ikincil bir hizli uygulama davranisi vermek yerine once mevcut klavye akislarini self-test veya UI test seviyesinde daha gorunur dogrulamak olabilir.
+- Self-test guvencesi de guclendigi icin bir sonraki mantikli adim, baglam cipi akislari icin hafif bir UI smoke dogrulamasi veya odak/mesaj davranislarini gorsel olarak daha belirginlestirecek son bir mikro dokunus olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 
