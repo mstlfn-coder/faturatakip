@@ -40,6 +40,7 @@ public partial class InvoicesView : UserControl
     private string? _pendingInvoiceFilterHintHighlightLabel;
     private string? _activeInvoiceFilterHintHighlightLabel;
     private DispatcherTimer? _invoiceFilterHintHighlightTimer;
+    private DispatcherTimer? _invoiceStatusHighlightTimer;
     private string? _lastInvokedReviewActionKey;
     private string? _lastInvokedReviewContextChipKey;
     private string? _pendingReviewContextStatusLead;
@@ -2551,9 +2552,61 @@ public partial class InvoicesView : UserControl
     private void SetInvoiceStatus(string message, bool isError)
     {
         InvoiceStatusText.Text = message;
+        ApplyInvoiceStatusVisualState(message, isError);
+    }
+
+    private void ApplyInvoiceStatusVisualState(string message, bool isError)
+    {
+        _invoiceStatusHighlightTimer?.Stop();
+
+        if (InvoiceStatusText is null)
+        {
+            return;
+        }
+
+        InvoiceStatusText.FontWeight = FontWeights.Normal;
         InvoiceStatusText.Foreground = isError
             ? new SolidColorBrush(Color.FromRgb(185, 28, 28))
             : new SolidColorBrush(Color.FromRgb(95, 107, 122));
+
+        if (isError || !ReviewContextStatusMessageFormatter.TryResolveLead(message, out var lead))
+        {
+            return;
+        }
+
+        InvoiceStatusText.FontWeight = FontWeights.SemiBold;
+        InvoiceStatusText.Foreground = lead switch
+        {
+            "Çip" => new SolidColorBrush(Color.FromRgb(29, 78, 216)),
+            "Klavye" => new SolidColorBrush(Color.FromRgb(126, 34, 206)),
+            "Menü" => new SolidColorBrush(Color.FromRgb(180, 83, 9)),
+            _ => new SolidColorBrush(Color.FromRgb(95, 107, 122))
+        };
+
+        _invoiceStatusHighlightTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(2)
+        };
+        _invoiceStatusHighlightTimer.Tick -= InvoiceStatusHighlightTimer_Tick;
+        _invoiceStatusHighlightTimer.Tick += InvoiceStatusHighlightTimer_Tick;
+        _invoiceStatusHighlightTimer.Start();
+    }
+
+    private void InvoiceStatusHighlightTimer_Tick(object? sender, EventArgs e)
+    {
+        _invoiceStatusHighlightTimer?.Stop();
+        if (InvoiceStatusText is null)
+        {
+            return;
+        }
+
+        if (!ReviewContextStatusMessageFormatter.TryResolveLead(InvoiceStatusText.Text, out _))
+        {
+            return;
+        }
+
+        InvoiceStatusText.FontWeight = FontWeights.Normal;
+        InvoiceStatusText.Foreground = new SolidColorBrush(Color.FromRgb(95, 107, 122));
     }
 
     private void UpdatePdfControls(Invoice? invoice)

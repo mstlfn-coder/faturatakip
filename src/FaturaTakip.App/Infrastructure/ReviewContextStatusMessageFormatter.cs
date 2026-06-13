@@ -2,6 +2,8 @@ namespace FaturaTakip.App.Infrastructure;
 
 internal static class ReviewContextStatusMessageFormatter
 {
+    private static readonly string[] KnownLeads = ["Çip", "Klavye", "Menü"];
+
     public static string BuildCopySuccess(string chipText, string? lead)
     {
         return string.IsNullOrWhiteSpace(lead)
@@ -31,5 +33,25 @@ internal static class ReviewContextStatusMessageFormatter
         return string.IsNullOrWhiteSpace(lead)
             ? errorMessage
             : $"{lead}: {errorMessage}";
+    }
+
+    public static bool TryResolveLead(string? message, out string lead)
+    {
+        lead = string.Empty;
+        if (string.IsNullOrWhiteSpace(message))
+        {
+            return false;
+        }
+
+        foreach (var knownLead in KnownLeads)
+        {
+            if (message.StartsWith($"{knownLead}:", System.StringComparison.Ordinal))
+            {
+                lead = knownLead;
+                return true;
+            }
+        }
+
+        return false;
     }
 }

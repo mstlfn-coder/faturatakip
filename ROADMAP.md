@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.47)
+
+- v1.47 tamamlandi: review baglam cipi kaynakli durum mesajlarina alt durum cubugunda mikro vurgu eklendi.
+- `Çip`, `Klavye`, `Menü` kaynaklari iki saniyelik hafif renk vurgusu alip sonra normal gorunume donuyor.
+- Boylece klavye ve ciple ilerleyen akislar daha hizli ayirt edilebilir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.46)
 
 - v1.46 tamamlandi: review baglam cipi klavye ve mesaj rahatliklari self-test ile daha gorunur guvenceye alindi.

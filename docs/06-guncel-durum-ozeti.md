@@ -90,6 +90,7 @@ Son guncelleme tarihi: 2026-06-13
 41. Review baglam ciplerinde `Esc` ile panel icinde notr odaga donus eklendi.
 42. Review baglam cipi aksiyonlarinda durum cubugu mesaji `Çip`, `Klavye`, `Menü` etiketiyle kisaltildi.
 43. Review baglam cipi tooltip ve kisa durum mesajlari self-test icinde dogrudan dogrulanmaya baslandi.
+44. Review baglam cipi kaynakli durum mesajlari alt durum cubugunda kisa sureli renk vurgusu almaya basladi.
 
 ## Son 5 Commit
 
@@ -113,7 +114,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Self-test guvencesi de guclendigi icin bir sonraki mantikli adim, baglam cipi akislari icin hafif bir UI smoke dogrulamasi veya odak/mesaj davranislarini gorsel olarak daha belirginlestirecek son bir mikro dokunus olabilir.
+- Mikro vurgu da eklendigi icin bir sonraki mantikli adim, bu baglam cipi akislarini hafif bir UI smoke dogrulamasi ile gozden gecirmek veya burada durup bir sonraki ana is akisina gecmek olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

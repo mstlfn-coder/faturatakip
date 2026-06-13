@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.47 - Baglam Durum Cubugu Mikro Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kaynak etiketi ayristiriliyor | OK | `Çip`, `Klavye`, `Menü` durum mesajlari formatter seviyesinde ayristiriliyor |
+| Mikro vurgu mantigi korundu | OK | Kaynakli durum mesajlari kisa sureli belirgin gorunup sonra varsayilan renge donuyor |
+| 2026-06-13 | v1.47 | OK | Baglam durum cubugu mikro vurgusu + build + self-test tamamlandi |
+
 ## v1.46 - Baglam Cipi Self-Test Guvencesi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

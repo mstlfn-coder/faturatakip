@@ -1134,3 +1134,9 @@ v0.12 sonuÃ§ notu:
 652. Boylece son UX iyilestirmeleri regresyonlarda daha erken yakalanabilir hale geldi.
 653. Smoke test: dotnet build -c Release OK.
 654. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+655. v1.47 olarak review baglam cipi kaynakli durum mesajlarina alt durum cubugunda kisa sureli mikro vurgu eklendi.
+656. `Çip`, `Klavye`, `Menü` mesajlari kendi tonlariyla kisa sureli one cikiyor ve sonra normal gorunume donuyor.
+657. Kaynak etiketi ayristirma mantigi da self-test icinde dogrulanir hale getirildi.
+658. Smoke test: dotnet build -c Release OK.
+659. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

@@ -491,6 +491,21 @@ public sealed class SelfTestRunner
                 ReviewContextStatusMessageFormatter.BuildActionError("Bağlamdan uygulanabilir bir filtre çıkarılamadı.", "Klavye") == "Klavye: Bağlamdan uygulanabilir bir filtre çıkarılamadı.",
                 "Klavye baglam aksiyon hata mesaji beklenen kisa formati uretmedi.");
             Assert(
+                ReviewContextStatusMessageFormatter.TryResolveLead("Çip: Filtre uygulandı - PDF Eksik.", out var clickLead) &&
+                clickLead == "Çip",
+                "Cip durum mesajinda kaynak etiketi ayristirilamadi.");
+            Assert(
+                ReviewContextStatusMessageFormatter.TryResolveLead("Klavye: INV-001 kopyalandı.", out var keyboardLead) &&
+                keyboardLead == "Klavye",
+                "Klavye durum mesajinda kaynak etiketi ayristirilamadi.");
+            Assert(
+                ReviewContextStatusMessageFormatter.TryResolveLead("Menü: Fatura no uygulandı - INV-001.", out var menuLead) &&
+                menuLead == "Menü",
+                "Menu durum mesajinda kaynak etiketi ayristirilamadi.");
+            Assert(
+                !ReviewContextStatusMessageFormatter.TryResolveLead("Bağlam: Filtre uygulandı - PDF Eksik.", out _),
+                "Normal baglam durum mesaji yanlislikla cip kaynagi gibi yorumlandi.");
+            Assert(
                 InvoiceReviewContextFormatter.TryResolveSuggestedFilter("Rapor: İncelenmedi > Elektrik / INV-001", out var unreviewedFilter) &&
                 unreviewedFilter == InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed,
                 "Inceleme baglamindan 'Incelenmedi' filtresi cikartilamadi.");

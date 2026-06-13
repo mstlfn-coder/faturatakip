@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.47 - Baglam Durum Cubugu Mikro Vurgusu
+
+Bu fazda review baglam ciplerinden gelen kisa durum mesajlari alt durum cubugunda kisa sureli renkli mikro vurgu ile desteklendi.
+`Çip`, `Klavye` ve `Menü` kaynaklari kendi tonlariyla iki saniyelik hafif bir vurgu aliyor; sonra metin normal sakin gorunume donuyor.
+
+Boylece operator baglam aksiyonunun hangi yoldan geldigini daha hizli fark ediyor.
+Davranis degismeden, sadece geri bildirimin gorsel okunabilirligi biraz daha guclendi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.46 - Baglam Cipi Self-Test Guvencesi
 
 Bu fazda review baglam cipi akislari icin self-test kapsami genisletildi.
