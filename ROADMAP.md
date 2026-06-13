@@ -985,6 +985,13 @@ Her faz bittiğinde:
 - Rapor gecisinden normal calisma moduna donus tek tikla kolaylasti.
 - Smoke test olarak build ve self-test temiz gecti.
 
+## Son Guncelleme (2026-06-13 / v1.39)
+
+- v1.39 tamamlandi: review baglam ciplerine sag tik menusu eklendi.
+- Sol tik hizli davranisi koruyor; sag tikta ise `Uygula` ve `Kopyala` secenekleri ayrik sekilde sunuluyor.
+- Mikro etkileşim daha kontrollu ama yine hizli kalacak sekilde zenginlestirildi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.38)
 
 - v1.38 tamamlandi: review baglam ciplerine davranis tipini gosteren mikro isaretler eklendi.

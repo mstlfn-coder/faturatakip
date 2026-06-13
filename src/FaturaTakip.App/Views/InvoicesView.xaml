@@ -891,7 +891,8 @@
                                                         <Button Style="{StaticResource ContextChipButton}"
                                                                 Tag="{Binding}"
                                                                 ToolTip="{Binding ToolTip}"
-                                                                Click="InvoiceReviewContextChipButton_Click">
+                                                                Click="InvoiceReviewContextChipButton_Click"
+                                                                MouseRightButtonUp="InvoiceReviewContextChipButton_MouseRightButtonUp">
                                                             <Border Style="{StaticResource ContextChipBorder}">
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <TextBlock Text="{Binding Prefix}"

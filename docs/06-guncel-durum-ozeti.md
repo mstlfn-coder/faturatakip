@@ -39,6 +39,7 @@ Son guncelleme tarihi: 2026-06-13
   - `v1.36` Baglam Cipi Hizli Kopyalama
   - `v1.37` Aksiyonlu Baglam Cipleri
   - `v1.38` Cip Davranis Isareti
+  - `v1.39` Baglam Cipi Sag Tik Menusu
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -80,6 +81,7 @@ Son guncelleme tarihi: 2026-06-13
 33. Review baglam cipleri tiklanabilir hizli kopyalama aracina donusturuldu.
 34. Uygun review baglam cipleri ilgili filtre aksiyonlarini dogrudan tetikler hale getirildi.
 35. Review baglam ciplerine davranis tipini gosteren `UYG` / `KPY` mikro isaretleri eklendi.
+36. Review baglam ciplerine `Uygula` / `Kopyala` secenekleri sunan sag tik menusu eklendi.
 
 ## Son 5 Commit
 
@@ -103,7 +105,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Cip davranis farki da gorunur hale geldigi icin bir sonraki mantikli adim, uygun cip turlerinde cift tikla alternatif davranis veya sag tik menusu gibi daha ileri mikro kisayollar olabilir.
+- Sag tik menusu da eklendigi icin bir sonraki mantikli adim, baglam panelindeki cipler icin klavye erisilebilirligi veya secili cip odagi gibi minik erisim iyilestirmeleri olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

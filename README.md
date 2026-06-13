@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.39 - Baglam Cipi Sag Tik Menusu
+
+Bu fazda review baglam ciplerine sag tik menusu eklendi.
+Sol tik mevcut hizli davranisi korurken, sag tikta uygun ciplere `Uygula: ...` ve her cip icin `Kopyala: ...` secenekleri sunuluyor.
+
+Boylece kullanici tek tik hizindan vazgecmeden, isterse daha kontrollu bir ikinci yol da kullanabiliyor.
+Ozellikle aksiyonlu ciplere yanlislikla basmak istemeyen kullanicilar icin daha guvenli bir mikro etkileşim eklendi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.38 - Cip Davranis Isareti
 
 Bu fazda review baglam ciplerinde hangi ciplere tiklandiginda aksiyon calisacagi ve hangilerinin sadece kopyalayacagi daha gorunur hale getirildi.

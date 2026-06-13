@@ -1086,3 +1086,9 @@ v0.12 sonuÃ§ notu:
 612. Boylece kullanici tiklamadan once cip davranisini daha rahat ayirt edebiliyor.
 613. Smoke test: dotnet build -c Release OK.
 614. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+615. v1.39 olarak review baglam ciplerine sag tik menusu eklendi.
+616. Sol tik hizli davranisi korurken, sag tikta uygun ciplere `Uygula` ve her cip icin `Kopyala` secenekleri sunuluyor.
+617. Boylece aksiyonlu ciplere daha kontrollu ikinci yol eklenmis oldu.
+618. Smoke test: dotnet build -c Release OK.
+619. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

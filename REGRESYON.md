@@ -1472,6 +1472,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Normal moda donus var | OK | Filtreler varsayilan akisina geri donuyor |
 | 2026-06-13 | v1.26 | OK | Baglami temizle aksiyonu + build + self-test tamamlandi |
 
+## v1.39 - Baglam Cipi Sag Tik Menusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sag tik menusu var | OK | Baglam ciplerinde sag tikla `Uygula` ve/veya `Kopyala` secenekleri aciliyor |
+| Sol tik davranisi korundu | OK | Hizli tik akisinda onceki davranis bozulmadi |
+| 2026-06-13 | v1.39 | OK | Baglam cipi sag tik menusu + build + self-test tamamlandi |
+
 ## v1.38 - Cip Davranis Isareti
 | Kontrol | Durum | Not |
 | --- | --- | --- |

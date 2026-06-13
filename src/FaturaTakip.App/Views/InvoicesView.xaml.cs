@@ -1027,6 +1027,43 @@ public partial class InvoicesView : UserControl
             return;
         }
 
+        ExecuteReviewContextChipPrimaryAction(chip);
+    }
+
+    private void InvoiceReviewContextChipButton_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+    {
+        if (sender is not Button { Tag: InvoiceReviewContextFormatter.ContextChip chip } button ||
+            string.IsNullOrWhiteSpace(chip.Text))
+        {
+            return;
+        }
+
+        var menu = new ContextMenu();
+        if (!string.Equals(chip.ActionKey, "copy", StringComparison.OrdinalIgnoreCase))
+        {
+            var applyItem = new MenuItem
+            {
+                Header = $"Uygula: {BuildReviewContextChipActionLabel(chip.ActionKey)}"
+            };
+            applyItem.Click += (_, _) => ExecuteReviewContextChipPrimaryAction(chip);
+            menu.Items.Add(applyItem);
+        }
+
+        var copyItem = new MenuItem
+        {
+            Header = $"Kopyala: {chip.Text}"
+        };
+        copyItem.Click += (_, _) => CopyReviewContextChipToClipboard(chip.Text);
+        menu.Items.Add(copyItem);
+
+        button.ContextMenu = menu;
+        menu.PlacementTarget = button;
+        menu.IsOpen = true;
+        e.Handled = true;
+    }
+
+    private void ExecuteReviewContextChipPrimaryAction(InvoiceReviewContextFormatter.ContextChip chip)
+    {
         switch (chip.ActionKey)
         {
             case "apply_filter":
@@ -1043,15 +1080,32 @@ public partial class InvoicesView : UserControl
                 return;
         }
 
+        CopyReviewContextChipToClipboard(chip.Text);
+    }
+
+    private void CopyReviewContextChipToClipboard(string chipText)
+    {
         try
         {
-            Clipboard.SetText(chip.Text);
-            SetInvoiceStatus($"Bağlam çipi panoya kopyalandı: {chip.Text}", isError: false);
+            Clipboard.SetText(chipText);
+            SetInvoiceStatus($"Bağlam çipi panoya kopyalandı: {chipText}", isError: false);
         }
         catch (Exception exception) when (exception is ExternalException or InvalidOperationException)
         {
             SetInvoiceStatus($"Bağlam çipi panoya kopyalanamadı: {exception.Message}", isError: true);
         }
+    }
+
+    private static string BuildReviewContextChipActionLabel(string actionKey)
+    {
+        return actionKey switch
+        {
+            "apply_filter" => "Bağlam Filtresi",
+            "apply_period" => "Bağlam Dönemi",
+            "apply_type" => "Bağlam Türü",
+            "apply_invoice_no" => "Bağlam No",
+            _ => "Kopyala"
+        };
     }
 
     private void ClearInvoiceReviewContextButton_Click(object sender, RoutedEventArgs e)
