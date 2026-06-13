@@ -1168,3 +1168,13 @@ Bos durumda sakin gorunurken, secili aksiyon oldugunda odeme yardiminda yesil, P
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.68 - Replay Ozet Prefix Isareti
+
+Bu fazda replay ozet satirina minik bir ikinci baglamsal isaret olarak prefix rozeti eklendi.
+Secili aksiyon varsa ilgili kisaltma, bos durumda ise daha notr bir `AYR` isareti gorunuyor.
+
+Boylece replay ozet satiri hem ton hem de kisa bir rozet ile daha kolay taranabilir hale geldi.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

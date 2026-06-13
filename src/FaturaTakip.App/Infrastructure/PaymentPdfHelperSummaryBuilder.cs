@@ -67,6 +67,16 @@ public static class PaymentPdfHelperSummaryBuilder
             : $"{actionLabel} replay ayari: {seconds} sn, {emphasisLabel} vurgu.";
     }
 
+    public static string BuildReplayPreferencePrefix(string? selectedActionKey)
+    {
+        return selectedActionKey switch
+        {
+            "select_pdf" => "SEC",
+            "open_pdf" => "AC",
+            _ => "AYR"
+        };
+    }
+
     public static IReadOnlyList<PaymentPdfHelperBadge> BuildBadges(
         Payment? selectedPayment,
         bool paymentPdfExists,

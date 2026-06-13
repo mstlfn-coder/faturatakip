@@ -1258,3 +1258,9 @@ Her faz bittiğinde:
 - Bos durumda notr, aktif durumda ise odeme yardiminda yesil ve PDF yardiminda mavi tona donuyor.
 - Boylece aktif baglam daha hizli fark edilir hale geldi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.68)
+
+- v1.68 tamamlandi: replay ozet satirina kisa bir prefix isareti eklendi.
+- Secili aksiyon varsa ilgili kisaltma, bos durumda ise notr bir `AYR` ifadesi kullaniliyor.
+- Boylece replay ozeti ikinci bir baglamsal isaret daha kazandi.
+- Smoke test olarak build ve self-test temiz gecti.

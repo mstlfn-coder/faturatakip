@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.68 - Replay Ozet Prefix Isareti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme replay ozet prefixi var | OK | Son aksiyona gore `KLN`, `SON`, `SEC` veya bos durumda `AYR` gorunuyor |
+| PDF replay ozet prefixi var | OK | Son aksiyona gore `SEC`, `AC` veya bos durumda `AYR` gorunuyor |
+| 2026-06-13 | v1.68 | OK | Replay ozet prefixi + build + self-test tamamlandi |
+
 ## v1.67 - Replay Ozet Ton Ayrimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

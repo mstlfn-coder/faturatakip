@@ -72,6 +72,17 @@ public static class PaymentEntryHelperSummaryBuilder
             : $"{actionLabel} replay ayari: {seconds} sn, {emphasisLabel} vurgu.";
     }
 
+    public static string BuildReplayPreferencePrefix(string? selectedActionKey)
+    {
+        return selectedActionKey switch
+        {
+            "fill_remaining" => "KLN",
+            "use_last" => "SON",
+            "use_selected" => "SEC",
+            _ => "AYR"
+        };
+    }
+
     public static IReadOnlyList<PaymentHelperBadge> BuildBadges(
         Invoice? invoice,
         IEnumerable<Payment> payments,

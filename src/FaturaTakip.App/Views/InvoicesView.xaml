@@ -895,10 +895,22 @@
                                                Style="{StaticResource MutedText}"
                                                TextWrapping="Wrap"
                                                Margin="0,8,0,0" />
-                                    <TextBlock x:Name="PaymentHelperReplayPreferenceSummaryText"
-                                               Style="{StaticResource MutedText}"
-                                               TextWrapping="Wrap"
-                                               Margin="0,4,0,0" />
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="0,4,0,0">
+                                        <Border x:Name="PaymentHelperReplayPreferencePrefixBorder"
+                                                Style="{StaticResource InlineShortcutPrefixBorder}"
+                                                Background="#ECFDF5"
+                                                BorderBrush="#BBF7D0"
+                                                BorderThickness="1"
+                                                Margin="0,0,6,0">
+                                            <TextBlock x:Name="PaymentHelperReplayPreferencePrefixText"
+                                                       Style="{StaticResource InlineShortcutPrefixText}"
+                                                       Foreground="#166534" />
+                                        </Border>
+                                        <TextBlock x:Name="PaymentHelperReplayPreferenceSummaryText"
+                                                   Style="{StaticResource MutedText}"
+                                                   TextWrapping="Wrap" />
+                                    </StackPanel>
                                     <Button x:Name="PaymentHelperLastActionButton"
                                             Style="{StaticResource InlineShortcutButton}"
                                             Visibility="Collapsed"
@@ -998,10 +1010,22 @@
                                                 Style="{StaticResource MutedText}"
                                                 TextWrapping="Wrap"
                                                 Margin="0,8,0,0" />
-                                    <TextBlock x:Name="PaymentPdfReplayPreferenceSummaryText"
-                                               Style="{StaticResource MutedText}"
-                                               TextWrapping="Wrap"
-                                               Margin="0,4,0,0" />
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="0,4,0,0">
+                                        <Border x:Name="PaymentPdfReplayPreferencePrefixBorder"
+                                                Style="{StaticResource InlineShortcutPrefixBorder}"
+                                                Background="#F0F9FF"
+                                                BorderBrush="#BAE6FD"
+                                                BorderThickness="1"
+                                                Margin="0,0,6,0">
+                                            <TextBlock x:Name="PaymentPdfReplayPreferencePrefixText"
+                                                       Style="{StaticResource InlineShortcutPrefixText}"
+                                                       Foreground="#0369A1" />
+                                        </Border>
+                                        <TextBlock x:Name="PaymentPdfReplayPreferenceSummaryText"
+                                                   Style="{StaticResource MutedText}"
+                                                   TextWrapping="Wrap" />
+                                    </StackPanel>
                                     <Button x:Name="PaymentPdfHelperLastActionButton"
                                             Style="{StaticResource InlineShortcutButton}"
                                             Visibility="Collapsed"

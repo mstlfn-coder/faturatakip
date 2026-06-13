@@ -2828,6 +2828,27 @@ public partial class InvoicesView : UserControl
                     : Color.FromRgb(22, 101, 52));
         }
 
+        if (PaymentHelperReplayPreferencePrefixText is not null)
+        {
+            PaymentHelperReplayPreferencePrefixText.Text = PaymentEntryHelperSummaryBuilder.BuildReplayPreferencePrefix(_lastInvokedPaymentHelperActionKey);
+            PaymentHelperReplayPreferencePrefixText.Foreground = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
+                    ? Color.FromRgb(95, 107, 122)
+                    : Color.FromRgb(22, 101, 52));
+        }
+
+        if (PaymentHelperReplayPreferencePrefixBorder is not null)
+        {
+            PaymentHelperReplayPreferencePrefixBorder.Background = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
+                    ? Color.FromRgb(248, 250, 252)
+                    : Color.FromRgb(236, 253, 245));
+            PaymentHelperReplayPreferencePrefixBorder.BorderBrush = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
+                    ? Color.FromRgb(226, 232, 240)
+                    : Color.FromRgb(187, 247, 208));
+        }
+
         if (PaymentHelperLastActionText is not null)
         {
             PaymentHelperLastActionText.Text = lastActionText;
@@ -3028,6 +3049,27 @@ public partial class InvoicesView : UserControl
                 string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
                     ? Color.FromRgb(95, 107, 122)
                     : Color.FromRgb(3, 105, 161));
+        }
+
+        if (PaymentPdfReplayPreferencePrefixText is not null)
+        {
+            PaymentPdfReplayPreferencePrefixText.Text = PaymentPdfHelperSummaryBuilder.BuildReplayPreferencePrefix(_lastInvokedPaymentPdfHelperActionKey);
+            PaymentPdfReplayPreferencePrefixText.Foreground = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
+                    ? Color.FromRgb(95, 107, 122)
+                    : Color.FromRgb(3, 105, 161));
+        }
+
+        if (PaymentPdfReplayPreferencePrefixBorder is not null)
+        {
+            PaymentPdfReplayPreferencePrefixBorder.Background = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
+                    ? Color.FromRgb(248, 250, 252)
+                    : Color.FromRgb(240, 249, 255));
+            PaymentPdfReplayPreferencePrefixBorder.BorderBrush = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
+                    ? Color.FromRgb(226, 232, 240)
+                    : Color.FromRgb(186, 230, 253));
         }
 
         if (PaymentPdfHelperLastActionText is not null)
