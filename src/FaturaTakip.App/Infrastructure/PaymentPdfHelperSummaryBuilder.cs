@@ -46,6 +46,25 @@ public static class PaymentPdfHelperSummaryBuilder
             : baseText;
     }
 
+    public static string BuildReplayPreferenceSummaryText(string? selectedActionKey, int seconds, string emphasis)
+    {
+        var actionLabel = selectedActionKey switch
+        {
+            "select_pdf" => "PDF Sec",
+            "open_pdf" => "PDF Ac",
+            _ => "PDF yardimi"
+        };
+
+        var emphasisLabel = emphasis switch
+        {
+            "low" => "dusuk",
+            "high" => "guclu",
+            _ => "orta"
+        };
+
+        return $"{actionLabel} replay ayari: {seconds} sn, {emphasisLabel} vurgu.";
+    }
+
     public static IReadOnlyList<PaymentPdfHelperBadge> BuildBadges(
         Payment? selectedPayment,
         bool paymentPdfExists,

@@ -50,6 +50,26 @@ public static class PaymentEntryHelperSummaryBuilder
             : baseText;
     }
 
+    public static string BuildReplayPreferenceSummaryText(string? selectedActionKey, int seconds, string emphasis)
+    {
+        var actionLabel = selectedActionKey switch
+        {
+            "fill_remaining" => "Kalan Tutar",
+            "use_last" => "Son Aciklama",
+            "use_selected" => "Secili Odeme",
+            _ => "Hazir yardim"
+        };
+
+        var emphasisLabel = emphasis switch
+        {
+            "low" => "dusuk",
+            "high" => "guclu",
+            _ => "orta"
+        };
+
+        return $"{actionLabel} replay ayari: {seconds} sn, {emphasisLabel} vurgu.";
+    }
+
     public static IReadOnlyList<PaymentHelperBadge> BuildBadges(
         Invoice? invoice,
         IEnumerable<Payment> payments,

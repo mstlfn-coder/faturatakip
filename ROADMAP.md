@@ -1240,3 +1240,9 @@ Her faz bittiğinde:
 - Sure ve vurgu seviyesi artik yardim yuzeyinde de okunabiliyor.
 - Tercih degisince ozet satiri aninda yenileniyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.65)
+
+- v1.65 tamamlandi: replay tercih ozet satiri secili son aksiyona gore daha baglamsal ifade uretmeye basladi.
+- Odeme yardimi ve PDF yardimi tarafinda artik aksiyon adi daha net okunuyor.
+- Boylece replay ayarinin hangi hizli akisla ilgili oldugu daha hizli anlasiliyor.
+- Smoke test olarak build ve self-test temiz gecti.

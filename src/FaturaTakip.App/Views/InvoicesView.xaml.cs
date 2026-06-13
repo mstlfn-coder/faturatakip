@@ -2818,7 +2818,10 @@ public partial class InvoicesView : UserControl
 
         if (PaymentHelperReplayPreferenceSummaryText is not null)
         {
-            PaymentHelperReplayPreferenceSummaryText.Text = BuildReplayPreferenceSummaryText("Odeme yardimi");
+            PaymentHelperReplayPreferenceSummaryText.Text = PaymentEntryHelperSummaryBuilder.BuildReplayPreferenceSummaryText(
+                _lastInvokedPaymentHelperActionKey,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis);
         }
 
         if (PaymentHelperLastActionText is not null)
@@ -3013,7 +3016,10 @@ public partial class InvoicesView : UserControl
 
         if (PaymentPdfReplayPreferenceSummaryText is not null)
         {
-            PaymentPdfReplayPreferenceSummaryText.Text = BuildReplayPreferenceSummaryText("PDF yardimi");
+            PaymentPdfReplayPreferenceSummaryText.Text = PaymentPdfHelperSummaryBuilder.BuildReplayPreferenceSummaryText(
+                _lastInvokedPaymentPdfHelperActionKey,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis);
         }
 
         if (PaymentPdfHelperLastActionText is not null)
@@ -3340,18 +3346,6 @@ public partial class InvoicesView : UserControl
             "high" => Color.FromRgb(3, 105, 161),
             _ => Color.FromRgb(3, 105, 161)
         };
-    }
-
-    private string BuildReplayPreferenceSummaryText(string scopeLabel)
-    {
-        var emphasisLabel = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis switch
-        {
-            "low" => "dusuk",
-            "high" => "guclu",
-            _ => "orta"
-        };
-
-        return $"{scopeLabel} replay ayari: {_invoiceReviewPreferences.PaymentShortcutReplaySeconds} sn, {emphasisLabel} vurgu.";
     }
 
     private sealed record MonthOption(int Value, string Label);

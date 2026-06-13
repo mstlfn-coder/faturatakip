@@ -1138,3 +1138,13 @@ Tercih degisince bu satirlar aninda guncelleniyor; yani geri bildirim ayari ve y
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.65 - Baglamsal Replay Ozet Satiri
+
+Bu fazda replay tercih ozet satiri secili son aksiyona gore daha baglamsal ifade uretmeye basladi.
+Artik genel bir `odeme yardimi` ozeti yerine `Kalan Tutar`, `Son Aciklama`, `Secili Odeme`, `PDF Sec` veya `PDF Ac` gibi daha net bir ifade goruluyor.
+
+Boylece kullanici replay ayarinin tam olarak hangi hizli aksiyona bagli okundugunu daha rahat anliyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

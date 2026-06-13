@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.65 - Baglamsal Replay Ozet Satiri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim replay ozeti baglamsal | OK | `Kalan Tutar`, `Son Aciklama`, `Secili Odeme` gibi aksiyon adlari ozet satirinda okunuyor |
+| PDF yardim replay ozeti baglamsal | OK | `PDF Sec` veya `PDF Ac` aksiyon adlari ozet satirinda okunuyor |
+| 2026-06-13 | v1.65 | OK | Baglamsal replay ozeti + build + self-test tamamlandi |
+
 ## v1.64 - Replay Tercih Ozeti
 | Kontrol | Durum | Not |
 | --- | --- | --- |
