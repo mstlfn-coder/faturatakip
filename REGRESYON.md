@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.64 - Replay Tercih Ozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim replay ozeti var | OK | Sure ve vurgu seviyesi odeme yardim alaninda metinle gorunuyor |
+| PDF yardim replay ozeti var | OK | Sure ve vurgu seviyesi PDF yardim alaninda metinle gorunuyor |
+| 2026-06-13 | v1.64 | OK | Replay tercih ozeti + build + self-test tamamlandi |
+
 ## v1.63 - Kisayol Replay Tercihleri
 | Kontrol | Durum | Not |
 | --- | --- | --- |

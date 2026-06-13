@@ -7,6 +7,7 @@ Son guncelleme tarihi: 2026-06-13
 - Aktif branch: `codex/v1.08-review-context-issue-action`
 - Son commit: `git log --oneline -1` ile teyit et; bu dosya hizli handoff ozeti olarak tutulur
 - Son tamamlanan temiz fazlar:
+  - `v1.64` Replay Tercih Ozeti
   - `v1.63` Kisayol Replay Tercihleri
   - `v1.62` Prefix Rozette Tekrar Canlanmasi
   - `v1.61` Mikro Kisayol Tekrar Geri Bildirimi

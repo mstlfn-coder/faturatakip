@@ -1048,6 +1048,9 @@ public partial class InvoicesView : UserControl
             PaymentShortcutReplayEmphasis = emphasis
         };
         TrySaveInvoiceReviewPreferences();
+        UpdatePaymentHelperSummary(_selectedInvoice);
+        var paymentPdfExists = _selectedPayment is not null && _paymentRepository?.PdfFileExists(_selectedPayment) == true;
+        UpdatePaymentPdfHelperSummary(_selectedPayment, paymentPdfExists);
     }
 
     private void ToggleInvoiceReviewContextVisibility()
@@ -2813,6 +2816,11 @@ public partial class InvoicesView : UserControl
             PaymentHelperSummaryText.Text = PaymentEntryHelperSummaryBuilder.BuildSummaryText(invoice, _payments, _selectedPayment);
         }
 
+        if (PaymentHelperReplayPreferenceSummaryText is not null)
+        {
+            PaymentHelperReplayPreferenceSummaryText.Text = BuildReplayPreferenceSummaryText("Odeme yardimi");
+        }
+
         if (PaymentHelperLastActionText is not null)
         {
             PaymentHelperLastActionText.Text = lastActionText;
@@ -3001,6 +3009,11 @@ public partial class InvoicesView : UserControl
         if (PaymentPdfHelperSummaryText is not null)
         {
             PaymentPdfHelperSummaryText.Text = PaymentPdfHelperSummaryBuilder.BuildSummaryText(payment, paymentPdfExists);
+        }
+
+        if (PaymentPdfReplayPreferenceSummaryText is not null)
+        {
+            PaymentPdfReplayPreferenceSummaryText.Text = BuildReplayPreferenceSummaryText("PDF yardimi");
         }
 
         if (PaymentPdfHelperLastActionText is not null)
@@ -3327,6 +3340,18 @@ public partial class InvoicesView : UserControl
             "high" => Color.FromRgb(3, 105, 161),
             _ => Color.FromRgb(3, 105, 161)
         };
+    }
+
+    private string BuildReplayPreferenceSummaryText(string scopeLabel)
+    {
+        var emphasisLabel = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis switch
+        {
+            "low" => "dusuk",
+            "high" => "guclu",
+            _ => "orta"
+        };
+
+        return $"{scopeLabel} replay ayari: {_invoiceReviewPreferences.PaymentShortcutReplaySeconds} sn, {emphasisLabel} vurgu.";
     }
 
     private sealed record MonthOption(int Value, string Label);

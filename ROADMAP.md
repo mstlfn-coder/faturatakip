@@ -1234,3 +1234,9 @@ Her faz bittiğinde:
 - Inceleme tercih alanina iki kucuk secim eklendi: sure ve vurgu seviyesi.
 - Ayarlar config dosyasina kaydoldugu icin yeni oturumlarda da korunuyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.64)
+
+- v1.64 tamamlandi: replay tercihleri odeme yardim alanlarinda kisa ozet satiri olarak gorunur hale getirildi.
+- Sure ve vurgu seviyesi artik yardim yuzeyinde de okunabiliyor.
+- Tercih degisince ozet satiri aninda yenileniyor.
+- Smoke test olarak build ve self-test temiz gecti.

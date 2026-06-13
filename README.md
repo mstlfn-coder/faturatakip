@@ -1128,3 +1128,13 @@ Boylece ayni davranis yeni oturumlarda da korunuyor ve kullanici kendi calisma r
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.64 - Replay Tercih Ozeti
+
+Bu fazda secili replay tercihleri odeme yardim ve odeme PDF yardim alanlarinda kisa bir ozet satiriyla gorunur hale getirildi.
+Kullanici artik secili sure ve vurgu seviyesini tercih paneline geri donmeden de okuyabiliyor.
+
+Tercih degisince bu satirlar aninda guncelleniyor; yani geri bildirim ayari ve yardim alani ayni hikayeyi paylasiyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
