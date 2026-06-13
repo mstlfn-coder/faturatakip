@@ -1378,3 +1378,9 @@ Her faz bittiğinde:
 - Odeme yardimi ve PDF yardimi alanlari artik `Secili yardim: ... hazir.` diliyle daha acik okunuyor.
 - Boylece yardim akisinin o anki modu sadece rozet degil, kisa metinle de gorunuyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.88)
+
+- v1.88 tamamlandi: secili yardim durum satiri, son aksiyon butonuyla ayni tooltip ipucunu kullanmaya basladi.
+- Boylece durum metni hover edildiginde tekrar calistirma yonu de gorunur hale geldi.
+- Yardim dili farkli katmanlarda daha tutarli hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.

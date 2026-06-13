@@ -7,6 +7,7 @@ Son guncelleme tarihi: 2026-06-13
 - Aktif branch: `codex/v1.08-review-context-issue-action`
 - Son commit: `git log --oneline -1` ile teyit et; bu dosya hizli handoff ozeti olarak tutulur
 - Son tamamlanan temiz fazlar:
+  - `v1.88` Yardim Durum Satiri Tooltip Birlesimi
   - `v1.87` Secili Yardim Durum Satiri
   - `v1.86` Yardim Rozeti Mikro Vurgu
   - `v1.85` Secili Yardim Rozeti Ipuclari

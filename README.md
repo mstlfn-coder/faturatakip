@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.88 - Yardim Durum Satiri Tooltip Birlesimi
+
+Bu fazda secili yardim durum satiri, son aksiyon butonuyla ayni tooltip ipucunu kullanmaya basladi.
+Boylece satir ici durum metni sadece hangi yardimin hazir oldugunu gostermekle kalmiyor, hover edildiginde tekrar calistirma yonunu de anlatiyor.
+
+Kucuk ama tutarli bir yardim dili birlesmesi oldu.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.87 - Secili Yardim Durum Satiri
 
 Bu fazda odeme yardimi ve PDF yardimi alanlarina, secili son aksiyonu kisa bir cumleyle soyleyen satir ici durum metni eklendi.

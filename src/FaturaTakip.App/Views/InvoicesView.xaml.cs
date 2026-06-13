@@ -2928,6 +2928,7 @@ public partial class InvoicesView : UserControl
         if (PaymentHelperSelectedActionStatusText is not null)
         {
             PaymentHelperSelectedActionStatusText.Text = selectedActionStatusText;
+            PaymentHelperSelectedActionStatusText.ToolTip = lastActionToolTip;
             PaymentHelperSelectedActionStatusText.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
                 ? Visibility.Collapsed
                 : Visibility.Visible;
@@ -3195,6 +3196,7 @@ public partial class InvoicesView : UserControl
         if (PaymentPdfSelectedActionStatusText is not null)
         {
             PaymentPdfSelectedActionStatusText.Text = selectedActionStatusText;
+            PaymentPdfSelectedActionStatusText.ToolTip = lastActionToolTip;
             PaymentPdfSelectedActionStatusText.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
                 ? Visibility.Collapsed
                 : Visibility.Visible;
