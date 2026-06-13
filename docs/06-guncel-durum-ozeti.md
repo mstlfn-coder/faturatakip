@@ -7,6 +7,7 @@ Son guncelleme tarihi: 2026-06-13
 - Aktif branch: `codex/v1.08-review-context-issue-action`
 - Son commit: `git log --oneline -1` ile teyit et; bu dosya hizli handoff ozeti olarak tutulur
 - Son tamamlanan temiz fazlar:
+  - `v1.57` Son Aksiyon Mikro Kisayollari
   - `v1.56` Son Aksiyon Satirinda Gecici Vurgu
   - `v1.55` Odeme Yardiminda Son Aksiyon Satiri
   - `v1.54` Baglamsal Odeme Durum Mesajlari

@@ -1192,3 +1192,9 @@ Her faz bittiğinde:
 - Boylece kullanici tekrar eden hizli yardim aksiyonlarinda yeni geri bildirimi daha belirgin goruyor.
 - Vurgu suresi dolunca satirlar otomatik olarak normal gorunume donuyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.57)
+
+- v1.57 tamamlandi: odeme yardim ve odeme PDF yardim son aksiyon satirlari tiklanabilir mikro kisayollara donusturuldu.
+- Son kullanilan yardim artik ayni satirdan yeniden tetiklenebiliyor.
+- Bu akis mevcut yardim aksiyon anahtarlarini tekrar kullandigi icin davranis birligi korundu.
+- Smoke test olarak build ve self-test temiz gecti.

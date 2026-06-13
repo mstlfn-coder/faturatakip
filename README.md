@@ -1058,3 +1058,13 @@ Vurgu suresi tamamlaninca satir kendi normal yarim ton rengine ve yari kalin yaz
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.57 - Son Aksiyon Mikro Kisayollari
+
+Bu fazda odeme yardim ve odeme PDF yardim alanlarindaki son aksiyon satirlari tiklanabilir mikro kisayollara donusturuldu.
+Kullanici boylece son kullandigi hizli yardimi rozetlere donmeden, ayni satirdan dogrudan tekrar cagirabiliyor.
+
+Bu davranis mevcut aksiyon anahtarlarini yeniden kullaniyor; yani son aksiyon satiri sadece gorunurluk degil, mini tekrar tetikleyici olarak da calisiyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

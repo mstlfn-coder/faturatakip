@@ -784,13 +784,22 @@
                                                Style="{StaticResource MutedText}"
                                                TextWrapping="Wrap"
                                                Margin="0,8,0,0" />
-                                    <TextBlock x:Name="PaymentHelperLastActionText"
-                                               Style="{StaticResource MutedText}"
-                                               Foreground="#166534"
-                                               FontWeight="SemiBold"
-                                               TextWrapping="Wrap"
-                                               Margin="0,4,0,0"
-                                               Visibility="Collapsed" />
+                                    <Button x:Name="PaymentHelperLastActionButton"
+                                            HorizontalAlignment="Left"
+                                            Background="Transparent"
+                                            BorderBrush="{x:Null}"
+                                            BorderThickness="0"
+                                            Padding="0"
+                                            Margin="0,4,0,0"
+                                            Cursor="Hand"
+                                            Visibility="Collapsed"
+                                            Click="PaymentHelperLastActionButton_Click">
+                                        <TextBlock x:Name="PaymentHelperLastActionText"
+                                                   Style="{StaticResource MutedText}"
+                                                   Foreground="#166534"
+                                                   FontWeight="SemiBold"
+                                                   TextWrapping="Wrap" />
+                                    </Button>
                                     <ItemsControl x:Name="PaymentHelperBadges"
                                                   Margin="0,6,0,0">
                                         <ItemsControl.ItemsPanel>
@@ -876,13 +885,22 @@
                                                Style="{StaticResource MutedText}"
                                                TextWrapping="Wrap"
                                                Margin="0,8,0,0" />
-                                    <TextBlock x:Name="PaymentPdfHelperLastActionText"
-                                               Style="{StaticResource MutedText}"
-                                               Foreground="#0369A1"
-                                               FontWeight="SemiBold"
-                                               TextWrapping="Wrap"
-                                               Margin="0,4,0,0"
-                                               Visibility="Collapsed" />
+                                    <Button x:Name="PaymentPdfHelperLastActionButton"
+                                            HorizontalAlignment="Left"
+                                            Background="Transparent"
+                                            BorderBrush="{x:Null}"
+                                            BorderThickness="0"
+                                            Padding="0"
+                                            Margin="0,4,0,0"
+                                            Cursor="Hand"
+                                            Visibility="Collapsed"
+                                            Click="PaymentPdfHelperLastActionButton_Click">
+                                        <TextBlock x:Name="PaymentPdfHelperLastActionText"
+                                                   Style="{StaticResource MutedText}"
+                                                   Foreground="#0369A1"
+                                                   FontWeight="SemiBold"
+                                                   TextWrapping="Wrap" />
+                                    </Button>
                                     <ItemsControl x:Name="PaymentPdfHelperBadges"
                                                   Margin="0,6,0,0">
                                         <ItemsControl.ItemsPanel>

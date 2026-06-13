@@ -16,6 +16,17 @@ public static class PaymentEntryHelperSummaryBuilder
         };
     }
 
+    public static string BuildLastActionToolTip(string? selectedActionKey)
+    {
+        return selectedActionKey switch
+        {
+            "fill_remaining" => "Tikla ve Kalan Tutar yardimini yeniden calistir.",
+            "use_last" => "Tikla ve Son Aciklama yardimini yeniden calistir.",
+            "use_selected" => "Tikla ve Secili Odeme yardimini yeniden calistir.",
+            _ => string.Empty,
+        };
+    }
+
     public static IReadOnlyList<PaymentHelperBadge> BuildBadges(
         Invoice? invoice,
         IEnumerable<Payment> payments,

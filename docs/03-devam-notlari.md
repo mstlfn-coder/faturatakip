@@ -2,15 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
-## Son Guncelleme (2026-06-13 / v1.56)
+## Son Guncelleme (2026-06-13 / v1.57)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan faz: `v1.56 - Son Aksiyon Satirinda Gecici Vurgu`
-- Bu adimda odeme yardim ve odeme PDF yardim bolumlerindeki son aksiyon satirlari guncellendiginde kisa sureli vurgu almaya basladi.
-- Vurgu suresi tamamlaninca satir normal gorunume otomatik donuyor.
+- Son tamamlanan faz: `v1.57 - Son Aksiyon Mikro Kisayollari`
+- Bu adimda odeme yardim ve odeme PDF yardim bolumlerindeki son aksiyon satirlari tiklanabilir mikro kisayollara donusturuldu.
+- Son kullanilan yardim ayni satirdan tekrar tetiklenebiliyor.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Son aksiyon satirlarini tiklanabilir mikro kisayollara donusturup ayni yardimi tekrar calistirabilmek.
+- Mikro kisayol satirlarina klavye odagi ve hover gorunurlugunu daha belirgin yapmak.

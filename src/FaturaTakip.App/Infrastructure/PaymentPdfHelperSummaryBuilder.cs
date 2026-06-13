@@ -14,6 +14,16 @@ public static class PaymentPdfHelperSummaryBuilder
         };
     }
 
+    public static string BuildLastActionToolTip(string? selectedActionKey)
+    {
+        return selectedActionKey switch
+        {
+            "select_pdf" => "Tikla ve PDF Sec yardimini yeniden calistir.",
+            "open_pdf" => "Tikla ve PDF Ac yardimini yeniden calistir.",
+            _ => string.Empty,
+        };
+    }
+
     public static IReadOnlyList<PaymentPdfHelperBadge> BuildBadges(
         Payment? selectedPayment,
         bool paymentPdfExists,

@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.57 - Son Aksiyon Mikro Kisayollari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim mikro kisayol tooltipi var | OK | Son aksiyon satiri secili yardimi yeniden calistirmayi anlatan tooltip uretiyor |
+| PDF yardim mikro kisayol tooltipi var | OK | Son aksiyon satiri secili PDF yardimini yeniden calistirmayi anlatan tooltip uretiyor |
+| 2026-06-13 | v1.57 | OK | Mikro kisayol satiri + build + self-test tamamlandi |
+
 ## v1.56 - Son Aksiyon Satirinda Gecici Vurgu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

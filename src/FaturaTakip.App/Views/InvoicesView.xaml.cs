@@ -2762,6 +2762,7 @@ public partial class InvoicesView : UserControl
     {
         var helperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(invoice, _payments, _selectedPayment, _lastInvokedPaymentHelperActionKey);
         var lastActionText = PaymentEntryHelperSummaryBuilder.BuildLastActionText(_lastInvokedPaymentHelperActionKey);
+        var lastActionToolTip = PaymentEntryHelperSummaryBuilder.BuildLastActionToolTip(_lastInvokedPaymentHelperActionKey);
 
         if (PaymentHelperSummaryText is not null)
         {
@@ -2771,10 +2772,16 @@ public partial class InvoicesView : UserControl
         if (PaymentHelperLastActionText is not null)
         {
             PaymentHelperLastActionText.Text = lastActionText;
-            PaymentHelperLastActionText.Visibility = helperBadges.Count > 0 && !string.IsNullOrWhiteSpace(lastActionText)
+        }
+
+        if (PaymentHelperLastActionButton is not null)
+        {
+            PaymentHelperLastActionButton.Tag = _lastInvokedPaymentHelperActionKey;
+            PaymentHelperLastActionButton.ToolTip = lastActionToolTip;
+            PaymentHelperLastActionButton.Visibility = helperBadges.Count > 0 && !string.IsNullOrWhiteSpace(lastActionText)
                 ? Visibility.Visible
                 : Visibility.Collapsed;
-            if (PaymentHelperLastActionText.Visibility == Visibility.Visible)
+            if (PaymentHelperLastActionButton.Visibility == Visibility.Visible)
             {
                 StartPaymentHelperLastActionHighlight();
             }
@@ -2817,6 +2824,29 @@ public partial class InvoicesView : UserControl
     {
         _lastInvokedPaymentHelperActionKey = actionKey;
         UpdatePaymentHelperSummary(_selectedInvoice);
+    }
+
+    private void PaymentHelperLastActionButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { Tag: string actionKey })
+        {
+            return;
+        }
+
+        _pendingPaymentStatusLead = "Odeme Yardimi";
+
+        switch (actionKey)
+        {
+            case "fill_remaining":
+                FillRemainingPaymentButton_Click(sender, e);
+                break;
+            case "use_last":
+                UseLastPaymentTemplateButton_Click(sender, e);
+                break;
+            case "use_selected":
+                UseSelectedPaymentTemplateButton_Click(sender, e);
+                break;
+        }
     }
 
     private void SetPaymentStatusSuccess(string message)
@@ -2911,6 +2941,7 @@ public partial class InvoicesView : UserControl
     {
         var helperBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(payment, paymentPdfExists, _lastInvokedPaymentPdfHelperActionKey);
         var lastActionText = PaymentPdfHelperSummaryBuilder.BuildLastActionText(_lastInvokedPaymentPdfHelperActionKey);
+        var lastActionToolTip = PaymentPdfHelperSummaryBuilder.BuildLastActionToolTip(_lastInvokedPaymentPdfHelperActionKey);
 
         if (PaymentPdfHelperSummaryText is not null)
         {
@@ -2920,10 +2951,16 @@ public partial class InvoicesView : UserControl
         if (PaymentPdfHelperLastActionText is not null)
         {
             PaymentPdfHelperLastActionText.Text = lastActionText;
-            PaymentPdfHelperLastActionText.Visibility = helperBadges.Count > 0 && !string.IsNullOrWhiteSpace(lastActionText)
+        }
+
+        if (PaymentPdfHelperLastActionButton is not null)
+        {
+            PaymentPdfHelperLastActionButton.Tag = _lastInvokedPaymentPdfHelperActionKey;
+            PaymentPdfHelperLastActionButton.ToolTip = lastActionToolTip;
+            PaymentPdfHelperLastActionButton.Visibility = helperBadges.Count > 0 && !string.IsNullOrWhiteSpace(lastActionText)
                 ? Visibility.Visible
                 : Visibility.Collapsed;
-            if (PaymentPdfHelperLastActionText.Visibility == Visibility.Visible)
+            if (PaymentPdfHelperLastActionButton.Visibility == Visibility.Visible)
             {
                 StartPaymentPdfHelperLastActionHighlight();
             }
@@ -2947,6 +2984,26 @@ public partial class InvoicesView : UserControl
         _lastInvokedPaymentPdfHelperActionKey = actionKey;
         var paymentPdfExists = _selectedPayment is not null && _paymentRepository?.PdfFileExists(_selectedPayment) == true;
         UpdatePaymentPdfHelperSummary(_selectedPayment, paymentPdfExists);
+    }
+
+    private void PaymentPdfHelperLastActionButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { Tag: string actionKey })
+        {
+            return;
+        }
+
+        _pendingPaymentPdfStatusLead = "PDF Yardimi";
+
+        switch (actionKey)
+        {
+            case "select_pdf":
+                SelectPaymentPdfButton_Click(sender, e);
+                break;
+            case "open_pdf":
+                OpenPaymentPdfButton_Click(sender, e);
+                break;
+        }
     }
 
     private void SetPaymentPdfStatusSuccess(string message)

@@ -269,6 +269,9 @@ public sealed class SelfTestRunner
             Assert(
                 PaymentEntryHelperSummaryBuilder.BuildLastActionText("use_selected") == "Son hizli yardim: Secili Odeme uygulandi.",
                 "Odeme yardim son aksiyon metni beklenen formati uretmedi.");
+            Assert(
+                PaymentEntryHelperSummaryBuilder.BuildLastActionToolTip("use_selected") == "Tikla ve Secili Odeme yardimini yeniden calistir.",
+                "Odeme yardim son aksiyon tooltip metni beklenen formati uretmedi.");
             var selectedPaymentHelperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(
                 updatedInvoice,
                 new[] { new Payment { Id = 10, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 21), Amount = 40m, Description = "Aciklama" } },
@@ -316,6 +319,9 @@ public sealed class SelfTestRunner
             Assert(
                 PaymentPdfHelperSummaryBuilder.BuildLastActionText("open_pdf") == "Son hizli yardim: PDF Ac uygulandi.",
                 "Odeme PDF yardim son aksiyon metni beklenen formati uretmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildLastActionToolTip("open_pdf") == "Tikla ve PDF Ac yardimini yeniden calistir.",
+                "Odeme PDF yardim son aksiyon tooltip metni beklenen formati uretmedi.");
             Assert(
                 PaymentPdfHelperSummaryBuilder.BuildSummaryText(
                     new Payment { Id = 15, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 26), Amount = 45m, Description = "Hazir", PdfFilePath = "attachments/payments/2026/01/ready.pdf" },
