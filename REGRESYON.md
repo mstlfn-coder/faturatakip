@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.72 - Replay Sekil Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Actionli replay isareti daha canli | OK | Sure izi action varsa dik cizgilerle gosteriliyor |
+| Pasif replay isareti daha sakin | OK | Sure izi action yoksa noktalı izlerle gosteriliyor |
+| 2026-06-13 | v1.72 | OK | Replay sekil ayrimi + build + self-test tamamlandi |
+
 ## v1.71 - Replay Sure Izi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

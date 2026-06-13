@@ -1282,3 +1282,9 @@ Her faz bittiğinde:
 - Vurgu yogunlugu nokta dizisiyle, replay suresi ise 1-4 arasi cizgi sayisiyla birlikte okunuyor.
 - Boylece replay ayarinin siddeti ve suresi tek prefix icinde daha hizli taranabiliyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.72)
+
+- v1.72 tamamlandi: replay mini isaretine action baglamina gore sekil ayrimi eklendi.
+- Action varsa sure izi daha net dik cizgilerle, action yoksa daha sakin noktalı izlerle gosteriliyor.
+- Boylece uygulama yardim dili sadece renk degil sembol formu ile de aktiflik bilgisini aktariyor.
+- Smoke test olarak build ve self-test temiz gecti.

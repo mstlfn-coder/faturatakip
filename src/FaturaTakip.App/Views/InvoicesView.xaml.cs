@@ -2841,7 +2841,8 @@ public partial class InvoicesView : UserControl
         {
             PaymentHelperReplayPreferenceLevelText.Text = BuildReplayLevelIndicator(
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
-                _invoiceReviewPreferences.PaymentShortcutReplaySeconds);
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                !string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey));
             PaymentHelperReplayPreferenceLevelText.Foreground = new SolidColorBrush(
                 string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
                     ? Color.FromRgb(95, 107, 122)
@@ -3077,7 +3078,8 @@ public partial class InvoicesView : UserControl
         {
             PaymentPdfReplayPreferenceLevelText.Text = BuildReplayLevelIndicator(
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
-                _invoiceReviewPreferences.PaymentShortcutReplaySeconds);
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                !string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey));
             PaymentPdfReplayPreferenceLevelText.Foreground = new SolidColorBrush(
                 string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
                     ? Color.FromRgb(95, 107, 122)
@@ -3510,7 +3512,7 @@ public partial class InvoicesView : UserControl
         };
     }
 
-    private static string BuildReplayLevelIndicator(string emphasis, int seconds)
+    private static string BuildReplayLevelIndicator(string emphasis, int seconds, bool hasAction)
     {
         var emphasisIndicator = emphasis switch
         {
@@ -3519,7 +3521,8 @@ public partial class InvoicesView : UserControl
             _ => "••"
         };
 
-        var secondsIndicator = new string('|', Math.Clamp(seconds, 1, 4));
+        var secondsGlyph = hasAction ? "|" : ":";
+        var secondsIndicator = string.Concat(Enumerable.Repeat(secondsGlyph, Math.Clamp(seconds, 1, 4)));
         return $"{emphasisIndicator}{secondsIndicator}";
     }
 

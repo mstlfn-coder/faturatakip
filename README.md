@@ -1048,6 +1048,14 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.72 - Replay Sekil Ayrimi
+
+Bu fazda replay mini isareti, action durumu varsa daha net cizgilerle, action yoksa daha sakin noktalı izlerle farklilastirildi.
+Boylece ayni renk ailesi icinde bile yardim alani daha uygulanabilir ve daha pasif durumlari sembol diliyle ayirabiliyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.71 - Replay Sure Izi
 
 Bu fazda replay ozet prefix isaretindeki minik seviye gostergesi, sure bilgisini de yansitacak sekilde zenginlestirildi.
