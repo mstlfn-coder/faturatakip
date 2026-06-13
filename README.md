@@ -1188,3 +1188,13 @@ Kucuk ama tutarli bu hareket, ayni replay akisinin farkli yuzeylerde ayni dili k
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.70 - Replay Vurgu Seviye Isareti
+
+Bu fazda replay ozet prefix isaretine, secili vurgu seviyesini gosteren minik bir gorsel isaret eklendi.
+Dusuk, orta ve guclu vurgu seviyeleri artik prefix icinde farkli kucuk nokta yogunluklariyla ayirt ediliyor.
+
+Boylece replay ayarinin siddeti sadece metinden degil, kisa bir gorsel ipucundan da anlasiliyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

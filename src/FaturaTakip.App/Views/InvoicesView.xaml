@@ -903,9 +903,16 @@
                                                 BorderBrush="#BBF7D0"
                                                 BorderThickness="1"
                                                 Margin="0,0,6,0">
-                                            <TextBlock x:Name="PaymentHelperReplayPreferencePrefixText"
-                                                       Style="{StaticResource InlineShortcutPrefixText}"
-                                                       Foreground="#166534" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock x:Name="PaymentHelperReplayPreferencePrefixText"
+                                                           Style="{StaticResource InlineShortcutPrefixText}"
+                                                           Foreground="#166534" />
+                                                <TextBlock x:Name="PaymentHelperReplayPreferenceLevelText"
+                                                           Margin="4,0,0,0"
+                                                           Style="{StaticResource InlineShortcutPrefixText}"
+                                                           Foreground="#166534"
+                                                           FontSize="9" />
+                                            </StackPanel>
                                         </Border>
                                         <TextBlock x:Name="PaymentHelperReplayPreferenceSummaryText"
                                                    Style="{StaticResource MutedText}"
@@ -1018,9 +1025,16 @@
                                                 BorderBrush="#BAE6FD"
                                                 BorderThickness="1"
                                                 Margin="0,0,6,0">
-                                            <TextBlock x:Name="PaymentPdfReplayPreferencePrefixText"
-                                                       Style="{StaticResource InlineShortcutPrefixText}"
-                                                       Foreground="#0369A1" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock x:Name="PaymentPdfReplayPreferencePrefixText"
+                                                           Style="{StaticResource InlineShortcutPrefixText}"
+                                                           Foreground="#0369A1" />
+                                                <TextBlock x:Name="PaymentPdfReplayPreferenceLevelText"
+                                                           Margin="4,0,0,0"
+                                                           Style="{StaticResource InlineShortcutPrefixText}"
+                                                           Foreground="#0369A1"
+                                                           FontSize="9" />
+                                            </StackPanel>
                                         </Border>
                                         <TextBlock x:Name="PaymentPdfReplayPreferenceSummaryText"
                                                    Style="{StaticResource MutedText}"

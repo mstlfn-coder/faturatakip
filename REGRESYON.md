@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.70 - Replay Vurgu Seviye Isareti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme replay seviye isareti var | OK | Prefix icinde dusuk/orta/guclu vurgu seviyesi nokta yogunluguyla ayristiriliyor |
+| PDF replay seviye isareti var | OK | Prefix icinde dusuk/orta/guclu vurgu seviyesi nokta yogunluguyla ayristiriliyor |
+| 2026-06-13 | v1.70 | OK | Replay seviye isareti + build + self-test tamamlandi |
+
 ## v1.69 - Replay Ozet Prefix Canlanmasi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

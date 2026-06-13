@@ -2837,6 +2837,15 @@ public partial class InvoicesView : UserControl
                     : Color.FromRgb(22, 101, 52));
         }
 
+        if (PaymentHelperReplayPreferenceLevelText is not null)
+        {
+            PaymentHelperReplayPreferenceLevelText.Text = BuildReplayEmphasisIndicator(_invoiceReviewPreferences.PaymentShortcutReplayEmphasis);
+            PaymentHelperReplayPreferenceLevelText.Foreground = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
+                    ? Color.FromRgb(95, 107, 122)
+                    : Color.FromRgb(22, 101, 52));
+        }
+
         if (PaymentHelperReplayPreferencePrefixBorder is not null)
         {
             PaymentHelperReplayPreferencePrefixBorder.Background = new SolidColorBrush(
@@ -3057,6 +3066,15 @@ public partial class InvoicesView : UserControl
         {
             PaymentPdfReplayPreferencePrefixText.Text = PaymentPdfHelperSummaryBuilder.BuildReplayPreferencePrefix(_lastInvokedPaymentPdfHelperActionKey);
             PaymentPdfReplayPreferencePrefixText.Foreground = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
+                    ? Color.FromRgb(95, 107, 122)
+                    : Color.FromRgb(3, 105, 161));
+        }
+
+        if (PaymentPdfReplayPreferenceLevelText is not null)
+        {
+            PaymentPdfReplayPreferenceLevelText.Text = BuildReplayEmphasisIndicator(_invoiceReviewPreferences.PaymentShortcutReplayEmphasis);
+            PaymentPdfReplayPreferenceLevelText.Foreground = new SolidColorBrush(
                 string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
                     ? Color.FromRgb(95, 107, 122)
                     : Color.FromRgb(3, 105, 161));
@@ -3366,6 +3384,16 @@ public partial class InvoicesView : UserControl
                         ? Color.FromRgb(95, 107, 122)
                         : Color.FromRgb(22, 101, 52)));
         }
+
+        if (PaymentHelperReplayPreferenceLevelText is not null)
+        {
+            PaymentHelperReplayPreferenceLevelText.Foreground = new SolidColorBrush(
+                isReplayActive
+                    ? Colors.White
+                    : (string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
+                        ? Color.FromRgb(95, 107, 122)
+                        : Color.FromRgb(22, 101, 52)));
+        }
     }
 
     private void ApplyPaymentPdfReplaySummaryPrefixVisualState(bool isReplayActive)
@@ -3393,6 +3421,16 @@ public partial class InvoicesView : UserControl
         if (PaymentPdfReplayPreferencePrefixText is not null)
         {
             PaymentPdfReplayPreferencePrefixText.Foreground = new SolidColorBrush(
+                isReplayActive
+                    ? Colors.White
+                    : (string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
+                        ? Color.FromRgb(95, 107, 122)
+                        : Color.FromRgb(3, 105, 161)));
+        }
+
+        if (PaymentPdfReplayPreferenceLevelText is not null)
+        {
+            PaymentPdfReplayPreferenceLevelText.Foreground = new SolidColorBrush(
                 isReplayActive
                     ? Colors.White
                     : (string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
@@ -3465,6 +3503,16 @@ public partial class InvoicesView : UserControl
             "low" => Color.FromRgb(14, 165, 233),
             "high" => Color.FromRgb(3, 105, 161),
             _ => Color.FromRgb(3, 105, 161)
+        };
+    }
+
+    private static string BuildReplayEmphasisIndicator(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => "·",
+            "high" => "•••",
+            _ => "••"
         };
     }
 

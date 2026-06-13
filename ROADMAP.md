@@ -1270,3 +1270,9 @@ Her faz bittiğinde:
 - Boylece replay hissi metin, ana rozet ve ozet prefixinde birlikte gorunuyor.
 - Yardim alanindaki geri bildirim dili daha tutarli hale geldi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.70)
+
+- v1.70 tamamlandi: replay ozet prefix isaretine vurgu seviyesini anlatan minik gorsel seviye isareti eklendi.
+- Dusuk, orta ve guclu vurgu seviyeleri artik farkli nokta yogunluklariyla ayristiriliyor.
+- Boylece replay siddeti daha hizli taranabilir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
