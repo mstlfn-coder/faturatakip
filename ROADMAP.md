@@ -985,6 +985,13 @@ Her faz bittiğinde:
 - Rapor gecisinden normal calisma moduna donus tek tikla kolaylasti.
 - Smoke test olarak build ve self-test temiz gecti.
 
+## Son Guncelleme (2026-06-13 / v1.40)
+
+- v1.40 tamamlandi: review baglam ciplerine klavye odagi ve klavyeden menu acma destegi eklendi.
+- Odaklanan cip daha belirgin bir cerceveyle gosteriliyor; `Shift+F10` veya menu tusu sag tik menusunu aciyor.
+- Mikro erisim yolu genisletilirken mevcut tik akislarina dokunulmadi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.39)
 
 - v1.39 tamamlandi: review baglam ciplerine sag tik menusu eklendi.

@@ -1038,28 +1038,23 @@ public partial class InvoicesView : UserControl
             return;
         }
 
-        var menu = new ContextMenu();
-        if (!string.Equals(chip.ActionKey, "copy", StringComparison.OrdinalIgnoreCase))
+        ShowReviewContextChipContextMenu(button, chip);
+        e.Handled = true;
+    }
+
+    private void InvoiceReviewContextChipButton_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (sender is not Button { Tag: InvoiceReviewContextFormatter.ContextChip chip } button ||
+            string.IsNullOrWhiteSpace(chip.Text))
         {
-            var applyItem = new MenuItem
-            {
-                Header = $"Uygula: {BuildReviewContextChipActionLabel(chip.ActionKey)}"
-            };
-            applyItem.Click += (_, _) => ExecuteReviewContextChipPrimaryAction(chip);
-            menu.Items.Add(applyItem);
+            return;
         }
 
-        var copyItem = new MenuItem
+        if (e.Key == Key.Apps || (e.Key == Key.F10 && Keyboard.Modifiers.HasFlag(ModifierKeys.Shift)))
         {
-            Header = $"Kopyala: {chip.Text}"
-        };
-        copyItem.Click += (_, _) => CopyReviewContextChipToClipboard(chip.Text);
-        menu.Items.Add(copyItem);
-
-        button.ContextMenu = menu;
-        menu.PlacementTarget = button;
-        menu.IsOpen = true;
-        e.Handled = true;
+            ShowReviewContextChipContextMenu(button, chip);
+            e.Handled = true;
+        }
     }
 
     private void ExecuteReviewContextChipPrimaryAction(InvoiceReviewContextFormatter.ContextChip chip)
@@ -1081,6 +1076,31 @@ public partial class InvoicesView : UserControl
         }
 
         CopyReviewContextChipToClipboard(chip.Text);
+    }
+
+    private void ShowReviewContextChipContextMenu(Button button, InvoiceReviewContextFormatter.ContextChip chip)
+    {
+        var menu = new ContextMenu();
+        if (!string.Equals(chip.ActionKey, "copy", StringComparison.OrdinalIgnoreCase))
+        {
+            var applyItem = new MenuItem
+            {
+                Header = $"Uygula: {BuildReviewContextChipActionLabel(chip.ActionKey)}"
+            };
+            applyItem.Click += (_, _) => ExecuteReviewContextChipPrimaryAction(chip);
+            menu.Items.Add(applyItem);
+        }
+
+        var copyItem = new MenuItem
+        {
+            Header = $"Kopyala: {chip.Text}"
+        };
+        copyItem.Click += (_, _) => CopyReviewContextChipToClipboard(chip.Text);
+        menu.Items.Add(copyItem);
+
+        button.ContextMenu = menu;
+        menu.PlacementTarget = button;
+        menu.IsOpen = true;
     }
 
     private void CopyReviewContextChipToClipboard(string chipText)

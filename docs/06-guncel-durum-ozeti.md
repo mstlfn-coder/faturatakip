@@ -40,6 +40,7 @@ Son guncelleme tarihi: 2026-06-13
   - `v1.37` Aksiyonlu Baglam Cipleri
   - `v1.38` Cip Davranis Isareti
   - `v1.39` Baglam Cipi Sag Tik Menusu
+  - `v1.40` Baglam Cipi Klavye Erisimi
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -82,6 +83,7 @@ Son guncelleme tarihi: 2026-06-13
 34. Uygun review baglam cipleri ilgili filtre aksiyonlarini dogrudan tetikler hale getirildi.
 35. Review baglam ciplerine davranis tipini gosteren `UYG` / `KPY` mikro isaretleri eklendi.
 36. Review baglam ciplerine `Uygula` / `Kopyala` secenekleri sunan sag tik menusu eklendi.
+37. Review baglam ciplerine klavye odagi ve klavyeden menu acma destegi eklendi.
 
 ## Son 5 Commit
 
@@ -105,7 +107,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Sag tik menusu da eklendigi icin bir sonraki mantikli adim, baglam panelindeki cipler icin klavye erisilebilirligi veya secili cip odagi gibi minik erisim iyilestirmeleri olabilir.
+- Ciplerin klavye erisimi de eklendigi icin bir sonraki mantikli adim, cipler icin cok hafif bir tik geri bildirimi ya da son kullanilan cipi mikro vurguyla izleme olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

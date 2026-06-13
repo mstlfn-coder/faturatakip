@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.40 - Baglam Cipi Klavye Erisimi
+
+Bu fazda review baglam cipleri icin klavye erisilebilirligi ve odak gorunurlugu iyilestirildi.
+Klavye ile odaklanan cip artik daha belirgin bir cerceveyle gorunuyor; ayrica `Shift+F10` ya da menu tusu ile sag tik menusu klavyeden de acilabiliyor.
+
+Boylece cipler sadece fareyle degil, klavyeyle de daha rahat kullanilir hale geldi.
+Mevcut sol tik ve sag tik davranislari korunurken erisilebilirlik akisi genisletildi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.39 - Baglam Cipi Sag Tik Menusu
 
 Bu fazda review baglam ciplerine sag tik menusu eklendi.

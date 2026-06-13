@@ -113,6 +113,10 @@
             <Setter Property="Padding" Value="8,3" />
             <Setter Property="Margin" Value="0,0,6,6" />
             <Style.Triggers>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="#0F172A" />
+                </DataTrigger>
                 <DataTrigger Binding="{Binding Kind}" Value="report">
                     <Setter Property="Background" Value="#DBEAFE" />
                     <Setter Property="BorderBrush" Value="#93C5FD" />
@@ -892,6 +896,7 @@
                                                                 Tag="{Binding}"
                                                                 ToolTip="{Binding ToolTip}"
                                                                 Click="InvoiceReviewContextChipButton_Click"
+                                                                KeyDown="InvoiceReviewContextChipButton_KeyDown"
                                                                 MouseRightButtonUp="InvoiceReviewContextChipButton_MouseRightButtonUp">
                                                             <Border Style="{StaticResource ContextChipBorder}">
                                                                 <StackPanel Orientation="Horizontal">

@@ -1092,3 +1092,9 @@ v0.12 sonuÃ§ notu:
 617. Boylece aksiyonlu ciplere daha kontrollu ikinci yol eklenmis oldu.
 618. Smoke test: dotnet build -c Release OK.
 619. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+620. v1.40 olarak review baglam ciplerine klavye odagi ve klavyeden menu acma destegi eklendi.
+621. Odaklanan cip daha belirgin cerceveyle gosteriliyor; `Shift+F10` veya menu tusu ile sag tik menusu klavyeden de acilabiliyor.
+622. Boylece cipler fare disinda klavyeyle de daha rahat kullanilir hale geldi.
+623. Smoke test: dotnet build -c Release OK.
+624. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

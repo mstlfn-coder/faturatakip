@@ -1472,6 +1472,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Normal moda donus var | OK | Filtreler varsayilan akisina geri donuyor |
 | 2026-06-13 | v1.26 | OK | Baglami temizle aksiyonu + build + self-test tamamlandi |
 
+## v1.40 - Baglam Cipi Klavye Erisimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Klavye odagi gorunur | OK | Odaklanan cip daha belirgin cerceveyle gosteriliyor |
+| Klavyeden menu aciliyor | OK | `Shift+F10` veya menu tusu ile cip menusu aciliyor |
+| 2026-06-13 | v1.40 | OK | Baglam cipi klavye erisimi + build + self-test tamamlandi |
+
 ## v1.39 - Baglam Cipi Sag Tik Menusu
 | Kontrol | Durum | Not |
 | --- | --- | --- |
