@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.50 - Tiklanabilir Odeme Yardim Rozetleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozetler aksiyon anahtari tasiyor | OK | Yardim rozetleri `fill_remaining`, `use_last`, `use_selected` aksiyon anahtarlarini tasiyor |
+| Son kullanilan rozet secilebiliyor | OK | Son kullanilan yardim rozeti secim vurgusuna uygun `IsSelected` durumu tasiyor |
+| 2026-06-13 | v1.50 | OK | Tiklanabilir odeme yardim rozetleri + build + self-test tamamlandi |
+
 ## v1.49 - Odeme Yardim Ozeti
 | Kontrol | Durum | Not |
 | --- | --- | --- |

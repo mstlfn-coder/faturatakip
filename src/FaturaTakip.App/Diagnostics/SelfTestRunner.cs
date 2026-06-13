@@ -256,6 +256,15 @@ public sealed class SelfTestRunner
             Assert(paymentHelperBadges.Any(item => item.Prefix == "KLN" && item.Text == "Kalan Tutar"), "Kalan tutar yardim rozeti uretilmedi.");
             Assert(paymentHelperBadges.Any(item => item.Prefix == "SON" && item.Text == "Son Aciklama"), "Son aciklama yardim rozeti uretilmedi.");
             Assert(paymentHelperBadges.Any(item => item.Prefix == "SEC" && item.Text == "Secili Odeme"), "Secili odeme yardim rozeti uretilmedi.");
+            Assert(paymentHelperBadges.Any(item => item.ActionKey == "fill_remaining"), "Kalan tutar yardim rozeti aksiyon anahtari tasimiyor.");
+            Assert(paymentHelperBadges.Any(item => item.ActionKey == "use_last"), "Son aciklama yardim rozeti aksiyon anahtari tasimiyor.");
+            Assert(paymentHelperBadges.Any(item => item.ActionKey == "use_selected"), "Secili odeme yardim rozeti aksiyon anahtari tasimiyor.");
+            var selectedPaymentHelperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(
+                updatedInvoice,
+                new[] { new Payment { Id = 10, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 21), Amount = 40m, Description = "Aciklama" } },
+                new Payment { Id = 11, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 22), Amount = 30m, Description = "Secim" },
+                selectedActionKey: "use_selected");
+            Assert(selectedPaymentHelperBadges.Any(item => item.ActionKey == "use_selected" && item.IsSelected), "Secili odeme yardim rozeti son kullanilan secim vurgusunu tasimiyor.");
             Assert(
                 PaymentEntryHelperSummaryBuilder.BuildSummaryText(
                     updatedInvoice,

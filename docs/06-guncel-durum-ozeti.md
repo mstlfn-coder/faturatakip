@@ -93,6 +93,7 @@ Son guncelleme tarihi: 2026-06-13
 44. Review baglam cipi kaynakli durum mesajlari alt durum cubugunda kisa sureli renk vurgusu almaya basladi.
 45. Review baglam cipi akislarini hizli dogrulamak icin ayri UI smoke checklist dokumani eklendi.
 46. Odemeler ana akisina gecis icin odeme formuna hazir yardim ozet rozetleri eklendi.
+47. Odeme yardim rozetleri tiklanabilir hizli yol ve secim geri bildirimi kazandi.
 
 ## Son 5 Commit
 
@@ -116,7 +117,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Odemeler tarafinda gorunur ilk adim atildi; bir sonraki mantikli kucuk adim bu yardim rozetlerini tiklanabilir hizli yol haline getirmek veya odeme klavye akislarini guclendirmek olabilir.
+- Odemeler tarafinda yardim rozetleri de tiklanabilir oldugu icin bir sonraki mantikli kucuk adim odeme klavye akislarini guclendirmek veya odeme PDF tarafina benzer mini yardimlar eklemek olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

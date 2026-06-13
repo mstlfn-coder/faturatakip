@@ -1153,3 +1153,9 @@ v0.12 sonuÃ§ notu:
 668. Boylece review baglam UX sonrasinda odemeler ana akisina gorunur bir ilk adim atildi.
 669. Smoke test: dotnet build -c Release OK.
 670. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+671. v1.50 olarak odeme yardim rozetleri tiklanabilir hizli yol haline getirildi.
+672. `Kalan Tutar`, `Son Aciklama`, `Secili Odeme` rozetleri ilgili yardimi dogrudan calistirir hale geldi.
+673. Son kullanilan yardim rozeti hafif secim vurgusuyla izlenmeye baslandi.
+674. Smoke test: dotnet build -c Release OK.
+675. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

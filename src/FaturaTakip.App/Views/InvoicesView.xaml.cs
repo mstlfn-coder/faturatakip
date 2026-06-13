@@ -44,6 +44,7 @@ public partial class InvoicesView : UserControl
     private string? _lastInvokedReviewActionKey;
     private string? _lastInvokedReviewContextChipKey;
     private string? _pendingReviewContextStatusLead;
+    private string? _lastInvokedPaymentHelperActionKey;
     private string? _lastReviewContextSignature;
     private string _rootDirectory = string.Empty;
     private InvoiceReviewPreferences _invoiceReviewPreferences = InvoiceReviewPreferences.Default;
@@ -2294,6 +2295,8 @@ public partial class InvoicesView : UserControl
 
     private void FillRemainingPaymentButton_Click(object sender, RoutedEventArgs e)
     {
+        RememberPaymentHelperAction("fill_remaining");
+
         if (_selectedInvoice is null)
         {
             SetInvoiceStatus("Kalan tutari doldurmak icin once bir fatura secin.", isError: true);
@@ -2306,6 +2309,8 @@ public partial class InvoicesView : UserControl
 
     private void UseLastPaymentTemplateButton_Click(object sender, RoutedEventArgs e)
     {
+        RememberPaymentHelperAction("use_last");
+
         if (_selectedInvoice is null)
         {
             SetInvoiceStatus("Son odemeden doldurmak icin once bir fatura secin.", isError: true);
@@ -2331,6 +2336,8 @@ public partial class InvoicesView : UserControl
 
     private void UseSelectedPaymentTemplateButton_Click(object sender, RoutedEventArgs e)
     {
+        RememberPaymentHelperAction("use_selected");
+
         if (_selectedInvoice is null)
         {
             SetInvoiceStatus("Secili odemeden doldurmak icin once bir fatura secin.", isError: true);
@@ -2352,6 +2359,27 @@ public partial class InvoicesView : UserControl
 
         ApplyPaymentSuggestion(suggestion);
         SetInvoiceStatus("Odeme taslagi secili odemeye gore dolduruldu.", isError: false);
+    }
+
+    private void PaymentHelperBadgeButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { Tag: string actionKey })
+        {
+            return;
+        }
+
+        switch (actionKey)
+        {
+            case "fill_remaining":
+                FillRemainingPaymentButton_Click(sender, e);
+                break;
+            case "use_last":
+                UseLastPaymentTemplateButton_Click(sender, e);
+                break;
+            case "use_selected":
+                UseSelectedPaymentTemplateButton_Click(sender, e);
+                break;
+        }
     }
 
     private void PaymentGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -2718,7 +2746,7 @@ public partial class InvoicesView : UserControl
 
     private void UpdatePaymentHelperSummary(Invoice? invoice)
     {
-        var helperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(invoice, _payments, _selectedPayment);
+        var helperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(invoice, _payments, _selectedPayment, _lastInvokedPaymentHelperActionKey);
 
         if (PaymentHelperSummaryText is not null)
         {
@@ -2732,6 +2760,12 @@ public partial class InvoicesView : UserControl
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }
+    }
+
+    private void RememberPaymentHelperAction(string actionKey)
+    {
+        _lastInvokedPaymentHelperActionKey = actionKey;
+        UpdatePaymentHelperSummary(_selectedInvoice);
     }
 
     private void SetPaymentInfo(string message, bool isError)

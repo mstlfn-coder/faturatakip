@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.50)
+
+- v1.50 tamamlandi: odeme yardim rozetleri tiklanabilir hizli yol haline getirildi.
+- `Kalan Tutar`, `Son Aciklama` ve `Secili Odeme` rozetleri ilgili yardimi dogrudan calistiriyor.
+- Son kullanilan yardim rozeti hafif secim vurgusuyla izleniyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.49)
 
 - v1.49 tamamlandi: odeme girisi alanina hazir yardim ozet rozetleri eklendi.

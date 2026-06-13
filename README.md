@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.50 - Tiklanabilir Odeme Yardim Rozetleri
+
+Bu fazda odeme yardim rozetleri sadece bilgi gostermekle kalmayip dogrudan hizli yol haline getirildi.
+Artik `Kalan Tutar`, `Son Aciklama` ve `Secili Odeme` rozetleri tiklandiginda ilgili doldurma yardimi calisiyor; son kullanilan rozet de hafif secili gorunuyor.
+
+Boylece odeme formundaki yardimlar buton satirina inmeden de tetiklenebilir oldu.
+Odemeler ana akisinda hiz ve yon bulma ayni anda biraz daha iyilesti.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.49 - Odeme Yardim Ozeti
 
 Bu fazda odeme girisi alanina hazir yardimlari tek bakista gosteren mini ozet rozetleri eklendi.
