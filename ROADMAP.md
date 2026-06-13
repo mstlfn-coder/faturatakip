@@ -1198,3 +1198,9 @@ Her faz bittiğinde:
 - Son kullanilan yardim artik ayni satirdan yeniden tetiklenebiliyor.
 - Bu akis mevcut yardim aksiyon anahtarlarini tekrar kullandigi icin davranis birligi korundu.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.58)
+
+- v1.58 tamamlandi: odeme yardim ve PDF yardim mikro kisayollarinin hover ve klavye odak gorunurlugu belirginlestirildi.
+- Hover durumunda hafif arka plan ve alt cizgi, klavye odaginda ise daha kuvvetli ayni iz gosteriliyor.
+- Boylece mikro kisayollarin erisilebilirligi ve fark edilirligi arttirildi.
+- Smoke test olarak build ve self-test temiz gecti.

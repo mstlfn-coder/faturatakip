@@ -1068,3 +1068,13 @@ Bu davranis mevcut aksiyon anahtarlarini yeniden kullaniyor; yani son aksiyon sa
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.58 - Mikro Kisayol Odak Gorunurlugu
+
+Bu fazda odeme yardim ve odeme PDF yardim mikro kisayollarinin hover ve klavye odagi daha belirgin hale getirildi.
+Satirlar artik fare ile ustune gelindiginde hafif arka plan ve alt cizgi aliyor; klavye odaginda ise ayni iz daha net okunuyor.
+
+Boylece mikro kisayollar sadece tiklanabilir degil, ayni zamanda daha rahat fark edilen bir yardim yuzeyi oldu.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

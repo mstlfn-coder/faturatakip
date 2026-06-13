@@ -340,6 +340,52 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
         </Style>
+        <Style x:Key="InlineShortcutButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="2,1" />
+            <Setter Property="Margin" Value="-2,4,0,0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#ECFDF5" />
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="Background" Value="#DCFCE7" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentHelperLastActionTextStyle" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
+            <Setter Property="Foreground" Value="#166534" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="TextDecorations" Value="Underline" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="TextDecorations" Value="Underline" />
+                    <Setter Property="Foreground" Value="#14532D" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentPdfLastActionTextStyle" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
+            <Setter Property="Foreground" Value="#0369A1" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="TextDecorations" Value="Underline" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="TextDecorations" Value="Underline" />
+                    <Setter Property="Foreground" Value="#0C4A6E" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -785,20 +831,11 @@
                                                TextWrapping="Wrap"
                                                Margin="0,8,0,0" />
                                     <Button x:Name="PaymentHelperLastActionButton"
-                                            HorizontalAlignment="Left"
-                                            Background="Transparent"
-                                            BorderBrush="{x:Null}"
-                                            BorderThickness="0"
-                                            Padding="0"
-                                            Margin="0,4,0,0"
-                                            Cursor="Hand"
+                                            Style="{StaticResource InlineShortcutButton}"
                                             Visibility="Collapsed"
                                             Click="PaymentHelperLastActionButton_Click">
                                         <TextBlock x:Name="PaymentHelperLastActionText"
-                                                   Style="{StaticResource MutedText}"
-                                                   Foreground="#166534"
-                                                   FontWeight="SemiBold"
-                                                   TextWrapping="Wrap" />
+                                                   Style="{StaticResource PaymentHelperLastActionTextStyle}" />
                                     </Button>
                                     <ItemsControl x:Name="PaymentHelperBadges"
                                                   Margin="0,6,0,0">
@@ -886,20 +923,11 @@
                                                TextWrapping="Wrap"
                                                Margin="0,8,0,0" />
                                     <Button x:Name="PaymentPdfHelperLastActionButton"
-                                            HorizontalAlignment="Left"
-                                            Background="Transparent"
-                                            BorderBrush="{x:Null}"
-                                            BorderThickness="0"
-                                            Padding="0"
-                                            Margin="0,4,0,0"
-                                            Cursor="Hand"
+                                            Style="{StaticResource InlineShortcutButton}"
                                             Visibility="Collapsed"
                                             Click="PaymentPdfHelperLastActionButton_Click">
                                         <TextBlock x:Name="PaymentPdfHelperLastActionText"
-                                                   Style="{StaticResource MutedText}"
-                                                   Foreground="#0369A1"
-                                                   FontWeight="SemiBold"
-                                                   TextWrapping="Wrap" />
+                                                   Style="{StaticResource PaymentPdfLastActionTextStyle}" />
                                     </Button>
                                     <ItemsControl x:Name="PaymentPdfHelperBadges"
                                                   Margin="0,6,0,0">

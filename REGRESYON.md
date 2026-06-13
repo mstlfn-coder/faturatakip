@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.58 - Mikro Kisayol Odak Gorunurlugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim mikro kisayolu hover izi var | OK | Hover durumunda hafif arka plan ve alt cizgi gorunuyor |
+| PDF yardim mikro kisayolu klavye odagi var | OK | Klavye odaginda daha belirgin arka plan ve alt cizgi gorunuyor |
+| 2026-06-13 | v1.58 | OK | Mikro kisayol odak gorunurlugu + build + self-test tamamlandi |
+
 ## v1.57 - Son Aksiyon Mikro Kisayollari
 | Kontrol | Durum | Not |
 | --- | --- | --- |
