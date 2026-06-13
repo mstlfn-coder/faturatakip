@@ -1116,3 +1116,9 @@ v0.12 sonuÃ§ notu:
 637. Boylece yeni mikro kisayollar arayuz uzerinden daha kolay kesfedilir hale geldi.
 638. Smoke test: dotnet build -c Release OK.
 639. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+640. v1.44 olarak review baglam ciplerine `Esc` ile odak cikisi eklendi.
+641. Odak once `Bağlamı Goster` checkbox'ina, o uygun degilse inceleme notu alanina tasiniyor.
+642. Boylece klavye kullanirken cipi terk etmek icin temiz bir tek tus akisi saglandi.
+643. Smoke test: dotnet build -c Release OK.
+644. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

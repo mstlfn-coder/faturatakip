@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.44)
+
+- v1.44 tamamlandi: review baglam ciplerine `Esc` ile odak cikisi eklendi.
+- Odak once baglam gorunurluk checkbox'ina, o uygun degilse inceleme notu alanina tasiniyor.
+- Boylece klavye akisi icinde cipi terk etmek daha rahat hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.43)
 
 - v1.43 tamamlandi: review baglam ciplerinin tooltip metinlerine klavye kisayol ipuclari eklendi.

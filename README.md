@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.44 - Baglam Cipi Escape Odak Cikisi
+
+Bu fazda review baglam ciplerinde `Esc` ile temiz bir odak cikisi eklendi.
+Odaktaki cipte `Esc` basildiginda odak panel icindeki notr bir alana, once `Bağlamı Goster` secenegine, o uygun degilse inceleme notu alanina tasiniyor.
+
+Boylece klavye kullanan operator baglam cipi halkasindan tek tusla cikabiliyor.
+Davranis yalın kaldı; sadece odak yonetimi biraz daha rahatlatildi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.43 - Baglam Cipi Tooltip Kisayol Ipuclari
 
 Bu fazda review baglam ciplerinin tooltip metinleri klavye kisayollarini da gosterecek sekilde zenginlestirildi.

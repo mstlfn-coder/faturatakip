@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.44 - Baglam Cipi Escape Odak Cikisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Esc odagi temiz alana tasiyor | OK | Odaktaki ciptte `Esc` odagi once baglam checkbox'ina, gerekirse not alanina tasiyor |
+| Diger klavye kisayollari korunuyor | OK | `Enter/Space`, `Ctrl+C` ve `Shift+F10` davranislari etkilenmeden calismaya devam ediyor |
+| 2026-06-13 | v1.44 | OK | Baglam cipi Escape odak cikisi + build + self-test tamamlandi |
+
 ## v1.43 - Baglam Cipi Tooltip Kisayol Ipuclari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

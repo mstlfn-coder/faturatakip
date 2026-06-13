@@ -87,6 +87,7 @@ Son guncelleme tarihi: 2026-06-13
 38. Review baglam panelinde son kullanilan cip hafif bir secim vurgusuyla izlenir hale getirildi.
 39. Review baglam ciplerinde `Enter` / `Space` ile ana aksiyon, `Ctrl+C` ile hizli kopyalama desteklendi.
 40. Review baglam cipi tooltip'lerine `Enter/Space`, `Ctrl+C`, `Shift+F10` kisayol ipuclari eklendi.
+41. Review baglam ciplerinde `Esc` ile panel icinde notr odaga donus eklendi.
 
 ## Son 5 Commit
 
@@ -110,7 +111,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Tooltip ipuclari da eklendigi icin bir sonraki mantikli kucuk adim, odaktaki cipi `Esc` ile temiz odaga cekmek veya secili cipe kisa bir durum cubugu geri bildirimi baglamak olabilir.
+- `Esc` odak cikisi da eklendigi icin bir sonraki mantikli kucuk adim, cip aksiyonlari sonrasi durum cubugunda daha kisa ve klavye odakli bir geri bildirim gostermek olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

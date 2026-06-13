@@ -1066,6 +1066,13 @@ public partial class InvoicesView : UserControl
             return;
         }
 
+        if (e.Key == Key.Escape)
+        {
+            FocusInvoiceReviewContextAnchor();
+            e.Handled = true;
+            return;
+        }
+
         if (e.Key == Key.Apps || (e.Key == Key.F10 && Keyboard.Modifiers.HasFlag(ModifierKeys.Shift)))
         {
             ShowReviewContextChipContextMenu(button, chip);
@@ -1155,6 +1162,24 @@ public partial class InvoicesView : UserControl
         return string.IsNullOrWhiteSpace(chip.Text)
             ? string.Empty
             : $"{chip.Kind}|{chip.ActionKey}|{chip.Text}";
+    }
+
+    private void FocusInvoiceReviewContextAnchor()
+    {
+        if (ShowInvoiceReviewContextCheckBox is not null &&
+            ShowInvoiceReviewContextCheckBox.IsVisible &&
+            ShowInvoiceReviewContextCheckBox.IsEnabled)
+        {
+            ShowInvoiceReviewContextCheckBox.Focus();
+            return;
+        }
+
+        if (InvoiceReviewNoteInput is not null &&
+            InvoiceReviewNoteInput.IsVisible &&
+            InvoiceReviewNoteInput.IsEnabled)
+        {
+            InvoiceReviewNoteInput.Focus();
+        }
     }
 
     private static string BuildReviewContextChipActionLabel(string actionKey)
