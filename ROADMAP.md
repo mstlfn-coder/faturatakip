@@ -1204,3 +1204,9 @@ Her faz bittiğinde:
 - Hover durumunda hafif arka plan ve alt cizgi, klavye odaginda ise daha kuvvetli ayni iz gosteriliyor.
 - Boylece mikro kisayollarin erisilebilirligi ve fark edilirligi arttirildi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.59)
+
+- v1.59 tamamlandi: odeme yardim ve odeme PDF yardim mikro kisayollarina kisa prefix rozetleri eklendi.
+- Son kullanilan yardim artik metin ve rozet birlikte okunuyor.
+- Boylece aktif/son kullanilan iz daha kalici ve daha hizli taranabilir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.

@@ -1078,3 +1078,13 @@ Boylece mikro kisayollar sadece tiklanabilir degil, ayni zamanda daha rahat fark
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.59 - Mikro Kisayol Prefix Rozetleri
+
+Bu fazda odeme yardim ve odeme PDF yardim mikro kisayollarina kucuk prefix rozetleri eklendi.
+Boylece son kullanilan yardimin hangi tip oldugu sadece metinden degil, kisa bir rozet isaretinden de hizlica okunabiliyor.
+
+Rozetler mevcut aksiyon anahtarlariyla uyumlu calisiyor ve satirin tiklanabilir mikro kisayol olma davranisini degistirmiyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

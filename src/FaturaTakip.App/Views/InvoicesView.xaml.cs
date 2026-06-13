@@ -2763,6 +2763,7 @@ public partial class InvoicesView : UserControl
         var helperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(invoice, _payments, _selectedPayment, _lastInvokedPaymentHelperActionKey);
         var lastActionText = PaymentEntryHelperSummaryBuilder.BuildLastActionText(_lastInvokedPaymentHelperActionKey);
         var lastActionToolTip = PaymentEntryHelperSummaryBuilder.BuildLastActionToolTip(_lastInvokedPaymentHelperActionKey);
+        var lastActionPrefix = PaymentEntryHelperSummaryBuilder.BuildLastActionPrefix(_lastInvokedPaymentHelperActionKey);
 
         if (PaymentHelperSummaryText is not null)
         {
@@ -2772,6 +2773,11 @@ public partial class InvoicesView : UserControl
         if (PaymentHelperLastActionText is not null)
         {
             PaymentHelperLastActionText.Text = lastActionText;
+        }
+
+        if (PaymentHelperLastActionPrefixText is not null)
+        {
+            PaymentHelperLastActionPrefixText.Text = lastActionPrefix;
         }
 
         if (PaymentHelperLastActionButton is not null)
@@ -2942,6 +2948,7 @@ public partial class InvoicesView : UserControl
         var helperBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(payment, paymentPdfExists, _lastInvokedPaymentPdfHelperActionKey);
         var lastActionText = PaymentPdfHelperSummaryBuilder.BuildLastActionText(_lastInvokedPaymentPdfHelperActionKey);
         var lastActionToolTip = PaymentPdfHelperSummaryBuilder.BuildLastActionToolTip(_lastInvokedPaymentPdfHelperActionKey);
+        var lastActionPrefix = PaymentPdfHelperSummaryBuilder.BuildLastActionPrefix(_lastInvokedPaymentPdfHelperActionKey);
 
         if (PaymentPdfHelperSummaryText is not null)
         {
@@ -2951,6 +2958,11 @@ public partial class InvoicesView : UserControl
         if (PaymentPdfHelperLastActionText is not null)
         {
             PaymentPdfHelperLastActionText.Text = lastActionText;
+        }
+
+        if (PaymentPdfHelperLastActionPrefixText is not null)
+        {
+            PaymentPdfHelperLastActionPrefixText.Text = lastActionPrefix;
         }
 
         if (PaymentPdfHelperLastActionButton is not null)

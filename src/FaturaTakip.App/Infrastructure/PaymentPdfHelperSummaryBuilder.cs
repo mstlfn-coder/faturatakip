@@ -24,6 +24,16 @@ public static class PaymentPdfHelperSummaryBuilder
         };
     }
 
+    public static string BuildLastActionPrefix(string? selectedActionKey)
+    {
+        return selectedActionKey switch
+        {
+            "select_pdf" => "SEC",
+            "open_pdf" => "AC",
+            _ => string.Empty,
+        };
+    }
+
     public static IReadOnlyList<PaymentPdfHelperBadge> BuildBadges(
         Payment? selectedPayment,
         bool paymentPdfExists,

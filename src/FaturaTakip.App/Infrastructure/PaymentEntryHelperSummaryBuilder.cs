@@ -27,6 +27,17 @@ public static class PaymentEntryHelperSummaryBuilder
         };
     }
 
+    public static string BuildLastActionPrefix(string? selectedActionKey)
+    {
+        return selectedActionKey switch
+        {
+            "fill_remaining" => "KLN",
+            "use_last" => "SON",
+            "use_selected" => "SEC",
+            _ => string.Empty,
+        };
+    }
+
     public static IReadOnlyList<PaymentHelperBadge> BuildBadges(
         Invoice? invoice,
         IEnumerable<Payment> payments,

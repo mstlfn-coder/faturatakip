@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.59 - Mikro Kisayol Prefix Rozetleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim prefix rozeti var | OK | Son kullanilan odeme yardimi `KLN`, `SON`, `SEC` gibi kisa rozetle okunuyor |
+| PDF yardim prefix rozeti var | OK | Son kullanilan PDF yardimi `SEC` veya `AC` gibi kisa rozetle okunuyor |
+| 2026-06-13 | v1.59 | OK | Prefix rozeti + build + self-test tamamlandi |
+
 ## v1.58 - Mikro Kisayol Odak Gorunurlugu
 | Kontrol | Durum | Not |
 | --- | --- | --- |
