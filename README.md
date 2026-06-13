@@ -1048,6 +1048,12 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.102 - Yardim Etiketlerinde Etkilesim Vurgusu
+
+- `TEKRAR` ve `Enter/Space` alanlari normal durumda biraz daha sakinlestirildi.
+- Hover ve klavye odaginda bu yardimci etiketler tekrar tam belirginlige cikiyor.
+- Boylece satir bos beklerken daha sade, etkilesim aninda ise daha rehber bir dil kullaniyor.
+
 ## v1.101 - Yardim Durum Satiri Ince Ayrac
 
 - Prefix ve tekrar rozetinden sonra ana yardim metni oncesine hafif bir nokta ayraci eklendi.

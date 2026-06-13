@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.102 - Yardim Etiketlerinde Etkilesim Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi yardimci etiketleri etkilesimde belirginlesiyor | OK | Tekrar ve kisayol etiketleri normal durumda sakin, hover/odakta daha net |
+| PDF yardimi yardimci etiketleri etkilesimde belirginlesiyor | OK | Tekrar ve kisayol etiketleri normal durumda sakin, hover/odakta daha net |
+| 2026-06-14 | v1.102 | OK | Yardim etiketlerinde etkilesim vurgusu + build + self-test tamamlandi |
+
 ## v1.101 - Yardim Durum Satiri Ince Ayrac
 | Kontrol | Durum | Not |
 | --- | --- | --- |

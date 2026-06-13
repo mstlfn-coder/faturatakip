@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.102)
+
+- v1.102 tamamlandi: yardim durum satirindaki tekrar ve kisayol etiketleri normal durumda sakinlestirildi.
+- Hover ve klavye odaginda bu etiketler yeniden tam belirginlige cikiyor.
+- Boylece yardim satiri durgun halde daha temiz, etkilesim aninda daha acik yonlendirici hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.101)
 
 - v1.101 tamamlandi: yardim durum satirina prefix ile ana metin arasinda hafif bir nokta ayraci eklendi.
