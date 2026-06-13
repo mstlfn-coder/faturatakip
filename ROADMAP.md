@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.103)
+
+- v1.103 tamamlandi: secili yardim durum satirinin ana metni aksiyon turune gore hafif ton farki almaya basladi.
+- Yardim turleri birbirinden daha kolay ayrisirken genel sakin dil korunuyor.
+- Boylece satir icinde fazladan metin eklemeden tarama hizina kucuk bir destek verildi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.102)
 
 - v1.102 tamamlandi: yardim durum satirindaki tekrar ve kisayol etiketleri normal durumda sakinlestirildi.

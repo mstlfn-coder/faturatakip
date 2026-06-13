@@ -1048,6 +1048,12 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.103 - Yardim Metninde Aksiyon Tonu
+
+- Secili yardim durum satirinin ana metni, aksiyon turune gore cok hafif ton farki aliyor.
+- Odeme yardiminda `Kalan Tutar`, `Son Aciklama` ve `Secili Odeme`; PDF yardiminda `PDF Sec` ve `PDF Ac` birbirinden daha kolay ayristiriliyor.
+- Vurgu hala sakin tutuluyor; sadece tarama hizini destekleyen ince bir gorsel ipucu olarak calisiyor.
+
 ## v1.102 - Yardim Etiketlerinde Etkilesim Vurgusu
 
 - `TEKRAR` ve `Enter/Space` alanlari normal durumda biraz daha sakinlestirildi.

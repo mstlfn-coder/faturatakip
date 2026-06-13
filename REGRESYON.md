@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.103 - Yardim Metninde Aksiyon Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi metni aksiyona gore ton farki aliyor | OK | Farkli yardim turleri hafif renk nuansi ile ayrisiyor |
+| PDF yardimi metni aksiyona gore ton farki aliyor | OK | `PDF Sec` ve `PDF Ac` hafif renk nuansi ile ayrisiyor |
+| 2026-06-14 | v1.103 | OK | Yardim metninde aksiyon tonu + build + self-test tamamlandi |
+
 ## v1.102 - Yardim Etiketlerinde Etkilesim Vurgusu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

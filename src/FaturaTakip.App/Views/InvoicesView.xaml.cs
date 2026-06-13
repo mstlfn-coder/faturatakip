@@ -2931,6 +2931,7 @@ public partial class InvoicesView : UserControl
         if (PaymentHelperSelectedActionStatusText is not null)
         {
             PaymentHelperSelectedActionStatusText.Text = selectedActionStatusText;
+            PaymentHelperSelectedActionStatusText.Foreground = new SolidColorBrush(GetPaymentHelperSelectedActionColor(_lastInvokedPaymentHelperActionKey));
         }
 
         if (PaymentHelperSelectedActionStatusButton is not null)
@@ -3218,6 +3219,7 @@ public partial class InvoicesView : UserControl
         if (PaymentPdfSelectedActionStatusText is not null)
         {
             PaymentPdfSelectedActionStatusText.Text = selectedActionStatusText;
+            PaymentPdfSelectedActionStatusText.Foreground = new SolidColorBrush(GetPaymentPdfSelectedActionColor(_lastInvokedPaymentPdfHelperActionKey));
         }
 
         if (PaymentPdfSelectedActionStatusButton is not null)
@@ -3417,7 +3419,7 @@ public partial class InvoicesView : UserControl
         }
 
         PaymentHelperSelectedActionStatusText.FontWeight = FontWeights.SemiBold;
-        PaymentHelperSelectedActionStatusText.Foreground = new SolidColorBrush(Color.FromRgb(22, 101, 52));
+        PaymentHelperSelectedActionStatusText.Foreground = new SolidColorBrush(GetPaymentHelperSelectedActionColor(_lastInvokedPaymentHelperActionKey));
         if (PaymentHelperSelectedActionStatusPrefixBorder is not null)
         {
             PaymentHelperSelectedActionStatusPrefixBorder.Background = new SolidColorBrush(Color.FromRgb(220, 252, 231));
@@ -3532,7 +3534,7 @@ public partial class InvoicesView : UserControl
         }
 
         PaymentPdfSelectedActionStatusText.FontWeight = FontWeights.SemiBold;
-        PaymentPdfSelectedActionStatusText.Foreground = new SolidColorBrush(Color.FromRgb(3, 105, 161));
+        PaymentPdfSelectedActionStatusText.Foreground = new SolidColorBrush(GetPaymentPdfSelectedActionColor(_lastInvokedPaymentPdfHelperActionKey));
         if (PaymentPdfSelectedActionStatusPrefixBorder is not null)
         {
             PaymentPdfSelectedActionStatusPrefixBorder.Background = new SolidColorBrush(Color.FromRgb(224, 242, 254));
@@ -3558,6 +3560,27 @@ public partial class InvoicesView : UserControl
         _paymentPdfReplayFeedbackTimer.Tick += PaymentPdfReplayFeedbackTimer_Tick;
         _paymentPdfReplayFeedbackTimer.Stop();
         _paymentPdfReplayFeedbackTimer.Start();
+    }
+
+    private static Color GetPaymentHelperSelectedActionColor(string? actionKey)
+    {
+        return actionKey switch
+        {
+            "fill_remaining" => Color.FromRgb(22, 101, 52),
+            "use_last" => Color.FromRgb(13, 148, 136),
+            "use_selected" => Color.FromRgb(109, 40, 217),
+            _ => Color.FromRgb(22, 101, 52),
+        };
+    }
+
+    private static Color GetPaymentPdfSelectedActionColor(string? actionKey)
+    {
+        return actionKey switch
+        {
+            "select_pdf" => Color.FromRgb(3, 105, 161),
+            "open_pdf" => Color.FromRgb(29, 78, 216),
+            _ => Color.FromRgb(3, 105, 161),
+        };
     }
 
     private void PaymentPdfReplayFeedbackTimer_Tick(object? sender, EventArgs e)
