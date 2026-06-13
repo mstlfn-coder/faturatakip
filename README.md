@@ -1048,6 +1048,12 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.94 - Yardim Durum Satiri Hover Focus Ipuclari
+
+- Odeme yardimi ve PDF yardimi durum satirlari, mevcut tiklanabilir davranisi daha belirgin gosterecek hover/focus ipuclari aldi.
+- Durum satirinin metni hover ve klavye odaginda alt cizgiyle belirginlesiyor.
+- Prefix rozetleri de ayni anda mevcut yardim butonlariyla ayni vurgu dilini kullaniyor.
+
 ## v1.93 - Tiklanabilir Yardim Durum Satiri
 
 Bu fazda secili yardim durum satiri tiklanabilir hale getirildi.

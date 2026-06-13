@@ -1025,25 +1025,19 @@
                                     <Button x:Name="PaymentHelperSelectedActionStatusButton"
                                             Style="{StaticResource InlineShortcutButton}"
                                             Margin="0,4,0,0"
+                                            ToolTip="Secili yardimi yeniden calistir"
                                             Visibility="Collapsed"
                                             Click="PaymentHelperSelectedActionStatusButton_Click">
                                         <StackPanel Orientation="Horizontal">
                                             <Border x:Name="PaymentHelperSelectedActionStatusPrefixBorder"
-                                                    Style="{StaticResource InlineShortcutPrefixBorder}"
-                                                    Background="#DCFCE7"
-                                                    BorderBrush="#86EFAC"
-                                                    BorderThickness="1"
-                                                    Margin="0,0,6,0">
+                                                    Style="{StaticResource PaymentHelperPrefixBorderStyle}">
                                                 <TextBlock x:Name="PaymentHelperSelectedActionStatusPrefixText"
                                                            Text="YRD"
                                                            Style="{StaticResource InlineShortcutPrefixText}"
                                                            Foreground="#166534" />
                                             </Border>
                                             <TextBlock x:Name="PaymentHelperSelectedActionStatusText"
-                                                       Style="{StaticResource MutedText}"
-                                                       Foreground="#166534"
-                                                       FontWeight="SemiBold"
-                                                       TextWrapping="Wrap" />
+                                                       Style="{StaticResource PaymentHelperLastActionTextStyle}" />
                                         </StackPanel>
                                     </Button>
                                     <StackPanel Orientation="Horizontal"
@@ -1173,25 +1167,19 @@
                                     <Button x:Name="PaymentPdfSelectedActionStatusButton"
                                             Style="{StaticResource InlineShortcutButton}"
                                             Margin="0,4,0,0"
+                                            ToolTip="Secili PDF yardimini yeniden calistir"
                                             Visibility="Collapsed"
                                             Click="PaymentPdfSelectedActionStatusButton_Click">
                                         <StackPanel Orientation="Horizontal">
                                             <Border x:Name="PaymentPdfSelectedActionStatusPrefixBorder"
-                                                    Style="{StaticResource InlineShortcutPrefixBorder}"
-                                                    Background="#E0F2FE"
-                                                    BorderBrush="#7DD3FC"
-                                                    BorderThickness="1"
-                                                    Margin="0,0,6,0">
+                                                    Style="{StaticResource PaymentPdfPrefixBorderStyle}">
                                                 <TextBlock x:Name="PaymentPdfSelectedActionStatusPrefixText"
                                                            Text="PDF"
                                                            Style="{StaticResource InlineShortcutPrefixText}"
                                                            Foreground="#0369A1" />
                                             </Border>
                                             <TextBlock x:Name="PaymentPdfSelectedActionStatusText"
-                                                       Style="{StaticResource MutedText}"
-                                                       Foreground="#0369A1"
-                                                       FontWeight="SemiBold"
-                                                       TextWrapping="Wrap" />
+                                                       Style="{StaticResource PaymentPdfLastActionTextStyle}" />
                                         </StackPanel>
                                     </Button>
                                     <StackPanel Orientation="Horizontal"

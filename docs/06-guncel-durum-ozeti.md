@@ -7,6 +7,7 @@ Son guncelleme tarihi: 2026-06-13
 - Aktif branch: `codex/v1.08-review-context-issue-action`
 - Son commit: `git log --oneline -1` ile teyit et; bu dosya hizli handoff ozeti olarak tutulur
 - Son tamamlanan temiz fazlar:
+  - `v1.94` Yardim Durum Satiri Hover Focus Ipuclari
   - `v1.93` Tiklanabilir Yardim Durum Satiri
   - `v1.92` Yardim Durum Prefix Ipuclari
   - `v1.91` Yardim Durum Satiri Mikro Vurgu

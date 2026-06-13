@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.94 - Yardim Durum Satiri Hover Focus Ipuclari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satiri hover/focus ipucu veriyor | OK | Hover ve klavye odaginda metin alt cizgiyle belirginlesiyor |
+| PDF yardimi durum satiri hover/focus ipucu veriyor | OK | Hover ve klavye odaginda metin alt cizgiyle belirginlesiyor |
+| 2026-06-13 | v1.94 | OK | Yardim durum satiri hover/focus ipuclari + build + self-test tamamlandi |
+
 ## v1.93 - Tiklanabilir Yardim Durum Satiri
 | Kontrol | Durum | Not |
 | --- | --- | --- |

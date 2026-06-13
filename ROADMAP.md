@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.94)
+
+- v1.94 tamamlandi: secili yardim durum satirlari hover ve klavye odaginda daha belirgin hale getirildi.
+- Durum satirlarinin metni alt cizgi aliyor; prefix rozetleri de ayni odak/hover vurgu diline katiliyor.
+- Boylece tiklanabilir yardim satiri sadece calisiyor degil, ayni zamanda daha kolay kesfediliyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.93)
 
 - v1.93 tamamlandi: secili odeme yardimi ve PDF yardimi durum satirlari tiklanabilir hale getirildi.
