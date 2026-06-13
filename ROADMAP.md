@@ -1336,3 +1336,9 @@ Her faz bittiğinde:
 - Action varsa `Hazir`, action yoksa daha kisa bir yonlendirme kullaniliyor.
 - Boylece replay tooltip dili cevresindeki yardim metinleriyle daha ayni ritimde akiyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.81)
+
+- v1.81 tamamlandi: replay indicator ve tooltip metin mantigi ortak helpera tasindi.
+- Replay tonu, action adlari ve minik gorsel indicator kararlari tek noktada toplandi.
+- Boylece sonraki mikro duzenlemeler daha dusuk riskle yapilabilir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.

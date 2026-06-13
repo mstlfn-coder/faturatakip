@@ -2840,11 +2840,11 @@ public partial class InvoicesView : UserControl
         if (PaymentHelperReplayPreferenceLevelText is not null)
         {
             var hasAction = !string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey);
-            PaymentHelperReplayPreferenceLevelText.Text = BuildReplayLevelIndicator(
+            PaymentHelperReplayPreferenceLevelText.Text = ReplayPreferenceIndicatorFormatter.BuildIndicator(
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
                 hasAction);
-            PaymentHelperReplayPreferenceLevelText.ToolTip = BuildReplayLevelToolTip(
+            PaymentHelperReplayPreferenceLevelText.ToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip(
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
                 hasAction,
@@ -2858,7 +2858,7 @@ public partial class InvoicesView : UserControl
 
         if (PaymentHelperReplayPreferencePrefixBorder is not null)
         {
-            PaymentHelperReplayPreferencePrefixBorder.ToolTip = BuildReplayLevelToolTip(
+            PaymentHelperReplayPreferencePrefixBorder.ToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip(
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
                 !string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey),
@@ -3090,11 +3090,11 @@ public partial class InvoicesView : UserControl
         if (PaymentPdfReplayPreferenceLevelText is not null)
         {
             var hasAction = !string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey);
-            PaymentPdfReplayPreferenceLevelText.Text = BuildReplayLevelIndicator(
+            PaymentPdfReplayPreferenceLevelText.Text = ReplayPreferenceIndicatorFormatter.BuildIndicator(
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
                 hasAction);
-            PaymentPdfReplayPreferenceLevelText.ToolTip = BuildReplayLevelToolTip(
+            PaymentPdfReplayPreferenceLevelText.ToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip(
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
                 hasAction,
@@ -3108,7 +3108,7 @@ public partial class InvoicesView : UserControl
 
         if (PaymentPdfReplayPreferencePrefixBorder is not null)
         {
-            PaymentPdfReplayPreferencePrefixBorder.ToolTip = BuildReplayLevelToolTip(
+            PaymentPdfReplayPreferencePrefixBorder.ToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip(
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
                 !string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey),
@@ -3535,57 +3535,6 @@ public partial class InvoicesView : UserControl
             "low" => Color.FromRgb(14, 165, 233),
             "high" => Color.FromRgb(3, 105, 161),
             _ => Color.FromRgb(3, 105, 161)
-        };
-    }
-
-    private static string BuildReplayLevelIndicator(string emphasis, int seconds, bool hasAction)
-    {
-        var emphasisIndicator = emphasis switch
-        {
-            "low" => "·",
-            "high" => "•••",
-            _ => "••"
-        };
-
-        var secondsGlyph = hasAction ? "|" : ":";
-        var secondsIndicator = string.Concat(Enumerable.Repeat(secondsGlyph, Math.Clamp(seconds, 1, 4)));
-        return $"{emphasisIndicator}{secondsIndicator}";
-    }
-
-    private static string BuildReplayLevelToolTip(string emphasis, int seconds, bool hasAction, bool isReplayActive, string? actionKey)
-    {
-        var emphasisLabel = emphasis switch
-        {
-            "low" => "dusuk vurgu",
-            "high" => "guclu vurgu",
-            _ => "orta vurgu"
-        };
-
-        var actionName = BuildReplayActionDisplayName(actionKey);
-        if (hasAction && !string.IsNullOrWhiteSpace(actionName))
-        {
-            var replayLabel = isReplayActive
-                ? "Yeniden tetiklendi."
-                : "Hazir.";
-            return $"{actionName} replay ayari: {seconds} sn, {emphasisLabel} vurgu. {replayLabel}";
-        }
-
-        var guidanceLabel = isReplayActive
-            ? "Replay yeniden tetiklendi."
-            : "Bir action sec ve replay yardimini hazirla.";
-        return $"Replay ayari hazir: {seconds} sn, {emphasisLabel} vurgu. {guidanceLabel}";
-    }
-
-    private static string BuildReplayActionDisplayName(string? actionKey)
-    {
-        return actionKey switch
-        {
-            "fill_remaining" => "Kalan Tutar",
-            "use_last" => "Son Aciklama",
-            "use_selected" => "Secili Odeme",
-            "select_pdf" => "PDF Sec",
-            "open_pdf" => "PDF Ac",
-            _ => string.Empty
         };
     }
 

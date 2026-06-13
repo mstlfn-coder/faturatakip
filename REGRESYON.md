@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.81 - Replay Indicator Helper
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Replay indicator mantigi ortak helperda | OK | Indicator ve tooltip metin kararlari tek formatter icine tasindi |
+| InvoicesView sadeleşti | OK | Tekrarlayan replay yardim mantigi view icinden cikartildi |
+| 2026-06-13 | v1.81 | OK | Replay indicator helper + build + self-test tamamlandi |
+
 ## v1.80 - Replay Tooltip Ton Sadeleştirmesi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

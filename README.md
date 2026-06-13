@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.81 - Replay Indicator Helper
+
+Bu fazda replay mini isaretinin indicator ve tooltip metin mantigi, `InvoicesView` icinden cikarilip ortak bir helper dosyasina toplandi.
+Boylece replay tonu, action adlari ve gorsel indicator kararlari tek bir noktadan yonetilebilir hale geldi.
+
+Davranis ayni kalirken, bundan sonraki mikro metin duzenlemeleri daha kolaylasti.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.80 - Replay Tooltip Ton Sadeleştirmesi
 
 Bu fazda replay mini isaret tooltipi, yanindaki diger kisa yardim metinleriyle ton olarak daha yakin hale getirildi.
