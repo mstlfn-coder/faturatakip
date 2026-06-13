@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.78 - Replay Aktiflik Dili Uyumu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Actionli tooltip aktiflik dili uyumlu | OK | Replay aktifken tooltip `Yeniden tetiklendi` ifadesini kullaniyor |
+| Actionsiz tooltip aktiflik dili uyumlu | OK | Replay aktifken hazir metni de yeniden tetiklenme diliyle yaklasti |
+| 2026-06-13 | v1.78 | OK | Replay aktiflik dili uyumu + build + self-test tamamlandi |
+
 ## v1.77 - Replay Dili Uyumu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.78 - Replay Aktiflik Dili Uyumu
+
+Bu fazda replay tooltip icindeki aktiflik cumlesi, ozet satirindaki `yeniden tetiklendi` diliyle daha uyumlu hale getirildi.
+Replay aktifken tooltip artik daha dogrudan bu yeniden tetiklenme hissini tasiyor.
+
+Boylece replay geri bildirimi farkli yuzeylerde daha ayni ses tonuyla okunuyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.77 - Replay Dili Uyumu
 
 Bu fazda replay tooltip dili, replay ozet satirindaki ifade kaliplariyla uyumlu hale getirildi.

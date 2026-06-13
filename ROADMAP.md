@@ -1318,3 +1318,9 @@ Her faz bittiğinde:
 - Action varsa `replay ayari` ve `vurgu` kaliplari ayni ritimde kullaniliyor.
 - Boylece ayni replay baglami farkli yardim yuzeylerinde daha tutarli okunuyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.78)
+
+- v1.78 tamamlandi: replay tooltip aktiflik dili, ozet satirindaki yeniden tetiklenme diliyle yaklastirildi.
+- Replay aktifken tooltip artik `Yeniden tetiklendi` ifadesine daha yakin bir ton kullaniyor.
+- Boylece replay geri bildirimi farkli yardim katmanlarinda daha ayni sesle konusuyor.
+- Smoke test olarak build ve self-test temiz gecti.
