@@ -985,6 +985,13 @@ Her faz bittiğinde:
 - Rapor gecisinden normal calisma moduna donus tek tikla kolaylasti.
 - Smoke test olarak build ve self-test temiz gecti.
 
+## Son Guncelleme (2026-06-13 / v1.30)
+
+- v1.30 tamamlandi: secili fatura form basligina baglam odagini anlatan yardimci satir eklendi.
+- Satir sadece baglam aksiyonuyla odaklanan secili kayitta gorunuyor.
+- Liste tarafindaki `ODAK` rozeti ile form basligi ayni hikayeyi paylasir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.29)
 
 - v1.29 tamamlandi: baglam aksiyonuyla odaklanan satira tablo icinde `ODAK` rozeti eklendi.

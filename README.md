@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.30 - Form Basliginda Baglam Odagi
+
+Bu fazda fatura formunun basliginin altina secili kaydin baglam aksiyonuyla neden one geldigini anlatan sakin bir yardimci satir eklendi.
+Eger secili kayit baglamdan gelen `Filtre`, `Daraltma`, `Inceleme`, `Donem`, `Tur` veya `Fatura no` aksiyonuyla odaklanmissa, form basligi altinda bunu kisa bir cumleyle gorebiliyorsun.
+
+Boylece liste tarafindaki `ODAK` rozeti ile sag paneldeki secili kayit formu ayni geri bildirimi tasiyor.
+Kullanici normal secime dondugunde veya baglam temizlendiginde bu metin otomatik gizleniyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.29 - Baglam Odak Rozeti
 
 Bu fazda fatura listesindeki secili kayit icin baglam aksiyonu kaynakli mikro bir satir geri bildirimi eklendi.

@@ -1472,6 +1472,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Normal moda donus var | OK | Filtreler varsayilan akisina geri donuyor |
 | 2026-06-13 | v1.26 | OK | Baglami temizle aksiyonu + build + self-test tamamlandi |
 
+## v1.30 - Form Basliginda Baglam Odagi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardimci satir gorunurlugu var | OK | Baglam aksiyonuyla secilen kayitta form basligi altinda odak aciklamasi gosteriliyor |
+| Yardimci satir otomatik gizleniyor | OK | Normal secim veya baglam temizleme sonrasi metin kapanıyor |
+| 2026-06-13 | v1.30 | OK | Form basliginda baglam odagi + build + self-test tamamlandi |
+
 ## v1.29 - Baglam Odak Rozeti
 | Kontrol | Durum | Not |
 | --- | --- | --- |

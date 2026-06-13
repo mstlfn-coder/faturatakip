@@ -1032,3 +1032,9 @@ v0.12 sonuÃ§ notu:
 567. Kullanici farkli bir satira gectiginde veya baglam temizlendiginde odak izi otomatik temizleniyor.
 568. Smoke test: dotnet build -c Release OK.
 569. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+570. v1.30 olarak secili fatura form basligina baglam odagini anlatan kisa yardimci satir eklendi.
+571. Bu satir sadece baglam aksiyonuyla odaklanan secili kayitta gorunuyor ve hangi akisla gelindigini sakin bir dille anlatiyor.
+572. Normal secim veya baglam temizleme sonrasi yardimci satir otomatik gizleniyor.
+573. Smoke test: dotnet build -c Release OK.
+574. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

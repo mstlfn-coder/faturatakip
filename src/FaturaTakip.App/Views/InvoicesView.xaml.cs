@@ -580,6 +580,7 @@ public partial class InvoicesView : UserControl
         RefreshPaymentControls(invoice);
         SetInvoiceStatus($"Seçili kayıt: {invoice.InvoiceNo}", isError: false);
         UpdateInvoiceGridReviewFocusVisuals();
+        UpdateInvoiceFormContextHint();
     }
 
     private void PreviousInvoiceButton_Click(object sender, RoutedEventArgs e)
@@ -1328,6 +1329,7 @@ public partial class InvoicesView : UserControl
         _reviewContextFocusedInvoiceId = invoice?.Id;
         _reviewContextFocusedActionLabel = invoice is null ? null : actionLabel;
         UpdateInvoiceGridReviewFocusVisuals();
+        UpdateInvoiceFormContextHint();
     }
 
     private void ClearReviewContextFocusedInvoice()
@@ -1340,6 +1342,28 @@ public partial class InvoicesView : UserControl
         _reviewContextFocusedInvoiceId = null;
         _reviewContextFocusedActionLabel = null;
         UpdateInvoiceGridReviewFocusVisuals();
+        UpdateInvoiceFormContextHint();
+    }
+
+    private void UpdateInvoiceFormContextHint()
+    {
+        if (InvoiceFormContextHintText is null)
+        {
+            return;
+        }
+
+        if (_selectedInvoice is null ||
+            _reviewContextFocusedInvoiceId is null ||
+            _reviewContextFocusedInvoiceId != _selectedInvoice.Id ||
+            string.IsNullOrWhiteSpace(_reviewContextFocusedActionLabel))
+        {
+            InvoiceFormContextHintText.Text = string.Empty;
+            InvoiceFormContextHintText.Visibility = Visibility.Collapsed;
+            return;
+        }
+
+        InvoiceFormContextHintText.Text = $"Bağlam odağı: {BuildReviewContextFocusDescription(_reviewContextFocusedActionLabel)}";
+        InvoiceFormContextHintText.Visibility = Visibility.Visible;
     }
 
     private void UpdateInvoiceGridReviewFocusVisuals()
@@ -1422,6 +1446,36 @@ public partial class InvoicesView : UserControl
         }
 
         return "FİLTRE";
+    }
+
+    private static string BuildReviewContextFocusDescription(string actionLabel)
+    {
+        if (actionLabel.Contains("Daralt", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "daraltma aksiyonuyla seçildi";
+        }
+
+        if (actionLabel.Contains("İnce", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "inceleme aksiyonuyla seçildi";
+        }
+
+        if (actionLabel.Contains("Dönem", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "dönem aksiyonuyla seçildi";
+        }
+
+        if (actionLabel.Contains("Tür", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "tür aksiyonuyla seçildi";
+        }
+
+        if (actionLabel.Contains("No", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "fatura no aksiyonuyla seçildi";
+        }
+
+        return "filtre aksiyonuyla seçildi";
     }
 
     private void UpdateInvoiceReviewContextPresentation(string? contextLabel)
@@ -2011,6 +2065,7 @@ public partial class InvoicesView : UserControl
         UpdatePdfControls(null);
         RefreshPaymentControls(null);
         SetInvoiceStatus("Yeni kayıt için alanları doldurun.", isError: false);
+        UpdateInvoiceFormContextHint();
     }
 
     private void ApplyInvoiceDraft(InvoiceDraftTemplate draft)
@@ -2035,6 +2090,7 @@ public partial class InvoicesView : UserControl
         UpdateInvoiceReviewNoteControls(null);
         UpdatePdfControls(null);
         RefreshPaymentControls(null);
+        UpdateInvoiceFormContextHint();
     }
 
     private static decimal ParseDecimal(string value, string label)
