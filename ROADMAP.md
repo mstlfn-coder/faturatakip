@@ -1324,3 +1324,9 @@ Her faz bittiğinde:
 - Replay aktifken tooltip artik `Yeniden tetiklendi` ifadesine daha yakin bir ton kullaniyor.
 - Boylece replay geri bildirimi farkli yardim katmanlarinda daha ayni sesle konusuyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.79)
+
+- v1.79 tamamlandi: replay tooltip bekleme dili, yardim tonuyla daha uyumlu hale getirildi.
+- Action varsa `Replay hazir`, action yoksa daha yonlendirici bir replay yardimi aciklamasi kullaniliyor.
+- Boylece replay bekleme hali daha dogal ve yardim odakli okunuyor.
+- Smoke test olarak build ve self-test temiz gecti.

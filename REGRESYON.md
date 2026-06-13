@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.79 - Replay Bekleme Dili Uyumu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Actionli tooltip bekleme dili yumusak | OK | Bekleme hali `Replay hazir` tonuna cekildi |
+| Actionsiz tooltip bekleme dili yonlendirici | OK | Replay yardiminin ne zaman gorunecegi daha acik anlatiliyor |
+| 2026-06-13 | v1.79 | OK | Replay bekleme dili uyumu + build + self-test tamamlandi |
+
 ## v1.78 - Replay Aktiflik Dili Uyumu
 | Kontrol | Durum | Not |
 | --- | --- | --- |
