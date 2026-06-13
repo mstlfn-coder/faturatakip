@@ -1048,6 +1048,12 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.98 - Yardim Durum Satiri Tekrar Rozeti
+
+- Secili yardim durum satirlarina prefix yaninda gorunur `TEKRAR` rozeti eklendi.
+- Boylece satirin tekrar aksiyonu oldugu daha hizli taranabilir hale geldi.
+- Rozet hover ve klavye odaginda satirla birlikte ayni vurgu diline katiliyor.
+
 ## v1.97 - Yardim Durum Satiri Kisayol Etiketi
 
 - Secili yardim durum satirlarina gorunur `Enter/Space` etiketi eklendi.

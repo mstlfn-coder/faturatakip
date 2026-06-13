@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.98)
+
+- v1.98 tamamlandi: secili yardim durum satirlarina prefix yaninda `TEKRAR` rozeti eklendi.
+- Yardim satiri artik bilgi, tekrar amaci ve kisayol ipucunu ayni satirda daha net topluyor.
+- Rozet hover ve odak halinde satirla birlikte vurgu aliyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.97)
 
 - v1.97 tamamlandi: secili yardim durum satirlarina gorunur `Enter/Space` kisayol etiketi eklendi.

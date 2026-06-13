@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.98 - Yardim Durum Satiri Tekrar Rozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satirinda tekrar rozeti var | OK | `TEKRAR` rozeti prefix yaninda gorunuyor |
+| PDF yardimi durum satirinda tekrar rozeti var | OK | `TEKRAR` rozeti prefix yaninda gorunuyor |
+| 2026-06-14 | v1.98 | OK | Yardim durum satiri tekrar rozeti + build + self-test tamamlandi |
+
 ## v1.97 - Yardim Durum Satiri Kisayol Etiketi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

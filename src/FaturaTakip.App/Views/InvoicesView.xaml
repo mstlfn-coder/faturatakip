@@ -507,6 +507,39 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="InlineShortcutRepeatBorder" TargetType="Border">
+            <Setter Property="CornerRadius" Value="999" />
+            <Setter Property="Padding" Value="6,2" />
+            <Setter Property="Margin" Value="0,0,6,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="#FFF7ED" />
+            <Setter Property="BorderBrush" Value="#FDBA74" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Background" Value="#FFEDD5" />
+                    <Setter Property="BorderBrush" Value="#FB923C" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Background" Value="#FEF3C7" />
+                    <Setter Property="BorderBrush" Value="#F59E0B" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="InlineShortcutRepeatText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="#C2410C" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#9A3412" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#92400E" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="PaymentHelperPrefixBorderStyle" TargetType="Border" BasedOn="{StaticResource InlineShortcutPrefixBorder}">
             <Setter Property="Background" Value="#DCFCE7" />
             <Setter Property="BorderBrush" Value="#86EFAC" />
@@ -1097,6 +1130,10 @@
                                                            Style="{StaticResource InlineShortcutPrefixText}"
                                                            Foreground="#166534" />
                                             </Border>
+                                            <Border Style="{StaticResource InlineShortcutRepeatBorder}">
+                                                <TextBlock Text="TEKRAR"
+                                                           Style="{StaticResource InlineShortcutRepeatText}" />
+                                            </Border>
                                             <TextBlock x:Name="PaymentHelperSelectedActionStatusText"
                                                        Style="{StaticResource PaymentHelperLastActionTextStyle}" />
                                             <Border Style="{StaticResource InlineShortcutHintBorder}">
@@ -1242,6 +1279,10 @@
                                                            Text="PDF"
                                                            Style="{StaticResource InlineShortcutPrefixText}"
                                                            Foreground="#0369A1" />
+                                            </Border>
+                                            <Border Style="{StaticResource InlineShortcutRepeatBorder}">
+                                                <TextBlock Text="TEKRAR"
+                                                           Style="{StaticResource InlineShortcutRepeatText}" />
                                             </Border>
                                             <TextBlock x:Name="PaymentPdfSelectedActionStatusText"
                                                        Style="{StaticResource PaymentPdfLastActionTextStyle}" />

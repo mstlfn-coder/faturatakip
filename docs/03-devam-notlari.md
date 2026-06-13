@@ -2,15 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
-## Son Guncelleme (2026-06-14 / v1.97)
+## Son Guncelleme (2026-06-14 / v1.98)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan faz: `v1.97 - Yardim Durum Satiri Kisayol Etiketi`
-- Bu adimda secili yardim durum satirlarina gorunur `Enter/Space` etiketi eklendi.
-- Kisayol etiketi hover ve klavye odaginda satirla ayni vurguya katiliyor.
+- Son tamamlanan faz: `v1.98 - Yardim Durum Satiri Tekrar Rozeti`
+- Bu adimda secili yardim durum satirlarina prefix yaninda `TEKRAR` rozeti eklendi.
+- Rozet hover ve klavye odaginda satirla ayni vurguya katiliyor.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Prefix tarafina minik bir tekrar ikonu ya da `Tekrar` rozeti ekleyip bu satiri bir adim daha hizli taranir hale getirebiliriz.
+- Yardim durum satirinin bosluklarini biraz sikilastirip daha kompakt bir satir gorunumu verebiliriz.
