@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.43 - Baglam Cipi Tooltip Kisayol Ipuclari
+
+Bu fazda review baglam ciplerinin tooltip metinleri klavye kisayollarini da gosterecek sekilde zenginlestirildi.
+Artik cip uzerine gelindiginde tik davranisinin yani sira `Enter/Space`, `Ctrl+C` ve `Shift+F10` ipuclari da ayni satirda goruluyor.
+
+Boylece operator, yeni eklenen klavye akislarini ezberlemek zorunda kalmadan arayuz uzerinden ogrenebiliyor.
+Davranis degismeden, kullanilabilirlik ve kesfedilebilirlik artmis oldu.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.42 - Baglam Cipi Hizli Klavye Kisayollari
 
 Bu fazda review baglam ciplerine iki hizli klavye kisayolu eklendi.

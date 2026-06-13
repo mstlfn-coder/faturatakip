@@ -140,11 +140,11 @@ public static class InvoiceReviewContextFormatter
     {
         return actionKey switch
         {
-            "apply_filter" => $"Tikla ve baglam filtresini uygula: {text}",
-            "apply_period" => $"Tikla ve donem filtresini uygula: {text}",
-            "apply_type" => $"Tikla ve tur filtresini uygula: {text}",
-            "apply_invoice_no" => $"Tikla ve fatura no aramasini uygula: {text}",
-            _ => $"Tikla ve bu baglam parcasini kopyala: {text}"
+            "apply_filter" => $"Tikla veya Enter/Space ile baglam filtresini uygula: {text} | Ctrl+C: kopyala | Shift+F10: menu",
+            "apply_period" => $"Tikla veya Enter/Space ile donem filtresini uygula: {text} | Ctrl+C: kopyala | Shift+F10: menu",
+            "apply_type" => $"Tikla veya Enter/Space ile tur filtresini uygula: {text} | Ctrl+C: kopyala | Shift+F10: menu",
+            "apply_invoice_no" => $"Tikla veya Enter/Space ile fatura no aramasini uygula: {text} | Ctrl+C: kopyala | Shift+F10: menu",
+            _ => $"Tikla veya Enter/Space ile bu baglam parcasini kopyala: {text} | Ctrl+C: kopyala | Shift+F10: menu"
         };
     }
 

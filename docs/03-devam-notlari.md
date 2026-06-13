@@ -1110,3 +1110,9 @@ v0.12 sonuÃ§ notu:
 632. Boylece sag tik menusune girmeden sadece klavyeyle baglam akisinda ilerlemek mumkun hale geldi.
 633. Smoke test: dotnet build -c Release OK.
 634. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+635. v1.43 olarak review baglam ciplerinin tooltip metinlerine klavye kisayol ipuclari eklendi.
+636. Tooltip satirlarinda tik davranisina ek olarak `Enter/Space`, `Ctrl+C` ve `Shift+F10` bilgileri gosteriliyor.
+637. Boylece yeni mikro kisayollar arayuz uzerinden daha kolay kesfedilir hale geldi.
+638. Smoke test: dotnet build -c Release OK.
+639. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

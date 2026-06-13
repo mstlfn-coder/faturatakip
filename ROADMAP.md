@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.43)
+
+- v1.43 tamamlandi: review baglam ciplerinin tooltip metinlerine klavye kisayol ipuclari eklendi.
+- Tooltip artik tik davranisinin yaninda `Enter/Space`, `Ctrl+C` ve `Shift+F10` bilgisini de gosteriyor.
+- Boylece yeni mikro kisayollar arayuz uzerinden daha kolay kesfediliyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.42)
 
 - v1.42 tamamlandi: review baglam ciplerine hizli klavye kisayollari eklendi.

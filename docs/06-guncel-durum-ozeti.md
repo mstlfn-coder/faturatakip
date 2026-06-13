@@ -86,6 +86,7 @@ Son guncelleme tarihi: 2026-06-13
 37. Review baglam ciplerine klavye odagi ve klavyeden menu acma destegi eklendi.
 38. Review baglam panelinde son kullanilan cip hafif bir secim vurgusuyla izlenir hale getirildi.
 39. Review baglam ciplerinde `Enter` / `Space` ile ana aksiyon, `Ctrl+C` ile hizli kopyalama desteklendi.
+40. Review baglam cipi tooltip'lerine `Enter/Space`, `Ctrl+C`, `Shift+F10` kisayol ipuclari eklendi.
 
 ## Son 5 Commit
 
@@ -109,7 +110,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Klavye kisayollari da eklendigi icin bir sonraki mantikli kucuk adim, odaktaki cipin tooltip metnine bu kisayollari kisa bir ipucu olarak eklemek veya secili cipi `Esc` ile temiz odaga cekmek olabilir.
+- Tooltip ipuclari da eklendigi icin bir sonraki mantikli kucuk adim, odaktaki cipi `Esc` ile temiz odaga cekmek veya secili cipe kisa bir durum cubugu geri bildirimi baglamak olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

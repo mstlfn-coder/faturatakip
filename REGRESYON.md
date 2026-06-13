@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.43 - Baglam Cipi Tooltip Kisayol Ipuclari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tooltip kisayol ipucu veriyor | OK | Cip tooltip'leri tik davranisinin yaninda `Enter/Space`, `Ctrl+C` ve `Shift+F10` bilgisini de tasiyor |
+| Aksiyon ve kopya ayirimi korunuyor | OK | Aksiyonlu ve kopya ciplerinde ana davranis aciklamasi korunurken ortak kisayol ipuclari eklendi |
+| 2026-06-13 | v1.43 | OK | Baglam cipi tooltip kisayol ipuclari + build + self-test tamamlandi |
+
 ## v1.42 - Baglam Cipi Hizli Klavye Kisayollari
 | Kontrol | Durum | Not |
 | --- | --- | --- |
