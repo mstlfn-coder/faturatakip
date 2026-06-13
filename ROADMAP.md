@@ -985,6 +985,13 @@ Her faz bittiğinde:
 - Rapor gecisinden normal calisma moduna donus tek tikla kolaylasti.
 - Smoke test olarak build ve self-test temiz gecti.
 
+## Son Guncelleme (2026-06-13 / v1.34)
+
+- v1.34 tamamlandi: pasif review baglam aksiyon dugmelerine neden pasif kaldigini anlatan tooltip mesajlari eklendi.
+- Aktif durumda kisa gorev aciklamasi, pasif durumda ise `Kullanılamıyor: ...` nedeni gosteriliyor.
+- Baglam panelindeki yonlendirme daha acik ve daha az tahmine dayali hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.33)
 
 - v1.33 tamamlandi: son kullanilan review baglam ana aksiyon dugmesine hafif vurgu eklendi.

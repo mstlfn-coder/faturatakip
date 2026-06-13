@@ -1056,3 +1056,9 @@ v0.12 sonuÃ§ notu:
 587. Boylece son hareket panelde hem metin hem dugme yuzeyi uzerinden ayni anda okunabiliyor.
 588. Smoke test: dotnet build -c Release OK.
 589. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+590. v1.34 olarak pasif review baglam aksiyon dugmelerine neden kullanilamadigini anlatan tooltip metinleri eklendi.
+591. Aktif durumda kisa gorev aciklamasi, pasif durumda ise `Kullanılamıyor: ...` nedeni gosteriliyor.
+592. Boylece kullanici baglamda eksik olan parcayi daha hizli anlayabiliyor.
+593. Smoke test: dotnet build -c Release OK.
+594. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

@@ -1472,6 +1472,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Normal moda donus var | OK | Filtreler varsayilan akisina geri donuyor |
 | 2026-06-13 | v1.26 | OK | Baglami temizle aksiyonu + build + self-test tamamlandi |
 
+## v1.34 - Pasif Baglam Aksiyon Nedenleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Pasif tooltip acik | OK | Pasif aksiyonlarda neden kullanilamadigi tooltip ile gosteriliyor |
+| Aktif tooltip korundu | OK | Aktif aksiyonlarda kisa gorev aciklamasi korunuyor |
+| 2026-06-13 | v1.34 | OK | Pasif baglam aksiyon nedenleri + build + self-test tamamlandi |
+
 ## v1.33 - Son Aksiyon Dugme Vurgusu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

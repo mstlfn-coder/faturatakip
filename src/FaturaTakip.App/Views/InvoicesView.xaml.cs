@@ -1636,6 +1636,18 @@ public partial class InvoicesView : UserControl
         button.FontWeight = FontWeights.Bold;
     }
 
+    private static void UpdateReviewContextActionButtonToolTip(Button? button, bool isEnabled, string enabledText, string disabledReason)
+    {
+        if (button is null)
+        {
+            return;
+        }
+
+        button.ToolTip = isEnabled
+            ? enabledText
+            : $"{enabledText} Kullanılamıyor: {disabledReason}";
+    }
+
     private void UpdateInvoiceReviewContextPresentation(string? contextLabel)
     {
         var currentContextSignature = string.IsNullOrWhiteSpace(contextLabel)
@@ -1736,31 +1748,62 @@ public partial class InvoicesView : UserControl
         if (ApplyInvoiceReviewContextFilterButton is not null)
         {
             ApplyInvoiceReviewContextFilterButton.IsEnabled = hasSuggestedFilter;
+            UpdateReviewContextActionButtonToolTip(
+                ApplyInvoiceReviewContextFilterButton,
+                hasSuggestedFilter,
+                "Baglamdan onerilen hizli filtreyi uygular.",
+                "Baglamdan uygulanabilir filtre bilgisi cikmadi.");
         }
 
         if (ApplyInvoiceReviewContextNarrowButton is not null)
         {
             ApplyInvoiceReviewContextNarrowButton.IsEnabled = hasAnyNarrowing;
+            UpdateReviewContextActionButtonToolTip(
+                ApplyInvoiceReviewContextNarrowButton,
+                hasAnyNarrowing,
+                "Filtre, donem, tur ve fatura no ipuclarini birlikte uygular.",
+                "Daraltma icin filtre, donem, tur veya fatura no ipucu yok.");
         }
 
+        var canFocusFromContext = hasSuggestedFilter || hasPreferredInvoice || hasPeriod || hasInvoiceType || hasInvoiceNumber;
         if (FocusInvoiceFromReviewContextButton is not null)
         {
-            FocusInvoiceFromReviewContextButton.IsEnabled = hasSuggestedFilter || hasPreferredInvoice || hasPeriod || hasInvoiceType || hasInvoiceNumber;
+            FocusInvoiceFromReviewContextButton.IsEnabled = canFocusFromContext;
+            UpdateReviewContextActionButtonToolTip(
+                FocusInvoiceFromReviewContextButton,
+                canFocusFromContext,
+                "Review akisini baglamdan kurar (Ctrl+Shift+I).",
+                "Inceleme akisi kuracak baglam ipucu yok.");
         }
 
         if (ApplyInvoiceReviewContextPeriodButton is not null)
         {
             ApplyInvoiceReviewContextPeriodButton.IsEnabled = hasPeriod;
+            UpdateReviewContextActionButtonToolTip(
+                ApplyInvoiceReviewContextPeriodButton,
+                hasPeriod,
+                "Baglamdaki donemi yil/ay filtresine uygular.",
+                "Baglamda donem bilgisi yok.");
         }
 
         if (ApplyInvoiceReviewContextTypeButton is not null)
         {
             ApplyInvoiceReviewContextTypeButton.IsEnabled = hasInvoiceType;
+            UpdateReviewContextActionButtonToolTip(
+                ApplyInvoiceReviewContextTypeButton,
+                hasInvoiceType,
+                "Baglamdaki fatura turunu filtreye uygular.",
+                "Baglamda fatura turu bilgisi yok.");
         }
 
         if (ApplyInvoiceReviewContextInvoiceNoButton is not null)
         {
             ApplyInvoiceReviewContextInvoiceNoButton.IsEnabled = hasInvoiceNumber;
+            UpdateReviewContextActionButtonToolTip(
+                ApplyInvoiceReviewContextInvoiceNoButton,
+                hasInvoiceNumber,
+                "Baglamdaki fatura numarasini arama kutusuna uygular.",
+                "Baglamda fatura numarasi bilgisi yok.");
         }
 
         UpdateReviewContextPrimaryActionButtonEmphasis();

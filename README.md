@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.34 - Pasif Baglam Aksiyon Nedenleri
+
+Bu fazda review baglam panelindeki pasif aksiyon dugmelerinin tooltip metinleri daha acik hale getirildi.
+Bir aksiyon calisabilir durumdaysa kisa gorev aciklamasi gorunuyor; pasifse ayni tooltip icinde neden kullanilamadigi da acikca yaziliyor.
+
+Boylece kullanici `neden gri?` diye tahmin etmek zorunda kalmiyor.
+Ozellikle filtre, daraltma, donem, tur ve fatura no aksiyonlarinda eksik baglam bilgisini hizli anlamak kolaylasti.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.33 - Son Aksiyon Dugme Vurgusu
 
 Bu fazda review baglam panelindeki ana aksiyon dugmelerinden son kullanilan olana hafif bir gorsel vurgu eklendi.
