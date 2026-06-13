@@ -1051,6 +1051,21 @@ public partial class InvoicesView : UserControl
             return;
         }
 
+        if (e.Key == Key.Enter || e.Key == Key.Space)
+        {
+            ExecuteReviewContextChipPrimaryAction(chip);
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.C && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+        {
+            RememberReviewContextChip(chip);
+            CopyReviewContextChipToClipboard(chip.Text);
+            e.Handled = true;
+            return;
+        }
+
         if (e.Key == Key.Apps || (e.Key == Key.F10 && Keyboard.Modifiers.HasFlag(ModifierKeys.Shift)))
         {
             ShowReviewContextChipContextMenu(button, chip);

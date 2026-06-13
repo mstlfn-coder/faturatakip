@@ -1104,3 +1104,9 @@ v0.12 sonuÃ§ notu:
 627. Baglam imzasi degistiginde onceki cip vurgusu otomatik temizleniyor.
 628. Smoke test: dotnet build -c Release OK.
 629. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+630. v1.42 olarak review baglam ciplerine hizli klavye kisayollari eklendi.
+631. Odaktaki cipte `Enter` veya `Space` ana aksiyonu, `Ctrl+C` ise dogrudan kopyalamayi calistiriyor.
+632. Boylece sag tik menusune girmeden sadece klavyeyle baglam akisinda ilerlemek mumkun hale geldi.
+633. Smoke test: dotnet build -c Release OK.
+634. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

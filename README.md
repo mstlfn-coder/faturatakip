@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.42 - Baglam Cipi Hizli Klavye Kisayollari
+
+Bu fazda review baglam ciplerine iki hizli klavye kisayolu eklendi.
+Odaktaki cipte `Enter` veya `Space` ana aksiyonu calistiriyor; `Ctrl+C` ise cipi dogrudan panoya kopyaliyor.
+
+Boylece operator sag tik menusune girmeden, sadece klavyeyle baglam ipucundan ilerleyebiliyor.
+Mevcut tiklama ve menu davranislari korunurken, odakli cip akisina daha hizli bir yol eklenmis oldu.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.41 - Son Baglam Cipi Vurgusu
 
 Bu fazda review baglam panelinde son kullanilan cip hafif ama kalici bir secim vurgusuyla izlenmeye baslandi.

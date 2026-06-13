@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.42)
+
+- v1.42 tamamlandi: review baglam ciplerine hizli klavye kisayollari eklendi.
+- Odaktaki cipte `Enter` / `Space` ana aksiyonu, `Ctrl+C` ise dogrudan kopyalamayi calistiriyor.
+- Mevcut sag tik menusu ve odak gorunurlugu korunarak klavye akis hizlandirildi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.41)
 
 - v1.41 tamamlandi: review baglam panelinde son kullanilan cip kalici mikro vurgu ile izlenir hale getirildi.

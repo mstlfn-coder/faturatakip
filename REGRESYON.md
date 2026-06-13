@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.42 - Baglam Cipi Hizli Klavye Kisayollari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Enter ana aksiyonu calistiriyor | OK | Odaktaki cipte `Enter` veya `Space` birincil davranisi tetikliyor |
+| Ctrl+C kopyaliyor | OK | Odaktaki cipte `Ctrl+C` metni panoya kopyalarken son kullanilan cip kaydini da guncelliyor |
+| 2026-06-13 | v1.42 | OK | Baglam cipi hizli klavye kisayollari + build + self-test tamamlandi |
+
 ## v1.41 - Son Baglam Cipi Vurgusu
 | Kontrol | Durum | Not |
 | --- | --- | --- |
