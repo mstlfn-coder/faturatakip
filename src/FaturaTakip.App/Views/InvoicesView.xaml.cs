@@ -3566,13 +3566,13 @@ public partial class InvoicesView : UserControl
         {
             var replayLabel = isReplayActive
                 ? "Yeniden tetiklendi."
-                : "Replay hazir.";
+                : "Hazir.";
             return $"{actionName} replay ayari: {seconds} sn, {emphasisLabel} vurgu. {replayLabel}";
         }
 
         var guidanceLabel = isReplayActive
             ? "Replay yeniden tetiklendi."
-            : "Bir action secildiginde bu replay yardimi burada gorunur.";
+            : "Bir action sec ve replay yardimini hazirla.";
         return $"Replay ayari hazir: {seconds} sn, {emphasisLabel} vurgu. {guidanceLabel}";
     }
 

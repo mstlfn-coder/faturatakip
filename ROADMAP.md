@@ -1330,3 +1330,9 @@ Her faz bittiğinde:
 - Action varsa `Replay hazir`, action yoksa daha yonlendirici bir replay yardimi aciklamasi kullaniliyor.
 - Boylece replay bekleme hali daha dogal ve yardim odakli okunuyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.80)
+
+- v1.80 tamamlandi: replay tooltip tonu, komsu kisa yardim metinleriyle daha kompakt hale getirildi.
+- Action varsa `Hazir`, action yoksa daha kisa bir yonlendirme kullaniliyor.
+- Boylece replay tooltip dili cevresindeki yardim metinleriyle daha ayni ritimde akiyor.
+- Smoke test olarak build ve self-test temiz gecti.
