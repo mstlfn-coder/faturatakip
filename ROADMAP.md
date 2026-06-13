@@ -985,6 +985,13 @@ Her faz bittiğinde:
 - Rapor gecisinden normal calisma moduna donus tek tikla kolaylasti.
 - Smoke test olarak build ve self-test temiz gecti.
 
+## Son Guncelleme (2026-06-13 / v1.36)
+
+- v1.36 tamamlandi: review baglam cipleri tiklanabilir hizli kopyalama aracina donustu.
+- Cipe tiklandiginda ilgili baglam parcasi panoya aliniyor ve durum mesaji gosteriliyor.
+- Mikro operator rahatligi, mevcut baglam ve aksiyon akislarini bozmadan eklendi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.35)
 
 - v1.35 tamamlandi: review baglam metnine ozet/detay gorunumu eklendi.

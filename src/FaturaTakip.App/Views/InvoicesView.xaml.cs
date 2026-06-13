@@ -1019,6 +1019,24 @@ public partial class InvoicesView : UserControl
         CopyInvoiceReviewContextToClipboard();
     }
 
+    private void InvoiceReviewContextChipButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { Tag: string chipText } || string.IsNullOrWhiteSpace(chipText))
+        {
+            return;
+        }
+
+        try
+        {
+            Clipboard.SetText(chipText);
+            SetInvoiceStatus($"Bağlam çipi panoya kopyalandı: {chipText}", isError: false);
+        }
+        catch (Exception exception) when (exception is ExternalException or InvalidOperationException)
+        {
+            SetInvoiceStatus($"Bağlam çipi panoya kopyalanamadı: {exception.Message}", isError: true);
+        }
+    }
+
     private void ClearInvoiceReviewContextButton_Click(object sender, RoutedEventArgs e)
     {
         ClearInvoiceReviewContextState();

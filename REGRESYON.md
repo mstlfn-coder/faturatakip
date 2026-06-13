@@ -1472,6 +1472,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Normal moda donus var | OK | Filtreler varsayilan akisina geri donuyor |
 | 2026-06-13 | v1.26 | OK | Baglami temizle aksiyonu + build + self-test tamamlandi |
 
+## v1.36 - Baglam Cipi Hizli Kopyalama
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ciplere tiklama var | OK | Baglam cipleri tiklandiginda ilgili metin panoya kopyalaniyor |
+| Durum geri bildirimi var | OK | Kopyalama sonrasi alt durum cubugunda kisa mesaj gosteriliyor |
+| 2026-06-13 | v1.36 | OK | Baglam cipi hizli kopyalama + build + self-test tamamlandi |
+
 ## v1.35 - Baglam Ozet/Detay Gorunumu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -1068,3 +1068,9 @@ v0.12 sonuÃ§ notu:
 597. Bu tercih review baglam ayarlariyla birlikte kalici olarak saklaniyor.
 598. Smoke test: dotnet build -c Release OK.
 599. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+600. v1.36 olarak review baglam cipleri tiklanabilir hizli kopyalama aracina donusturuldu.
+601. Cipe tiklandiginda ilgili baglam parcasi panoya aliniyor ve kisa durum mesaji gosteriliyor.
+602. Boylece baglam bilgisinin parcali yeniden kullanimi daha rahat hale geldi.
+603. Smoke test: dotnet build -c Release OK.
+604. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

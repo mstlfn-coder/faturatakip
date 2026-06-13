@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.36 - Baglam Cipi Hizli Kopyalama
+
+Bu fazda review baglam panelindeki baglam cipleri tiklanabilir hale getirildi.
+Artik bir cipe tiklandiginda o baglam parcasi dogrudan panoya kopyalaniyor ve alt durum cubugunda kisa bir geri bildirim gorunuyor.
+
+Boylece rapor, issue, varlik veya donem gibi baglam parcalarini elle secmeden hizlica baska yere tasimak kolaylasti.
+Bu degisiklik sadece mikro operator rahatligi ekliyor; mevcut baglam gorunumu ve aksiyon akislarini bozmuyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.35 - Baglam Ozet/Detay Gorunumu
 
 Bu fazda review baglam metni icin kisa ozet ve detay gorunumu arasinda gecis eklendi.

@@ -36,6 +36,7 @@ Son guncelleme tarihi: 2026-06-13
   - `v1.33` Son Aksiyon Dugme Vurgusu
   - `v1.34` Pasif Baglam Aksiyon Nedenleri
   - `v1.35` Baglam Ozet/Detay Gorunumu
+  - `v1.36` Baglam Cipi Hizli Kopyalama
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -74,6 +75,7 @@ Son guncelleme tarihi: 2026-06-13
 30. Son kullanilan ana baglam aksiyon dugmesine hafif bir gorsel vurgu eklendi.
 31. Pasif baglam aksiyon dugmeleri, neden kullanilamadigini tooltip uzerinden aciklayacak hale getirildi.
 32. Review baglam metni icin ozet ve detay gorunumu arasinda gecis eklendi.
+33. Review baglam cipleri tiklanabilir hizli kopyalama aracina donusturuldu.
 
 ## Son 5 Commit
 
@@ -97,7 +99,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Baglam metni icin ozet/detay gecisi de eklendigi icin bir sonraki mantikli adim, review baglam panelindeki cipler icin tiklanabilir mikro kisayollar veya filtreye hizli kopyalama gibi rahatliklar olabilir.
+- Baglam cipleri de hizli kopyalama aracina donustugu icin bir sonraki mantikli adim, uygun cip turlerinde dogrudan filtre uygulama veya arama kutusuna tasima gibi daha aktif mikro kisayollar olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

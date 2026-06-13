@@ -170,6 +170,14 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="ContextChipButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
         <Style x:Key="ActionBadgeBorder" TargetType="Border">
             <Setter Property="Background" Value="#F8FAFC" />
             <Setter Property="BorderBrush" Value="#CBD5E1" />
@@ -857,14 +865,19 @@
                                                 </ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
-                                                        <Border Style="{StaticResource ContextChipBorder}">
-                                                            <StackPanel Orientation="Horizontal">
-                                                                <TextBlock Text="{Binding Prefix}"
-                                                                           Style="{StaticResource ContextChipPrefixText}" />
-                                                                <TextBlock Text="{Binding Text}"
-                                                                           Style="{StaticResource ContextChipText}" />
-                                                            </StackPanel>
-                                                        </Border>
+                                                        <Button Style="{StaticResource ContextChipButton}"
+                                                                Tag="{Binding Text}"
+                                                                ToolTip="Tikla ve bu baglam parcasini kopyala"
+                                                                Click="InvoiceReviewContextChipButton_Click">
+                                                            <Border Style="{StaticResource ContextChipBorder}">
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <TextBlock Text="{Binding Prefix}"
+                                                                               Style="{StaticResource ContextChipPrefixText}" />
+                                                                    <TextBlock Text="{Binding Text}"
+                                                                               Style="{StaticResource ContextChipText}" />
+                                                                </StackPanel>
+                                                            </Border>
+                                                        </Button>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
