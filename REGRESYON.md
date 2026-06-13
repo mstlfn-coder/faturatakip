@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.71 - Replay Sure Izi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme replay sure isareti var | OK | Prefix icinde sure 1-4 arasi cizgi yogunluguyla ayristiriliyor |
+| PDF replay sure isareti var | OK | Prefix icinde sure 1-4 arasi cizgi yogunluguyla ayristiriliyor |
+| 2026-06-13 | v1.71 | OK | Replay sure izi + build + self-test tamamlandi |
+
 ## v1.70 - Replay Vurgu Seviye Isareti
 | Kontrol | Durum | Not |
 | --- | --- | --- |

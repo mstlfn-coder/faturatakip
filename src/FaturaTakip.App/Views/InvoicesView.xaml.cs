@@ -2839,7 +2839,9 @@ public partial class InvoicesView : UserControl
 
         if (PaymentHelperReplayPreferenceLevelText is not null)
         {
-            PaymentHelperReplayPreferenceLevelText.Text = BuildReplayEmphasisIndicator(_invoiceReviewPreferences.PaymentShortcutReplayEmphasis);
+            PaymentHelperReplayPreferenceLevelText.Text = BuildReplayLevelIndicator(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds);
             PaymentHelperReplayPreferenceLevelText.Foreground = new SolidColorBrush(
                 string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
                     ? Color.FromRgb(95, 107, 122)
@@ -3073,7 +3075,9 @@ public partial class InvoicesView : UserControl
 
         if (PaymentPdfReplayPreferenceLevelText is not null)
         {
-            PaymentPdfReplayPreferenceLevelText.Text = BuildReplayEmphasisIndicator(_invoiceReviewPreferences.PaymentShortcutReplayEmphasis);
+            PaymentPdfReplayPreferenceLevelText.Text = BuildReplayLevelIndicator(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds);
             PaymentPdfReplayPreferenceLevelText.Foreground = new SolidColorBrush(
                 string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
                     ? Color.FromRgb(95, 107, 122)
@@ -3506,14 +3510,17 @@ public partial class InvoicesView : UserControl
         };
     }
 
-    private static string BuildReplayEmphasisIndicator(string emphasis)
+    private static string BuildReplayLevelIndicator(string emphasis, int seconds)
     {
-        return emphasis switch
+        var emphasisIndicator = emphasis switch
         {
             "low" => "·",
             "high" => "•••",
             _ => "••"
         };
+
+        var secondsIndicator = new string('|', Math.Clamp(seconds, 1, 4));
+        return $"{emphasisIndicator}{secondsIndicator}";
     }
 
     private sealed record MonthOption(int Value, string Label);

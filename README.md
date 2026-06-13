@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.71 - Replay Sure Izi
+
+Bu fazda replay ozet prefix isaretindeki minik seviye gostergesi, sure bilgisini de yansitacak sekilde zenginlestirildi.
+Vurgu yogunlugu nokta dizisiyle, replay suresi ise kisa cizgi sayisiyla birlikte okunuyor.
+
+Boylece kullanici, replay ayarinin hem siddetini hem de ne kadar sure gorunur kalacagini tek bakista daha hizli kavrayabiliyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.56 - Son Aksiyon Satirinda Gecici Vurgu
 
 Bu fazda odeme yardim ve odeme PDF yardim alanlarindaki son aksiyon satiri, guncellendiginde kisa sureli gorsel vurgu alacak sekilde canlandirildi.

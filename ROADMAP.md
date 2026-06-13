@@ -1276,3 +1276,9 @@ Her faz bittiğinde:
 - Dusuk, orta ve guclu vurgu seviyeleri artik farkli nokta yogunluklariyla ayristiriliyor.
 - Boylece replay siddeti daha hizli taranabilir hale geldi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.71)
+
+- v1.71 tamamlandi: replay seviye isareti, sure bilgisini de anlatan kisa cizgi iziyle zenginlestirildi.
+- Vurgu yogunlugu nokta dizisiyle, replay suresi ise 1-4 arasi cizgi sayisiyla birlikte okunuyor.
+- Boylece replay ayarinin siddeti ve suresi tek prefix icinde daha hizli taranabiliyor.
+- Smoke test olarak build ve self-test temiz gecti.
