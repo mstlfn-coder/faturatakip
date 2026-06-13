@@ -1020,3 +1020,9 @@ v0.12 sonuÃ§ notu:
 557. Self-test beklentisi yeni kisayolu kapsayacak sekilde duzeltildi.
 558. Smoke test: dotnet build -c Release OK.
 559. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+560. v1.28 olarak inceleme baglami aksiyonlarinin durum mesajlari kisaltilip ortak formata toplandi.
+561. `Filtre`, `Daraltma`, `Inceleme`, `Donem`, `Tur`, `Fatura no` ve `Temizle` akislarinda `Bağlam: ...` bicimi kullanilmaya baslandi.
+562. Boylece alt durum cubugundaki operator geri bildirimi daha hizli okunur hale geldi.
+563. Smoke test: dotnet build -c Release OK.
+564. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

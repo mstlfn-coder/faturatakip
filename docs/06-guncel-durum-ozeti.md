@@ -1,6 +1,6 @@
 ﻿# Guncel Durum Ozeti
 
-Son guncelleme tarihi: 2026-06-12
+Son guncelleme tarihi: 2026-06-13
 
 ## Hemen Okunacak Ozet
 
@@ -28,6 +28,7 @@ Son guncelleme tarihi: 2026-06-12
   - `v1.25` Rozet Secim Temizleme
   - `v1.26` Baglami Temizle Aksiyonu
   - `v1.27` Baglami Temizle Kisayolu
+  - `v1.28` Baglam Durum Mesaji Temizligi
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -58,14 +59,15 @@ Son guncelleme tarihi: 2026-06-12
 22. Baglam degistiginde onceki secili rozet vurgusu otomatik temizlenir hale getirildi.
 23. `Bağlamı Temizle` aksiyonu ile review baglamindan normal moda tek tikla donus eklendi.
 24. `Ctrl+Shift+X` ile baglam temizleme akisi klavyeden de tetiklenebilir hale getirildi.
+25. Inceleme baglami aksiyonlarinin durum mesajlari daha kisa ve ortak formatli hale getirildi.
 
 ## Son 5 Commit
 
-- `c208e4e` `fix: clean report view turkish text`
-- `4dc2384` `fix: clean review context turkish text`
-- `1c88d6a` `feat: add review context invoice number action`
-- `0b96ba9` `feat: add review context invoice type action`
-- `d71c845` `feat: add review context period filter action (#103)`
+- `34a4f0c` `feat: add shortcut for clearing review context`
+- `ca28b1b` `feat: add clear action for review context`
+- `2b405ea` `fix: reset badge highlight when review context changes`
+- `a55cc11` `feat: highlight last used review context badge`
+- `861d450` `feat: make review context badges actionable`
 
 ## Sonraki Mantikli Adim
 
@@ -78,6 +80,10 @@ Pratik tercih:
 
 - Dokuman tarafinda: `README`, `ROADMAP`, `REGRESYON` ve bu dosyanin en guncel bloklarini referans kabul et
 - Uygulama tarafinda: baglam aksiyonlarinin ardindan operator akisini hizlandiracak yeni kucuk iyilestirmeye gec
+
+Guncel pratik tercih:
+
+- Inceleme baglam panelinde durum mesajlari sadeleştirildigi icin bir sonraki mantikli adim, review akisinda secili kaydin hangi baglam aksiyonuyla geldigini satir icinde daha net gosterecek mikro geri bildirimlerden biri olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

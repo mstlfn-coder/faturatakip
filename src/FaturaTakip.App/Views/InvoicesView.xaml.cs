@@ -1039,11 +1039,24 @@ public partial class InvoicesView : UserControl
         }
     }
 
+    private void SetReviewContextActionSuccess(string actionLabel, string? detail = null)
+    {
+        var suffix = string.IsNullOrWhiteSpace(detail)
+            ? string.Empty
+            : $" - {detail}";
+        SetInvoiceStatus($"Bağlam: {actionLabel}{suffix}.", isError: false);
+    }
+
+    private void SetReviewContextActionError(string message)
+    {
+        SetInvoiceStatus(message, isError: true);
+    }
+
     private void ApplyInvoiceReviewContextFilter()
     {
         if (!InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out var suggestedFilter))
         {
-            SetInvoiceStatus("Bağlamdan uygulanabilir bir filtre çıkarılamadı.", isError: true);
+            SetReviewContextActionError("Bağlamdan uygulanabilir bir filtre çıkarılamadı.");
             return;
         }
 
@@ -1055,17 +1068,17 @@ public partial class InvoicesView : UserControl
             case InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed:
                 SelectReviewStatusFilter(InvoiceReviewStatusFilter.Unreviewed);
                 ApplyFiltersToGrid(selectFirstIfAvailable: true);
-                SetInvoiceStatus("Bağlamdan 'İncelenmedi' filtresi uygulandı.", isError: false);
+                SetReviewContextActionSuccess("Filtre uygulandı", "İncelenmedi");
                 break;
             case InvoiceReviewContextFormatter.SuggestedFilter.Overdue:
                 SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Overdue);
                 ApplyFiltersToGrid(selectFirstIfAvailable: true);
-                SetInvoiceStatus("Bağlamdan 'Gecikmiş' filtresi uygulandı.", isError: false);
+                SetReviewContextActionSuccess("Filtre uygulandı", "Gecikmiş");
                 break;
             case InvoiceReviewContextFormatter.SuggestedFilter.MissingPdf:
                 SelectPdfStatusFilter(InvoicePdfStatusFilter.MissingPdf);
                 ApplyFiltersToGrid(selectFirstIfAvailable: true);
-                SetInvoiceStatus("Bağlamdan 'PDF Eksik' filtresi uygulandı.", isError: false);
+                SetReviewContextActionSuccess("Filtre uygulandı", "PDF Eksik");
                 break;
         }
     }
@@ -1080,7 +1093,7 @@ public partial class InvoicesView : UserControl
         ResetQuickFilters();
         ApplyFiltersToGrid(selectedId: _selectedInvoice?.Id, selectFirstIfAvailable: true);
         UpdateInvoiceReviewNavigationControls();
-        SetInvoiceStatus("İnceleme bağlamı temizlendi; normal filtre akışına dönüldü.", isError: false);
+        SetReviewContextActionSuccess("Temizlendi", "Normal akış");
     }
 
     private void ApplyInvoiceReviewContextNarrow()
@@ -1092,7 +1105,7 @@ public partial class InvoicesView : UserControl
 
         if (!hasSuggestedFilter && !hasPeriod && !hasInvoiceType && !hasInvoiceNumber)
         {
-            SetInvoiceStatus("Bağlamdan daraltılacak bir ipucu çıkarılamadı.", isError: true);
+            SetReviewContextActionError("Bağlamdan daraltılacak bir ipucu çıkarılamadı.");
             return;
         }
 
@@ -1140,23 +1153,23 @@ public partial class InvoicesView : UserControl
         var selectedInvoice = ApplyFiltersToGridCore(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: true);
         if (selectedInvoice is null)
         {
-            SetInvoiceStatus($"Bağlam daraltması uygulandı fakat eslesen kayit bulunamadi: {string.Join(" + ", appliedParts)}", isError: true);
+            SetReviewContextActionError($"Bağlam daraltması uygulandı fakat eslesen kayit bulunamadi: {string.Join(" + ", appliedParts)}");
             return;
         }
 
         if (_invoiceReviewPreferredInvoiceId is not null && selectedInvoice.Id == _invoiceReviewPreferredInvoiceId.Value)
         {
-            SetInvoiceStatus($"Bağlam daraltması uygulandı ve baglam kaydina odaklanildi: {selectedInvoice.InvoiceNo}", isError: false);
+            SetReviewContextActionSuccess("Daraltma uygulandı", $"Odak {selectedInvoice.InvoiceNo}");
             return;
         }
 
         if (_invoiceReviewPreferredInvoiceId is not null)
         {
-            SetInvoiceStatus($"Bağlam daraltması uygulandı; baglam kaydi bulunamadigi icin en uygun kayda odaklanildi: {selectedInvoice.InvoiceNo}", isError: false);
+            SetReviewContextActionSuccess("Daraltma uygulandı", $"En uygun odak {selectedInvoice.InvoiceNo}");
             return;
         }
 
-        SetInvoiceStatus($"Bağlam daraltması uygulandı: {string.Join(" + ", appliedParts)}", isError: false);
+        SetReviewContextActionSuccess("Daraltma uygulandı", string.Join(" + ", appliedParts));
     }
 
     private void FocusInvoiceFromReviewContext()
@@ -1171,7 +1184,7 @@ public partial class InvoicesView : UserControl
             !InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out _) &&
             !InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out _))
         {
-            SetInvoiceStatus("Bağlamdan kurulacak bir inceleme akışı çıkarılamadı.", isError: true);
+            SetReviewContextActionError("Bağlamdan kurulacak bir inceleme akışı çıkarılamadı.");
             return;
         }
 
@@ -1201,7 +1214,7 @@ public partial class InvoicesView : UserControl
             var detailText = appliedSecondaryParts.Length == 0
                 ? string.Empty
                 : $" ({string.Join(" + ", appliedSecondaryParts)})";
-            SetInvoiceStatus($"Bağlamdan inceleme görünümü kuruldu fakat eslesen kayit bulunamadi{detailText}.", isError: true);
+            SetReviewContextActionError($"Bağlamdan inceleme görünümü kuruldu fakat eslesen kayit bulunamadi{detailText}.");
             return;
         }
 
@@ -1220,24 +1233,24 @@ public partial class InvoicesView : UserControl
 
         if (hasPreferredInvoice && selectedInvoice.Id == _invoiceReviewPreferredInvoiceId)
         {
-            SetInvoiceStatus($"Bağlamdan {modeLabel} incelemesi kuruldu ve kayda odaklanıldı{suffix}: {selectedInvoice.InvoiceNo}", isError: false);
+            SetReviewContextActionSuccess($"{modeLabel} incelemesi", $"Odak {selectedInvoice.InvoiceNo}{suffix}");
             return;
         }
 
         if (hasPreferredInvoice)
         {
-            SetInvoiceStatus($"Bağlamdan {modeLabel} incelemesi kuruldu; baglam kaydi bulunamadigi icin en uygun kayda gecildi{suffix}: {selectedInvoice.InvoiceNo}", isError: false);
+            SetReviewContextActionSuccess($"{modeLabel} incelemesi", $"En uygun odak {selectedInvoice.InvoiceNo}{suffix}");
             return;
         }
 
-        SetInvoiceStatus($"Bağlamdan {modeLabel} incelemesi kuruldu{suffix}: {selectedInvoice.InvoiceNo}", isError: false);
+        SetReviewContextActionSuccess($"{modeLabel} incelemesi", $"{selectedInvoice.InvoiceNo}{suffix}");
     }
 
     private void ApplyInvoiceReviewContextPeriod()
     {
         if (!InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out var year, out var month))
         {
-            SetInvoiceStatus("Bağlamdan uygulanabilir bir dönem çıkarılamadı.", isError: true);
+            SetReviewContextActionError("Bağlamdan uygulanabilir bir dönem çıkarılamadı.");
             return;
         }
 
@@ -1246,14 +1259,14 @@ public partial class InvoicesView : UserControl
         SelectYearFilter(year);
         SelectMonthFilter(month);
         ApplyFiltersToGrid(selectFirstIfAvailable: true);
-        SetInvoiceStatus($"Bağlamdan dönem filtresi uygulandı: {year:D4}-{month:D2}", isError: false);
+        SetReviewContextActionSuccess("Dönem uygulandı", $"{year:D4}-{month:D2}");
     }
 
     private void ApplyInvoiceReviewContextType()
     {
         if (!InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out var invoiceTypeName))
         {
-            SetInvoiceStatus("Bağlamdan uygulanabilir bir fatura türü çıkarılamadı.", isError: true);
+            SetReviewContextActionError("Bağlamdan uygulanabilir bir fatura türü çıkarılamadı.");
             return;
         }
 
@@ -1261,19 +1274,19 @@ public partial class InvoicesView : UserControl
         ResetQuickFilters();
         if (!SelectInvoiceTypeFilter(invoiceTypeName))
         {
-            SetInvoiceStatus($"Bağlamdaki fatura türü listede bulunamadı: {invoiceTypeName}", isError: true);
+            SetReviewContextActionError($"Bağlamdaki fatura türü listede bulunamadı: {invoiceTypeName}");
             return;
         }
 
         ApplyFiltersToGrid(selectFirstIfAvailable: true);
-        SetInvoiceStatus($"Bağlamdan fatura türü filtresi uygulandı: {invoiceTypeName}", isError: false);
+        SetReviewContextActionSuccess("Tür uygulandı", invoiceTypeName);
     }
 
     private void ApplyInvoiceReviewContextInvoiceNo()
     {
         if (!InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out var invoiceNumber))
         {
-            SetInvoiceStatus("Bağlamdan uygulanabilir bir fatura no çıkarılamadı.", isError: true);
+            SetReviewContextActionError("Bağlamdan uygulanabilir bir fatura no çıkarılamadı.");
             return;
         }
 
@@ -1281,7 +1294,7 @@ public partial class InvoicesView : UserControl
         ResetQuickFilters();
         InvoiceSearchInput.Text = invoiceNumber;
         ApplyFiltersToGrid(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: true);
-        SetInvoiceStatus($"Bağlamdan fatura no araması uygulandı: {invoiceNumber}", isError: false);
+        SetReviewContextActionSuccess("Fatura no uygulandı", invoiceNumber);
     }
 
     private void UpdateInvoiceReviewContextPresentation(string? contextLabel)

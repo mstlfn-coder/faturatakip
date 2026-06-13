@@ -1472,6 +1472,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Normal moda donus var | OK | Filtreler varsayilan akisina geri donuyor |
 | 2026-06-13 | v1.26 | OK | Baglami temizle aksiyonu + build + self-test tamamlandi |
 
+## v1.28 - Baglam Durum Mesaji Temizligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Mesaj formati ortak | OK | Baglam aksiyonlari `Bağlam: ...` biciminde kisa durum mesaji uretir hale geldi |
+| Kapsam yeterli | OK | Filtre, daraltma, inceleme, donem, tur, no ve temizleme akislarinda yeni format kullaniliyor |
+| 2026-06-13 | v1.28 | OK | Baglam durum mesaji temizligi + build + self-test tamamlandi |
+
 ## v1.27 - Baglami Temizle Kisayolu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

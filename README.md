@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.28 - Baglam Durum Mesaji Temizligi
+
+Bu fazda inceleme baglami aksiyonlarinin durum mesajlari daha kisa ve tutarli hale getirildi.
+`Filtre`, `Daraltma`, `Inceleme`, `Donem`, `Tur`, `Fatura no` ve `Temizle` akislarinda ortak bir mesaj formati kullanilmaya baslandi.
+
+Boylece operator, alt durum cubugunda hangi baglam aksiyonunun calistigini daha hizli okuyabiliyor.
+Mesajlar daha az yer kapliyor ve ayni paneldeki rozetli aksiyon diliyle daha uyumlu calisiyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.27 - Baglami Temizle Kisayolu
 
 Bu fazda `Bağlamı Temizle` aksiyonuna klavye kisayolu eklendi.

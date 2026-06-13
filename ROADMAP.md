@@ -985,6 +985,13 @@ Her faz bittiğinde:
 - Rapor gecisinden normal calisma moduna donus tek tikla kolaylasti.
 - Smoke test olarak build ve self-test temiz gecti.
 
+## Son Guncelleme (2026-06-13 / v1.28)
+
+- v1.28 tamamlandi: inceleme baglami aksiyonlarinin durum mesajlari kisaltilip ortak formata toplandi.
+- `Filtre`, `Daraltma`, `Inceleme`, `Donem`, `Tur`, `Fatura no` ve `Temizle` akislarinda daha tutarli alt durum mesajlari kullaniliyor.
+- Alt durum cubugundaki geri bildirim daha hizli taranabilir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.27)
 
 - v1.27 tamamlandi: `Bağlamı Temizle` icin `Ctrl+Shift+X` kisayolu eklendi.
