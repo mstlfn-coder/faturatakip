@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.77 - Replay Dili Uyumu
+
+Bu fazda replay tooltip dili, replay ozet satirindaki ifade kaliplariyla uyumlu hale getirildi.
+Action varsa tooltip artik `replay ayari` ve `vurgu` dilini ozet satiriyla ayni ritimde kullaniyor; action yoksa da `Replay ayari hazir` kalibi korunuyor.
+
+Boylece ayni replay baglami farkli yuzeylerde daha tutarli okunuyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.76 - Replay Tooltip Metin Sikilastirmasi
 
 Bu fazda replay mini isaret tooltip metni baglama gore kisaltildi.

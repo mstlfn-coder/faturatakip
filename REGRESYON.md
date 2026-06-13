@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.77 - Replay Dili Uyumu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Actionli replay tooltip dili uyumlu | OK | Tooltip action varsa replay ayari / vurgu kalibini kullaniyor |
+| Actionsiz replay tooltip dili uyumlu | OK | Tooltip replay ayari hazir kalibini koruyor |
+| 2026-06-13 | v1.77 | OK | Replay dili uyumu + build + self-test tamamlandi |
+
 ## v1.76 - Replay Tooltip Metin Sikilastirmasi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

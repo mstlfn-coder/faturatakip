@@ -1312,3 +1312,9 @@ Her faz bittiğinde:
 - Action varsa daha kisa ve dogrudan replay ozeti, action yoksa daha yonlendirici bir hazirlik metni kullaniliyor.
 - Boylece hover aciklamasi daha hizli taranabilir hale geldi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.77)
+
+- v1.77 tamamlandi: replay tooltip dili, replay ozet satiri ile uyumlu hale getirildi.
+- Action varsa `replay ayari` ve `vurgu` kaliplari ayni ritimde kullaniliyor.
+- Boylece ayni replay baglami farkli yardim yuzeylerinde daha tutarli okunuyor.
+- Smoke test olarak build ve self-test temiz gecti.
