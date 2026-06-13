@@ -2847,7 +2847,8 @@ public partial class InvoicesView : UserControl
             PaymentHelperReplayPreferenceLevelText.ToolTip = BuildReplayLevelToolTip(
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
-                hasAction);
+                hasAction,
+                _isPaymentHelperReplayFeedbackActive);
             PaymentHelperReplayPreferenceLevelText.Foreground = new SolidColorBrush(
                 hasAction
                     ? Color.FromRgb(22, 101, 52)
@@ -2859,7 +2860,8 @@ public partial class InvoicesView : UserControl
             PaymentHelperReplayPreferencePrefixBorder.ToolTip = BuildReplayLevelToolTip(
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
-                !string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey));
+                !string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey),
+                _isPaymentHelperReplayFeedbackActive);
             PaymentHelperReplayPreferencePrefixBorder.Background = new SolidColorBrush(
                 string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
                     ? Color.FromRgb(248, 250, 252)
@@ -3093,7 +3095,8 @@ public partial class InvoicesView : UserControl
             PaymentPdfReplayPreferenceLevelText.ToolTip = BuildReplayLevelToolTip(
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
-                hasAction);
+                hasAction,
+                _isPaymentPdfReplayFeedbackActive);
             PaymentPdfReplayPreferenceLevelText.Foreground = new SolidColorBrush(
                 hasAction
                     ? Color.FromRgb(3, 105, 161)
@@ -3105,7 +3108,8 @@ public partial class InvoicesView : UserControl
             PaymentPdfReplayPreferencePrefixBorder.ToolTip = BuildReplayLevelToolTip(
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
-                !string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey));
+                !string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey),
+                _isPaymentPdfReplayFeedbackActive);
             PaymentPdfReplayPreferencePrefixBorder.Background = new SolidColorBrush(
                 string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
                     ? Color.FromRgb(248, 250, 252)
@@ -3544,7 +3548,7 @@ public partial class InvoicesView : UserControl
         return $"{emphasisIndicator}{secondsIndicator}";
     }
 
-    private static string BuildReplayLevelToolTip(string emphasis, int seconds, bool hasAction)
+    private static string BuildReplayLevelToolTip(string emphasis, int seconds, bool hasAction, bool isReplayActive)
     {
         var emphasisLabel = emphasis switch
         {
@@ -3557,7 +3561,11 @@ public partial class InvoicesView : UserControl
             ? "Action mevcut; sure izi daha net gosterilir."
             : "Henuz action yok; sure izi daha sakin gosterilir.";
 
-        return $"Replay isareti: {emphasisLabel}, {seconds} sn. {actionLabel}";
+        var replayLabel = isReplayActive
+            ? "Replay su anda aktif."
+            : "Replay su anda beklemede.";
+
+        return $"Replay isareti: {emphasisLabel}, {seconds} sn. {actionLabel} {replayLabel}";
     }
 
     private sealed record MonthOption(int Value, string Label);

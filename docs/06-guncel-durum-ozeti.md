@@ -7,6 +7,7 @@ Son guncelleme tarihi: 2026-06-13
 - Aktif branch: `codex/v1.08-review-context-issue-action`
 - Son commit: `git log --oneline -1` ile teyit et; bu dosya hizli handoff ozeti olarak tutulur
 - Son tamamlanan temiz fazlar:
+  - `v1.74` Replay Tooltip Durum Mesaji
   - `v1.73` Replay Isaret Tooltipi
   - `v1.72` Replay Sekil Ayrimi
   - `v1.71` Replay Sure Izi

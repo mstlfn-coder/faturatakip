@@ -1294,3 +1294,9 @@ Her faz bittiğinde:
 - Tooltip, vurgu seviyesini, replay suresini ve action baglamini tek cumlede anlatiyor.
 - Boylece sembol dili ilk kullanimda daha kolay kesfedilebilir hale geldi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.74)
+
+- v1.74 tamamlandi: replay mini isaret tooltipine anlik replay durum mesaji eklendi.
+- Tooltip artik replay aktifken canli durumu, pasifken bekleme durumunu da anlatıyor.
+- Boylece hover aciklamasi ayar bilgisini ve o anki replay halini birlikte veriyor.
+- Smoke test olarak build ve self-test temiz gecti.
