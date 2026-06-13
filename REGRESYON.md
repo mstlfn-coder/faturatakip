@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.60 - Aktif Prefix Rozet Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim prefix rozeti aktif vurgulu | OK | Hover ve klavye odaginda yesil rozet daha belirgin gorunuyor |
+| PDF yardim prefix rozeti aktif vurgulu | OK | Hover ve klavye odaginda mavi rozet daha belirgin gorunuyor |
+| 2026-06-13 | v1.60 | OK | Aktif prefix vurgusu + build + self-test tamamlandi |
+
 ## v1.59 - Mikro Kisayol Prefix Rozetleri
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -1210,3 +1210,9 @@ Her faz bittiğinde:
 - Son kullanilan yardim artik metin ve rozet birlikte okunuyor.
 - Boylece aktif/son kullanilan iz daha kalici ve daha hizli taranabilir hale geldi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.60)
+
+- v1.60 tamamlandi: mikro kisayol prefix rozetlerinin hover ve klavye odagindaki aktiflik vurgusu kuvvetlendirildi.
+- Hover durumunda daha canli renk, klavye odaginda ise daha belirgin kenarlik ve arka plan kullaniliyor.
+- Boylece son kullanilan yardim izi daha kolay taranabilir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.

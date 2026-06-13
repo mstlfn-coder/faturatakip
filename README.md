@@ -1088,3 +1088,13 @@ Rozetler mevcut aksiyon anahtarlariyla uyumlu calisiyor ve satirin tiklanabilir 
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.60 - Aktif Prefix Rozet Vurgusu
+
+Bu fazda odeme yardim ve odeme PDF yardim mikro kisayollarindaki prefix rozetleri daha belirgin aktiflik vurgusu alacak sekilde guclendirildi.
+Hover aninda renk ve kenarlik biraz kuvvetleniyor; klavye odaginda ise daha net bir aktif rozet hissi veriyor.
+
+Boylece son kullanilan yardim izi sadece mevcut olmakla kalmiyor, ayni zamanda daha kolay fark ediliyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

@@ -383,6 +383,60 @@
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
+        <Style x:Key="PaymentHelperPrefixBorderStyle" TargetType="Border" BasedOn="{StaticResource InlineShortcutPrefixBorder}">
+            <Setter Property="Background" Value="#DCFCE7" />
+            <Setter Property="BorderBrush" Value="#86EFAC" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Background" Value="#BBF7D0" />
+                    <Setter Property="BorderBrush" Value="#4ADE80" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Background" Value="#86EFAC" />
+                    <Setter Property="BorderBrush" Value="#15803D" />
+                    <Setter Property="BorderThickness" Value="2" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentPdfPrefixBorderStyle" TargetType="Border" BasedOn="{StaticResource InlineShortcutPrefixBorder}">
+            <Setter Property="Background" Value="#E0F2FE" />
+            <Setter Property="BorderBrush" Value="#7DD3FC" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Background" Value="#BAE6FD" />
+                    <Setter Property="BorderBrush" Value="#38BDF8" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Background" Value="#7DD3FC" />
+                    <Setter Property="BorderBrush" Value="#0369A1" />
+                    <Setter Property="BorderThickness" Value="2" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentHelperPrefixTextStyle" TargetType="TextBlock" BasedOn="{StaticResource InlineShortcutPrefixText}">
+            <Setter Property="Foreground" Value="#166534" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#14532D" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#14532D" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentPdfPrefixTextStyle" TargetType="TextBlock" BasedOn="{StaticResource InlineShortcutPrefixText}">
+            <Setter Property="Foreground" Value="#0369A1" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#0C4A6E" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#082F49" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="PaymentPdfLastActionTextStyle" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
             <Setter Property="Foreground" Value="#0369A1" />
             <Setter Property="FontWeight" Value="SemiBold" />
@@ -846,13 +900,9 @@
                                             Visibility="Collapsed"
                                             Click="PaymentHelperLastActionButton_Click">
                                         <StackPanel Orientation="Horizontal">
-                                            <Border Style="{StaticResource InlineShortcutPrefixBorder}"
-                                                    Background="#DCFCE7"
-                                                    BorderBrush="#86EFAC"
-                                                    BorderThickness="1">
+                                            <Border Style="{StaticResource PaymentHelperPrefixBorderStyle}">
                                                 <TextBlock x:Name="PaymentHelperLastActionPrefixText"
-                                                           Style="{StaticResource InlineShortcutPrefixText}"
-                                                           Foreground="#166534" />
+                                                           Style="{StaticResource PaymentHelperPrefixTextStyle}" />
                                             </Border>
                                             <TextBlock x:Name="PaymentHelperLastActionText"
                                                        Style="{StaticResource PaymentHelperLastActionTextStyle}" />
@@ -948,13 +998,9 @@
                                             Visibility="Collapsed"
                                             Click="PaymentPdfHelperLastActionButton_Click">
                                         <StackPanel Orientation="Horizontal">
-                                            <Border Style="{StaticResource InlineShortcutPrefixBorder}"
-                                                    Background="#E0F2FE"
-                                                    BorderBrush="#7DD3FC"
-                                                    BorderThickness="1">
+                                            <Border Style="{StaticResource PaymentPdfPrefixBorderStyle}">
                                                 <TextBlock x:Name="PaymentPdfHelperLastActionPrefixText"
-                                                           Style="{StaticResource InlineShortcutPrefixText}"
-                                                           Foreground="#0369A1" />
+                                                           Style="{StaticResource PaymentPdfPrefixTextStyle}" />
                                             </Border>
                                             <TextBlock x:Name="PaymentPdfHelperLastActionText"
                                                        Style="{StaticResource PaymentPdfLastActionTextStyle}" />
