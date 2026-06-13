@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.27 - Baglami Temizle Kisayolu
+
+Bu fazda `Bağlamı Temizle` aksiyonuna klavye kisayolu eklendi.
+Operator artik `Ctrl+Shift+X` ile review baglamini ve ilgili vurgulari fare kullanmadan temizleyebiliyor. Inceleme ipucu satiri ve self-test beklentisi de buna gore guncellendi.
+
+Boylece review akisi icinde cikis hareketi de klavyeden tamamlanabilir hale geldi.
+Akis bir tur daha hizlandi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.26 - Baglami Temizle Aksiyonu
 
 Bu fazda inceleme baglam paneline `Bağlamı Temizle` aksiyonu eklendi.

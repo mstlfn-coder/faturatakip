@@ -1014,3 +1014,9 @@ v0.12 sonuÃ§ notu:
 552. Filtreler varsayilan akisina dondurulerek normal moda tek tikla gecis saglandi.
 553. Smoke test: dotnet build -c Release OK.
 554. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+555. v1.27 olarak `Bağlamı Temizle` aksiyonuna `Ctrl+Shift+X` kisayolu eklendi.
+556. Inceleme ipucu satirindaki kisayol listesi guncellendi.
+557. Self-test beklentisi yeni kisayolu kapsayacak sekilde duzeltildi.
+558. Smoke test: dotnet build -c Release OK.
+559. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

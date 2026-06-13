@@ -984,3 +984,10 @@ Her faz bittiğinde:
 - Dugme review modu, baglam metni ve rozet secim izini temizleyip filtreleri varsayilan akisina geri aliyor.
 - Rapor gecisinden normal calisma moduna donus tek tikla kolaylasti.
 - Smoke test olarak build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-13 / v1.27)
+
+- v1.27 tamamlandi: `Bağlamı Temizle` icin `Ctrl+Shift+X` kisayolu eklendi.
+- Inceleme ipucu satirindaki kisayol listesi guncellendi.
+- Self-test beklentisi yeni kisayolu kapsayacak sekilde duzeltildi.
+- Smoke test olarak build ve self-test temiz gecti.

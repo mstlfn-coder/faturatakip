@@ -535,6 +535,10 @@ public partial class InvoicesView : UserControl
                 FocusInvoiceFromReviewContext();
                 e.Handled = true;
                 break;
+            case Key.X:
+                ClearInvoiceReviewContextState();
+                e.Handled = true;
+                break;
         }
     }
 

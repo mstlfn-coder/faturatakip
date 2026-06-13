@@ -1471,3 +1471,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Temizleme dugmesi var | OK | `Bağlamı Temizle` review baglamini ve izlerini sifirliyor |
 | Normal moda donus var | OK | Filtreler varsayilan akisina geri donuyor |
 | 2026-06-13 | v1.26 | OK | Baglami temizle aksiyonu + build + self-test tamamlandi |
+
+## v1.27 - Baglami Temizle Kisayolu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kisayol aktif | OK | `Ctrl+Shift+X` ile `Bağlamı Temizle` akisi tetikleniyor |
+| Inceleme ipucu guncel | OK | Kisayol listesi yeni temizleme aksiyonunu da gosteriyor |
+| 2026-06-13 | v1.27 | OK | Baglami temizle kisayolu + build + self-test tamamlandi |
