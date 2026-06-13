@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.29 - Baglam Odak Rozeti
+
+Bu fazda fatura listesindeki secili kayit icin baglam aksiyonu kaynakli mikro bir satir geri bildirimi eklendi.
+Baglamdan `Filtre`, `Daraltma`, `Inceleme`, `Donem`, `Tur` veya `Fatura no` aksiyonu calistiginda hedef kaydin solunda kucuk bir `ODAK` rozeti gorunuyor.
+
+Boylece operator, secili satirin neden one geldigini tablo icinde de aninda anlayabiliyor.
+Kullanici baska bir kayda gectiginde veya baglam temizlendiginde bu iz otomatik siliniyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.28 - Baglam Durum Mesaji Temizligi
 
 Bu fazda inceleme baglami aksiyonlarinin durum mesajlari daha kisa ve tutarli hale getirildi.

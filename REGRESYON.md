@@ -1472,6 +1472,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Normal moda donus var | OK | Filtreler varsayilan akisina geri donuyor |
 | 2026-06-13 | v1.26 | OK | Baglami temizle aksiyonu + build + self-test tamamlandi |
 
+## v1.29 - Baglam Odak Rozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozet gorunurlugu var | OK | Baglam aksiyonuyla hedeflenen secili satirda `ODAK` rozeti gosteriliyor |
+| Rozet otomatik temizleniyor | OK | Farkli satira gecis veya baglam temizleme sonrasi odak izi kaldiriliyor |
+| 2026-06-13 | v1.29 | OK | Baglam odak rozeti + build + self-test tamamlandi |
+
 ## v1.28 - Baglam Durum Mesaji Temizligi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

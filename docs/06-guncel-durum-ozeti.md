@@ -29,6 +29,7 @@ Son guncelleme tarihi: 2026-06-13
   - `v1.26` Baglami Temizle Aksiyonu
   - `v1.27` Baglami Temizle Kisayolu
   - `v1.28` Baglam Durum Mesaji Temizligi
+  - `v1.29` Baglam Odak Rozeti
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -60,6 +61,7 @@ Son guncelleme tarihi: 2026-06-13
 23. `Bağlamı Temizle` aksiyonu ile review baglamindan normal moda tek tikla donus eklendi.
 24. `Ctrl+Shift+X` ile baglam temizleme akisi klavyeden de tetiklenebilir hale getirildi.
 25. Inceleme baglami aksiyonlarinin durum mesajlari daha kisa ve ortak formatli hale getirildi.
+26. Baglam aksiyonuyla secilen satira tablo icinde aksiyon tipini de gosteren `ODAK` rozeti eklendi.
 
 ## Son 5 Commit
 
@@ -83,7 +85,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Inceleme baglam panelinde durum mesajlari sadeleştirildigi icin bir sonraki mantikli adim, review akisinda secili kaydin hangi baglam aksiyonuyla geldigini satir icinde daha net gosterecek mikro geri bildirimlerden biri olabilir.
+- Inceleme baglam panelindeki satir odak rozeti tamamlandigi icin bir sonraki mantikli adim, ayni odak bilgisini secili kayit form basligina da kisa ve sakin bir satir olarak tasimak olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

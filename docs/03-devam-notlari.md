@@ -1026,3 +1026,9 @@ v0.12 sonuÃ§ notu:
 562. Boylece alt durum cubugundaki operator geri bildirimi daha hizli okunur hale geldi.
 563. Smoke test: dotnet build -c Release OK.
 564. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+565. v1.29 olarak baglam aksiyonuyla odaklanan secili satira tablo icinde kucuk bir `ODAK` rozeti eklendi.
+566. Rozet uzerinde aksiyonun kisa tipi gosteriliyor; tooltip ise tam baglam odak bilgisini tasiyor.
+567. Kullanici farkli bir satira gectiginde veya baglam temizlendiginde odak izi otomatik temizleniyor.
+568. Smoke test: dotnet build -c Release OK.
+569. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

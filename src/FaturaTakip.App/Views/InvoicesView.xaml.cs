@@ -33,6 +33,8 @@ public partial class InvoicesView : UserControl
     private string? _invoiceReviewModeLabel;
     private string? _invoiceReviewContextLabel;
     private long? _invoiceReviewPreferredInvoiceId;
+    private long? _reviewContextFocusedInvoiceId;
+    private string? _reviewContextFocusedActionLabel;
     private string? _lastInvokedReviewActionKey;
     private string? _lastReviewContextSignature;
     private string _rootDirectory = string.Empty;
@@ -381,6 +383,7 @@ public partial class InvoicesView : UserControl
         {
             InvoiceGrid.SelectedItem = null;
             ClearInvoiceForm();
+            ClearReviewContextFocusedInvoice();
             UpdateInvoiceReviewNavigationControls();
             return null;
         }
@@ -486,8 +489,21 @@ public partial class InvoicesView : UserControl
     {
         if (InvoiceGrid.SelectedItem is Invoice invoice)
         {
+            if (_reviewContextFocusedInvoiceId is not null && _reviewContextFocusedInvoiceId != invoice.Id)
+            {
+                ClearReviewContextFocusedInvoice();
+            }
+
             ApplySelectedInvoice(invoice);
+            return;
         }
+
+        ClearReviewContextFocusedInvoice();
+    }
+
+    private void InvoiceGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+    {
+        UpdateInvoiceGridRowReviewFocus(e.Row);
     }
 
     private void InvoicesView_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -563,6 +579,7 @@ public partial class InvoicesView : UserControl
         UpdatePdfControls(invoice);
         RefreshPaymentControls(invoice);
         SetInvoiceStatus($"Seçili kayıt: {invoice.InvoiceNo}", isError: false);
+        UpdateInvoiceGridReviewFocusVisuals();
     }
 
     private void PreviousInvoiceButton_Click(object sender, RoutedEventArgs e)
@@ -1067,17 +1084,17 @@ public partial class InvoicesView : UserControl
         {
             case InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed:
                 SelectReviewStatusFilter(InvoiceReviewStatusFilter.Unreviewed);
-                ApplyFiltersToGrid(selectFirstIfAvailable: true);
+                SetReviewContextFocusedInvoice(ApplyFiltersToGridCore(selectFirstIfAvailable: true), "Filtre");
                 SetReviewContextActionSuccess("Filtre uygulandı", "İncelenmedi");
                 break;
             case InvoiceReviewContextFormatter.SuggestedFilter.Overdue:
                 SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Overdue);
-                ApplyFiltersToGrid(selectFirstIfAvailable: true);
+                SetReviewContextFocusedInvoice(ApplyFiltersToGridCore(selectFirstIfAvailable: true), "Filtre");
                 SetReviewContextActionSuccess("Filtre uygulandı", "Gecikmiş");
                 break;
             case InvoiceReviewContextFormatter.SuggestedFilter.MissingPdf:
                 SelectPdfStatusFilter(InvoicePdfStatusFilter.MissingPdf);
-                ApplyFiltersToGrid(selectFirstIfAvailable: true);
+                SetReviewContextFocusedInvoice(ApplyFiltersToGridCore(selectFirstIfAvailable: true), "Filtre");
                 SetReviewContextActionSuccess("Filtre uygulandı", "PDF Eksik");
                 break;
         }
@@ -1088,6 +1105,7 @@ public partial class InvoicesView : UserControl
         _invoiceReviewModeLabel = null;
         _invoiceReviewContextLabel = null;
         _invoiceReviewPreferredInvoiceId = null;
+        ClearReviewContextFocusedInvoice();
         _lastInvokedReviewActionKey = null;
         _lastReviewContextSignature = null;
         ResetQuickFilters();
@@ -1159,16 +1177,19 @@ public partial class InvoicesView : UserControl
 
         if (_invoiceReviewPreferredInvoiceId is not null && selectedInvoice.Id == _invoiceReviewPreferredInvoiceId.Value)
         {
+            SetReviewContextFocusedInvoice(selectedInvoice, "Daraltma");
             SetReviewContextActionSuccess("Daraltma uygulandı", $"Odak {selectedInvoice.InvoiceNo}");
             return;
         }
 
         if (_invoiceReviewPreferredInvoiceId is not null)
         {
+            SetReviewContextFocusedInvoice(selectedInvoice, "Daraltma");
             SetReviewContextActionSuccess("Daraltma uygulandı", $"En uygun odak {selectedInvoice.InvoiceNo}");
             return;
         }
 
+        SetReviewContextFocusedInvoice(selectedInvoice, "Daraltma");
         SetReviewContextActionSuccess("Daraltma uygulandı", string.Join(" + ", appliedParts));
     }
 
@@ -1233,16 +1254,19 @@ public partial class InvoicesView : UserControl
 
         if (hasPreferredInvoice && selectedInvoice.Id == _invoiceReviewPreferredInvoiceId)
         {
+            SetReviewContextFocusedInvoice(selectedInvoice, "İnceleme");
             SetReviewContextActionSuccess($"{modeLabel} incelemesi", $"Odak {selectedInvoice.InvoiceNo}{suffix}");
             return;
         }
 
         if (hasPreferredInvoice)
         {
+            SetReviewContextFocusedInvoice(selectedInvoice, "İnceleme");
             SetReviewContextActionSuccess($"{modeLabel} incelemesi", $"En uygun odak {selectedInvoice.InvoiceNo}{suffix}");
             return;
         }
 
+        SetReviewContextFocusedInvoice(selectedInvoice, "İnceleme");
         SetReviewContextActionSuccess($"{modeLabel} incelemesi", $"{selectedInvoice.InvoiceNo}{suffix}");
     }
 
@@ -1258,7 +1282,7 @@ public partial class InvoicesView : UserControl
         ResetQuickFilters();
         SelectYearFilter(year);
         SelectMonthFilter(month);
-        ApplyFiltersToGrid(selectFirstIfAvailable: true);
+        SetReviewContextFocusedInvoice(ApplyFiltersToGridCore(selectFirstIfAvailable: true), "Dönem");
         SetReviewContextActionSuccess("Dönem uygulandı", $"{year:D4}-{month:D2}");
     }
 
@@ -1278,7 +1302,7 @@ public partial class InvoicesView : UserControl
             return;
         }
 
-        ApplyFiltersToGrid(selectFirstIfAvailable: true);
+        SetReviewContextFocusedInvoice(ApplyFiltersToGridCore(selectFirstIfAvailable: true), "Tür");
         SetReviewContextActionSuccess("Tür uygulandı", invoiceTypeName);
     }
 
@@ -1293,8 +1317,111 @@ public partial class InvoicesView : UserControl
         _invoiceReviewModeLabel = null;
         ResetQuickFilters();
         InvoiceSearchInput.Text = invoiceNumber;
-        ApplyFiltersToGrid(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: true);
+        SetReviewContextFocusedInvoice(
+            ApplyFiltersToGridCore(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: true),
+            "No");
         SetReviewContextActionSuccess("Fatura no uygulandı", invoiceNumber);
+    }
+
+    private void SetReviewContextFocusedInvoice(Invoice? invoice, string actionLabel)
+    {
+        _reviewContextFocusedInvoiceId = invoice?.Id;
+        _reviewContextFocusedActionLabel = invoice is null ? null : actionLabel;
+        UpdateInvoiceGridReviewFocusVisuals();
+    }
+
+    private void ClearReviewContextFocusedInvoice()
+    {
+        if (_reviewContextFocusedInvoiceId is null && string.IsNullOrWhiteSpace(_reviewContextFocusedActionLabel))
+        {
+            return;
+        }
+
+        _reviewContextFocusedInvoiceId = null;
+        _reviewContextFocusedActionLabel = null;
+        UpdateInvoiceGridReviewFocusVisuals();
+    }
+
+    private void UpdateInvoiceGridReviewFocusVisuals()
+    {
+        if (InvoiceGrid is null)
+        {
+            return;
+        }
+
+        foreach (var item in InvoiceGrid.Items)
+        {
+            if (InvoiceGrid.ItemContainerGenerator.ContainerFromItem(item) is DataGridRow row)
+            {
+                UpdateInvoiceGridRowReviewFocus(row);
+            }
+        }
+    }
+
+    private void UpdateInvoiceGridRowReviewFocus(DataGridRow row)
+    {
+        if (row.Item is not Invoice invoice ||
+            _reviewContextFocusedInvoiceId is null ||
+            _reviewContextFocusedInvoiceId != invoice.Id ||
+            string.IsNullOrWhiteSpace(_reviewContextFocusedActionLabel))
+        {
+            row.Header = null;
+            row.ClearValue(ToolTipProperty);
+            return;
+        }
+
+        var titleText = new TextBlock
+        {
+            Text = "ODAK",
+            Style = (Style)FindResource("ReviewFocusMarkerTitle")
+        };
+
+        var actionText = new TextBlock
+        {
+            Text = BuildReviewContextFocusShortLabel(_reviewContextFocusedActionLabel),
+            Style = (Style)FindResource("ReviewFocusMarkerText")
+        };
+
+        var stack = new StackPanel();
+        stack.Children.Add(titleText);
+        stack.Children.Add(actionText);
+
+        row.Header = new Border
+        {
+            Style = (Style)FindResource("ReviewFocusMarkerBorder"),
+            Child = stack
+        };
+        row.ToolTip = $"Bağlam odağı: {_reviewContextFocusedActionLabel}";
+    }
+
+    private static string BuildReviewContextFocusShortLabel(string actionLabel)
+    {
+        if (actionLabel.Contains("Daralt", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "DARALT";
+        }
+
+        if (actionLabel.Contains("İnce", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "İNCELE";
+        }
+
+        if (actionLabel.Contains("Dönem", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "DÖNEM";
+        }
+
+        if (actionLabel.Contains("Tür", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "TÜR";
+        }
+
+        if (actionLabel.Contains("No", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "NO";
+        }
+
+        return "FİLTRE";
     }
 
     private void UpdateInvoiceReviewContextPresentation(string? contextLabel)

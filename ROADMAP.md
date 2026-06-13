@@ -985,6 +985,13 @@ Her faz bittiğinde:
 - Rapor gecisinden normal calisma moduna donus tek tikla kolaylasti.
 - Smoke test olarak build ve self-test temiz gecti.
 
+## Son Guncelleme (2026-06-13 / v1.29)
+
+- v1.29 tamamlandi: baglam aksiyonuyla odaklanan satira tablo icinde `ODAK` rozeti eklendi.
+- Rozet aksiyon turunu kisaltarak gosteriyor ve tooltip ile tam baglam bilgisini tasiyor.
+- Kullanici farkli bir satira gectiginde veya baglam temizlendiginde odak izi otomatik temizleniyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.28)
 
 - v1.28 tamamlandi: inceleme baglami aksiyonlarinin durum mesajlari kisaltilip ortak formata toplandi.

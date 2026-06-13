@@ -270,6 +270,25 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="ReviewFocusMarkerBorder" TargetType="Border">
+            <Setter Property="Background" Value="#DBEAFE" />
+            <Setter Property="BorderBrush" Value="#93C5FD" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="4,3" />
+        </Style>
+        <Style x:Key="ReviewFocusMarkerTitle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#1E3A8A" />
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="ReviewFocusMarkerText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#1D4ED8" />
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
         <Style x:Key="ActionBadgeButton" TargetType="Button">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="BorderThickness" Value="0" />
@@ -524,9 +543,11 @@
                               IsReadOnly="True"
                               SelectionMode="Single"
                               SelectionChanged="InvoiceGrid_SelectionChanged"
+                              LoadingRow="InvoiceGrid_LoadingRow"
                               BorderBrush="#E5EAF1"
                               BorderThickness="1"
-                              HeadersVisibility="Column"
+                              HeadersVisibility="All"
+                              RowHeaderWidth="58"
                               GridLinesVisibility="Horizontal">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Dönem"
