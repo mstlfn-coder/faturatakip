@@ -1264,3 +1264,9 @@ Her faz bittiğinde:
 - Secili aksiyon varsa ilgili kisaltma, bos durumda ise notr bir `AYR` ifadesi kullaniliyor.
 - Boylece replay ozeti ikinci bir baglamsal isaret daha kazandi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.69)
+
+- v1.69 tamamlandi: replay ozet prefix isareti replay aktif oldugunda kisa sureli canlanma almaya basladi.
+- Boylece replay hissi metin, ana rozet ve ozet prefixinde birlikte gorunuyor.
+- Yardim alanindaki geri bildirim dili daha tutarli hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.

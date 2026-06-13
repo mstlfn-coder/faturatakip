@@ -7,6 +7,7 @@ Son guncelleme tarihi: 2026-06-13
 - Aktif branch: `codex/v1.08-review-context-issue-action`
 - Son commit: `git log --oneline -1` ile teyit et; bu dosya hizli handoff ozeti olarak tutulur
 - Son tamamlanan temiz fazlar:
+  - `v1.69` Replay Ozet Prefix Canlanmasi
   - `v1.68` Replay Ozet Prefix Isareti
   - `v1.67` Replay Ozet Ton Ayrimi
   - `v1.66` Replay Bos Durum Metni

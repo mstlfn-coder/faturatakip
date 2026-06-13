@@ -1178,3 +1178,13 @@ Boylece replay ozet satiri hem ton hem de kisa bir rozet ile daha kolay taranabi
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.69 - Replay Ozet Prefix Canlanmasi
+
+Bu fazda replay aktif oldugunda ozet satirindaki prefix isareti de kisa sureli canlanma almaya basladi.
+Boylece replay geri bildirimi sadece ana rozet ve metinde degil, ozet satirinin kisa isaretinde de hissediliyor.
+
+Kucuk ama tutarli bu hareket, ayni replay akisinin farkli yuzeylerde ayni dili konusmasini sagliyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

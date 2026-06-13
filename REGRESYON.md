@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.69 - Replay Ozet Prefix Canlanmasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme replay ozet prefixi canlaniyor | OK | Replay aktifken ozet prefixi de yesil replay vurgusu aliyor |
+| PDF replay ozet prefixi canlaniyor | OK | Replay aktifken ozet prefixi de mavi replay vurgusu aliyor |
+| 2026-06-13 | v1.69 | OK | Replay ozet prefix canlanmasi + build + self-test tamamlandi |
+
 ## v1.68 - Replay Ozet Prefix Isareti
 | Kontrol | Durum | Not |
 | --- | --- | --- |
