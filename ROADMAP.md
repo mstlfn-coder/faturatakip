@@ -985,6 +985,13 @@ Her faz bittiğinde:
 - Rapor gecisinden normal calisma moduna donus tek tikla kolaylasti.
 - Smoke test olarak build ve self-test temiz gecti.
 
+## Son Guncelleme (2026-06-13 / v1.37)
+
+- v1.37 tamamlandi: uygun review baglam cipleri tek tikla aksiyon tetikler hale getirildi.
+- Rapor/donem/tur/fatura no cipleri uygun oldugunda ilgili filtre akislarini calistiriyor, diger ciplere tiklamak ise kopyalama davranisini koruyor.
+- Baglam paneli, pasif bilgi gostermenin otesinde daha aktif bir hizli yol yuzeyi oldu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.36)
 
 - v1.36 tamamlandi: review baglam cipleri tiklanabilir hizli kopyalama aracina donustu.

@@ -32,7 +32,8 @@ public static class InvoiceReviewContextFormatter
                 if (!string.IsNullOrWhiteSpace(part))
                 {
                     var kind = ResolveKind(sectionIndex, partIndex, part);
-                    chips.Add(new ContextChip(part, kind, ResolvePrefix(kind)));
+                    var actionKey = ResolveActionKey(contextLabel, sectionIndex, partIndex, kind, part);
+                    chips.Add(new ContextChip(part, kind, ResolvePrefix(kind), ResolveToolTip(actionKey, part), actionKey));
                 }
             }
         }
@@ -99,6 +100,45 @@ public static class InvoiceReviewContextFormatter
             "detail" => 3,
             "period" => 4,
             _ => 5,
+        };
+    }
+
+    private static string ResolveActionKey(string contextLabel, int sectionIndex, int partIndex, string kind, string text)
+    {
+        if (string.Equals(kind, "period", StringComparison.OrdinalIgnoreCase))
+        {
+            return "apply_period";
+        }
+
+        if (sectionIndex == 0 && TryResolveSuggestedFilter(contextLabel, out _))
+        {
+            return "apply_filter";
+        }
+
+        if (TryResolveInvoiceTypeName(contextLabel, out var invoiceTypeName) &&
+            string.Equals(text, invoiceTypeName, StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "apply_type";
+        }
+
+        if (TryResolveInvoiceNumber(contextLabel, out var invoiceNumber) &&
+            string.Equals(text, invoiceNumber, StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "apply_invoice_no";
+        }
+
+        return "copy";
+    }
+
+    private static string ResolveToolTip(string actionKey, string text)
+    {
+        return actionKey switch
+        {
+            "apply_filter" => $"Tikla ve baglam filtresini uygula: {text}",
+            "apply_period" => $"Tikla ve donem filtresini uygula: {text}",
+            "apply_type" => $"Tikla ve tur filtresini uygula: {text}",
+            "apply_invoice_no" => $"Tikla ve fatura no aramasini uygula: {text}",
+            _ => $"Tikla ve bu baglam parcasini kopyala: {text}"
         };
     }
 
@@ -231,5 +271,5 @@ public static class InvoiceReviewContextFormatter
         return values.Any(value => text.IndexOf(value, StringComparison.CurrentCultureIgnoreCase) >= 0);
     }
 
-    public sealed record ContextChip(string Text, string Kind, string Prefix);
+    public sealed record ContextChip(string Text, string Kind, string Prefix, string ToolTip, string ActionKey);
 }

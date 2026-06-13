@@ -866,8 +866,8 @@
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
                                                         <Button Style="{StaticResource ContextChipButton}"
-                                                                Tag="{Binding Text}"
-                                                                ToolTip="Tikla ve bu baglam parcasini kopyala"
+                                                                Tag="{Binding}"
+                                                                ToolTip="{Binding ToolTip}"
                                                                 Click="InvoiceReviewContextChipButton_Click">
                                                             <Border Style="{StaticResource ContextChipBorder}">
                                                                 <StackPanel Orientation="Horizontal">

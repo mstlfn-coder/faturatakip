@@ -458,6 +458,8 @@ public sealed class SelfTestRunner
             Assert(reviewContextChips[3].Text == "2026-01", "Inceleme baglam rozetinde donem ozeti ayristirilamadi.");
             Assert(reviewContextChips[3].Kind == "period", "Inceleme baglam rozetinde donem tipi atanamadi.");
             Assert(reviewContextChips[3].Prefix == "DNM", "Inceleme baglam rozetinde donem on eki atanamadi.");
+            Assert(reviewContextChips[0].ActionKey == "apply_filter", "Rapor cipi beklenen filtre aksiyonunu uretmedi.");
+            Assert(reviewContextChips[3].ActionKey == "apply_period", "Donem cipi beklenen donem aksiyonunu uretmedi.");
             Assert(
                 InvoiceReviewContextFormatter.TryResolveSuggestedFilter("Rapor: İncelenmedi > Elektrik / INV-001", out var unreviewedFilter) &&
                 unreviewedFilter == InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed,
@@ -489,6 +491,9 @@ public sealed class SelfTestRunner
             Assert(
                 !InvoiceReviewContextFormatter.TryResolveInvoiceNumber("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01", out _),
                 "Evrak kontrol baglami yanlislikla fatura no gibi yorumlandi.");
+            var actionableReviewContextChips = InvoiceReviewContextFormatter.BuildChips("Rapor: İncelenmedi > Elektrik / INV-001");
+            Assert(actionableReviewContextChips.Any(chip => chip.Text == "Elektrik" && chip.ActionKey == "apply_type"), "Fatura turu cipi beklenen tur aksiyonunu uretmedi.");
+            Assert(actionableReviewContextChips.Any(chip => chip.Text == "INV-001" && chip.ActionKey == "apply_invoice_no"), "Fatura no cipi beklenen arama aksiyonunu uretmedi.");
             var reorderedReviewContextChips = InvoiceReviewContextFormatter.BuildChips("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01 > PDF Kayip / Fatura / 2026-01");
             Assert(reorderedReviewContextChips.Count == 4, "Inceleme baglam rozetleri tekrar eden parcayi tekillestiremedi.");
             Assert(reorderedReviewContextChips[0].Kind == "report", "Inceleme baglam rozetleri rapor basligini basa tasimadi.");

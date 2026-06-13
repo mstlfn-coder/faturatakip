@@ -1074,3 +1074,9 @@ v0.12 sonuÃ§ notu:
 602. Boylece baglam bilgisinin parcali yeniden kullanimi daha rahat hale geldi.
 603. Smoke test: dotnet build -c Release OK.
 604. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+605. v1.37 olarak uygun review baglam cipleri dogrudan mikro aksiyon tetikler hale getirildi.
+606. Rapor/donem/tur/fatura no cipleri uygun oldugunda ilgili filtre akislarini calistiriyor; diger ciplere tiklamak ise kopyalama davranisini koruyor.
+607. Boylece baglam paneli daha aktif bir hizli yol yuzeyi haline geldi.
+608. Smoke test: dotnet build -c Release OK.
+609. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

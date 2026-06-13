@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.37 - Aksiyonlu Baglam Cipleri
+
+Bu fazda uygun review baglam cipleri sadece kopyalama degil, dogrudan mikro aksiyon tetikleme yetenegi kazandi.
+Rapor cipi baglam filtresini, donem cipi donem filtresini, uygun tur cipi tur filtresini ve uygun fatura no cipi arama akisina dogrudan baglanabiliyor; diger ciplere tiklamak ise kopyalama davranisini koruyor.
+
+Boylece baglam paneli daha aktif bir calisma alani haline geldi.
+Kopyalama rahatligi korunurken, uygun yerlerde tek tikla filtreleme akisi da hizlandi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.36 - Baglam Cipi Hizli Kopyalama
 
 Bu fazda review baglam panelindeki baglam cipleri tiklanabilir hale getirildi.

@@ -1472,6 +1472,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Normal moda donus var | OK | Filtreler varsayilan akisina geri donuyor |
 | 2026-06-13 | v1.26 | OK | Baglami temizle aksiyonu + build + self-test tamamlandi |
 
+## v1.37 - Aksiyonlu Baglam Cipleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aksiyonlu ciplere tiklama var | OK | Uygun ciplere tiklandiginda baglam filtresi, donem, tur veya no akisi tetikleniyor |
+| Kopyalama davranisi korundu | OK | Aksiyon tanimsiz ciplere tiklama panoya kopyalama olarak devam ediyor |
+| 2026-06-13 | v1.37 | OK | Aksiyonlu baglam cipleri + build + self-test tamamlandi |
+
 ## v1.36 - Baglam Cipi Hizli Kopyalama
 | Kontrol | Durum | Not |
 | --- | --- | --- |

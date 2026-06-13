@@ -1021,15 +1021,32 @@ public partial class InvoicesView : UserControl
 
     private void InvoiceReviewContextChipButton_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is not Button { Tag: string chipText } || string.IsNullOrWhiteSpace(chipText))
+        if (sender is not Button { Tag: InvoiceReviewContextFormatter.ContextChip chip } ||
+            string.IsNullOrWhiteSpace(chip.Text))
         {
             return;
         }
 
+        switch (chip.ActionKey)
+        {
+            case "apply_filter":
+                ApplyInvoiceReviewContextFilter();
+                return;
+            case "apply_period":
+                ApplyInvoiceReviewContextPeriod();
+                return;
+            case "apply_type":
+                ApplyInvoiceReviewContextType();
+                return;
+            case "apply_invoice_no":
+                ApplyInvoiceReviewContextInvoiceNo();
+                return;
+        }
+
         try
         {
-            Clipboard.SetText(chipText);
-            SetInvoiceStatus($"Bağlam çipi panoya kopyalandı: {chipText}", isError: false);
+            Clipboard.SetText(chip.Text);
+            SetInvoiceStatus($"Bağlam çipi panoya kopyalandı: {chip.Text}", isError: false);
         }
         catch (Exception exception) when (exception is ExternalException or InvalidOperationException)
         {
