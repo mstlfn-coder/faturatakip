@@ -34,6 +34,16 @@ public static class PaymentPdfHelperSummaryBuilder
         };
     }
 
+    public static string BuildSelectedActionToolTip(string? selectedActionKey)
+    {
+        return selectedActionKey switch
+        {
+            "select_pdf" => "Yeniden calistir: PDF Sec",
+            "open_pdf" => "Yeniden calistir: PDF Ac",
+            _ => string.Empty,
+        };
+    }
+
     public static string BuildLastActionPrefix(string? selectedActionKey)
     {
         return selectedActionKey switch

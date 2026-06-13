@@ -2815,6 +2815,7 @@ public partial class InvoicesView : UserControl
         var lastActionText = PaymentEntryHelperSummaryBuilder.BuildLastActionText(_lastInvokedPaymentHelperActionKey);
         lastActionText = PaymentEntryHelperSummaryBuilder.BuildReplayFeedbackText(lastActionText, _isPaymentHelperReplayFeedbackActive);
         var lastActionToolTip = PaymentEntryHelperSummaryBuilder.BuildLastActionToolTip(_lastInvokedPaymentHelperActionKey);
+        var selectedActionToolTip = PaymentEntryHelperSummaryBuilder.BuildSelectedActionToolTip(_lastInvokedPaymentHelperActionKey);
         var lastActionPrefix = PaymentEntryHelperSummaryBuilder.BuildLastActionPrefix(_lastInvokedPaymentHelperActionKey);
         var selectedActionStatusText = PaymentEntryHelperSummaryBuilder.BuildSelectedActionStatusText(_lastInvokedPaymentHelperActionKey);
 
@@ -2935,7 +2936,7 @@ public partial class InvoicesView : UserControl
         if (PaymentHelperSelectedActionStatusButton is not null)
         {
             PaymentHelperSelectedActionStatusButton.Tag = _lastInvokedPaymentHelperActionKey;
-            PaymentHelperSelectedActionStatusButton.ToolTip = lastActionToolTip;
+            PaymentHelperSelectedActionStatusButton.ToolTip = selectedActionToolTip;
             PaymentHelperSelectedActionStatusButton.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
                 ? Visibility.Collapsed
                 : Visibility.Visible;
@@ -3101,6 +3102,7 @@ public partial class InvoicesView : UserControl
         var lastActionText = PaymentPdfHelperSummaryBuilder.BuildLastActionText(_lastInvokedPaymentPdfHelperActionKey);
         lastActionText = PaymentPdfHelperSummaryBuilder.BuildReplayFeedbackText(lastActionText, _isPaymentPdfReplayFeedbackActive);
         var lastActionToolTip = PaymentPdfHelperSummaryBuilder.BuildLastActionToolTip(_lastInvokedPaymentPdfHelperActionKey);
+        var selectedActionToolTip = PaymentPdfHelperSummaryBuilder.BuildSelectedActionToolTip(_lastInvokedPaymentPdfHelperActionKey);
         var lastActionPrefix = PaymentPdfHelperSummaryBuilder.BuildLastActionPrefix(_lastInvokedPaymentPdfHelperActionKey);
         var selectedActionStatusText = PaymentPdfHelperSummaryBuilder.BuildSelectedActionStatusText(_lastInvokedPaymentPdfHelperActionKey);
 
@@ -3221,7 +3223,7 @@ public partial class InvoicesView : UserControl
         if (PaymentPdfSelectedActionStatusButton is not null)
         {
             PaymentPdfSelectedActionStatusButton.Tag = _lastInvokedPaymentPdfHelperActionKey;
-            PaymentPdfSelectedActionStatusButton.ToolTip = lastActionToolTip;
+            PaymentPdfSelectedActionStatusButton.ToolTip = selectedActionToolTip;
             PaymentPdfSelectedActionStatusButton.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
                 ? Visibility.Collapsed
                 : Visibility.Visible;

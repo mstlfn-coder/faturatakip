@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.96 - Yardim Tooltip Dili Sadelestirme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi secili durum tooltip dili sade | OK | Tooltip `Yeniden calistir: ...` biciminde kisa gosteriliyor |
+| PDF yardimi secili durum tooltip dili sade | OK | Tooltip `Yeniden calistir: ...` biciminde kisa gosteriliyor |
+| 2026-06-14 | v1.96 | OK | Yardim tooltip dili sadelestirme + build + self-test tamamlandi |
+
 ## v1.95 - Yardim Durum Satiri Klavye Odak Cercevesi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -38,6 +38,17 @@ public static class PaymentEntryHelperSummaryBuilder
         };
     }
 
+    public static string BuildSelectedActionToolTip(string? selectedActionKey)
+    {
+        return selectedActionKey switch
+        {
+            "fill_remaining" => "Yeniden calistir: Kalan Tutar",
+            "use_last" => "Yeniden calistir: Son Aciklama",
+            "use_selected" => "Yeniden calistir: Secili Odeme",
+            _ => string.Empty,
+        };
+    }
+
     public static string BuildLastActionPrefix(string? selectedActionKey)
     {
         return selectedActionKey switch

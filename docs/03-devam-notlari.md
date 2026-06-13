@@ -2,15 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
-## Son Guncelleme (2026-06-13 / v1.95)
+## Son Guncelleme (2026-06-14 / v1.96)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan faz: `v1.95 - Yardim Durum Satiri Klavye Odak Cercevesi`
-- Bu adimda secili yardim durum satirina daha belirgin klavye odak cercevesi eklendi.
-- Yardim satiri odak aldiginda sinir ve arka plan birlikte vurgulaniyor.
+- Son tamamlanan faz: `v1.96 - Yardim Tooltip Dili Sadelestirme`
+- Bu adimda secili yardim durum satirlarinin tooltip dili kisaltildi.
+- Secili durum satiri artik kisa `Yeniden calistir: ...` ifadesini kullaniyor.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Yardim durum satiri tooltip metnini daha kisa ve daha yonlendirici hale getirip `yeniden calistir` ifadesini tek dilde netlestirebiliriz.
+- Yardim durum satirina minik bir `Enter/Space` kisayol etiketi ya da prefix yaninda ufak bir tekrar ikonu ekleyebiliriz.

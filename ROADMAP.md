@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.96)
+
+- v1.96 tamamlandi: secili yardim durum satirlarinin tooltip dili kisaltildi ve tek cumleye indirildi.
+- Son aksiyon butonu ile secili durum satiri artik farkli amaclari daha net anlatan iki ayri tooltip dili kullaniyor.
+- Boylece tekrar aksiyonu klavye ve fare kullaniminda daha hizli anlasilir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.95)
 
 - v1.95 tamamlandi: secili yardim durum satirlarina daha belirgin klavye odak cercevesi eklendi.

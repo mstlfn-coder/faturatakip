@@ -1048,6 +1048,12 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.96 - Yardim Tooltip Dili Sadelestirme
+
+- Secili yardim durum satirlarinin tooltip dili kisaltilip tek bir yonlendirme cumlesine indirildi.
+- Son aksiyon butonu detayli tooltip dilini korurken, secili durum satiri artik yalnizca `Yeniden calistir: ...` ifadesini gosteriyor.
+- Boylece yardim satirinin amaci daha hizli okunur hale geldi.
+
 ## v1.95 - Yardim Durum Satiri Klavye Odak Cercevesi
 
 - Odeme yardimi ve PDF yardimi durum satirlari icin belirgin bir klavye odak cercevesi eklendi.

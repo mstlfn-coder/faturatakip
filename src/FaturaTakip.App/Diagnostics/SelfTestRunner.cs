@@ -276,6 +276,9 @@ public sealed class SelfTestRunner
                 PaymentEntryHelperSummaryBuilder.BuildSelectedActionStatusText("use_selected") == "Secili yardim: Secili Odeme hazir. Enter/Space ile tekrar.",
                 "Odeme yardim secili durum satiri beklenen formati uretmedi.");
             Assert(
+                PaymentEntryHelperSummaryBuilder.BuildSelectedActionToolTip("use_selected") == "Yeniden calistir: Secili Odeme",
+                "Odeme yardim secili durum satiri tooltip metni beklenen formati uretmedi.");
+            Assert(
                 PaymentEntryHelperSummaryBuilder.BuildLastActionPrefix("use_selected") == "SEC",
                 "Odeme yardim son aksiyon prefix metni beklenen formati uretmedi.");
             Assert(
@@ -343,6 +346,9 @@ public sealed class SelfTestRunner
             Assert(
                 PaymentPdfHelperSummaryBuilder.BuildSelectedActionStatusText("open_pdf") == "Secili yardim: PDF Ac hazir. Enter/Space ile tekrar.",
                 "Odeme PDF yardim secili durum satiri beklenen formati uretmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildSelectedActionToolTip("open_pdf") == "Yeniden calistir: PDF Ac",
+                "Odeme PDF yardim secili durum satiri tooltip metni beklenen formati uretmedi.");
             Assert(
                 PaymentPdfHelperSummaryBuilder.BuildLastActionPrefix("open_pdf") == "AC",
                 "Odeme PDF yardim son aksiyon prefix metni beklenen formati uretmedi.");
