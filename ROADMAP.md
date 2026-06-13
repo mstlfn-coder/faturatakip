@@ -963,3 +963,10 @@ Her faz bittiğinde:
 - Rozetler artik ilgili baglam aksiyonunu dogrudan tetikleyebiliyor.
 - Ozet katmani sadece bilgi veren degil, ayni zamanda etkileşimli bir hizli yol haline geldi.
 - Smoke test olarak build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-13 / v1.24)
+
+- v1.24 tamamlandi: tiklanan hazir aksiyon rozetine secim geri bildirimi eklendi.
+- Son calistirilan rozet daha belirgin kenarlik ve tonla secili gibi gosteriliyor.
+- Hızlı ardışık kullanımda panel okunabilirligi arttı.
+- Smoke test olarak build ve self-test temiz gecti.

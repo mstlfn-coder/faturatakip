@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.24 - Rozet Secim Geri Bildirimi
+
+Bu fazda tiklanan hazir aksiyon rozetine kisa gorsel geri bildirim eklendi.
+Kullanici bir rozete bastiginda ilgili rozet daha belirgin kenarlik ve tonla secili gibi gorunuyor; boylece az once hangi kisayolun calistirildigi hemen anlasiliyor.
+
+Bu iyilestirme ozellikle rozetler hizli sekilde pes pese kullanildiginda paneli daha okunur hale getiriyor.
+Kucuk ama rahatlatan bir geri bildirim katmani oldu.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.23 - Tiklanabilir Aksiyon Rozetleri
 
 Bu fazda hazir aksiyon rozetleri pasif gostergeler olmaktan cikarildi.

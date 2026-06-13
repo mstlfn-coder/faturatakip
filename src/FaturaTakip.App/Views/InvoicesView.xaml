@@ -178,6 +178,9 @@
             <Setter Property="Padding" Value="8,3" />
             <Setter Property="Margin" Value="0,0,6,6" />
             <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                </DataTrigger>
                 <DataTrigger Binding="{Binding Kind}" Value="filter">
                     <Setter Property="Background" Value="#DCFCE7" />
                     <Setter Property="BorderBrush" Value="#86EFAC" />
@@ -194,6 +197,38 @@
                     <Setter Property="Background" Value="#F3E8FF" />
                     <Setter Property="BorderBrush" Value="#D8B4FE" />
                 </DataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="filter" />
+                        <Condition Binding="{Binding IsSelected}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#BBF7D0" />
+                    <Setter Property="BorderBrush" Value="#16A34A" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="context" />
+                        <Condition Binding="{Binding IsSelected}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#BFDBFE" />
+                    <Setter Property="BorderBrush" Value="#2563EB" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="period" />
+                        <Condition Binding="{Binding IsSelected}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#FDE68A" />
+                    <Setter Property="BorderBrush" Value="#D97706" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="detail" />
+                        <Condition Binding="{Binding IsSelected}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#E9D5FF" />
+                    <Setter Property="BorderBrush" Value="#9333EA" />
+                </MultiDataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="ActionBadgePrefixText" TargetType="TextBlock">

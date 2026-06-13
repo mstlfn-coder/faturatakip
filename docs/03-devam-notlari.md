@@ -996,3 +996,9 @@ v0.12 sonuÃ§ notu:
 537. Ozet katmani yalnizca bilgi veren degil, ayni zamanda etkileşimli bir hizli yol haline geldi.
 538. Smoke test: dotnet build -c Release OK.
 539. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+540. v1.24 olarak tiklanan hazir aksiyon rozetine secim geri bildirimi eklendi.
+541. Son calistirilan rozet daha belirgin kenarlik ve tonla secili gibi gosteriliyor.
+542. Bu tur hizli ardışık kullanimi daha okunur hale getirdi.
+543. Smoke test: dotnet build -c Release OK.
+544. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

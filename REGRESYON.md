@@ -1444,3 +1444,12 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Rozetler tiklanabilir | OK | Hazir aksiyon rozetleri ilgili baglam aksiyonunu dogrudan tetikliyor |
 | Tooltip destegi var | OK | Rozetler de kendi aksiyon aciklamasini gosteriyor |
 | 2026-06-13 | v1.23 | OK | Tiklanabilir aksiyon rozetleri + build + self-test tamamlandi |
+
+## v1.24 - Rozet Secim Geri Bildirimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili rozet vurgusu var | OK | Son tiklanan rozet daha belirgin kenarlik ve tonla gosteriliyor |
+| Rozet secimi korunuyor | OK | Son calistirilan aksiyon anahtarina gore rozet secimi guncelleniyor |
+| 2026-06-13 | v1.24 | OK | Rozet secim geri bildirimi + build + self-test tamamlandi |
