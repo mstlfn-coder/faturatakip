@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.86 - Yardim Rozeti Mikro Vurgu
+
+Bu fazda odeme yardimi ve PDF yardimi rozetlerinde secili aksiyon degistiginde kisa sureli bir mikro vurgu eklendi.
+Secilen rozet bir anligina daha belirgin renk ve `YENI` etiketi aliyor, sonra normal secili durumuna donuyor.
+
+Boylece kullanici son tikladigi yardim aksiyonunu daha kolay fark ediyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.85 - Secili Yardim Rozeti Ipuclari
 
 Bu fazda odeme yardimi ve PDF yardimi rozetlerinde secili aksiyon icin minik bir `AKTIF` durumu gosterilmeye baslandi.

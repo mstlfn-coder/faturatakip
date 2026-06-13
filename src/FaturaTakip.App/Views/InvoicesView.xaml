@@ -224,6 +224,9 @@
                 <DataTrigger Binding="{Binding IsSelected}" Value="True">
                     <Setter Property="BorderThickness" Value="2" />
                 </DataTrigger>
+                <DataTrigger Binding="{Binding IsRecentlyActivated}" Value="True">
+                    <Setter Property="BorderThickness" Value="3" />
+                </DataTrigger>
                 <DataTrigger Binding="{Binding Kind}" Value="filter">
                     <Setter Property="Background" Value="#DCFCE7" />
                     <Setter Property="BorderBrush" Value="#86EFAC" />
@@ -240,6 +243,38 @@
                     <Setter Property="Background" Value="#F3E8FF" />
                     <Setter Property="BorderBrush" Value="#D8B4FE" />
                 </DataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="filter" />
+                        <Condition Binding="{Binding IsRecentlyActivated}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#86EFAC" />
+                    <Setter Property="BorderBrush" Value="#15803D" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="context" />
+                        <Condition Binding="{Binding IsRecentlyActivated}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#93C5FD" />
+                    <Setter Property="BorderBrush" Value="#1D4ED8" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="period" />
+                        <Condition Binding="{Binding IsRecentlyActivated}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#FCD34D" />
+                    <Setter Property="BorderBrush" Value="#B45309" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="detail" />
+                        <Condition Binding="{Binding IsRecentlyActivated}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#D8B4FE" />
+                    <Setter Property="BorderBrush" Value="#7E22CE" />
+                </MultiDataTrigger>
                 <MultiDataTrigger>
                     <MultiDataTrigger.Conditions>
                         <Condition Binding="{Binding Kind}" Value="filter" />
@@ -321,6 +356,10 @@
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsRecentlyActivated}" Value="True">
+                    <Setter Property="Text" Value="YENI" />
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Kind}" Value="filter">

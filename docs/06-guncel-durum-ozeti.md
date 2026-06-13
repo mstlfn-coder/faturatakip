@@ -7,6 +7,7 @@ Son guncelleme tarihi: 2026-06-13
 - Aktif branch: `codex/v1.08-review-context-issue-action`
 - Son commit: `git log --oneline -1` ile teyit et; bu dosya hizli handoff ozeti olarak tutulur
 - Son tamamlanan temiz fazlar:
+  - `v1.86` Yardim Rozeti Mikro Vurgu
   - `v1.85` Secili Yardim Rozeti Ipuclari
   - `v1.84` Replay Ozet Tooltip Genisleme
   - `v1.83` Replay Indicator UI Smoke Checklist

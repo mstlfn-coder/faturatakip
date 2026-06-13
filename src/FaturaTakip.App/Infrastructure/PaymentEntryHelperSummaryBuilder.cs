@@ -87,7 +87,8 @@ public static class PaymentEntryHelperSummaryBuilder
         Invoice? invoice,
         IEnumerable<Payment> payments,
         Payment? selectedPayment,
-        string? selectedActionKey = null)
+        string? selectedActionKey = null,
+        string? highlightedActionKey = null)
     {
         var badges = new List<PaymentHelperBadge>();
         var paymentList = payments?.ToList() ?? [];
@@ -100,7 +101,8 @@ public static class PaymentEntryHelperSummaryBuilder
                 "filter",
                 $"Tikla veya Enter/Space ile kalan tutari {invoice.RemainingAmountText} olarak doldur.",
                 "fill_remaining",
-                IsSelected: string.Equals(selectedActionKey, "fill_remaining", StringComparison.Ordinal)));
+                IsSelected: string.Equals(selectedActionKey, "fill_remaining", StringComparison.Ordinal),
+                IsRecentlyActivated: string.Equals(highlightedActionKey, "fill_remaining", StringComparison.Ordinal)));
         }
 
         var recentPayment = paymentList
@@ -116,7 +118,8 @@ public static class PaymentEntryHelperSummaryBuilder
                 "context",
                 $"Tikla veya Enter/Space ile son odeme aciklamasini doldur: {recentDescription}",
                 "use_last",
-                IsSelected: string.Equals(selectedActionKey, "use_last", StringComparison.Ordinal)));
+                IsSelected: string.Equals(selectedActionKey, "use_last", StringComparison.Ordinal),
+                IsRecentlyActivated: string.Equals(highlightedActionKey, "use_last", StringComparison.Ordinal)));
         }
 
         if (selectedPayment is not null)
@@ -127,7 +130,8 @@ public static class PaymentEntryHelperSummaryBuilder
                 "detail",
                 $"Tikla veya Enter/Space ile secili odemeyi temel al: {selectedPayment.AmountText}",
                 "use_selected",
-                IsSelected: string.Equals(selectedActionKey, "use_selected", StringComparison.Ordinal)));
+                IsSelected: string.Equals(selectedActionKey, "use_selected", StringComparison.Ordinal),
+                IsRecentlyActivated: string.Equals(highlightedActionKey, "use_selected", StringComparison.Ordinal)));
         }
 
         return badges;
@@ -147,5 +151,5 @@ public static class PaymentEntryHelperSummaryBuilder
         return $"Hazir yardimlar: {string.Join(", ", badges.Select(item => item.Text))}.";
     }
 
-    public sealed record PaymentHelperBadge(string Prefix, string Text, string Kind, string ToolTip, string ActionKey, bool IsSelected = false);
+    public sealed record PaymentHelperBadge(string Prefix, string Text, string Kind, string ToolTip, string ActionKey, bool IsSelected = false, bool IsRecentlyActivated = false);
 }

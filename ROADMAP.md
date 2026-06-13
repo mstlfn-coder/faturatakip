@@ -1366,3 +1366,9 @@ Her faz bittiğinde:
 - Renk vurgusu korunurken secili durum artik metinle de daha net gorunuyor.
 - Boylece yardim rozetleri hizli taramada daha acik hale geldi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.86)
+
+- v1.86 tamamlandi: secili yardim rozeti degistiginde kisa sureli mikro vurgu eklendi.
+- Secilen rozet bir anligina daha guclu renk ve `YENI` etiketi aliyor.
+- Boylece son tiklanan yardim aksiyonu gozde daha hizli yakalaniyor.
+- Smoke test olarak build ve self-test temiz gecti.

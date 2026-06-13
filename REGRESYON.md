@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.86 - Yardim Rozeti Mikro Vurgu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi rozeti mikro vurgu aliyor | OK | Son secilen rozet kisa sureli `YENI` etiketi ve daha guclu vurgu aliyor |
+| PDF yardimi rozeti mikro vurgu aliyor | OK | Son secilen rozet kisa sureli `YENI` etiketi ve daha guclu vurgu aliyor |
+| 2026-06-13 | v1.86 | OK | Yardim rozeti mikro vurgu + build + self-test tamamlandi |
+
 ## v1.85 - Secili Yardim Rozeti Ipuclari
 | Kontrol | Durum | Not |
 | --- | --- | --- |
