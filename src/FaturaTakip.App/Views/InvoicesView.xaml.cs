@@ -922,6 +922,11 @@ public partial class InvoicesView : UserControl
         CopyInvoiceReviewContextToClipboard();
     }
 
+    private void ClearInvoiceReviewContextButton_Click(object sender, RoutedEventArgs e)
+    {
+        ClearInvoiceReviewContextState();
+    }
+
     private void ApplyInvoiceReviewContextFilterButton_Click(object sender, RoutedEventArgs e)
     {
         ApplyInvoiceReviewContextFilter();
@@ -1059,6 +1064,19 @@ public partial class InvoicesView : UserControl
                 SetInvoiceStatus("Bağlamdan 'PDF Eksik' filtresi uygulandı.", isError: false);
                 break;
         }
+    }
+
+    private void ClearInvoiceReviewContextState()
+    {
+        _invoiceReviewModeLabel = null;
+        _invoiceReviewContextLabel = null;
+        _invoiceReviewPreferredInvoiceId = null;
+        _lastInvokedReviewActionKey = null;
+        _lastReviewContextSignature = null;
+        ResetQuickFilters();
+        ApplyFiltersToGrid(selectedId: _selectedInvoice?.Id, selectFirstIfAvailable: true);
+        UpdateInvoiceReviewNavigationControls();
+        SetInvoiceStatus("İnceleme bağlamı temizlendi; normal filtre akışına dönüldü.", isError: false);
     }
 
     private void ApplyInvoiceReviewContextNarrow()
@@ -1336,6 +1354,14 @@ public partial class InvoicesView : UserControl
         if (CopyInvoiceReviewContextButton is not null)
         {
             CopyInvoiceReviewContextButton.IsEnabled = !string.IsNullOrWhiteSpace(_invoiceReviewContextLabel);
+        }
+
+        if (ClearInvoiceReviewContextButton is not null)
+        {
+            ClearInvoiceReviewContextButton.IsEnabled =
+                hasContext ||
+                !string.IsNullOrWhiteSpace(_invoiceReviewModeLabel) ||
+                !string.IsNullOrWhiteSpace(_lastInvokedReviewActionKey);
         }
 
         if (ApplyInvoiceReviewContextFilterButton is not null)

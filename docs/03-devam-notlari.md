@@ -1008,3 +1008,9 @@ v0.12 sonuÃ§ notu:
 547. Boylece eski baglam vurgusu yeni baglama tasinmiyor.
 548. Smoke test: dotnet build -c Release OK.
 549. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+550. v1.26 olarak baglam paneline `Bağlamı Temizle` aksiyonu eklendi.
+551. Bu dugme review modu, baglam metni ve rozet secim vurgularini temizliyor.
+552. Filtreler varsayilan akisina dondurulerek normal moda tek tikla gecis saglandi.
+553. Smoke test: dotnet build -c Release OK.
+554. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

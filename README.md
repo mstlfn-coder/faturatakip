@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.26 - Baglami Temizle Aksiyonu
+
+Bu fazda inceleme baglam paneline `Bağlamı Temizle` aksiyonu eklendi.
+Bu dugme baglam metnini, review modu izini ve rozet secim vurgularini temizleyip filtreleri varsayilan akisina geri donduruyor.
+
+Boylece kullanici tek tikla normal calisma moduna donebiliyor.
+Ozellikle rapor gecisinden sonra manuel toparlama ihtiyaci azaldi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.25 - Rozet Secim Temizleme
 
 Bu fazda secili rozet vurgusunun baglam degistiginde otomatik temizlenmesi saglandi.

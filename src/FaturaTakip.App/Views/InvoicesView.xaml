@@ -911,6 +911,13 @@
                                                     Margin="0,0,8,8"
                                                     ToolTip="Baglam etiketini panoya kopyalar"
                                                     Click="CopyInvoiceReviewContextButton_Click" />
+                                            <Button x:Name="ClearInvoiceReviewContextButton"
+                                                    Content="Bağlamı Temizle"
+                                                    Style="{StaticResource ContextActionButton}"
+                                                    Tag="detail"
+                                                    Margin="0,0,8,8"
+                                                    ToolTip="Baglami ve review modu vurgularini temizler"
+                                                    Click="ClearInvoiceReviewContextButton_Click" />
                                         </WrapPanel>
                                         <TextBlock Text="Detay Araçlari"
                                                    Style="{StaticResource MutedText}"

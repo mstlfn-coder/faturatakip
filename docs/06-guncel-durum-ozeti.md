@@ -26,6 +26,7 @@ Son guncelleme tarihi: 2026-06-12
   - `v1.23` Tiklanabilir Aksiyon Rozetleri
   - `v1.24` Rozet Secim Geri Bildirimi
   - `v1.25` Rozet Secim Temizleme
+  - `v1.26` Baglami Temizle Aksiyonu
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -54,6 +55,7 @@ Son guncelleme tarihi: 2026-06-12
 20. Hazir aksiyon rozetleri dogrudan tiklanabilir hizli yol haline getirildi.
 21. Son tiklanan hazir aksiyon rozetine secim geri bildirimi eklendi.
 22. Baglam degistiginde onceki secili rozet vurgusu otomatik temizlenir hale getirildi.
+23. `Bağlamı Temizle` aksiyonu ile review baglamindan normal moda tek tikla donus eklendi.
 
 ## Son 5 Commit
 

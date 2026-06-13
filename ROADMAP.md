@@ -977,3 +977,10 @@ Her faz bittiğinde:
 - Rozet secimi artik baglam imzasina bagli tutuluyor.
 - Eski baglam vurgusunun yeni rapor gecisine tasinmasi engellendi.
 - Smoke test olarak build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-13 / v1.26)
+
+- v1.26 tamamlandi: baglam paneline `Bağlamı Temizle` aksiyonu eklendi.
+- Dugme review modu, baglam metni ve rozet secim izini temizleyip filtreleri varsayilan akisina geri aliyor.
+- Rapor gecisinden normal calisma moduna donus tek tikla kolaylasti.
+- Smoke test olarak build ve self-test temiz gecti.
