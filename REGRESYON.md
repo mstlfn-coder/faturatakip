@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.63 - Kisayol Replay Tercihleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Replay suresi tercihi var | OK | 1-4 saniye arasi replay suresi preference olarak secilebiliyor |
+| Replay vurgu tercihi var | OK | Dusuk/Orta/Guclu vurgu seviyesi preference olarak secilebiliyor |
+| 2026-06-13 | v1.63 | OK | Replay tercihleri + build + self-test tamamlandi |
+
 ## v1.62 - Prefix Rozette Tekrar Canlanmasi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

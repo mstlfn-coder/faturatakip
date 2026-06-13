@@ -1228,3 +1228,9 @@ Her faz bittiğinde:
 - Tekrar aninda rozet arka plani, kenarligi ve yazi rengi daha belirgin hale geliyor.
 - Boylece ayni geri bildirim satirin iki farkli bolgesinde eszamanli okunuyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.63)
+
+- v1.63 tamamlandi: mikro kisayol replay geri bildiriminin suresi ve vurgu siddeti preference ayarlarina baglandi.
+- Inceleme tercih alanina iki kucuk secim eklendi: sure ve vurgu seviyesi.
+- Ayarlar config dosyasina kaydoldugu icin yeni oturumlarda da korunuyor.
+- Smoke test olarak build ve self-test temiz gecti.

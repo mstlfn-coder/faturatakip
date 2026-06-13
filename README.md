@@ -1118,3 +1118,13 @@ Boylece tekrar aksiyonu satirin iki parcasinda birden okunuyor: hem metinde hem 
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.63 - Kisayol Replay Tercihleri
+
+Bu fazda mikro kisayol tekrar geri bildiriminin suresi ve vurgu seviyesi kullanici tercihlerine baglandi.
+Inceleme tercih alaninda artik geri bildirim suresi ve vurgu siddeti secilebiliyor; bu ayarlar preference dosyasina yaziliyor.
+
+Boylece ayni davranis yeni oturumlarda da korunuyor ve kullanici kendi calisma ritmine gore ayar yapabiliyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

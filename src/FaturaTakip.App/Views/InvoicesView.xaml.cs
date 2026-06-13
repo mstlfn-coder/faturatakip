@@ -107,6 +107,20 @@ public partial class InvoicesView : UserControl
         InvoiceReviewStatusFilterInput.SelectedIndex = 0;
         ShowInvoiceReviewContextCheckBox.IsChecked = _invoiceReviewPreferences.ShowContext;
         ShowInvoiceReviewContextDetailsCheckBox.IsChecked = _invoiceReviewPreferences.ShowContextDetails;
+        PaymentShortcutReplaySecondsComboBox.ItemsSource = new[]
+        {
+            new ReplaySecondsOption("1 sn", 1),
+            new ReplaySecondsOption("2 sn", 2),
+            new ReplaySecondsOption("3 sn", 3),
+            new ReplaySecondsOption("4 sn", 4),
+        };
+        PaymentShortcutReplayEmphasisComboBox.ItemsSource = new[]
+        {
+            new ReplayEmphasisOption("Dusuk Vurgu", "low"),
+            new ReplayEmphasisOption("Orta Vurgu", "medium"),
+            new ReplayEmphasisOption("Guclu Vurgu", "high"),
+        };
+        SelectReplayPreferenceOptions();
 
         RefreshSubscriptionLists();
         RefreshInvoices();
@@ -996,20 +1010,44 @@ public partial class InvoicesView : UserControl
 
     private void ShowInvoiceReviewContextCheckBox_Changed(object sender, RoutedEventArgs e)
     {
-        _invoiceReviewPreferences = new InvoiceReviewPreferences(
-            ShowContext: ShowInvoiceReviewContextCheckBox.IsChecked == true,
-            ShowContextDetails: ShowInvoiceReviewContextDetailsCheckBox?.IsChecked == true);
+        _invoiceReviewPreferences = _invoiceReviewPreferences with
+        {
+            ShowContext = ShowInvoiceReviewContextCheckBox.IsChecked == true,
+            ShowContextDetails = ShowInvoiceReviewContextDetailsCheckBox?.IsChecked == true
+        };
         TrySaveInvoiceReviewPreferences();
         UpdateInvoiceReviewNavigationControls();
     }
 
     private void ShowInvoiceReviewContextDetailsCheckBox_Changed(object sender, RoutedEventArgs e)
     {
-        _invoiceReviewPreferences = new InvoiceReviewPreferences(
-            ShowContext: ShowInvoiceReviewContextCheckBox?.IsChecked == true,
-            ShowContextDetails: ShowInvoiceReviewContextDetailsCheckBox.IsChecked == true);
+        _invoiceReviewPreferences = _invoiceReviewPreferences with
+        {
+            ShowContext = ShowInvoiceReviewContextCheckBox?.IsChecked == true,
+            ShowContextDetails = ShowInvoiceReviewContextDetailsCheckBox.IsChecked == true
+        };
         TrySaveInvoiceReviewPreferences();
         UpdateInvoiceReviewNavigationControls();
+    }
+
+    private void PaymentShortcutReplayPreference_Changed(object sender, SelectionChangedEventArgs e)
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        var seconds = (PaymentShortcutReplaySecondsComboBox.SelectedItem as ReplaySecondsOption)?.Seconds
+            ?? _invoiceReviewPreferences.PaymentShortcutReplaySeconds;
+        var emphasis = (PaymentShortcutReplayEmphasisComboBox.SelectedItem as ReplayEmphasisOption)?.Value
+            ?? _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+
+        _invoiceReviewPreferences = _invoiceReviewPreferences with
+        {
+            PaymentShortcutReplaySeconds = seconds,
+            PaymentShortcutReplayEmphasis = emphasis
+        };
+        TrySaveInvoiceReviewPreferences();
     }
 
     private void ToggleInvoiceReviewContextVisibility()
@@ -3098,7 +3136,7 @@ public partial class InvoicesView : UserControl
 
         _paymentHelperReplayFeedbackTimer ??= new DispatcherTimer
         {
-            Interval = TimeSpan.FromSeconds(2)
+            Interval = TimeSpan.FromSeconds(_invoiceReviewPreferences.PaymentShortcutReplaySeconds)
         };
         _paymentHelperReplayFeedbackTimer.Tick -= PaymentHelperReplayFeedbackTimer_Tick;
         _paymentHelperReplayFeedbackTimer.Tick += PaymentHelperReplayFeedbackTimer_Tick;
@@ -3158,7 +3196,7 @@ public partial class InvoicesView : UserControl
 
         _paymentPdfReplayFeedbackTimer ??= new DispatcherTimer
         {
-            Interval = TimeSpan.FromSeconds(2)
+            Interval = TimeSpan.FromSeconds(_invoiceReviewPreferences.PaymentShortcutReplaySeconds)
         };
         _paymentPdfReplayFeedbackTimer.Tick -= PaymentPdfReplayFeedbackTimer_Tick;
         _paymentPdfReplayFeedbackTimer.Tick += PaymentPdfReplayFeedbackTimer_Tick;
@@ -3176,14 +3214,19 @@ public partial class InvoicesView : UserControl
 
     private void ApplyPaymentHelperPrefixReplayVisualState(bool isReplayActive)
     {
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
         if (PaymentHelperLastActionPrefixBorder is not null)
         {
             PaymentHelperLastActionPrefixBorder.Background = new SolidColorBrush(
-                isReplayActive ? Color.FromRgb(34, 197, 94) : Color.FromRgb(220, 252, 231));
+                isReplayActive
+                    ? GetPaymentHelperReplayBackground(emphasis)
+                    : Color.FromRgb(220, 252, 231));
             PaymentHelperLastActionPrefixBorder.BorderBrush = new SolidColorBrush(
-                isReplayActive ? Color.FromRgb(21, 128, 61) : Color.FromRgb(134, 239, 172));
+                isReplayActive
+                    ? GetPaymentHelperReplayBorder(emphasis)
+                    : Color.FromRgb(134, 239, 172));
             PaymentHelperLastActionPrefixBorder.BorderThickness = isReplayActive
-                ? new Thickness(2)
+                ? new Thickness(GetReplayBorderThickness(emphasis))
                 : new Thickness(1);
         }
 
@@ -3196,14 +3239,19 @@ public partial class InvoicesView : UserControl
 
     private void ApplyPaymentPdfPrefixReplayVisualState(bool isReplayActive)
     {
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
         if (PaymentPdfHelperLastActionPrefixBorder is not null)
         {
             PaymentPdfHelperLastActionPrefixBorder.Background = new SolidColorBrush(
-                isReplayActive ? Color.FromRgb(14, 165, 233) : Color.FromRgb(224, 242, 254));
+                isReplayActive
+                    ? GetPaymentPdfReplayBackground(emphasis)
+                    : Color.FromRgb(224, 242, 254));
             PaymentPdfHelperLastActionPrefixBorder.BorderBrush = new SolidColorBrush(
-                isReplayActive ? Color.FromRgb(3, 105, 161) : Color.FromRgb(125, 211, 252));
+                isReplayActive
+                    ? GetPaymentPdfReplayBorder(emphasis)
+                    : Color.FromRgb(125, 211, 252));
             PaymentPdfHelperLastActionPrefixBorder.BorderThickness = isReplayActive
-                ? new Thickness(2)
+                ? new Thickness(GetReplayBorderThickness(emphasis))
                 : new Thickness(1);
         }
 
@@ -3214,7 +3262,82 @@ public partial class InvoicesView : UserControl
         }
     }
 
+    private void SelectReplayPreferenceOptions()
+    {
+        if (PaymentShortcutReplaySecondsComboBox?.ItemsSource is IEnumerable<ReplaySecondsOption> secondOptions)
+        {
+            PaymentShortcutReplaySecondsComboBox.SelectedItem = secondOptions
+                .FirstOrDefault(item => item.Seconds == _invoiceReviewPreferences.PaymentShortcutReplaySeconds)
+                ?? secondOptions.First();
+        }
+
+        if (PaymentShortcutReplayEmphasisComboBox?.ItemsSource is IEnumerable<ReplayEmphasisOption> emphasisOptions)
+        {
+            PaymentShortcutReplayEmphasisComboBox.SelectedItem = emphasisOptions
+                .FirstOrDefault(item => string.Equals(item.Value, _invoiceReviewPreferences.PaymentShortcutReplayEmphasis, StringComparison.OrdinalIgnoreCase))
+                ?? emphasisOptions.First();
+        }
+    }
+
+    private static double GetReplayBorderThickness(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => 1.5,
+            "high" => 3,
+            _ => 2
+        };
+    }
+
+    private static Color GetPaymentHelperReplayBackground(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(74, 222, 128),
+            "high" => Color.FromRgb(22, 163, 74),
+            _ => Color.FromRgb(34, 197, 94)
+        };
+    }
+
+    private static Color GetPaymentHelperReplayBorder(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(22, 163, 74),
+            "high" => Color.FromRgb(21, 128, 61),
+            _ => Color.FromRgb(21, 128, 61)
+        };
+    }
+
+    private static Color GetPaymentPdfReplayBackground(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(56, 189, 248),
+            "high" => Color.FromRgb(2, 132, 199),
+            _ => Color.FromRgb(14, 165, 233)
+        };
+    }
+
+    private static Color GetPaymentPdfReplayBorder(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(14, 165, 233),
+            "high" => Color.FromRgb(3, 105, 161),
+            _ => Color.FromRgb(3, 105, 161)
+        };
+    }
+
     private sealed record MonthOption(int Value, string Label);
+    private sealed record ReplaySecondsOption(string Label, int Seconds)
+    {
+        public override string ToString() => Label;
+    }
+    private sealed record ReplayEmphasisOption(string Label, string Value)
+    {
+        public override string ToString() => Label;
+    }
 
     private sealed record InvoiceTypeFilterOption(string Label, long? InvoiceTypeId);
 

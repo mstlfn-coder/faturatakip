@@ -334,6 +334,15 @@ public sealed class SelfTestRunner
             Assert(
                 PaymentPdfHelperSummaryBuilder.BuildReplayFeedbackText("Son hizli yardim: PDF Ac uygulandi.", true) == "Son hizli yardim: PDF Ac uygulandi. (yeniden tetiklendi)",
                 "Odeme PDF yardim tekrar geri bildirimi beklenen formati uretmedi.");
+            var replayPreferences = new InvoiceReviewPreferences
+            {
+                ShowContext = true,
+                ShowContextDetails = true,
+                PaymentShortcutReplaySeconds = 9,
+                PaymentShortcutReplayEmphasis = "unknown"
+            }.Sanitize();
+            Assert(replayPreferences.PaymentShortcutReplaySeconds == 4, "Replay tercih suresi ust sinirda kirpilamadi.");
+            Assert(replayPreferences.PaymentShortcutReplayEmphasis == "medium", "Replay tercih vurgu seviyesi varsayilana donmedi.");
             Assert(
                 PaymentPdfHelperSummaryBuilder.BuildSummaryText(
                     new Payment { Id = 15, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 26), Amount = 45m, Description = "Hazir", PdfFilePath = "attachments/payments/2026/01/ready.pdf" },
@@ -1438,7 +1447,11 @@ public sealed class SelfTestRunner
             Assert(loadedPreferences.EndDate == new DateTime(2026, 6, 5), "Audit log filtre tercihi bitis tarihi saklanmadi.");
             Assert(loadedPreferences.ChangedOnly, "Audit log filtre tercihi degisen alan filtresi saklanmadi.");
 
-            var invoiceReviewPreferences = new InvoiceReviewPreferences(ShowContext: false, ShowContextDetails: false);
+            var invoiceReviewPreferences = new InvoiceReviewPreferences
+            {
+                ShowContext = false,
+                ShowContextDetails = false
+            };
             invoiceReviewPreferences.Save(testRoot);
             var loadedInvoiceReviewPreferences = InvoiceReviewPreferences.LoadOrDefault(testRoot);
             Assert(!loadedInvoiceReviewPreferences.ShowContext, "Inceleme baglami gorunurluk tercihi saklanmadi.");
