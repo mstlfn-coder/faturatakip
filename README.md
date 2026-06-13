@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.52 - Odeme PDF Yardim Ozeti
+
+Bu fazda odeme PDF bolumune de mini yardim ozeti eklendi.
+Secili odeme, PDF bekleniyor, PDF kayitli ve PDF kayip durumlari artik rozetli kisa yardimlar ve ozet metniyle tek bakista gorulebiliyor.
+
+Boylece odeme PDF akisinda kullanici once secim ve evrak durumunu okuyup sonra aksiyon alabiliyor.
+Odemeler ana akisinda form ve PDF bolumu ayni dilde davranmaya basladi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.51 - Odeme Yardim Rozeti Klavye Gorunurlugu
 
 Bu fazda odeme yardim rozetlerinin klavyede daha rahat kullanilmasi icin gorunur odak ve tooltip ipuclari eklendi.

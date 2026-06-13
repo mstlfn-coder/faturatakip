@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.52)
+
+- v1.52 tamamlandi: odeme PDF bolumune mini yardim ozeti ve durum rozetleri eklendi.
+- Secili odeme, PDF bekleniyor, PDF kayitli ve PDF kayip durumlari ozet satiri ve rozetlerle tek bakista okunuyor.
+- Boylece odeme ana akisinda form yardimlari ile PDF yardimlari ayni dilde bulustu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.51)
 
 - v1.51 tamamlandi: odeme yardim rozetlerine klavye odak gorunurlugu ve tooltip ipuclari eklendi.

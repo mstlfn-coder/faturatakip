@@ -2814,6 +2814,7 @@ public partial class InvoicesView : UserControl
         if (payment is null)
         {
             SetPaymentPdfInfo("PDF eklemek için ödeme kaydı seçin.", isError: false);
+            UpdatePaymentPdfHelperSummary(null, paymentPdfExists: false);
             SelectPaymentPdfButton.IsEnabled = false;
             OpenPaymentPdfButton.IsEnabled = false;
             return;
@@ -2823,6 +2824,7 @@ public partial class InvoicesView : UserControl
         if (!payment.HasPdf)
         {
             SetPaymentPdfInfo("Bu ödeme kaydına PDF evrak eklenmemiş.", isError: false);
+            UpdatePaymentPdfHelperSummary(payment, paymentPdfExists: false);
             OpenPaymentPdfButton.IsEnabled = false;
             return;
         }
@@ -2830,12 +2832,32 @@ public partial class InvoicesView : UserControl
         if (_paymentRepository?.PdfFileExists(payment) == true)
         {
             SetPaymentPdfInfo($"PDF kayıtlı: {payment.PdfOriginalFileName}", isError: false);
+            UpdatePaymentPdfHelperSummary(payment, paymentPdfExists: true);
             OpenPaymentPdfButton.IsEnabled = true;
             return;
         }
 
         SetPaymentPdfInfo($"PDF kaydı var ancak dosya bulunamadı: {payment.PdfFilePath}", isError: true);
+        UpdatePaymentPdfHelperSummary(payment, paymentPdfExists: false);
         OpenPaymentPdfButton.IsEnabled = false;
+    }
+
+    private void UpdatePaymentPdfHelperSummary(Payment? payment, bool paymentPdfExists)
+    {
+        var helperBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(payment, paymentPdfExists);
+
+        if (PaymentPdfHelperSummaryText is not null)
+        {
+            PaymentPdfHelperSummaryText.Text = PaymentPdfHelperSummaryBuilder.BuildSummaryText(payment, paymentPdfExists);
+        }
+
+        if (PaymentPdfHelperBadges is not null)
+        {
+            PaymentPdfHelperBadges.ItemsSource = helperBadges;
+            PaymentPdfHelperBadges.Visibility = helperBadges.Count > 0
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
     }
 
     private void SetPaymentPdfInfo(string message, bool isError)

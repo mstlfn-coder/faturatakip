@@ -1165,3 +1165,9 @@ v0.12 sonuÃ§ notu:
 678. Boylece odeme ana akisinda klavye kesfedilebilirligi bir adim daha guclendi.
 679. Smoke test: dotnet build -c Release OK.
 680. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+681. v1.52 olarak odeme PDF bolumune mini yardim ozeti ve durum rozetleri eklendi.
+682. Secili odeme, PDF bekleniyor, PDF kayitli ve PDF kayip durumlari artik ozet satiri ve rozetlerle tek bakista okunuyor.
+683. Boylece odeme formu ile odeme PDF bolumu ayni yardim diliyle hizalanmis oldu.
+684. Smoke test: dotnet build -c Release OK.
+685. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

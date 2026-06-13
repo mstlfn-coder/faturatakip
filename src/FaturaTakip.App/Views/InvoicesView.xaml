@@ -865,6 +865,31 @@
                                                Style="{StaticResource MutedText}"
                                                TextWrapping="Wrap"
                                                Margin="0,10,0,0" />
+                                    <TextBlock x:Name="PaymentPdfHelperSummaryText"
+                                               Style="{StaticResource MutedText}"
+                                               TextWrapping="Wrap"
+                                               Margin="0,8,0,0" />
+                                    <ItemsControl x:Name="PaymentPdfHelperBadges"
+                                                  Margin="0,6,0,0">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Style="{StaticResource ActionBadgeBorder}"
+                                                        ToolTip="{Binding ToolTip}">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Prefix}"
+                                                                   Style="{StaticResource ActionBadgePrefixText}" />
+                                                        <TextBlock Text="{Binding Text}"
+                                                                   Style="{StaticResource ActionBadgeText}" />
+                                                    </StackPanel>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
                                     <StackPanel Orientation="Horizontal"
                                                 Margin="0,10,0,0">
                                         <Button x:Name="SelectPaymentPdfButton"

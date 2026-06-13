@@ -275,6 +275,26 @@ public sealed class SelfTestRunner
             Assert(
                 PaymentEntryHelperSummaryBuilder.BuildSummaryText(null, Array.Empty<Payment>(), null) == "Hazir odeme yardimi yok.",
                 "Bos odeme yardim ozeti beklenen metni uretmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildSummaryText(null, paymentPdfExists: false) == "PDF islemleri icin secili odeme yok.",
+                "Bos odeme PDF yardim ozeti beklenen metni uretmedi.");
+            var paymentPdfMissingBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(
+                new Payment { Id = 12, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 23), Amount = 80m, Description = "Eksik", PdfFilePath = string.Empty },
+                paymentPdfExists: false);
+            Assert(paymentPdfMissingBadges.Any(item => item.Text == "PDF Bekleniyor"), "PDF eklenmemis odeme icin beklenen yardim rozeti uretilmedi.");
+            var paymentPdfReadyBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(
+                new Payment { Id = 13, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 24), Amount = 60m, Description = "Var", PdfFilePath = "attachments/payments/2026/01/a.pdf", PdfOriginalFileName = "a.pdf" },
+                paymentPdfExists: true);
+            Assert(paymentPdfReadyBadges.Any(item => item.Text == "PDF Kayitli"), "PDF kayitli odeme icin yardim rozeti uretilmedi.");
+            var paymentPdfLostBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(
+                new Payment { Id = 14, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 25), Amount = 55m, Description = "Kayip", PdfFilePath = "attachments/payments/2026/01/missing.pdf", PdfOriginalFileName = "missing.pdf" },
+                paymentPdfExists: false);
+            Assert(paymentPdfLostBadges.Any(item => item.Text == "PDF Kayip"), "PDF kayip odeme icin yardim rozeti uretilmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildSummaryText(
+                    new Payment { Id = 15, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 26), Amount = 45m, Description = "Hazir", PdfFilePath = "attachments/payments/2026/01/ready.pdf" },
+                    paymentPdfExists: true) == "Secili odeme icin PDF kaydi hazir.",
+                "PDF hazir durum ozeti beklenen metni uretmedi.");
 
             var paymentRepository = new PaymentRepository(databasePath);
             var partialPayment = paymentRepository.Add(new PaymentInput(

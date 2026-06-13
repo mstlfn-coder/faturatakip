@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.52 - Odeme PDF Yardim Ozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF yardim rozetleri uretiliyor | OK | `PDF Bekleniyor`, `PDF Kayitli`, `PDF Kayip` durumlari uygun sekilde rozet uretiyor |
+| Bos durum metni var | OK | Secili odeme yoksa `PDF islemleri icin secili odeme yok.` metni kullaniliyor |
+| 2026-06-13 | v1.52 | OK | Odeme PDF yardim ozeti + build + self-test tamamlandi |
+
 ## v1.51 - Odeme Yardim Rozeti Klavye Gorunurlugu
 | Kontrol | Durum | Not |
 | --- | --- | --- |
