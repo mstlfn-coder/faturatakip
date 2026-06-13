@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.82 - Replay Indicator Self-Test
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Replay indicator aktif pattern asserti var | OK | Aktif desen `***|||` dogrudan kontrol ediliyor |
+| Replay indicator tooltip assertleri var | OK | Actionli ve bos durum tooltip metinleri self-test ile korunuyor |
+| 2026-06-13 | v1.82 | OK | Replay indicator self-test + build + self-test tamamlandi |
+
 ## v1.81 - Replay Indicator Helper
 | Kontrol | Durum | Not |
 | --- | --- | --- |

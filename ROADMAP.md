@@ -1342,3 +1342,9 @@ Her faz bittiğinde:
 - Replay tonu, action adlari ve minik gorsel indicator kararlari tek noktada toplandi.
 - Boylece sonraki mikro duzenlemeler daha dusuk riskle yapilabilir hale geldi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.82)
+
+- v1.82 tamamlandi: replay indicator helper icin dar kapsamli self-testler eklendi.
+- Indicator deseni, action adi ve tooltip metin dallari artik dogrudan assert ediliyor.
+- Boylece replay yardim tonundaki degisiklikler daha erken ve daha hedefli yakalanacak.
+- Smoke test olarak build ve self-test temiz gecti.

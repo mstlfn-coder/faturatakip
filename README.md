@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.82 - Replay Indicator Self-Test
+
+Bu fazda yeni `ReplayPreferenceIndicatorFormatter` helperi icin dar kapsamli self-testler eklendi.
+Indicator deseni, action gorunum adi ve tooltip metin dallari artik dogrudan self-test ile korunuyor.
+
+Boylece replay yardim dilindeki mikro degisiklikler regression seviyesinde daha erken yakalanacak.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.81 - Replay Indicator Helper
 
 Bu fazda replay mini isaretinin indicator ve tooltip metin mantigi, `InvoicesView` icinden cikarilip ortak bir helper dosyasina toplandi.

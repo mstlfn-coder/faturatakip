@@ -352,6 +352,21 @@ public sealed class SelfTestRunner
             Assert(
                 PaymentPdfHelperSummaryBuilder.BuildReplayPreferencePrefix("open_pdf") == "AC",
                 "Odeme PDF replay ozet prefix metni beklenen formati uretmedi.");
+            Assert(
+                ReplayPreferenceIndicatorFormatter.BuildIndicator("high", 3, hasAction: true) == "***|||",
+                "Replay indicator aktif durum deseni beklenen formati uretmedi.");
+            Assert(
+                ReplayPreferenceIndicatorFormatter.BuildIndicator("low", 2, hasAction: false) == ".::",
+                "Replay indicator pasif durum deseni beklenen formati uretmedi.");
+            Assert(
+                ReplayPreferenceIndicatorFormatter.BuildActionDisplayName("use_selected") == "Secili Odeme",
+                "Replay indicator action gorunum adi beklenen metni uretmedi.");
+            Assert(
+                ReplayPreferenceIndicatorFormatter.BuildToolTip("medium", 2, hasAction: true, isReplayActive: true, actionKey: "open_pdf") == "PDF Ac replay ayari: 2 sn, orta vurgu. Yeniden tetiklendi.",
+                "Replay indicator aktif tooltip metni beklenen formati uretmedi.");
+            Assert(
+                ReplayPreferenceIndicatorFormatter.BuildToolTip("low", 1, hasAction: false, isReplayActive: false, actionKey: null) == "Replay ayari hazir: 1 sn, dusuk vurgu. Bir action sec ve replay yardimini hazirla.",
+                "Replay indicator bos durum tooltip metni beklenen formati uretmedi.");
             var replayPreferences = new InvoiceReviewPreferences
             {
                 ShowContext = true,
