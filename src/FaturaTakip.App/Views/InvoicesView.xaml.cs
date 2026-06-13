@@ -2818,14 +2818,21 @@ public partial class InvoicesView : UserControl
 
         if (PaymentHelperReplayPreferenceSummaryText is not null)
         {
+            var hasAction = !string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey);
             PaymentHelperReplayPreferenceSummaryText.Text = PaymentEntryHelperSummaryBuilder.BuildReplayPreferenceSummaryText(
                 _lastInvokedPaymentHelperActionKey,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis);
+            PaymentHelperReplayPreferenceSummaryText.ToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                hasAction,
+                _isPaymentHelperReplayFeedbackActive,
+                _lastInvokedPaymentHelperActionKey);
             PaymentHelperReplayPreferenceSummaryText.Foreground = new SolidColorBrush(
-                string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
-                    ? Color.FromRgb(95, 107, 122)
-                    : Color.FromRgb(22, 101, 52));
+                hasAction
+                    ? Color.FromRgb(22, 101, 52)
+                    : Color.FromRgb(95, 107, 122));
         }
 
         if (PaymentHelperReplayPreferencePrefixText is not null)
@@ -3068,14 +3075,21 @@ public partial class InvoicesView : UserControl
 
         if (PaymentPdfReplayPreferenceSummaryText is not null)
         {
+            var hasAction = !string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey);
             PaymentPdfReplayPreferenceSummaryText.Text = PaymentPdfHelperSummaryBuilder.BuildReplayPreferenceSummaryText(
                 _lastInvokedPaymentPdfHelperActionKey,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis);
+            PaymentPdfReplayPreferenceSummaryText.ToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                hasAction,
+                _isPaymentPdfReplayFeedbackActive,
+                _lastInvokedPaymentPdfHelperActionKey);
             PaymentPdfReplayPreferenceSummaryText.Foreground = new SolidColorBrush(
-                string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
-                    ? Color.FromRgb(95, 107, 122)
-                    : Color.FromRgb(3, 105, 161));
+                hasAction
+                    ? Color.FromRgb(3, 105, 161)
+                    : Color.FromRgb(95, 107, 122));
         }
 
         if (PaymentPdfReplayPreferencePrefixText is not null)

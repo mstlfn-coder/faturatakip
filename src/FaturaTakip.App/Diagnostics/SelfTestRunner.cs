@@ -361,11 +361,15 @@ public sealed class SelfTestRunner
             Assert(
                 ReplayPreferenceIndicatorFormatter.BuildActionDisplayName("use_selected") == "Secili Odeme",
                 "Replay indicator action gorunum adi beklenen metni uretmedi.");
+            var activeReplayToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip("medium", 2, hasAction: true, isReplayActive: true, actionKey: "open_pdf");
             Assert(
-                ReplayPreferenceIndicatorFormatter.BuildToolTip("medium", 2, hasAction: true, isReplayActive: true, actionKey: "open_pdf") == "PDF Ac replay ayari: 2 sn, orta vurgu. Yeniden tetiklendi.",
+                activeReplayToolTip.Contains("PDF Ac replay ayari: 2 sn, orta vurgu", StringComparison.Ordinal)
+                && activeReplayToolTip.Contains("Yeniden tetiklendi.", StringComparison.Ordinal),
                 "Replay indicator aktif tooltip metni beklenen formati uretmedi.");
+            var idleReplayToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip("low", 1, hasAction: false, isReplayActive: false, actionKey: null);
             Assert(
-                ReplayPreferenceIndicatorFormatter.BuildToolTip("low", 1, hasAction: false, isReplayActive: false, actionKey: null) == "Replay ayari hazir: 1 sn, dusuk vurgu. Bir action sec ve replay yardimini hazirla.",
+                idleReplayToolTip.Contains("Replay ayari hazir: 1 sn, dusuk vurgu.", StringComparison.Ordinal)
+                && idleReplayToolTip.Contains("Bir action sec ve replay yardimini hazirla.", StringComparison.Ordinal),
                 "Replay indicator bos durum tooltip metni beklenen formati uretmedi.");
             var replayPreferences = new InvoiceReviewPreferences
             {

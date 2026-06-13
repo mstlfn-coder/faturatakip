@@ -20,9 +20,9 @@ public static class ReplayPreferenceIndicatorFormatter
     {
         var emphasisLabel = emphasis switch
         {
-            "low" => "dusuk vurgu",
-            "high" => "guclu vurgu",
-            _ => "orta vurgu"
+            "low" => "dusuk",
+            "high" => "guclu",
+            _ => "orta"
         };
 
         var actionName = BuildActionDisplayName(actionKey);

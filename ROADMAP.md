@@ -1354,3 +1354,9 @@ Her faz bittiğinde:
 - Odeme yardimi, PDF yardimi ve bos durum replay akislarini elle dogrulayan kisa bir kontrol rotasi tanimlandi.
 - Boylece replay indicator UX halkasi yeni chatlerde daha kolay devralinabilir hale geldi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.84)
+
+- v1.84 tamamlandi: replay tooltipi replay ozet metninin tamamina da baglandi.
+- Kullanici artik sadece mini indicatoru degil, ozet metnini hover ederek de ayni replay aciklamasini okuyabiliyor.
+- Boylece replay yardim alaninin hover hedefi daha rahat hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.

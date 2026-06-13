@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.84 - Replay Ozet Tooltip Genisleme
+
+Bu fazda replay tooltipi sadece mini indicator ve prefixte degil, replay ozet metninin tamaminda da gorunur hale getirildi.
+Boylece kullanici dar bir hedefi yakalamadan, replay aciklamasini daha genis hover alaninda okuyabiliyor.
+
+Kucuk ama hissedilir bir erisilebilirlik ve rahatlik dokunusu oldu.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.83 - Replay Indicator UI Smoke Checklist
 
 Bu fazda replay indicator kullanan odeme yardimi ve PDF yardimi alanlari icin ayri bir UI smoke checklist dokumani eklendi.
