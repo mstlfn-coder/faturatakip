@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.76 - Replay Tooltip Metin Sikilastirmasi
+
+Bu fazda replay mini isaret tooltip metni baglama gore kisaltildi.
+Action varsa tooltip daha kisa ve dogrudan action adina odaklaniyor, action yoksa ise kullaniciyi replay'in nasil canlanacagina yonlendiren bir ifade kullaniliyor.
+
+Boylece hover metni daha hizli okunur hale geldi.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.75 - Replay Tooltip Action Adi
 
 Bu fazda replay mini isaret tooltipine, baglami olusturan action adinin kendisi de eklendi.

@@ -1306,3 +1306,9 @@ Her faz bittiğinde:
 - Tooltip artik hangi hizli yardim veya PDF action'inin bu replay baglamini olusturdugunu da acikca soyluyor.
 - Boylece replay baglaminin kaynagi daha kolay izlenebilir hale geldi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.76)
+
+- v1.76 tamamlandi: replay tooltip metni action durumuna gore sikilastirildi.
+- Action varsa daha kisa ve dogrudan replay ozeti, action yoksa daha yonlendirici bir hazirlik metni kullaniliyor.
+- Boylece hover aciklamasi daha hizli taranabilir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.

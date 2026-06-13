@@ -3561,20 +3561,19 @@ public partial class InvoicesView : UserControl
             _ => "orta vurgu"
         };
 
-        var actionLabel = hasAction
-            ? "Action mevcut; sure izi daha net gosterilir."
-            : "Henuz action yok; sure izi daha sakin gosterilir.";
-
-        var replayLabel = isReplayActive
-            ? "Replay su anda aktif."
-            : "Replay su anda beklemede.";
-
         var actionName = BuildReplayActionDisplayName(actionKey);
-        var actionSummary = string.IsNullOrWhiteSpace(actionName)
-            ? "Kaynak action henuz secilmedi."
-            : $"Kaynak action: {actionName}.";
+        if (hasAction && !string.IsNullOrWhiteSpace(actionName))
+        {
+            var replayLabel = isReplayActive
+                ? "Replay aktif."
+                : "Replay beklemede.";
+            return $"{actionName} replay: {seconds} sn, {emphasisLabel}. {replayLabel}";
+        }
 
-        return $"Replay isareti: {emphasisLabel}, {seconds} sn. {actionLabel} {actionSummary} {replayLabel}";
+        var guidanceLabel = isReplayActive
+            ? "Replay su anda aktif."
+            : "Bir action secildiginde replay burada canlanir.";
+        return $"Replay hazir: {seconds} sn, {emphasisLabel}. {guidanceLabel}";
     }
 
     private static string BuildReplayActionDisplayName(string? actionKey)

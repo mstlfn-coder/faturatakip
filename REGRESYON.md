@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.76 - Replay Tooltip Metin Sikilastirmasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Actionli replay tooltip daha kisa | OK | Action varsa tooltip dogrudan action replay ozeti veriyor |
+| Actionsiz replay tooltip daha yonlendirici | OK | Action yoksa replay'in ne zaman canlanacagi anlatiliyor |
+| 2026-06-13 | v1.76 | OK | Replay tooltip metin sikilastirmasi + build + self-test tamamlandi |
+
 ## v1.75 - Replay Tooltip Action Adi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
