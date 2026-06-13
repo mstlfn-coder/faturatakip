@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.100 - Yardim Rozet Ton Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi rozet tonlari yumusadi | OK | Tekrar ve kisayol rozetleri ana metni bastirmiyor |
+| PDF yardimi rozet tonlari yumusadi | OK | Tekrar ve kisayol rozetleri ana metni bastirmiyor |
+| 2026-06-14 | v1.100 | OK | Yardim rozet ton dengeleme + build + self-test tamamlandi |
+
 ## v1.99 - Yardim Durum Satiri Kompakt Gorunum
 | Kontrol | Durum | Not |
 | --- | --- | --- |

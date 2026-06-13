@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.100)
+
+- v1.100 tamamlandi: yardim durum satirindaki tekrar ve kisayol rozetlerinin tonlari yumusatildi.
+- Yardimci etiketler daha sakinlestirilirken ana metnin gorsel onceligi arttirildi.
+- Boylece satir daha dengeli ve daha hizli okunur hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.99)
 
 - v1.99 tamamlandi: secili yardim durum satiri daha kompakt hale getirildi.
