@@ -1062,3 +1062,9 @@ v0.12 sonuÃ§ notu:
 592. Boylece kullanici baglamda eksik olan parcayi daha hizli anlayabiliyor.
 593. Smoke test: dotnet build -c Release OK.
 594. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+595. v1.35 olarak review baglam metni icin ozet ve detay gorunumu arasinda gecis eklendi.
+596. `Detay Metin` secimi acikken tam baglam metni, kapaliyken daha kisa ozet metin gosteriliyor.
+597. Bu tercih review baglam ayarlariyla birlikte kalici olarak saklaniyor.
+598. Smoke test: dotnet build -c Release OK.
+599. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

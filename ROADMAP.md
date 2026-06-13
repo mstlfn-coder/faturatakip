@@ -985,6 +985,13 @@ Her faz bittiğinde:
 - Rapor gecisinden normal calisma moduna donus tek tikla kolaylasti.
 - Smoke test olarak build ve self-test temiz gecti.
 
+## Son Guncelleme (2026-06-13 / v1.35)
+
+- v1.35 tamamlandi: review baglam metnine ozet/detay gorunumu eklendi.
+- `Detay Metin` secimiyle tam baglam metni ve kisa ozet metin arasinda gecis yapilabiliyor.
+- Bu tercih review baglam ayarlariyla birlikte kalici olarak saklaniyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.34)
 
 - v1.34 tamamlandi: pasif review baglam aksiyon dugmelerine neden pasif kaldigini anlatan tooltip mesajlari eklendi.

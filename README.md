@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.35 - Baglam Ozet/Detay Gorunumu
+
+Bu fazda review baglam metni icin kisa ozet ve detay gorunumu arasinda gecis eklendi.
+Paneldeki yeni `Detay Metin` secimi acikken tam baglam metni gorunuyor; kapaliyken ayni alan daha kisa, ciplerden turetilen ozet metne donusuyor.
+
+Boylece kullanici isterse rapor gecis baglamini tam haliyle okuyabiliyor, isterse daha sakin bir ozetle calisabiliyor.
+Bu tercih review baglam ayarlariyla birlikte kalici olarak saklaniyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.34 - Pasif Baglam Aksiyon Nedenleri
 
 Bu fazda review baglam panelindeki pasif aksiyon dugmelerinin tooltip metinleri daha acik hale getirildi.

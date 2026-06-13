@@ -93,6 +93,7 @@ public partial class InvoicesView : UserControl
         };
         InvoiceReviewStatusFilterInput.SelectedIndex = 0;
         ShowInvoiceReviewContextCheckBox.IsChecked = _invoiceReviewPreferences.ShowContext;
+        ShowInvoiceReviewContextDetailsCheckBox.IsChecked = _invoiceReviewPreferences.ShowContextDetails;
 
         RefreshSubscriptionLists();
         RefreshInvoices();
@@ -983,7 +984,17 @@ public partial class InvoicesView : UserControl
     private void ShowInvoiceReviewContextCheckBox_Changed(object sender, RoutedEventArgs e)
     {
         _invoiceReviewPreferences = new InvoiceReviewPreferences(
-            ShowContext: ShowInvoiceReviewContextCheckBox.IsChecked == true);
+            ShowContext: ShowInvoiceReviewContextCheckBox.IsChecked == true,
+            ShowContextDetails: ShowInvoiceReviewContextDetailsCheckBox?.IsChecked == true);
+        TrySaveInvoiceReviewPreferences();
+        UpdateInvoiceReviewNavigationControls();
+    }
+
+    private void ShowInvoiceReviewContextDetailsCheckBox_Changed(object sender, RoutedEventArgs e)
+    {
+        _invoiceReviewPreferences = new InvoiceReviewPreferences(
+            ShowContext: ShowInvoiceReviewContextCheckBox?.IsChecked == true,
+            ShowContextDetails: ShowInvoiceReviewContextDetailsCheckBox.IsChecked == true);
         TrySaveInvoiceReviewPreferences();
         UpdateInvoiceReviewNavigationControls();
     }
@@ -1580,6 +1591,17 @@ public partial class InvoicesView : UserControl
         };
     }
 
+    private static string BuildInvoiceReviewContextSummary(string? contextLabel)
+    {
+        var chips = InvoiceReviewContextFormatter.BuildChips(contextLabel);
+        if (chips.Count == 0)
+        {
+            return string.Empty;
+        }
+
+        return string.Join(" | ", chips.Select(chip => chip.Text));
+    }
+
     private void UpdateReviewContextPrimaryActionButtonEmphasis()
     {
         ResetReviewContextActionButtonEmphasis(FocusInvoiceFromReviewContextButton);
@@ -1699,7 +1721,11 @@ public partial class InvoicesView : UserControl
 
         if (InvoiceReviewContextText is not null)
         {
-            InvoiceReviewContextText.Text = hasContext ? contextLabel : string.Empty;
+            InvoiceReviewContextText.Text = hasContext
+                ? (_invoiceReviewPreferences.ShowContextDetails
+                    ? contextLabel
+                    : BuildInvoiceReviewContextSummary(contextLabel))
+                : string.Empty;
         }
 
         if (InvoiceReviewActionBadges is not null)

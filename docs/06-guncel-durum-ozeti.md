@@ -35,6 +35,7 @@ Son guncelleme tarihi: 2026-06-13
   - `v1.32` Son Baglam Aksiyonu Gosterimi
   - `v1.33` Son Aksiyon Dugme Vurgusu
   - `v1.34` Pasif Baglam Aksiyon Nedenleri
+  - `v1.35` Baglam Ozet/Detay Gorunumu
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -72,6 +73,7 @@ Son guncelleme tarihi: 2026-06-13
 29. Review baglam paneline son calistirilan aksiyonu gosteren mikro metin satiri eklendi.
 30. Son kullanilan ana baglam aksiyon dugmesine hafif bir gorsel vurgu eklendi.
 31. Pasif baglam aksiyon dugmeleri, neden kullanilamadigini tooltip uzerinden aciklayacak hale getirildi.
+32. Review baglam metni icin ozet ve detay gorunumu arasinda gecis eklendi.
 
 ## Son 5 Commit
 
@@ -95,7 +97,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Baglam panelindeki pasif neden aciklamalari da eklendigi icin bir sonraki mantikli adim, baglam panelindeki baglam metnini istenirse daha kisa ozet / daha detayli gorunum arasinda degistirecek minik bir gorunum secimi olabilir.
+- Baglam metni icin ozet/detay gecisi de eklendigi icin bir sonraki mantikli adim, review baglam panelindeki cipler icin tiklanabilir mikro kisayollar veya filtreye hizli kopyalama gibi rahatliklar olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

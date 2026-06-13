@@ -3,9 +3,9 @@ using System.Text.Json;
 
 namespace FaturaTakip.App.Infrastructure;
 
-public sealed record InvoiceReviewPreferences(bool ShowContext)
+public sealed record InvoiceReviewPreferences(bool ShowContext, bool ShowContextDetails)
 {
-    public static InvoiceReviewPreferences Default { get; } = new(ShowContext: true);
+    public static InvoiceReviewPreferences Default { get; } = new(ShowContext: true, ShowContextDetails: true);
 
     public static InvoiceReviewPreferences LoadOrDefault(string rootDirectory)
     {
