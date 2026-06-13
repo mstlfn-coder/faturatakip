@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.41)
+
+- v1.41 tamamlandi: review baglam panelinde son kullanilan cip kalici mikro vurgu ile izlenir hale getirildi.
+- Sol tik ve sag tik menusu uzerinden kullanilan cipler ayni secim durumunu guncelliyor.
+- Baglam degistiginde eski cip vurgusu otomatik temizleniyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 Bu roadmap, `docs/01-gelistirme-plani.md` içindeki kapsamlı planın uygulanabilir geliştirme sırasına dönüştürülmüş halidir.
 
 ## Durum Etiketleri

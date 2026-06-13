@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.41 - Son Baglam Cipi Vurgusu
+
+Bu fazda review baglam panelinde son kullanilan cip hafif ama kalici bir secim vurgusuyla izlenmeye baslandi.
+Ayni baglam acik kaldigi surece tiklanan veya sag tik menusunden kullanilan cip biraz daha belirgin cerceveyle one cikiyor.
+
+Boylece operator, hangi mikro ipucundan ilerledigini panel uzerinde kolayca takip edebiliyor.
+Baglam degistiginde bu vurgu otomatik sifirlaniyor; yani eski baglamdan kalan secim izi tasinmiyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.40 - Baglam Cipi Klavye Erisimi
 
 Bu fazda review baglam cipleri icin klavye erisilebilirligi ve odak gorunurlugu iyilestirildi.

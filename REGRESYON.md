@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.41 - Son Baglam Cipi Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Son kullanilan cip vurgulaniyor | OK | Tiklanan veya menuden kullanilan cip ayni baglamda belirgin cerceveyle secili kaliyor |
+| Baglam degisince vurgu sifirlaniyor | OK | Yeni baglam imzasinda onceki cip secimi otomatik temizleniyor |
+| 2026-06-13 | v1.41 | OK | Son baglam cipi vurgusu + build + self-test tamamlandi |
+
 Bu dosya, her geliştirme fazından sonra mevcut çalışan davranışların bozulmadığını kontrol etmek için tutulur. Yeni Codex chatlerinde önce bu dosya okunmalı, sonra ilgili fazın testleri çalıştırılmalıdır.
 
 ## Kullanım

@@ -282,5 +282,5 @@ public static class InvoiceReviewContextFormatter
         return values.Any(value => text.IndexOf(value, StringComparison.CurrentCultureIgnoreCase) >= 0);
     }
 
-    public sealed record ContextChip(string Text, string Kind, string Prefix, string ToolTip, string ActionKey, string ActionBadge);
+    public sealed record ContextChip(string Text, string Kind, string Prefix, string ToolTip, string ActionKey, string ActionBadge, bool IsSelected = false);
 }

@@ -1098,3 +1098,9 @@ v0.12 sonuÃ§ notu:
 622. Boylece cipler fare disinda klavyeyle de daha rahat kullanilir hale geldi.
 623. Smoke test: dotnet build -c Release OK.
 624. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+625. v1.41 olarak review baglam panelinde son kullanilan cip mikro vurgu ile izlenir hale getirildi.
+626. Sol tik ve sag tik menusunden kullanilan cipler ayni secim kaydini guncelliyor; ayni baglam surerken ilgili cip belirgin cerceveyle gorunuyor.
+627. Baglam imzasi degistiginde onceki cip vurgusu otomatik temizleniyor.
+628. Smoke test: dotnet build -c Release OK.
+629. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

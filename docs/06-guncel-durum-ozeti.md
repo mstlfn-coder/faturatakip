@@ -84,14 +84,15 @@ Son guncelleme tarihi: 2026-06-13
 35. Review baglam ciplerine davranis tipini gosteren `UYG` / `KPY` mikro isaretleri eklendi.
 36. Review baglam ciplerine `Uygula` / `Kopyala` secenekleri sunan sag tik menusu eklendi.
 37. Review baglam ciplerine klavye odagi ve klavyeden menu acma destegi eklendi.
+38. Review baglam panelinde son kullanilan cip hafif bir secim vurgusuyla izlenir hale getirildi.
 
 ## Son 5 Commit
 
+- `git log --oneline -1` ile teyit et: `feat: highlight last used review context chip`
 - `34a4f0c` `feat: add shortcut for clearing review context`
 - `ca28b1b` `feat: add clear action for review context`
 - `2b405ea` `fix: reset badge highlight when review context changes`
 - `a55cc11` `feat: highlight last used review context badge`
-- `861d450` `feat: make review context badges actionable`
 
 ## Sonraki Mantikli Adim
 
@@ -107,7 +108,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Ciplerin klavye erisimi de eklendigi icin bir sonraki mantikli adim, cipler icin cok hafif bir tik geri bildirimi ya da son kullanilan cipi mikro vurguyla izleme olabilir.
+- Son kullanilan cip vurgusu da eklendigi icin bir sonraki mantikli kucuk adim, secili cipe klavyeden dogrudan `Enter` ile ana aksiyon ve `Ctrl+C` ile kopyalama gibi hizli mikro kisayollar eklemek olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

@@ -41,6 +41,7 @@ public partial class InvoicesView : UserControl
     private string? _activeInvoiceFilterHintHighlightLabel;
     private DispatcherTimer? _invoiceFilterHintHighlightTimer;
     private string? _lastInvokedReviewActionKey;
+    private string? _lastInvokedReviewContextChipKey;
     private string? _lastReviewContextSignature;
     private string _rootDirectory = string.Empty;
     private InvoiceReviewPreferences _invoiceReviewPreferences = InvoiceReviewPreferences.Default;
@@ -1059,6 +1060,8 @@ public partial class InvoicesView : UserControl
 
     private void ExecuteReviewContextChipPrimaryAction(InvoiceReviewContextFormatter.ContextChip chip)
     {
+        RememberReviewContextChip(chip);
+
         switch (chip.ActionKey)
         {
             case "apply_filter":
@@ -1095,7 +1098,11 @@ public partial class InvoicesView : UserControl
         {
             Header = $"Kopyala: {chip.Text}"
         };
-        copyItem.Click += (_, _) => CopyReviewContextChipToClipboard(chip.Text);
+        copyItem.Click += (_, _) =>
+        {
+            RememberReviewContextChip(chip);
+            CopyReviewContextChipToClipboard(chip.Text);
+        };
         menu.Items.Add(copyItem);
 
         button.ContextMenu = menu;
@@ -1114,6 +1121,25 @@ public partial class InvoicesView : UserControl
         {
             SetInvoiceStatus($"Bağlam çipi panoya kopyalanamadı: {exception.Message}", isError: true);
         }
+    }
+
+    private void RememberReviewContextChip(InvoiceReviewContextFormatter.ContextChip chip)
+    {
+        var chipKey = BuildReviewContextChipKey(chip);
+        if (string.IsNullOrWhiteSpace(chipKey))
+        {
+            return;
+        }
+
+        _lastInvokedReviewContextChipKey = chipKey;
+        UpdateInvoiceReviewContextPresentation(ShowInvoiceReviewContextCheckBox?.IsChecked == true ? _invoiceReviewContextLabel : null);
+    }
+
+    private static string BuildReviewContextChipKey(InvoiceReviewContextFormatter.ContextChip chip)
+    {
+        return string.IsNullOrWhiteSpace(chip.Text)
+            ? string.Empty
+            : $"{chip.Kind}|{chip.ActionKey}|{chip.Text}";
     }
 
     private static string BuildReviewContextChipActionLabel(string actionKey)
@@ -1787,6 +1813,7 @@ public partial class InvoicesView : UserControl
         if (!string.Equals(_lastReviewContextSignature, currentContextSignature, StringComparison.Ordinal))
         {
             _lastInvokedReviewActionKey = null;
+            _lastInvokedReviewContextChipKey = null;
             _lastReviewContextSignature = currentContextSignature;
         }
 
@@ -1862,8 +1889,19 @@ public partial class InvoicesView : UserControl
 
         if (InvoiceReviewContextChips is not null)
         {
-            InvoiceReviewContextChips.ItemsSource = hasContext
+            IReadOnlyList<InvoiceReviewContextFormatter.ContextChip> reviewContextChips = hasContext
                 ? InvoiceReviewContextFormatter.BuildChips(contextLabel)
+                    .Select(chip => chip with
+                    {
+                        IsSelected = string.Equals(
+                            BuildReviewContextChipKey(chip),
+                            _lastInvokedReviewContextChipKey,
+                            StringComparison.Ordinal)
+                    })
+                    .ToList()
+                : Array.Empty<InvoiceReviewContextFormatter.ContextChip>();
+            InvoiceReviewContextChips.ItemsSource = hasContext
+                ? reviewContextChips
                 : Array.Empty<InvoiceReviewContextFormatter.ContextChip>();
         }
 
