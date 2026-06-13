@@ -1300,3 +1300,9 @@ Her faz bittiğinde:
 - Tooltip artik replay aktifken canli durumu, pasifken bekleme durumunu da anlatıyor.
 - Boylece hover aciklamasi ayar bilgisini ve o anki replay halini birlikte veriyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.75)
+
+- v1.75 tamamlandi: replay mini isaret tooltipine kaynak action adi eklendi.
+- Tooltip artik hangi hizli yardim veya PDF action'inin bu replay baglamini olusturdugunu da acikca soyluyor.
+- Boylece replay baglaminin kaynagi daha kolay izlenebilir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.

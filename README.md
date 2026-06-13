@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.75 - Replay Tooltip Action Adi
+
+Bu fazda replay mini isaret tooltipine, baglami olusturan action adinin kendisi de eklendi.
+Tooltip artik sadece replay ayarini ve durumunu degil, bunun hangi hizli yardim ya da PDF action'ina dayandigini da soyluyor.
+
+Boylece kullanici replay baglaminin kaynagini daha net izleyebiliyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.74 - Replay Tooltip Durum Mesaji
 
 Bu fazda replay mini isaret tooltipi, statik ayar aciklamasina ek olarak anlik replay durumunu da soylemeye basladi.
