@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.32 - Son Baglam Aksiyonu Gosterimi
+
+Bu fazda review baglam paneline son calistirilan aksiyonu gosteren sakin bir mikro satir eklendi.
+`Bağlamdan Incele`, `Bağlamı Daralt`, `Bağlam Filtresi`, `Bağlam Donemi`, `Bağlam Turu` ve `Bağlam No` aksiyonlarindan hangisi en son calistirildiysa, baglam rozetlerinin altinda `Son aksiyon: ...` olarak gorunuyor.
+
+Boylece kullanici sadece secili rozet vurgusuna bakmak zorunda kalmadan son hareketi metin olarak da okuyabiliyor.
+Bu bilgi dugme, rozet ve klavye kisayolu akislariyla ayni kaynaktan beslendigi icin daha tutarli calisiyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.31 - Filtre Ozetinde Gecici Baglam Vurgusu
 
 Bu fazda inceleme baglami aksiyonu calistiginda ustteki filtre ozet satirina kisa sureli bir vurgu eklendi.

@@ -1044,3 +1044,9 @@ v0.12 sonuÃ§ notu:
 577. Boylece baglam aksiyonunun listeye etkisi ikinci bir yerde daha hizli fark ediliyor.
 578. Smoke test: dotnet build -c Release OK.
 579. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+580. v1.32 olarak review baglam paneline son calistirilan aksiyonu gosteren mikro satir eklendi.
+581. `Son aksiyon: ...` bilgisi rozet, ana dugme ve kisayol akislarinda ayni kaynakla guncelleniyor.
+582. Boylece paneldeki son hareket daha sakin ama daha acik bir sekilde okunabiliyor.
+583. Smoke test: dotnet build -c Release OK.
+584. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

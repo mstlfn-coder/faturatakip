@@ -1472,6 +1472,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Normal moda donus var | OK | Filtreler varsayilan akisina geri donuyor |
 | 2026-06-13 | v1.26 | OK | Baglami temizle aksiyonu + build + self-test tamamlandi |
 
+## v1.32 - Son Baglam Aksiyonu Gosterimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Son aksiyon satiri var | OK | Baglam panelinde `Son aksiyon: ...` satiri gosteriliyor |
+| Kaynak birligi var | OK | Rozet, ana dugme ve kisayol akislarinda son aksiyon ayni kaynaktan izleniyor |
+| 2026-06-13 | v1.32 | OK | Son baglam aksiyonu gosterimi + build + self-test tamamlandi |
+
 ## v1.31 - Filtre Ozetinde Gecici Baglam Vurgusu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

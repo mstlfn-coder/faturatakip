@@ -985,6 +985,13 @@ Her faz bittiğinde:
 - Rapor gecisinden normal calisma moduna donus tek tikla kolaylasti.
 - Smoke test olarak build ve self-test temiz gecti.
 
+## Son Guncelleme (2026-06-13 / v1.32)
+
+- v1.32 tamamlandi: review baglam paneline son calistirilan aksiyonu gosteren mikro satir eklendi.
+- Son aksiyon bilgisi rozet tiklamasi, ana dugme ve kisayol akislarinda ayni kaynak uzerinden guncelleniyor.
+- Paneldeki secim geri bildirimi metinsel olarak da daha okunur hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.31)
 
 - v1.31 tamamlandi: filtre ozet satirina baglam aksiyonu sonrasi gecici vurgu eklendi.

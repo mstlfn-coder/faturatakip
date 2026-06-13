@@ -1050,9 +1050,6 @@ public partial class InvoicesView : UserControl
             return;
         }
 
-        _lastInvokedReviewActionKey = actionKey;
-        UpdateInvoiceReviewContextPresentation(ShowInvoiceReviewContextCheckBox?.IsChecked == true ? _invoiceReviewContextLabel : null);
-
         switch (actionKey)
         {
             case "focus":
@@ -1129,6 +1126,12 @@ public partial class InvoicesView : UserControl
         SetInvoiceStatus($"Bağlam: {actionLabel}{suffix}.", isError: false);
     }
 
+    private void RememberReviewContextAction(string actionKey)
+    {
+        _lastInvokedReviewActionKey = actionKey;
+        UpdateInvoiceReviewContextPresentation(ShowInvoiceReviewContextCheckBox?.IsChecked == true ? _invoiceReviewContextLabel : null);
+    }
+
     private void SetReviewContextActionError(string message)
     {
         SetInvoiceStatus(message, isError: true);
@@ -1136,6 +1139,8 @@ public partial class InvoicesView : UserControl
 
     private void ApplyInvoiceReviewContextFilter()
     {
+        RememberReviewContextAction("filter");
+
         if (!InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out var suggestedFilter))
         {
             SetReviewContextActionError("Bağlamdan uygulanabilir bir filtre çıkarılamadı.");
@@ -1185,6 +1190,8 @@ public partial class InvoicesView : UserControl
 
     private void ApplyInvoiceReviewContextNarrow()
     {
+        RememberReviewContextAction("narrow");
+
         var hasSuggestedFilter = InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out var suggestedFilter);
         var hasPeriod = InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out var year, out var month);
         var hasInvoiceType = InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out var invoiceTypeName);
@@ -1265,6 +1272,8 @@ public partial class InvoicesView : UserControl
 
     private void FocusInvoiceFromReviewContext()
     {
+        RememberReviewContextAction("focus");
+
         var hasSuggestedFilter = InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out var suggestedFilter);
         var hasPreferredInvoice = _invoiceReviewPreferredInvoiceId is not null;
         var appliedSecondaryParts = Array.Empty<string>();
@@ -1343,6 +1352,8 @@ public partial class InvoicesView : UserControl
 
     private void ApplyInvoiceReviewContextPeriod()
     {
+        RememberReviewContextAction("period");
+
         if (!InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out var year, out var month))
         {
             SetReviewContextActionError("Bağlamdan uygulanabilir bir dönem çıkarılamadı.");
@@ -1360,6 +1371,8 @@ public partial class InvoicesView : UserControl
 
     private void ApplyInvoiceReviewContextType()
     {
+        RememberReviewContextAction("type");
+
         if (!InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out var invoiceTypeName))
         {
             SetReviewContextActionError("Bağlamdan uygulanabilir bir fatura türü çıkarılamadı.");
@@ -1381,6 +1394,8 @@ public partial class InvoicesView : UserControl
 
     private void ApplyInvoiceReviewContextInvoiceNo()
     {
+        RememberReviewContextAction("invoice_no");
+
         if (!InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out var invoiceNumber))
         {
             SetReviewContextActionError("Bağlamdan uygulanabilir bir fatura no çıkarılamadı.");
@@ -1551,6 +1566,20 @@ public partial class InvoicesView : UserControl
         return "filtre aksiyonuyla seçildi";
     }
 
+    private static string? BuildReviewContextLastActionLabel(string? actionKey)
+    {
+        return actionKey switch
+        {
+            "focus" => "Bağlamdan İncele",
+            "narrow" => "Bağlamı Daralt",
+            "filter" => "Bağlam Filtresi",
+            "period" => "Bağlam Dönemi",
+            "type" => "Bağlam Türü",
+            "invoice_no" => "Bağlam No",
+            _ => null
+        };
+    }
+
     private void UpdateInvoiceReviewContextPresentation(string? contextLabel)
     {
         var currentContextSignature = string.IsNullOrWhiteSpace(contextLabel)
@@ -1613,6 +1642,19 @@ public partial class InvoicesView : UserControl
             InvoiceReviewActionBadges.Visibility = hasContext
                 ? System.Windows.Visibility.Visible
                 : System.Windows.Visibility.Collapsed;
+        }
+
+        if (InvoiceReviewLastActionText is not null)
+        {
+            var lastActionLabel = hasContext
+                ? BuildReviewContextLastActionLabel(_lastInvokedReviewActionKey)
+                : null;
+            InvoiceReviewLastActionText.Text = string.IsNullOrWhiteSpace(lastActionLabel)
+                ? string.Empty
+                : $"Son aksiyon: {lastActionLabel}";
+            InvoiceReviewLastActionText.Visibility = string.IsNullOrWhiteSpace(lastActionLabel)
+                ? System.Windows.Visibility.Collapsed
+                : System.Windows.Visibility.Visible;
         }
 
         if (InvoiceReviewContextChips is not null)

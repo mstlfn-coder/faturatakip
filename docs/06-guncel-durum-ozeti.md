@@ -32,6 +32,7 @@ Son guncelleme tarihi: 2026-06-13
   - `v1.29` Baglam Odak Rozeti
   - `v1.30` Form Basliginda Baglam Odagi
   - `v1.31` Filtre Ozetinde Gecici Baglam Vurgusu
+  - `v1.32` Son Baglam Aksiyonu Gosterimi
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -66,6 +67,7 @@ Son guncelleme tarihi: 2026-06-13
 26. Baglam aksiyonuyla secilen satira tablo icinde aksiyon tipini de gosteren `ODAK` rozeti eklendi.
 27. Secili kayit form basligina baglam odagini anlatan yardimci satir eklendi.
 28. Filtre ozet satiri, baglam aksiyonu sonrasi kisa sureli `Bağlam: ...` vurgusu gosterecek sekilde zenginlestirildi.
+29. Review baglam paneline son calistirilan aksiyonu gosteren mikro metin satiri eklendi.
 
 ## Son 5 Commit
 
@@ -89,7 +91,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Baglam odagi ve filtre vurgu zinciri tamamlandigi icin bir sonraki mantikli adim, review baglam panelindeki aksiyonlardan son calisanini daha belirgin gosteren kalici ama sakin bir mikro isaret olabilir.
+- Baglam panelindeki son aksiyon bilgisi de eklendigi icin bir sonraki mantikli adim, baglam panelindeki ana aksiyon dugmelerinden uygulanabilir olanlari son kullanima gore hafif siralamak veya ozel vurgu vermek olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

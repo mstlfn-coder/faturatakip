@@ -897,6 +897,12 @@
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
+                                            <TextBlock x:Name="InvoiceReviewLastActionText"
+                                                       Style="{StaticResource MutedText}"
+                                                       Margin="0,6,0,0"
+                                                       FontSize="12"
+                                                       FontWeight="SemiBold"
+                                                       Visibility="Collapsed" />
                                         </StackPanel>
                                     </Border>
                                     <StackPanel Margin="0,8,0,0">
