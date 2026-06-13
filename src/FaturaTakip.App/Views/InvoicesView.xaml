@@ -784,6 +784,13 @@
                                                Style="{StaticResource MutedText}"
                                                TextWrapping="Wrap"
                                                Margin="0,8,0,0" />
+                                    <TextBlock x:Name="PaymentHelperLastActionText"
+                                               Style="{StaticResource MutedText}"
+                                               Foreground="#166534"
+                                               FontWeight="SemiBold"
+                                               TextWrapping="Wrap"
+                                               Margin="0,4,0,0"
+                                               Visibility="Collapsed" />
                                     <ItemsControl x:Name="PaymentHelperBadges"
                                                   Margin="0,6,0,0">
                                         <ItemsControl.ItemsPanel>
@@ -869,6 +876,13 @@
                                                Style="{StaticResource MutedText}"
                                                TextWrapping="Wrap"
                                                Margin="0,8,0,0" />
+                                    <TextBlock x:Name="PaymentPdfHelperLastActionText"
+                                               Style="{StaticResource MutedText}"
+                                               Foreground="#0369A1"
+                                               FontWeight="SemiBold"
+                                               TextWrapping="Wrap"
+                                               Margin="0,4,0,0"
+                                               Visibility="Collapsed" />
                                     <ItemsControl x:Name="PaymentPdfHelperBadges"
                                                   Margin="0,6,0,0">
                                         <ItemsControl.ItemsPanel>

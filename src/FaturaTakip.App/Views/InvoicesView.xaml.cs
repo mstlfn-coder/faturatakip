@@ -2759,10 +2759,19 @@ public partial class InvoicesView : UserControl
     private void UpdatePaymentHelperSummary(Invoice? invoice)
     {
         var helperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(invoice, _payments, _selectedPayment, _lastInvokedPaymentHelperActionKey);
+        var lastActionText = PaymentEntryHelperSummaryBuilder.BuildLastActionText(_lastInvokedPaymentHelperActionKey);
 
         if (PaymentHelperSummaryText is not null)
         {
             PaymentHelperSummaryText.Text = PaymentEntryHelperSummaryBuilder.BuildSummaryText(invoice, _payments, _selectedPayment);
+        }
+
+        if (PaymentHelperLastActionText is not null)
+        {
+            PaymentHelperLastActionText.Text = lastActionText;
+            PaymentHelperLastActionText.Visibility = helperBadges.Count > 0 && !string.IsNullOrWhiteSpace(lastActionText)
+                ? Visibility.Visible
+                : Visibility.Collapsed;
         }
 
         if (PaymentHelperBadges is not null)
@@ -2891,10 +2900,19 @@ public partial class InvoicesView : UserControl
     private void UpdatePaymentPdfHelperSummary(Payment? payment, bool paymentPdfExists)
     {
         var helperBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(payment, paymentPdfExists, _lastInvokedPaymentPdfHelperActionKey);
+        var lastActionText = PaymentPdfHelperSummaryBuilder.BuildLastActionText(_lastInvokedPaymentPdfHelperActionKey);
 
         if (PaymentPdfHelperSummaryText is not null)
         {
             PaymentPdfHelperSummaryText.Text = PaymentPdfHelperSummaryBuilder.BuildSummaryText(payment, paymentPdfExists);
+        }
+
+        if (PaymentPdfHelperLastActionText is not null)
+        {
+            PaymentPdfHelperLastActionText.Text = lastActionText;
+            PaymentPdfHelperLastActionText.Visibility = helperBadges.Count > 0 && !string.IsNullOrWhiteSpace(lastActionText)
+                ? Visibility.Visible
+                : Visibility.Collapsed;
         }
 
         if (PaymentPdfHelperBadges is not null)

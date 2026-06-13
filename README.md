@@ -1037,3 +1037,14 @@ Smoke test:
 
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.55 - Odeme Yardiminda Son Aksiyon Satiri
+
+Bu fazda odeme yardim ve odeme PDF yardim alanlarina, son kullanilan hizli aksiyonu gosteren kisa bir alt satir eklendi.
+Rozet secimi zaten gorunuyordu; artik kullanici metinsel olarak da en son hangi yardimin uygulandigini tek bakista okuyabiliyor.
+
+Bu ek satir sadece ilgili yardim alaninda anlamli bir son aksiyon varsa gorunuyor ve yardim rozetleri kayboldugunda otomatik gizleniyor.
+Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

@@ -4,6 +4,16 @@ namespace FaturaTakip.App.Infrastructure;
 
 public static class PaymentPdfHelperSummaryBuilder
 {
+    public static string BuildLastActionText(string? selectedActionKey)
+    {
+        return selectedActionKey switch
+        {
+            "select_pdf" => "Son hizli yardim: PDF Sec uygulandi.",
+            "open_pdf" => "Son hizli yardim: PDF Ac uygulandi.",
+            _ => string.Empty,
+        };
+    }
+
     public static IReadOnlyList<PaymentPdfHelperBadge> BuildBadges(
         Payment? selectedPayment,
         bool paymentPdfExists,

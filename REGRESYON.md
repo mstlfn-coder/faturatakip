@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.55 - Odeme Yardiminda Son Aksiyon Satiri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim son aksiyon satiri var | OK | Son kullanilan `fill_remaining`, `use_last` ve `use_selected` yardimlari kisa alt metinle okunuyor |
+| PDF yardim son aksiyon satiri var | OK | Son kullanilan `select_pdf` ve `open_pdf` yardimlari kisa alt metinle okunuyor |
+| 2026-06-13 | v1.55 | OK | Son aksiyon satiri + build + self-test tamamlandi |
+
 ## v1.54 - Baglamsal Odeme Durum Mesajlari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

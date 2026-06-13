@@ -5,6 +5,17 @@ namespace FaturaTakip.App.Infrastructure;
 
 public static class PaymentEntryHelperSummaryBuilder
 {
+    public static string BuildLastActionText(string? selectedActionKey)
+    {
+        return selectedActionKey switch
+        {
+            "fill_remaining" => "Son hizli yardim: Kalan Tutar uygulandi.",
+            "use_last" => "Son hizli yardim: Son Aciklama uygulandi.",
+            "use_selected" => "Son hizli yardim: Secili Odeme uygulandi.",
+            _ => string.Empty,
+        };
+    }
+
     public static IReadOnlyList<PaymentHelperBadge> BuildBadges(
         Invoice? invoice,
         IEnumerable<Payment> payments,

@@ -1180,3 +1180,9 @@ Her faz bittiğinde:
 - Inceleme ipucu satirindaki kisayol listesi guncellendi.
 - Self-test beklentisi yeni kisayolu kapsayacak sekilde duzeltildi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.55)
+
+- v1.55 tamamlandi: odeme yardim ve odeme PDF yardim bolumlerine son kullanilan hizli aksiyonu gosteren kisa alt satir eklendi.
+- Rozet secimi korunurken son yardim artik metinsel olarak da okunabiliyor.
+- Yardim rozeti olmayan durumda alt satir otomatik gizleniyor.
+- Smoke test olarak build ve self-test temiz gecti.
