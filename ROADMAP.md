@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.93)
+
+- v1.93 tamamlandi: secili odeme yardimi ve PDF yardimi durum satirlari tiklanabilir hale getirildi.
+- Durum satirindaki metin artik yalnizca bilgi vermiyor; ayni yardimi tek tikla yeniden tetikleyebiliyor.
+- Boylece odeme akisinda son secilen yardima donmek daha hizli ve daha gorunur oldu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.54)
 
 - v1.54 tamamlandi: odeme yardim ve odeme PDF yardim akislari icin baglamsal durum mesaji etiketleri eklendi.
@@ -1407,4 +1414,10 @@ Her faz bittiğinde:
 - v1.92 tamamlandi: secili yardim durum satirina minik prefix ipucu eklendi.
 - Odeme yardimi `YRD`, PDF yardimi `PDF` etiketiyle daha hizli ayirt edilir hale geldi.
 - Boylece yardim satiri ilk bakista daha taranabilir oldu.
+- Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.93)
+
+- v1.93 tamamlandi: secili yardim durum satiri tiklanabilir hale getirildi.
+- Kullanici artik satira tiklayarak secili yardimi tekrar calistirabiliyor.
+- Boylece yardim metni sadece bilgi degil, hafif bir eylem yuzeyi de sunuyor.
 - Smoke test olarak build ve self-test temiz gecti.

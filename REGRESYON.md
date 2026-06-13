@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.93 - Tiklanabilir Yardim Durum Satiri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satiri tiklanabilir | OK | Durum satiri secili yardimi yeniden tetikleyen buton gibi davraniyor |
+| PDF yardimi durum satiri tiklanabilir | OK | Durum satiri secili yardimi yeniden tetikleyen buton gibi davraniyor |
+| 2026-06-13 | v1.93 | OK | Tiklanabilir yardim durum satiri + build + self-test tamamlandi |
+
 ## v1.92 - Yardim Durum Prefix Ipuclari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

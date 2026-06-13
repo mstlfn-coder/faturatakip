@@ -2930,15 +2930,16 @@ public partial class InvoicesView : UserControl
         if (PaymentHelperSelectedActionStatusText is not null)
         {
             PaymentHelperSelectedActionStatusText.Text = selectedActionStatusText;
-            PaymentHelperSelectedActionStatusText.ToolTip = lastActionToolTip;
         }
 
-        if (PaymentHelperSelectedActionStatusPanel is not null)
+        if (PaymentHelperSelectedActionStatusButton is not null)
         {
-            PaymentHelperSelectedActionStatusPanel.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
+            PaymentHelperSelectedActionStatusButton.Tag = _lastInvokedPaymentHelperActionKey;
+            PaymentHelperSelectedActionStatusButton.ToolTip = lastActionToolTip;
+            PaymentHelperSelectedActionStatusButton.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
                 ? Visibility.Collapsed
                 : Visibility.Visible;
-            if (PaymentHelperSelectedActionStatusPanel.Visibility == Visibility.Visible)
+            if (PaymentHelperSelectedActionStatusButton.Visibility == Visibility.Visible)
             {
                 StartPaymentHelperSelectedStatusHighlight();
             }
@@ -2999,6 +3000,11 @@ public partial class InvoicesView : UserControl
         }
 
         ActivatePaymentHelperReplayFeedback();
+    }
+
+    private void PaymentHelperSelectedActionStatusButton_Click(object sender, RoutedEventArgs e)
+    {
+        PaymentHelperLastActionButton_Click(sender, e);
     }
 
     private void SetPaymentStatusSuccess(string message)
@@ -3210,15 +3216,16 @@ public partial class InvoicesView : UserControl
         if (PaymentPdfSelectedActionStatusText is not null)
         {
             PaymentPdfSelectedActionStatusText.Text = selectedActionStatusText;
-            PaymentPdfSelectedActionStatusText.ToolTip = lastActionToolTip;
         }
 
-        if (PaymentPdfSelectedActionStatusPanel is not null)
+        if (PaymentPdfSelectedActionStatusButton is not null)
         {
-            PaymentPdfSelectedActionStatusPanel.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
+            PaymentPdfSelectedActionStatusButton.Tag = _lastInvokedPaymentPdfHelperActionKey;
+            PaymentPdfSelectedActionStatusButton.ToolTip = lastActionToolTip;
+            PaymentPdfSelectedActionStatusButton.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
                 ? Visibility.Collapsed
                 : Visibility.Visible;
-            if (PaymentPdfSelectedActionStatusPanel.Visibility == Visibility.Visible)
+            if (PaymentPdfSelectedActionStatusButton.Visibility == Visibility.Visible)
             {
                 StartPaymentPdfSelectedStatusHighlight();
             }
@@ -3298,6 +3305,11 @@ public partial class InvoicesView : UserControl
         }
 
         ActivatePaymentPdfReplayFeedback();
+    }
+
+    private void PaymentPdfSelectedActionStatusButton_Click(object sender, RoutedEventArgs e)
+    {
+        PaymentPdfHelperLastActionButton_Click(sender, e);
     }
 
     private void SetPaymentPdfStatusSuccess(string message)

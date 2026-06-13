@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.93 - Tiklanabilir Yardim Durum Satiri
+
+Bu fazda secili yardim durum satiri tiklanabilir hale getirildi.
+Artik kullanici durum satirina tiklayarak secili yardimi dogrudan tekrar calistirabiliyor; satir hafif bir aksiyon yuzeyi gibi davraniyor.
+
+Bu, yardim akisinda metin ve eylem arasindaki mesafeyi biraz daha kapatti.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.92 - Yardim Durum Prefix Ipuclari
 
 Bu fazda secili yardim durum satirinin basina minik bir prefix ipucu eklendi.
