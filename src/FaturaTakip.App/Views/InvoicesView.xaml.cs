@@ -41,6 +41,8 @@ public partial class InvoicesView : UserControl
     private string? _activeInvoiceFilterHintHighlightLabel;
     private DispatcherTimer? _invoiceFilterHintHighlightTimer;
     private DispatcherTimer? _invoiceStatusHighlightTimer;
+    private DispatcherTimer? _paymentHelperLastActionHighlightTimer;
+    private DispatcherTimer? _paymentPdfHelperLastActionHighlightTimer;
     private string? _lastInvokedReviewActionKey;
     private string? _lastInvokedReviewContextChipKey;
     private string? _pendingReviewContextStatusLead;
@@ -2772,6 +2774,14 @@ public partial class InvoicesView : UserControl
             PaymentHelperLastActionText.Visibility = helperBadges.Count > 0 && !string.IsNullOrWhiteSpace(lastActionText)
                 ? Visibility.Visible
                 : Visibility.Collapsed;
+            if (PaymentHelperLastActionText.Visibility == Visibility.Visible)
+            {
+                StartPaymentHelperLastActionHighlight();
+            }
+            else
+            {
+                ResetPaymentHelperLastActionHighlight();
+            }
         }
 
         if (PaymentHelperBadges is not null)
@@ -2913,6 +2923,14 @@ public partial class InvoicesView : UserControl
             PaymentPdfHelperLastActionText.Visibility = helperBadges.Count > 0 && !string.IsNullOrWhiteSpace(lastActionText)
                 ? Visibility.Visible
                 : Visibility.Collapsed;
+            if (PaymentPdfHelperLastActionText.Visibility == Visibility.Visible)
+            {
+                StartPaymentPdfHelperLastActionHighlight();
+            }
+            else
+            {
+                ResetPaymentPdfHelperLastActionHighlight();
+            }
         }
 
         if (PaymentPdfHelperBadges is not null)
@@ -2951,6 +2969,80 @@ public partial class InvoicesView : UserControl
         PaymentPdfInfoText.Foreground = isError
             ? new SolidColorBrush(Color.FromRgb(185, 28, 28))
             : new SolidColorBrush(Color.FromRgb(95, 107, 122));
+    }
+
+    private void StartPaymentHelperLastActionHighlight()
+    {
+        if (PaymentHelperLastActionText is null)
+        {
+            return;
+        }
+
+        PaymentHelperLastActionText.FontWeight = FontWeights.Bold;
+        PaymentHelperLastActionText.Foreground = new SolidColorBrush(Color.FromRgb(21, 128, 61));
+
+        _paymentHelperLastActionHighlightTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(2)
+        };
+        _paymentHelperLastActionHighlightTimer.Tick -= PaymentHelperLastActionHighlightTimer_Tick;
+        _paymentHelperLastActionHighlightTimer.Tick += PaymentHelperLastActionHighlightTimer_Tick;
+        _paymentHelperLastActionHighlightTimer.Stop();
+        _paymentHelperLastActionHighlightTimer.Start();
+    }
+
+    private void PaymentHelperLastActionHighlightTimer_Tick(object? sender, EventArgs e)
+    {
+        _paymentHelperLastActionHighlightTimer?.Stop();
+        ResetPaymentHelperLastActionHighlight();
+    }
+
+    private void ResetPaymentHelperLastActionHighlight()
+    {
+        if (PaymentHelperLastActionText is null)
+        {
+            return;
+        }
+
+        PaymentHelperLastActionText.FontWeight = FontWeights.SemiBold;
+        PaymentHelperLastActionText.Foreground = new SolidColorBrush(Color.FromRgb(22, 101, 52));
+    }
+
+    private void StartPaymentPdfHelperLastActionHighlight()
+    {
+        if (PaymentPdfHelperLastActionText is null)
+        {
+            return;
+        }
+
+        PaymentPdfHelperLastActionText.FontWeight = FontWeights.Bold;
+        PaymentPdfHelperLastActionText.Foreground = new SolidColorBrush(Color.FromRgb(2, 132, 199));
+
+        _paymentPdfHelperLastActionHighlightTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(2)
+        };
+        _paymentPdfHelperLastActionHighlightTimer.Tick -= PaymentPdfHelperLastActionHighlightTimer_Tick;
+        _paymentPdfHelperLastActionHighlightTimer.Tick += PaymentPdfHelperLastActionHighlightTimer_Tick;
+        _paymentPdfHelperLastActionHighlightTimer.Stop();
+        _paymentPdfHelperLastActionHighlightTimer.Start();
+    }
+
+    private void PaymentPdfHelperLastActionHighlightTimer_Tick(object? sender, EventArgs e)
+    {
+        _paymentPdfHelperLastActionHighlightTimer?.Stop();
+        ResetPaymentPdfHelperLastActionHighlight();
+    }
+
+    private void ResetPaymentPdfHelperLastActionHighlight()
+    {
+        if (PaymentPdfHelperLastActionText is null)
+        {
+            return;
+        }
+
+        PaymentPdfHelperLastActionText.FontWeight = FontWeights.SemiBold;
+        PaymentPdfHelperLastActionText.Foreground = new SolidColorBrush(Color.FromRgb(3, 105, 161));
     }
 
     private sealed record MonthOption(int Value, string Label);

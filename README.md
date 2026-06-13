@@ -1048,3 +1048,13 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.56 - Son Aksiyon Satirinda Gecici Vurgu
+
+Bu fazda odeme yardim ve odeme PDF yardim alanlarindaki son aksiyon satiri, guncellendiginde kisa sureli gorsel vurgu alacak sekilde canlandirildi.
+Kullanici ayni hizli yardimi art arda kullansa bile yeni geri bildirimi daha rahat fark ediyor.
+
+Vurgu suresi tamamlaninca satir kendi normal yarim ton rengine ve yari kalin yazi agirligina geri donuyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

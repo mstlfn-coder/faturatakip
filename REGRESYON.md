@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.56 - Son Aksiyon Satirinda Gecici Vurgu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim son aksiyon vurgu aliyor | OK | Son aksiyon satiri guncellenince kisa sureli daha parlak yesil ve kalin yazi ile gosteriliyor |
+| PDF yardim son aksiyon vurgu aliyor | OK | Son aksiyon satiri guncellenince kisa sureli daha parlak mavi ve kalin yazi ile gosteriliyor |
+| 2026-06-13 | v1.56 | OK | Son aksiyon vurgusu + build + self-test tamamlandi |
+
 ## v1.55 - Odeme Yardiminda Son Aksiyon Satiri
 | Kontrol | Durum | Not |
 | --- | --- | --- |

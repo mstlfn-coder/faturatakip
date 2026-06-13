@@ -1186,3 +1186,9 @@ Her faz bittiğinde:
 - Rozet secimi korunurken son yardim artik metinsel olarak da okunabiliyor.
 - Yardim rozeti olmayan durumda alt satir otomatik gizleniyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.56)
+
+- v1.56 tamamlandi: odeme yardim ve odeme PDF yardim son aksiyon satirlari guncellendiginde kisa sureli vurgu almaya basladi.
+- Boylece kullanici tekrar eden hizli yardim aksiyonlarinda yeni geri bildirimi daha belirgin goruyor.
+- Vurgu suresi dolunca satirlar otomatik olarak normal gorunume donuyor.
+- Smoke test olarak build ve self-test temiz gecti.
