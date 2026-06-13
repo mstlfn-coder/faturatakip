@@ -366,6 +366,20 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.48 - Review Context UI Smoke Checklist
+
+Bu fazda review baglam cipi akislarini elle ama hizli sekilde dogrulamak icin ayri bir UI smoke checklist dokumani eklendi.
+Boylece yeni chatlerde veya release oncesinde ayni UX noktalarini yeniden tarif etmeden tutarli kontrol yapmak kolaylasti.
+
+Checklist, gorunum, fare akisi, klavye akisi, tooltip kontrolu ve cikis kriterlerini tek yerde topluyor.
+Bu dokuman ozellikle son eklenen `Çip`, `Klavye`, `Menü`, `Esc`, tooltip ve mikro vurgu rahatliklarini sahada hizlica kontrol etmek icin referans olacak.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --health-check`
+
 ## v1.47 - Baglam Durum Cubugu Mikro Vurgusu
 
 Bu fazda review baglam ciplerinden gelen kisa durum mesajlari alt durum cubugunda kisa sureli renkli mikro vurgu ile desteklendi.

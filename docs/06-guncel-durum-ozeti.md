@@ -91,6 +91,7 @@ Son guncelleme tarihi: 2026-06-13
 42. Review baglam cipi aksiyonlarinda durum cubugu mesaji `Çip`, `Klavye`, `Menü` etiketiyle kisaltildi.
 43. Review baglam cipi tooltip ve kisa durum mesajlari self-test icinde dogrudan dogrulanmaya baslandi.
 44. Review baglam cipi kaynakli durum mesajlari alt durum cubugunda kisa sureli renk vurgusu almaya basladi.
+45. Review baglam cipi akislarini hizli dogrulamak icin ayri UI smoke checklist dokumani eklendi.
 
 ## Son 5 Commit
 
@@ -114,7 +115,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Mikro vurgu da eklendigi icin bir sonraki mantikli adim, bu baglam cipi akislarini hafif bir UI smoke dogrulamasi ile gozden gecirmek veya burada durup bir sonraki ana is akisina gecmek olabilir.
+- UI smoke checklist de eklendigi icin review baglam cipi tarafinda iyi bir durma noktasi olustu; istersek buradan bir sonraki ana is akisina gecebiliriz.
 
 ## Yeni Chat Icin Kisa Talimat
 

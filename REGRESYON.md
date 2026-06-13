@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.48 - Review Context UI Smoke Checklist
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| --health-check basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --health-check temiz gecti |
+| UI smoke checklist hazir | OK | `docs/07-review-context-ui-smoke-checklist.md` review baglam cipi akislari icin tekrar kullanilabilir elle dogrulama adimlarini iceriyor |
+| 2026-06-13 | v1.48 | OK | Review context UI smoke checklist + build + self-test + health-check tamamlandi |
+
 ## v1.47 - Baglam Durum Cubugu Mikro Vurgusu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

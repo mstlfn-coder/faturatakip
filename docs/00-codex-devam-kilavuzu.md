@@ -33,7 +33,7 @@ Guncel ve guvenilir handoff noktasi olarak once `docs/06-guncel-durum-ozeti.md` 
 Yeni chat acildiginda kullanici su sekilde baslayabilir:
 
 ```text
-Bu projeye kaldigimiz yerden devam et. Once docs/06-guncel-durum-ozeti.md, sonra README.md, ROADMAP.md ve REGRESYON.md dosyalarinin en guncel bolumlerini oku. Sonraki mantikli kucuk adimi uygula; sonunda smoke testleri ve dokuman guncellemelerini yap.
+Bu projeye kaldigimiz yerden devam et. Once docs/06-guncel-durum-ozeti.md, sonra README.md, ROADMAP.md ve REGRESYON.md dosyalarinin en guncel bolumlerini oku. Review baglam cipi UX'iyle ilgili bir is varsa docs/07-review-context-ui-smoke-checklist.md dosyasini da kontrol et. Sonraki mantikli kucuk adimi uygula; sonunda smoke testleri ve dokuman guncellemelerini yap.
 ```
 
 ## Yol Guvenligi

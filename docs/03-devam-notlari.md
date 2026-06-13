@@ -1140,3 +1140,10 @@ v0.12 sonuÃ§ notu:
 657. Kaynak etiketi ayristirma mantigi da self-test icinde dogrulanir hale getirildi.
 658. Smoke test: dotnet build -c Release OK.
 659. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+660. v1.48 olarak review baglam cipi akislarina ozel tekrar kullanilabilir UI smoke checklist dokumani eklendi.
+661. Yeni `docs/07-review-context-ui-smoke-checklist.md` gorunum, fare, klavye, tooltip ve cikis kriterlerini tek yerde topluyor.
+662. Boylece yeni chat veya release oncesi elle dogrulama daha hizli ve tutarli hale geldi.
+663. Smoke test: dotnet build -c Release OK.
+664. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+665. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --health-check OK.

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.48)
+
+- v1.48 tamamlandi: review baglam cipi akislarina ozel tekrar kullanilabilir UI smoke checklist dokumani eklendi.
+- Checklist; gorunum, fare, klavye, tooltip ve cikis kriterlerini tek yerde topluyor.
+- Boylece yeni chat veya release oncesi elle dogrulama daha hizli ve tutarli hale geldi.
+- Smoke test olarak build, self-test ve health-check temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.47)
 
 - v1.47 tamamlandi: review baglam cipi kaynakli durum mesajlarina alt durum cubugunda mikro vurgu eklendi.
