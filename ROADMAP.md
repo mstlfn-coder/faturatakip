@@ -1372,3 +1372,9 @@ Her faz bittiğinde:
 - Secilen rozet bir anligina daha guclu renk ve `YENI` etiketi aliyor.
 - Boylece son tiklanan yardim aksiyonu gozde daha hizli yakalaniyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.87)
+
+- v1.87 tamamlandi: secili son yardim aksiyonunu anlatan satir ici durum metni eklendi.
+- Odeme yardimi ve PDF yardimi alanlari artik `Secili yardim: ... hazir.` diliyle daha acik okunuyor.
+- Boylece yardim akisinin o anki modu sadece rozet degil, kisa metinle de gorunuyor.
+- Smoke test olarak build ve self-test temiz gecti.

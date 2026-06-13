@@ -14,6 +14,16 @@ public static class PaymentPdfHelperSummaryBuilder
         };
     }
 
+    public static string BuildSelectedActionStatusText(string? selectedActionKey)
+    {
+        return selectedActionKey switch
+        {
+            "select_pdf" => "Secili yardim: PDF Sec hazir.",
+            "open_pdf" => "Secili yardim: PDF Ac hazir.",
+            _ => string.Empty,
+        };
+    }
+
     public static string BuildLastActionToolTip(string? selectedActionKey)
     {
         return selectedActionKey switch

@@ -16,6 +16,17 @@ public static class PaymentEntryHelperSummaryBuilder
         };
     }
 
+    public static string BuildSelectedActionStatusText(string? selectedActionKey)
+    {
+        return selectedActionKey switch
+        {
+            "fill_remaining" => "Secili yardim: Kalan Tutar hazir.",
+            "use_last" => "Secili yardim: Son Aciklama hazir.",
+            "use_selected" => "Secili yardim: Secili Odeme hazir.",
+            _ => string.Empty,
+        };
+    }
+
     public static string BuildLastActionToolTip(string? selectedActionKey)
     {
         return selectedActionKey switch

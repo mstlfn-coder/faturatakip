@@ -2814,6 +2814,7 @@ public partial class InvoicesView : UserControl
         lastActionText = PaymentEntryHelperSummaryBuilder.BuildReplayFeedbackText(lastActionText, _isPaymentHelperReplayFeedbackActive);
         var lastActionToolTip = PaymentEntryHelperSummaryBuilder.BuildLastActionToolTip(_lastInvokedPaymentHelperActionKey);
         var lastActionPrefix = PaymentEntryHelperSummaryBuilder.BuildLastActionPrefix(_lastInvokedPaymentHelperActionKey);
+        var selectedActionStatusText = PaymentEntryHelperSummaryBuilder.BuildSelectedActionStatusText(_lastInvokedPaymentHelperActionKey);
 
         if (PaymentHelperSummaryText is not null)
         {
@@ -2922,6 +2923,14 @@ public partial class InvoicesView : UserControl
             PaymentHelperBadges.Visibility = helperBadges.Count > 0
                 ? Visibility.Visible
                 : Visibility.Collapsed;
+        }
+
+        if (PaymentHelperSelectedActionStatusText is not null)
+        {
+            PaymentHelperSelectedActionStatusText.Text = selectedActionStatusText;
+            PaymentHelperSelectedActionStatusText.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
+                ? Visibility.Collapsed
+                : Visibility.Visible;
         }
     }
 
@@ -3072,6 +3081,7 @@ public partial class InvoicesView : UserControl
         lastActionText = PaymentPdfHelperSummaryBuilder.BuildReplayFeedbackText(lastActionText, _isPaymentPdfReplayFeedbackActive);
         var lastActionToolTip = PaymentPdfHelperSummaryBuilder.BuildLastActionToolTip(_lastInvokedPaymentPdfHelperActionKey);
         var lastActionPrefix = PaymentPdfHelperSummaryBuilder.BuildLastActionPrefix(_lastInvokedPaymentPdfHelperActionKey);
+        var selectedActionStatusText = PaymentPdfHelperSummaryBuilder.BuildSelectedActionStatusText(_lastInvokedPaymentPdfHelperActionKey);
 
         if (PaymentPdfHelperSummaryText is not null)
         {
@@ -3180,6 +3190,14 @@ public partial class InvoicesView : UserControl
             PaymentPdfHelperBadges.Visibility = helperBadges.Count > 0
                 ? Visibility.Visible
                 : Visibility.Collapsed;
+        }
+
+        if (PaymentPdfSelectedActionStatusText is not null)
+        {
+            PaymentPdfSelectedActionStatusText.Text = selectedActionStatusText;
+            PaymentPdfSelectedActionStatusText.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
+                ? Visibility.Collapsed
+                : Visibility.Visible;
         }
     }
 

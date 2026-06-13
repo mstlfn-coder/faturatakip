@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.87 - Secili Yardim Durum Satiri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi secili durum satiri var | OK | `Secili yardim: ... hazir.` metni gorunuyor |
+| PDF yardimi secili durum satiri var | OK | `Secili yardim: ... hazir.` metni gorunuyor |
+| 2026-06-13 | v1.87 | OK | Secili yardim durum satiri + build + self-test tamamlandi |
+
 ## v1.86 - Yardim Rozeti Mikro Vurgu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

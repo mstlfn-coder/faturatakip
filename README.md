@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.87 - Secili Yardim Durum Satiri
+
+Bu fazda odeme yardimi ve PDF yardimi alanlarina, secili son aksiyonu kisa bir cumleyle soyleyen satir ici durum metni eklendi.
+Rozetler ve son aksiyon butonu dururken, artik ilgili yardimin hangi modda hazir oldugu dogrudan metinle de okunuyor.
+
+Bu, ozellikle yeni kullanicilar icin yardim akisinin daha hizli anlasilmasini sagliyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.86 - Yardim Rozeti Mikro Vurgu
 
 Bu fazda odeme yardimi ve PDF yardimi rozetlerinde secili aksiyon degistiginde kisa sureli bir mikro vurgu eklendi.
