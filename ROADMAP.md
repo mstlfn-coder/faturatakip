@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.104)
+
+- v1.104 tamamlandi: secili yardim durum satirinin prefix rozeti aksiyon turune gore degismeye basladi.
+- En soldaki kisa etiket artik sadece kategori degil, ayni zamanda aktif yardimin turunu da anlatiyor.
+- Boylece satir daha ilk bakista daha bilgilendirici hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.103)
 
 - v1.103 tamamlandi: secili yardim durum satirinin ana metni aksiyon turune gore hafif ton farki almaya basladi.

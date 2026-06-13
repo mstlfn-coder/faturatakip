@@ -2934,6 +2934,13 @@ public partial class InvoicesView : UserControl
             PaymentHelperSelectedActionStatusText.Foreground = new SolidColorBrush(GetPaymentHelperSelectedActionColor(_lastInvokedPaymentHelperActionKey));
         }
 
+        if (PaymentHelperSelectedActionStatusPrefixText is not null)
+        {
+            PaymentHelperSelectedActionStatusPrefixText.Text = string.IsNullOrWhiteSpace(lastActionPrefix)
+                ? "YRD"
+                : lastActionPrefix;
+        }
+
         if (PaymentHelperSelectedActionStatusButton is not null)
         {
             PaymentHelperSelectedActionStatusButton.Tag = _lastInvokedPaymentHelperActionKey;
@@ -3220,6 +3227,13 @@ public partial class InvoicesView : UserControl
         {
             PaymentPdfSelectedActionStatusText.Text = selectedActionStatusText;
             PaymentPdfSelectedActionStatusText.Foreground = new SolidColorBrush(GetPaymentPdfSelectedActionColor(_lastInvokedPaymentPdfHelperActionKey));
+        }
+
+        if (PaymentPdfSelectedActionStatusPrefixText is not null)
+        {
+            PaymentPdfSelectedActionStatusPrefixText.Text = string.IsNullOrWhiteSpace(lastActionPrefix)
+                ? "PDF"
+                : lastActionPrefix;
         }
 
         if (PaymentPdfSelectedActionStatusButton is not null)

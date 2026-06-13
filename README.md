@@ -1048,6 +1048,12 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.104 - Yardim Prefixinde Aksiyon Etiketi
+
+- Secili yardim durum satirinin prefix rozeti artik sabit degil; secili aksiyona gore degisiyor.
+- Odeme yardiminda `KLN`, `SON`, `SEC`; PDF yardiminda `SEC` ve `AC` gibi kisaltmalar ilk bakista daha net yon veriyor.
+- Boylece satirin en solundaki rozet de aktif yardim turunu dogrudan anlatmaya basladi.
+
 ## v1.103 - Yardim Metninde Aksiyon Tonu
 
 - Secili yardim durum satirinin ana metni, aksiyon turune gore cok hafif ton farki aliyor.

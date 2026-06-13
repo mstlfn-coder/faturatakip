@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.104 - Yardim Prefixinde Aksiyon Etiketi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi prefixi aksiyona gore degisiyor | OK | `KLN`, `SON`, `SEC` gibi kisaltmalar secili yardimi gosteriyor |
+| PDF yardimi prefixi aksiyona gore degisiyor | OK | `SEC` ve `AC` kisaltmalari secili yardimi gosteriyor |
+| 2026-06-14 | v1.104 | OK | Yardim prefixinde aksiyon etiketi + build + self-test tamamlandi |
+
 ## v1.103 - Yardim Metninde Aksiyon Tonu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

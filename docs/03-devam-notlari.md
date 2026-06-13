@@ -2,15 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
-## Son Guncelleme (2026-06-14 / v1.103)
+## Son Guncelleme (2026-06-14 / v1.104)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan faz: `v1.103 - Yardim Metninde Aksiyon Tonu`
-- Bu adimda ana yardim metni secili aksiyon turune gore hafif ton farki almaya basladi.
-- Metin hala sakin ama taramada yardim turlerini biraz daha hizli ayristiriyor.
+- Son tamamlanan faz: `v1.104 - Yardim Prefixinde Aksiyon Etiketi`
+- Bu adimda prefix rozeti secili aksiyona gore degisen kisa etiketler kullanmaya basladi.
+- Satirin en solundaki alan artik aktif yardimi daha dogrudan anlatiyor.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Yardim durum satirinda prefix rozetini de secili aksiyon turune gore cok hafif metin etiketi degisimiyle destekleyebiliriz.
+- Yardim durum satirinda `TEKRAR` rozetini aksiyona gore minik kelime farklariyla zenginlestirebiliriz.
