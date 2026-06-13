@@ -1384,3 +1384,9 @@ Her faz bittiğinde:
 - Boylece durum metni hover edildiginde tekrar calistirma yonu de gorunur hale geldi.
 - Yardim dili farkli katmanlarda daha tutarli hale geldi.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.89)
+
+- v1.89 tamamlandi: secili yardim durum satiri, son aksiyon butonuyla ayni tooltip ipucunu paylasiyor.
+- Boylece yardim durumu ve tekrar calistirma yonu ayni hover alaninda daha tutarli gorunuyor.
+- Yardim dili katmanlari arasindaki ayrim biraz daha azaldi.
+- Smoke test olarak build ve self-test temiz gecti.

@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.89 - Durum Satiri Tooltip Birlesimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satiri tooltipi paylasiyor | OK | Durum satiri son aksiyon butonuyla ayni tooltip dilini kullaniyor |
+| PDF yardimi durum satiri tooltipi paylasiyor | OK | Durum satiri son aksiyon butonuyla ayni tooltip dilini kullaniyor |
+| 2026-06-13 | v1.89 | OK | Durum satiri tooltip birlesimi + build + self-test tamamlandi |
+
 ## v1.88 - Yardim Durum Satiri Tooltip Birlesimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
