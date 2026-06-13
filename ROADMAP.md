@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.54)
+
+- v1.54 tamamlandi: odeme yardim ve odeme PDF yardim akislari icin baglamsal durum mesaji etiketleri eklendi.
+- Alt durum cubugunda `Odeme Yardimi` ve `PDF Yardimi` kaynaklari daha net ayristiriliyor.
+- Boylece odeme ana akisinda hizli yardimlardan gelen geri bildirim daha okunur hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.53)
 
 - v1.53 tamamlandi: odeme PDF yardim rozetleri tiklanabilir hizli yol haline getirildi.

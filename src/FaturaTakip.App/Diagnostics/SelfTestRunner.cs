@@ -260,6 +260,12 @@ public sealed class SelfTestRunner
             Assert(paymentHelperBadges.Any(item => item.ActionKey == "use_last"), "Son aciklama yardim rozeti aksiyon anahtari tasimiyor.");
             Assert(paymentHelperBadges.Any(item => item.ActionKey == "use_selected"), "Secili odeme yardim rozeti aksiyon anahtari tasimiyor.");
             Assert(paymentHelperBadges.Any(item => item.ToolTip.Contains("Enter/Space", StringComparison.Ordinal)), "Odeme yardim rozetlerinde klavye tooltip ipucu eksik.");
+            Assert(
+                PaymentStatusMessageFormatter.BuildActionSuccess("Odeme taslagi kalan tutarla guncellendi.", "Odeme Yardimi") == "Odeme Yardimi: Odeme taslagi kalan tutarla guncellendi.",
+                "Odeme yardim status basari mesaji beklenen formati uretmedi.");
+            Assert(
+                PaymentStatusMessageFormatter.BuildActionError("Bu fatura icin daha once kaydedilmis odeme yok.", "Odeme Yardimi") == "Odeme Yardimi: Bu fatura icin daha once kaydedilmis odeme yok.",
+                "Odeme yardim status hata mesaji beklenen formati uretmedi.");
             var selectedPaymentHelperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(
                 updatedInvoice,
                 new[] { new Payment { Id = 10, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 21), Amount = 40m, Description = "Aciklama" } },
@@ -298,6 +304,12 @@ public sealed class SelfTestRunner
                 paymentPdfExists: true,
                 selectedActionKey: "open_pdf");
             Assert(selectedPaymentPdfBadges.Any(item => item.ActionKey == "open_pdf" && item.IsSelected), "Odeme PDF yardim rozeti son kullanilan secim vurgusunu tasimiyor.");
+            Assert(
+                PaymentStatusMessageFormatter.BuildActionSuccess("Ödeme PDF dosyası açıldı.", "PDF Yardimi") == "PDF Yardimi: Ödeme PDF dosyası açıldı.",
+                "Odeme PDF yardim status basari mesaji beklenen formati uretmedi.");
+            Assert(
+                PaymentStatusMessageFormatter.BuildActionError("Ödeme PDF dosyası bulunamadı.", "PDF Yardimi") == "PDF Yardimi: Ödeme PDF dosyası bulunamadı.",
+                "Odeme PDF yardim status hata mesaji beklenen formati uretmedi.");
             Assert(
                 PaymentPdfHelperSummaryBuilder.BuildSummaryText(
                     new Payment { Id = 15, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 26), Amount = 45m, Description = "Hazir", PdfFilePath = "attachments/payments/2026/01/ready.pdf" },

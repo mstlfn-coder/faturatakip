@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.54 - Baglamsal Odeme Durum Mesajlari
+
+Bu fazda odeme yardim rozetleri ve odeme PDF yardim rozetlerinden gelen durum mesajlari daha baglamsal hale getirildi.
+Alt durum cubugunda artik bu akislar `Odeme Yardimi` ve `PDF Yardimi` etiketiyle ayri okunuyor; boylece kullanici mesajin normal butondan mi, yardim rozetinden mi geldigini daha rahat ayirt ediyor.
+
+Bu degisiklik mevcut odeme ve PDF davranisini bozmadan sadece geri bildirimi netlestiriyor.
+Ozellikle hizli yardim akislari buyudukce alt durum cubugunda yol takibi kolaylasmis oldu.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.53 - Tiklanabilir Odeme PDF Rozetleri
 
 Bu fazda odeme PDF yardim rozetleri tiklanabilir hizli yollara donusturuldu.

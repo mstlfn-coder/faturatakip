@@ -2,7 +2,7 @@ namespace FaturaTakip.App.Infrastructure;
 
 internal static class ReviewContextStatusMessageFormatter
 {
-    private static readonly string[] KnownLeads = ["Çip", "Klavye", "Menü"];
+    private static readonly string[] KnownLeads = ["Çip", "Klavye", "Menü", "Odeme Yardimi", "PDF Yardimi"];
 
     public static string BuildCopySuccess(string chipText, string? lead)
     {

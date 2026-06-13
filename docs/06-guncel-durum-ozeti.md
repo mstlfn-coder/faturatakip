@@ -97,6 +97,7 @@ Son guncelleme tarihi: 2026-06-13
 48. Odeme yardim rozetleri klavyede daha belirgin odak ve `Enter/Space` tooltip ipucu kazandi.
 49. Odeme PDF bolumune secili odeme ve evrak durumunu gosteren mini yardim ozeti eklendi.
 50. Odeme PDF yardim rozetleri de tiklanabilir hizli yol ve secim geri bildirimi kazandi.
+51. Odeme ve odeme PDF yardim akislari alt durum cubugunda baglamsal mesaj etiketleri kazandi.
 
 ## Son 5 Commit
 
@@ -120,7 +121,7 @@ Pratik tercih:
 
 Guncel pratik tercih:
 
-- Odeme PDF rozetleri de hizli yol oldugu icin bir sonraki mantikli kucuk adim odeme durum mesajlarini daha baglamsal hale getirmek veya odeme/PDF akisina kisayol ipuclari eklemek olabilir.
+- Odeme yardim mesajlari da baglamsal hale geldigi icin bir sonraki mantikli kucuk adim odeme/PDF akisina klavye kisayol ipuclari eklemek veya bu rozetler icin hafif UI smoke dogrulamasi tanimlamak olabilir.
 
 ## Yeni Chat Icin Kisa Talimat
 

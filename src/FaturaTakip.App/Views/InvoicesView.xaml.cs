@@ -46,6 +46,8 @@ public partial class InvoicesView : UserControl
     private string? _pendingReviewContextStatusLead;
     private string? _lastInvokedPaymentHelperActionKey;
     private string? _lastInvokedPaymentPdfHelperActionKey;
+    private string? _pendingPaymentStatusLead;
+    private string? _pendingPaymentPdfStatusLead;
     private string? _lastReviewContextSignature;
     private string _rootDirectory = string.Empty;
     private InvoiceReviewPreferences _invoiceReviewPreferences = InvoiceReviewPreferences.Default;
@@ -2300,12 +2302,12 @@ public partial class InvoicesView : UserControl
 
         if (_selectedInvoice is null)
         {
-            SetInvoiceStatus("Kalan tutari doldurmak icin once bir fatura secin.", isError: true);
+            SetPaymentStatusError("Kalan tutari doldurmak icin once bir fatura secin.");
             return;
         }
 
         ApplyPaymentSuggestion(PaymentEntrySuggestionBuilder.CreateDefault(_selectedInvoice, DateTime.Today));
-        SetInvoiceStatus("Odeme taslagi kalan tutarla guncellendi.", isError: false);
+        SetPaymentStatusSuccess("Odeme taslagi kalan tutarla guncellendi.");
     }
 
     private void UseLastPaymentTemplateButton_Click(object sender, RoutedEventArgs e)
@@ -2314,25 +2316,25 @@ public partial class InvoicesView : UserControl
 
         if (_selectedInvoice is null)
         {
-            SetInvoiceStatus("Son odemeden doldurmak icin once bir fatura secin.", isError: true);
+            SetPaymentStatusError("Son odemeden doldurmak icin once bir fatura secin.");
             return;
         }
 
         if (_payments.Count == 0)
         {
-            SetInvoiceStatus("Bu fatura icin daha once kaydedilmis odeme yok.", isError: true);
+            SetPaymentStatusError("Bu fatura icin daha once kaydedilmis odeme yok.");
             return;
         }
 
         var suggestion = PaymentEntrySuggestionBuilder.CreateFromRecentPayment(_selectedInvoice, _payments, DateTime.Today);
         if (string.IsNullOrWhiteSpace(suggestion.Description))
         {
-            SetInvoiceStatus("Son odemelerde kopyalanacak bir aciklama bulunamadi.", isError: true);
+            SetPaymentStatusError("Son odemelerde kopyalanacak bir aciklama bulunamadi.");
             return;
         }
 
         ApplyPaymentSuggestion(suggestion);
-        SetInvoiceStatus("Odeme taslagi son aciklama ve kalan tutarla dolduruldu.", isError: false);
+        SetPaymentStatusSuccess("Odeme taslagi son aciklama ve kalan tutarla dolduruldu.");
     }
 
     private void UseSelectedPaymentTemplateButton_Click(object sender, RoutedEventArgs e)
@@ -2341,25 +2343,25 @@ public partial class InvoicesView : UserControl
 
         if (_selectedInvoice is null)
         {
-            SetInvoiceStatus("Secili odemeden doldurmak icin once bir fatura secin.", isError: true);
+            SetPaymentStatusError("Secili odemeden doldurmak icin once bir fatura secin.");
             return;
         }
 
         if (_selectedPayment is null)
         {
-            SetInvoiceStatus("Secili odemeden doldurmak icin once odeme listesinden bir kayit secin.", isError: true);
+            SetPaymentStatusError("Secili odemeden doldurmak icin once odeme listesinden bir kayit secin.");
             return;
         }
 
         var suggestion = PaymentEntrySuggestionBuilder.CreateFromSelectedPayment(_selectedInvoice, _selectedPayment, DateTime.Today);
         if (suggestion.Amount <= 0)
         {
-            SetInvoiceStatus("Secili odemeden yeni taslak olusturulamadi; faturanin kalan tutari yok.", isError: true);
+            SetPaymentStatusError("Secili odemeden yeni taslak olusturulamadi; faturanin kalan tutari yok.");
             return;
         }
 
         ApplyPaymentSuggestion(suggestion);
-        SetInvoiceStatus("Odeme taslagi secili odemeye gore dolduruldu.", isError: false);
+        SetPaymentStatusSuccess("Odeme taslagi secili odemeye gore dolduruldu.");
     }
 
     private void PaymentHelperBadgeButton_Click(object sender, RoutedEventArgs e)
@@ -2368,6 +2370,8 @@ public partial class InvoicesView : UserControl
         {
             return;
         }
+
+        _pendingPaymentStatusLead = "Odeme Yardimi";
 
         switch (actionKey)
         {
@@ -2425,11 +2429,11 @@ public partial class InvoicesView : UserControl
             var attached = _paymentRepository.AttachPdf(_selectedPayment.Id, dialog.FileName);
             RefreshPaymentControls(_selectedInvoice);
             SelectPayment(attached.Id);
-            SetInvoiceStatus("Ödeme PDF evrakı kaydedildi.", isError: false);
+            SetPaymentPdfStatusSuccess("Ödeme PDF evrakı kaydedildi.");
         }
         catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException or IOException or UnauthorizedAccessException)
         {
-            SetInvoiceStatus(exception.Message, isError: true);
+            SetPaymentPdfStatusError(exception.Message);
         }
     }
 
@@ -2447,7 +2451,7 @@ public partial class InvoicesView : UserControl
             var pdfPath = _paymentRepository.GetPdfAbsolutePath(_selectedPayment);
             if (string.IsNullOrWhiteSpace(pdfPath) || !File.Exists(pdfPath))
             {
-                SetInvoiceStatus("Ödeme PDF dosyası bulunamadı.", isError: true);
+                SetPaymentPdfStatusError("Ödeme PDF dosyası bulunamadı.");
                 UpdatePaymentPdfControls(_selectedPayment);
                 return;
             }
@@ -2456,10 +2460,11 @@ public partial class InvoicesView : UserControl
             {
                 UseShellExecute = true,
             });
+            SetPaymentPdfStatusSuccess("Ödeme PDF dosyası açıldı.");
         }
         catch (Exception exception) when (exception is InvalidOperationException or IOException or UnauthorizedAccessException or System.ComponentModel.Win32Exception)
         {
-            SetInvoiceStatus(exception.Message, isError: true);
+            SetPaymentPdfStatusError(exception.Message);
         }
     }
 
@@ -2615,6 +2620,8 @@ public partial class InvoicesView : UserControl
             "Çip" => new SolidColorBrush(Color.FromRgb(29, 78, 216)),
             "Klavye" => new SolidColorBrush(Color.FromRgb(126, 34, 206)),
             "Menü" => new SolidColorBrush(Color.FromRgb(180, 83, 9)),
+            "Odeme Yardimi" => new SolidColorBrush(Color.FromRgb(22, 101, 52)),
+            "PDF Yardimi" => new SolidColorBrush(Color.FromRgb(3, 105, 161)),
             _ => new SolidColorBrush(Color.FromRgb(95, 107, 122))
         };
 
@@ -2774,6 +2781,8 @@ public partial class InvoicesView : UserControl
             return;
         }
 
+        _pendingPaymentPdfStatusLead = "PDF Yardimi";
+
         switch (actionKey)
         {
             case "select_pdf":
@@ -2789,6 +2798,20 @@ public partial class InvoicesView : UserControl
     {
         _lastInvokedPaymentHelperActionKey = actionKey;
         UpdatePaymentHelperSummary(_selectedInvoice);
+    }
+
+    private void SetPaymentStatusSuccess(string message)
+    {
+        var lead = _pendingPaymentStatusLead;
+        _pendingPaymentStatusLead = null;
+        SetInvoiceStatus(PaymentStatusMessageFormatter.BuildActionSuccess(message, lead), isError: false);
+    }
+
+    private void SetPaymentStatusError(string message)
+    {
+        var lead = _pendingPaymentStatusLead;
+        _pendingPaymentStatusLead = null;
+        SetInvoiceStatus(PaymentStatusMessageFormatter.BuildActionError(message, lead), isError: true);
     }
 
     private void SetPaymentInfo(string message, bool isError)
@@ -2888,6 +2911,20 @@ public partial class InvoicesView : UserControl
         _lastInvokedPaymentPdfHelperActionKey = actionKey;
         var paymentPdfExists = _selectedPayment is not null && _paymentRepository?.PdfFileExists(_selectedPayment) == true;
         UpdatePaymentPdfHelperSummary(_selectedPayment, paymentPdfExists);
+    }
+
+    private void SetPaymentPdfStatusSuccess(string message)
+    {
+        var lead = _pendingPaymentPdfStatusLead;
+        _pendingPaymentPdfStatusLead = null;
+        SetInvoiceStatus(PaymentStatusMessageFormatter.BuildActionSuccess(message, lead), isError: false);
+    }
+
+    private void SetPaymentPdfStatusError(string message)
+    {
+        var lead = _pendingPaymentPdfStatusLead;
+        _pendingPaymentPdfStatusLead = null;
+        SetInvoiceStatus(PaymentStatusMessageFormatter.BuildActionError(message, lead), isError: true);
     }
 
     private void SetPaymentPdfInfo(string message, bool isError)

@@ -1177,3 +1177,9 @@ v0.12 sonuÃ§ notu:
 688. Son kullanilan PDF yardim rozeti hafif secim vurgusuyla izlenmeye baslandi.
 689. Smoke test: dotnet build -c Release OK.
 690. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+691. v1.54 olarak odeme yardim ve odeme PDF yardim akislari icin baglamsal durum mesaji etiketleri eklendi.
+692. Alt durum cubugunda artik `Odeme Yardimi` ve `PDF Yardimi` kaynaklari ayri okunuyor.
+693. Boylece hizli yardimlardan gelen geri bildirim normal buton akislarindan daha net ayrismis oldu.
+694. Smoke test: dotnet build -c Release OK.
+695. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

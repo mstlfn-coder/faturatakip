@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.54 - Baglamsal Odeme Durum Mesajlari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim mesaji etiketli | OK | Rozetten gelen odeme yardim mesajlari `Odeme Yardimi` etiketiyle uretiliyor |
+| PDF yardim mesaji etiketli | OK | Rozetten gelen odeme PDF mesajlari `PDF Yardimi` etiketiyle uretiliyor |
+| 2026-06-13 | v1.54 | OK | Baglamsal odeme durum mesajlari + build + self-test tamamlandi |
+
 ## v1.53 - Tiklanabilir Odeme PDF Rozetleri
 | Kontrol | Durum | Not |
 | --- | --- | --- |
