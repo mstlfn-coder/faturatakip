@@ -23,6 +23,7 @@ Son guncelleme tarihi: 2026-06-12
   - `v1.20` Baglam Aksiyon Durum Vurgulari
   - `v1.21` Hazir Aksiyon Ozeti
   - `v1.22` Rozetli Hazir Aksiyon Ozeti
+  - `v1.23` Tiklanabilir Aksiyon Rozetleri
 - Son dogrulanan smoke testler:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -48,6 +49,7 @@ Son guncelleme tarihi: 2026-06-12
 17. Baglam panelindeki uygulanabilir aksiyonlara renkli durum vurgulari eklendi.
 18. Baglam paneline hazir aksiyon sayisini ve aktif aksiyon adlarini gosteren ozet satiri eklendi.
 19. Hazir aksiyon ozeti rozetli mini gostergelere donusturuldu.
+20. Hazir aksiyon rozetleri dogrudan tiklanabilir hizli yol haline getirildi.
 
 ## Son 5 Commit
 

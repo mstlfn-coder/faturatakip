@@ -956,3 +956,10 @@ Her faz bittiğinde:
 - Aksiyon ozetleri artik kendi baglam tiplerinin rengiyle uyumlu kucuk etiketler halinde gosteriliyor.
 - Panelin gorsel yogunlugu azaltildi ve taranabilirligi iyilesti.
 - Smoke test olarak build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-13 / v1.23)
+
+- v1.23 tamamlandi: hazir aksiyon rozetleri tiklanabilir hale getirildi.
+- Rozetler artik ilgili baglam aksiyonunu dogrudan tetikleyebiliyor.
+- Ozet katmani sadece bilgi veren degil, ayni zamanda etkileşimli bir hizli yol haline geldi.
+- Smoke test olarak build ve self-test temiz gecti.

@@ -990,3 +990,9 @@ v0.12 sonuÃ§ notu:
 532. Bu tur panelin metin yogunlugunu azaltip taranabilirligini artirdi.
 533. Smoke test: dotnet build -c Release OK.
 534. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+535. v1.23 olarak hazir aksiyon rozetleri tiklanabilir hale getirildi.
+536. Rozetler artik ilgili baglam aksiyonunu dogrudan tetikliyor.
+537. Ozet katmani yalnizca bilgi veren degil, ayni zamanda etkileşimli bir hizli yol haline geldi.
+538. Smoke test: dotnet build -c Release OK.
+539. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

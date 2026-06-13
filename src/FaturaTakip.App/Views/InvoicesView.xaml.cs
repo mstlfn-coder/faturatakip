@@ -950,6 +950,36 @@ public partial class InvoicesView : UserControl
         ApplyInvoiceReviewContextInvoiceNo();
     }
 
+    private void InvoiceReviewActionBadgeButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { Tag: string actionKey })
+        {
+            return;
+        }
+
+        switch (actionKey)
+        {
+            case "focus":
+                FocusInvoiceFromReviewContext();
+                break;
+            case "narrow":
+                ApplyInvoiceReviewContextNarrow();
+                break;
+            case "filter":
+                ApplyInvoiceReviewContextFilter();
+                break;
+            case "period":
+                ApplyInvoiceReviewContextPeriod();
+                break;
+            case "type":
+                ApplyInvoiceReviewContextType();
+                break;
+            case "invoice_no":
+                ApplyInvoiceReviewContextInvoiceNo();
+                break;
+        }
+    }
+
     private List<string> ApplyInvoiceReviewContextSecondaryHints()
     {
         var appliedParts = new List<string>();
@@ -1239,27 +1269,27 @@ public partial class InvoicesView : UserControl
         var availableActionBadges = new List<ReviewActionBadge>();
         if (hasSuggestedFilter || hasPreferredInvoice || hasPeriod || hasInvoiceType || hasInvoiceNumber)
         {
-            availableActionBadges.Add(new ReviewActionBadge("AKS", "Baglamdan Incele", "context"));
+            availableActionBadges.Add(new ReviewActionBadge("AKS", "Baglamdan Incele", "context", "focus", "Baglamdan inceleme akisini calistir"));
         }
         if (hasAnyNarrowing)
         {
-            availableActionBadges.Add(new ReviewActionBadge("DAR", "Baglami Daralt", "context"));
+            availableActionBadges.Add(new ReviewActionBadge("DAR", "Baglami Daralt", "context", "narrow", "Baglam ipuclarini birlikte uygula"));
         }
         if (hasSuggestedFilter)
         {
-            availableActionBadges.Add(new ReviewActionBadge("FLT", "Baglam Filtresi", "filter"));
+            availableActionBadges.Add(new ReviewActionBadge("FLT", "Baglam Filtresi", "filter", "filter", "Baglamdan onerilen hizli filtreyi uygula"));
         }
         if (hasPeriod)
         {
-            availableActionBadges.Add(new ReviewActionBadge("DNM", "Baglam Donemi", "period"));
+            availableActionBadges.Add(new ReviewActionBadge("DNM", "Baglam Donemi", "period", "period", "Baglamdaki donemi yil ve ay filtresine uygula"));
         }
         if (hasInvoiceType)
         {
-            availableActionBadges.Add(new ReviewActionBadge("TUR", "Baglam Turu", "detail"));
+            availableActionBadges.Add(new ReviewActionBadge("TUR", "Baglam Turu", "detail", "type", "Baglamdaki fatura turunu uygula"));
         }
         if (hasInvoiceNumber)
         {
-            availableActionBadges.Add(new ReviewActionBadge("NO", "Baglam No", "detail"));
+            availableActionBadges.Add(new ReviewActionBadge("NO", "Baglam No", "detail", "invoice_no", "Baglamdaki fatura numarasini ara"));
         }
 
         if (InvoiceReviewContextBorder is not null)
@@ -2045,7 +2075,7 @@ public partial class InvoicesView : UserControl
 
     private sealed record ReviewStatusFilterOption(string Label, InvoiceReviewStatusFilter Value);
 
-    private sealed record ReviewActionBadge(string Prefix, string Text, string Kind);
+    private sealed record ReviewActionBadge(string Prefix, string Text, string Kind, string ActionKey, string ToolTip);
 }
 
 

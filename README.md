@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.23 - Tiklanabilir Aksiyon Rozetleri
+
+Bu fazda hazir aksiyon rozetleri pasif gostergeler olmaktan cikarildi.
+Artik baglam panelindeki mini rozetler dogrudan tiklanabiliyor ve ilgili aksiyonu aninda calistiriyor.
+
+Boylece kullanici ister ana dugmelerden ister rozet ozetinden ayni akislara ulasabiliyor.
+Panel daha kisa hareketle kullanilir hale geldi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.22 - Rozetli Hazir Aksiyon Ozeti
 
 Bu fazda hazir aksiyon ozeti duz metinden rozetli mini gostergelere donusturuldu.
