@@ -985,6 +985,13 @@ Her faz bittiğinde:
 - Rapor gecisinden normal calisma moduna donus tek tikla kolaylasti.
 - Smoke test olarak build ve self-test temiz gecti.
 
+## Son Guncelleme (2026-06-13 / v1.31)
+
+- v1.31 tamamlandi: filtre ozet satirina baglam aksiyonu sonrasi gecici vurgu eklendi.
+- Vurgu, liste ozetine `Bağlam: ...` etiketi ekleyip rengi kisa sureli olarak belirginlestiriyor.
+- Sure dolunca filtre ozeti otomatik olarak normal gorunume donuyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.30)
 
 - v1.30 tamamlandi: secili fatura form basligina baglam odagini anlatan yardimci satir eklendi.

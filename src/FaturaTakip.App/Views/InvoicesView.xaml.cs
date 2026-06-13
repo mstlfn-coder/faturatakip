@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.Payments;
 using FaturaTakip.App.Data.Subscriptions;
@@ -35,6 +36,10 @@ public partial class InvoicesView : UserControl
     private long? _invoiceReviewPreferredInvoiceId;
     private long? _reviewContextFocusedInvoiceId;
     private string? _reviewContextFocusedActionLabel;
+    private int _lastInvoiceFilterCount;
+    private string? _pendingInvoiceFilterHintHighlightLabel;
+    private string? _activeInvoiceFilterHintHighlightLabel;
+    private DispatcherTimer? _invoiceFilterHintHighlightTimer;
     private string? _lastInvokedReviewActionKey;
     private string? _lastReviewContextSignature;
     private string _rootDirectory = string.Empty;
@@ -365,10 +370,15 @@ public partial class InvoicesView : UserControl
     private Invoice? ApplyFiltersToGridCore(long? selectedId = null, bool selectFirstIfAvailable = false)
     {
         var filtered = ApplyFilters(_invoices).ToList();
+        _lastInvoiceFilterCount = filtered.Count;
         InvoiceGrid.ItemsSource = filtered;
-        InvoiceFilterHintText.Text = filtered.Count == 0
-            ? "Filtre sonucunda kayit bulunamadi."
-            : $"{filtered.Count} kayit listeleniyor.";
+        if (!string.IsNullOrWhiteSpace(_pendingInvoiceFilterHintHighlightLabel))
+        {
+            _activeInvoiceFilterHintHighlightLabel = _pendingInvoiceFilterHintHighlightLabel;
+            _pendingInvoiceFilterHintHighlightLabel = null;
+        }
+
+        UpdateInvoiceFilterHintPresentation();
 
         var selected = selectedId is null
             ? null
@@ -397,6 +407,60 @@ public partial class InvoicesView : UserControl
     private void ApplyFiltersToGrid(long? selectedId = null, bool selectFirstIfAvailable = false)
     {
         _ = ApplyFiltersToGridCore(selectedId, selectFirstIfAvailable);
+    }
+
+    private void QueueInvoiceFilterHintHighlight(string actionLabel)
+    {
+        _pendingInvoiceFilterHintHighlightLabel = actionLabel;
+    }
+
+    private void UpdateInvoiceFilterHintPresentation()
+    {
+        if (InvoiceFilterHintText is null)
+        {
+            return;
+        }
+
+        var baseText = _lastInvoiceFilterCount == 0
+            ? "Filtre sonucunda kayit bulunamadi."
+            : $"{_lastInvoiceFilterCount} kayit listeleniyor.";
+
+        if (string.IsNullOrWhiteSpace(_activeInvoiceFilterHintHighlightLabel))
+        {
+            InvoiceFilterHintText.Text = baseText;
+            InvoiceFilterHintText.Foreground = (Brush)new BrushConverter().ConvertFromString("#5F6B7A")!;
+            InvoiceFilterHintText.FontWeight = FontWeights.Normal;
+            return;
+        }
+
+        InvoiceFilterHintText.Text = $"{baseText} • Bağlam: {_activeInvoiceFilterHintHighlightLabel}";
+        InvoiceFilterHintText.Foreground = (Brush)new BrushConverter().ConvertFromString("#1D4ED8")!;
+        InvoiceFilterHintText.FontWeight = FontWeights.SemiBold;
+        StartInvoiceFilterHintHighlightResetTimer();
+    }
+
+    private void StartInvoiceFilterHintHighlightResetTimer()
+    {
+        _invoiceFilterHintHighlightTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(3)
+        };
+
+        _invoiceFilterHintHighlightTimer.Tick -= InvoiceFilterHintHighlightTimer_Tick;
+        _invoiceFilterHintHighlightTimer.Tick += InvoiceFilterHintHighlightTimer_Tick;
+        _invoiceFilterHintHighlightTimer.Stop();
+        _invoiceFilterHintHighlightTimer.Start();
+    }
+
+    private void InvoiceFilterHintHighlightTimer_Tick(object? sender, EventArgs e)
+    {
+        if (_invoiceFilterHintHighlightTimer is not null)
+        {
+            _invoiceFilterHintHighlightTimer.Stop();
+        }
+
+        _activeInvoiceFilterHintHighlightLabel = null;
+        UpdateInvoiceFilterHintPresentation();
     }
 
     private void ResetQuickFilters()
@@ -1085,16 +1149,19 @@ public partial class InvoicesView : UserControl
         {
             case InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed:
                 SelectReviewStatusFilter(InvoiceReviewStatusFilter.Unreviewed);
+                QueueInvoiceFilterHintHighlight("Filtre");
                 SetReviewContextFocusedInvoice(ApplyFiltersToGridCore(selectFirstIfAvailable: true), "Filtre");
                 SetReviewContextActionSuccess("Filtre uygulandı", "İncelenmedi");
                 break;
             case InvoiceReviewContextFormatter.SuggestedFilter.Overdue:
                 SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Overdue);
+                QueueInvoiceFilterHintHighlight("Filtre");
                 SetReviewContextFocusedInvoice(ApplyFiltersToGridCore(selectFirstIfAvailable: true), "Filtre");
                 SetReviewContextActionSuccess("Filtre uygulandı", "Gecikmiş");
                 break;
             case InvoiceReviewContextFormatter.SuggestedFilter.MissingPdf:
                 SelectPdfStatusFilter(InvoicePdfStatusFilter.MissingPdf);
+                QueueInvoiceFilterHintHighlight("Filtre");
                 SetReviewContextFocusedInvoice(ApplyFiltersToGridCore(selectFirstIfAvailable: true), "Filtre");
                 SetReviewContextActionSuccess("Filtre uygulandı", "PDF Eksik");
                 break;
@@ -1110,6 +1177,7 @@ public partial class InvoicesView : UserControl
         _lastInvokedReviewActionKey = null;
         _lastReviewContextSignature = null;
         ResetQuickFilters();
+        QueueInvoiceFilterHintHighlight("Temizle");
         ApplyFiltersToGrid(selectedId: _selectedInvoice?.Id, selectFirstIfAvailable: true);
         UpdateInvoiceReviewNavigationControls();
         SetReviewContextActionSuccess("Temizlendi", "Normal akış");
@@ -1169,6 +1237,7 @@ public partial class InvoicesView : UserControl
             appliedParts.Add(invoiceNumber);
         }
 
+        QueueInvoiceFilterHintHighlight("Daraltma");
         var selectedInvoice = ApplyFiltersToGridCore(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: true);
         if (selectedInvoice is null)
         {
@@ -1229,6 +1298,7 @@ public partial class InvoicesView : UserControl
         }
 
         appliedSecondaryParts = ApplyInvoiceReviewContextSecondaryHints().ToArray();
+        QueueInvoiceFilterHintHighlight("İnceleme");
         var selectedInvoice = ApplyFiltersToGridCore(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: true);
 
         if (selectedInvoice is null)
@@ -1283,6 +1353,7 @@ public partial class InvoicesView : UserControl
         ResetQuickFilters();
         SelectYearFilter(year);
         SelectMonthFilter(month);
+        QueueInvoiceFilterHintHighlight("Dönem");
         SetReviewContextFocusedInvoice(ApplyFiltersToGridCore(selectFirstIfAvailable: true), "Dönem");
         SetReviewContextActionSuccess("Dönem uygulandı", $"{year:D4}-{month:D2}");
     }
@@ -1303,6 +1374,7 @@ public partial class InvoicesView : UserControl
             return;
         }
 
+        QueueInvoiceFilterHintHighlight("Tür");
         SetReviewContextFocusedInvoice(ApplyFiltersToGridCore(selectFirstIfAvailable: true), "Tür");
         SetReviewContextActionSuccess("Tür uygulandı", invoiceTypeName);
     }
@@ -1318,6 +1390,7 @@ public partial class InvoicesView : UserControl
         _invoiceReviewModeLabel = null;
         ResetQuickFilters();
         InvoiceSearchInput.Text = invoiceNumber;
+        QueueInvoiceFilterHintHighlight("No");
         SetReviewContextFocusedInvoice(
             ApplyFiltersToGridCore(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: true),
             "No");

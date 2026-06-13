@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.31 - Filtre Ozetinde Gecici Baglam Vurgusu
+
+Bu fazda inceleme baglami aksiyonu calistiginda ustteki filtre ozet satirina kisa sureli bir vurgu eklendi.
+Liste yenilendiginde ozet satiri birkac saniye boyunca `Bağlam: Filtre`, `Bağlam: Daraltma`, `Bağlam: Inceleme`, `Bağlam: Donem`, `Bağlam: Tur`, `Bağlam: No` veya `Bağlam: Temizle` etiketiyle belirginlesiyor.
+
+Boylece operator, baglam aksiyonunun listeyi etkiledigini sadece alt durum cubugunda degil filtre ozet satirinda da aninda gorebiliyor.
+Vurgu kisa bir sure sonra kendiliginden normale donuyor.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.30 - Form Basliginda Baglam Odagi
 
 Bu fazda fatura formunun basliginin altina secili kaydin baglam aksiyonuyla neden one geldigini anlatan sakin bir yardimci satir eklendi.

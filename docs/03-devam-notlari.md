@@ -1038,3 +1038,9 @@ v0.12 sonuÃ§ notu:
 572. Normal secim veya baglam temizleme sonrasi yardimci satir otomatik gizleniyor.
 573. Smoke test: dotnet build -c Release OK.
 574. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+575. v1.31 olarak ustteki filtre ozet satirina baglam aksiyonu sonrasi kisa sureli vurgu eklendi.
+576. Ozet satiri gecici olarak `Bağlam: ...` etiketiyle belirginlesiyor ve birkac saniye sonra normale donuyor.
+577. Boylece baglam aksiyonunun listeye etkisi ikinci bir yerde daha hizli fark ediliyor.
+578. Smoke test: dotnet build -c Release OK.
+579. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

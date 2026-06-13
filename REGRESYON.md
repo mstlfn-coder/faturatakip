@@ -1472,6 +1472,15 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Normal moda donus var | OK | Filtreler varsayilan akisina geri donuyor |
 | 2026-06-13 | v1.26 | OK | Baglami temizle aksiyonu + build + self-test tamamlandi |
 
+## v1.31 - Filtre Ozetinde Gecici Baglam Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Gecici vurgu var | OK | Filtre ozet satiri baglam aksiyonu sonrasi `Bağlam: ...` etiketiyle belirginlesiyor |
+| Otomatik geri donus var | OK | Kisa sure sonra filtre ozeti normal metne geri donuyor |
+| 2026-06-13 | v1.31 | OK | Filtre ozetinde gecici baglam vurgusu + build + self-test tamamlandi |
+
 ## v1.30 - Form Basliginda Baglam Odagi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
