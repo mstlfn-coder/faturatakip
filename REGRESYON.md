@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.45 - Baglam Cipi Kisa Durum Mesajlari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Cip mesajlari kisaldi | OK | Cip aksiyonlari durum cubugunda `Çip`, `Klavye`, `Menü` etiketiyle daha kisa gorunuyor |
+| Ana dugme mesajlari korundu | OK | Baglam panelindeki ana aksiyon dugmeleri eski `Bağlam: ...` mesaj formatini koruyor |
+| 2026-06-13 | v1.45 | OK | Baglam cipi kisa durum mesajlari + build + self-test tamamlandi |
+
 ## v1.44 - Baglam Cipi Escape Odak Cikisi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

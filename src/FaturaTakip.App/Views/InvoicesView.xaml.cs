@@ -42,6 +42,7 @@ public partial class InvoicesView : UserControl
     private DispatcherTimer? _invoiceFilterHintHighlightTimer;
     private string? _lastInvokedReviewActionKey;
     private string? _lastInvokedReviewContextChipKey;
+    private string? _pendingReviewContextStatusLead;
     private string? _lastReviewContextSignature;
     private string _rootDirectory = string.Empty;
     private InvoiceReviewPreferences _invoiceReviewPreferences = InvoiceReviewPreferences.Default;
@@ -1028,7 +1029,7 @@ public partial class InvoicesView : UserControl
             return;
         }
 
-        ExecuteReviewContextChipPrimaryAction(chip);
+        ExecuteReviewContextChipPrimaryAction(chip, "Çip");
     }
 
     private void InvoiceReviewContextChipButton_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
@@ -1053,7 +1054,7 @@ public partial class InvoicesView : UserControl
 
         if (e.Key == Key.Enter || e.Key == Key.Space)
         {
-            ExecuteReviewContextChipPrimaryAction(chip);
+            ExecuteReviewContextChipPrimaryAction(chip, "Klavye");
             e.Handled = true;
             return;
         }
@@ -1061,7 +1062,7 @@ public partial class InvoicesView : UserControl
         if (e.Key == Key.C && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
         {
             RememberReviewContextChip(chip);
-            CopyReviewContextChipToClipboard(chip.Text);
+            CopyReviewContextChipToClipboard(chip.Text, "Klavye");
             e.Handled = true;
             return;
         }
@@ -1080,9 +1081,10 @@ public partial class InvoicesView : UserControl
         }
     }
 
-    private void ExecuteReviewContextChipPrimaryAction(InvoiceReviewContextFormatter.ContextChip chip)
+    private void ExecuteReviewContextChipPrimaryAction(InvoiceReviewContextFormatter.ContextChip chip, string? statusLead = null)
     {
         RememberReviewContextChip(chip);
+        _pendingReviewContextStatusLead = statusLead;
 
         switch (chip.ActionKey)
         {
@@ -1100,7 +1102,7 @@ public partial class InvoicesView : UserControl
                 return;
         }
 
-        CopyReviewContextChipToClipboard(chip.Text);
+        CopyReviewContextChipToClipboard(chip.Text, statusLead);
     }
 
     private void ShowReviewContextChipContextMenu(Button button, InvoiceReviewContextFormatter.ContextChip chip)
@@ -1112,7 +1114,7 @@ public partial class InvoicesView : UserControl
             {
                 Header = $"Uygula: {BuildReviewContextChipActionLabel(chip.ActionKey)}"
             };
-            applyItem.Click += (_, _) => ExecuteReviewContextChipPrimaryAction(chip);
+            applyItem.Click += (_, _) => ExecuteReviewContextChipPrimaryAction(chip, "Menü");
             menu.Items.Add(applyItem);
         }
 
@@ -1123,7 +1125,7 @@ public partial class InvoicesView : UserControl
         copyItem.Click += (_, _) =>
         {
             RememberReviewContextChip(chip);
-            CopyReviewContextChipToClipboard(chip.Text);
+            CopyReviewContextChipToClipboard(chip.Text, "Menü");
         };
         menu.Items.Add(copyItem);
 
@@ -1132,16 +1134,30 @@ public partial class InvoicesView : UserControl
         menu.IsOpen = true;
     }
 
-    private void CopyReviewContextChipToClipboard(string chipText)
+    private void CopyReviewContextChipToClipboard(string chipText, string? statusLead = null)
     {
         try
         {
             Clipboard.SetText(chipText);
-            SetInvoiceStatus($"Bağlam çipi panoya kopyalandı: {chipText}", isError: false);
+            var lead = statusLead ?? _pendingReviewContextStatusLead;
+            SetInvoiceStatus(
+                string.IsNullOrWhiteSpace(lead)
+                    ? $"Bağlam çipi panoya kopyalandı: {chipText}"
+                    : $"{lead}: {chipText} kopyalandı.",
+                isError: false);
         }
         catch (Exception exception) when (exception is ExternalException or InvalidOperationException)
         {
-            SetInvoiceStatus($"Bağlam çipi panoya kopyalanamadı: {exception.Message}", isError: true);
+            var lead = statusLead ?? _pendingReviewContextStatusLead;
+            SetInvoiceStatus(
+                string.IsNullOrWhiteSpace(lead)
+                    ? $"Bağlam çipi panoya kopyalanamadı: {exception.Message}"
+                    : $"{lead}: Kopyalama başarısız - {exception.Message}",
+                isError: true);
+        }
+        finally
+        {
+            _pendingReviewContextStatusLead = null;
         }
     }
 
@@ -1309,7 +1325,13 @@ public partial class InvoicesView : UserControl
         var suffix = string.IsNullOrWhiteSpace(detail)
             ? string.Empty
             : $" - {detail}";
-        SetInvoiceStatus($"Bağlam: {actionLabel}{suffix}.", isError: false);
+        var lead = _pendingReviewContextStatusLead;
+        _pendingReviewContextStatusLead = null;
+        SetInvoiceStatus(
+            string.IsNullOrWhiteSpace(lead)
+                ? $"Bağlam: {actionLabel}{suffix}."
+                : $"{lead}: {actionLabel}{suffix}.",
+            isError: false);
     }
 
     private void RememberReviewContextAction(string actionKey)
@@ -1320,7 +1342,13 @@ public partial class InvoicesView : UserControl
 
     private void SetReviewContextActionError(string message)
     {
-        SetInvoiceStatus(message, isError: true);
+        var lead = _pendingReviewContextStatusLead;
+        _pendingReviewContextStatusLead = null;
+        SetInvoiceStatus(
+            string.IsNullOrWhiteSpace(lead)
+                ? message
+                : $"{lead}: {message}",
+            isError: true);
     }
 
     private void ApplyInvoiceReviewContextFilter()

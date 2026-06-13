@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.45 - Baglam Cipi Kisa Durum Mesajlari
+
+Bu fazda review baglam ciplerinden tetiklenen aksiyonlar icin durum cubugu mesajlari kisaltildi ve kaynak odakli hale getirildi.
+Artik cipten gelen aksiyonlar `Çip`, klavyeden gelenler `Klavye`, sag tik menusunden gelenler `Menü` etiketiyle daha kisa gorunuyor.
+
+Boylece operator ozellikle klavye akisinda hangi yoldan ilerledigini daha hizli okuyabiliyor.
+Ana baglam dugmelerinin mevcut mesajlari korunurken sadece ciplere ait geri bildirim daha netlestirildi.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.44 - Baglam Cipi Escape Odak Cikisi
 
 Bu fazda review baglam ciplerinde `Esc` ile temiz bir odak cikisi eklendi.

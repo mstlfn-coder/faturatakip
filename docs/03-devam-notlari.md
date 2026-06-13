@@ -1122,3 +1122,9 @@ v0.12 sonuÃ§ notu:
 642. Boylece klavye kullanirken cipi terk etmek icin temiz bir tek tus akisi saglandi.
 643. Smoke test: dotnet build -c Release OK.
 644. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+645. v1.45 olarak review baglam ciplerinden gelen durum mesajlari kisaltilip kaynak odakli hale getirildi.
+646. Cip, klavye ve sag tik menusu akislarinda durum cubugu artik `Çip`, `Klavye`, `Menü` etiketiyle daha hizli okunuyor.
+647. Ana baglam dugmelerinin mevcut mesaj dili korunurken sadece ciplere ait geri bildirim sadeleştirildi.
+648. Smoke test: dotnet build -c Release OK.
+649. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

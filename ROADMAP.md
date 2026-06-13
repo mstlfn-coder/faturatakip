@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.45)
+
+- v1.45 tamamlandi: review baglam cipi aksiyonlarinin durum mesaji dili kisaltildi.
+- Cip, klavye ve menu uzerinden gelen aksiyonlar durum cubugunda ayri ama kisa etiketlerle gorunuyor.
+- Boylece klavye odakli akislar daha hizli okunabilir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.44)
 
 - v1.44 tamamlandi: review baglam ciplerine `Esc` ile odak cikisi eklendi.
