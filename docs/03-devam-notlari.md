@@ -1171,3 +1171,9 @@ v0.12 sonuÃ§ notu:
 683. Boylece odeme formu ile odeme PDF bolumu ayni yardim diliyle hizalanmis oldu.
 684. Smoke test: dotnet build -c Release OK.
 685. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.
+
+686. v1.53 olarak odeme PDF yardim rozetleri tiklanabilir hizli yol haline getirildi.
+687. Uygun durumda rozetler `PDF Seç` veya `PDF Aç` akislarini dogrudan tetikliyor.
+688. Son kullanilan PDF yardim rozeti hafif secim vurgusuyla izlenmeye baslandi.
+689. Smoke test: dotnet build -c Release OK.
+690. Smoke test: dotnet run -c Release --no-build --project src/FaturaTakip.App/FaturaTakip.App.csproj -- --self-test OK.

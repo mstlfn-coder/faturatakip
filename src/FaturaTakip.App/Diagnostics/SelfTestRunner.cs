@@ -282,14 +282,22 @@ public sealed class SelfTestRunner
                 new Payment { Id = 12, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 23), Amount = 80m, Description = "Eksik", PdfFilePath = string.Empty },
                 paymentPdfExists: false);
             Assert(paymentPdfMissingBadges.Any(item => item.Text == "PDF Bekleniyor"), "PDF eklenmemis odeme icin beklenen yardim rozeti uretilmedi.");
+            Assert(paymentPdfMissingBadges.Any(item => item.ActionKey == "select_pdf"), "PDF bekleyen odeme rozetleri secme aksiyonu tasimiyor.");
             var paymentPdfReadyBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(
                 new Payment { Id = 13, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 24), Amount = 60m, Description = "Var", PdfFilePath = "attachments/payments/2026/01/a.pdf", PdfOriginalFileName = "a.pdf" },
                 paymentPdfExists: true);
             Assert(paymentPdfReadyBadges.Any(item => item.Text == "PDF Kayitli"), "PDF kayitli odeme icin yardim rozeti uretilmedi.");
+            Assert(paymentPdfReadyBadges.Any(item => item.ActionKey == "open_pdf"), "PDF kayitli odeme rozetleri acma aksiyonu tasimiyor.");
             var paymentPdfLostBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(
                 new Payment { Id = 14, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 25), Amount = 55m, Description = "Kayip", PdfFilePath = "attachments/payments/2026/01/missing.pdf", PdfOriginalFileName = "missing.pdf" },
                 paymentPdfExists: false);
             Assert(paymentPdfLostBadges.Any(item => item.Text == "PDF Kayip"), "PDF kayip odeme icin yardim rozeti uretilmedi.");
+            Assert(paymentPdfLostBadges.Any(item => item.ToolTip.Contains("Enter/Space", StringComparison.Ordinal)), "Odeme PDF yardim rozetlerinde klavye tooltip ipucu eksik.");
+            var selectedPaymentPdfBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(
+                new Payment { Id = 16, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 27), Amount = 44m, Description = "Secim", PdfFilePath = "attachments/payments/2026/01/exists.pdf", PdfOriginalFileName = "exists.pdf" },
+                paymentPdfExists: true,
+                selectedActionKey: "open_pdf");
+            Assert(selectedPaymentPdfBadges.Any(item => item.ActionKey == "open_pdf" && item.IsSelected), "Odeme PDF yardim rozeti son kullanilan secim vurgusunu tasimiyor.");
             Assert(
                 PaymentPdfHelperSummaryBuilder.BuildSummaryText(
                     new Payment { Id = 15, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 26), Amount = 45m, Description = "Hazir", PdfFilePath = "attachments/payments/2026/01/ready.pdf" },

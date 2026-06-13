@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.53 - Tiklanabilir Odeme PDF Rozetleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF rozetleri aksiyon tasiyor | OK | Uygun durumlarda rozetler `select_pdf` veya `open_pdf` aksiyon anahtarlarini tasiyor |
+| Son kullanilan PDF rozeti secilebiliyor | OK | Son kullanilan PDF yardim rozeti secim vurgusuna uygun `IsSelected` durumu tasiyor |
+| 2026-06-13 | v1.53 | OK | Tiklanabilir odeme PDF rozetleri + build + self-test tamamlandi |
+
 ## v1.52 - Odeme PDF Yardim Ozeti
 | Kontrol | Durum | Not |
 | --- | --- | --- |

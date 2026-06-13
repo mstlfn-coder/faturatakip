@@ -6,7 +6,8 @@ public static class PaymentPdfHelperSummaryBuilder
 {
     public static IReadOnlyList<PaymentPdfHelperBadge> BuildBadges(
         Payment? selectedPayment,
-        bool paymentPdfExists)
+        bool paymentPdfExists,
+        string? selectedActionKey = null)
     {
         var badges = new List<PaymentPdfHelperBadge>();
 
@@ -15,11 +16,20 @@ public static class PaymentPdfHelperSummaryBuilder
             return badges;
         }
 
+        var primaryActionKey = !selectedPayment.HasPdf || !paymentPdfExists
+            ? "select_pdf"
+            : "open_pdf";
+        var primaryActionLabel = primaryActionKey == "open_pdf"
+            ? "Tikla veya Enter/Space ile PDF kaydini ac."
+            : "Tikla veya Enter/Space ile bu odeme icin PDF sec.";
+
         badges.Add(new PaymentPdfHelperBadge(
             "SEC",
             "Secili Odeme",
             "detail",
-            $"PDF islemleri icin secili odeme hazir: {selectedPayment.AmountText}"));
+            $"PDF islemleri icin secili odeme hazir: {selectedPayment.AmountText}. {primaryActionLabel}",
+            primaryActionKey,
+            IsSelected: string.Equals(selectedActionKey, primaryActionKey, StringComparison.Ordinal)));
 
         if (!selectedPayment.HasPdf)
         {
@@ -27,7 +37,9 @@ public static class PaymentPdfHelperSummaryBuilder
                 "EKL",
                 "PDF Bekleniyor",
                 "period",
-                "Bu odeme kaydina henuz PDF eklenmemis."));
+                "Bu odeme kaydina henuz PDF eklenmemis. Tikla veya Enter/Space ile PDF sec.",
+                "select_pdf",
+                IsSelected: string.Equals(selectedActionKey, "select_pdf", StringComparison.Ordinal)));
             return badges;
         }
 
@@ -36,8 +48,10 @@ public static class PaymentPdfHelperSummaryBuilder
             paymentPdfExists ? "PDF Kayitli" : "PDF Kayip",
             paymentPdfExists ? "filter" : "context",
             paymentPdfExists
-                ? $"PDF kaydi hazir: {selectedPayment.PdfOriginalFileName}"
-                : $"PDF kaydi var ama dosya bulunamadi: {selectedPayment.PdfFilePath}"));
+                ? $"PDF kaydi hazir: {selectedPayment.PdfOriginalFileName}. Tikla veya Enter/Space ile PDF ac."
+                : $"PDF kaydi var ama dosya bulunamadi: {selectedPayment.PdfFilePath}. Tikla veya Enter/Space ile PDF sec.",
+            paymentPdfExists ? "open_pdf" : "select_pdf",
+            IsSelected: string.Equals(selectedActionKey, paymentPdfExists ? "open_pdf" : "select_pdf", StringComparison.Ordinal)));
 
         return badges;
     }
@@ -59,5 +73,5 @@ public static class PaymentPdfHelperSummaryBuilder
             : "Secili odeme icin PDF kaydi var ama dosya bulunamadi.";
     }
 
-    public sealed record PaymentPdfHelperBadge(string Prefix, string Text, string Kind, string ToolTip);
+    public sealed record PaymentPdfHelperBadge(string Prefix, string Text, string Kind, string ToolTip, string ActionKey, bool IsSelected = false);
 }

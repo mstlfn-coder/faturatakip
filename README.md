@@ -366,6 +366,19 @@ Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## v1.53 - Tiklanabilir Odeme PDF Rozetleri
+
+Bu fazda odeme PDF yardim rozetleri tiklanabilir hizli yollara donusturuldu.
+Uygun durumda rozetler dogrudan `PDF Seç` veya `PDF Aç` akislarini tetikliyor; son kullanilan PDF yardimi da hafif secili gorunuyor.
+
+Boylece odeme PDF bolumunde de yardim ozetleri sadece bilgi vermekle kalmayip aksiyon aldiriyor.
+Odemeler ana akisinda form yardimlariyla PDF yardimlari ayni hizli yol deseninde bulustu.
+
+Smoke test:
+
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## v1.52 - Odeme PDF Yardim Ozeti
 
 Bu fazda odeme PDF bolumune de mini yardim ozeti eklendi.

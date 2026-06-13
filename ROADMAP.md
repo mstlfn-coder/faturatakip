@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-13 / v1.53)
+
+- v1.53 tamamlandi: odeme PDF yardim rozetleri tiklanabilir hizli yol haline getirildi.
+- Uygun durumda rozetler `PDF Seç` veya `PDF Aç` akislarini dogrudan tetikliyor.
+- Son kullanilan PDF yardim rozeti hafif secim vurgusuyla izleniyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-13 / v1.52)
 
 - v1.52 tamamlandi: odeme PDF bolumune mini yardim ozeti ve durum rozetleri eklendi.

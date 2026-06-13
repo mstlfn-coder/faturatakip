@@ -878,15 +878,19 @@
                                         </ItemsControl.ItemsPanel>
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
-                                                <Border Style="{StaticResource ActionBadgeBorder}"
-                                                        ToolTip="{Binding ToolTip}">
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <TextBlock Text="{Binding Prefix}"
-                                                                   Style="{StaticResource ActionBadgePrefixText}" />
-                                                        <TextBlock Text="{Binding Text}"
-                                                                   Style="{StaticResource ActionBadgeText}" />
-                                                    </StackPanel>
-                                                </Border>
+                                                <Button Style="{StaticResource ActionBadgeButton}"
+                                                        Tag="{Binding ActionKey}"
+                                                        ToolTip="{Binding ToolTip}"
+                                                        Click="PaymentPdfHelperBadgeButton_Click">
+                                                    <Border Style="{StaticResource ActionBadgeBorder}">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="{Binding Prefix}"
+                                                                       Style="{StaticResource ActionBadgePrefixText}" />
+                                                            <TextBlock Text="{Binding Text}"
+                                                                       Style="{StaticResource ActionBadgeText}" />
+                                                        </StackPanel>
+                                                    </Border>
+                                                </Button>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>

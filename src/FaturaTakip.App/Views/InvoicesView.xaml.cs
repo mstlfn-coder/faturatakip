@@ -45,6 +45,7 @@ public partial class InvoicesView : UserControl
     private string? _lastInvokedReviewContextChipKey;
     private string? _pendingReviewContextStatusLead;
     private string? _lastInvokedPaymentHelperActionKey;
+    private string? _lastInvokedPaymentPdfHelperActionKey;
     private string? _lastReviewContextSignature;
     private string _rootDirectory = string.Empty;
     private InvoiceReviewPreferences _invoiceReviewPreferences = InvoiceReviewPreferences.Default;
@@ -2399,6 +2400,8 @@ public partial class InvoicesView : UserControl
 
     private void SelectPaymentPdfButton_Click(object sender, RoutedEventArgs e)
     {
+        RememberPaymentPdfHelperAction("select_pdf");
+
         if (_paymentRepository is null || _selectedInvoice is null || _selectedPayment is null)
         {
             return;
@@ -2432,6 +2435,8 @@ public partial class InvoicesView : UserControl
 
     private void OpenPaymentPdfButton_Click(object sender, RoutedEventArgs e)
     {
+        RememberPaymentPdfHelperAction("open_pdf");
+
         if (_paymentRepository is null || _selectedPayment is null)
         {
             return;
@@ -2762,6 +2767,24 @@ public partial class InvoicesView : UserControl
         }
     }
 
+    private void PaymentPdfHelperBadgeButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { Tag: string actionKey })
+        {
+            return;
+        }
+
+        switch (actionKey)
+        {
+            case "select_pdf":
+                SelectPaymentPdfButton_Click(sender, e);
+                break;
+            case "open_pdf":
+                OpenPaymentPdfButton_Click(sender, e);
+                break;
+        }
+    }
+
     private void RememberPaymentHelperAction(string actionKey)
     {
         _lastInvokedPaymentHelperActionKey = actionKey;
@@ -2844,7 +2867,7 @@ public partial class InvoicesView : UserControl
 
     private void UpdatePaymentPdfHelperSummary(Payment? payment, bool paymentPdfExists)
     {
-        var helperBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(payment, paymentPdfExists);
+        var helperBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(payment, paymentPdfExists, _lastInvokedPaymentPdfHelperActionKey);
 
         if (PaymentPdfHelperSummaryText is not null)
         {
@@ -2858,6 +2881,13 @@ public partial class InvoicesView : UserControl
                 ? Visibility.Visible
                 : Visibility.Collapsed;
         }
+    }
+
+    private void RememberPaymentPdfHelperAction(string actionKey)
+    {
+        _lastInvokedPaymentPdfHelperActionKey = actionKey;
+        var paymentPdfExists = _selectedPayment is not null && _paymentRepository?.PdfFileExists(_selectedPayment) == true;
+        UpdatePaymentPdfHelperSummary(_selectedPayment, paymentPdfExists);
     }
 
     private void SetPaymentPdfInfo(string message, bool isError)
