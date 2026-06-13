@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.99)
+
+- v1.99 tamamlandi: secili yardim durum satiri daha kompakt hale getirildi.
+- Prefix, tekrar rozeti ve kisayol etiketi daha siki padding/margin ve daha kucuk tipografi ile guncellendi.
+- Boylece satir ayni bilgiyi daha az gorsel daginiklikla sunuyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.98)
 
 - v1.98 tamamlandi: secili yardim durum satirlarina prefix yaninda `TEKRAR` rozeti eklendi.

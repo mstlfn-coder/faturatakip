@@ -465,19 +465,19 @@
         </Style>
         <Style x:Key="InlineShortcutPrefixBorder" TargetType="Border">
             <Setter Property="CornerRadius" Value="999" />
-            <Setter Property="Padding" Value="6,2" />
-            <Setter Property="Margin" Value="0,0,6,0" />
+            <Setter Property="Padding" Value="5,1" />
+            <Setter Property="Margin" Value="0,0,4,0" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
         <Style x:Key="InlineShortcutPrefixText" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontSize" Value="9" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
         <Style x:Key="InlineShortcutHintBorder" TargetType="Border">
             <Setter Property="CornerRadius" Value="4" />
-            <Setter Property="Padding" Value="5,1" />
-            <Setter Property="Margin" Value="8,0,0,0" />
+            <Setter Property="Padding" Value="4,1" />
+            <Setter Property="Margin" Value="6,0,0,0" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Background" Value="#F8FAFC" />
             <Setter Property="BorderBrush" Value="#D9E2EC" />
@@ -494,7 +494,7 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="InlineShortcutHintText" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontSize" Value="9" />
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Foreground" Value="#5F6B7A" />
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -509,8 +509,8 @@
         </Style>
         <Style x:Key="InlineShortcutRepeatBorder" TargetType="Border">
             <Setter Property="CornerRadius" Value="999" />
-            <Setter Property="Padding" Value="6,2" />
-            <Setter Property="Margin" Value="0,0,6,0" />
+            <Setter Property="Padding" Value="5,1" />
+            <Setter Property="Margin" Value="0,0,4,0" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Background" Value="#FFF7ED" />
             <Setter Property="BorderBrush" Value="#FDBA74" />
@@ -527,7 +527,7 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="InlineShortcutRepeatText" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontSize" Value="8" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="#C2410C" />
             <Setter Property="VerticalAlignment" Value="Center" />

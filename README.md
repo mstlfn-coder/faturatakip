@@ -1048,6 +1048,12 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.99 - Yardim Durum Satiri Kompakt Gorunum
+
+- Secili yardim durum satirindaki prefix, tekrar rozeti ve kisayol etiketi daha kompakt boyutlara cekildi.
+- Padding, margin ve font boyutlari sikilastirilerek satirin yatay yogunlugu azaltildi.
+- Boylece yardim satiri ayni bilgiyi daha az alanla ve daha duzenli veriyor.
+
 ## v1.98 - Yardim Durum Satiri Tekrar Rozeti
 
 - Secili yardim durum satirlarina prefix yaninda gorunur `TEKRAR` rozeti eklendi.

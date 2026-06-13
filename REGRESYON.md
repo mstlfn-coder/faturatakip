@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.99 - Yardim Durum Satiri Kompakt Gorunum
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satiri kompakt gorunuyor | OK | Rozet ve kisayol alanlari daha sik boyutlarla gosteriliyor |
+| PDF yardimi durum satiri kompakt gorunuyor | OK | Rozet ve kisayol alanlari daha sik boyutlarla gosteriliyor |
+| 2026-06-14 | v1.99 | OK | Yardim durum satiri kompakt gorunum + build + self-test tamamlandi |
+
 ## v1.98 - Yardim Durum Satiri Tekrar Rozeti
 | Kontrol | Durum | Not |
 | --- | --- | --- |
