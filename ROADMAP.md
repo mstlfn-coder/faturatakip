@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.101)
+
+- v1.101 tamamlandi: yardim durum satirina prefix ile ana metin arasinda hafif bir nokta ayraci eklendi.
+- Bilgi bloklari birbirinden daha net ayrisiyor; satir hala kompakt kalirken taranabilirlik bir tik daha artti.
+- Ayrac hover ve odak durumunda satirin genel tonuna uyumlu sekilde belirginlesiyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.100)
 
 - v1.100 tamamlandi: yardim durum satirindaki tekrar ve kisayol rozetlerinin tonlari yumusatildi.

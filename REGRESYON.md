@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.101 - Yardim Durum Satiri Ince Ayrac
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satirinda ince ayrac var | OK | Prefix ve ana metin arasinda hafif nokta ayraci gorunuyor |
+| PDF yardimi durum satirinda ince ayrac var | OK | Prefix ve ana metin arasinda hafif nokta ayraci gorunuyor |
+| 2026-06-14 | v1.101 | OK | Yardim durum satiri ince ayrac + build + self-test tamamlandi |
+
 ## v1.100 - Yardim Rozet Ton Dengeleme
 | Kontrol | Durum | Not |
 | --- | --- | --- |

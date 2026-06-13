@@ -1048,6 +1048,12 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.101 - Yardim Durum Satiri Ince Ayrac
+
+- Prefix ve tekrar rozetinden sonra ana yardim metni oncesine hafif bir nokta ayraci eklendi.
+- Boylece satir icindeki bilgi bloklari birbirinden daha rahat ayrisiyor.
+- Ayrac hover ve klavye odaginda satirin genel tonuna uyumlu sekilde belirginlesiyor.
+
 ## v1.100 - Yardim Rozet Ton Dengeleme
 
 - Yardim durum satirindaki `TEKRAR` rozeti ve `Enter/Space` etiketi daha yumusak tonlara cekildi.
