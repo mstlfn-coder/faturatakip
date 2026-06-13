@@ -1402,3 +1402,9 @@ Her faz bittiğinde:
 - Durum satiri bir anligina daha belirgin renk ve agirlik alarak son degisimi hissettiriyor.
 - Boylece rozet ve metin katmani birlikte daha iyi geri bildirim veriyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.92)
+
+- v1.92 tamamlandi: secili yardim durum satirina minik prefix ipucu eklendi.
+- Odeme yardimi `YRD`, PDF yardimi `PDF` etiketiyle daha hizli ayirt edilir hale geldi.
+- Boylece yardim satiri ilk bakista daha taranabilir oldu.
+- Smoke test olarak build ve self-test temiz gecti.

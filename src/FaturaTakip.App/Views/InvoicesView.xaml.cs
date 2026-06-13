@@ -2931,10 +2931,14 @@ public partial class InvoicesView : UserControl
         {
             PaymentHelperSelectedActionStatusText.Text = selectedActionStatusText;
             PaymentHelperSelectedActionStatusText.ToolTip = lastActionToolTip;
-            PaymentHelperSelectedActionStatusText.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
+        }
+
+        if (PaymentHelperSelectedActionStatusPanel is not null)
+        {
+            PaymentHelperSelectedActionStatusPanel.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
                 ? Visibility.Collapsed
                 : Visibility.Visible;
-            if (PaymentHelperSelectedActionStatusText.Visibility == Visibility.Visible)
+            if (PaymentHelperSelectedActionStatusPanel.Visibility == Visibility.Visible)
             {
                 StartPaymentHelperSelectedStatusHighlight();
             }
@@ -3207,10 +3211,14 @@ public partial class InvoicesView : UserControl
         {
             PaymentPdfSelectedActionStatusText.Text = selectedActionStatusText;
             PaymentPdfSelectedActionStatusText.ToolTip = lastActionToolTip;
-            PaymentPdfSelectedActionStatusText.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
+        }
+
+        if (PaymentPdfSelectedActionStatusPanel is not null)
+        {
+            PaymentPdfSelectedActionStatusPanel.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
                 ? Visibility.Collapsed
                 : Visibility.Visible;
-            if (PaymentPdfSelectedActionStatusText.Visibility == Visibility.Visible)
+            if (PaymentPdfSelectedActionStatusPanel.Visibility == Visibility.Visible)
             {
                 StartPaymentPdfSelectedStatusHighlight();
             }
@@ -3343,6 +3351,15 @@ public partial class InvoicesView : UserControl
 
         PaymentHelperSelectedActionStatusText.FontWeight = FontWeights.Bold;
         PaymentHelperSelectedActionStatusText.Foreground = new SolidColorBrush(Color.FromRgb(21, 128, 61));
+        if (PaymentHelperSelectedActionStatusPrefixBorder is not null)
+        {
+            PaymentHelperSelectedActionStatusPrefixBorder.Background = new SolidColorBrush(Color.FromRgb(187, 247, 208));
+            PaymentHelperSelectedActionStatusPrefixBorder.BorderBrush = new SolidColorBrush(Color.FromRgb(22, 163, 74));
+        }
+        if (PaymentHelperSelectedActionStatusPrefixText is not null)
+        {
+            PaymentHelperSelectedActionStatusPrefixText.Foreground = new SolidColorBrush(Color.FromRgb(21, 128, 61));
+        }
 
         _paymentHelperSelectedStatusHighlightTimer ??= new DispatcherTimer
         {
@@ -3387,6 +3404,15 @@ public partial class InvoicesView : UserControl
 
         PaymentHelperSelectedActionStatusText.FontWeight = FontWeights.SemiBold;
         PaymentHelperSelectedActionStatusText.Foreground = new SolidColorBrush(Color.FromRgb(22, 101, 52));
+        if (PaymentHelperSelectedActionStatusPrefixBorder is not null)
+        {
+            PaymentHelperSelectedActionStatusPrefixBorder.Background = new SolidColorBrush(Color.FromRgb(220, 252, 231));
+            PaymentHelperSelectedActionStatusPrefixBorder.BorderBrush = new SolidColorBrush(Color.FromRgb(134, 239, 172));
+        }
+        if (PaymentHelperSelectedActionStatusPrefixText is not null)
+        {
+            PaymentHelperSelectedActionStatusPrefixText.Foreground = new SolidColorBrush(Color.FromRgb(22, 101, 52));
+        }
     }
 
     private void ActivatePaymentHelperReplayFeedback()
@@ -3440,6 +3466,15 @@ public partial class InvoicesView : UserControl
 
         PaymentPdfSelectedActionStatusText.FontWeight = FontWeights.Bold;
         PaymentPdfSelectedActionStatusText.Foreground = new SolidColorBrush(Color.FromRgb(2, 132, 199));
+        if (PaymentPdfSelectedActionStatusPrefixBorder is not null)
+        {
+            PaymentPdfSelectedActionStatusPrefixBorder.Background = new SolidColorBrush(Color.FromRgb(186, 230, 253));
+            PaymentPdfSelectedActionStatusPrefixBorder.BorderBrush = new SolidColorBrush(Color.FromRgb(14, 165, 233));
+        }
+        if (PaymentPdfSelectedActionStatusPrefixText is not null)
+        {
+            PaymentPdfSelectedActionStatusPrefixText.Foreground = new SolidColorBrush(Color.FromRgb(2, 132, 199));
+        }
 
         _paymentPdfSelectedStatusHighlightTimer ??= new DispatcherTimer
         {
@@ -3484,6 +3519,15 @@ public partial class InvoicesView : UserControl
 
         PaymentPdfSelectedActionStatusText.FontWeight = FontWeights.SemiBold;
         PaymentPdfSelectedActionStatusText.Foreground = new SolidColorBrush(Color.FromRgb(3, 105, 161));
+        if (PaymentPdfSelectedActionStatusPrefixBorder is not null)
+        {
+            PaymentPdfSelectedActionStatusPrefixBorder.Background = new SolidColorBrush(Color.FromRgb(224, 242, 254));
+            PaymentPdfSelectedActionStatusPrefixBorder.BorderBrush = new SolidColorBrush(Color.FromRgb(125, 211, 252));
+        }
+        if (PaymentPdfSelectedActionStatusPrefixText is not null)
+        {
+            PaymentPdfSelectedActionStatusPrefixText.Foreground = new SolidColorBrush(Color.FromRgb(3, 105, 161));
+        }
     }
 
     private void ActivatePaymentPdfReplayFeedback()

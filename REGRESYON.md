@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.92 - Yardim Durum Prefix Ipuclari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satirinda YRD prefixi var | OK | Secili durum satiri `YRD` etiketiyle basliyor |
+| PDF yardimi durum satirinda PDF prefixi var | OK | Secili durum satiri `PDF` etiketiyle basliyor |
+| 2026-06-13 | v1.92 | OK | Yardim durum prefix ipuclari + build + self-test tamamlandi |
+
 ## v1.91 - Yardim Durum Satiri Mikro Vurgu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

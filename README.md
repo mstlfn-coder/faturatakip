@@ -1048,6 +1048,16 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.92 - Yardim Durum Prefix Ipuclari
+
+Bu fazda secili yardim durum satirinin basina minik bir prefix ipucu eklendi.
+Odeme yardimi icin `YRD`, PDF yardimi icin `PDF` etiketi artik satirin basinda gorunuyor.
+
+Boylece durum satiri daha hizli taranir ve yardim katmani daha net ayrisir hale geldi.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 ## v1.91 - Yardim Durum Satiri Mikro Vurgu
 
 Bu fazda secili yardim durum satiri degistiginde kisa sureli bir satir ici vurgu eklendi.
