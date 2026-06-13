@@ -2822,6 +2822,10 @@ public partial class InvoicesView : UserControl
                 _lastInvokedPaymentHelperActionKey,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis);
+            PaymentHelperReplayPreferenceSummaryText.Foreground = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
+                    ? Color.FromRgb(95, 107, 122)
+                    : Color.FromRgb(22, 101, 52));
         }
 
         if (PaymentHelperLastActionText is not null)
@@ -3020,6 +3024,10 @@ public partial class InvoicesView : UserControl
                 _lastInvokedPaymentPdfHelperActionKey,
                 _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
                 _invoiceReviewPreferences.PaymentShortcutReplayEmphasis);
+            PaymentPdfReplayPreferenceSummaryText.Foreground = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
+                    ? Color.FromRgb(95, 107, 122)
+                    : Color.FromRgb(3, 105, 161));
         }
 
         if (PaymentPdfHelperLastActionText is not null)

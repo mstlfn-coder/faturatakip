@@ -1158,3 +1158,13 @@ Boylece yardim alani ilk bakista daha dogal okunuyor ve kullaniciyi gereksiz yer
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.67 - Replay Ozet Ton Ayrimi
+
+Bu fazda replay ozet satiri, secili son aksiyon varken hafifce renklenip bos durumda daha notr kalacak sekilde ayarlandi.
+Boylece ayni satir sadece metinle degil, ton farkiyla da aktif baglam tasimaya basladi.
+
+Bos durumda sakin gorunurken, secili aksiyon oldugunda odeme yardiminda yesil, PDF yardiminda mavi bir tonla ayirt ediliyor.
+
+Smoke test:
+- `dotnet build .\FaturaTakip.sln -c Release`
+- `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

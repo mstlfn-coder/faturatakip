@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.67 - Replay Ozet Ton Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme replay ozeti ton ayriyor | OK | Son aksiyon varsa yesil, yoksa notr ton kullaniliyor |
+| PDF replay ozeti ton ayriyor | OK | Son aksiyon varsa mavi, yoksa notr ton kullaniliyor |
+| 2026-06-13 | v1.67 | OK | Replay ozet ton ayrimi + build + self-test tamamlandi |
+
 ## v1.66 - Replay Bos Durum Metni
 | Kontrol | Durum | Not |
 | --- | --- | --- |

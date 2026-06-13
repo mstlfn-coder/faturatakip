@@ -1252,3 +1252,9 @@ Her faz bittiğinde:
 - Tercih bilgisi korunuyor ama aksiyon adi bilinmiyorsa daha yumusak bir dil tercih ediliyor.
 - Boylece yardim alani ilk gorunumde daha dogal okunuyor.
 - Smoke test olarak build ve self-test temiz gecti.
+## Son Guncelleme (2026-06-13 / v1.67)
+
+- v1.67 tamamlandi: replay ozet satiri secili aksiyon oldugunda hafif renk tonu ile ayristirilmaya baslandi.
+- Bos durumda notr, aktif durumda ise odeme yardiminda yesil ve PDF yardiminda mavi tona donuyor.
+- Boylece aktif baglam daha hizli fark edilir hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
