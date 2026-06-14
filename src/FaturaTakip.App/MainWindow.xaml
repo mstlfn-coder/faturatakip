@@ -1040,7 +1040,7 @@
                                             BorderThickness="1"
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
-                                            Margin="0,8,0,0"
+                                            Margin="0,7,0,0"
                                             Padding="8,3"
                                             Visibility="Collapsed">
                                         <TextBlock Text="AKTIF KOLON"
@@ -1053,7 +1053,7 @@
                                                Foreground="#1F2937"
                                                FontSize="13"
                                                FontWeight="SemiBold"
-                                               Margin="0,10,0,0"
+                                               Margin="0,8,0,0"
                                                TextWrapping="Wrap" />
                                     <TextBlock x:Name="PaymentsWorkspaceDescriptionText"
                                                Text="Odenmemis filtre ile odeme giris alanina gecer."
@@ -1135,7 +1135,7 @@
                                             BorderThickness="1"
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
-                                            Margin="0,8,0,0"
+                                            Margin="0,7,0,0"
                                             Padding="8,3"
                                             Visibility="Collapsed">
                                         <TextBlock Text="AKTIF KOLON"
@@ -1148,7 +1148,7 @@
                                                Foreground="#1F2937"
                                                FontSize="13"
                                                FontWeight="SemiBold"
-                                               Margin="0,10,0,0"
+                                               Margin="0,8,0,0"
                                                TextWrapping="Wrap" />
                                     <TextBlock x:Name="PaymentsDocumentDescriptionText"
                                                Text="Eksik odeme evraklarini rapor ekraninda listeler."
@@ -1229,7 +1229,7 @@
                                             BorderThickness="1"
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
-                                            Margin="0,8,0,0"
+                                            Margin="0,7,0,0"
                                             Padding="8,3"
                                             Visibility="Collapsed">
                                         <TextBlock Text="AKTIF KOLON"
@@ -1242,7 +1242,7 @@
                                                Foreground="#1F2937"
                                                FontSize="13"
                                                FontWeight="SemiBold"
-                                               Margin="0,10,0,0"
+                                               Margin="0,8,0,0"
                                                TextWrapping="Wrap" />
                                     <TextBlock x:Name="PaymentsUnpaidReportDescriptionText"
                                                Text="Kalan toplam ve acik faturalari rapor sekmesinde ac."

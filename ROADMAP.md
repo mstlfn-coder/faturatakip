@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.144)
+
+- v1.144 tamamlandi: Odemeler panelindeki aktif kolon rozeti ile kart basligi arasindaki ust ritim toparlandi.
+- Boylece kartin ust blogu biraz daha yakin, daha tutarli ve daha tek bakista okunur hale geldi.
+- Bu adim secili kartin ilk temas kalitesini biraz daha yukseltti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.143)
 
 - v1.143 tamamlandi: Odemeler panelindeki buton ust bosluklari yeni kompakt kapsul olcegine gore dengelendi.

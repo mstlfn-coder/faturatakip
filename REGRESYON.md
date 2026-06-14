@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.144 - Ust Ritim Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozet ve baslik daha dengeli | OK | Ust bosluk hafifce azaltilarak ilk blog daha tek parca gorunuyor |
+| Ilk bakis taramasi iyilesti | OK | Kartin ust akisinda gereksiz nefes azaltilip ritim toparlandi |
+| 2026-06-14 | v1.144 | OK | Odemeler panelinde ust ritim dengeleme tamamlandi |
+
 ## v1.143 - Buton Ust Bosluk Dengeleme
 | Kontrol | Durum | Not |
 | --- | --- | --- |
