@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.152)
+
+- v1.152 tamamlandi: Odemeler panelindeki aktif kolon rozetleri ile kart basliklari arasindaki bosluk hafifce azaltildi.
+- Boylece secili durum vurgusu kart basligina daha yakin okunuyor ve giris hiyerarsisi daha toplu gorunuyor.
+- Bu adim secili akis kartlarinin ust ritmini bir kademe daha toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.151)
 
 - v1.151 tamamlandi: Odemeler panelindeki `AKTIF KOLON` rozetlerinin gorunme animasyonu yardim kapsuluyle ayni fade temposuna yaklastirildi.

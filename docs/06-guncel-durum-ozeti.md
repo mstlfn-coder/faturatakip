@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-14
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.151 - Mikro Rozet Animasyon Ritmi`
+- Son tamamlanan temiz faz: `v1.152 - Rozet Baslik Yakinlastirma`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.152` Rozet Baslik Yakinlastirma
 - `v1.151` Mikro Rozet Animasyon Ritmi
 - `v1.150` Mikro Rozet Agirlik Yumusatma
 - `v1.149` Mikro Rozet Olcek Dengeleme

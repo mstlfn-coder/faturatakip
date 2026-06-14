@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.152 - Rozet Baslik Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozet ile baslik daha bagli | OK | Baslik ust boslugu azaltilarak secili durum etiketiyle yakinlastirildi |
+| Ust giris ritmi daha toplu | OK | Kartin ilk bilgi blogu daha birlesik okunuyor |
+| 2026-06-14 | v1.152 | OK | Odemeler panelinde rozet-baslik yakinlastirma tamamlandi |
+
 ## v1.151 - Mikro Rozet Animasyon Ritmi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
