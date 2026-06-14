@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.141)
+
+- v1.141 tamamlandi: Odemeler panelindeki yardim metinlerine daha duzgun satir yuksekligi dengesi verildi.
+- Boylece hedef ve sonraki adim satirlari, ozellikle metin uzadiginda daha temiz hizada okunuyor.
+- Bu adim panelin alt yonlendirme blogunu daha duzgun ve daha kararlı hissettirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.140)
 
 - v1.140 tamamlandi: Odemeler panelindeki `Aktif yol` notlari daha yardimci bir tipografi katmanina cekildi.

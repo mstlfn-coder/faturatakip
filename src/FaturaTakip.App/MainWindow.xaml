@@ -1078,6 +1078,8 @@
                                                Foreground="#166534"
                                                FontSize="11"
                                                FontWeight="SemiBold"
+                                               LineHeight="16"
+                                               LineStackingStrategy="BlockLineHeight"
                                                Margin="0,7,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
@@ -1085,6 +1087,8 @@
                                                Text="Sonraki adim: uygun kaydi secip odeme tarihini ve tutari gir."
                                                Foreground="#166534"
                                                FontSize="10"
+                                               LineHeight="15"
+                                               LineStackingStrategy="BlockLineHeight"
                                                Margin="0,3,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
@@ -1169,6 +1173,8 @@
                                                Foreground="#1D4ED8"
                                                FontSize="11"
                                                FontWeight="SemiBold"
+                                               LineHeight="16"
+                                               LineStackingStrategy="BlockLineHeight"
                                                Margin="0,7,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
@@ -1176,6 +1182,8 @@
                                                Text="Sonraki adim: eksik kaydi acip PDF evrakini tamamla."
                                                Foreground="#1D4ED8"
                                                FontSize="10"
+                                               LineHeight="15"
+                                               LineStackingStrategy="BlockLineHeight"
                                                Margin="0,3,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
@@ -1259,6 +1267,8 @@
                                                Foreground="#B45309"
                                                FontSize="11"
                                                FontWeight="SemiBold"
+                                               LineHeight="16"
+                                               LineStackingStrategy="BlockLineHeight"
                                                Margin="0,7,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
@@ -1266,6 +1276,8 @@
                                                Text="Sonraki adim: acik bakiyeyi filtreleyip uygun tahsilat kaydina ilerle."
                                                Foreground="#B45309"
                                                FontSize="10"
+                                               LineHeight="15"
+                                               LineStackingStrategy="BlockLineHeight"
                                                Margin="0,3,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.141)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.141 - Yardim Metni Satir Yuksekligi`
+- Bu adimda secili akis kartlarindaki `Hedef` ve `Sonraki adim` satirlarina sabit satir yuksekligi verildi.
+- Boylece uzun satirlarda yardim bloklari daha temiz hizada akiyor ve alt bolum daha duzgun gorunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.140)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -149,4 +158,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki aktif yol tipografi ayrimi da netlestigi icin, sonraki mantikli kucuk adim secili akis kartlarindaki yardim metni satirlarina daha rafine bir satir yuksekligi dengesi vermek olabilir.
+- Odemeler panelindeki yardim metni satir yuksekligi de oturdugu icin, sonraki mantikli kucuk adim secili akis kartlarindaki yardim kapsullerinin ic bosluklarini bir tik daha rafine hale getirmek olabilir.

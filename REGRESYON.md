@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.141 - Yardim Metni Satir Yuksekligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardim satirlari daha duzgun akiyor | OK | `Hedef` ve `Sonraki adim` satirlari sabit line-height ile daha temiz hizada |
+| Uzun metin ritmi korundu | OK | Sarma durumunda satirlar daha dengeli boslukla okunuyor |
+| 2026-06-14 | v1.141 | OK | Odemeler panelinde yardim metni satir yuksekligi tamamlandi |
+
 ## v1.140 - Aktif Yol Tipografi Ayrimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
