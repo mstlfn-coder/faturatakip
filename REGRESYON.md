@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.147 - Hedef Sonraki Adim Aralik Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hedef ve sonraki adim daha toplu | OK | Aralik azaltilarak iki satir daha bagli okunur hale geldi |
+| Alt yardim ritmi korundu | OK | Sikisma olmadan daha birlesik bir yonlendirme blogu elde edildi |
+| 2026-06-14 | v1.147 | OK | Odemeler panelinde hedef-sonraki adim aralik ayari tamamlandi |
+
 ## v1.146 - Ust Bilgi Mikro Bosluk Ayari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

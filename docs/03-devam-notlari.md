@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.147)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.147 - Hedef Sonraki Adim Aralik Ayari`
+- Bu adimda secili akis kartlarindaki `Hedef` ve `Sonraki adim` satirlari arasindaki dikey aralik hafifce azaltildi.
+- Boylece bu iki satir daha tek parca bir yonlendirme blogu gibi okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.146)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -203,4 +212,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki ust bilgi mikro boslugu da dengelendigi icin, sonraki mantikli kucuk adim secili akis kartlarinda hedef satiri ile sonraki adim satiri arasindaki araligi daha ince ayarlamak olabilir.
+- Odemeler panelindeki hedef-sonraki adim araligi da dengelendigi icin, sonraki mantikli kucuk adim secili akis kartlarindaki yardim kapsulu ile buton arasindaki ton/agirlik iliskisini bir tik daha yumusatmak olabilir.

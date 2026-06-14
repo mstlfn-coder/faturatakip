@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.147)
+
+- v1.147 tamamlandi: Odemeler panelindeki `Hedef` ve `Sonraki adim` satirlari biraz daha birbirine yaklastirildi.
+- Boylece yonlendirme blogu daha toplu ve daha akici gorunuyor.
+- Bu adim kartin alt yardim zincirindeki mikro ritmi bir kademe daha olgunlastirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.146)
 
 - v1.146 tamamlandi: Odemeler panelindeki ust bilgi blogunda mikro bosluk ayari yapildi.
