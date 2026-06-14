@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.138)
+
+- v1.138 tamamlandi: Odemeler panelindeki `AKTIF KOLON` rozetlerine hafif gorunme gecisi eklendi.
+- Boylece aktif kolon rozeti de kisayol kapsulu ile ayni sakin canlanma dilini kullanmaya basladi.
+- Bu adim paneldeki mikro geri bildirim katmanlarini daha tutarli hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.137)
 
 - v1.137 tamamlandi: Odemeler panelindeki `Enter ile ac` kapsullerine cok hafif gorunme canlanmasi eklendi.

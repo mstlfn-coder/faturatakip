@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-14
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.137 - Kisayol Kapsulu Gorunme Canlanmasi`
+- Son tamamlanan temiz faz: `v1.138 - Aktif Kolon Rozeti Gorunme Gecisi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.138` Aktif Kolon Rozeti Gorunme Gecisi
 - `v1.137` Kisayol Kapsulu Gorunme Canlanmasi
 - `v1.136` Akis Karti Hover Gecisi
 - `v1.135` Akis Karti Dikey Ritim Ayari
@@ -40,9 +41,9 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Bu Fazda Ne Yapildi
 
-1. Secili akis kartlarindaki `Enter ile ac` kapsulleri gorunurken hafif opacity canlanmasi almaya basladi.
-2. Kapsul, kart secimiyle birlikte aniden degil daha yumusak bir sekilde beliriyor.
-3. Boylece yardimci klavye ipucu paneldeki diger sakin geri bildirim diliyle daha iyi uyumlandi.
+1. Secili akis kartlarindaki `AKTIF KOLON` rozetleri gorunurken hafif opacity gecisi almaya basladi.
+2. Rozetler artik secim degisiminde daha yumusak bir sekilde beliriyor.
+3. Boylece aktif kolon rozeti ve kisayol kapsulu ayni geri bildirim ailesinde daha tutarli okunuyor.
 4. Dogrulama rutini build ve self-test ile tekrar temiz gecti.
 
 ## Son Dogrulanan Testler
@@ -52,7 +53,7 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Aktif kolon rozetinin gorunme gecisini de benzer sakinlikte cilalamak
+- Secili akis kartlarinda metin ve yardim kapsulleri arasindaki ton farklarini bir tik daha dengelemek
 
 ## Yeni Chat Icin Kisa Talimat
 

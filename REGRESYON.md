@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.138 - Aktif Kolon Rozeti Gorunme Gecisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif kolon rozeti yumusak sekilde gorunuyor | OK | `AKTIF KOLON` rozeti secili kartta hafif opacity gecisiyle beliriyor |
+| Kisayol kapsuluyla uyum korundu | OK | Iki yardimci mikro unsur ayni sakin geri bildirim diline yaklasti |
+| 2026-06-14 | v1.138 | OK | Odemeler panelinde aktif kolon rozeti gorunme gecisi tamamlandi |
+
 ## v1.137 - Kisayol Kapsulu Gorunme Canlanmasi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

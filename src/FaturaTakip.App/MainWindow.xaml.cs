@@ -448,9 +448,9 @@ public partial class MainWindow : Window
         SetPaymentsShortcutHintState(PaymentsWorkspaceShortcutHint, routeKey == "workspace");
         SetPaymentsShortcutHintState(PaymentsDocumentShortcutHint, routeKey == "document");
         SetPaymentsShortcutHintState(PaymentsUnpaidReportShortcutHint, routeKey == "unpaid");
-        SetPaymentsRouteNote(PaymentsWorkspaceActiveColumnBadge, routeKey == "workspace");
-        SetPaymentsRouteNote(PaymentsDocumentActiveColumnBadge, routeKey == "document");
-        SetPaymentsRouteNote(PaymentsUnpaidReportActiveColumnBadge, routeKey == "unpaid");
+        SetPaymentsActiveColumnBadgeState(PaymentsWorkspaceActiveColumnBadge, routeKey == "workspace");
+        SetPaymentsActiveColumnBadgeState(PaymentsDocumentActiveColumnBadge, routeKey == "document");
+        SetPaymentsActiveColumnBadgeState(PaymentsUnpaidReportActiveColumnBadge, routeKey == "unpaid");
         SetPaymentsFlowTextState(PaymentsWorkspaceTitleText, PaymentsWorkspaceDescriptionText, routeKey == "workspace", "#166534", "#166534");
         SetPaymentsFlowTextState(PaymentsDocumentTitleText, PaymentsDocumentDescriptionText, routeKey == "document", "#1D4ED8", "#1E40AF");
         SetPaymentsFlowTextState(PaymentsUnpaidReportTitleText, PaymentsUnpaidReportDescriptionText, routeKey == "unpaid", "#B45309", "#92400E");
@@ -506,6 +506,28 @@ public partial class MainWindow : Window
                 From = 0.86,
                 To = 1,
                 Duration = TimeSpan.FromMilliseconds(180)
+            });
+    }
+
+    private static void SetPaymentsActiveColumnBadgeState(Border badge, bool isVisible)
+    {
+        if (!isVisible)
+        {
+            badge.BeginAnimation(UIElement.OpacityProperty, null);
+            badge.Opacity = 1;
+            badge.Visibility = Visibility.Collapsed;
+            return;
+        }
+
+        badge.Visibility = Visibility.Visible;
+        badge.Opacity = 0.82;
+        badge.BeginAnimation(
+            UIElement.OpacityProperty,
+            new DoubleAnimation
+            {
+                From = 0.82,
+                To = 1,
+                Duration = TimeSpan.FromMilliseconds(190)
             });
     }
 

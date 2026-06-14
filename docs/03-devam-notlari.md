@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.138)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.138 - Aktif Kolon Rozeti Gorunme Gecisi`
+- Bu adimda secili akis kartlarindaki `AKTIF KOLON` rozetleri gorunurken cok hafif bir opacity gecisi almaya basladi.
+- Boylece aktif kolon rozeti de kisayol kapsulu ile ayni sakin geri bildirim ailesine baglanmis oldu.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.137)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -122,4 +131,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki kisayol kapsulu canlanmasi da eklendigi icin, sonraki mantikli kucuk adim aktif kolon rozetinin gorunme gecisini de benzer sakinlikte cilalamak olabilir.
+- Odemeler panelindeki aktif kolon rozeti gecisi de cilalandigi icin, sonraki mantikli kucuk adim secili akis kartlarinda metin ve yardim kapsulleri arasindaki ton farklarini bir tik daha dengelemek olabilir.
