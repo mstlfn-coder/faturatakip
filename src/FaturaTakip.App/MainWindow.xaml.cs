@@ -438,6 +438,9 @@ public partial class MainWindow : Window
         SetPaymentsRouteNote(PaymentsWorkspaceActiveRouteNote, routeKey == "workspace");
         SetPaymentsRouteNote(PaymentsDocumentActiveRouteNote, routeKey == "document");
         SetPaymentsRouteNote(PaymentsUnpaidReportActiveRouteNote, routeKey == "unpaid");
+        SetPaymentsRouteNote(PaymentsWorkspaceActiveColumnBadge, routeKey == "workspace");
+        SetPaymentsRouteNote(PaymentsDocumentActiveColumnBadge, routeKey == "document");
+        SetPaymentsRouteNote(PaymentsUnpaidReportActiveColumnBadge, routeKey == "unpaid");
         SetPaymentsActionButtonState(PaymentsMonthlyActionButton, routeKey == "monthly", "#DBEAFE", "#93C5FD", "#1D4ED8");
         SetPaymentsActionButtonState(PaymentsMissingPdfActionButton, routeKey == "document", "#F0F9FF", "#7DD3FC", "#0369A1");
         SetPaymentsActionButtonState(PaymentsUnpaidActionButton, routeKey == "workspace" || routeKey == "unpaid", "#ECFDF5", "#86EFAC", "#166534");
@@ -464,6 +467,11 @@ public partial class MainWindow : Window
     private static void SetPaymentsRouteNote(TextBlock note, bool isVisible)
     {
         note.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private static void SetPaymentsRouteNote(Border badge, bool isVisible)
+    {
+        badge.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
     }
 
     private static void SetPaymentsActionButtonState(Button button, bool isSelected, string backgroundHex, string borderHex, string foregroundHex)

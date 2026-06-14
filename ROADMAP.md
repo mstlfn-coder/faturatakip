@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.127)
+
+- v1.127 tamamlandi: Odemeler panelindeki secili akis kartina kucuk bir `AKTIF KOLON` rozeti eklendi.
+- Boylece aktif yol artik ust rozet, secili kart, alt not, buton vurgu ve kolon rozeti ile birlikte okunuyor.
+- Bu adim panelin secili akis kolonunu daha tek bakista ayirt edilir hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.126)
 
 - v1.126 tamamlandi: Odeme Is Akisi bolum basligina secili kolonu ozetleyen dinamik bir baglam satiri eklendi.

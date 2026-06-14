@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.127 - Aktif Kolon Rozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili akis kartinda aktif kolon rozeti gorunuyor | OK | `ISLEM`, `EVRAK` ve `RAPOR` kartlari secildiginde ilgili kartta `AKTIF KOLON` rozeti beliriyor |
+| Odak daha toparli hissediliyor | OK | Aktif yolun kart ici okunabilirligi ek mikro katmanla desteklendi |
+| 2026-06-14 | v1.127 | OK | Odemeler panelinde aktif kolon rozeti tamamlandi |
+
 ## v1.126 - Akis Baslik Baglami
 | Kontrol | Durum | Not |
 | --- | --- | --- |

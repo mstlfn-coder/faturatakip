@@ -978,6 +978,20 @@
                                                    Style="{StaticResource FlowBadgeText}"
                                                    Foreground="#166534" />
                                     </Border>
+                                    <Border x:Name="PaymentsWorkspaceActiveColumnBadge"
+                                            Background="#166534"
+                                            BorderBrush="#166534"
+                                            BorderThickness="1"
+                                            CornerRadius="999"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,8,0,0"
+                                            Padding="8,3"
+                                            Visibility="Collapsed">
+                                        <TextBlock Text="AKTIF KOLON"
+                                                   Foreground="White"
+                                                   FontSize="10"
+                                                   FontWeight="SemiBold" />
+                                    </Border>
                                     <TextBlock Text="Fatura icinde odeme ekleme ve taslak yardimlari"
                                                Foreground="#1F2937"
                                                FontSize="13"
@@ -1023,6 +1037,20 @@
                                                    Style="{StaticResource FlowBadgeText}"
                                                    Foreground="#1D4ED8" />
                                     </Border>
+                                    <Border x:Name="PaymentsDocumentActiveColumnBadge"
+                                            Background="#1D4ED8"
+                                            BorderBrush="#1D4ED8"
+                                            BorderThickness="1"
+                                            CornerRadius="999"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,8,0,0"
+                                            Padding="8,3"
+                                            Visibility="Collapsed">
+                                        <TextBlock Text="AKTIF KOLON"
+                                                   Foreground="White"
+                                                   FontSize="10"
+                                                   FontWeight="SemiBold" />
+                                    </Border>
                                     <TextBlock Text="Odeme PDF eksiklerini hizli kontrol et"
                                                Foreground="#1F2937"
                                                FontSize="13"
@@ -1066,6 +1094,20 @@
                                         <TextBlock Text="RAPOR"
                                                    Style="{StaticResource FlowBadgeText}"
                                                    Foreground="#B45309" />
+                                    </Border>
+                                    <Border x:Name="PaymentsUnpaidReportActiveColumnBadge"
+                                            Background="#B45309"
+                                            BorderBrush="#B45309"
+                                            BorderThickness="1"
+                                            CornerRadius="999"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,8,0,0"
+                                            Padding="8,3"
+                                            Visibility="Collapsed">
+                                        <TextBlock Text="AKTIF KOLON"
+                                                   Foreground="White"
+                                                   FontSize="10"
+                                                   FontWeight="SemiBold" />
                                     </Border>
                                     <TextBlock Text="Odenmemis bakiyeyi rapor akisinda izle"
                                                Foreground="#1F2937"
