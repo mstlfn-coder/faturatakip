@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.129)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.129 - Aktif Kolon Hedef Satiri`
+- Bu adimda secili akis kartinin dugmesinden hemen once gorunen kisa bir `Hedef:` satiri eklendi.
+- Boylece kullanici tiklamadan hemen once o kartin hangi sonucu acacagini daha net okuyabiliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.128)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -41,4 +50,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki secili kolon metin tonu da oturdugu icin, sonraki mantikli kucuk adim secili kolonun eylem dugmesinin ustune kisa bir mikro hedef satiri ekleyerek akis sonucunu bir adim daha okunur hale getirmek olabilir.
+- Odemeler panelindeki hedef satiri da eklendigi icin, sonraki mantikli kucuk adim secili kolon kartinin altinda kisa bir "sonraki adim" ipucu vererek kullanici aksiyon zincirini bir tik daha akiskan hale getirmek olabilir.

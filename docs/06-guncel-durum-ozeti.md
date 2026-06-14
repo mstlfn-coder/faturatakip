@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-14
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.128 - Aktif Kolon Metin Tonu`
+- Son tamamlanan temiz faz: `v1.129 - Aktif Kolon Hedef Satiri`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.129` Aktif Kolon Hedef Satiri
 - `v1.127` Aktif Kolon Rozeti
 - `v1.128` Aktif Kolon Metin Tonu
 - `v1.126` Akis Baslik Baglami
@@ -31,9 +32,9 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Bu Fazda Ne Yapildi
 
-1. Secili akis kartlarinin baslik ve aciklama metinleri renk ailesiyle hafifce odaklanacak hale getirildi.
-2. Bu ton farki yalnizca aktif kolon icinde calisiyor; diger kartlar notr kalmaya devam ediyor.
-3. Kart ici odak artik secili zemin, aktif kolon rozeti ve mikro metin tonu ile birlikte okunuyor.
+1. Secili akis kartlarinin dugmesinden hemen once gorunen `Hedef:` satiri eklendi.
+2. Bu satir yalnizca aktif kolonda gorunuyor; diger kartlar notr ve daha sakin kaliyor.
+3. Kart ici odak artik secili zemin, aktif kolon rozeti, mikro metin tonu ve hedef satiri ile birlikte okunuyor.
 4. Dogrulama rutini build ve self-test ile tekrar temiz gecti.
 
 ## Son Dogrulanan Testler
@@ -43,7 +44,7 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Secili kolonun eylem dugmesinin ustune kisa bir mikro hedef satiri ekleyerek akis sonucunu daha da okunur hale getirmek
+- Secili kolon kartinin altinda kisa bir "sonraki adim" ipucu vererek kullanici aksiyon zincirini bir tik daha akiskan hale getirmek
 
 ## Yeni Chat Icin Kisa Talimat
 

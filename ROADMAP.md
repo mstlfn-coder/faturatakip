@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.129)
+
+- v1.129 tamamlandi: Odemeler panelindeki secili akis kartinin dugmesinden hemen once kisa bir `Hedef:` satiri eklendi.
+- Boylece aktif kolonun acacagi sonuc kullanici tarafinda tiktan hemen once daha dogrudan okunuyor.
+- Bu adim karttan eyleme gecis anini biraz daha kendini anlatan hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.128)
 
 - v1.128 tamamlandi: Odemeler panelindeki secili akis kartinin kendi baslik ve aciklama metinleri hafif ton farki almaya basladi.

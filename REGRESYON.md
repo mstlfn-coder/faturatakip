@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.129 - Aktif Kolon Hedef Satiri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili akis kartinda hedef satiri gorunuyor | OK | `Hedef:` satiri secili kartta dugmeden hemen once beliriyor |
+| Diger kartlar sakin kaliyor | OK | Secili olmayan akis kartlarinda hedef satiri gorunmuyor |
+| 2026-06-14 | v1.129 | OK | Odemeler panelinde aktif kolon hedef satiri tamamlandi |
+
 ## v1.128 - Aktif Kolon Metin Tonu
 | Kontrol | Durum | Not |
 | --- | --- | --- |
