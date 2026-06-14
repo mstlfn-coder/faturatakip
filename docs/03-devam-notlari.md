@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.167)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.167 - Ikincil Aksiyon Tonu Dengeleme`
+- Bu adimda odeme akis kartlarinda kullanilan ikincil aksiyon dugmelerinin tonu bir kademe sakinlestirildi.
+- Boylece birincil komut daha net onde kalirken, diger iki aksiyon butonu panelin genel yardim hiyerarsisine daha iyi oturuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.166)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

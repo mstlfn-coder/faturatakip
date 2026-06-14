@@ -60,6 +60,9 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="PaymentsFlowSecondaryActionButton" TargetType="Button" BasedOn="{StaticResource SecondaryButton}">
+            <Setter Property="Background" Value="#F2F6FB" />
+            <Setter Property="BorderBrush" Value="#D6E2EE" />
+            <Setter Property="Foreground" Value="#475569" />
             <Style.Triggers>
                 <Trigger Property="IsKeyboardFocused" Value="True">
                     <Setter Property="BorderThickness" Value="2" />

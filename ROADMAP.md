@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.167)
+
+- v1.167 tamamlandi: Odemeler panelinde kullanilan ikincil aksiyon dugmelerinin tonlari hafifce sakinlestirildi.
+- Boylece birincil aksiyon daha net onde kalirken, diger iki dugme yardimci yonlendirme rolune daha iyi oturuyor.
+- Bu adim kartlarin aksiyon hiyerarsisini bir kademe daha rafine etti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.166)
 
 - v1.166 tamamlandi: Odemeler panelindeki `Enter ile ac` kapsul metinlerinin renk tonu hafifce yumusatildi.

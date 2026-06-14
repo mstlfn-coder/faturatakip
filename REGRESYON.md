@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.167 - Ikincil Aksiyon Tonu Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ikincil aksiyon daha sakin | OK | Ikincil buton tonlari yardimci rolune daha uygun hale geldi |
+| Birincil aksiyon onde | OK | Odeme calisma dugmesi panelde daha net ana komut gibi gorunuyor |
+| 2026-06-14 | v1.167 | OK | Odemeler panelinde ikincil aksiyon tonu dengeleme tamamlandi |
+
 ## v1.166 - Kisayol Tonu Yumusatma
 | Kontrol | Durum | Not |
 | --- | --- | --- |
