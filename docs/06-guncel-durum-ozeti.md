@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-14
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.154 - Aciklama Baglam Bosluk Ayari`
+- Son tamamlanan temiz faz: `v1.155 - Aktif Yol Notu Yakinlastirma`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.155` Aktif Yol Notu Yakinlastirma
 - `v1.154` Aciklama Baglam Bosluk Ayari
 - `v1.153` Baslik Aciklama Ritim Sikilastirma
 - `v1.152` Rozet Baslik Yakinlastirma

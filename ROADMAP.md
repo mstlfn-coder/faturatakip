@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.155)
+
+- v1.155 tamamlandi: Odemeler panelindeki baglam cumlesi ile `Aktif yol` notu arasindaki bosluk hafifce azaltildi.
+- Boylece secili durum notu ust bilgi blogunun daha dogal ve daha butunlu bir devami gibi okunuyor.
+- Bu adim kartlarin secili durum geri bildirimini bir kademe daha akici hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.154)
 
 - v1.154 tamamlandi: Odemeler panelindeki aciklama satiri ile baglam cumlesi arasindaki bosluk hafifce azaltildi.

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.155)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.155 - Aktif Yol Notu Yakinlastirma`
+- Bu adimda secili akis kartlarindaki baglam cumlesi ile `Aktif yol` notu arasindaki bosluk bir kademe azaltildi.
+- Boylece secili durumun yardimci notu ust bilgi blogunun daha dogal bir devam satiri gibi okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.154)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

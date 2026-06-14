@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.155 - Aktif Yol Notu Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif yol notu daha bagli | OK | Ust bosluk azaltilarak baglam satirina daha yakin okunur hale geldi |
+| Secili durum geri bildirimi daha akici | OK | Ust bilgi blogu icindeki yardimci not daha dogal bir devam hissi veriyor |
+| 2026-06-14 | v1.155 | OK | Odemeler panelinde aktif yol notu yakinlastirma tamamlandi |
+
 ## v1.154 - Aciklama Baglam Bosluk Ayari
 | Kontrol | Durum | Not |
 | --- | --- | --- |
