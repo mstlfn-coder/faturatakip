@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.107)
+
+- v1.107 tamamlandi: yardim durum satirindaki uc yardimci parca icin kademeli mikro vurgu dili kuruldu.
+- Prefix daha guclu, tekrar rozeti orta, kisayol ipucu daha sakin kalacak sekilde gorsel denge ayarlandi.
+- Hover ve klavye odaginda satir daha rafine ve daha kontrollu geri bildirim veriyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.106)
 
 - v1.106 tamamlandi: yardim durum satirinin sagindaki kisayol ipucu secili aksiyona gore metin varyanti almaya basladi.

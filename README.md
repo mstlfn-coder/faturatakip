@@ -1048,6 +1048,12 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.107 - Yardim Mikro Vurgu Kademesi
+
+- Yardim durum satirindaki prefix, tekrar rozeti ve kisayol ipucu icin daha rafine bir vurgu kademesi kuruldu.
+- Normal durumda prefix en belirgin, tekrar rozeti orta, kisayol ipucu daha sakin gorunuyor.
+- Hover ve klavye odaginda bu uc parca birlikte ama farkli siddetlerde belirginleserek daha olgun bir mikro geri bildirim veriyor.
+
 ## v1.106 - Yardim Kisayol Ipucunda Aksiyon Varyanti
 
 - `Enter/Space` ipucu artik secili aksiyona gore ufak metin varyantlari aliyor.

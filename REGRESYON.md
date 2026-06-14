@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.107 - Yardim Mikro Vurgu Kademesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi mikro vurgu kademeli | OK | Prefix, tekrar ve kisayol bloklari farkli siddetlerde belirginlesiyor |
+| PDF yardimi mikro vurgu kademeli | OK | Prefix, tekrar ve kisayol bloklari farkli siddetlerde belirginlesiyor |
+| 2026-06-14 | v1.107 | OK | Yardim mikro vurgu kademesi + build + self-test tamamlandi |
+
 ## v1.106 - Yardim Kisayol Ipucunda Aksiyon Varyanti
 | Kontrol | Durum | Not |
 | --- | --- | --- |
