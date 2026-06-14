@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.131 - Aksiyon Butonu Fiil Dili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Buton metinleri daha net fiil dili kullaniyor | OK | `Odeme Alanini Ac`, `Eksik Evrak Raporunu Ac`, `Odenmemisler Raporunu Ac` ifadeleri gorunuyor |
+| Kart ici dil ile uyum korundu | OK | Hedef ve sonraki adim satirlariyla buton komutu ayni aksiyon tonunda okunuyor |
+| 2026-06-14 | v1.131 | OK | Odemeler panelinde aksiyon butonu fiil dili tamamlandi |
+
 ## v1.130 - Aktif Kolon Sonraki Adim Ipuclari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

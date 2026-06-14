@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-14
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.130 - Aktif Kolon Sonraki Adim Ipuclari`
+- Son tamamlanan temiz faz: `v1.131 - Aksiyon Butonu Fiil Dili`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.131` Aksiyon Butonu Fiil Dili
 - `v1.130` Aktif Kolon Sonraki Adim Ipuclari
 - `v1.129` Aktif Kolon Hedef Satiri
 - `v1.127` Aktif Kolon Rozeti
@@ -33,9 +34,9 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Bu Fazda Ne Yapildi
 
-1. Secili akis kartlarina, hedef satirinin altinda gorunen kisa `Sonraki adim:` ipuclari eklendi.
-2. Bu satir yalnizca aktif kolonda gorunuyor; diger kartlar notr ve daha sakin kaliyor.
-3. Kart ici odak artik secili zemin, aktif kolon rozeti, mikro metin tonu, hedef satiri ve sonraki adim ipucu ile birlikte okunuyor.
+1. Odemeler akis kartlarindaki buton metinleri daha dogrudan fiil diliyle guncellendi.
+2. `Ac` fiili kart icindeki hedef ve sonraki adim diliyle daha tutarli bir aksiyon ritmi kuruyor.
+3. Boylece secili kartta okunan aciklama ile tiklanan komut arasindaki anlamsal gecis daha temiz hale geldi.
 4. Dogrulama rutini build ve self-test ile tekrar temiz gecti.
 
 ## Son Dogrulanan Testler
@@ -45,7 +46,7 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Secili akis kartinin butonunda aksiyon odakli daha net fiil dili kullanmak
+- Secili akis kartinda mini bir klavye ipucu ya da kisayol kapsulu gostermek
 
 ## Yeni Chat Icin Kisa Talimat
 

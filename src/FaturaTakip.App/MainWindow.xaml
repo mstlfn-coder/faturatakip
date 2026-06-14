@@ -1032,7 +1032,7 @@
                                                Margin="0,4,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
-                                    <Button Content="Faturalar > Odeme Alani"
+                                    <Button Content="Odeme Alanini Ac"
                                             x:Name="PaymentsWorkspaceActionButton"
                                             Style="{StaticResource PrimaryButton}"
                                             Margin="0,12,0,0"
@@ -1108,7 +1108,7 @@
                                                Margin="0,4,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
-                                    <Button Content="Eksik Evrak Raporu"
+                                    <Button Content="Eksik Evrak Raporunu Ac"
                                             x:Name="PaymentsDocumentActionButton"
                                             Style="{StaticResource SecondaryButton}"
                                             Margin="0,12,0,0"
@@ -1183,7 +1183,7 @@
                                                Margin="0,4,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
-                                    <Button Content="Odenmemisler Raporu"
+                                    <Button Content="Odenmemisler Raporunu Ac"
                                             x:Name="PaymentsUnpaidReportActionButton"
                                             Style="{StaticResource SecondaryButton}"
                                             Margin="0,12,0,0"

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.131)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.131 - Aksiyon Butonu Fiil Dili`
+- Bu adimda Odemeler panelindeki akis butonlari daha net fiil diliyle guncellendi.
+- Boylece secili karttaki hedef ve sonraki adim satirlariyla buton metni daha uyumlu hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.130)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -59,4 +68,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki sonraki adim ipucu da eklendigi icin, sonraki mantikli kucuk adim secili akis kartinin butonunda aksiyon odakli daha net fiil dili kullanmak olabilir.
+- Odemeler panelindeki buton dili de netlestigi icin, sonraki mantikli kucuk adim secili akis kartinda mini bir klavye ipucu ya da kisayol kapsulu gostermek olabilir.

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.131)
+
+- v1.131 tamamlandi: Odemeler panelindeki akis butonlari daha net fiil diliyle guncellendi.
+- Boylece kartin hedef metni, sonraki adim ipucu ve dugme komutu ayni aksiyon sesini tasiyor.
+- Bu adim butona basma anindaki karar belirsizligini biraz daha azaltti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.130)
 
 - v1.130 tamamlandi: Odemeler panelindeki secili akis kartlarina `Sonraki adim:` ipucu eklendi.
