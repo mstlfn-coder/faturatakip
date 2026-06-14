@@ -787,6 +787,7 @@
                              Columns="3"
                              Margin="0,24,0,24">
                     <Border Style="{StaticResource PaymentsSummaryCard}"
+                            x:Name="PaymentsMonthlySummaryCard"
                             Margin="0,0,12,0"
                             Tag="summary_monthly"
                             MouseEnter="PaymentsHintSource_MouseEnter"
@@ -822,6 +823,7 @@
                         </StackPanel>
                     </Border>
                     <Border Style="{StaticResource PaymentsSummaryCard}"
+                            x:Name="PaymentsMissingPdfSummaryCard"
                             Margin="0,0,12,0"
                             Tag="summary_missing_pdf"
                             MouseEnter="PaymentsHintSource_MouseEnter"
@@ -856,6 +858,7 @@
                         </StackPanel>
                     </Border>
                     <Border Style="{StaticResource PaymentsSummaryCard}"
+                            x:Name="PaymentsUnpaidSummaryCard"
                             Tag="summary_unpaid"
                             MouseEnter="PaymentsHintSource_MouseEnter"
                             MouseLeave="PaymentsHintSource_MouseLeave">
@@ -912,6 +915,7 @@
                                      Columns="3"
                                      Margin="0,18,0,0">
                             <Border Style="{StaticResource PaymentsFlowCard}"
+                                    x:Name="PaymentsWorkspaceFlowCard"
                                     Tag="flow_workspace"
                                     MouseEnter="PaymentsHintSource_MouseEnter"
                                     MouseLeave="PaymentsHintSource_MouseLeave"
@@ -942,6 +946,7 @@
                                 </StackPanel>
                             </Border>
                             <Border Style="{StaticResource PaymentsFlowCard}"
+                                    x:Name="PaymentsDocumentFlowCard"
                                     Tag="flow_document"
                                     MouseEnter="PaymentsHintSource_MouseEnter"
                                     MouseLeave="PaymentsHintSource_MouseLeave"
@@ -972,6 +977,7 @@
                                 </StackPanel>
                             </Border>
                             <Border Style="{StaticResource PaymentsFlowCard}"
+                                    x:Name="PaymentsUnpaidReportFlowCard"
                                     Tag="flow_unpaid_report"
                                     MouseEnter="PaymentsHintSource_MouseEnter"
                                     MouseLeave="PaymentsHintSource_MouseLeave">

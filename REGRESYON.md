@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.120 - Son Yol Kart Secimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Son yol ilgili kartta da gorunuyor | OK | Son kullanilan akis ilgili ozet veya akis kartinda hafif secili duruma geliyor |
+| Rozet ile kart arasinda gorsel bag kuruldu | OK | Aylik, evrak, islem ve bakiye yollarinda ust rozet alttaki kartla eslesiyor |
+| 2026-06-14 | v1.120 | OK | Odemeler panelinde son yol kart secimi tamamlandi |
+
 ## v1.119 - Son Yol Rozeti
 | Kontrol | Durum | Not |
 | --- | --- | --- |

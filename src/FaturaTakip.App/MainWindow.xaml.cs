@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using FaturaTakip.App.Data.Dashboard;
@@ -26,6 +27,7 @@ public partial class MainWindow : Window
     private InvoiceType? _selectedInvoiceType;
     private string _activePaymentsHeaderHint = DefaultPaymentsHeaderHint;
     private string _activePaymentsRouteBadge = DefaultPaymentsRouteBadge;
+    private string? _activePaymentsRouteKey;
 
     public MainWindow(StartupStatus startupStatus)
     {
@@ -149,7 +151,8 @@ public partial class MainWindow : Window
             "SON YOL: LISTE",
             "#E2E8F0",
             "#CBD5E1",
-            "#475569");
+            "#475569",
+            routeKey: null);
         ShowInvoices();
     }
 
@@ -160,7 +163,8 @@ public partial class MainWindow : Window
             "SON YOL: ISLEM",
             "#DCFCE7",
             "#86EFAC",
-            "#166534");
+            "#166534",
+            routeKey: "workspace");
         ShowInvoices();
         InvoicesPanel.StartPaymentWorkspace();
     }
@@ -172,7 +176,8 @@ public partial class MainWindow : Window
             "SON YOL: RAPOR",
             "#DBEAFE",
             "#93C5FD",
-            "#1D4ED8");
+            "#1D4ED8",
+            routeKey: null);
         ShowReports();
     }
 
@@ -183,7 +188,8 @@ public partial class MainWindow : Window
             "SON YOL: AYLIK",
             "#DBEAFE",
             "#93C5FD",
-            "#1D4ED8");
+            "#1D4ED8",
+            routeKey: "monthly");
         ShowReports();
         ReportsPanel.ShowMonthlyReport();
     }
@@ -195,7 +201,8 @@ public partial class MainWindow : Window
             "SON YOL: EVRAK",
             "#F0F9FF",
             "#BAE6FD",
-            "#0369A1");
+            "#0369A1",
+            routeKey: "document");
         ShowReports();
         ReportsPanel.ShowDocumentHealthReport();
     }
@@ -207,7 +214,8 @@ public partial class MainWindow : Window
             "SON YOL: BAKIYE",
             "#FEF3C7",
             "#FCD34D",
-            "#B45309");
+            "#B45309",
+            routeKey: "unpaid");
         ShowReports();
         ReportsPanel.ShowUnpaidReport();
     }
@@ -340,6 +348,7 @@ public partial class MainWindow : Window
         RefreshPaymentsOverview();
         ResetPaymentsHeaderHint();
         ApplyPaymentsRouteBadge("#E2E8F0", "#CBD5E1", "#475569");
+        ApplyPaymentsRouteSelection(null);
         DashboardPanel.Visibility = Visibility.Collapsed;
         InvoiceTypesPanel.Visibility = Visibility.Collapsed;
         SubscriptionsPanel.Visibility = Visibility.Collapsed;
@@ -388,13 +397,15 @@ public partial class MainWindow : Window
         PaymentsHeaderHintText.Text = BuildPaymentsHeaderHint(hintKey);
     }
 
-    private void PersistPaymentsPanelContext(string hint, string badgeText, string backgroundHex, string borderHex, string foregroundHex)
+    private void PersistPaymentsPanelContext(string hint, string badgeText, string backgroundHex, string borderHex, string foregroundHex, string? routeKey)
     {
         _activePaymentsHeaderHint = hint;
         _activePaymentsRouteBadge = badgeText;
+        _activePaymentsRouteKey = routeKey;
         PaymentsHeaderHintText.Text = hint;
         PaymentsLastRouteBadgeText.Text = badgeText;
         ApplyPaymentsRouteBadge(backgroundHex, borderHex, foregroundHex);
+        ApplyPaymentsRouteSelection(routeKey);
     }
 
     private void ResetPaymentsHeaderHint()
@@ -408,6 +419,29 @@ public partial class MainWindow : Window
         PaymentsLastRouteBadgeBorder.Background = (Brush)new BrushConverter().ConvertFromString(backgroundHex)!;
         PaymentsLastRouteBadgeBorder.BorderBrush = (Brush)new BrushConverter().ConvertFromString(borderHex)!;
         PaymentsLastRouteBadgeText.Foreground = (Brush)new BrushConverter().ConvertFromString(foregroundHex)!;
+    }
+
+    private void ApplyPaymentsRouteSelection(string? routeKey)
+    {
+        SetPaymentsCardSelection(PaymentsMonthlySummaryCard, isSelected: routeKey == "monthly", "#DBEAFE", "#60A5FA");
+        SetPaymentsCardSelection(PaymentsMissingPdfSummaryCard, isSelected: routeKey == "document", "#F0F9FF", "#38BDF8");
+        SetPaymentsCardSelection(PaymentsUnpaidSummaryCard, isSelected: routeKey == "workspace" || routeKey == "unpaid", "#ECFDF5", "#4ADE80");
+        SetPaymentsCardSelection(PaymentsWorkspaceFlowCard, isSelected: routeKey == "workspace", "#DCFCE7", "#4ADE80");
+        SetPaymentsCardSelection(PaymentsDocumentFlowCard, isSelected: routeKey == "document", "#DBEAFE", "#60A5FA");
+        SetPaymentsCardSelection(PaymentsUnpaidReportFlowCard, isSelected: routeKey == "unpaid", "#FEF3C7", "#FBBF24");
+    }
+
+    private static void SetPaymentsCardSelection(Border card, bool isSelected, string selectedBackgroundHex, string selectedBorderHex)
+    {
+        if (!isSelected)
+        {
+            card.ClearValue(Border.BackgroundProperty);
+            card.ClearValue(Border.BorderBrushProperty);
+            return;
+        }
+
+        card.Background = (Brush)new BrushConverter().ConvertFromString(selectedBackgroundHex)!;
+        card.BorderBrush = (Brush)new BrushConverter().ConvertFromString(selectedBorderHex)!;
     }
 
     private static string BuildPaymentsHeaderHint(string hintKey)

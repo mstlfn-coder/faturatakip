@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.120)
+
+- v1.120 tamamlandi: Odemeler panelindeki son yol rozeti, ilgili ozet veya akis kartinda hafif secili durumla desteklendi.
+- Boylece kullanici son gittigi yonu sadece ust etiketten degil, panel govdesindeki kart vurgusundan da takip edebiliyor.
+- Bu adim ust bilgi alani ile kart yuzeyi arasindaki baglanti hissini guclendirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.119)
 
 - v1.119 tamamlandi: Odemeler panelinin ust yardim alanina son kullanilan yolu gosteren renkli bir rozet eklendi.

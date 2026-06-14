@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.120)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.120 - Son Yol Kart Secimi`
+- Bu adimda Odemeler panelindeki son yol rozeti, ilgili ozet ya da akis kartini hafif secili gorunumle desteklemeye basladi.
+- Boylece kullanici son kullandigi yonu hem ust bilgi alaninda hem de kart yuzeyinde birlikte okuyabiliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.119)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -121,4 +130,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelinde son yol rozetli hale geldigi icin, sonraki mantikli kucuk adim bu rozet ile ilgili ozet karti arasinda minik bir baglanti kurmak ya da son kullanilan akis kartini da hafif secili duruma getirmek olabilir.
+- Odemeler panelinde son yol artik kart yuzeyinde de okunabildigi icin, sonraki mantikli kucuk adim secili kart icin minik bir "aktif yol" alt notu ya da kart icindeki butonda da hafif secili vurgu eklemek olabilir.
