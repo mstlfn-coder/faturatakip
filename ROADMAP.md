@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.173)
+
+- v1.173 tamamlandi: Odemeler panelindeki hover cikis sureleri hafifce kisaltildi.
+- Boylece kartlar temel haline daha cevik donerken genel sakin ton korunmus oldu.
+- Bu adim panelin hareket temposunu bir kademe daha toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.172)
 
 - v1.172 tamamlandi: Odemeler panelindeki kartlarin dinlenim ve hover opaklik farki hafifce azaltildi.

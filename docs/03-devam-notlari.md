@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.173)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.173 - Hover Donus Hiz Ayari`
+- Bu adimda odeme akis kartlarinin hover cikis sureleri hafifce kisaltildi.
+- Boylece kartlar sakin tonunu korurken, etkileşim bitince temel haline biraz daha cevik donuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.172)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

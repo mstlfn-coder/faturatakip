@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.172 - Hover Opaklik Dengeleme`
+- Son tamamlanan temiz faz: `v1.173 - Hover Donus Hiz Ayari`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.173` Hover Donus Hiz Ayari
 - `v1.172` Hover Opaklik Dengeleme
 - `v1.171` Hover Gecisi Yumusatma
 - `v1.170` Birincil Odak Tonu Yumusatma

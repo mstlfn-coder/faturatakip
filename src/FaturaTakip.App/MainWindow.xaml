@@ -135,13 +135,13 @@
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
                                              To="0.99"
-                                             Duration="0:0:0.18" />
+                                             Duration="0:0:0.16" />
                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
                                              To="1"
-                                             Duration="0:0:0.18" />
+                                             Duration="0:0:0.16" />
                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
                                              To="1"
-                                             Duration="0:0:0.18" />
+                                             Duration="0:0:0.16" />
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>

@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.173 - Hover Donus Hiz Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover donusu daha cevik | OK | Hover cikis sureleri kisaltilarak temel hale daha hizli donus saglandi |
+| Sakin ton korundu | OK | Kartlar daha cevik donse de yumusak panel dili bozulmadi |
+| 2026-06-15 | v1.173 | OK | Odemeler panelinde hover donus hiz ayari tamamlandi |
+
 ## v1.172 - Hover Opaklik Dengeleme
 | Kontrol | Durum | Not |
 | --- | --- | --- |
