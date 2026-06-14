@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.148 - Yardim Kapsulu Agirlik Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardim kapsulu daha hafif gorunuyor | OK | `Enter ile ac` metni normal agirlikla daha yardimci bir katman gibi okunuyor |
+| Buton ana aksiyon olarak onde kaliyor | OK | Kapsul ile buton arasindaki agirlik farki daha net |
+| 2026-06-14 | v1.148 | OK | Odemeler panelinde yardim kapsulu agirlik yumusatma tamamlandi |
+
 ## v1.147 - Hedef Sonraki Adim Aralik Ayari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-14
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.147 - Hedef Sonraki Adim Aralik Ayari`
+- Son tamamlanan temiz faz: `v1.148 - Yardim Kapsulu Agirlik Yumusatma`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.148` Yardim Kapsulu Agirlik Yumusatma
 - `v1.147` Hedef Sonraki Adim Aralik Ayari
 - `v1.146` Ust Bilgi Mikro Bosluk Ayari
 - `v1.145` Ilk Aciklama Tonu Sakinlestirme
@@ -50,9 +51,9 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Bu Fazda Ne Yapildi
 
-1. `Hedef` ve `Sonraki adim` satirlari arasindaki dikey bosluk bir tik azaltildi.
-2. Bu iki satir artik daha ciftli bir yonlendirme blogu gibi birlikte okunuyor.
-3. Kartin alt yardim akisi daha toparli ve daha ritmik hissettirmeye basladi.
+1. `Enter ile ac` kapsullerinin yazi agirligi azaltildi.
+2. Boylece yardim kapsulu butondan rol calmayan daha yumusak bir mikro ipucu gibi duruyor.
+3. Alt yonlendirme blogunda aksiyon ve yardim katmanlari arasindaki hiyerarsi biraz daha netlesti.
 4. Dogrulama rutini build ve self-test ile tekrar temiz gecti.
 
 ## Son Dogrulanan Testler
@@ -62,7 +63,7 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Secili akis kartlarindaki yardim kapsulu ile buton arasindaki ton/agirlik iliskisini bir tik daha yumusatmak
+- Secili akis kartlarinda aktif kolon rozeti ile yardim kapsulu arasindaki boyut oranini bir tik daha yaklastirmak
 
 ## Yeni Chat Icin Kisa Talimat
 

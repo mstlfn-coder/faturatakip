@@ -1104,7 +1104,7 @@
                                         <TextBlock Text="Enter ile ac"
                                                    Foreground="#15803D"
                                                    FontSize="9"
-                                                   FontWeight="SemiBold" />
+                                                   FontWeight="Normal" />
                                     </Border>
                                     <Button Content="Odeme Alanini Ac"
                                             x:Name="PaymentsWorkspaceActionButton"
@@ -1199,7 +1199,7 @@
                                         <TextBlock Text="Enter ile ac"
                                                    Foreground="#2563EB"
                                                    FontSize="9"
-                                                   FontWeight="SemiBold" />
+                                                   FontWeight="Normal" />
                                     </Border>
                                     <Button Content="Eksik Evrak Raporunu Ac"
                                             x:Name="PaymentsDocumentActionButton"
@@ -1293,7 +1293,7 @@
                                         <TextBlock Text="Enter ile ac"
                                                    Foreground="#C2410C"
                                                    FontSize="9"
-                                                   FontWeight="SemiBold" />
+                                                   FontWeight="Normal" />
                                     </Border>
                                     <Button Content="Odenmemisler Raporunu Ac"
                                             x:Name="PaymentsUnpaidReportActionButton"

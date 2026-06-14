@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.148)
+
+- v1.148 tamamlandi: Odemeler panelindeki yardim kapsullerinin yazi agirligi yumusatildi.
+- Boylece buton komutu ana aksiyon olarak daha onde kalirken, kapsul daha nazik bir ipucu gibi davranmaya basladi.
+- Bu adim kartin alt yardim hiyerarsisini biraz daha cilaladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.147)
 
 - v1.147 tamamlandi: Odemeler panelindeki `Hedef` ve `Sonraki adim` satirlari biraz daha birbirine yaklastirildi.

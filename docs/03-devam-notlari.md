@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.148)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.148 - Yardim Kapsulu Agirlik Yumusatma`
+- Bu adimda secili akis kartlarindaki `Enter ile ac` kapsullerinin yazi agirligi bir kademe sakinlestirildi.
+- Boylece buton komutu ana aksiyon olarak onde kalirken, kapsul daha yumusak bir yardim katmani gibi okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.147)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -212,4 +221,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki hedef-sonraki adim araligi da dengelendigi icin, sonraki mantikli kucuk adim secili akis kartlarindaki yardim kapsulu ile buton arasindaki ton/agirlik iliskisini bir tik daha yumusatmak olabilir.
+- Odemeler panelindeki yardim kapsulu agirligi da yumusadigi icin, sonraki mantikli kucuk adim secili akis kartlarinda aktif kolon rozeti ile yardim kapsulu arasindaki boyut oranini bir tik daha yaklastirmak olabilir.
