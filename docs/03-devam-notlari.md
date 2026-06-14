@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.172)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.172 - Hover Opaklik Dengeleme`
+- Bu adimda odeme akis kartlarinin dinlenim ve hover opaklik farki bir kademe azaltildi.
+- Boylece hareket hissi korunurken, kartlar panel icinde daha sakin ve daha kararlı bir tonla duruyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.171)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

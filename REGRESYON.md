@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.172 - Hover Opaklik Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover opaklik daha sakin | OK | Dinlenim ve hover opaklik farki azaltildi |
+| Kart tonu daha kararli | OK | Kartlar panel icinde daha istikrarli bir gorunum veriyor |
+| 2026-06-15 | v1.172 | OK | Odemeler panelinde hover opaklik dengeleme tamamlandi |
+
 ## v1.171 - Hover Gecisi Yumusatma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

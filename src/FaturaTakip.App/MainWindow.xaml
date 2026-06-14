@@ -103,7 +103,7 @@
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="CornerRadius" Value="6" />
             <Setter Property="Padding" Value="14" />
-            <Setter Property="Opacity" Value="0.985" />
+            <Setter Property="Opacity" Value="0.99" />
             <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
             <Setter Property="RenderTransform">
                 <Setter.Value>
@@ -134,7 +134,7 @@
                     <BeginStoryboard>
                         <Storyboard>
                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                             To="0.985"
+                                             To="0.99"
                                              Duration="0:0:0.18" />
                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
                                              To="1"
