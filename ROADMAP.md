@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.178)
+
+- v1.178 tamamlandi: Odemeler panelindeki yardim kapsulu ile aksiyon dugmesi arasindaki bosluk hafifce azaltildi.
+- Boylece kisayol ipucu ile ana komut gorsel olarak daha bagli ve daha tutarli okunuyor.
+- Bu adim secili akis kartlarindaki alt komut bolgesini daha toplu hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.177)
 
 - v1.177 tamamlandi: Odemeler panelindeki aktif kolon rozetlerinin ic boslugu hafifce azaltildi.

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.178)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.178 - Yardim Aksiyon Yakinlastirma`
+- Bu adimda odeme akis kartlarindaki yardim kapsulu ile aksiyon dugmesi arasindaki ust bosluk hafifce azaltildi.
+- Boylece kisayol ipucu ile ana komut birbirine daha bagli ve daha dengeli gorunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.177)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.178 - Yardim Aksiyon Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardim ve aksiyon dengelendi | OK | Yardim kapsulu ile aksiyon dugmesi arasindaki bosluk azaltildigi icin komut alani daha butun gorunuyor |
+| Komut okunurlugu korundu | OK | Dugmeler ayrisikligini koruyor ve tiklanabilirlik algisi zayiflamadi |
+| 2026-06-15 | v1.178 | OK | Odemeler panelinde yardim aksiyon yakinlastirma tamamlandi |
+
 ## v1.177 - Aktif Rozet Oran Ayari
 | Kontrol | Durum | Not |
 | --- | --- | --- |
