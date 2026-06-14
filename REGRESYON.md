@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.128 - Aktif Kolon Metin Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili akis karti metin tonu aliyor | OK | Aktif kolonun baslik ve aciklama satiri kendi renk ailesine hafifce yaklasiyor |
+| Diger kartlar notr kaliyor | OK | Secim kalktiginda title ve description renkleri varsayilan gorunume donuyor |
+| 2026-06-14 | v1.128 | OK | Odemeler panelinde aktif kolon metin tonu tamamlandi |
+
 ## v1.127 - Aktif Kolon Rozeti
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -441,6 +441,9 @@ public partial class MainWindow : Window
         SetPaymentsRouteNote(PaymentsWorkspaceActiveColumnBadge, routeKey == "workspace");
         SetPaymentsRouteNote(PaymentsDocumentActiveColumnBadge, routeKey == "document");
         SetPaymentsRouteNote(PaymentsUnpaidReportActiveColumnBadge, routeKey == "unpaid");
+        SetPaymentsFlowTextState(PaymentsWorkspaceTitleText, PaymentsWorkspaceDescriptionText, routeKey == "workspace", "#166534", "#166534");
+        SetPaymentsFlowTextState(PaymentsDocumentTitleText, PaymentsDocumentDescriptionText, routeKey == "document", "#1D4ED8", "#1E40AF");
+        SetPaymentsFlowTextState(PaymentsUnpaidReportTitleText, PaymentsUnpaidReportDescriptionText, routeKey == "unpaid", "#B45309", "#92400E");
         SetPaymentsActionButtonState(PaymentsMonthlyActionButton, routeKey == "monthly", "#DBEAFE", "#93C5FD", "#1D4ED8");
         SetPaymentsActionButtonState(PaymentsMissingPdfActionButton, routeKey == "document", "#F0F9FF", "#7DD3FC", "#0369A1");
         SetPaymentsActionButtonState(PaymentsUnpaidActionButton, routeKey == "workspace" || routeKey == "unpaid", "#ECFDF5", "#86EFAC", "#166534");
@@ -472,6 +475,19 @@ public partial class MainWindow : Window
     private static void SetPaymentsRouteNote(Border badge, bool isVisible)
     {
         badge.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private static void SetPaymentsFlowTextState(TextBlock title, TextBlock description, bool isSelected, string titleHex, string descriptionHex)
+    {
+        if (!isSelected)
+        {
+            title.ClearValue(TextBlock.ForegroundProperty);
+            description.ClearValue(TextBlock.ForegroundProperty);
+            return;
+        }
+
+        title.Foreground = (Brush)new BrushConverter().ConvertFromString(titleHex)!;
+        description.Foreground = (Brush)new BrushConverter().ConvertFromString(descriptionHex)!;
     }
 
     private static void SetPaymentsActionButtonState(Button button, bool isSelected, string backgroundHex, string borderHex, string foregroundHex)

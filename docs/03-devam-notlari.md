@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.128)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.128 - Aktif Kolon Metin Tonu`
+- Bu adimda secili akis kartinin yalnizca kendi baslik ve aciklama metinleri hafif ton farki alacak sekilde guncellendi.
+- Boylece aktif kolon rozeti ve kart secimine ek olarak, kartin kendi icerigi de daha rafine bir odak hissi veriyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.127)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -32,4 +41,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelinde aktif kolon rozeti de eklendigi icin, sonraki mantikli kucuk adim secili kolonun sadece kendi ic metinlerini hafif tonlayarak daha rafine bir odak kademesi kurmak olabilir.
+- Odemeler panelindeki secili kolon metin tonu da oturdugu icin, sonraki mantikli kucuk adim secili kolonun eylem dugmesinin ustune kisa bir mikro hedef satiri ekleyerek akis sonucunu bir adim daha okunur hale getirmek olabilir.

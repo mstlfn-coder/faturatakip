@@ -5,13 +5,14 @@ Son guncelleme tarihi: 2026-06-14
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.127 - Aktif Kolon Rozeti`
+- Son tamamlanan temiz faz: `v1.128 - Aktif Kolon Metin Tonu`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
 - `v1.127` Aktif Kolon Rozeti
+- `v1.128` Aktif Kolon Metin Tonu
 - `v1.126` Akis Baslik Baglami
 - `v1.125` Ozet Yonu Ipuclari
 - `v1.124` Akis Ozet Geri Baglantisi
@@ -30,10 +31,10 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Bu Fazda Ne Yapildi
 
-1. Secili akis kartlarina kolon bazli ikinci bir mikro durum katmani tasarlandi.
-2. `ISLEM`, `EVRAK` ve `RAPOR` akis kartlari icin ayri `AKTIF KOLON` rozetleri eklendi.
-3. Route secimi guncellenirken ilgili kolon rozetinin gorunurlugu de state icine baglandi.
-4. Bozulmus handoff dosyalari temiz ASCII metin olarak yeniden kuruldu.
+1. Secili akis kartlarinin baslik ve aciklama metinleri renk ailesiyle hafifce odaklanacak hale getirildi.
+2. Bu ton farki yalnizca aktif kolon icinde calisiyor; diger kartlar notr kalmaya devam ediyor.
+3. Kart ici odak artik secili zemin, aktif kolon rozeti ve mikro metin tonu ile birlikte okunuyor.
+4. Dogrulama rutini build ve self-test ile tekrar temiz gecti.
 
 ## Son Dogrulanan Testler
 
@@ -42,7 +43,7 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Secili kolonun yalnizca kendi ic metinlerinde hafif ton farki kullanarak daha rafine bir odak kademesi kurmak
+- Secili kolonun eylem dugmesinin ustune kisa bir mikro hedef satiri ekleyerek akis sonucunu daha da okunur hale getirmek
 
 ## Yeni Chat Icin Kisa Talimat
 

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.128)
+
+- v1.128 tamamlandi: Odemeler panelindeki secili akis kartinin kendi baslik ve aciklama metinleri hafif ton farki almaya basladi.
+- Boylece aktif kolon artik sadece cerceve ve rozetle degil, kartin kendi metin dokusu icinde de hissediliyor.
+- Bu adim odak hissini buyutmadan daha rafine bir okunurluk katmani ekledi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.127)
 
 - v1.127 tamamlandi: Odemeler panelindeki secili akis kartina kucuk bir `AKTIF KOLON` rozeti eklendi.
