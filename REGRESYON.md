@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.133 - Akis Butonu Klavye Odak Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Akis butonlari klavye odaginda belirginlesiyor | OK | Secili karttaki butonlar odakta daha net cerceve ve ton vurgu aliyor |
+| Kisayol ipucuyla uyum korundu | OK | `Enter ile ac` kapsulu ile buton odagi ayni aksiyon dilini destekliyor |
+| 2026-06-14 | v1.133 | OK | Odemeler panelinde akis butonu klavye odak vurgusu tamamlandi |
+
 ## v1.132 - Aktif Kolon Kisayol Kapsulu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

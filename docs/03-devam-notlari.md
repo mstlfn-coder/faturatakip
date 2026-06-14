@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.133)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.133 - Akis Butonu Klavye Odak Vurgusu`
+- Bu adimda Odemeler panelindeki akis butonlari icin klavye odaginda daha belirgin cerceve ve ton vurgusu eklendi.
+- Boylece secili karttaki `Enter ile ac` ipucu, klavye odagi alindiginda buton yuzeyinde de daha net karsilik buluyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.132)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -77,4 +86,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki kisayol kapsulu da eklendigi icin, sonraki mantikli kucuk adim secili akis kartindaki buton odagini klavye tarafinda biraz daha belirginlestirmek olabilir.
+- Odemeler panelindeki buton odagi da belirginlestigi icin, sonraki mantikli kucuk adim secili akis kartinin butonuna daha acik bir tooltip dili eklemek olabilir.

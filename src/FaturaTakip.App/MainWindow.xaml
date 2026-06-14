@@ -50,6 +50,25 @@
             <Setter Property="MinWidth" Value="96" />
             <Setter Property="Cursor" Value="Hand" />
         </Style>
+        <Style x:Key="PaymentsFlowPrimaryActionButton" TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="#93C5FD" />
+                    <Setter Property="Background" Value="#1D4ED8" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentsFlowSecondaryActionButton" TargetType="Button" BasedOn="{StaticResource SecondaryButton}">
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="#60A5FA" />
+                    <Setter Property="Background" Value="#EFF6FF" />
+                    <Setter Property="Foreground" Value="#1E3A8A" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="FieldLabel" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#334155" />
             <Setter Property="FontWeight" Value="SemiBold" />
@@ -1048,7 +1067,7 @@
                                     </Border>
                                     <Button Content="Odeme Alanini Ac"
                                             x:Name="PaymentsWorkspaceActionButton"
-                                            Style="{StaticResource PrimaryButton}"
+                                            Style="{StaticResource PaymentsFlowPrimaryActionButton}"
                                             Margin="0,12,0,0"
                                             HorizontalAlignment="Left"
                                             Click="OpenInvoicePaymentWorkspaceButton_Click" />
@@ -1138,7 +1157,7 @@
                                     </Border>
                                     <Button Content="Eksik Evrak Raporunu Ac"
                                             x:Name="PaymentsDocumentActionButton"
-                                            Style="{StaticResource SecondaryButton}"
+                                            Style="{StaticResource PaymentsFlowSecondaryActionButton}"
                                             Margin="0,12,0,0"
                                             HorizontalAlignment="Left"
                                             Click="OpenDocumentHealthReportFromPaymentsButton_Click" />
@@ -1227,7 +1246,7 @@
                                     </Border>
                                     <Button Content="Odenmemisler Raporunu Ac"
                                             x:Name="PaymentsUnpaidReportActionButton"
-                                            Style="{StaticResource SecondaryButton}"
+                                            Style="{StaticResource PaymentsFlowSecondaryActionButton}"
                                             Margin="0,12,0,0"
                                             HorizontalAlignment="Left"
                                             Click="OpenUnpaidReportFromPaymentsButton_Click" />
