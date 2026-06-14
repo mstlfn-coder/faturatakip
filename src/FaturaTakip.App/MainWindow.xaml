@@ -1071,7 +1071,7 @@
                                                Foreground="#15803D"
                                                FontSize="10"
                                                FontWeight="Normal"
-                                               Margin="0,6,0,0"
+                                               Margin="0,5,0,0"
                                                Visibility="Collapsed" />
                                     <TextBlock x:Name="PaymentsWorkspaceTargetText"
                                                Text="Hedef: Faturalar ekraninda odeme alanini ac."
@@ -1166,7 +1166,7 @@
                                                Foreground="#2563EB"
                                                FontSize="10"
                                                FontWeight="Normal"
-                                               Margin="0,6,0,0"
+                                               Margin="0,5,0,0"
                                                Visibility="Collapsed" />
                                     <TextBlock x:Name="PaymentsDocumentTargetText"
                                                Text="Hedef: Eksik odeme PDF listesini ac."
@@ -1260,7 +1260,7 @@
                                                Foreground="#C2410C"
                                                FontSize="10"
                                                FontWeight="Normal"
-                                               Margin="0,6,0,0"
+                                               Margin="0,5,0,0"
                                                Visibility="Collapsed" />
                                     <TextBlock x:Name="PaymentsUnpaidReportTargetText"
                                                Text="Hedef: Odenmemisler raporunda acik bakiyeyi incele."

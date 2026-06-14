@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.146 - Ust Bilgi Mikro Bosluk Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ust bilgi blogu daha yakin | OK | `Aktif yol` notunun ust boslugu hafifce azaltildi |
+| Okunabilirlik korundu | OK | Satirlar birbirine girmeden daha toplu bir akis veriyor |
+| 2026-06-14 | v1.146 | OK | Odemeler panelinde ust bilgi mikro bosluk ayari tamamlandi |
+
 ## v1.145 - Ilk Aciklama Tonu Sakinlestirme
 | Kontrol | Durum | Not |
 | --- | --- | --- |

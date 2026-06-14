@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.146)
+
+- v1.146 tamamlandi: Odemeler panelindeki ust bilgi blogunda mikro bosluk ayari yapildi.
+- Boylece `Aktif yol` notu ust bilgi satirina biraz daha yakin okunuyor.
+- Bu adim kartin orta bilgi blogunu daha derli toplu hissettirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.145)
 
 - v1.145 tamamlandi: Odemeler panelindeki secili kartlarda ilk aciklama satiri sakinlestirildi.

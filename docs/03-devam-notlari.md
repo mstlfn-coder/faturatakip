@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.146)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.146 - Ust Bilgi Mikro Bosluk Ayari`
+- Bu adimda secili akis kartlarindaki ust bilgi satiri ile `Aktif yol` notu arasindaki bosluk hafifce azaltildi.
+- Boylece kartin ust bilgi blogu daha akici ve daha birlesik okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.145)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -194,4 +203,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki ilk aciklama tonu da sakinlestigi icin, sonraki mantikli kucuk adim secili akis kartlarinda ust bilgi satiri ile aktif yol notu arasindaki boslugu mikro duzeyde dengelemek olabilir.
+- Odemeler panelindeki ust bilgi mikro boslugu da dengelendigi icin, sonraki mantikli kucuk adim secili akis kartlarinda hedef satiri ile sonraki adim satiri arasindaki araligi daha ince ayarlamak olabilir.
