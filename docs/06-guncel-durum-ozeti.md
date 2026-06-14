@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-14
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.162 - Aciklama Tonu Yumusatma`
+- Son tamamlanan temiz faz: `v1.163 - Baglam Cumlesi Tonu Yumusatma`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.163` Baglam Cumlesi Tonu Yumusatma
 - `v1.162` Aciklama Tonu Yumusatma
 - `v1.161` Baslik Ust Bosluk Dengeleme
 - `v1.160` Rozet Ust Bosluk Dengeleme

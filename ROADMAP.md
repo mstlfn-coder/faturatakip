@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.163)
+
+- v1.163 tamamlandi: Odemeler panelindeki baglam cumlelerinin renk tonu ve yazi agirligi hafifce yumusatildi.
+- Boylece baslik ve yonlendirme satirlari daha onde kalirken, baglam cumleleri daha sakin bir destek katmani gibi okunuyor.
+- Bu adim kartlarin metin hiyerarsisini bir kademe daha rafine etti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.162)
 
 - v1.162 tamamlandi: Odemeler panelindeki ilk aciklama satirlarinin tonu hafifce yumusatildi.

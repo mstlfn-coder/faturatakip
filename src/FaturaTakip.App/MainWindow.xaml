@@ -1062,9 +1062,9 @@
                                                Margin="0,5,0,0"
                                                TextWrapping="Wrap" />
                                     <TextBlock Text="Ustte Odenmemis Faturalar ozeti ile baglidir."
-                                               Foreground="#166534"
+                                               Foreground="#15803D"
                                                FontSize="11"
-                                               FontWeight="SemiBold"
+                                               FontWeight="Normal"
                                                Margin="0,5,0,0"
                                                TextWrapping="Wrap" />
                                     <TextBlock x:Name="PaymentsWorkspaceActiveRouteNote"
@@ -1158,9 +1158,9 @@
                                                Margin="0,5,0,0"
                                                TextWrapping="Wrap" />
                                     <TextBlock Text="Ustte Odeme PDF Eksik ozeti ile baglidir."
-                                               Foreground="#1D4ED8"
+                                               Foreground="#2563EB"
                                                FontSize="11"
-                                               FontWeight="SemiBold"
+                                               FontWeight="Normal"
                                                Margin="0,5,0,0"
                                                TextWrapping="Wrap" />
                                     <TextBlock x:Name="PaymentsDocumentActiveRouteNote"
@@ -1253,9 +1253,9 @@
                                                Margin="0,5,0,0"
                                                TextWrapping="Wrap" />
                                     <TextBlock Text="Ustte Bu Ay Odeme ve Odenmemis Faturalar ozetleri ile birlikte okunur."
-                                               Foreground="#B45309"
+                                               Foreground="#C2410C"
                                                FontSize="11"
-                                               FontWeight="SemiBold"
+                                               FontWeight="Normal"
                                                Margin="0,5,0,0"
                                                TextWrapping="Wrap" />
                                     <TextBlock x:Name="PaymentsUnpaidReportActiveRouteNote"

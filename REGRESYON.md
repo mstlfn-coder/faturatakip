@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.163 - Baglam Cumlesi Tonu Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baglam cumlesi daha sakin | OK | Baglam cumleleri daha yardimci ton ve agirlikla okunuyor |
+| Hiyerarsi korundu | OK | Baslik, aktif yol ve hedef satirlari ana odakta kalmaya devam ediyor |
+| 2026-06-14 | v1.163 | OK | Odemeler panelinde baglam cumlesi tonu yumusatma tamamlandi |
+
 ## v1.162 - Aciklama Tonu Yumusatma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

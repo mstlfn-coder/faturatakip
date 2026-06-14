@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.163)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.163 - Baglam Cumlesi Tonu Yumusatma`
+- Bu adimda secili akis kartlarindaki baglam cumlelerinin renk ve agirligi bir kademe yumusatildi.
+- Boylece baslik, aktif yol ve hedef satirlari daha onde kalirken, baglam cumlesi daha yardimci bir arka plan bilgisi gibi okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.162)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
