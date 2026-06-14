@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.161)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.161 - Baslik Ust Bosluk Dengeleme`
+- Bu adimda secili akis kartlarindaki basliklarin ust boslugu bir kademe azaltildi.
+- Boylece aktif kolon rozeti ile baslik iliskisi daha kompakt ve kartin ust girisi daha yekpare hissediliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.160)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

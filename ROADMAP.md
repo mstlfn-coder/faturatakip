@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.161)
+
+- v1.161 tamamlandi: Odemeler panelindeki kart basliklarinin ust boslugu hafifce azaltildi.
+- Boylece aktif kolon rozeti ile baslik arasindaki iliski daha yakin ve daha butunlu okunuyor.
+- Bu adim kartlarin ust giris ritmini bir kademe daha toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.160)
 
 - v1.160 tamamlandi: Odemeler panelindeki aktif kolon rozetlerinin ust boslugu hafifce azaltildi.

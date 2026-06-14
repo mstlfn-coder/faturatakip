@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.161 - Baslik Ust Bosluk Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baslik daha bagli | OK | Basligin ust boslugu azaltildi ve aktif kolon rozetine yakinlasti |
+| Ust giris daha butunlu | OK | Secili kartin ust blogu daha yekpare okunuyor |
+| 2026-06-14 | v1.161 | OK | Odemeler panelinde baslik ust bosluk dengeleme tamamlandi |
+
 ## v1.160 - Rozet Ust Bosluk Dengeleme
 | Kontrol | Durum | Not |
 | --- | --- | --- |
