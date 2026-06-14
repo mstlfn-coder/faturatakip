@@ -1,5 +1,13 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.191)
+
+- v1.191 tamamlandi: Odemeler listelerinde klavye odak akisi daha gorunur hale getirildi.
+- Filtre ve aksiyon dugmeleri klavye odaginda belirgin cerceve aliyor.
+- Satir ici `Ac` dugmesine odak gelince ilgili kaydin tamami vurgulaniyor.
+- Hizli aksiyon tooltipleri Enter ile acis davranisini acikliyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.190)
 
 - v1.190 tamamlandi: Odemeler kuyrugu ve son odemeler listesine hizli gorunum filtreleri eklendi.

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.191)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.191 - Odemeler Klavye Odak Vurgusu`
+- Bu adimda odeme filtreleri, hizli aksiyon dugmeleri ve satir ici `Ac` dugmeleri icin belirgin klavye odak vurgulari eklendi.
+- Satir ici dugmeye odak gelince kaydin tamami mavi cerceve ve arka planla belirginlesiyor; hizli aksiyonlara da Enter kullanimini anlatan tooltipler eklendi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.190)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

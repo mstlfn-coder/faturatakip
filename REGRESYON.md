@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.191 - Odemeler Klavye Odak Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Filtre odagi gorunur | OK | Filtre dugmeleri klavye odaginda belirgin cerceve aliyor |
+| Aksiyon odagi gorunur | OK | Hizli ve satir ici acis dugmeleri odakta daha belirgin hale geliyor |
+| Satir odagi gorunur | OK | Satir ici dugmeye odak gelince ilgili kaydin tamami vurgulaniyor |
+| 2026-06-15 | v1.191 | OK | Odemeler listesinde klavye odak akisi belirginlestirildi |
+
 ## v1.190 - Odemeler Liste Filtreleri
 | Kontrol | Durum | Not |
 | --- | --- | --- |
