@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.158 - Kisayol Kapsulu Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kisayol kapsulu daha bagli | OK | Kapsulun ust boslugu azaltilarak sonraki adim satirina yakinlastirildi |
+| Alt yardim zinciri daha toplu | OK | Sonraki adim ve kapsul daha tek akis gibi okunuyor |
+| 2026-06-14 | v1.158 | OK | Odemeler panelinde kisayol kapsulu yakinlastirma tamamlandi |
+
 ## v1.157 - Sonraki Adim Yakinlastirma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

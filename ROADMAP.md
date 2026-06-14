@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.158)
+
+- v1.158 tamamlandi: Odemeler panelindeki `Enter ile ac` kapsullerinin ust boslugu hafifce azaltildi.
+- Boylece alt yonlendirme blogunda `Sonraki adim` ve kisayol kapsulu daha yakin ve daha butunlu okunuyor.
+- Bu adim kartlarin alt yardim zincirini bir kademe daha toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.157)
 
 - v1.157 tamamlandi: Odemeler panelindeki `Sonraki adim` satirlarinin ust boslugu hafifce azaltildi.
