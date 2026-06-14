@@ -160,6 +160,12 @@
             <Setter Property="Padding" Value="10" />
             <Setter Property="Margin" Value="0,0,0,8" />
         </Style>
+        <Style x:Key="PaymentsOpsStatusBadge" TargetType="Border">
+            <Setter Property="CornerRadius" Value="999" />
+            <Setter Property="Padding" Value="8,2" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -1389,10 +1395,16 @@
                                                                        FontSize="12"
                                                                        FontWeight="SemiBold"
                                                                        HorizontalAlignment="Right" />
-                                                            <TextBlock Text="{Binding Status}"
-                                                                       Style="{StaticResource MutedText}"
-                                                                       Margin="0,4,0,0"
-                                                                       HorizontalAlignment="Right" />
+                                                            <Border Style="{StaticResource PaymentsOpsStatusBadge}"
+                                                                    Background="{Binding StatusBackground}"
+                                                                    BorderBrush="{Binding StatusBorder}"
+                                                                    Margin="0,6,0,0">
+                                                                <TextBlock Text="{Binding Status}"
+                                                                           Foreground="{Binding StatusForeground}"
+                                                                           FontSize="10"
+                                                                           FontWeight="SemiBold"
+                                                                           HorizontalAlignment="Right" />
+                                                            </Border>
                                                             <Button Content="Ac"
                                                                     Style="{StaticResource SecondaryButton}"
                                                                     Margin="0,8,0,0"
@@ -1465,10 +1477,16 @@
                                                                        FontSize="12"
                                                                        FontWeight="SemiBold"
                                                                        HorizontalAlignment="Right" />
-                                                            <TextBlock Text="{Binding Status}"
-                                                                       Style="{StaticResource MutedText}"
-                                                                       Margin="0,4,0,0"
-                                                                       HorizontalAlignment="Right" />
+                                                            <Border Style="{StaticResource PaymentsOpsStatusBadge}"
+                                                                    Background="{Binding StatusBackground}"
+                                                                    BorderBrush="{Binding StatusBorder}"
+                                                                    Margin="0,6,0,0">
+                                                                <TextBlock Text="{Binding Status}"
+                                                                           Foreground="{Binding StatusForeground}"
+                                                                           FontSize="10"
+                                                                           FontWeight="SemiBold"
+                                                                           HorizontalAlignment="Right" />
+                                                            </Border>
                                                             <Button Content="Ac"
                                                                     Style="{StaticResource SecondaryButton}"
                                                                     Margin="0,8,0,0"

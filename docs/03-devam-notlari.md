@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.187)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.187 - Odemeler Durum Rozetleri`
+- Bu adimda odemeler kuyrugu ve son odemeler listesine satir ici durum rozetleri eklendi.
+- Boylece odeme durumu ve PDF durumu tek bakista ayirt edilir hale geldi; rozet renkleri veri durumuna gore hesaplaniyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.186)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.187)
+
+- v1.187 tamamlandi: Odemeler kuyrugu ve son odemeler listesine satir ici durum rozetleri eklendi.
+- Odeme durumu ve PDF durumu tek bakista okunabilir hale getirildi; renkler veri durumuna gore hesaplandi.
+- Boylece odemeler yuzeyi sadece sayisal ozet degil, hizli karar vermeyi destekleyen bir durum paneli gibi calisiyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.186)
 
 - v1.186 tamamlandi: Odemeler sekmesine oncelikli kayit ve son odeme icin hizli aksiyon satirlari eklendi.

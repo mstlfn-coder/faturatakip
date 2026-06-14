@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.187 - Odemeler Durum Rozetleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk durum rozetleri gorunur | OK | Odenmedi ve kismi durumlari satir icinde belirgin rozetlerle ayrisiyor |
+| Son odeme PDF rozetleri gorunur | OK | PDF hazir ve PDF eksik durumlari tek bakista secilebiliyor |
+| 2026-06-15 | v1.187 | OK | Odemeler paneline satir ici durum rozetleri eklendi |
+
 ## v1.186 - Odemeler Hizli Aksiyon Satiri
 | Kontrol | Durum | Not |
 | --- | --- | --- |

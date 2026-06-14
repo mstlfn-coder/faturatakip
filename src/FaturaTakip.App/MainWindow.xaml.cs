@@ -803,7 +803,10 @@ public partial class MainWindow : Window
                 BuildInvoiceQueueTitle(item),
                 $"{item.Period} • Vade {item.DueDate:dd.MM.yyyy}",
                 $"Kalan {FormatMoney(item.RemainingAmount)}",
-                item.State))
+                item.State,
+                GetQueueStatusBackground(item),
+                GetQueueStatusBorder(item),
+                GetQueueStatusForeground(item)))
             .ToList();
 
         PaymentsQueueItemsControl.ItemsSource = unpaidQueueItems;
@@ -834,7 +837,10 @@ public partial class MainWindow : Window
                 BuildRecentPaymentTitle(item, invoicesById),
                 BuildRecentPaymentMeta(item, invoicesById),
                 FormatMoney(item.Amount),
-                _paymentRepository.IsPdfMissing(item) ? "PDF eksik" : "PDF hazir"))
+                _paymentRepository.IsPdfMissing(item) ? "PDF eksik" : "PDF hazir",
+                _paymentRepository.IsPdfMissing(item) ? "#FEF2F2" : "#EFF6FF",
+                _paymentRepository.IsPdfMissing(item) ? "#FECACA" : "#BFDBFE",
+                _paymentRepository.IsPdfMissing(item) ? "#B91C1C" : "#1D4ED8"))
             .ToList();
 
         PaymentsRecentPaymentsItemsControl.ItemsSource = recentPaymentItems;
@@ -907,6 +913,51 @@ public partial class MainWindow : Window
             ? invoice.Period
             : invoice.InvoiceNo;
         return $"{payment.PaymentDate:dd.MM.yyyy} • {invoiceNo}";
+    }
+
+    private static string GetQueueStatusBackground(Invoice invoice)
+    {
+        return GetQueueStatusKind(invoice) switch
+        {
+            "partial" => "#FFF7ED",
+            "paid" => "#ECFDF5",
+            _ => "#FEF2F2",
+        };
+    }
+
+    private static string GetQueueStatusBorder(Invoice invoice)
+    {
+        return GetQueueStatusKind(invoice) switch
+        {
+            "partial" => "#FED7AA",
+            "paid" => "#BBF7D0",
+            _ => "#FECACA",
+        };
+    }
+
+    private static string GetQueueStatusForeground(Invoice invoice)
+    {
+        return GetQueueStatusKind(invoice) switch
+        {
+            "partial" => "#C2410C",
+            "paid" => "#166534",
+            _ => "#B91C1C",
+        };
+    }
+
+    private static string GetQueueStatusKind(Invoice invoice)
+    {
+        if (string.Equals(invoice.Status, "paid", StringComparison.OrdinalIgnoreCase))
+        {
+            return "paid";
+        }
+
+        if (invoice.PaidAmount > 0 && invoice.RemainingAmount > 0)
+        {
+            return "partial";
+        }
+
+        return "unpaid";
     }
 
     private void InvoiceTypeGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -1006,7 +1057,23 @@ public partial class MainWindow : Window
             : new SolidColorBrush(Color.FromRgb(95, 107, 122));
     }
 
-    private sealed record PaymentsQueueItem(long InvoiceId, string Title, string Meta, string Amount, string Status);
+    private sealed record PaymentsQueueItem(
+        long InvoiceId,
+        string Title,
+        string Meta,
+        string Amount,
+        string Status,
+        string StatusBackground,
+        string StatusBorder,
+        string StatusForeground);
 
-    private sealed record PaymentsRecentPaymentItem(long InvoiceId, string Title, string Meta, string Amount, string Status);
+    private sealed record PaymentsRecentPaymentItem(
+        long InvoiceId,
+        string Title,
+        string Meta,
+        string Amount,
+        string Status,
+        string StatusBackground,
+        string StatusBorder,
+        string StatusForeground);
 }
