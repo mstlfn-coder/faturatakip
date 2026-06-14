@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.117 - Odeme Kart Hover Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ozet kartlar hover geri bildirimi veriyor | OK | Fare ustune gelince kart arka plani ve kenarligi hafif vurgu aliyor |
+| Akis kartlari hover geri bildirimi veriyor | OK | Islem, evrak ve rapor kartlari ayni sakin vurgu diliyle canlaniyor |
+| 2026-06-14 | v1.117 | OK | Odemeler panelinde hover okunabilirligi guclendirildi |
+
 ## v1.116 - Ust Yonlendirme Netligi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

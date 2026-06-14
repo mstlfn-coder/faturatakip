@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.117)
+
+- v1.117 tamamlandi: Odemeler panelindeki ozet ve akis kartlarina hafif hover vurgusu eklendi.
+- Kartlar fare ile taranirken daha belirgin hale geliyor, ancak genel sakin arayuz tonu korunuyor.
+- Bu adim odeme panelinin taranabilirligini davranisi degistirmeden bir kademe daha guclendirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.116)
 
 - v1.116 tamamlandi: Odemeler panelinin ust sag yonlendirme butonlari daha acik hedef isimleri ve yardimci durum metni aldi.

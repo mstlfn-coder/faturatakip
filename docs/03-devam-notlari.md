@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.117)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.117 - Odeme Kart Hover Vurgusu`
+- Bu adimda Odemeler panelindeki ust ozet kartlari ve alt akis kartlari hover aninda hafif arka plan ve kenarlik vurgusu almaya basladi.
+- Boylece panel fare ile taranirken kullanicinin gozu aktif oldugu bolumu daha rahat izliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.116)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -94,4 +103,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelinin ana anlatimi toparlandigi icin, sonraki mantikli kucuk adim secili ozet kart veya akis karti uzerinde hafif hover/vurgu durumlari ekleyerek taranabilirligi biraz daha guclendirmek olabilir.
+- Odemeler panelinde hover dili oturdugu icin, sonraki mantikli kucuk adim bu kartlarda secilen yone gore ustteki genel yonlendirme metnini dinamik hale getirmek ya da son tiklanan akis icin hafif bir durum ozeti gostermek olabilir.
