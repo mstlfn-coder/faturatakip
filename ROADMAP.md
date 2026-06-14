@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.180)
+
+- v1.180 tamamlandi: Odemeler panelindeki sonraki adim metinlerinin tonu hafifce yumusatildi.
+- Boylece hedef satiri ile destekleyici yonlendirme metni arasinda daha temiz bir hiyerarsi kuruldu.
+- Bu adim secili akis kartlarindaki yonlendirme katmanlarini daha okunur hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.179)
 
 - v1.179 tamamlandi: Odemeler panelindeki aktif yol notlarinin tonu ve ust boslugu hafifce yumusatildi.

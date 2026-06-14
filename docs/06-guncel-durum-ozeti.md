@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.179 - Aktif Yol Gecis Yumusatma`
+- Son tamamlanan temiz faz: `v1.180 - Sonraki Adim Ton Ayrimi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.180` Sonraki Adim Ton Ayrimi
 - `v1.179` Aktif Yol Gecis Yumusatma
 - `v1.178` Yardim Aksiyon Yakinlastirma
 - `v1.177` Aktif Rozet Oran Ayari
@@ -94,7 +95,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Secili akis kartlarinda hedef satiri ile sonraki adim metni arasindaki ton hiyerarsisini bir tik daha netlestirmek
+- Secili akis kartlarinda hedef satiri ile kisayol kapsulu arasindaki gecis boslugunu bir tik daha dengelemek
 
 ## Yeni Chat Icin Kisa Talimat
 

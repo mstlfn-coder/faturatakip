@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.180 - Sonraki Adim Ton Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ton hiyerarsisi netlesti | OK | Sonraki adim metinleri yumusatildigi icin hedef satiri daha belirgin ana yon oldu |
+| Akis okunurlugu korundu | OK | Destekleyici metinler hala rahat okunuyor ve baglam kaybi olusmadi |
+| 2026-06-15 | v1.180 | OK | Odemeler panelinde sonraki adim ton ayrimi tamamlandi |
+
 ## v1.179 - Aktif Yol Gecis Yumusatma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

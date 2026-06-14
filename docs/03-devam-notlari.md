@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.180)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.180 - Sonraki Adim Ton Ayrimi`
+- Bu adimda odeme akis kartlarindaki sonraki adim metinlerinin tonu hafifce yumusatildi.
+- Boylece hedef satiri ana yonlendirme olarak daha net kalirken, sonraki adim yardimci katmana daha temiz oturdu.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.179)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
