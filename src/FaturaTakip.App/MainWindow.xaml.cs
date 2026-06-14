@@ -31,6 +31,8 @@ public partial class MainWindow : Window
     private string _activePaymentsRouteBadge = DefaultPaymentsRouteBadge;
     private string? _activePaymentsRouteKey;
     private string _activePaymentsFlowContext = DefaultPaymentsFlowContext;
+    private string _paymentsQueueFilterKey = "all";
+    private string _paymentsRecentFilterKey = "all";
 
     public MainWindow(StartupStatus startupStatus)
     {
@@ -472,6 +474,29 @@ public partial class MainWindow : Window
         BackupNavButton.FontWeight = FontWeights.Normal;
     }
 
+    private void PaymentsQueueFilterButton_Click(object sender, RoutedEventArgs e)
+    {
+        _paymentsQueueFilterKey = sender switch
+        {
+            Button button when button == PaymentsQueueFilterUrgentButton => "urgent",
+            Button button when button == PaymentsQueueFilterMissingPdfButton => "missing-pdf",
+            _ => "all",
+        };
+
+        RefreshPaymentsOverview();
+    }
+
+    private void PaymentsRecentFilterButton_Click(object sender, RoutedEventArgs e)
+    {
+        _paymentsRecentFilterKey = sender switch
+        {
+            Button button when button == PaymentsRecentFilterMissingPdfButton => "missing-pdf",
+            _ => "all",
+        };
+
+        RefreshPaymentsOverview();
+    }
+
     private void PaymentsHintSource_MouseEnter(object sender, MouseEventArgs e)
     {
         if (sender is not FrameworkElement { Tag: string hintKey })
@@ -789,9 +814,9 @@ public partial class MainWindow : Window
 
         DashboardInvoiceCountText.Text = invoices.Count.ToString(CultureInfo.InvariantCulture);
         DashboardMonthlyInvoiceTotalText.Text = FormatMoney(summary.MonthlyInvoiceTotal);
-        DashboardMonthlyInvoiceCountText.Text = $"{summary.MonthlyInvoiceCount} kayıt";
+        DashboardMonthlyInvoiceCountText.Text = $"{summary.MonthlyInvoiceCount} kayit";
         DashboardMonthlyPaymentTotalText.Text = FormatMoney(summary.MonthlyPaymentTotal);
-        DashboardMonthlyPaymentCountText.Text = $"{summary.MonthlyPaymentCount} kayıt";
+        DashboardMonthlyPaymentCountText.Text = $"{summary.MonthlyPaymentCount} kayit";
         DashboardUnreviewedInvoiceCountText.Text = summary.UnreviewedInvoiceCount.ToString(CultureInfo.InvariantCulture);
         DashboardUnpaidInvoiceCountText.Text = summary.UnpaidInvoiceCount.ToString(CultureInfo.InvariantCulture);
         DashboardUnpaidRemainingText.Text = $"Kalan {FormatMoney(summary.UnpaidRemainingTotal)}";
@@ -826,30 +851,36 @@ public partial class MainWindow : Window
             .Select(item => new PaymentsQueueItem(
                 item.Id,
                 BuildInvoiceQueueTitle(item),
-                $"{item.Period} • Vade {item.DueDate:dd.MM.yyyy}",
+                $"{item.Period} - Vade {item.DueDate:dd.MM.yyyy}",
                 $"Kalan {FormatMoney(item.RemainingAmount)}",
                 item.State,
                 GetQueueStatusBackground(item),
                 GetQueueStatusBorder(item),
-                GetQueueStatusForeground(item)))
+                GetQueueStatusForeground(item),
+                item.DueDate.Date <= DateTime.Today,
+                _invoiceRepository.IsPdfMissing(item)))
+            .Where(ShouldIncludeQueueItem)
             .ToList();
 
+        ApplyPaymentsFilterButtonState(PaymentsQueueFilterAllButton, _paymentsQueueFilterKey == "all");
+        ApplyPaymentsFilterButtonState(PaymentsQueueFilterUrgentButton, _paymentsQueueFilterKey == "urgent");
+        ApplyPaymentsFilterButtonState(PaymentsQueueFilterMissingPdfButton, _paymentsQueueFilterKey == "missing-pdf");
         PaymentsQueueItemsControl.ItemsSource = unpaidQueueItems;
         PaymentsQueueSummaryText.Text = unpaidQueueItems.Count == 0
-            ? "Bekleyen odeme kuyrugu yok."
-            : $"{summary.UnpaidInvoiceCount} acik faturadan en yakin {unpaidQueueItems.Count} kayit burada listeleniyor.";
+            ? $"Bekleyen odeme kuyrugu yok ({BuildQueueFilterLabel()})."
+            : $"{BuildQueueFilterSummaryPrefix(summary.UnpaidInvoiceCount)} en yakin {unpaidQueueItems.Count} kayit burada listeleniyor.";
         if (unpaidQueueItems.Count == 0)
         {
             PaymentsOpenNextQueueButton.IsEnabled = false;
             PaymentsOpenNextQueueButton.Tag = null;
-            PaymentsQueueActionHintText.Text = "Oncelikli kayit hazir degil.";
+            PaymentsQueueActionHintText.Text = $"{BuildQueueFilterLabel()} icin oncelikli kayit hazir degil.";
         }
         else
         {
             var topQueueItem = unpaidQueueItems[0];
             PaymentsOpenNextQueueButton.IsEnabled = true;
             PaymentsOpenNextQueueButton.Tag = topQueueItem.InvoiceId;
-            PaymentsQueueActionHintText.Text = $"{topQueueItem.Title} • {topQueueItem.Amount}";
+            PaymentsQueueActionHintText.Text = $"{topQueueItem.Title} - {topQueueItem.Amount}";
         }
 
         var invoicesById = invoices.ToDictionary(item => item.Id);
@@ -865,31 +896,37 @@ public partial class MainWindow : Window
                 _paymentRepository.IsPdfMissing(item) ? "PDF eksik" : "PDF hazir",
                 _paymentRepository.IsPdfMissing(item) ? "#FEF2F2" : "#EFF6FF",
                 _paymentRepository.IsPdfMissing(item) ? "#FECACA" : "#BFDBFE",
-                _paymentRepository.IsPdfMissing(item) ? "#B91C1C" : "#1D4ED8"))
+                _paymentRepository.IsPdfMissing(item) ? "#B91C1C" : "#1D4ED8",
+                _paymentRepository.IsPdfMissing(item)))
+            .Where(ShouldIncludeRecentPaymentItem)
             .ToList();
 
+        ApplyPaymentsFilterButtonState(PaymentsRecentFilterAllButton, _paymentsRecentFilterKey == "all");
+        ApplyPaymentsFilterButtonState(PaymentsRecentFilterMissingPdfButton, _paymentsRecentFilterKey == "missing-pdf");
         PaymentsRecentPaymentsItemsControl.ItemsSource = recentPaymentItems;
         PaymentsRecentPaymentsSummaryText.Text = recentPaymentItems.Count == 0
-            ? "Henuz kaydedilmis odeme yok."
-            : $"En son {recentPaymentItems.Count} odeme kaydi burada hizlica kontrol edilebilir.";
+            ? $"Henuz kaydedilmis odeme yok ({BuildRecentFilterLabel()})."
+            : $"{BuildRecentFilterSummaryPrefix()} {recentPaymentItems.Count} odeme kaydi burada hizlica kontrol edilebilir.";
         if (recentPaymentItems.Count == 0)
         {
             PaymentsOpenLatestPaymentButton.IsEnabled = false;
             PaymentsOpenLatestPaymentButton.Tag = null;
-            PaymentsRecentActionHintText.Text = "Son odeme kaydi hazir degil.";
+            PaymentsRecentActionHintText.Text = $"{BuildRecentFilterLabel()} icin son odeme kaydi hazir degil.";
         }
         else
         {
             var topRecentPaymentItem = recentPaymentItems[0];
             PaymentsOpenLatestPaymentButton.IsEnabled = true;
             PaymentsOpenLatestPaymentButton.Tag = topRecentPaymentItem.InvoiceId;
-            PaymentsRecentActionHintText.Text = $"{topRecentPaymentItem.Title} • {topRecentPaymentItem.Amount}";
+            PaymentsRecentActionHintText.Text = $"{topRecentPaymentItem.Title} - {topRecentPaymentItem.Amount}";
         }
 
         ApplyFeaturedPaymentsSummary(
             unpaidQueueItems.Count > 0 ? unpaidQueueItems[0] : null,
             recentPaymentItems.Count > 0 ? recentPaymentItems[0] : null);
     }
+
+
 
     private void SubscriptionsPanel_SubscriptionsChanged(object sender, EventArgs e)
     {
@@ -902,6 +939,71 @@ public partial class MainWindow : Window
         RefreshDashboardInvoiceCounts();
     }
 
+
+    private bool ShouldIncludeQueueItem(PaymentsQueueItem item)
+    {
+        return _paymentsQueueFilterKey switch
+        {
+            "urgent" => item.IsUrgent,
+            "missing-pdf" => item.IsPdfMissing,
+            _ => true,
+        };
+    }
+
+    private bool ShouldIncludeRecentPaymentItem(PaymentsRecentPaymentItem item)
+    {
+        return _paymentsRecentFilterKey switch
+        {
+            "missing-pdf" => item.IsPdfMissing,
+            _ => true,
+        };
+    }
+
+    private string BuildQueueFilterLabel()
+    {
+        return _paymentsQueueFilterKey switch
+        {
+            "urgent" => "Acil filtre",
+            "missing-pdf" => "PDF eksik filtre",
+            _ => "Tum kuyruk",
+        };
+    }
+
+    private string BuildRecentFilterLabel()
+    {
+        return _paymentsRecentFilterKey switch
+        {
+            "missing-pdf" => "PDF eksik filtre",
+            _ => "Tum son odemeler",
+        };
+    }
+
+    private string BuildQueueFilterSummaryPrefix(int unpaidInvoiceCount)
+    {
+        return _paymentsQueueFilterKey switch
+        {
+            "urgent" => $"Acil odeme filtresinde {unpaidInvoiceCount} acik faturadan",
+            "missing-pdf" => $"PDF eksik filtresinde {unpaidInvoiceCount} acik faturadan",
+            _ => $"{unpaidInvoiceCount} acik faturadan",
+        };
+    }
+
+    private string BuildRecentFilterSummaryPrefix()
+    {
+        return _paymentsRecentFilterKey switch
+        {
+            "missing-pdf" => "PDF eksik odemeler icinde",
+            _ => "En son",
+        };
+    }
+
+    private static void ApplyPaymentsFilterButtonState(Button button, bool isSelected)
+    {
+        button.Background = (Brush)new BrushConverter().ConvertFromString(isSelected ? "#DBEAFE" : "#F8FAFC")!;
+        button.BorderBrush = (Brush)new BrushConverter().ConvertFromString(isSelected ? "#93C5FD" : "#D8E2EC")!;
+        button.Foreground = (Brush)new BrushConverter().ConvertFromString(isSelected ? "#1D4ED8" : "#475569")!;
+        button.FontWeight = isSelected ? FontWeights.SemiBold : FontWeights.Normal;
+    }
     private static string FormatMoney(decimal value)
     {
         return value.ToString("N2", CultureInfo.GetCultureInfo("tr-TR"));
@@ -915,7 +1017,7 @@ public partial class MainWindow : Window
         var invoiceNo = string.IsNullOrWhiteSpace(invoice.InvoiceNo)
             ? "No yok"
             : invoice.InvoiceNo;
-        return $"{owner} • {invoiceNo}";
+        return $"{owner} - {invoiceNo}";
     }
 
     private static string BuildRecentPaymentTitle(Payment payment, IReadOnlyDictionary<long, Invoice> invoicesById)
@@ -935,13 +1037,13 @@ public partial class MainWindow : Window
     {
         if (!invoicesById.TryGetValue(payment.InvoiceId, out var invoice))
         {
-            return $"{payment.PaymentDate:dd.MM.yyyy} • Fatura kaydi bulunamadi";
+            return $"{payment.PaymentDate:dd.MM.yyyy} - Fatura kaydi bulunamadi";
         }
 
         var invoiceNo = string.IsNullOrWhiteSpace(invoice.InvoiceNo)
             ? invoice.Period
             : invoice.InvoiceNo;
-        return $"{payment.PaymentDate:dd.MM.yyyy} • {invoiceNo}";
+        return $"{payment.PaymentDate:dd.MM.yyyy} - {invoiceNo}";
     }
 
     private static string GetQueueStatusBackground(Invoice invoice)
@@ -1047,14 +1149,14 @@ public partial class MainWindow : Window
     private void ApplySelectedInvoiceType(InvoiceType invoiceType)
     {
         _selectedInvoiceType = invoiceType;
-        InvoiceTypeFormTitleText.Text = "Fatura Türünü Düzenle";
+        InvoiceTypeFormTitleText.Text = "Fatura Turunu Duzenle";
         InvoiceTypeNameInput.Text = invoiceType.Name;
         DefaultUsageUnitInput.Text = invoiceType.DefaultUsageUnit;
         InvoiceTypeDescriptionInput.Text = invoiceType.Description;
         InvoiceTypeIsActiveInput.IsChecked = invoiceType.IsActive;
         ToggleInvoiceTypeButton.IsEnabled = true;
         ToggleInvoiceTypeButton.Content = invoiceType.IsActive ? "Pasife Al" : "Aktif Yap";
-        SetInvoiceTypeStatus($"Seçili kayıt: {invoiceType.Name}", isError: false);
+        SetInvoiceTypeStatus($"Secili kayit: {invoiceType.Name}", isError: false);
     }
 
     private void NewInvoiceTypeButton_Click(object sender, RoutedEventArgs e)
@@ -1073,7 +1175,7 @@ public partial class MainWindow : Window
                 : _invoiceTypeRepository.Update(_selectedInvoiceType.Id, input);
 
             RefreshInvoiceTypes(saved.Id);
-            SetInvoiceTypeStatus("Fatura türü kaydedildi.", isError: false);
+            SetInvoiceTypeStatus("Fatura turu kaydedildi.", isError: false);
         }
         catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException)
         {
@@ -1085,7 +1187,7 @@ public partial class MainWindow : Window
     {
         if (_selectedInvoiceType is null)
         {
-            SetInvoiceTypeStatus("Önce bir fatura türü seçin.", isError: true);
+            SetInvoiceTypeStatus("Once bir fatura turu secin.", isError: true);
             return;
         }
 
@@ -1094,7 +1196,7 @@ public partial class MainWindow : Window
             var nextState = !_selectedInvoiceType.IsActive;
             _invoiceTypeRepository.SetActive(_selectedInvoiceType.Id, nextState);
             RefreshInvoiceTypes(_selectedInvoiceType.Id);
-            SetInvoiceTypeStatus(nextState ? "Fatura türü aktif yapıldı." : "Fatura türü pasife alındı.", isError: false);
+            SetInvoiceTypeStatus(nextState ? "Fatura turu aktif yapildi." : "Fatura turu pasife alindi.", isError: false);
         }
         catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException)
         {
@@ -1115,14 +1217,14 @@ public partial class MainWindow : Window
     {
         _selectedInvoiceType = null;
         InvoiceTypeGrid.SelectedItem = null;
-        InvoiceTypeFormTitleText.Text = "Yeni Fatura Türü";
+        InvoiceTypeFormTitleText.Text = "Yeni Fatura Turu";
         InvoiceTypeNameInput.Text = string.Empty;
         DefaultUsageUnitInput.Text = string.Empty;
         InvoiceTypeDescriptionInput.Text = string.Empty;
         InvoiceTypeIsActiveInput.IsChecked = true;
         ToggleInvoiceTypeButton.IsEnabled = false;
         ToggleInvoiceTypeButton.Content = "Pasife Al";
-        SetInvoiceTypeStatus("Yeni kayıt için alanları doldurun.", isError: false);
+        SetInvoiceTypeStatus("Yeni kayit icin alanlari doldurun.", isError: false);
     }
 
     private void SetInvoiceTypeStatus(string message, bool isError)
@@ -1141,7 +1243,9 @@ public partial class MainWindow : Window
         string Status,
         string StatusBackground,
         string StatusBorder,
-        string StatusForeground);
+        string StatusForeground,
+        bool IsUrgent,
+        bool IsPdfMissing);
 
     private sealed record PaymentsRecentPaymentItem(
         long InvoiceId,
@@ -1151,5 +1255,7 @@ public partial class MainWindow : Window
         string Status,
         string StatusBackground,
         string StatusBorder,
-        string StatusForeground);
+        string StatusForeground,
+        bool IsPdfMissing);
 }
+

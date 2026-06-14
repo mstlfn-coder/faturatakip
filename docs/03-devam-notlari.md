@@ -2,6 +2,16 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.190)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.190 - Odemeler Liste Filtreleri`
+- Bu adimda odemeler kuyruguna `Hepsi / Acil / PDF Eksik`, son odemeler listesine de `Hepsi / PDF Eksik` gorunum filtreleri eklendi.
+- Ozet metinleri ve hizli aksiyon ipuclari secili filtreye gore kendini guncelliyor; boylece panelde tarama daha hizli hale geliyor.
+- Ayni dosyada encoding kaynakli bozulmaya acik birkac metin ASCII-guvenli hale getirildi ki yeni kayitlarda tekrar sorun cikmasin.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.189)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.190 - Odemeler Liste Filtreleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk filtreleri calisiyor | OK | Hepsi, Acil ve PDF Eksik secimleri kuyruk listesini daraltiyor |
+| Son odeme filtreleri calisiyor | OK | Hepsi ve PDF Eksik secimleri son odeme listesini daraltiyor |
+| Filtre ozeti gorunur | OK | Ozet metni ve aksiyon ipucu secili filtreye gore yenileniyor |
+| 2026-06-15 | v1.190 | OK | Odemeler listesine gorunum filtreleri ve filtre baglam metinleri eklendi |
+
 ## v1.189 - Odemeler Liste Hover Erisimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

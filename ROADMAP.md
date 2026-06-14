@@ -1,5 +1,13 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.190)
+
+- v1.190 tamamlandi: Odemeler kuyrugu ve son odemeler listesine hizli gorunum filtreleri eklendi.
+- Kuyrukta `Hepsi / Acil / PDF Eksik`, son odemelerde `Hepsi / PDF Eksik` secimleri aktif duruma gore gorunurlesiyor.
+- Ozet cumleleri ve aksiyon ipuclari secili gorunume gore yenileniyor; panel daha taranabilir hale geliyor.
+- Bu adimda ayni dosyada gorulen encoding kirilmasi da ASCII-guvenli metinlerle stabilize edildi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.189)
 
 - v1.189 tamamlandi: Odemeler kuyrugu ve son odemeler listesine hover vurgusu ile daha net acis tooltipleri eklendi.

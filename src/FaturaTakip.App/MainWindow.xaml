@@ -172,6 +172,15 @@
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="HorizontalAlignment" Value="Right" />
         </Style>
+        <Style x:Key="PaymentsFilterButton" TargetType="Button" BasedOn="{StaticResource SecondaryButton}">
+            <Setter Property="Padding" Value="10,4" />
+            <Setter Property="MinWidth" Value="0" />
+            <Setter Property="Margin" Value="0,0,8,0" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Background" Value="#F8FAFC" />
+            <Setter Property="BorderBrush" Value="#D8E2EC" />
+            <Setter Property="Foreground" Value="#475569" />
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -1421,6 +1430,21 @@
                                                TextWrapping="Wrap" />
                                     <StackPanel Orientation="Horizontal"
                                                 Margin="0,10,0,0">
+                                        <Button x:Name="PaymentsQueueFilterAllButton"
+                                                Content="Hepsi"
+                                                Style="{StaticResource PaymentsFilterButton}"
+                                                Click="PaymentsQueueFilterButton_Click" />
+                                        <Button x:Name="PaymentsQueueFilterUrgentButton"
+                                                Content="Acil"
+                                                Style="{StaticResource PaymentsFilterButton}"
+                                                Click="PaymentsQueueFilterButton_Click" />
+                                        <Button x:Name="PaymentsQueueFilterMissingPdfButton"
+                                                Content="PDF Eksik"
+                                                Style="{StaticResource PaymentsFilterButton}"
+                                                Click="PaymentsQueueFilterButton_Click" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="0,10,0,0">
                                         <Button x:Name="PaymentsOpenNextQueueButton"
                                                 Content="En Yakin Kaydi Ac"
                                                 Style="{StaticResource SecondaryButton}"
@@ -1502,6 +1526,17 @@
                                                Style="{StaticResource MutedText}"
                                                Margin="0,6,0,0"
                                                TextWrapping="Wrap" />
+                                    <StackPanel Orientation="Horizontal"
+                                                Margin="0,10,0,0">
+                                        <Button x:Name="PaymentsRecentFilterAllButton"
+                                                Content="Hepsi"
+                                                Style="{StaticResource PaymentsFilterButton}"
+                                                Click="PaymentsRecentFilterButton_Click" />
+                                        <Button x:Name="PaymentsRecentFilterMissingPdfButton"
+                                                Content="PDF Eksik"
+                                                Style="{StaticResource PaymentsFilterButton}"
+                                                Click="PaymentsRecentFilterButton_Click" />
+                                    </StackPanel>
                                     <StackPanel Orientation="Horizontal"
                                                 Margin="0,10,0,0">
                                         <Button x:Name="PaymentsOpenLatestPaymentButton"
