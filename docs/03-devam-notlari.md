@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.181)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.181 - Hedef Kisayol Bosluk Ayari`
+- Bu adimda odeme akis kartlarindaki hedef satiri ile kisayol kapsulu arasindaki ust bosluk hafifce azaltildi.
+- Boylece yonlendirme metinlerinden kisayol ipucuna gecis daha toplu ve daha dengeli gorunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.180)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.181 - Hedef Kisayol Bosluk Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Gecis boslugu dengelendi | OK | Hedef satiri ile kisayol kapsulu arasindaki bosluk azaltildigi icin alt akis daha toplu gorunuyor |
+| Katman okunurlugu korundu | OK | Hedef, kisayol ve aksiyon katmanlari birbirine karismadan okunabiliyor |
+| 2026-06-15 | v1.181 | OK | Odemeler panelinde hedef kisayol bosluk ayari tamamlandi |
+
 ## v1.180 - Sonraki Adim Ton Ayrimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

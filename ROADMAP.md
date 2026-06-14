@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.181)
+
+- v1.181 tamamlandi: Odemeler panelindeki hedef satiri ile kisayol kapsulu arasindaki bosluk hafifce azaltildi.
+- Boylece yonlendirme katmanlarindan kisayol ipucuna gecis daha yakin ve daha tutarli hale geldi.
+- Bu adim secili akis kartlarindaki alt akisin ritmini bir kademe daha toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.180)
 
 - v1.180 tamamlandi: Odemeler panelindeki sonraki adim metinlerinin tonu hafifce yumusatildi.
