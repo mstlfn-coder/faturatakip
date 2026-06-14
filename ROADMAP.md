@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.149)
+
+- v1.149 tamamlandi: Odemeler panelindeki `AKTIF KOLON` rozetlerinin boyutu yardim kapsullerine biraz daha yaklastirildi.
+- Boylece aktif kolon vurgusu korunurken, kart icindeki mikro etiket sistemi daha butunlu bir gorunum kazandi.
+- Bu adim secili akis kartlarinin alt yardim hiyerarsisini bir kademe daha rafine etti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.148)
 
 - v1.148 tamamlandi: Odemeler panelindeki yardim kapsullerinin yazi agirligi yumusatildi.

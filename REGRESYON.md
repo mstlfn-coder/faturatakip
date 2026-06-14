@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.149 - Mikro Rozet Olcek Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif kolon rozetleri daha dengeli | OK | Rozet padding ve yazi boyutu yardim kapsullerine yaklastirildi |
+| Mikro etiket ailesi daha butunlu | OK | Rozet ile kapsul ayni kart dilinin parcalari gibi daha tutarli gorunuyor |
+| 2026-06-14 | v1.149 | OK | Odemeler panelinde mikro rozet olcek dengeleme tamamlandi |
+
 ## v1.148 - Yardim Kapsulu Agirlik Yumusatma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

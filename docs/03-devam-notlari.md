@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.149)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.149 - Mikro Rozet Olcek Dengeleme`
+- Bu adimda secili akis kartlarindaki `AKTIF KOLON` rozetleri bir kademe kucultulup yardim kapsulleriyle daha yakin bir mikro olcege getirildi.
+- Boylece aktif kolon rozetleri hala belirgin kalirken, kart icindeki yardim katmanlari ayni gorsel ailenin parcasi gibi okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.148)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

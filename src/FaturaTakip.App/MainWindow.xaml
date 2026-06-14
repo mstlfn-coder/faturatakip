@@ -1040,12 +1040,12 @@
                                             BorderThickness="1"
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
-                                            Margin="0,7,0,0"
-                                            Padding="8,3"
+                                            Margin="0,6,0,0"
+                                            Padding="7,2"
                                             Visibility="Collapsed">
                                         <TextBlock Text="AKTIF KOLON"
                                                    Foreground="White"
-                                                   FontSize="10"
+                                                   FontSize="9"
                                                    FontWeight="SemiBold" />
                                     </Border>
                                     <TextBlock x:Name="PaymentsWorkspaceTitleText"
@@ -1135,12 +1135,12 @@
                                             BorderThickness="1"
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
-                                            Margin="0,7,0,0"
-                                            Padding="8,3"
+                                            Margin="0,6,0,0"
+                                            Padding="7,2"
                                             Visibility="Collapsed">
                                         <TextBlock Text="AKTIF KOLON"
                                                    Foreground="White"
-                                                   FontSize="10"
+                                                   FontSize="9"
                                                    FontWeight="SemiBold" />
                                     </Border>
                                     <TextBlock x:Name="PaymentsDocumentTitleText"
@@ -1229,12 +1229,12 @@
                                             BorderThickness="1"
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
-                                            Margin="0,7,0,0"
-                                            Padding="8,3"
+                                            Margin="0,6,0,0"
+                                            Padding="7,2"
                                             Visibility="Collapsed">
                                         <TextBlock Text="AKTIF KOLON"
                                                    Foreground="White"
-                                                   FontSize="10"
+                                                   FontSize="9"
                                                    FontWeight="SemiBold" />
                                     </Border>
                                     <TextBlock x:Name="PaymentsUnpaidReportTitleText"
