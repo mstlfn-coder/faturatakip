@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.153)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.153 - Baslik Aciklama Ritim Sikilastirma`
+- Bu adimda secili akis kartlarindaki baslik ile aciklama satiri arasindaki bosluk bir kademe azaltildi.
+- Boylece aktif rozet, baslik ve ilk aciklama satiri daha tek parca bir ust bilgi blogu gibi okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.152)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

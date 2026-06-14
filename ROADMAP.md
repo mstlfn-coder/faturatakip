@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.153)
+
+- v1.153 tamamlandi: Odemeler panelindeki kart basliklari ile aciklama satirlari arasindaki bosluk hafifce azaltildi.
+- Boylece secili akisin ust bilgi blogu daha toplu ve daha akici okunuyor.
+- Bu adim kartlarin ilk bakista algilanan ritmini bir kademe daha toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.152)
 
 - v1.152 tamamlandi: Odemeler panelindeki aktif kolon rozetleri ile kart basliklari arasindaki bosluk hafifce azaltildi.

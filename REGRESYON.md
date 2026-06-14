@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.153 - Baslik Aciklama Ritim Sikilastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baslik ve aciklama daha bagli | OK | Aciklama ust boslugu azaltilarak ust bilgi blogu sikilastirildi |
+| Ilk bakis ritmi daha akici | OK | Rozet-baslik-aciklama zinciri daha tek parca hissediliyor |
+| 2026-06-14 | v1.153 | OK | Odemeler panelinde baslik-aciklama ritim sikilastirma tamamlandi |
+
 ## v1.152 - Rozet Baslik Yakinlastirma
 | Kontrol | Durum | Not |
 | --- | --- | --- |
