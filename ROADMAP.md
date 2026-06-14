@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.125)
+
+- v1.125 tamamlandi: Ust ozet kartlarin alt akis baglanti metinlerine asagi yon ipuclari eklendi.
+- Boylece kullanici bakisini yukaridan asagi tasirken iliskiyi daha hizli tarayabiliyor.
+- Bu adim ekstra dekor eklemeden panel akisini biraz daha sezgisel hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.124)
 
 - v1.124 tamamlandi: Alt akis kartlarina, bagli olduklari ust ozetleri soyleyen kisa geri baglanti metinleri eklendi.

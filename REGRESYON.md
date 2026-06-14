@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.125 - Ozet Yonu Ipuclari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ozet kartlar asagi akis yonu veriyor | OK | Baglanti metinlerinde asagi yon ipucu kullaniliyor |
+| Gorsel yogunluk sakin kaldi | OK | Ek cizgi olmadan sadece mikro yon etiketiyle iliski guclendi |
+| 2026-06-14 | v1.125 | OK | Odemeler panelinde ozet yon ipuclari tamamlandi |
+
 ## v1.124 - Akis Ozet Geri Baglantisi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.125)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.125 - Ozet Yonu Ipuclari`
+- Bu adimda ust ozet kartlarin alt akis baglanti metinlerine asagi yon ipuclari eklendi.
+- Boylece yukaridaki sayisal ozetlerden asagidaki akis kutularina gecis daha taranabilir hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.124)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -166,4 +175,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelinde ozet-akis iliskisi iki yonlu kurulmus oldugu icin, sonraki mantikli kucuk adim kartlar arasi cok hafif yon oku denemek ya da aktif yol durumunu sadece ilgili kolon icinde toplamak olabilir.
+- Odemeler panelinde yon ipucu dili de kuruldugu icin, sonraki mantikli kucuk adim aktif yol durumunu sadece ilgili kolon icinde toplamak ya da secili kolona daha butunlu bir vurgu vermek olabilir.
