@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.170 - Birincil Odak Tonu Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Birincil odak daha sakin | OK | Birincil dugmenin klavye odak tonu panel dengesiyle daha uyumlu hale geldi |
+| Ana komut rolu korundu | OK | Odeme alanini ac dugmesi hala en belirgin ana aksiyon olarak kaliyor |
+| 2026-06-15 | v1.170 | OK | Odemeler panelinde birincil odak tonu yumusatma tamamlandi |
+
 ## v1.169 - Renk Ailesi Agirlik Dengeleme
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.170)
+
+- v1.170 tamamlandi: Odemeler panelindeki birincil aksiyon dugmesinin klavye odak vurgusu hafifce sakinlestirildi.
+- Boylece odak gorunurlugu korunurken, buton odak aninda gereksiz sertlesmeden ana komut rolunu surduruyor.
+- Bu adim panelin klavye odak hiyerarsisini bir kademe daha rafine etti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.169)
 
 - v1.169 tamamlandi: Odemeler panelindeki mavi ve turuncu secili rozet tonlari hafifce yumusatildi.
