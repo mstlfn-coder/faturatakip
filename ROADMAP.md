@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.151)
+
+- v1.151 tamamlandi: Odemeler panelindeki `AKTIF KOLON` rozetlerinin gorunme animasyonu yardim kapsuluyle ayni fade temposuna yaklastirildi.
+- Boylece secim aninda kart icindeki mikro yardim ogecikleri daha senkron ve daha rafine bir tepki veriyor.
+- Bu adim secili akis kartlarinin hareket dilini bir kademe daha toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.150)
 
 - v1.150 tamamlandi: Odemeler panelindeki `AKTIF KOLON` rozet metinlerinin agirligi yumusatildi.

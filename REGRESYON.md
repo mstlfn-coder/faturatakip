@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.151 - Mikro Rozet Animasyon Ritmi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif rozet fade ritmi daha tutarli | OK | Rozet fade baslangici ve suresi yardim kapsuluyle hizalandi |
+| Secim geri bildirimi daha butunlu | OK | Kart icindeki mikro durum isaretleri ayni tempoda aciliyor |
+| 2026-06-14 | v1.151 | OK | Odemeler panelinde mikro rozet animasyon ritmi duzenlendi |
+
 ## v1.150 - Mikro Rozet Agirlik Yumusatma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

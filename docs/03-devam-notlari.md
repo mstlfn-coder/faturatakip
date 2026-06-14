@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.151)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.151 - Mikro Rozet Animasyon Ritmi`
+- Bu adimda secili akis kartlarindaki `AKTIF KOLON` rozetlerinin gorunme animasyonu yardim kapsuluyle ayni fade ritmine yaklastirildi.
+- Boylece kart icindeki mikro geri bildirim ogecikleri secim aninda daha tutarli ve tek parca bir tepki veriyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.150)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

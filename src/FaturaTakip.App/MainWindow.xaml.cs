@@ -520,14 +520,14 @@ public partial class MainWindow : Window
         }
 
         badge.Visibility = Visibility.Visible;
-        badge.Opacity = 0.82;
+        badge.Opacity = 0.86;
         badge.BeginAnimation(
             UIElement.OpacityProperty,
             new DoubleAnimation
             {
-                From = 0.82,
+                From = 0.86,
                 To = 1,
-                Duration = TimeSpan.FromMilliseconds(190)
+                Duration = TimeSpan.FromMilliseconds(180)
             });
     }
 
