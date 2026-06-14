@@ -444,6 +444,9 @@ public partial class MainWindow : Window
         SetPaymentsRouteNote(PaymentsWorkspaceNextStepText, routeKey == "workspace");
         SetPaymentsRouteNote(PaymentsDocumentNextStepText, routeKey == "document");
         SetPaymentsRouteNote(PaymentsUnpaidReportNextStepText, routeKey == "unpaid");
+        SetPaymentsRouteNote(PaymentsWorkspaceShortcutHint, routeKey == "workspace");
+        SetPaymentsRouteNote(PaymentsDocumentShortcutHint, routeKey == "document");
+        SetPaymentsRouteNote(PaymentsUnpaidReportShortcutHint, routeKey == "unpaid");
         SetPaymentsRouteNote(PaymentsWorkspaceActiveColumnBadge, routeKey == "workspace");
         SetPaymentsRouteNote(PaymentsDocumentActiveColumnBadge, routeKey == "document");
         SetPaymentsRouteNote(PaymentsUnpaidReportActiveColumnBadge, routeKey == "unpaid");

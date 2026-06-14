@@ -1032,6 +1032,20 @@
                                                Margin="0,4,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
+                                    <Border x:Name="PaymentsWorkspaceShortcutHint"
+                                            Background="#DCFCE7"
+                                            BorderBrush="#86EFAC"
+                                            BorderThickness="1"
+                                            CornerRadius="999"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,8,0,0"
+                                            Padding="8,3"
+                                            Visibility="Collapsed">
+                                        <TextBlock Text="Enter ile ac"
+                                                   Foreground="#166534"
+                                                   FontSize="10"
+                                                   FontWeight="SemiBold" />
+                                    </Border>
                                     <Button Content="Odeme Alanini Ac"
                                             x:Name="PaymentsWorkspaceActionButton"
                                             Style="{StaticResource PrimaryButton}"
@@ -1108,6 +1122,20 @@
                                                Margin="0,4,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
+                                    <Border x:Name="PaymentsDocumentShortcutHint"
+                                            Background="#DBEAFE"
+                                            BorderBrush="#93C5FD"
+                                            BorderThickness="1"
+                                            CornerRadius="999"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,8,0,0"
+                                            Padding="8,3"
+                                            Visibility="Collapsed">
+                                        <TextBlock Text="Enter ile ac"
+                                                   Foreground="#1D4ED8"
+                                                   FontSize="10"
+                                                   FontWeight="SemiBold" />
+                                    </Border>
                                     <Button Content="Eksik Evrak Raporunu Ac"
                                             x:Name="PaymentsDocumentActionButton"
                                             Style="{StaticResource SecondaryButton}"
@@ -1183,6 +1211,20 @@
                                                Margin="0,4,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
+                                    <Border x:Name="PaymentsUnpaidReportShortcutHint"
+                                            Background="#FEF3C7"
+                                            BorderBrush="#FCD34D"
+                                            BorderThickness="1"
+                                            CornerRadius="999"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,8,0,0"
+                                            Padding="8,3"
+                                            Visibility="Collapsed">
+                                        <TextBlock Text="Enter ile ac"
+                                                   Foreground="#B45309"
+                                                   FontSize="10"
+                                                   FontWeight="SemiBold" />
+                                    </Border>
                                     <Button Content="Odenmemisler Raporunu Ac"
                                             x:Name="PaymentsUnpaidReportActionButton"
                                             Style="{StaticResource SecondaryButton}"

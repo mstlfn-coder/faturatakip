@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.132)
+
+- v1.132 tamamlandi: Odemeler panelindeki secili akis kartlarina kisa bir `Enter ile ac` kapsulu eklendi.
+- Boylece kartlar artik eylem sonucunu ve klavye ile tetikleme ipucunu ayni yerde topluyor.
+- Bu adim klavye odakli kullanim icin paneli biraz daha kendi kendini anlatan hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.131)
 
 - v1.131 tamamlandi: Odemeler panelindeki akis butonlari daha net fiil diliyle guncellendi.

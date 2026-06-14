@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.132 - Aktif Kolon Kisayol Kapsulu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili akis kartinda kisayol kapsulu gorunuyor | OK | `Enter ile ac` kapsulu secili kartta butondan once gorunuyor |
+| Diger kartlar sakin kaliyor | OK | Secili olmayan kartlarda kisayol kapsulu gorunmuyor |
+| 2026-06-14 | v1.132 | OK | Odemeler panelinde aktif kolon kisayol kapsulu tamamlandi |
+
 ## v1.131 - Aksiyon Butonu Fiil Dili
 | Kontrol | Durum | Not |
 | --- | --- | --- |

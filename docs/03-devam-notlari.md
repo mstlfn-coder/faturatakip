@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.132)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.132 - Aktif Kolon Kisayol Kapsulu`
+- Bu adimda secili akis kartlarina, butondan hemen once gorunen kucuk bir `Enter ile ac` kapsulu eklendi.
+- Boylece secili kartta fare aksiyonunun yani sira klavye ile ilerleme ipucu da gorunur hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.131)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -68,4 +77,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki buton dili de netlestigi icin, sonraki mantikli kucuk adim secili akis kartinda mini bir klavye ipucu ya da kisayol kapsulu gostermek olabilir.
+- Odemeler panelindeki kisayol kapsulu da eklendigi icin, sonraki mantikli kucuk adim secili akis kartindaki buton odagini klavye tarafinda biraz daha belirginlestirmek olabilir.
