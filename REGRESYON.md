@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.113 - Odemeye Hedefli Gecis
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odemeler panelinden odeme alani aciliyor | OK | Odeme odakli butonlar Faturalar ekraninda odeme calisma modunu aciyor |
+| Odenmemis filtre ve odak uygulanabiliyor | OK | Odenmemis kayitlar filtreleniyor, secili kayitta odeme tarihi alanina odak veriliyor |
+| 2026-06-14 | v1.113 | OK | Odemeler paneli artik daha hedefli gecis sunuyor |
+
 ## v1.112 - Odemeler Gecis Paneli
 | Kontrol | Durum | Not |
 | --- | --- | --- |

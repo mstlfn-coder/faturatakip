@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.113)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.113 - Odemeye Hedefli Gecis`
+- Bu adimda Odemeler panelindeki odeme odakli butonlar, Faturalar ekranini genel acmak yerine dogrudan odeme calisma modunu baslatacak hale getirildi.
+- Gecis sirasinda odenmemis filtresi uygulanip ilk uygun kayit seciliyor; secili kayit varsa odeme tarihi alanina odak veriliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.112)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -58,4 +67,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler menusu artik calistigi icin, sonraki mantikli adim bu gecis panelinden dogrudan secili fatura odeme alanina daha hedefli bir yonlendirme akisi eklemek ya da ayri bir PaymentsView tasarlamak olur.
+- Odemeler gecisi artik hedefli hale geldigi icin, sonraki mantikli kucuk adim panel uzerinde hangi odeme akisina gidilecegini daha net ayiran kisa durum satirlari ya da rozetli aksiyon aciklamalari eklemek olabilir.

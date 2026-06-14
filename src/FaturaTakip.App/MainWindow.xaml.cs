@@ -142,6 +142,12 @@ public partial class MainWindow : Window
         ShowInvoices();
     }
 
+    private void OpenInvoicePaymentWorkspaceButton_Click(object sender, RoutedEventArgs e)
+    {
+        ShowInvoices();
+        InvoicesPanel.StartPaymentWorkspace();
+    }
+
     private void OpenReportsFromPaymentsButton_Click(object sender, RoutedEventArgs e)
     {
         ShowReports();

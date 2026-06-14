@@ -210,6 +210,45 @@ public partial class InvoicesView : UserControl
             contextLabel: contextLabel);
     }
 
+    public void StartPaymentWorkspace(bool preferUnpaid = true)
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        RefreshSubscriptionLists();
+        RefreshInvoices(_selectedInvoice?.Id);
+
+        if (preferUnpaid)
+        {
+            ResetQuickFilters();
+            SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Unpaid);
+            QueueInvoiceFilterHintHighlight("Odeme alani");
+            ApplyFiltersToGrid(selectFirstIfAvailable: true);
+        }
+        else
+        {
+            ApplyFiltersToGrid(selectedId: _selectedInvoice?.Id, selectFirstIfAvailable: true);
+        }
+
+        Dispatcher.BeginInvoke(new Action(() =>
+        {
+            if (_selectedInvoice is null)
+            {
+                InvoiceGrid.Focus();
+                return;
+            }
+
+            PaymentDateInput.Focus();
+        }), DispatcherPriority.Input);
+
+        var statusMessage = _selectedInvoice is null
+            ? "Odeme alani hazir. Devam etmek icin listeden bir fatura secin."
+            : $"Odeme alani hazir: {_selectedInvoice.InvoiceNo}";
+        SetInvoiceStatus(statusMessage, isError: false);
+    }
+
     private void RefreshSubscriptionLists()
     {
         if (_subscriptionRepository is null)

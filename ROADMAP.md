@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.113)
+
+- v1.113 tamamlandi: Odemeler panelindeki odeme odakli gecisler artik dogrudan Faturalar ekranindaki odeme calisma modunu aciyor.
+- Bu geciste odenmemis filtresi uygulanip ilk uygun kayit seciliyor; boylece kullanici dogrudan odeme girecegi baglama dusuyor.
+- Sag panelde odeme tarihi alanina odak verilerek ek tik ihtiyaci azaltildi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.112)
 
 - v1.112 tamamlandi: sol menudeki Odemeler alani pasif yazi olmaktan cikarilip calisan bir gecis paneline donusturuldu.

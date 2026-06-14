@@ -782,7 +782,7 @@
                                     Style="{StaticResource SecondaryButton}"
                                     Margin="0,14,0,0"
                                     HorizontalAlignment="Left"
-                                    Click="OpenInvoicesFromPaymentsButton_Click" />
+                                    Click="OpenInvoicePaymentWorkspaceButton_Click" />
                         </StackPanel>
                     </Border>
                 </UniformGrid>
@@ -810,7 +810,7 @@
                             <Button Content="Faturalar > Odeme Alani"
                                     Style="{StaticResource PrimaryButton}"
                                     Margin="0,0,8,0"
-                                    Click="OpenInvoicesFromPaymentsButton_Click" />
+                                    Click="OpenInvoicePaymentWorkspaceButton_Click" />
                             <Button Content="Eksik Evrak Raporu"
                                     Style="{StaticResource SecondaryButton}"
                                     Margin="0,0,8,0"
