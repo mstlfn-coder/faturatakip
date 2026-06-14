@@ -1046,7 +1046,7 @@
                                         <TextBlock Text="AKTIF KOLON"
                                                    Foreground="White"
                                                    FontSize="9"
-                                                   FontWeight="SemiBold" />
+                                                   FontWeight="Normal" />
                                     </Border>
                                     <TextBlock x:Name="PaymentsWorkspaceTitleText"
                                                Text="Fatura icinde odeme ekleme ve taslak yardimlari"
@@ -1141,7 +1141,7 @@
                                         <TextBlock Text="AKTIF KOLON"
                                                    Foreground="White"
                                                    FontSize="9"
-                                                   FontWeight="SemiBold" />
+                                                   FontWeight="Normal" />
                                     </Border>
                                     <TextBlock x:Name="PaymentsDocumentTitleText"
                                                Text="Odeme PDF eksiklerini hizli kontrol et"
@@ -1235,7 +1235,7 @@
                                         <TextBlock Text="AKTIF KOLON"
                                                    Foreground="White"
                                                    FontSize="9"
-                                                   FontWeight="SemiBold" />
+                                                   FontWeight="Normal" />
                                     </Border>
                                     <TextBlock x:Name="PaymentsUnpaidReportTitleText"
                                                Text="Odenmemis bakiyeyi rapor akisinda izle"

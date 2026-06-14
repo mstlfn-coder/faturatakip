@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.150)
+
+- v1.150 tamamlandi: Odemeler panelindeki `AKTIF KOLON` rozet metinlerinin agirligi yumusatildi.
+- Boylece rozetler guclu renk vurgusunu korurken, kart icindeki diger mikro yardim ogecikleriyle daha sakin bir denge kurdu.
+- Bu adim secili akis kartlarindaki tipografik hiyerarsiyi bir kademe daha toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.149)
 
 - v1.149 tamamlandi: Odemeler panelindeki `AKTIF KOLON` rozetlerinin boyutu yardim kapsullerine biraz daha yaklastirildi.

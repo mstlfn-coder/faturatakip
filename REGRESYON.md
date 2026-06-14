@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.150 - Mikro Rozet Agirlik Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif kolon rozet metni daha sakin | OK | Rozet metinleri normal agirlikla daha yumusak okunuyor |
+| Renkli vurgu korunuyor | OK | Kapsul arka plani aktif baglami belirgin gostermeye devam ediyor |
+| 2026-06-14 | v1.150 | OK | Odemeler panelinde mikro rozet agirlik yumusatma tamamlandi |
+
 ## v1.149 - Mikro Rozet Olcek Dengeleme
 | Kontrol | Durum | Not |
 | --- | --- | --- |
