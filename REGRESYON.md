@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.185 - Odemeler Ozeti Hedefli Gecis
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruktan hedefli gecis var | OK | Bekleyen odeme kaydindan ilgili faturayi odeme alaninda ac butonu ile acmak mumkun |
+| Son odemeden hedefli gecis var | OK | Son odeme listesinden ilgili fatura odeme alanina tek tikla donulebiliyor |
+| 2026-06-15 | v1.185 | OK | Odemeler panelinde hedefli gecis dugmeleri eklendi |
+
 ## v1.184 - Odemeler Operasyon Ozeti
 | Kontrol | Durum | Not |
 | --- | --- | --- |

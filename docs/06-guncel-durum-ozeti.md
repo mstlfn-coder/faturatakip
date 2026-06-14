@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.184 - Odemeler Operasyon Ozeti`
+- Son tamamlanan temiz faz: `v1.185 - Odemeler Ozeti Hedefli Gecis`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.185` Odemeler Ozeti Hedefli Gecis
 - `v1.184` Odemeler Operasyon Ozeti
 - `v1.183` Mikro Hiyerarsi Seri Kapanisi
 - `v1.182` Kisayol Aksiyon Son Ritim
@@ -100,7 +101,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Ana Adim
 
-- Odemeler sekmesindeki operasyon ozetinden sonra secili odeme veya acik fatura detayina baglanan ilk dogrudan etkileşimi eklemek
+- Hedefli gecislerden sonra Odemeler sekmesinde secili kaydin daha zengin durum ozetini ya da hizli aksiyon satirini eklemek
 
 ## Yeni Chat Icin Kisa Talimat
 

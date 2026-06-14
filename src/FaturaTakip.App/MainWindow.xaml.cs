@@ -223,6 +223,42 @@ public partial class MainWindow : Window
         ReportsPanel.ShowUnpaidReport();
     }
 
+    private void OpenPaymentsQueueInvoiceButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not FrameworkElement { Tag: long invoiceId })
+        {
+            return;
+        }
+
+        PersistPaymentsPanelContext(
+            "Odeme kuyrugundan secilen acik fatura odeme alaninda hedefli olarak acildi.",
+            "SON YOL: KUYRUK",
+            "#DCFCE7",
+            "#86EFAC",
+            "#166534",
+            routeKey: "workspace");
+        ShowInvoices();
+        InvoicesPanel.StartPaymentWorkspaceForInvoice(invoiceId, preferUnpaidFilter: true);
+    }
+
+    private void OpenRecentPaymentInvoiceButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not FrameworkElement { Tag: long invoiceId })
+        {
+            return;
+        }
+
+        PersistPaymentsPanelContext(
+            "Son odeme kaydinin ait oldugu fatura odeme alaninda yeniden acildi.",
+            "SON YOL: SON ODEME",
+            "#DBEAFE",
+            "#93C5FD",
+            "#1D4ED8",
+            routeKey: "workspace");
+        ShowInvoices();
+        InvoicesPanel.StartPaymentWorkspaceForInvoice(invoiceId, preferUnpaidFilter: false);
+    }
+
     private void ReportsPanel_UnreviewedInvoiceReviewRequested(object? sender, Views.ReportsView.InvoiceReviewNavigationRequestEventArgs e)
     {
         ShowInvoices();
@@ -727,6 +763,7 @@ public partial class MainWindow : Window
             .ThenByDescending(item => item.RemainingAmount)
             .Take(5)
             .Select(item => new PaymentsQueueItem(
+                item.Id,
                 BuildInvoiceQueueTitle(item),
                 $"{item.Period} • Vade {item.DueDate:dd.MM.yyyy}",
                 $"Kalan {FormatMoney(item.RemainingAmount)}",
@@ -744,6 +781,7 @@ public partial class MainWindow : Window
             .ThenByDescending(item => item.Id)
             .Take(5)
             .Select(item => new PaymentsRecentPaymentItem(
+                item.InvoiceId,
                 BuildRecentPaymentTitle(item, invoicesById),
                 BuildRecentPaymentMeta(item, invoicesById),
                 FormatMoney(item.Amount),
@@ -906,7 +944,7 @@ public partial class MainWindow : Window
             : new SolidColorBrush(Color.FromRgb(95, 107, 122));
     }
 
-    private sealed record PaymentsQueueItem(string Title, string Meta, string Amount, string Status);
+    private sealed record PaymentsQueueItem(long InvoiceId, string Title, string Meta, string Amount, string Status);
 
-    private sealed record PaymentsRecentPaymentItem(string Title, string Meta, string Amount, string Status);
+    private sealed record PaymentsRecentPaymentItem(long InvoiceId, string Title, string Meta, string Amount, string Status);
 }

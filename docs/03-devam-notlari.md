@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.185)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.185 - Odemeler Ozeti Hedefli Gecis`
+- Bu adimda Odemeler sekmesindeki odeme kuyrugu ve son odemeler listesine dogrudan ac butonlari eklendi.
+- Boylece kullanici tek tikla ilgili faturayi odeme alaninda hedefli olarak acabiliyor; panel artik sadece ozet gostermiyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.184)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

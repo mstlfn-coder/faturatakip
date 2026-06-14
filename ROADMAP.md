@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.185)
+
+- v1.185 tamamlandi: Odemeler sekmesindeki operasyon kartlarina hedefli ac butonlari eklendi.
+- Bekleyen fatura ya da son odeme kaydindan tek tikla ilgili fatura odeme alanina gecis saglandi.
+- Boylece odemeler yuzeyi ozet gosteren panelden gercek is akisini baslatan calisma yuzeyine bir adim daha yaklasti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.184)
 
 - v1.184 tamamlandi: Odemeler sekmesine canli veriyle beslenen operasyon ozeti eklendi.

@@ -249,6 +249,47 @@ public partial class InvoicesView : UserControl
         SetInvoiceStatus(statusMessage, isError: false);
     }
 
+    public void StartPaymentWorkspaceForInvoice(long invoiceId, bool preferUnpaidFilter = true)
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        RefreshSubscriptionLists();
+        RefreshInvoices(_selectedInvoice?.Id);
+
+        if (preferUnpaidFilter)
+        {
+            ResetQuickFilters();
+            SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Unpaid);
+            QueueInvoiceFilterHintHighlight("Odeme alani");
+        }
+
+        ApplyFiltersToGrid(selectedId: invoiceId, selectFirstIfAvailable: true);
+
+        if (_selectedInvoice?.Id != invoiceId)
+        {
+            ApplyFiltersToGrid(selectedId: invoiceId, selectFirstIfAvailable: true);
+        }
+
+        Dispatcher.BeginInvoke(new Action(() =>
+        {
+            if (_selectedInvoice is null)
+            {
+                InvoiceGrid.Focus();
+                return;
+            }
+
+            PaymentDateInput.Focus();
+        }), DispatcherPriority.Input);
+
+        var statusMessage = _selectedInvoice?.Id == invoiceId
+            ? $"Odeme alani hedef kayitla acildi: {_selectedInvoice.InvoiceNo}"
+            : "Hedef odeme kaydi mevcut filtrelerde bulunamadi; liste odeme alaniyla acildi.";
+        SetInvoiceStatus(statusMessage, isError: false);
+    }
+
     private void RefreshSubscriptionLists()
     {
         if (_subscriptionRepository is null)
