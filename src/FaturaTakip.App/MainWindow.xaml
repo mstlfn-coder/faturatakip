@@ -122,10 +122,10 @@
                                              To="1"
                                              Duration="0:0:0.16" />
                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
-                                             To="1.006"
+                                             To="1.005"
                                              Duration="0:0:0.16" />
                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
-                                             To="1.006"
+                                             To="1.005"
                                              Duration="0:0:0.16" />
                         </Storyboard>
                     </BeginStoryboard>

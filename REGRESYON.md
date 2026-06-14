@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.174 - Hover Buyume Orani Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover buyumesi daha sakin | OK | Mikro olcek buyumesi azaltildigi icin kart tepkisi daha kontrollu hissediliyor |
+| Hareket okunurlugu korundu | OK | Hover animasyonu hala fark edilir ve akisin yon hissi kaybolmadi |
+| 2026-06-15 | v1.174 | OK | Odemeler panelinde hover buyume orani ayari tamamlandi |
+
 ## v1.173 - Hover Donus Hiz Ayari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

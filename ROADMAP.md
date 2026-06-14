@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.174)
+
+- v1.174 tamamlandi: Odemeler panelindeki hover mikro buyume orani hafifce azaltildi.
+- Boylece kartlar etkileşim hissini korurken panelin genel sakin ritmine daha yakin duruyor.
+- Bu adim hover hareketinin gosterdigi enerjiyi biraz daha kontrollu hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.173)
 
 - v1.173 tamamlandi: Odemeler panelindeki hover cikis sureleri hafifce kisaltildi.
