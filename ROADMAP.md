@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.109)
+
+- v1.109 tamamlandi: secili yardim durum satirinin tekrar rozeti replay aktifliginde ayni vurgu dilini devralmaya basladi.
+- Boylece satir flashi tek basina kalmiyor; ortadaki tekrar rozeti de ayni anda replay tonuyla canlaniyor.
+- Odeme yardiminda yesil, PDF yardiminda mavi replay gecisi korunarak daha tutarli bir geri bildirim hissi elde edildi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.108)
 
 - v1.108 tamamlandi: secili yardim durum satiri aksiyon tetiklenince tum satira yayilan kisa bir geri donus isigi almaya basladi.

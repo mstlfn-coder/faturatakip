@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.109 - Replay Rozeti Gecis Uyumu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi secili durum rozetinde replay gecisi var | OK | Replay aktifken tekrar rozeti replay tonunu devralip satir flashi ile uyumlu canlaniyor |
+| PDF yardimi secili durum rozetinde replay gecisi var | OK | Replay aktifken tekrar rozeti replay tonunu devralip satir flashi ile uyumlu canlaniyor |
+| 2026-06-14 | v1.109 | OK | Replay rozeti gecis uyumu + build + self-test tamamlandi |
+
 ## v1.108 - Yardim Durum Satiri Geri Donus Isigi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

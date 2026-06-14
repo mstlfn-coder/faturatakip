@@ -7,6 +7,7 @@ Son guncelleme tarihi: 2026-06-14
 - Aktif branch: `codex/v1.08-review-context-issue-action`
 - Son commit: `git log --oneline -1` ile teyit et; bu dosya hizli handoff ozeti olarak tutulur
 - Son tamamlanan temiz fazlar:
+  - `v1.109` Replay Rozeti Gecis Uyumu
   - `v1.108` Yardim Durum Satiri Geri Donus Isigi
   - `v1.107` Yardim Mikro Vurgu Kademesi
   - `v1.106` Yardim Kisayol Ipucunda Aksiyon Varyanti

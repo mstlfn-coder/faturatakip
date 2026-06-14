@@ -1158,11 +1158,12 @@
                                                            Style="{StaticResource InlineShortcutPrefixText}"
                                                            Foreground="#166534" />
                                             </Border>
-                                            <Border Style="{StaticResource InlineShortcutRepeatBorder}">
-                                                <TextBlock x:Name="PaymentHelperSelectedActionRepeatText"
-                                                           Text="TEKRAR"
-                                                           Style="{StaticResource InlineShortcutRepeatText}" />
-                                            </Border>
+                                              <Border x:Name="PaymentHelperSelectedActionRepeatBorder"
+                                                      Style="{StaticResource InlineShortcutRepeatBorder}">
+                                                  <TextBlock x:Name="PaymentHelperSelectedActionRepeatText"
+                                                             Text="TEKRAR"
+                                                             Style="{StaticResource InlineShortcutRepeatText}" />
+                                              </Border>
                                             <TextBlock Style="{StaticResource InlineShortcutDividerText}" />
                                             <TextBlock x:Name="PaymentHelperSelectedActionStatusText"
                                                        Style="{StaticResource PaymentHelperLastActionTextStyle}" />
@@ -1311,11 +1312,12 @@
                                                            Style="{StaticResource InlineShortcutPrefixText}"
                                                            Foreground="#0369A1" />
                                             </Border>
-                                            <Border Style="{StaticResource InlineShortcutRepeatBorder}">
-                                                <TextBlock x:Name="PaymentPdfSelectedActionRepeatText"
-                                                           Text="TEKRAR"
-                                                           Style="{StaticResource InlineShortcutRepeatText}" />
-                                            </Border>
+                                              <Border x:Name="PaymentPdfSelectedActionRepeatBorder"
+                                                      Style="{StaticResource InlineShortcutRepeatBorder}">
+                                                  <TextBlock x:Name="PaymentPdfSelectedActionRepeatText"
+                                                             Text="TEKRAR"
+                                                             Style="{StaticResource InlineShortcutRepeatText}" />
+                                              </Border>
                                             <TextBlock Style="{StaticResource InlineShortcutDividerText}" />
                                             <TextBlock x:Name="PaymentPdfSelectedActionStatusText"
                                                        Style="{StaticResource PaymentPdfLastActionTextStyle}" />

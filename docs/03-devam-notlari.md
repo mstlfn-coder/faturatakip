@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.109)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.109 - Replay Rozeti Gecis Uyumu`
+- Bu adimda secili yardim durum satirinin tekrar rozeti replay aktifken ayni renk ve kenarlik diliyle canlanmaya basladi.
+- Boylece satirin kisa geri donus isigi ile replay geri bildirimi birbirine daha yakin bir gecis hissi veriyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.108)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -22,4 +31,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Yardim durum satirindaki geri donus isigini replay rozetindeki aktiflik diliyle daha da uyumlu bir gecis hissine baglayabiliriz.
+- Replay aktifken secili durum satirinin kisayol ipucuna da daha hafif bir uyum tonu verip tum satiri tek dil gibi hissettirebiliriz.
