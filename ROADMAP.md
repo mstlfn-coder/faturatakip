@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.157)
+
+- v1.157 tamamlandi: Odemeler panelindeki `Sonraki adim` satirlarinin ust boslugu hafifce azaltildi.
+- Boylece alt yonlendirme blogunda `Hedef` ve `Sonraki adim` satirlari daha yakin ve daha butunlu okunuyor.
+- Bu adim kartlarin alt aksiyon zincirini bir kademe daha toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.156)
 
 - v1.156 tamamlandi: Odemeler panelindeki `Hedef` satirlarinin ust boslugu hafifce azaltildi.

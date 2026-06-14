@@ -1089,7 +1089,7 @@
                                                FontSize="10"
                                                LineHeight="15"
                                                LineStackingStrategy="BlockLineHeight"
-                                               Margin="0,2,0,0"
+                                               Margin="0,1,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
                                     <Border x:Name="PaymentsWorkspaceShortcutHint"
@@ -1184,7 +1184,7 @@
                                                FontSize="10"
                                                LineHeight="15"
                                                LineStackingStrategy="BlockLineHeight"
-                                               Margin="0,2,0,0"
+                                               Margin="0,1,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
                                     <Border x:Name="PaymentsDocumentShortcutHint"
@@ -1278,7 +1278,7 @@
                                                FontSize="10"
                                                LineHeight="15"
                                                LineStackingStrategy="BlockLineHeight"
-                                               Margin="0,2,0,0"
+                                               Margin="0,1,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
                                     <Border x:Name="PaymentsUnpaidReportShortcutHint"

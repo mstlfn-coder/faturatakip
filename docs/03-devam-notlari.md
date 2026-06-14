@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.157)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.157 - Sonraki Adim Yakinlastirma`
+- Bu adimda secili akis kartlarindaki `Sonraki adim` satirinin ust boslugu bir kademe azaltildi.
+- Boylece `Hedef` ve `Sonraki adim` satirlari daha tek blok gibi okunuyor ve alt yonlendirme zinciri daha toplu hissediliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.156)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

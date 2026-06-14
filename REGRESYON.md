@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.157 - Sonraki Adim Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sonraki adim daha bagli | OK | Sonraki adim satiri hedef satirina yakinlastirildi |
+| Alt yonlendirme blogu daha toplu | OK | Hedef ve sonraki adim daha tek blok gibi okunuyor |
+| 2026-06-14 | v1.157 | OK | Odemeler panelinde sonraki adim yakinlastirma tamamlandi |
+
 ## v1.156 - Hedef Satiri Yakinlastirma
 | Kontrol | Durum | Not |
 | --- | --- | --- |
