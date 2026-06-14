@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.112)
+
+- v1.112 tamamlandi: sol menudeki Odemeler alani pasif yazi olmaktan cikarilip calisan bir gecis paneline donusturuldu.
+- Yeni panel, mevcut odeme akisinin Faturalar ekrani icinde oldugunu acikca anlatiyor ve kullaniciyi ilgili ekranlara tek tikla goturuyor.
+- Boylece kullanici bos bir menu hissi yerine gercek bir yonlendirme merkezi goruyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.111)
 
 - v1.111 tamamlandi: secili yardim durum satirindaki ayirac nokta replay aktifliginde cok hafif ton uyumu almaya basladi.

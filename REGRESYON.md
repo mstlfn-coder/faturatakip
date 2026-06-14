@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.112 - Odemeler Gecis Paneli
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odemeler menusu artik tiklanabiliyor | OK | Sol menudeki Odemeler artik calisan bir navigasyon dugmesi |
+| Odemeler paneli dogru akis noktalari sunuyor | OK | Faturalar ve Raporlar icin tek tik gecisleri ile mevcut odeme akisini acikliyor |
+| 2026-06-14 | v1.112 | OK | Odemeler gecis paneli + build + self-test tamamlandi |
+
 ## v1.111 - Replay Ayirac Uyumu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

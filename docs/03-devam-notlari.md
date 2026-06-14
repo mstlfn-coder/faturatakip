@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.112)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.112 - Odemeler Gecis Paneli`
+- Bu adimda sol menudeki Odemeler artik tiklanabilir hale getirildi ve ayri modul olmadigi acik bir gecis paneli ile gorunur kilindi.
+- Panel uzerinden Faturalar ve Raporlar akisina tek tikla gecis veriliyor; mevcut odeme yonetiminin Faturalar icinde oldugu netlestirildi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.111)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -49,4 +58,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Secili yardim durum satirinin replay geri bildirim zinciri tamamlandigi icin, sonraki mantikli kucuk adim odemeler modulundeki ana akis engellerinden birine gecmek olur.
+- Odemeler menusu artik calistigi icin, sonraki mantikli adim bu gecis panelinden dogrudan secili fatura odeme alanina daha hedefli bir yonlendirme akisi eklemek ya da ayri bir PaymentsView tasarlamak olur.
