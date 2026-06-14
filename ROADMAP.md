@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.177)
+
+- v1.177 tamamlandi: Odemeler panelindeki aktif kolon rozetlerinin ic boslugu hafifce azaltildi.
+- Boylece aktif rozetler yardim kapsulleri ile boyut olarak daha yakin ve daha tutarli gorunuyor.
+- Bu adim secili akis katmanlari arasindaki mikro hiyerarsiyi daha temiz hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.176)
 
 - v1.176 tamamlandi: Odemeler panelindeki hover kenarlik tonu hafifce yumusatildi.

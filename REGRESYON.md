@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.177 - Aktif Rozet Oran Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif rozet boyutu dengelendi | OK | Aktif kolon rozetlerinin ic boslugu azaltildigi icin yardim kapsulu ile daha yakin oran yakalandi |
+| Katman okunurlugu korundu | OK | Secili akis vurgusu hala net ve yardim katmanlariyla karismiyor |
+| 2026-06-15 | v1.177 | OK | Odemeler panelinde aktif rozet oran ayari tamamlandi |
+
 ## v1.176 - Hover Kenarlik Tonu Ayari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

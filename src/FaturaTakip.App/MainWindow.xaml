@@ -1044,7 +1044,7 @@
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
                                             Margin="0,5,0,0"
-                                            Padding="7,2"
+                                            Padding="6,2"
                                             Visibility="Collapsed">
                                         <TextBlock Text="AKTIF KOLON"
                                                    Foreground="White"
@@ -1140,7 +1140,7 @@
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
                                             Margin="0,5,0,0"
-                                            Padding="7,2"
+                                            Padding="6,2"
                                             Visibility="Collapsed">
                                         <TextBlock Text="AKTIF KOLON"
                                                    Foreground="White"
@@ -1235,7 +1235,7 @@
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
                                             Margin="0,5,0,0"
-                                            Padding="7,2"
+                                            Padding="6,2"
                                             Visibility="Collapsed">
                                         <TextBlock Text="AKTIF KOLON"
                                                    Foreground="White"
