@@ -1113,7 +1113,7 @@
                                     <Button Content="Odeme Alanini Ac"
                                             x:Name="PaymentsWorkspaceActionButton"
                                             Style="{StaticResource PaymentsFlowPrimaryActionButton}"
-                                            Margin="0,6,0,0"
+                                            Margin="0,5,0,0"
                                             HorizontalAlignment="Left"
                                             ToolTip="Faturalar ekraninda odeme alanini acar. Enter ile tetiklenebilir."
                                             Click="OpenInvoicePaymentWorkspaceButton_Click" />
@@ -1209,7 +1209,7 @@
                                     <Button Content="Eksik Evrak Raporunu Ac"
                                             x:Name="PaymentsDocumentActionButton"
                                             Style="{StaticResource PaymentsFlowSecondaryActionButton}"
-                                            Margin="0,6,0,0"
+                                            Margin="0,5,0,0"
                                             HorizontalAlignment="Left"
                                             ToolTip="Eksik odeme PDF kayitlarini raporda acar. Enter ile tetiklenebilir."
                                             Click="OpenDocumentHealthReportFromPaymentsButton_Click" />
@@ -1304,7 +1304,7 @@
                                     <Button Content="Odenmemisler Raporunu Ac"
                                             x:Name="PaymentsUnpaidReportActionButton"
                                             Style="{StaticResource PaymentsFlowSecondaryActionButton}"
-                                            Margin="0,6,0,0"
+                                            Margin="0,5,0,0"
                                             HorizontalAlignment="Left"
                                             ToolTip="Odenmemis faturalar raporunu acar. Enter ile tetiklenebilir."
                                             Click="OpenUnpaidReportFromPaymentsButton_Click" />

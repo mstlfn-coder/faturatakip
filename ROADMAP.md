@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.182)
+
+- v1.182 tamamlandi: Odemeler panelindeki kisayol kapsulu ile aksiyon dugmesi arasindaki bosluk hafifce azaltildi.
+- Boylece alt komut bolgesi daha toplu, daha ritmik ve daha tutarli gorunuyor.
+- Bu adim secili akis kartlarindaki mikro hiyerarsi duzenlemesinin son ritim dokunuslarindan biri oldu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.181)
 
 - v1.181 tamamlandi: Odemeler panelindeki hedef satiri ile kisayol kapsulu arasindaki bosluk hafifce azaltildi.

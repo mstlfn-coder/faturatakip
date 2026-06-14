@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.182 - Kisayol Aksiyon Son Ritim
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Alt komut ritmi toparlandi | OK | Kisayol kapsulu ile aksiyon dugmesi arasindaki bosluk azaltildigi icin blok daha toplu okunuyor |
+| Komut agirligi korundu | OK | Aksiyon dugmeleri hala belirgin ve kolay secilebilir durumda |
+| 2026-06-15 | v1.182 | OK | Odemeler panelinde kisayol aksiyon son ritim ayari tamamlandi |
+
 ## v1.181 - Hedef Kisayol Bosluk Ayari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

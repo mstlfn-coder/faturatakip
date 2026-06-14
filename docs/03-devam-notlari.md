@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.182)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.182 - Kisayol Aksiyon Son Ritim`
+- Bu adimda odeme akis kartlarindaki kisayol kapsulu ile aksiyon dugmesi arasindaki ust bosluk hafifce azaltildi.
+- Boylece alt komut bolgesi daha toplu okunurken butonun komut agirligi korunmus oldu.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.181)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

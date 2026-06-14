@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.181 - Hedef Kisayol Bosluk Ayari`
+- Son tamamlanan temiz faz: `v1.182 - Kisayol Aksiyon Son Ritim`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.182` Kisayol Aksiyon Son Ritim
 - `v1.181` Hedef Kisayol Bosluk Ayari
 - `v1.180` Sonraki Adim Ton Ayrimi
 - `v1.179` Aktif Yol Gecis Yumusatma
@@ -96,7 +97,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Secili akis kartlarinda kisayol kapsulu ile aksiyon dugmesi arasindaki ritmi son kez gozden gecirmek
+- Odemeler gecis panelindeki mikro hiyerarsiyi butun olarak gozden gecirip bu ince ayar serisini kapatmak
 
 ## Yeni Chat Icin Kisa Talimat
 
