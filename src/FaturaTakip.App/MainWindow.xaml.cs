@@ -19,6 +19,7 @@ public partial class MainWindow : Window
 {
     private const string DefaultPaymentsHeaderHint = "Soldaki yol calisma ekranina, sagdaki yol rapor ve kontrol ekranlarina goturur.";
     private const string DefaultPaymentsRouteBadge = "SON YOL: GENEL";
+    private const string DefaultPaymentsFlowContext = "Aktif kolon secildiginde ilgili akis burada kisaca ozetlenir.";
     private readonly InvoiceTypeRepository _invoiceTypeRepository;
     private readonly SubscriptionRepository _subscriptionRepository;
     private readonly InvoiceRepository _invoiceRepository;
@@ -28,6 +29,7 @@ public partial class MainWindow : Window
     private string _activePaymentsHeaderHint = DefaultPaymentsHeaderHint;
     private string _activePaymentsRouteBadge = DefaultPaymentsRouteBadge;
     private string? _activePaymentsRouteKey;
+    private string _activePaymentsFlowContext = DefaultPaymentsFlowContext;
 
     public MainWindow(StartupStatus startupStatus)
     {
@@ -412,6 +414,7 @@ public partial class MainWindow : Window
     {
         PaymentsHeaderHintText.Text = _activePaymentsHeaderHint;
         PaymentsLastRouteBadgeText.Text = _activePaymentsRouteBadge;
+        PaymentsFlowContextText.Text = _activePaymentsFlowContext;
     }
 
     private void ApplyPaymentsRouteBadge(string backgroundHex, string borderHex, string foregroundHex)
@@ -441,6 +444,8 @@ public partial class MainWindow : Window
         SetPaymentsActionButtonState(PaymentsWorkspaceActionButton, routeKey == "workspace", "#DCFCE7", "#4ADE80", "#166534");
         SetPaymentsActionButtonState(PaymentsDocumentActionButton, routeKey == "document", "#DBEAFE", "#60A5FA", "#1D4ED8");
         SetPaymentsActionButtonState(PaymentsUnpaidReportActionButton, routeKey == "unpaid", "#FEF3C7", "#FBBF24", "#B45309");
+        _activePaymentsFlowContext = BuildPaymentsFlowContext(routeKey);
+        PaymentsFlowContextText.Text = _activePaymentsFlowContext;
     }
 
     private static void SetPaymentsCardSelection(Border card, bool isSelected, string selectedBackgroundHex, string selectedBorderHex)
@@ -489,6 +494,18 @@ public partial class MainWindow : Window
             "flow_document" => "Evrak yolu kontrol raporunu acar; eksik odeme PDF kayitlarini denetler.",
             "flow_unpaid_report" => "Rapor yolu odenmemisler sekmesini acar; acik bakiye takibini toplar.",
             _ => DefaultPaymentsHeaderHint,
+        };
+    }
+
+    private static string BuildPaymentsFlowContext(string? routeKey)
+    {
+        return routeKey switch
+        {
+            "monthly" => "Aylik kolon aktif: ustteki tahsilat ozeti ile alttaki rapor akisina odaklaniliyor.",
+            "document" => "Evrak kolonu aktif: PDF eksik ozetinden kontrol raporu akisina gecis izleniyor.",
+            "workspace" => "Islem kolonu aktif: odenmemis ozetten odeme giris alanina gecis izleniyor.",
+            "unpaid" => "Bakiye kolonu aktif: acik faturalar ozeti ile rapor akisinin iliskisi izleniyor.",
+            _ => DefaultPaymentsFlowContext,
         };
     }
 

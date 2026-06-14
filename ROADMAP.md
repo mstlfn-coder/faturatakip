@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.126)
+
+- v1.126 tamamlandi: Odeme Is Akisi bolum basligina secili kolonu ozetleyen dinamik bir baglam satiri eklendi.
+- Boylece aktif yol sadece kartlarda degil, akis bolumunun ustunde de toplu olarak okunabiliyor.
+- Bu adim panelin hangi bolume odaklandigini daha sakin bir ust satirla netlestirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.125)
 
 - v1.125 tamamlandi: Ust ozet kartlarin alt akis baglanti metinlerine asagi yon ipuclari eklendi.

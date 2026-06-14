@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.126 - Akis Baslik Baglami
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Akis basligi aktif kolonu ozetliyor | OK | Odeme Is Akisi altinda secili yone gore kisa baglam satiri guncelleniyor |
+| Varsayilan metin korunuyor | OK | Aktif yol yokken alan genel aciklama halinde kaliyor |
+| 2026-06-14 | v1.126 | OK | Odemeler panelinde akis baslik baglami tamamlandi |
+
 ## v1.125 - Ozet Yonu Ipuclari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

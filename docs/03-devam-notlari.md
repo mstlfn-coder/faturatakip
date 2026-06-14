@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.126)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.126 - Akis Baslik Baglami`
+- Bu adimda Odeme Is Akisi bolum basliginin altina, secili kolonu ve ilgili yonu ozetleyen dinamik bir baglam satiri eklendi.
+- Boylece aktif yolun hangi akis kolonunda toplandigi panelin orta bolumunde de acikca okunabiliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.125)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -175,4 +184,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelinde yon ipucu dili de kuruldugu icin, sonraki mantikli kucuk adim aktif yol durumunu sadece ilgili kolon icinde toplamak ya da secili kolona daha butunlu bir vurgu vermek olabilir.
+- Odemeler panelinde akis baslik baglami da eklendigi icin, sonraki mantikli kucuk adim secili kolona daha butunlu bir vurgu vermek ya da sadece aktif kolona ozel mikro rozet eklemek olabilir.
