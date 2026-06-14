@@ -1069,7 +1069,7 @@
                                                TextWrapping="Wrap" />
                                     <TextBlock x:Name="PaymentsWorkspaceActiveRouteNote"
                                                Text="Aktif yol"
-                                               Foreground="#15803D"
+                                               Foreground="#16A34A"
                                                FontSize="10"
                                                FontWeight="Normal"
                                                Margin="0,4,0,0"
@@ -1165,7 +1165,7 @@
                                                TextWrapping="Wrap" />
                                     <TextBlock x:Name="PaymentsDocumentActiveRouteNote"
                                                Text="Aktif yol"
-                                               Foreground="#2563EB"
+                                               Foreground="#3B82F6"
                                                FontSize="10"
                                                FontWeight="Normal"
                                                Margin="0,4,0,0"
@@ -1260,7 +1260,7 @@
                                                TextWrapping="Wrap" />
                                     <TextBlock x:Name="PaymentsUnpaidReportActiveRouteNote"
                                                Text="Aktif yol"
-                                               Foreground="#C2410C"
+                                               Foreground="#EA580C"
                                                FontSize="10"
                                                FontWeight="Normal"
                                                Margin="0,4,0,0"

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.164)
+
+- v1.164 tamamlandi: Odemeler panelindeki `Aktif yol` notlarinin renk tonu hafifce yumusatildi.
+- Boylece hedef ve aksiyon satirlari daha onde kalirken, aktif yol notu daha sakin bir gecis bilgisi gibi okunuyor.
+- Bu adim kartlarin yonlendirme hiyerarsisini bir kademe daha rafine etti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.163)
 
 - v1.163 tamamlandi: Odemeler panelindeki baglam cumlelerinin renk tonu ve yazi agirligi hafifce yumusatildi.

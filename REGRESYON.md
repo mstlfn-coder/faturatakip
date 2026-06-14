@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.164 - Aktif Yol Tonu Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif yol daha sakin | OK | Aktif yol notlari daha yardimci tonda okunuyor |
+| Hiyerarsi korundu | OK | Hedef ve sonraki adim satirlari ana odakta kalmaya devam ediyor |
+| 2026-06-14 | v1.164 | OK | Odemeler panelinde aktif yol tonu yumusatma tamamlandi |
+
 ## v1.163 - Baglam Cumlesi Tonu Yumusatma
 | Kontrol | Durum | Not |
 | --- | --- | --- |
