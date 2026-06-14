@@ -1058,6 +1058,7 @@
                                     <TextBlock x:Name="PaymentsWorkspaceDescriptionText"
                                                Text="Odenmemis filtre ile odeme giris alanina gecer."
                                                Style="{StaticResource MutedText}"
+                                               Foreground="#6B7280"
                                                Margin="0,5,0,0"
                                                TextWrapping="Wrap" />
                                     <TextBlock Text="Ustte Odenmemis Faturalar ozeti ile baglidir."
@@ -1153,6 +1154,7 @@
                                     <TextBlock x:Name="PaymentsDocumentDescriptionText"
                                                Text="Eksik odeme evraklarini rapor ekraninda listeler."
                                                Style="{StaticResource MutedText}"
+                                               Foreground="#6B7280"
                                                Margin="0,5,0,0"
                                                TextWrapping="Wrap" />
                                     <TextBlock Text="Ustte Odeme PDF Eksik ozeti ile baglidir."
@@ -1247,6 +1249,7 @@
                                     <TextBlock x:Name="PaymentsUnpaidReportDescriptionText"
                                                Text="Kalan toplam ve acik faturalari rapor sekmesinde ac."
                                                Style="{StaticResource MutedText}"
+                                               Foreground="#6B7280"
                                                Margin="0,5,0,0"
                                                TextWrapping="Wrap" />
                                     <TextBlock Text="Ustte Bu Ay Odeme ve Odenmemis Faturalar ozetleri ile birlikte okunur."

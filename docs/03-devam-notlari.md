@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.162)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.162 - Aciklama Tonu Yumusatma`
+- Bu adimda secili akis kartlarindaki ilk aciklama satirlarinin tonu bir kademe daha yardimci katmana cekildi.
+- Boylece aktif durum, hedef ve sonraki adim satirlari ana odakta kalirken, aciklama satiri daha sakin bir destek bilgisi gibi okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.161)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.162 - Aciklama Tonu Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aciklama daha sakin | OK | Aciklama satirlari daha yardimci bir tonla okunuyor |
+| Metin hiyerarsisi korundu | OK | Aktif durum ve yonlendirme satirlari ana odakta kalmaya devam ediyor |
+| 2026-06-14 | v1.162 | OK | Odemeler panelinde aciklama tonu yumusatma tamamlandi |
+
 ## v1.161 - Baslik Ust Bosluk Dengeleme
 | Kontrol | Durum | Not |
 | --- | --- | --- |

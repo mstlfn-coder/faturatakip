@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.162)
+
+- v1.162 tamamlandi: Odemeler panelindeki ilk aciklama satirlarinin tonu hafifce yumusatildi.
+- Boylece secili durum ve yonlendirme satirlari daha onde kalirken, aciklama satiri daha sakin bir destek bilgisi gibi okunuyor.
+- Bu adim kartlarin metin hiyerarsisini bir kademe daha olgunlastirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.161)
 
 - v1.161 tamamlandi: Odemeler panelindeki kart basliklarinin ust boslugu hafifce azaltildi.
