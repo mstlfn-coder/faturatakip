@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.154 - Aciklama Baglam Bosluk Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aciklama ve baglam daha bagli | OK | Baglam cumlesi ust boslugu azaltilarak aciklama satirina yakinlastirildi |
+| Ust bilgi blogu daha butunlu | OK | Rozet-baslik-aciklama-baglam zinciri daha akici okunuyor |
+| 2026-06-14 | v1.154 | OK | Odemeler panelinde aciklama-baglam bosluk ayari tamamlandi |
+
 ## v1.153 - Baslik Aciklama Ritim Sikilastirma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

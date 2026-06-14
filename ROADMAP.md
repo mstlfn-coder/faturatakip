@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.154)
+
+- v1.154 tamamlandi: Odemeler panelindeki aciklama satiri ile baglam cumlesi arasindaki bosluk hafifce azaltildi.
+- Boylece secili akisin ust bilgi blogu daha butunlu ve daha akici gorunuyor.
+- Bu adim kartlarin ilk bilgi zincirini bir kademe daha toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.153)
 
 - v1.153 tamamlandi: Odemeler panelindeki kart basliklari ile aciklama satirlari arasindaki bosluk hafifce azaltildi.
