@@ -147,6 +147,19 @@
                 </EventTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="PaymentsOpsCard" TargetType="Border" BasedOn="{StaticResource TileBorder}">
+            <Setter Property="Background" Value="#FCFDFE" />
+            <Setter Property="BorderBrush" Value="#D9E2EC" />
+            <Setter Property="Padding" Value="16" />
+        </Style>
+        <Style x:Key="PaymentsOpsItemBorder" TargetType="Border">
+            <Setter Property="Background" Value="#F8FAFC" />
+            <Setter Property="BorderBrush" Value="#E2E8F0" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="0,0,0,8" />
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -1001,6 +1014,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <TextBlock Text="Odeme Is Akisi"
@@ -1311,6 +1325,123 @@
                                 </StackPanel>
                             </Border>
                         </UniformGrid>
+
+                        <Grid Grid.Row="3"
+                              Margin="0,22,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="16" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0"
+                                    Style="{StaticResource PaymentsOpsCard}">
+                                <StackPanel>
+                                    <TextBlock Text="Odeme Calisma Kuyrugu"
+                                               Foreground="#1F2937"
+                                               FontSize="15"
+                                               FontWeight="SemiBold" />
+                                    <TextBlock x:Name="PaymentsQueueSummaryText"
+                                               Text="Odenmemis odemeler burada listelenir."
+                                               Style="{StaticResource MutedText}"
+                                               Margin="0,6,0,0"
+                                               TextWrapping="Wrap" />
+                                    <ItemsControl x:Name="PaymentsQueueItemsControl"
+                                                  Margin="0,14,0,0">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Style="{StaticResource PaymentsOpsItemBorder}">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <StackPanel>
+                                                            <TextBlock Text="{Binding Title}"
+                                                                       Foreground="#1F2937"
+                                                                       FontSize="12"
+                                                                       FontWeight="SemiBold"
+                                                                       TextWrapping="Wrap" />
+                                                            <TextBlock Text="{Binding Meta}"
+                                                                       Style="{StaticResource MutedText}"
+                                                                       Margin="0,4,0,0"
+                                                                       TextWrapping="Wrap" />
+                                                        </StackPanel>
+                                                        <StackPanel Grid.Column="1"
+                                                                    Margin="16,0,0,0"
+                                                                    HorizontalAlignment="Right">
+                                                            <TextBlock Text="{Binding Amount}"
+                                                                       Foreground="#166534"
+                                                                       FontSize="12"
+                                                                       FontWeight="SemiBold"
+                                                                       HorizontalAlignment="Right" />
+                                                            <TextBlock Text="{Binding Status}"
+                                                                       Style="{StaticResource MutedText}"
+                                                                       Margin="0,4,0,0"
+                                                                       HorizontalAlignment="Right" />
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Column="2"
+                                    Style="{StaticResource PaymentsOpsCard}">
+                                <StackPanel>
+                                    <TextBlock Text="Son Odemeler"
+                                               Foreground="#1F2937"
+                                               FontSize="15"
+                                               FontWeight="SemiBold" />
+                                    <TextBlock x:Name="PaymentsRecentPaymentsSummaryText"
+                                               Text="Son odemeler burada listelenir."
+                                               Style="{StaticResource MutedText}"
+                                               Margin="0,6,0,0"
+                                               TextWrapping="Wrap" />
+                                    <ItemsControl x:Name="PaymentsRecentPaymentsItemsControl"
+                                                  Margin="0,14,0,0">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Style="{StaticResource PaymentsOpsItemBorder}">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <StackPanel>
+                                                            <TextBlock Text="{Binding Title}"
+                                                                       Foreground="#1F2937"
+                                                                       FontSize="12"
+                                                                       FontWeight="SemiBold"
+                                                                       TextWrapping="Wrap" />
+                                                            <TextBlock Text="{Binding Meta}"
+                                                                       Style="{StaticResource MutedText}"
+                                                                       Margin="0,4,0,0"
+                                                                       TextWrapping="Wrap" />
+                                                        </StackPanel>
+                                                        <StackPanel Grid.Column="1"
+                                                                    Margin="16,0,0,0"
+                                                                    HorizontalAlignment="Right">
+                                                            <TextBlock Text="{Binding Amount}"
+                                                                       Foreground="#1D4ED8"
+                                                                       FontSize="12"
+                                                                       FontWeight="SemiBold"
+                                                                       HorizontalAlignment="Right" />
+                                                            <TextBlock Text="{Binding Status}"
+                                                                       Style="{StaticResource MutedText}"
+                                                                       Margin="0,4,0,0"
+                                                                       HorizontalAlignment="Right" />
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
                     </Grid>
                 </Border>
             </Grid>

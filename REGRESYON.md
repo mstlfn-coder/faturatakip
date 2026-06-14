@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.184 - Odemeler Operasyon Ozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme kuyrugu gorunur | OK | Odenmemis faturalardan en yakin kayitlar Odemeler sekmesinde listeleniyor |
+| Son odemeler gorunur | OK | En yeni odeme kayitlari ve PDF durumu ayni panelde izlenebiliyor |
+| 2026-06-15 | v1.184 | OK | Odemeler paneline operasyon ozeti eklendi |
+
 ## v1.183 - Mikro Hiyerarsi Seri Kapanisi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

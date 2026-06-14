@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.184)
+
+- v1.184 tamamlandi: Odemeler sekmesine canli veriyle beslenen operasyon ozeti eklendi.
+- Bekleyen odeme kuyrugu ve son odemeler listesi ayni panel icinde gorunur hale getirildi.
+- Boylece odemeler alani ilk kez gercek operasyon yuzeyi gibi davranmaya basladi; sonraki adim dogrudan etkileşim eklemek olacak.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.183)
 
 - v1.183 tamamlandi: Odemeler gecis panelindeki mikro hiyerarsi serisi butunsel gozden gecirme ile kapatildi.

@@ -720,6 +720,40 @@ public partial class MainWindow : Window
         PaymentsMissingPdfCountText.Text = summary.MissingPaymentPdfCount.ToString(CultureInfo.InvariantCulture);
         PaymentsUnpaidInvoiceCountText.Text = summary.UnpaidInvoiceCount.ToString(CultureInfo.InvariantCulture);
         PaymentsUnpaidRemainingText.Text = $"Kalan {FormatMoney(summary.UnpaidRemainingTotal)}";
+
+        var unpaidQueueItems = invoices
+            .Where(item => !string.Equals(item.Status, "canceled", StringComparison.OrdinalIgnoreCase) && item.RemainingAmount > 0)
+            .OrderBy(item => item.DueDate)
+            .ThenByDescending(item => item.RemainingAmount)
+            .Take(5)
+            .Select(item => new PaymentsQueueItem(
+                BuildInvoiceQueueTitle(item),
+                $"{item.Period} • Vade {item.DueDate:dd.MM.yyyy}",
+                $"Kalan {FormatMoney(item.RemainingAmount)}",
+                item.State))
+            .ToList();
+
+        PaymentsQueueItemsControl.ItemsSource = unpaidQueueItems;
+        PaymentsQueueSummaryText.Text = unpaidQueueItems.Count == 0
+            ? "Bekleyen odeme kuyrugu yok."
+            : $"{summary.UnpaidInvoiceCount} acik faturadan en yakin {unpaidQueueItems.Count} kayit burada listeleniyor.";
+
+        var invoicesById = invoices.ToDictionary(item => item.Id);
+        var recentPaymentItems = payments
+            .OrderByDescending(item => item.PaymentDate)
+            .ThenByDescending(item => item.Id)
+            .Take(5)
+            .Select(item => new PaymentsRecentPaymentItem(
+                BuildRecentPaymentTitle(item, invoicesById),
+                BuildRecentPaymentMeta(item, invoicesById),
+                FormatMoney(item.Amount),
+                _paymentRepository.IsPdfMissing(item) ? "PDF eksik" : "PDF hazir"))
+            .ToList();
+
+        PaymentsRecentPaymentsItemsControl.ItemsSource = recentPaymentItems;
+        PaymentsRecentPaymentsSummaryText.Text = recentPaymentItems.Count == 0
+            ? "Henuz kaydedilmis odeme yok."
+            : $"En son {recentPaymentItems.Count} odeme kaydi burada hizlica kontrol edilebilir.";
     }
 
     private void SubscriptionsPanel_SubscriptionsChanged(object sender, EventArgs e)
@@ -736,6 +770,43 @@ public partial class MainWindow : Window
     private static string FormatMoney(decimal value)
     {
         return value.ToString("N2", CultureInfo.GetCultureInfo("tr-TR"));
+    }
+
+    private static string BuildInvoiceQueueTitle(Invoice invoice)
+    {
+        var owner = string.IsNullOrWhiteSpace(invoice.InstitutionName)
+            ? invoice.SubscriptionName
+            : invoice.InstitutionName;
+        var invoiceNo = string.IsNullOrWhiteSpace(invoice.InvoiceNo)
+            ? "No yok"
+            : invoice.InvoiceNo;
+        return $"{owner} • {invoiceNo}";
+    }
+
+    private static string BuildRecentPaymentTitle(Payment payment, IReadOnlyDictionary<long, Invoice> invoicesById)
+    {
+        if (!invoicesById.TryGetValue(payment.InvoiceId, out var invoice))
+        {
+            return $"Fatura #{payment.InvoiceId}";
+        }
+
+        var owner = string.IsNullOrWhiteSpace(invoice.InstitutionName)
+            ? invoice.SubscriptionName
+            : invoice.InstitutionName;
+        return owner;
+    }
+
+    private static string BuildRecentPaymentMeta(Payment payment, IReadOnlyDictionary<long, Invoice> invoicesById)
+    {
+        if (!invoicesById.TryGetValue(payment.InvoiceId, out var invoice))
+        {
+            return $"{payment.PaymentDate:dd.MM.yyyy} • Fatura kaydi bulunamadi";
+        }
+
+        var invoiceNo = string.IsNullOrWhiteSpace(invoice.InvoiceNo)
+            ? invoice.Period
+            : invoice.InvoiceNo;
+        return $"{payment.PaymentDate:dd.MM.yyyy} • {invoiceNo}";
     }
 
     private void InvoiceTypeGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -834,4 +905,8 @@ public partial class MainWindow : Window
             ? new SolidColorBrush(Color.FromRgb(185, 28, 28))
             : new SolidColorBrush(Color.FromRgb(95, 107, 122));
     }
+
+    private sealed record PaymentsQueueItem(string Title, string Meta, string Amount, string Status);
+
+    private sealed record PaymentsRecentPaymentItem(string Title, string Meta, string Amount, string Status);
 }
