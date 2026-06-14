@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.142)
+
+- v1.142 tamamlandi: Odemeler panelindeki yardim kapsulleri biraz daha kompakt hale getirildi.
+- Boylece kapsuller kartin icinde daha hafif bir mikro ipucu gibi dururken okunabilirligini koruyor.
+- Bu adim kartin alt yonlendirme zincirini daha zariflestirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.141)
 
 - v1.141 tamamlandi: Odemeler panelindeki yardim metinlerine daha duzgun satir yuksekligi dengesi verildi.

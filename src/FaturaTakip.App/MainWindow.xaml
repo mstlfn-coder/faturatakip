@@ -1099,11 +1099,11 @@
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
                                             Margin="0,6,0,0"
-                                            Padding="8,3"
+                                            Padding="7,2"
                                             Visibility="Collapsed">
                                         <TextBlock Text="Enter ile ac"
                                                    Foreground="#15803D"
-                                                   FontSize="10"
+                                                   FontSize="9"
                                                    FontWeight="SemiBold" />
                                     </Border>
                                     <Button Content="Odeme Alanini Ac"
@@ -1194,11 +1194,11 @@
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
                                             Margin="0,6,0,0"
-                                            Padding="8,3"
+                                            Padding="7,2"
                                             Visibility="Collapsed">
                                         <TextBlock Text="Enter ile ac"
                                                    Foreground="#2563EB"
-                                                   FontSize="10"
+                                                   FontSize="9"
                                                    FontWeight="SemiBold" />
                                     </Border>
                                     <Button Content="Eksik Evrak Raporunu Ac"
@@ -1288,11 +1288,11 @@
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
                                             Margin="0,6,0,0"
-                                            Padding="8,3"
+                                            Padding="7,2"
                                             Visibility="Collapsed">
                                         <TextBlock Text="Enter ile ac"
                                                    Foreground="#C2410C"
-                                                   FontSize="10"
+                                                   FontSize="9"
                                                    FontWeight="SemiBold" />
                                     </Border>
                                     <Button Content="Odenmemisler Raporunu Ac"

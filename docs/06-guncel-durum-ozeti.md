@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-14
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.141 - Yardim Metni Satir Yuksekligi`
+- Son tamamlanan temiz faz: `v1.142 - Yardim Kapsulu Icerik Sikilastirma`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.142` Yardim Kapsulu Icerik Sikilastirma
 - `v1.141` Yardim Metni Satir Yuksekligi
 - `v1.140` Aktif Yol Tipografi Ayrimi
 - `v1.139` Ton Hiyerarsisi Dengeleme
@@ -44,9 +45,9 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Bu Fazda Ne Yapildi
 
-1. `Hedef` ve `Sonraki adim` satirlarina sabit line-height verildi.
-2. Uzun metinlerde satir ritmi daha dengeli ve daha tahmin edilebilir hale geldi.
-3. Boylece secili kartin alt yardim blogu daha duzgun ve daha profesyonel akmaya basladi.
+1. `Enter ile ac` kapsullerinin ic bosluklari ve yazi boyutu biraz sikilastirildi.
+2. Yardim kapsulleri daha hafif ama hala okunur bir mikro yuzeye donustu.
+3. Boylece secili kartin alt yardim zinciri daha rafine ve daha dengeli hissettirmeye basladi.
 4. Dogrulama rutini build ve self-test ile tekrar temiz gecti.
 
 ## Son Dogrulanan Testler
@@ -56,7 +57,7 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Secili akis kartlarindaki yardim kapsullerinin ic bosluklarini bir tik daha rafine hale getirmek
+- Secili akis kartlarindaki buton ust boslugunu yeni mikro olcekle yeniden dengelemek
 
 ## Yeni Chat Icin Kisa Talimat
 

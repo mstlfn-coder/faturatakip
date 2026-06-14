@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.142)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.142 - Yardim Kapsulu Icerik Sikilastirma`
+- Bu adimda secili akis kartlarindaki `Enter ile ac` kapsullerinin ic bosluklari ve yazi boyutu biraz sikilastirildi.
+- Boylece yardim kapsulleri hala rahat okunuyor ama kart icinde daha zarif ve daha hafif bir mikro ipucu gibi duruyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.141)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -158,4 +167,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki yardim metni satir yuksekligi de oturdugu icin, sonraki mantikli kucuk adim secili akis kartlarindaki yardim kapsullerinin ic bosluklarini bir tik daha rafine hale getirmek olabilir.
+- Odemeler panelindeki yardim kapsulleri de inceldigi icin, sonraki mantikli kucuk adim secili akis kartlarindaki buton ust boslugunu bu yeni mikro olcekle yeniden dengelemek olabilir.

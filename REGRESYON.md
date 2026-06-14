@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.142 - Yardim Kapsulu Icerik Sikilastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardim kapsulleri daha kompakt | OK | Padding ve yazi boyutu biraz azaltilarak daha rafine bir mikro yuzey elde edildi |
+| Okunabilirlik korundu | OK | `Enter ile ac` metni hala rahat seciliyor |
+| 2026-06-14 | v1.142 | OK | Odemeler panelinde yardim kapsulu icerik sikilastirma tamamlandi |
+
 ## v1.141 - Yardim Metni Satir Yuksekligi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
