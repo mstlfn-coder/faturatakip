@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.115 - Odeme Ozet Baglami
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ozet kartlar baglam etiketi aldi | OK | Aylik rapor, evrak kontrolu ve odeme calismasi baglamlari kartlarda gorunuyor |
+| Kartlar neyi actigini acikliyor | OK | Her kart kendi rapor veya akis hedefini kisa metinle anlatiyor |
+| 2026-06-14 | v1.115 | OK | Odemeler paneli ust ozet kartlarinda baglam netlestirildi |
+
 ## v1.114 - Odeme Akisi Rozetleri
 | Kontrol | Durum | Not |
 | --- | --- | --- |

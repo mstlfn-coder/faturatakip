@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.115)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.115 - Odeme Ozet Baglami`
+- Bu adimda Odemeler panelinin ustteki uc ozet kartina baglam rozeti ve kisa hedef aciklamasi eklendi.
+- Boylece kartlarin hangi rapora ya da hangi calisma akisine baglandigi butona basmadan once okunabilir hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.114)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -76,4 +85,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler akis ayrimi netlestigi icin, sonraki mantikli kucuk adim ust kisimdaki ozet kartlarin da benzer sekilde hangi rapora veya isleme baglandigini kucuk baglam satirlariyla daha netlestirmek olabilir.
+- Odemeler paneli daha iyi anlatiyor hale geldigi icin, sonraki mantikli kucuk adim ust sagdaki genel yonlendirme butonlarini da secili kart baglamina gore daha akilli hale getirmek ya da durum bazli metinle desteklemek olabilir.

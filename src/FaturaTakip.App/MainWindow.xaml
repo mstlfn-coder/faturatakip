@@ -738,6 +738,13 @@
                              Margin="0,24,0,24">
                     <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
                         <StackPanel>
+                            <Border Style="{StaticResource FlowBadgeBorder}"
+                                    Background="#DBEAFE"
+                                    BorderBrush="#93C5FD">
+                                <TextBlock Text="AYLIK RAPOR"
+                                           Style="{StaticResource FlowBadgeText}"
+                                           Foreground="#1D4ED8" />
+                            </Border>
                             <TextBlock Text="Bu Ay Odeme" Style="{StaticResource MutedText}" />
                             <TextBlock x:Name="PaymentsMonthlyTotalText"
                                        Text="0,00"
@@ -749,6 +756,10 @@
                                        Text="0 kayit"
                                        Style="{StaticResource MutedText}"
                                        Margin="0,6,0,0" />
+                            <TextBlock Text="Bu kart aylik odeme raporunun toplu gorunumu ile baglidir."
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,8,0,0"
+                                       TextWrapping="Wrap" />
                             <Button Content="Aylik Rapora Git"
                                     Style="{StaticResource SecondaryButton}"
                                     Margin="0,14,0,0"
@@ -758,6 +769,13 @@
                     </Border>
                     <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
                         <StackPanel>
+                            <Border Style="{StaticResource FlowBadgeBorder}"
+                                    Background="#F0F9FF"
+                                    BorderBrush="#BAE6FD">
+                                <TextBlock Text="EVRAK KONTROLU"
+                                           Style="{StaticResource FlowBadgeText}"
+                                           Foreground="#0369A1" />
+                            </Border>
                             <TextBlock Text="Odeme PDF Eksik" Style="{StaticResource MutedText}" />
                             <TextBlock x:Name="PaymentsMissingPdfCountText"
                                        Text="0"
@@ -768,6 +786,10 @@
                             <TextBlock Text="Evragi eksik odemeler"
                                        Style="{StaticResource MutedText}"
                                        Margin="0,6,0,0" />
+                            <TextBlock Text="Kontrol raporu uzerinden eksik odeme PDF kayitlarini ayiklar."
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,8,0,0"
+                                       TextWrapping="Wrap" />
                             <Button Content="Kontrol Raporuna Git"
                                     Style="{StaticResource SecondaryButton}"
                                     Margin="0,14,0,0"
@@ -777,6 +799,13 @@
                     </Border>
                     <Border Style="{StaticResource TileBorder}">
                         <StackPanel>
+                            <Border Style="{StaticResource FlowBadgeBorder}"
+                                    Background="#ECFDF5"
+                                    BorderBrush="#BBF7D0">
+                                <TextBlock Text="ODEME CALISMASI"
+                                           Style="{StaticResource FlowBadgeText}"
+                                           Foreground="#166534" />
+                            </Border>
                             <TextBlock Text="Odenmemis Faturalar" Style="{StaticResource MutedText}" />
                             <TextBlock x:Name="PaymentsUnpaidInvoiceCountText"
                                        Text="0"
@@ -788,6 +817,10 @@
                                        Text="Kalan 0,00"
                                        Style="{StaticResource MutedText}"
                                        Margin="0,6,0,0" />
+                            <TextBlock Text="Odeme alani, odenmemis kayitlara gecis icin hizli calisma kartidir."
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,8,0,0"
+                                       TextWrapping="Wrap" />
                             <Button Content="Odeme Akisina Git"
                                     Style="{StaticResource SecondaryButton}"
                                     Margin="0,14,0,0"

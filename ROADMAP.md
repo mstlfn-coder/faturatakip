@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.115)
+
+- v1.115 tamamlandi: Odemeler panelinin ust ozet kartlari kucuk baglam rozetleri ve aciklayici satirlar aldi.
+- Aylik rapor, evrak kontrolu ve odeme calismasi ayrimi artik sadece alt akis kartlarinda degil, ust ozet alaninda da okunuyor.
+- Bu adim panelin ust bolumunu daha kendi kendini anlatan hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.114)
 
 - v1.114 tamamlandi: Odemeler panelindeki ana akis butonlari rozetli ve aciklamali uc yonlendirme kartina donusturuldu.
