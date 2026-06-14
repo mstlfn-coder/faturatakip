@@ -3401,6 +3401,11 @@ public partial class InvoicesView : UserControl
 
         PaymentHelperSelectedActionStatusText.FontWeight = FontWeights.Bold;
         PaymentHelperSelectedActionStatusText.Foreground = new SolidColorBrush(Color.FromRgb(21, 128, 61));
+        if (PaymentHelperSelectedActionStatusButton is not null)
+        {
+            PaymentHelperSelectedActionStatusButton.Background = new SolidColorBrush(Color.FromRgb(240, 253, 244));
+            PaymentHelperSelectedActionStatusButton.BorderBrush = new SolidColorBrush(Color.FromRgb(134, 239, 172));
+        }
         if (PaymentHelperSelectedActionStatusPrefixBorder is not null)
         {
             PaymentHelperSelectedActionStatusPrefixBorder.Background = new SolidColorBrush(Color.FromRgb(187, 247, 208));
@@ -3454,6 +3459,11 @@ public partial class InvoicesView : UserControl
 
         PaymentHelperSelectedActionStatusText.FontWeight = FontWeights.SemiBold;
         PaymentHelperSelectedActionStatusText.Foreground = new SolidColorBrush(GetPaymentHelperSelectedActionColor(_lastInvokedPaymentHelperActionKey));
+        if (PaymentHelperSelectedActionStatusButton is not null)
+        {
+            PaymentHelperSelectedActionStatusButton.Background = Brushes.Transparent;
+            PaymentHelperSelectedActionStatusButton.BorderBrush = Brushes.Transparent;
+        }
         if (PaymentHelperSelectedActionStatusPrefixBorder is not null)
         {
             PaymentHelperSelectedActionStatusPrefixBorder.Background = new SolidColorBrush(Color.FromRgb(220, 252, 231));
@@ -3516,6 +3526,11 @@ public partial class InvoicesView : UserControl
 
         PaymentPdfSelectedActionStatusText.FontWeight = FontWeights.Bold;
         PaymentPdfSelectedActionStatusText.Foreground = new SolidColorBrush(Color.FromRgb(2, 132, 199));
+        if (PaymentPdfSelectedActionStatusButton is not null)
+        {
+            PaymentPdfSelectedActionStatusButton.Background = new SolidColorBrush(Color.FromRgb(240, 249, 255));
+            PaymentPdfSelectedActionStatusButton.BorderBrush = new SolidColorBrush(Color.FromRgb(125, 211, 252));
+        }
         if (PaymentPdfSelectedActionStatusPrefixBorder is not null)
         {
             PaymentPdfSelectedActionStatusPrefixBorder.Background = new SolidColorBrush(Color.FromRgb(186, 230, 253));
@@ -3569,6 +3584,11 @@ public partial class InvoicesView : UserControl
 
         PaymentPdfSelectedActionStatusText.FontWeight = FontWeights.SemiBold;
         PaymentPdfSelectedActionStatusText.Foreground = new SolidColorBrush(GetPaymentPdfSelectedActionColor(_lastInvokedPaymentPdfHelperActionKey));
+        if (PaymentPdfSelectedActionStatusButton is not null)
+        {
+            PaymentPdfSelectedActionStatusButton.Background = Brushes.Transparent;
+            PaymentPdfSelectedActionStatusButton.BorderBrush = Brushes.Transparent;
+        }
         if (PaymentPdfSelectedActionStatusPrefixBorder is not null)
         {
             PaymentPdfSelectedActionStatusPrefixBorder.Background = new SolidColorBrush(Color.FromRgb(224, 242, 254));

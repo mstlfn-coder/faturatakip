@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.108)
+
+- v1.108 tamamlandi: secili yardim durum satiri aksiyon tetiklenince tum satira yayilan kisa bir geri donus isigi almaya basladi.
+- Odeme yardimi satiri hafif yesil, PDF yardimi satiri hafif mavi bir flash ile tekrar calistirma geri bildirimini daha kolay fark edilir hale getiriyor.
+- Boylece sadece prefix degil, satirin tamami tek satirlik bir "aksiyon alindi" hissi veriyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.107)
 
 - v1.107 tamamlandi: yardim durum satirindaki uc yardimci parca icin kademeli mikro vurgu dili kuruldu.

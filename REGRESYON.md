@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.108 - Yardim Durum Satiri Geri Donus Isigi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satiri kisa geri donus isigi veriyor | OK | Secili aksiyon tetiklenince tum satir hafif yesil bir flash ile geri bildirim veriyor |
+| PDF yardimi durum satiri kisa geri donus isigi veriyor | OK | Secili aksiyon tetiklenince tum satir hafif mavi bir flash ile geri bildirim veriyor |
+| 2026-06-14 | v1.108 | OK | Yardim durum satiri geri donus isigi + build + self-test tamamlandi |
+
 ## v1.107 - Yardim Mikro Vurgu Kademesi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
