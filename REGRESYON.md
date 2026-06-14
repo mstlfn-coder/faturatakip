@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.188 - One Cikan Kayit Ozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odak karti gorunur | OK | Ust alanda one cikan kaydi baslik, meta, durum ve tutar ile gosteriyor |
+| Hizli acis korunuyor | OK | Odak kartindan ilgili fatura odeme alanina tek tikla acilabiliyor |
+| 2026-06-15 | v1.188 | OK | Odemeler paneline one cikan kayit ozeti eklendi |
+
 ## v1.187 - Odemeler Durum Rozetleri
 | Kontrol | Durum | Not |
 | --- | --- | --- |

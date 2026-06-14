@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.187 - Odemeler Durum Rozetleri`
+- Son tamamlanan temiz faz: `v1.188 - One Cikan Kayit Ozeti`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.188` One Cikan Kayit Ozeti
 - `v1.187` Odemeler Durum Rozetleri
 - `v1.186` Odemeler Hizli Aksiyon Satiri
 - `v1.185` Odemeler Ozeti Hedefli Gecis
@@ -103,7 +104,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Ana Adim
 
-- Odemeler sekmesinde secili kaydin daha zengin durum ozetini eklemek
+- Odemeler sekmesinde queue ve recent listeleri icin satir duzeyinde klavye/hover erisilebilirligini guclendirmek ya da filtreli gorunume gecmek
 
 ## Yeni Chat Icin Kisa Talimat
 

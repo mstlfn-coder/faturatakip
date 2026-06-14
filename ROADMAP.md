@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.188)
+
+- v1.188 tamamlandi: Odemeler sekmesine one cikan kaydi gosteren odak ozeti eklendi.
+- Oncelikli kuyruk kaydi varsa onu, yoksa son odeme baglamini ust alanda daha zengin sekilde gosteriyor.
+- Boylece odemeler yuzeyi sadece liste degil, karar verdiren bir odak paneli de sunuyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.187)
 
 - v1.187 tamamlandi: Odemeler kuyrugu ve son odemeler listesine satir ici durum rozetleri eklendi.

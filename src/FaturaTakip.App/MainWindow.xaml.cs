@@ -295,6 +295,31 @@ public partial class MainWindow : Window
         InvoicesPanel.StartPaymentWorkspaceForInvoice(invoiceId, preferUnpaidFilter: false);
     }
 
+    private void OpenFeaturedPaymentsInvoiceButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (PaymentsOpenFeaturedButton.Tag is not long invoiceId)
+        {
+            return;
+        }
+
+        var preferUnpaidFilter = string.Equals(
+            Convert.ToString(PaymentsOpenFeaturedButton.CommandParameter, CultureInfo.InvariantCulture),
+            "queue",
+            StringComparison.OrdinalIgnoreCase);
+
+        PersistPaymentsPanelContext(
+            preferUnpaidFilter
+                ? "One cikan odeme kuyrugu kaydi odeme alaninda acildi."
+                : "One cikan son odeme kaydi kendi faturasinda yeniden acildi.",
+            preferUnpaidFilter ? "SON YOL: ODAK" : "SON YOL: SON ODAK",
+            preferUnpaidFilter ? "#DCFCE7" : "#DBEAFE",
+            preferUnpaidFilter ? "#86EFAC" : "#93C5FD",
+            preferUnpaidFilter ? "#166534" : "#1D4ED8",
+            routeKey: "workspace");
+        ShowInvoices();
+        InvoicesPanel.StartPaymentWorkspaceForInvoice(invoiceId, preferUnpaidFilter);
+    }
+
     private void ReportsPanel_UnreviewedInvoiceReviewRequested(object? sender, Views.ReportsView.InvoiceReviewNavigationRequestEventArgs e)
     {
         ShowInvoices();
@@ -860,6 +885,10 @@ public partial class MainWindow : Window
             PaymentsOpenLatestPaymentButton.Tag = topRecentPaymentItem.InvoiceId;
             PaymentsRecentActionHintText.Text = $"{topRecentPaymentItem.Title} • {topRecentPaymentItem.Amount}";
         }
+
+        ApplyFeaturedPaymentsSummary(
+            unpaidQueueItems.Count > 0 ? unpaidQueueItems[0] : null,
+            recentPaymentItems.Count > 0 ? recentPaymentItems[0] : null);
     }
 
     private void SubscriptionsPanel_SubscriptionsChanged(object sender, EventArgs e)
@@ -958,6 +987,53 @@ public partial class MainWindow : Window
         }
 
         return "unpaid";
+    }
+
+    private void ApplyFeaturedPaymentsSummary(PaymentsQueueItem? queueItem, PaymentsRecentPaymentItem? recentPaymentItem)
+    {
+        if (queueItem is not null)
+        {
+            PaymentsFeaturedTitleText.Text = queueItem.Title;
+            PaymentsFeaturedMetaText.Text = $"{queueItem.Meta} - Oncelikli odeme kuyrugu";
+            PaymentsFeaturedAmountText.Text = queueItem.Amount;
+            PaymentsFeaturedHintText.Text = "Bugun odeme isine bu kayitla devam etmek en hizli secim.";
+            PaymentsFeaturedStatusText.Text = queueItem.Status.ToUpperInvariant();
+            PaymentsFeaturedStatusBadge.Background = (Brush)new BrushConverter().ConvertFromString(queueItem.StatusBackground)!;
+            PaymentsFeaturedStatusBadge.BorderBrush = (Brush)new BrushConverter().ConvertFromString(queueItem.StatusBorder)!;
+            PaymentsFeaturedStatusText.Foreground = (Brush)new BrushConverter().ConvertFromString(queueItem.StatusForeground)!;
+            PaymentsOpenFeaturedButton.IsEnabled = true;
+            PaymentsOpenFeaturedButton.Tag = queueItem.InvoiceId;
+            PaymentsOpenFeaturedButton.CommandParameter = "queue";
+            return;
+        }
+
+        if (recentPaymentItem is not null)
+        {
+            PaymentsFeaturedTitleText.Text = recentPaymentItem.Title;
+            PaymentsFeaturedMetaText.Text = $"{recentPaymentItem.Meta} - Son odeme kaydi";
+            PaymentsFeaturedAmountText.Text = recentPaymentItem.Amount;
+            PaymentsFeaturedHintText.Text = "Son odeme baglamina hizlica donup kaydi tekrar kontrol edebilirsiniz.";
+            PaymentsFeaturedStatusText.Text = recentPaymentItem.Status.ToUpperInvariant();
+            PaymentsFeaturedStatusBadge.Background = (Brush)new BrushConverter().ConvertFromString(recentPaymentItem.StatusBackground)!;
+            PaymentsFeaturedStatusBadge.BorderBrush = (Brush)new BrushConverter().ConvertFromString(recentPaymentItem.StatusBorder)!;
+            PaymentsFeaturedStatusText.Foreground = (Brush)new BrushConverter().ConvertFromString(recentPaymentItem.StatusForeground)!;
+            PaymentsOpenFeaturedButton.IsEnabled = true;
+            PaymentsOpenFeaturedButton.Tag = recentPaymentItem.InvoiceId;
+            PaymentsOpenFeaturedButton.CommandParameter = "recent";
+            return;
+        }
+
+        PaymentsFeaturedTitleText.Text = "Oncelikli odeme kaydi hazir degil.";
+        PaymentsFeaturedMetaText.Text = "Bekleyen ya da son odeme baglami olustugunda burada gorunur.";
+        PaymentsFeaturedAmountText.Text = "0,00";
+        PaymentsFeaturedHintText.Text = "Oncelik olusunca hizli acis burada hazirlanir.";
+        PaymentsFeaturedStatusText.Text = "HAZIR DEGIL";
+        PaymentsFeaturedStatusBadge.Background = (Brush)new BrushConverter().ConvertFromString("#E2E8F0")!;
+        PaymentsFeaturedStatusBadge.BorderBrush = (Brush)new BrushConverter().ConvertFromString("#CBD5E1")!;
+        PaymentsFeaturedStatusText.Foreground = (Brush)new BrushConverter().ConvertFromString("#475569")!;
+        PaymentsOpenFeaturedButton.IsEnabled = false;
+        PaymentsOpenFeaturedButton.Tag = null;
+        PaymentsOpenFeaturedButton.CommandParameter = null;
     }
 
     private void InvoiceTypeGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)

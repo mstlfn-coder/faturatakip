@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.188)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.188 - One Cikan Kayit Ozeti`
+- Bu adimda Odemeler sekmesinin ust alanina oncelikli ya da son kaydi gosteren zengin bir odak karti eklendi.
+- Boylece kullanici sekmeyi acar acmaz hangi kayda odaklanmasi gerektigini, durumunu ve hizli acis yolunu gorebiliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.187)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
