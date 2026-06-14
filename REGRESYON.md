@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.175 - Hover Arka Plan Tonu Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover tonu daha sakin | OK | Hover arka plan tonu hafifce yumusatilarak kart vurgusu daha kontrollu hale getirildi |
+| Etkilesim okunurlugu korundu | OK | Hover durumu hala kolay fark ediliyor ve aktif kart hissi kaybolmadi |
+| 2026-06-15 | v1.175 | OK | Odemeler panelinde hover arka plan tonu ayari tamamlandi |
+
 ## v1.174 - Hover Buyume Orani Ayari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.175)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.175 - Hover Arka Plan Tonu Ayari`
+- Bu adimda odeme akis kartlarinin hover sirasindaki arka plan tonu hafifce yumusatildi.
+- Boylece kart vurgusu korunurken panelin genel sakinlik seviyesi bir kademe daha dengelendi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.174)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

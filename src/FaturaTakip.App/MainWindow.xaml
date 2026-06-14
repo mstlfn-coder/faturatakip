@@ -112,7 +112,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#F8FBFF" />
+                    <Setter Property="Background" Value="#F8FAFE" />
                     <Setter Property="BorderBrush" Value="#BFDBFE" />
                 </Trigger>
                 <EventTrigger RoutedEvent="MouseEnter">
