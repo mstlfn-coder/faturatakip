@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.135)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.135 - Akis Karti Dikey Ritim Ayari`
+- Bu adimda secili akis kartlarindaki hedef, sonraki adim, kisayol kapsulu ve buton arasindaki dikey bosluklar biraz sikilastirildi.
+- Boylece kartin alt akis bolumu daha toparli ve daha tek parca bir yonlendirme bloku gibi okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.134)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -95,4 +104,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki tooltip dili de eklendigi icin, sonraki mantikli kucuk adim secili akis kartinin buton alt boslugunu ve dikey ritmini biraz daha rafine hale getirmek olabilir.
+- Odemeler panelindeki dikey ritim de toparlandigi icin, sonraki mantikli kucuk adim secili akis karti icin daha nazik bir hover gecisi ya da mikro ton animasyonu eklemek olabilir.

@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-14
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.134 - Akis Butonu Tooltip Dili`
+- Son tamamlanan temiz faz: `v1.135 - Akis Karti Dikey Ritim Ayari`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.135` Akis Karti Dikey Ritim Ayari
 - `v1.134` Akis Butonu Tooltip Dili
 - `v1.133` Akis Butonu Klavye Odak Vurgusu
 - `v1.132` Aktif Kolon Kisayol Kapsulu
@@ -37,9 +38,9 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Bu Fazda Ne Yapildi
 
-1. Odemeler akis butonlarina ne acacagini anlatan kisa tooltip metinleri eklendi.
-2. Tooltip metinleri `Enter` ile tetiklenebilecegini de belirtiyor.
-3. Boylece kart ici gorunur ipuclari ile hover aciklamasi ayni eylem dilini tamamliyor.
+1. Secili akis kartlarinin alt yonlendirme bloklarindaki dikey bosluklar biraz sikilastirildi.
+2. Hedef, sonraki adim, kisayol kapsulu ve buton arasindaki gecis daha kompakt hale geldi.
+3. Boylece secili kartin alt bolumu daha tek parca ve daha taranabilir okunuyor.
 4. Dogrulama rutini build ve self-test ile tekrar temiz gecti.
 
 ## Son Dogrulanan Testler
@@ -49,7 +50,7 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Secili akis kartinin buton alt boslugunu ve dikey ritmini biraz daha rafine hale getirmek
+- Secili akis karti icin daha nazik bir hover gecisi ya da mikro ton animasyonu eklemek
 
 ## Yeni Chat Icin Kisa Talimat
 

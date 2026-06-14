@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.135)
+
+- v1.135 tamamlandi: Odemeler panelindeki secili akis kartlarinin alt yonlendirme bolumunde dikey bosluklar toparlandi.
+- Boylece hedef, sonraki adim, kisayol kapsulu ve buton daha birlesik bir akis gibi gorunuyor.
+- Bu adim bilgi yogunlugunu arttirmadan panel ritmini biraz daha profesyonel hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.134)
 
 - v1.134 tamamlandi: Odemeler panelindeki akis butonlarina daha acik tooltip dili eklendi.

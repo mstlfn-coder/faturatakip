@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.135 - Akis Karti Dikey Ritim Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Alt yonlendirme bloku daha toparli | OK | Hedef, sonraki adim, kisayol kapsulu ve buton araliklari daha kompakt |
+| Okunabilirlik korundu | OK | Metinler ve butonlar birbirine girmeden daha tek parca okunuyor |
+| 2026-06-14 | v1.135 | OK | Odemeler panelinde akis karti dikey ritim ayari tamamlandi |
+
 ## v1.134 - Akis Butonu Tooltip Dili
 | Kontrol | Durum | Not |
 | --- | --- | --- |
