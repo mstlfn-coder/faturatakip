@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.165 - Sonraki Adim Tonu Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sonraki adim daha sakin | OK | Sonraki adim satirlari daha yardimci tonda okunuyor |
+| Hiyerarsi korundu | OK | Hedef satiri ve aksiyon dugmesi ana odakta kalmaya devam ediyor |
+| 2026-06-14 | v1.165 | OK | Odemeler panelinde sonraki adim tonu yumusatma tamamlandi |
+
 ## v1.164 - Aktif Yol Tonu Yumusatma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

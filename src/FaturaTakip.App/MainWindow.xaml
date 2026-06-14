@@ -1086,7 +1086,7 @@
                                                Visibility="Collapsed" />
                                     <TextBlock x:Name="PaymentsWorkspaceNextStepText"
                                                Text="Sonraki adim: uygun kaydi secip odeme tarihini ve tutari gir."
-                                               Foreground="#166534"
+                                               Foreground="#15803D"
                                                FontSize="10"
                                                LineHeight="15"
                                                LineStackingStrategy="BlockLineHeight"
@@ -1182,7 +1182,7 @@
                                                Visibility="Collapsed" />
                                     <TextBlock x:Name="PaymentsDocumentNextStepText"
                                                Text="Sonraki adim: eksik kaydi acip PDF evrakini tamamla."
-                                               Foreground="#1D4ED8"
+                                               Foreground="#2563EB"
                                                FontSize="10"
                                                LineHeight="15"
                                                LineStackingStrategy="BlockLineHeight"
@@ -1277,7 +1277,7 @@
                                                Visibility="Collapsed" />
                                     <TextBlock x:Name="PaymentsUnpaidReportNextStepText"
                                                Text="Sonraki adim: acik bakiyeyi filtreleyip uygun tahsilat kaydina ilerle."
-                                               Foreground="#B45309"
+                                               Foreground="#C2410C"
                                                FontSize="10"
                                                LineHeight="15"
                                                LineStackingStrategy="BlockLineHeight"

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.165)
+
+- v1.165 tamamlandi: Odemeler panelindeki `Sonraki adim` satirlarinin renk tonu hafifce yumusatildi.
+- Boylece hedef satiri ve aksiyon dugmesi daha onde kalirken, sonraki adim satiri daha yardimci bir devam bilgisi gibi okunuyor.
+- Bu adim kartlarin alt yonlendirme hiyerarsisini bir kademe daha rafine etti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.164)
 
 - v1.164 tamamlandi: Odemeler panelindeki `Aktif yol` notlarinin renk tonu hafifce yumusatildi.
