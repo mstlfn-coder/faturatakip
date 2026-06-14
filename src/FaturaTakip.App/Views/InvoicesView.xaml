@@ -1161,7 +1161,8 @@
                                             <TextBlock x:Name="PaymentHelperSelectedActionStatusText"
                                                        Style="{StaticResource PaymentHelperLastActionTextStyle}" />
                                             <Border Style="{StaticResource InlineShortcutHintBorder}">
-                                                <TextBlock Text="Enter/Space"
+                                                <TextBlock x:Name="PaymentHelperSelectedActionHintText"
+                                                           Text="Enter/Space"
                                                            Style="{StaticResource InlineShortcutHintText}" />
                                             </Border>
                                         </StackPanel>
@@ -1313,7 +1314,8 @@
                                             <TextBlock x:Name="PaymentPdfSelectedActionStatusText"
                                                        Style="{StaticResource PaymentPdfLastActionTextStyle}" />
                                             <Border Style="{StaticResource InlineShortcutHintBorder}">
-                                                <TextBlock Text="Enter/Space"
+                                                <TextBlock x:Name="PaymentPdfSelectedActionHintText"
+                                                           Text="Enter/Space"
                                                            Style="{StaticResource InlineShortcutHintText}" />
                                             </Border>
                                         </StackPanel>

@@ -2946,6 +2946,11 @@ public partial class InvoicesView : UserControl
             PaymentHelperSelectedActionRepeatText.Text = GetPaymentHelperRepeatLabel(_lastInvokedPaymentHelperActionKey);
         }
 
+        if (PaymentHelperSelectedActionHintText is not null)
+        {
+            PaymentHelperSelectedActionHintText.Text = GetPaymentHelperHintLabel(_lastInvokedPaymentHelperActionKey);
+        }
+
         if (PaymentHelperSelectedActionStatusButton is not null)
         {
             PaymentHelperSelectedActionStatusButton.Tag = _lastInvokedPaymentHelperActionKey;
@@ -3244,6 +3249,11 @@ public partial class InvoicesView : UserControl
         if (PaymentPdfSelectedActionRepeatText is not null)
         {
             PaymentPdfSelectedActionRepeatText.Text = GetPaymentPdfRepeatLabel(_lastInvokedPaymentPdfHelperActionKey);
+        }
+
+        if (PaymentPdfSelectedActionHintText is not null)
+        {
+            PaymentPdfSelectedActionHintText.Text = GetPaymentPdfHintLabel(_lastInvokedPaymentPdfHelperActionKey);
         }
 
         if (PaymentPdfSelectedActionStatusButton is not null)
@@ -3625,6 +3635,27 @@ public partial class InvoicesView : UserControl
             "select_pdf" => "SEC",
             "open_pdf" => "AC",
             _ => "TEKRAR",
+        };
+    }
+
+    private static string GetPaymentHelperHintLabel(string? actionKey)
+    {
+        return actionKey switch
+        {
+            "fill_remaining" => "Enter/Space Doldur",
+            "use_last" => "Enter/Space Kopyala",
+            "use_selected" => "Enter/Space Uygula",
+            _ => "Enter/Space",
+        };
+    }
+
+    private static string GetPaymentPdfHintLabel(string? actionKey)
+    {
+        return actionKey switch
+        {
+            "select_pdf" => "Enter/Space Sec",
+            "open_pdf" => "Enter/Space Ac",
+            _ => "Enter/Space",
         };
     }
 

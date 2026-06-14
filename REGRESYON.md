@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.106 - Yardim Kisayol Ipucunda Aksiyon Varyanti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi kisayol ipucu aksiyona gore degisiyor | OK | `Enter/Space Doldur`, `Kopyala`, `Uygula` gibi varyantlar gorunuyor |
+| PDF yardimi kisayol ipucu aksiyona gore degisiyor | OK | `Enter/Space Sec` ve `Ac` varyantlari gorunuyor |
+| 2026-06-14 | v1.106 | OK | Yardim kisayol ipucunda aksiyon varyanti + build + self-test tamamlandi |
+
 ## v1.105 - Yardim Tekrar Rozetinde Aksiyon Etiketi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

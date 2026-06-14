@@ -7,6 +7,7 @@ Son guncelleme tarihi: 2026-06-13
 - Aktif branch: `codex/v1.08-review-context-issue-action`
 - Son commit: `git log --oneline -1` ile teyit et; bu dosya hizli handoff ozeti olarak tutulur
 - Son tamamlanan temiz fazlar:
+  - `v1.106` Yardim Kisayol Ipucunda Aksiyon Varyanti
   - `v1.105` Yardim Tekrar Rozetinde Aksiyon Etiketi
   - `v1.104` Yardim Prefixinde Aksiyon Etiketi
   - `v1.103` Yardim Metninde Aksiyon Tonu

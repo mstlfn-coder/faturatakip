@@ -1048,6 +1048,12 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.106 - Yardim Kisayol Ipucunda Aksiyon Varyanti
+
+- `Enter/Space` ipucu artik secili aksiyona gore ufak metin varyantlari aliyor.
+- Odeme yardiminda `Enter/Space Doldur`, `Kopyala`, `Uygula`; PDF yardiminda `Enter/Space Sec` ve `Ac` gibi ifadeler gorunuyor.
+- Boylece satirin sag tarafindaki kisayol ipucu da neyi tetikleyecegini daha dogrudan anlatir hale geldi.
+
 ## v1.105 - Yardim Tekrar Rozetinde Aksiyon Etiketi
 
 - `TEKRAR` rozeti artik secili aksiyona gore kucuk kelime farklari aliyor.

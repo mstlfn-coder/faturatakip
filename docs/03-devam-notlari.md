@@ -2,15 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
-## Son Guncelleme (2026-06-14 / v1.105)
+## Son Guncelleme (2026-06-14 / v1.106)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan faz: `v1.105 - Yardim Tekrar Rozetinde Aksiyon Etiketi`
-- Bu adimda tekrar rozeti secili aksiyona gore farkli kisa etiketler kullanmaya basladi.
-- Satirin orta bolumu artik tekrar aksiyonunun turunu daha dogrudan anlatiyor.
+- Son tamamlanan faz: `v1.106 - Yardim Kisayol Ipucunda Aksiyon Varyanti`
+- Bu adimda sagdaki kisayol ipucu secili aksiyona gore metin varyanti almaya basladi.
+- Kisa yol artik hem tusu hem de tetikleyecegi seyi daha acik anlatıyor.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Yardim durum satirindaki `Enter/Space` ipucunu da secili aksiyona gore ufak bir ikon ya da metin varyantiyla esleyebiliriz.
+- Yardim durum satirinda hover ve odak aninda prefix/orta/sag bolumlerin birlikte ama sirayla parlayan daha rafine bir mikro geri bildirim dusunebiliriz.

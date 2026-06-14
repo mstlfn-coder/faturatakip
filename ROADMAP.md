@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.106)
+
+- v1.106 tamamlandi: yardim durum satirinin sagindaki kisayol ipucu secili aksiyona gore metin varyanti almaya basladi.
+- Sag taraftaki yardim artik sadece hangi tusun calistigini degil, ne yapacagini da kisaca anlatiyor.
+- Boylece satirin her parcasi secili aksiyonu biraz daha dogrudan tarif eder hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.105)
 
 - v1.105 tamamlandi: yardim durum satirindaki tekrar rozeti secili aksiyona gore farkli etiketler kullanmaya basladi.
