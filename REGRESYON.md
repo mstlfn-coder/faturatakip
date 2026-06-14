@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.171 - Hover Gecisi Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover daha sakin | OK | Hover kenarligi ve mikro buyume yeni ton dengesine gore yumusatildi |
+| Kart hareketi korundu | OK | Kartlar hala hissedilir ama daha rafine bir geri bildirim veriyor |
+| 2026-06-15 | v1.171 | OK | Odemeler panelinde hover gecisi yumusatma tamamlandi |
+
 ## v1.170 - Birincil Odak Tonu Yumusatma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

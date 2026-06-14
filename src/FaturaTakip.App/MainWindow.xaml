@@ -113,7 +113,7 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#F8FBFF" />
-                    <Setter Property="BorderBrush" Value="#93C5FD" />
+                    <Setter Property="BorderBrush" Value="#BFDBFE" />
                 </Trigger>
                 <EventTrigger RoutedEvent="MouseEnter">
                     <BeginStoryboard>
@@ -122,10 +122,10 @@
                                              To="1"
                                              Duration="0:0:0.16" />
                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
-                                             To="1.008"
+                                             To="1.006"
                                              Duration="0:0:0.16" />
                             <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
-                                             To="1.008"
+                                             To="1.006"
                                              Duration="0:0:0.16" />
                         </Storyboard>
                     </BeginStoryboard>

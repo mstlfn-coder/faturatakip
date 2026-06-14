@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.171)
+
+- v1.171 tamamlandi: Odemeler panelindeki hover kenarlik tonu ve mikro olcek buyumesi hafifce sakinlestirildi.
+- Boylece kartlar hareketsiz kalmadan daha rafine ve daha dusuk gerginlikli bir geri bildirim veriyor.
+- Bu adim panelin hareket dilini bir kademe daha olgunlastirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.170)
 
 - v1.170 tamamlandi: Odemeler panelindeki birincil aksiyon dugmesinin klavye odak vurgusu hafifce sakinlestirildi.
