@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.145)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.145 - Ilk Aciklama Tonu Sakinlestirme`
+- Bu adimda secili akis kartlarindaki ilk aciklama satirlarinin tonlari biraz daha sakinlestirildi.
+- Boylece baslik ve `Hedef` satiri onde kalirken, ilk aciklama satiri daha yumusak bir destek metni gibi okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.144)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -185,4 +194,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki ust ritim de dengelendigi icin, sonraki mantikli kucuk adim secili akis kartlarinda ilk aciklama satirinin tonunu bir tik daha sakinlestirmek olabilir.
+- Odemeler panelindeki ilk aciklama tonu da sakinlestigi icin, sonraki mantikli kucuk adim secili akis kartlarinda ust bilgi satiri ile aktif yol notu arasindaki boslugu mikro duzeyde dengelemek olabilir.

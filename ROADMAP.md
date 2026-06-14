@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.145)
+
+- v1.145 tamamlandi: Odemeler panelindeki secili kartlarda ilk aciklama satiri sakinlestirildi.
+- Boylece ana baslik ve hedef metni daha onde, aciklama ise daha yardimci bir bilgi katmani gibi okunuyor.
+- Bu adim kart ici metin hiyerarsisini biraz daha olgunlastirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.144)
 
 - v1.144 tamamlandi: Odemeler panelindeki aktif kolon rozeti ile kart basligi arasindaki ust ritim toparlandi.

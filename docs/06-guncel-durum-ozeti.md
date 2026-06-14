@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-14
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.144 - Ust Ritim Dengeleme`
+- Son tamamlanan temiz faz: `v1.145 - Ilk Aciklama Tonu Sakinlestirme`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.145` Ilk Aciklama Tonu Sakinlestirme
 - `v1.144` Ust Ritim Dengeleme
 - `v1.143` Buton Ust Bosluk Dengeleme
 - `v1.142` Yardim Kapsulu Icerik Sikilastirma
@@ -47,9 +48,9 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Bu Fazda Ne Yapildi
 
-1. Aktif kolon rozeti ile kart basligi arasindaki ust bosluk bir tik azaltildi.
-2. Baslik, rozet ve ilk aciklama blogu artik daha dengeli bir ust akis hissi veriyor.
-3. Boylece kartin ilk bakis taramasi daha sakin ve daha tek parca okunuyor.
+1. Secili kartlardaki ilk aciklama satirlarinin renk tonu biraz daha sakinlestirildi.
+2. Baslik ve `Hedef` satiri ana vurgu olarak onde kalirken, aciklama daha yumusak bir bilgi katmani oldu.
+3. Boylece kart icindeki metin hiyerarsisi daha rafine ve daha dengeli hissettirmeye basladi.
 4. Dogrulama rutini build ve self-test ile tekrar temiz gecti.
 
 ## Son Dogrulanan Testler
@@ -59,7 +60,7 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Secili akis kartlarinda ilk aciklama satirinin tonunu bir tik daha sakinlestirmek
+- Secili akis kartlarinda ust bilgi satiri ile aktif yol notu arasindaki boslugu mikro duzeyde dengelemek
 
 ## Yeni Chat Icin Kisa Talimat
 

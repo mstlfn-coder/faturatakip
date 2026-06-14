@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.145 - Ilk Aciklama Tonu Sakinlestirme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ilk aciklama satiri daha sakin | OK | Secili kartta aciklama tonu baslik ve hedefe gore yumusatildi |
+| Metin hiyerarsisi net | OK | Baslik, hedef ve aciklama rolleri daha kolay ayrisiyor |
+| 2026-06-14 | v1.145 | OK | Odemeler panelinde ilk aciklama tonu sakinlestirme tamamlandi |
+
 ## v1.144 - Ust Ritim Dengeleme
 | Kontrol | Durum | Not |
 | --- | --- | --- |
