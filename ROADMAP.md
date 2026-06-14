@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.176)
+
+- v1.176 tamamlandi: Odemeler panelindeki hover kenarlik tonu hafifce yumusatildi.
+- Boylece kartlar hover durumunda arka plan ve cerceve olarak daha dengeli ve daha sakin gorunuyor.
+- Bu adim kart vurgusunun sertlesmeden okunur kalmasini destekledi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.175)
 
 - v1.175 tamamlandi: Odemeler panelindeki hover arka plan tonu hafifce yumusatildi.

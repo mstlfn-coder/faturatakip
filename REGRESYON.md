@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.176 - Hover Kenarlik Tonu Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover kenarligi daha sakin | OK | Hover kenarlik tonu hafifce yumusatilarak cerceve vurgusu daha kontrollu hale getirildi |
+| Vurgu okunurlugu korundu | OK | Kart hover durumu hala belirgin ve panel akisi kolay takip ediliyor |
+| 2026-06-15 | v1.176 | OK | Odemeler panelinde hover kenarlik tonu ayari tamamlandi |
+
 ## v1.175 - Hover Arka Plan Tonu Ayari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

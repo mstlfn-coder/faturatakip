@@ -113,7 +113,7 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#F8FAFE" />
-                    <Setter Property="BorderBrush" Value="#BFDBFE" />
+                    <Setter Property="BorderBrush" Value="#C9DCF4" />
                 </Trigger>
                 <EventTrigger RoutedEvent="MouseEnter">
                     <BeginStoryboard>
