@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.118 - Dinamik Odeme Ipucu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ust yardim metni baglama gore degisiyor | OK | Kart hover ve ust buton hover aninda metin ilgili yone gore guncelleniyor |
+| Son kullanilan akis ozeti korunuyor | OK | Kart veya buton kullanilinca yardim metni o akis ozetini gostermeye devam ediyor |
+| 2026-06-14 | v1.118 | OK | Odemeler panelinde dinamik baglam ipucu tamamlandi |
+
 ## v1.117 - Odeme Kart Hover Vurgusu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

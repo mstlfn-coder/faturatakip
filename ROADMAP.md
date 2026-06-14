@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.118)
+
+- v1.118 tamamlandi: Odemeler panelinin ust yardim metni kart ve buton baglamina gore dinamik hale getirildi.
+- Hover aninda metin ilgili yone gore degisiyor; secilen akis kullanildiginda son yonun kisa ozeti kalici olarak gorunuyor.
+- Bu adim odeme panelinin kendi icindeki yonlendirme dilini daha tutarli hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.117)
 
 - v1.117 tamamlandi: Odemeler panelindeki ozet ve akis kartlarina hafif hover vurgusu eklendi.

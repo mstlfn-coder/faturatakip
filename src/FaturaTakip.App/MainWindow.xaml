@@ -750,12 +750,19 @@
                             <Button Content="Fatura Listesine Git"
                                     Style="{StaticResource SecondaryButton}"
                                     Margin="0,0,8,0"
+                                    MouseEnter="PaymentsHeaderAction_MouseEnter"
+                                    MouseLeave="PaymentsHintSource_MouseLeave"
+                                    Tag="header_invoices"
                                     Click="OpenInvoicesFromPaymentsButton_Click" />
                             <Button Content="Rapor Merkezine Git"
                                     Style="{StaticResource PrimaryButton}"
+                                    MouseEnter="PaymentsHeaderAction_MouseEnter"
+                                    MouseLeave="PaymentsHintSource_MouseLeave"
+                                    Tag="header_reports"
                                     Click="OpenReportsFromPaymentsButton_Click" />
                         </StackPanel>
-                        <TextBlock Text="Soldaki yol calisma ekranina, sagdaki yol rapor ve kontrol ekranlarina goturur."
+                        <TextBlock x:Name="PaymentsHeaderHintText"
+                                   Text="Soldaki yol calisma ekranina, sagdaki yol rapor ve kontrol ekranlarina goturur."
                                    Style="{StaticResource MutedText}"
                                    Margin="0,8,0,0"
                                    HorizontalAlignment="Right" />
@@ -765,7 +772,11 @@
                 <UniformGrid Grid.Row="1"
                              Columns="3"
                              Margin="0,24,0,24">
-                    <Border Style="{StaticResource PaymentsSummaryCard}" Margin="0,0,12,0">
+                    <Border Style="{StaticResource PaymentsSummaryCard}"
+                            Margin="0,0,12,0"
+                            Tag="summary_monthly"
+                            MouseEnter="PaymentsHintSource_MouseEnter"
+                            MouseLeave="PaymentsHintSource_MouseLeave">
                         <StackPanel>
                             <Border Style="{StaticResource FlowBadgeBorder}"
                                     Background="#DBEAFE"
@@ -796,7 +807,11 @@
                                     Click="OpenMonthlyReportFromPaymentsButton_Click" />
                         </StackPanel>
                     </Border>
-                    <Border Style="{StaticResource PaymentsSummaryCard}" Margin="0,0,12,0">
+                    <Border Style="{StaticResource PaymentsSummaryCard}"
+                            Margin="0,0,12,0"
+                            Tag="summary_missing_pdf"
+                            MouseEnter="PaymentsHintSource_MouseEnter"
+                            MouseLeave="PaymentsHintSource_MouseLeave">
                         <StackPanel>
                             <Border Style="{StaticResource FlowBadgeBorder}"
                                     Background="#F0F9FF"
@@ -826,7 +841,10 @@
                                     Click="OpenDocumentHealthReportFromPaymentsButton_Click" />
                         </StackPanel>
                     </Border>
-                    <Border Style="{StaticResource PaymentsSummaryCard}">
+                    <Border Style="{StaticResource PaymentsSummaryCard}"
+                            Tag="summary_unpaid"
+                            MouseEnter="PaymentsHintSource_MouseEnter"
+                            MouseLeave="PaymentsHintSource_MouseLeave">
                         <StackPanel>
                             <Border Style="{StaticResource FlowBadgeBorder}"
                                     Background="#ECFDF5"
@@ -880,6 +898,9 @@
                                      Columns="3"
                                      Margin="0,18,0,0">
                             <Border Style="{StaticResource PaymentsFlowCard}"
+                                    Tag="flow_workspace"
+                                    MouseEnter="PaymentsHintSource_MouseEnter"
+                                    MouseLeave="PaymentsHintSource_MouseLeave"
                                     Margin="0,0,12,0">
                                 <StackPanel>
                                     <Border Style="{StaticResource FlowBadgeBorder}"
@@ -907,6 +928,9 @@
                                 </StackPanel>
                             </Border>
                             <Border Style="{StaticResource PaymentsFlowCard}"
+                                    Tag="flow_document"
+                                    MouseEnter="PaymentsHintSource_MouseEnter"
+                                    MouseLeave="PaymentsHintSource_MouseLeave"
                                     Margin="0,0,12,0">
                                 <StackPanel>
                                     <Border Style="{StaticResource FlowBadgeBorder}"
@@ -933,7 +957,10 @@
                                             Click="OpenDocumentHealthReportFromPaymentsButton_Click" />
                                 </StackPanel>
                             </Border>
-                            <Border Style="{StaticResource PaymentsFlowCard}">
+                            <Border Style="{StaticResource PaymentsFlowCard}"
+                                    Tag="flow_unpaid_report"
+                                    MouseEnter="PaymentsHintSource_MouseEnter"
+                                    MouseLeave="PaymentsHintSource_MouseLeave">
                                 <StackPanel>
                                     <Border Style="{StaticResource FlowBadgeBorder}"
                                             Background="#FEF3C7"

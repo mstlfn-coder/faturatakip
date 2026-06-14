@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 using FaturaTakip.App.Data.Dashboard;
 using FaturaTakip.App.Data.Invoices;
@@ -15,12 +16,14 @@ namespace FaturaTakip.App;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private const string DefaultPaymentsHeaderHint = "Soldaki yol calisma ekranina, sagdaki yol rapor ve kontrol ekranlarina goturur.";
     private readonly InvoiceTypeRepository _invoiceTypeRepository;
     private readonly SubscriptionRepository _subscriptionRepository;
     private readonly InvoiceRepository _invoiceRepository;
     private readonly PaymentRepository _paymentRepository;
     private IReadOnlyList<InvoiceType> _invoiceTypes = Array.Empty<InvoiceType>();
     private InvoiceType? _selectedInvoiceType;
+    private string _activePaymentsHeaderHint = DefaultPaymentsHeaderHint;
 
     public MainWindow(StartupStatus startupStatus)
     {
@@ -139,34 +142,40 @@ public partial class MainWindow : Window
 
     private void OpenInvoicesFromPaymentsButton_Click(object sender, RoutedEventArgs e)
     {
+        PersistPaymentsHeaderHint("Fatura listesi acilir; genel kayit tarama ve secim icin kullanilir.");
         ShowInvoices();
     }
 
     private void OpenInvoicePaymentWorkspaceButton_Click(object sender, RoutedEventArgs e)
     {
+        PersistPaymentsHeaderHint("Odeme calisma alani acilir; odenmemis kayitlar icin odeme girisine gecilir.");
         ShowInvoices();
         InvoicesPanel.StartPaymentWorkspace();
     }
 
     private void OpenReportsFromPaymentsButton_Click(object sender, RoutedEventArgs e)
     {
+        PersistPaymentsHeaderHint("Rapor merkezi acilir; aylik, evrak ve acik bakiye kontrolleri buradan izlenir.");
         ShowReports();
     }
 
     private void OpenMonthlyReportFromPaymentsButton_Click(object sender, RoutedEventArgs e)
     {
+        PersistPaymentsHeaderHint("Aylik odeme raporu acilir; bu ay tahsil edilen toplam ve kayit sayisi listelenir.");
         ShowReports();
         ReportsPanel.ShowMonthlyReport();
     }
 
     private void OpenDocumentHealthReportFromPaymentsButton_Click(object sender, RoutedEventArgs e)
     {
+        PersistPaymentsHeaderHint("Evrak kontrol raporu acilir; eksik odeme PDF kayitlari buradan ayiklanir.");
         ShowReports();
         ReportsPanel.ShowDocumentHealthReport();
     }
 
     private void OpenUnpaidReportFromPaymentsButton_Click(object sender, RoutedEventArgs e)
     {
+        PersistPaymentsHeaderHint("Odenmemisler raporu acilir; acik bakiye ve bekleyen faturalar burada izlenir.");
         ShowReports();
         ReportsPanel.ShowUnpaidReport();
     }
@@ -297,6 +306,7 @@ public partial class MainWindow : Window
     private void ShowPayments()
     {
         RefreshPaymentsOverview();
+        ResetPaymentsHeaderHint();
         DashboardPanel.Visibility = Visibility.Collapsed;
         InvoiceTypesPanel.Visibility = Visibility.Collapsed;
         SubscriptionsPanel.Visibility = Visibility.Collapsed;
@@ -318,6 +328,58 @@ public partial class MainWindow : Window
         ReportsNavButton.FontWeight = FontWeights.Normal;
         BackupNavButton.Foreground = new SolidColorBrush(Color.FromRgb(203, 213, 225));
         BackupNavButton.FontWeight = FontWeights.Normal;
+    }
+
+    private void PaymentsHintSource_MouseEnter(object sender, MouseEventArgs e)
+    {
+        if (sender is not FrameworkElement { Tag: string hintKey })
+        {
+            return;
+        }
+
+        PaymentsHeaderHintText.Text = BuildPaymentsHeaderHint(hintKey);
+    }
+
+    private void PaymentsHintSource_MouseLeave(object sender, MouseEventArgs e)
+    {
+        ResetPaymentsHeaderHint();
+    }
+
+    private void PaymentsHeaderAction_MouseEnter(object sender, MouseEventArgs e)
+    {
+        if (sender is not FrameworkElement { Tag: string hintKey })
+        {
+            return;
+        }
+
+        PaymentsHeaderHintText.Text = BuildPaymentsHeaderHint(hintKey);
+    }
+
+    private void PersistPaymentsHeaderHint(string hint)
+    {
+        _activePaymentsHeaderHint = hint;
+        PaymentsHeaderHintText.Text = hint;
+    }
+
+    private void ResetPaymentsHeaderHint()
+    {
+        PaymentsHeaderHintText.Text = _activePaymentsHeaderHint;
+    }
+
+    private static string BuildPaymentsHeaderHint(string hintKey)
+    {
+        return hintKey switch
+        {
+            "header_invoices" => "Fatura listesi acilir; genel kayit tarama ve secim icin kullanilir.",
+            "header_reports" => "Rapor merkezi acilir; aylik, evrak ve acik bakiye kontrolleri buradan izlenir.",
+            "summary_monthly" => "Bu kart aylik odeme raporuna baglidir; ay icindeki toplam tahsilati ozetler.",
+            "summary_missing_pdf" => "Bu kart odeme PDF kontrolune baglidir; eksik evrakli kayitlari rapora tasir.",
+            "summary_unpaid" => "Bu kart odeme calisma alanina baglidir; acik bakiyeli faturalara hizli gecis verir.",
+            "flow_workspace" => "Islem yolu odeme giris alanini acar; odenmemis kayitlarla calismayi hizlandirir.",
+            "flow_document" => "Evrak yolu kontrol raporunu acar; eksik odeme PDF kayitlarini denetler.",
+            "flow_unpaid_report" => "Rapor yolu odenmemisler sekmesini acar; acik bakiye takibini toplar.",
+            _ => DefaultPaymentsHeaderHint,
+        };
     }
 
     private void ShowReports()

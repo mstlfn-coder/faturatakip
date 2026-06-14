@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.118)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.118 - Dinamik Odeme Ipucu`
+- Bu adimda Odemeler panelinin ust yardim metni, ust butonlar ve ozet/akis kartlari uzerinde gezilirken ilgili yone gore degismeye basladi.
+- Ayrica kullanici bir akis kullandiginda, ayni satir son kullanilan yonu aciklayan kisa ozet metnini gostermeye devam ediyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.117)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -103,4 +112,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelinde hover dili oturdugu icin, sonraki mantikli kucuk adim bu kartlarda secilen yone gore ustteki genel yonlendirme metnini dinamik hale getirmek ya da son tiklanan akis icin hafif bir durum ozeti gostermek olabilir.
+- Odemeler panelinde dinamik ipucu dili de oturdugu icin, sonraki mantikli kucuk adim secili akisin sayisal ozet kartlariyla iliskisini daha belirgin gosteren minik baglanti metinleri ya da son gidilen yolu rozetsel olarak isaretlemek olabilir.
