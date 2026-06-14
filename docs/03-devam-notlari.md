@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.179)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.179 - Aktif Yol Gecis Yumusatma`
+- Bu adimda odeme akis kartlarindaki aktif yol notlarinin tonu ve ust boslugu hafifce yumusatildi.
+- Boylece aciklama metninden aktif yol notuna gecis daha akici ve daha sakin gorunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.178)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

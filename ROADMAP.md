@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.179)
+
+- v1.179 tamamlandi: Odemeler panelindeki aktif yol notlarinin tonu ve ust boslugu hafifce yumusatildi.
+- Boylece aciklama ile aktif yol katmani arasindaki gecis daha sakin ve daha akiskan hale geldi.
+- Bu adim secili akis kartlarindaki alt bilgi ritmini daha duzgun yapti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.178)
 
 - v1.178 tamamlandi: Odemeler panelindeki yardim kapsulu ile aksiyon dugmesi arasindaki bosluk hafifce azaltildi.

@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.179 - Aktif Yol Gecis Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif yol gecisi yumusadi | OK | Aktif yol notlarinin tonu ve ust boslugu azaltildigi icin aciklama ile gecis daha akici oldu |
+| Hiyerarsi korundu | OK | Aktif yol ipucu hala secili akis bilgisini net bicimde ayiriyor |
+| 2026-06-15 | v1.179 | OK | Odemeler panelinde aktif yol gecis yumusatma tamamlandi |
+
 ## v1.178 - Yardim Aksiyon Yakinlastirma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

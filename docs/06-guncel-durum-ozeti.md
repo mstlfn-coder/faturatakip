@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.178 - Yardim Aksiyon Yakinlastirma`
+- Son tamamlanan temiz faz: `v1.179 - Aktif Yol Gecis Yumusatma`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.179` Aktif Yol Gecis Yumusatma
 - `v1.178` Yardim Aksiyon Yakinlastirma
 - `v1.177` Aktif Rozet Oran Ayari
 - `v1.176` Hover Kenarlik Tonu Ayari
@@ -93,7 +94,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Secili akis kartlarinda aciklama metni ile aktif yol notu arasindaki gorsel gecisi bir tik daha yumusatmak
+- Secili akis kartlarinda hedef satiri ile sonraki adim metni arasindaki ton hiyerarsisini bir tik daha netlestirmek
 
 ## Yeni Chat Icin Kisa Talimat
 
