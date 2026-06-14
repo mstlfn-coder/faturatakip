@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.137 - Kisayol Kapsulu Gorunme Canlanmasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kisayol kapsulu yumusak sekilde gorunuyor | OK | `Enter ile ac` kapsulu secili oldugunda hafif opacity canlanmasi aliyor |
+| Geri bildirim dili sakin kaldi | OK | Etki kisa ve dusuk siddette tutuldu |
+| 2026-06-14 | v1.137 | OK | Odemeler panelinde kisayol kapsulu gorunme canlanmasi tamamlandi |
+
 ## v1.136 - Akis Karti Hover Gecisi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

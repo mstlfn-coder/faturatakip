@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.137)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.137 - Kisayol Kapsulu Gorunme Canlanmasi`
+- Bu adimda secili akis kartlarindaki `Enter ile ac` kapsulleri gorundugunde cok hafif bir opacity canlanmasi almaya basladi.
+- Boylece yardimci kisayol ipucu kart secimiyle birlikte daha yumusak bir sekilde dikkat cekiyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.136)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -113,4 +122,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki hover gecisi de eklendigi icin, sonraki mantikli kucuk adim secili akis kartlarinda mikro ton animasyonunu yardimci rozet veya kisayol kapsulu tarafina tasimak olabilir.
+- Odemeler panelindeki kisayol kapsulu canlanmasi da eklendigi icin, sonraki mantikli kucuk adim aktif kolon rozetinin gorunme gecisini de benzer sakinlikte cilalamak olabilir.

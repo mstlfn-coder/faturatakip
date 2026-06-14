@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using FaturaTakip.App.Data.Dashboard;
 using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.InvoiceTypes;
@@ -444,9 +445,9 @@ public partial class MainWindow : Window
         SetPaymentsRouteNote(PaymentsWorkspaceNextStepText, routeKey == "workspace");
         SetPaymentsRouteNote(PaymentsDocumentNextStepText, routeKey == "document");
         SetPaymentsRouteNote(PaymentsUnpaidReportNextStepText, routeKey == "unpaid");
-        SetPaymentsRouteNote(PaymentsWorkspaceShortcutHint, routeKey == "workspace");
-        SetPaymentsRouteNote(PaymentsDocumentShortcutHint, routeKey == "document");
-        SetPaymentsRouteNote(PaymentsUnpaidReportShortcutHint, routeKey == "unpaid");
+        SetPaymentsShortcutHintState(PaymentsWorkspaceShortcutHint, routeKey == "workspace");
+        SetPaymentsShortcutHintState(PaymentsDocumentShortcutHint, routeKey == "document");
+        SetPaymentsShortcutHintState(PaymentsUnpaidReportShortcutHint, routeKey == "unpaid");
         SetPaymentsRouteNote(PaymentsWorkspaceActiveColumnBadge, routeKey == "workspace");
         SetPaymentsRouteNote(PaymentsDocumentActiveColumnBadge, routeKey == "document");
         SetPaymentsRouteNote(PaymentsUnpaidReportActiveColumnBadge, routeKey == "unpaid");
@@ -484,6 +485,28 @@ public partial class MainWindow : Window
     private static void SetPaymentsRouteNote(Border badge, bool isVisible)
     {
         badge.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private static void SetPaymentsShortcutHintState(Border badge, bool isVisible)
+    {
+        if (!isVisible)
+        {
+            badge.BeginAnimation(UIElement.OpacityProperty, null);
+            badge.Opacity = 1;
+            badge.Visibility = Visibility.Collapsed;
+            return;
+        }
+
+        badge.Visibility = Visibility.Visible;
+        badge.Opacity = 0.86;
+        badge.BeginAnimation(
+            UIElement.OpacityProperty,
+            new DoubleAnimation
+            {
+                From = 0.86,
+                To = 1,
+                Duration = TimeSpan.FromMilliseconds(180)
+            });
     }
 
     private static void SetPaymentsFlowTextState(TextBlock title, TextBlock description, bool isSelected, string titleHex, string descriptionHex)

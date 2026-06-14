@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.137)
+
+- v1.137 tamamlandi: Odemeler panelindeki `Enter ile ac` kapsullerine cok hafif gorunme canlanmasi eklendi.
+- Boylece secili kartta yardimci klavye ipucu biraz daha rafine ve daha yumusak hissediliyor.
+- Bu adim buyuk bir efekt eklemeden geri bildirim katmanini cilaladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.136)
 
 - v1.136 tamamlandi: Odemeler panelindeki akis kartlarina cok hafif hover gecisi eklendi.
