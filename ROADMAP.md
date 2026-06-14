@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.169)
+
+- v1.169 tamamlandi: Odemeler panelindeki mavi ve turuncu secili rozet tonlari hafifce yumusatildi.
+- Boylece uc akis karti ayni gorsel aile icinde daha dengeli algilaniyor ve renk agirligi daha esit dagiliyor.
+- Bu adim panelin renk hiyerarsisini bir kademe daha rafine etti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.168)
 
 - v1.168 tamamlandi: Odemeler panelindeki ikincil aksiyon dugmelerinin klavye odak vurgusu hafifce sakinlestirildi.

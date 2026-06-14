@@ -1134,8 +1134,8 @@
                                                    Foreground="#1D4ED8" />
                                     </Border>
                                     <Border x:Name="PaymentsDocumentActiveColumnBadge"
-                                            Background="#1D4ED8"
-                                            BorderBrush="#1D4ED8"
+                                            Background="#2563EB"
+                                            BorderBrush="#2563EB"
                                             BorderThickness="1"
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
@@ -1229,8 +1229,8 @@
                                                    Foreground="#B45309" />
                                     </Border>
                                     <Border x:Name="PaymentsUnpaidReportActiveColumnBadge"
-                                            Background="#B45309"
-                                            BorderBrush="#B45309"
+                                            Background="#C2410C"
+                                            BorderBrush="#C2410C"
                                             BorderThickness="1"
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"

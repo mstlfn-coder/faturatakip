@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.169)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.169 - Renk Ailesi Agirlik Dengeleme`
+- Bu adimda mavi ve turuncu secili rozet tonlari bir kademe yumusatilarak yesil akisla daha yakin algisal agirlikta toplandi.
+- Boylece uc akis karti ayni panel dili icinde daha dengeli okunuyor; hicbiri gereksiz yere digerinin onune gecmiyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.168)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

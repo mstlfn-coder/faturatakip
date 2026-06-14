@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.169 - Renk Ailesi Agirlik Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Renk aileleri daha dengeli | OK | Mavi ve turuncu rozet tonlari yesil akisla daha yakin algisal agirlikta |
+| Uc akis karti daha butunlu | OK | Kartlar ayni panel dili icinde daha esit vurgu dagitiyor |
+| 2026-06-14 | v1.169 | OK | Odemeler panelinde renk ailesi agirlik dengeleme tamamlandi |
+
 ## v1.168 - Ikincil Odak Tonu Yumusatma
 | Kontrol | Durum | Not |
 | --- | --- | --- |
