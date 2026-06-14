@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.130 - Aktif Kolon Sonraki Adim Ipuclari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili akis kartinda sonraki adim ipucu gorunuyor | OK | `Sonraki adim:` satiri secili kartta hedef bilgisinin altinda beliriyor |
+| Diger kartlar sakin kaliyor | OK | Secili olmayan kartlarda bu ipucu gorunmuyor |
+| 2026-06-14 | v1.130 | OK | Odemeler panelinde aktif kolon sonraki adim ipuclari tamamlandi |
+
 ## v1.129 - Aktif Kolon Hedef Satiri
 | Kontrol | Durum | Not |
 | --- | --- | --- |

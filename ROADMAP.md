@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.130)
+
+- v1.130 tamamlandi: Odemeler panelindeki secili akis kartlarina `Sonraki adim:` ipucu eklendi.
+- Boylece kartlar artik hedeflenen ekrani ve oradaki ilk operator aksiyonunu birlikte anlatiyor.
+- Bu adim karttan aksiyona gecisi biraz daha akici ve rehberli hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.129)
 
 - v1.129 tamamlandi: Odemeler panelindeki secili akis kartinin dugmesinden hemen once kisa bir `Hedef:` satiri eklendi.

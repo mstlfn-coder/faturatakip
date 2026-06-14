@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.130)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.130 - Aktif Kolon Sonraki Adim Ipuclari`
+- Bu adimda secili akis kartlarina, hedef satirinin altinda gorunen kisa bir `Sonraki adim:` ipucu eklendi.
+- Boylece kullanici sadece nereye gidecegini degil, oraya gidince ilk ne yapacagini da kart uzerinden okuyabiliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.129)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -50,4 +59,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki hedef satiri da eklendigi icin, sonraki mantikli kucuk adim secili kolon kartinin altinda kisa bir "sonraki adim" ipucu vererek kullanici aksiyon zincirini bir tik daha akiskan hale getirmek olabilir.
+- Odemeler panelindeki sonraki adim ipucu da eklendigi icin, sonraki mantikli kucuk adim secili akis kartinin butonunda aksiyon odakli daha net fiil dili kullanmak olabilir.
