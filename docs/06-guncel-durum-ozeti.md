@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-14
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.139 - Ton Hiyerarsisi Dengeleme`
+- Son tamamlanan temiz faz: `v1.140 - Aktif Yol Tipografi Ayrimi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.140` Aktif Yol Tipografi Ayrimi
 - `v1.139` Ton Hiyerarsisi Dengeleme
 - `v1.138` Aktif Kolon Rozeti Gorunme Gecisi
 - `v1.137` Kisayol Kapsulu Gorunme Canlanmasi
@@ -42,9 +43,9 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Bu Fazda Ne Yapildi
 
-1. Yardim kapsullerinin arka plan ve cerceve tonlari biraz daha acik hale getirildi.
-2. Secili metin aciklamalarinin tonlari da kapsullerle daha uyumlu olacak sekilde yumusatildi.
-3. Boylece secili kartta bilgi hiyerarsisi korunurken renk ailesi daha sakin ve daha tutarli okundu.
+1. `Aktif yol` notlarinin boyutu ve agirligi azaltildi.
+2. `Hedef` satiri ana yonlendirme rolunu korurken, aktif yol notu daha arka plandaki destek katmanina cekildi.
+3. Boylece secili kartin mikro tipografi hiyerarsisi daha net ve daha profesyonel hissettirmeye basladi.
 4. Dogrulama rutini build ve self-test ile tekrar temiz gecti.
 
 ## Son Dogrulanan Testler
@@ -54,7 +55,7 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Secili akis kartlarinda aktif yol notu ve hedef satiri arasindaki mikro tipografi farklarini rafine etmek
+- Secili akis kartlarindaki yardim metni satirlarina daha rafine bir satir yuksekligi dengesi vermek
 
 ## Yeni Chat Icin Kisa Talimat
 

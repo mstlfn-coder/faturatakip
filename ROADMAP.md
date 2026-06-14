@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.140)
+
+- v1.140 tamamlandi: Odemeler panelindeki `Aktif yol` notlari daha yardimci bir tipografi katmanina cekildi.
+- Boylece `Hedef` satiri ile `Aktif yol` notu arasindaki rol farki tek bakista daha net gorunuyor.
+- Bu adim kart icindeki mikro metin hiyerarsisini biraz daha rafine hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.139)
 
 - v1.139 tamamlandi: Odemeler panelindeki secili kartlarda ton hiyerarsisi biraz daha dengelendi.

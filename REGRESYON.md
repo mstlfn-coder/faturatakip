@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.140 - Aktif Yol Tipografi Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif yol notu daha yardimci gorunuyor | OK | Boyut ve agirlik azaltildigi icin `Hedef` satiriyle karismiyor |
+| Mikro hiyerarsi netlesti | OK | Aktif yol notu, hedef ve sonraki adim arasindaki rol farki daha belirgin |
+| 2026-06-14 | v1.140 | OK | Odemeler panelinde aktif yol tipografi ayrimi tamamlandi |
+
 ## v1.139 - Ton Hiyerarsisi Dengeleme
 | Kontrol | Durum | Not |
 | --- | --- | --- |
