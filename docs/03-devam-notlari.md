@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.111)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.111 - Replay Ayirac Uyumu`
+- Bu adimda secili yardim durum satirindaki ayirac nokta replay aktifken cok hafif ton uyumu almaya basladi.
+- Boylece satirin icindeki tum mikro parcalar ayni geri bildirim ailesine baglanmis oldu.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.110)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -40,4 +49,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Replay aktifliginde secili durum satirinin ayirac noktasina da cok hafif bir uyum verip satir mikroduzey tutarliligini tamamlayabiliriz.
+- Secili yardim durum satirinin replay geri bildirim zinciri tamamlandigi icin, sonraki mantikli kucuk adim odemeler modulundeki ana akis engellerinden birine gecmek olur.

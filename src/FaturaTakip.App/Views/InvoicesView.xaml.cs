@@ -2952,6 +2952,7 @@ public partial class InvoicesView : UserControl
             PaymentHelperSelectedActionHintText.Text = GetPaymentHelperHintLabel(_lastInvokedPaymentHelperActionKey);
         }
         ApplyPaymentHelperSelectedStatusHintReplayVisualState(_isPaymentHelperReplayFeedbackActive);
+        ApplyPaymentHelperSelectedStatusDividerReplayVisualState(_isPaymentHelperReplayFeedbackActive);
 
         if (PaymentHelperSelectedActionStatusButton is not null)
         {
@@ -3259,6 +3260,7 @@ public partial class InvoicesView : UserControl
             PaymentPdfSelectedActionHintText.Text = GetPaymentPdfHintLabel(_lastInvokedPaymentPdfHelperActionKey);
         }
         ApplyPaymentPdfSelectedStatusHintReplayVisualState(_isPaymentPdfReplayFeedbackActive);
+        ApplyPaymentPdfSelectedStatusDividerReplayVisualState(_isPaymentPdfReplayFeedbackActive);
 
         if (PaymentPdfSelectedActionStatusButton is not null)
         {
@@ -3898,6 +3900,42 @@ public partial class InvoicesView : UserControl
             : FontWeights.Normal;
     }
 
+    private void ApplyPaymentHelperSelectedStatusDividerReplayVisualState(bool isReplayActive)
+    {
+        if (PaymentHelperSelectedActionDividerText is null)
+        {
+            return;
+        }
+
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+        PaymentHelperSelectedActionDividerText.Foreground = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentHelperDividerReplayColor(emphasis)
+                : Color.FromRgb(148, 163, 184));
+        PaymentHelperSelectedActionDividerText.Opacity = isReplayActive ? 0.95 : 1;
+        PaymentHelperSelectedActionDividerText.FontWeight = isReplayActive
+            ? FontWeights.Bold
+            : FontWeights.SemiBold;
+    }
+
+    private void ApplyPaymentPdfSelectedStatusDividerReplayVisualState(bool isReplayActive)
+    {
+        if (PaymentPdfSelectedActionDividerText is null)
+        {
+            return;
+        }
+
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+        PaymentPdfSelectedActionDividerText.Foreground = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentPdfDividerReplayColor(emphasis)
+                : Color.FromRgb(148, 163, 184));
+        PaymentPdfSelectedActionDividerText.Opacity = isReplayActive ? 0.95 : 1;
+        PaymentPdfSelectedActionDividerText.FontWeight = isReplayActive
+            ? FontWeights.Bold
+            : FontWeights.SemiBold;
+    }
+
     private void ApplyPaymentPdfReplaySummaryPrefixVisualState(bool isReplayActive)
     {
         var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
@@ -4065,6 +4103,26 @@ public partial class InvoicesView : UserControl
             "low" => Color.FromRgb(3, 105, 161),
             "high" => Color.FromRgb(2, 132, 199),
             _ => Color.FromRgb(3, 105, 161)
+        };
+    }
+
+    private static Color GetPaymentHelperDividerReplayColor(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(74, 222, 128),
+            "high" => Color.FromRgb(21, 128, 61),
+            _ => Color.FromRgb(34, 197, 94)
+        };
+    }
+
+    private static Color GetPaymentPdfDividerReplayColor(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(56, 189, 248),
+            "high" => Color.FromRgb(3, 105, 161),
+            _ => Color.FromRgb(14, 165, 233)
         };
     }
 

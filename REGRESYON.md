@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.111 - Replay Ayirac Uyumu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi ayirac noktasi replay tonuna uyum sagliyor | OK | Replay aktifken ayirac nokta hafif yesil vurgu ile satir diline katiliyor |
+| PDF yardimi ayirac noktasi replay tonuna uyum sagliyor | OK | Replay aktifken ayirac nokta hafif mavi vurgu ile satir diline katiliyor |
+| 2026-06-14 | v1.111 | OK | Replay ayirac uyumu + build + self-test tamamlandi |
+
 ## v1.110 - Replay Kisa Yol Ipucu Uyumu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

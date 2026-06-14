@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.111)
+
+- v1.111 tamamlandi: secili yardim durum satirindaki ayirac nokta replay aktifliginde cok hafif ton uyumu almaya basladi.
+- Boylece flash, tekrar rozeti, ayirac ve kisayol kapsulu ayni mikro geri bildirim ailesi icinde toparlandi.
+- Etki bilincli olarak cok hafif tutuldu; sadece satir butunlugunu sessizce kuvvetlendiriyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.110)
 
 - v1.110 tamamlandi: secili yardim durum satirinin sagdaki kisayol ipucu replay aktifliginde hafif uyum tonu almaya basladi.

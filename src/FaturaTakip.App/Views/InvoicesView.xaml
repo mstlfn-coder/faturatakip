@@ -1164,7 +1164,8 @@
                                                              Text="TEKRAR"
                                                              Style="{StaticResource InlineShortcutRepeatText}" />
                                               </Border>
-                                            <TextBlock Style="{StaticResource InlineShortcutDividerText}" />
+                                              <TextBlock x:Name="PaymentHelperSelectedActionDividerText"
+                                                         Style="{StaticResource InlineShortcutDividerText}" />
                                             <TextBlock x:Name="PaymentHelperSelectedActionStatusText"
                                                        Style="{StaticResource PaymentHelperLastActionTextStyle}" />
                                               <Border x:Name="PaymentHelperSelectedActionHintBorder"
@@ -1319,7 +1320,8 @@
                                                              Text="TEKRAR"
                                                              Style="{StaticResource InlineShortcutRepeatText}" />
                                               </Border>
-                                            <TextBlock Style="{StaticResource InlineShortcutDividerText}" />
+                                              <TextBlock x:Name="PaymentPdfSelectedActionDividerText"
+                                                         Style="{StaticResource InlineShortcutDividerText}" />
                                             <TextBlock x:Name="PaymentPdfSelectedActionStatusText"
                                                        Style="{StaticResource PaymentPdfLastActionTextStyle}" />
                                               <Border x:Name="PaymentPdfSelectedActionHintBorder"
