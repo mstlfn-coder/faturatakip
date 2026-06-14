@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.124)
+
+- v1.124 tamamlandi: Alt akis kartlarina, bagli olduklari ust ozetleri soyleyen kisa geri baglanti metinleri eklendi.
+- Boylece Odemeler paneli hem ustten alta hem alttan uste okunabilen daha tutarli bir mini harita haline geldi.
+- Bu adim fazladan dekor eklemeden bilgi yonunu cift tarafli kurdu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.123)
 
 - v1.123 tamamlandi: Odemeler panelindeki ust ozet kartlara, ilgili alt akis kartlariyla bag kuran kisa metinler eklendi.

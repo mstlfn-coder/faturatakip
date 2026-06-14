@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.124 - Akis Ozet Geri Baglantisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Akis kartlari ust ozeti aniyor | OK | Her alt akis karti iliskili ust ozet kartini kisa mikro metinle isaret ediyor |
+| Panel iki yonlu okunuyor | OK | Ustten alta ve alttan uste bag kurulabiliyor |
+| 2026-06-14 | v1.124 | OK | Odemeler panelinde akis-ozet geri baglantisi tamamlandi |
+
 ## v1.123 - Ozet Akis Baglanti Metni
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.124)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.124 - Akis Ozet Geri Baglantisi`
+- Bu adimda alt akis kartlarina, iliskili ust ozetleri adlandiran kisa geri baglanti metinleri eklendi.
+- Boylece panel icindeki iliski dili artik sadece ust ozetlerden alta degil, alttan uste de okunabiliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.123)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -157,4 +166,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelinde ozet-akis baglanti dili netlestigi icin, sonraki mantikli kucuk adim alt akis kartlarinda da ilgili ust ozeti kisaca anan mikro metinler eklemek ya da kartlar arasi cok hafif yon oku denemek olabilir.
+- Odemeler panelinde ozet-akis iliskisi iki yonlu kurulmus oldugu icin, sonraki mantikli kucuk adim kartlar arasi cok hafif yon oku denemek ya da aktif yol durumunu sadece ilgili kolon icinde toplamak olabilir.
