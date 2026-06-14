@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.119)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.119 - Son Yol Rozeti`
+- Bu adimda Odemeler panelinin ust yardim alanina, son kullanilan akis yonunu gosteren renkli bir rozet eklendi.
+- Dinamik yardim metnine ek olarak kullanici artik son gittigi yonu tek bakista etiket olarak da gorebiliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.118)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -112,4 +121,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelinde dinamik ipucu dili de oturdugu icin, sonraki mantikli kucuk adim secili akisin sayisal ozet kartlariyla iliskisini daha belirgin gosteren minik baglanti metinleri ya da son gidilen yolu rozetsel olarak isaretlemek olabilir.
+- Odemeler panelinde son yol rozetli hale geldigi icin, sonraki mantikli kucuk adim bu rozet ile ilgili ozet karti arasinda minik bir baglanti kurmak ya da son kullanilan akis kartini da hafif secili duruma getirmek olabilir.

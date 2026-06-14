@@ -17,6 +17,7 @@ namespace FaturaTakip.App;
 public partial class MainWindow : Window
 {
     private const string DefaultPaymentsHeaderHint = "Soldaki yol calisma ekranina, sagdaki yol rapor ve kontrol ekranlarina goturur.";
+    private const string DefaultPaymentsRouteBadge = "SON YOL: GENEL";
     private readonly InvoiceTypeRepository _invoiceTypeRepository;
     private readonly SubscriptionRepository _subscriptionRepository;
     private readonly InvoiceRepository _invoiceRepository;
@@ -24,6 +25,7 @@ public partial class MainWindow : Window
     private IReadOnlyList<InvoiceType> _invoiceTypes = Array.Empty<InvoiceType>();
     private InvoiceType? _selectedInvoiceType;
     private string _activePaymentsHeaderHint = DefaultPaymentsHeaderHint;
+    private string _activePaymentsRouteBadge = DefaultPaymentsRouteBadge;
 
     public MainWindow(StartupStatus startupStatus)
     {
@@ -142,40 +144,70 @@ public partial class MainWindow : Window
 
     private void OpenInvoicesFromPaymentsButton_Click(object sender, RoutedEventArgs e)
     {
-        PersistPaymentsHeaderHint("Fatura listesi acilir; genel kayit tarama ve secim icin kullanilir.");
+        PersistPaymentsPanelContext(
+            "Fatura listesi acilir; genel kayit tarama ve secim icin kullanilir.",
+            "SON YOL: LISTE",
+            "#E2E8F0",
+            "#CBD5E1",
+            "#475569");
         ShowInvoices();
     }
 
     private void OpenInvoicePaymentWorkspaceButton_Click(object sender, RoutedEventArgs e)
     {
-        PersistPaymentsHeaderHint("Odeme calisma alani acilir; odenmemis kayitlar icin odeme girisine gecilir.");
+        PersistPaymentsPanelContext(
+            "Odeme calisma alani acilir; odenmemis kayitlar icin odeme girisine gecilir.",
+            "SON YOL: ISLEM",
+            "#DCFCE7",
+            "#86EFAC",
+            "#166534");
         ShowInvoices();
         InvoicesPanel.StartPaymentWorkspace();
     }
 
     private void OpenReportsFromPaymentsButton_Click(object sender, RoutedEventArgs e)
     {
-        PersistPaymentsHeaderHint("Rapor merkezi acilir; aylik, evrak ve acik bakiye kontrolleri buradan izlenir.");
+        PersistPaymentsPanelContext(
+            "Rapor merkezi acilir; aylik, evrak ve acik bakiye kontrolleri buradan izlenir.",
+            "SON YOL: RAPOR",
+            "#DBEAFE",
+            "#93C5FD",
+            "#1D4ED8");
         ShowReports();
     }
 
     private void OpenMonthlyReportFromPaymentsButton_Click(object sender, RoutedEventArgs e)
     {
-        PersistPaymentsHeaderHint("Aylik odeme raporu acilir; bu ay tahsil edilen toplam ve kayit sayisi listelenir.");
+        PersistPaymentsPanelContext(
+            "Aylik odeme raporu acilir; bu ay tahsil edilen toplam ve kayit sayisi listelenir.",
+            "SON YOL: AYLIK",
+            "#DBEAFE",
+            "#93C5FD",
+            "#1D4ED8");
         ShowReports();
         ReportsPanel.ShowMonthlyReport();
     }
 
     private void OpenDocumentHealthReportFromPaymentsButton_Click(object sender, RoutedEventArgs e)
     {
-        PersistPaymentsHeaderHint("Evrak kontrol raporu acilir; eksik odeme PDF kayitlari buradan ayiklanir.");
+        PersistPaymentsPanelContext(
+            "Evrak kontrol raporu acilir; eksik odeme PDF kayitlari buradan ayiklanir.",
+            "SON YOL: EVRAK",
+            "#F0F9FF",
+            "#BAE6FD",
+            "#0369A1");
         ShowReports();
         ReportsPanel.ShowDocumentHealthReport();
     }
 
     private void OpenUnpaidReportFromPaymentsButton_Click(object sender, RoutedEventArgs e)
     {
-        PersistPaymentsHeaderHint("Odenmemisler raporu acilir; acik bakiye ve bekleyen faturalar burada izlenir.");
+        PersistPaymentsPanelContext(
+            "Odenmemisler raporu acilir; acik bakiye ve bekleyen faturalar burada izlenir.",
+            "SON YOL: BAKIYE",
+            "#FEF3C7",
+            "#FCD34D",
+            "#B45309");
         ShowReports();
         ReportsPanel.ShowUnpaidReport();
     }
@@ -307,6 +339,7 @@ public partial class MainWindow : Window
     {
         RefreshPaymentsOverview();
         ResetPaymentsHeaderHint();
+        ApplyPaymentsRouteBadge("#E2E8F0", "#CBD5E1", "#475569");
         DashboardPanel.Visibility = Visibility.Collapsed;
         InvoiceTypesPanel.Visibility = Visibility.Collapsed;
         SubscriptionsPanel.Visibility = Visibility.Collapsed;
@@ -355,15 +388,26 @@ public partial class MainWindow : Window
         PaymentsHeaderHintText.Text = BuildPaymentsHeaderHint(hintKey);
     }
 
-    private void PersistPaymentsHeaderHint(string hint)
+    private void PersistPaymentsPanelContext(string hint, string badgeText, string backgroundHex, string borderHex, string foregroundHex)
     {
         _activePaymentsHeaderHint = hint;
+        _activePaymentsRouteBadge = badgeText;
         PaymentsHeaderHintText.Text = hint;
+        PaymentsLastRouteBadgeText.Text = badgeText;
+        ApplyPaymentsRouteBadge(backgroundHex, borderHex, foregroundHex);
     }
 
     private void ResetPaymentsHeaderHint()
     {
         PaymentsHeaderHintText.Text = _activePaymentsHeaderHint;
+        PaymentsLastRouteBadgeText.Text = _activePaymentsRouteBadge;
+    }
+
+    private void ApplyPaymentsRouteBadge(string backgroundHex, string borderHex, string foregroundHex)
+    {
+        PaymentsLastRouteBadgeBorder.Background = (Brush)new BrushConverter().ConvertFromString(backgroundHex)!;
+        PaymentsLastRouteBadgeBorder.BorderBrush = (Brush)new BrushConverter().ConvertFromString(borderHex)!;
+        PaymentsLastRouteBadgeText.Foreground = (Brush)new BrushConverter().ConvertFromString(foregroundHex)!;
     }
 
     private static string BuildPaymentsHeaderHint(string hintKey)

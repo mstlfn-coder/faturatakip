@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.119 - Son Yol Rozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Son kullanilan akis rozeti gorunuyor | OK | Ust yardim alaninda son yol icin metinsel rozet gosteriliyor |
+| Rozet akis turune gore renkleniyor | OK | Liste, islem, rapor, evrak ve bakiye yollarinda rozet tonu degisiyor |
+| 2026-06-14 | v1.119 | OK | Odemeler panelinde son yol rozeti tamamlandi |
+
 ## v1.118 - Dinamik Odeme Ipucu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

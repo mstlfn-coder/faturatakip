@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.119)
+
+- v1.119 tamamlandi: Odemeler panelinin ust yardim alanina son kullanilan yolu gosteren renkli bir rozet eklendi.
+- Liste, islem, rapor, evrak ve bakiye gibi akislar artik sadece metinle degil, kalici rozetle de gorunur hale geldi.
+- Bu adim odeme panelindeki yon duygusunu bir tik daha hizli okunur yapti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.118)
 
 - v1.118 tamamlandi: Odemeler panelinin ust yardim metni kart ve buton baglamina gore dinamik hale getirildi.
