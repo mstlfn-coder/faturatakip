@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.160 - Rozet Ust Bosluk Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozet daha bagli | OK | Rozetin ust boslugu azaltildi ve kartin ust bloguna yakinlasti |
+| Ust durum zinciri daha butunlu | OK | Secili durum girisi daha kompakt okunuyor |
+| 2026-06-14 | v1.160 | OK | Odemeler panelinde rozet ust bosluk dengeleme tamamlandi |
+
 ## v1.159 - Aksiyon Butonu Yakinlastirma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

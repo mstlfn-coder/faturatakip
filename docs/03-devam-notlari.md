@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.160)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.160 - Rozet Ust Bosluk Dengeleme`
+- Bu adimda secili akis kartlarindaki aktif kolon rozetlerinin ust boslugu bir kademe azaltildi.
+- Boylece secili durum girisi kartin ust blogunda daha kompakt ve daha tutarli hissediliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.159)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

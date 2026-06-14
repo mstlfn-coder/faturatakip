@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.160)
+
+- v1.160 tamamlandi: Odemeler panelindeki aktif kolon rozetlerinin ust boslugu hafifce azaltildi.
+- Boylece secili durum girisi kartin ust blogunda daha yakin ve daha butunlu okunuyor.
+- Bu adim kartlarin ust durum zincirini bir kademe daha toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.159)
 
 - v1.159 tamamlandi: Odemeler panelindeki aksiyon butonlarinin ust boslugu hafifce azaltildi.
