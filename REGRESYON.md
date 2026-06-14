@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.114 - Odeme Akisi Rozetleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme akis yollari daha belirgin | OK | Islem, Evrak ve Rapor olarak uc ayri rozetli yonlendirme karti gorunuyor |
+| Aksiyon aciklamalari ekranda okunuyor | OK | Her kisa yolun ne actigi ve ne icin kullanildigi panel icinde yaziyor |
+| 2026-06-14 | v1.114 | OK | Odemeler panelinde rozetli akis aciklamalari tamamlandi |
+
 ## v1.113 - Odemeye Hedefli Gecis
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.114)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.114 - Odeme Akisi Rozetleri`
+- Bu adimda Odemeler panelindeki uc ana yonlendirme, rozetli ve aciklamali kartlara ayrildi.
+- Kullanici artik Faturalar icindeki odeme alani, eksik evrak kontrolu ve odenmemisler raporu arasindaki farki ilk bakista okuyabiliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.113)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -67,4 +76,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler gecisi artik hedefli hale geldigi icin, sonraki mantikli kucuk adim panel uzerinde hangi odeme akisina gidilecegini daha net ayiran kisa durum satirlari ya da rozetli aksiyon aciklamalari eklemek olabilir.
+- Odemeler akis ayrimi netlestigi icin, sonraki mantikli kucuk adim ust kisimdaki ozet kartlarin da benzer sekilde hangi rapora veya isleme baglandigini kucuk baglam satirlariyla daha netlestirmek olabilir.

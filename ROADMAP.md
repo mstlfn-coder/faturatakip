@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.114)
+
+- v1.114 tamamlandi: Odemeler panelindeki ana akis butonlari rozetli ve aciklamali uc yonlendirme kartina donusturuldu.
+- Islem, Evrak ve Rapor ayrimi artik ilk bakista anlasiliyor; kullanici nereye gidecegini butona basmadan once okuyabiliyor.
+- Bu adim davranis degisimi yapmadan panelin karar vermeyi kolaylastiran okunabilirligini guclendirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.113)
 
 - v1.113 tamamlandi: Odemeler panelindeki odeme odakli gecisler artik dogrudan Faturalar ekranindaki odeme calisma modunu aciyor.
