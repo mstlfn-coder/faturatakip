@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.121 - Aktif Yol Alt Notu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili kartta aktif yol alt notu gorunuyor | OK | Son kullanilan yon ilgili ozet veya akis kartinda kucuk "Aktif yol" notu aliyor |
+| Rozet, kart ve not birlikte calisiyor | OK | Ust rozet, kart secimi ve alt not ayni akis duygusunu birlestiriyor |
+| 2026-06-14 | v1.121 | OK | Odemeler panelinde aktif yol alt notu tamamlandi |
+
 ## v1.120 - Son Yol Kart Secimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

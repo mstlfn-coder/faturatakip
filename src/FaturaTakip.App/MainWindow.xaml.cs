@@ -429,6 +429,12 @@ public partial class MainWindow : Window
         SetPaymentsCardSelection(PaymentsWorkspaceFlowCard, isSelected: routeKey == "workspace", "#DCFCE7", "#4ADE80");
         SetPaymentsCardSelection(PaymentsDocumentFlowCard, isSelected: routeKey == "document", "#DBEAFE", "#60A5FA");
         SetPaymentsCardSelection(PaymentsUnpaidReportFlowCard, isSelected: routeKey == "unpaid", "#FEF3C7", "#FBBF24");
+        SetPaymentsRouteNote(PaymentsMonthlyActiveRouteNote, routeKey == "monthly");
+        SetPaymentsRouteNote(PaymentsMissingPdfActiveRouteNote, routeKey == "document");
+        SetPaymentsRouteNote(PaymentsUnpaidActiveRouteNote, routeKey == "workspace" || routeKey == "unpaid");
+        SetPaymentsRouteNote(PaymentsWorkspaceActiveRouteNote, routeKey == "workspace");
+        SetPaymentsRouteNote(PaymentsDocumentActiveRouteNote, routeKey == "document");
+        SetPaymentsRouteNote(PaymentsUnpaidReportActiveRouteNote, routeKey == "unpaid");
     }
 
     private static void SetPaymentsCardSelection(Border card, bool isSelected, string selectedBackgroundHex, string selectedBorderHex)
@@ -442,6 +448,11 @@ public partial class MainWindow : Window
 
         card.Background = (Brush)new BrushConverter().ConvertFromString(selectedBackgroundHex)!;
         card.BorderBrush = (Brush)new BrushConverter().ConvertFromString(selectedBorderHex)!;
+    }
+
+    private static void SetPaymentsRouteNote(TextBlock note, bool isVisible)
+    {
+        note.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
     }
 
     private static string BuildPaymentsHeaderHint(string hintKey)

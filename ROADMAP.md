@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.121)
+
+- v1.121 tamamlandi: Odemeler panelindeki secili ozet ve akis kartlari icine kucuk bir "Aktif yol" alt notu eklendi.
+- Boylece son kullanilan yon artik ust rozet, kart secimi ve kart ici mikro etiket olarak uc katmanda okunabiliyor.
+- Bu adim odeme panelinin durum hafizasini daha acik ve daha taranabilir hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.120)
 
 - v1.120 tamamlandi: Odemeler panelindeki son yol rozeti, ilgili ozet veya akis kartinda hafif secili durumla desteklendi.

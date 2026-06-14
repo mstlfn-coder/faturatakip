@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.121)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.121 - Aktif Yol Alt Notu`
+- Bu adimda Odemeler panelindeki secili kartlar, son kullanilan akis icin kart icinde kucuk bir "Aktif yol" notu gostermeye basladi.
+- Boylece ust rozet, secili kart ve kart ici mikro etiket ayni yone dair tutarli bir iz birakiyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.120)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -130,4 +139,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelinde son yol artik kart yuzeyinde de okunabildigi icin, sonraki mantikli kucuk adim secili kart icin minik bir "aktif yol" alt notu ya da kart icindeki butonda da hafif secili vurgu eklemek olabilir.
+- Odemeler panelinde aktif yol artik uc katmanda okunabildigi icin, sonraki mantikli kucuk adim aktif yolun ilgili butonunda da daha belirgin ama zarif bir vurgu vermek ya da ozet kartlari ile akis kartlari arasinda ince bag cizgileri dusunmek olabilir.
