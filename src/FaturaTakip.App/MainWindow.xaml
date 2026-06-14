@@ -1103,7 +1103,7 @@
                                             Padding="7,2"
                                             Visibility="Collapsed">
                                         <TextBlock Text="Enter ile ac"
-                                                   Foreground="#15803D"
+                                                   Foreground="#16A34A"
                                                    FontSize="9"
                                                    FontWeight="Normal" />
                                     </Border>
@@ -1199,7 +1199,7 @@
                                             Padding="7,2"
                                             Visibility="Collapsed">
                                         <TextBlock Text="Enter ile ac"
-                                                   Foreground="#2563EB"
+                                                   Foreground="#3B82F6"
                                                    FontSize="9"
                                                    FontWeight="Normal" />
                                     </Border>
@@ -1294,7 +1294,7 @@
                                             Padding="7,2"
                                             Visibility="Collapsed">
                                         <TextBlock Text="Enter ile ac"
-                                                   Foreground="#C2410C"
+                                                   Foreground="#EA580C"
                                                    FontSize="9"
                                                    FontWeight="Normal" />
                                     </Border>

@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.166 - Kisayol Tonu Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kisayol daha sakin | OK | Kisayol kapsulu metinleri daha yardimci tonda okunuyor |
+| Hiyerarsi korundu | OK | Aksiyon dugmesi ana komut olarak onde kalmaya devam ediyor |
+| 2026-06-14 | v1.166 | OK | Odemeler panelinde kisayol tonu yumusatma tamamlandi |
+
 ## v1.165 - Sonraki Adim Tonu Yumusatma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

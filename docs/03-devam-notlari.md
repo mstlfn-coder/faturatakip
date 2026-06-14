@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.166)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.166 - Kisayol Tonu Yumusatma`
+- Bu adimda secili akis kartlarindaki `Enter ile ac` kapsul metinlerinin tonu bir kademe yumusatildi.
+- Boylece aksiyon dugmesi ana komut olarak onde kalirken, kisayol kapsulu daha yardimci bir operator ipucu gibi okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.165)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

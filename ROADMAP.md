@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.166)
+
+- v1.166 tamamlandi: Odemeler panelindeki `Enter ile ac` kapsul metinlerinin renk tonu hafifce yumusatildi.
+- Boylece aksiyon dugmesi daha onde kalirken, kisayol kapsulu daha sakin bir operator ipucu gibi okunuyor.
+- Bu adim kartlarin alt aksiyon hiyerarsisini bir kademe daha rafine etti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.165)
 
 - v1.165 tamamlandi: Odemeler panelindeki `Sonraki adim` satirlarinin renk tonu hafifce yumusatildi.
