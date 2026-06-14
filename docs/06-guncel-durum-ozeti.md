@@ -7,6 +7,7 @@ Son guncelleme tarihi: 2026-06-14
 - Aktif branch: `codex/v1.08-review-context-issue-action`
 - Son commit: `git log --oneline -1` ile teyit et; bu dosya hizli handoff ozeti olarak tutulur
 - Son tamamlanan temiz fazlar:
+  - `v1.116` Ust Yonlendirme Netligi
   - `v1.115` Odeme Ozet Baglami
   - `v1.114` Odeme Akisi Rozetleri
   - `v1.113` Odemeye Hedefli Gecis

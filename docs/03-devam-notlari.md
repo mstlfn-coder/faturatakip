@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.116)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.116 - Ust Yonlendirme Netligi`
+- Bu adimda Odemeler panelinin ust sagindaki genel gecis butonlari daha hedefli isimlerle guncellendi ve altlarina kisa bir yardimci durum metni eklendi.
+- Boylece listeye gitme ile rapor merkezine gitme ayrimi panel basliginin yaninda da daha kolay anlasiliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.115)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -85,4 +94,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler paneli daha iyi anlatiyor hale geldigi icin, sonraki mantikli kucuk adim ust sagdaki genel yonlendirme butonlarini da secili kart baglamina gore daha akilli hale getirmek ya da durum bazli metinle desteklemek olabilir.
+- Odemeler panelinin ana anlatimi toparlandigi icin, sonraki mantikli kucuk adim secili ozet kart veya akis karti uzerinde hafif hover/vurgu durumlari ekleyerek taranabilirligi biraz daha guclendirmek olabilir.

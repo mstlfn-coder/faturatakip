@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.116 - Ust Yonlendirme Netligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ust yonlendirme butonlari daha acik | OK | Fatura listesi ve rapor merkezi ifadeleri daha niyetli okunuyor |
+| Yardimci durum metni gorunuyor | OK | Iki ust butonun hangi yone goturdugu kisa metinle aciklaniyor |
+| 2026-06-14 | v1.116 | OK | Odemeler paneli ust genel yonlendirmesi netlestirildi |
+
 ## v1.115 - Odeme Ozet Baglami
 | Kontrol | Durum | Not |
 | --- | --- | --- |

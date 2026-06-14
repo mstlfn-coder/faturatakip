@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.116)
+
+- v1.116 tamamlandi: Odemeler panelinin ust sag yonlendirme butonlari daha acik hedef isimleri ve yardimci durum metni aldi.
+- Fatura listesi ile rapor merkezi ayrimi artik panel basliginin yaninda da daha net okunuyor.
+- Bu adim davranisi degistirmeden ilk karar anini daha kolay hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.115)
 
 - v1.115 tamamlandi: Odemeler panelinin ust ozet kartlari kucuk baglam rozetleri ve aciklayici satirlar aldi.
