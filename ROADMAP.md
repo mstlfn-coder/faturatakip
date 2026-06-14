@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.159)
+
+- v1.159 tamamlandi: Odemeler panelindeki aksiyon butonlarinin ust boslugu hafifce azaltildi.
+- Boylece alt yonlendirme blogunda kisayol kapsulu ile eylem dugmesi daha yakin ve daha butunlu okunuyor.
+- Bu adim kartlarin alt eylem zincirini bir kademe daha toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.158)
 
 - v1.158 tamamlandi: Odemeler panelindeki `Enter ile ac` kapsullerinin ust boslugu hafifce azaltildi.

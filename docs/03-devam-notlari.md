@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.159)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.159 - Aksiyon Butonu Yakinlastirma`
+- Bu adimda secili akis kartlarindaki aksiyon butonlarinin ust boslugu bir kademe azaltildi.
+- Boylece kisayol kapsulu ile ana eylem dugmesi daha tek bir alt aksiyon blogu gibi okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.158)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

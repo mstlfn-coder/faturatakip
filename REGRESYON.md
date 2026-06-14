@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.159 - Aksiyon Butonu Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Buton daha bagli | OK | Butonun ust boslugu azaltildi ve kisayol kapsulune yakinlasti |
+| Alt eylem zinciri daha butunlu | OK | Kapsul ve buton daha tek blok gibi okunuyor |
+| 2026-06-14 | v1.159 | OK | Odemeler panelinde aksiyon butonu yakinlastirma tamamlandi |
+
 ## v1.158 - Kisayol Kapsulu Yakinlastirma
 | Kontrol | Durum | Not |
 | --- | --- | --- |
