@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-14
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.133 - Akis Butonu Klavye Odak Vurgusu`
+- Son tamamlanan temiz faz: `v1.134 - Akis Butonu Tooltip Dili`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.134` Akis Butonu Tooltip Dili
 - `v1.133` Akis Butonu Klavye Odak Vurgusu
 - `v1.132` Aktif Kolon Kisayol Kapsulu
 - `v1.131` Aksiyon Butonu Fiil Dili
@@ -36,9 +37,9 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Bu Fazda Ne Yapildi
 
-1. Odemeler akis kartlarina ozel buton stilleri ile klavye odak vurgusu eklendi.
-2. Birincil butonda mavi ton derinlesiyor, ikincil butonlarda ise cerceve ve zemin daha belirgin hale geliyor.
-3. Boylece `Enter ile ac` kapsulu ile klavye odagi ayni geri bildirim hikayesini birlikte kuruyor.
+1. Odemeler akis butonlarina ne acacagini anlatan kisa tooltip metinleri eklendi.
+2. Tooltip metinleri `Enter` ile tetiklenebilecegini de belirtiyor.
+3. Boylece kart ici gorunur ipuclari ile hover aciklamasi ayni eylem dilini tamamliyor.
 4. Dogrulama rutini build ve self-test ile tekrar temiz gecti.
 
 ## Son Dogrulanan Testler
@@ -48,7 +49,7 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Secili akis kartinin butonuna daha acik bir tooltip dili eklemek
+- Secili akis kartinin buton alt boslugunu ve dikey ritmini biraz daha rafine hale getirmek
 
 ## Yeni Chat Icin Kisa Talimat
 

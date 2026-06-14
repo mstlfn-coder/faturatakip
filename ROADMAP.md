@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.134)
+
+- v1.134 tamamlandi: Odemeler panelindeki akis butonlarina daha acik tooltip dili eklendi.
+- Boylece kullanici butonun ne acacagini ve klavyeyle nasil tetiklenecegini hover aninda da okuyabiliyor.
+- Bu adim gorunur kart ipuclarini hover katmaninda da destekledi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.133)
 
 - v1.133 tamamlandi: Odemeler panelindeki akis butonlarina klavye odaginda daha belirgin vurgu eklendi.

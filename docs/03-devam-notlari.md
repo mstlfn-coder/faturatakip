@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.134)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.134 - Akis Butonu Tooltip Dili`
+- Bu adimda Odemeler panelindeki akis butonlarina, ne acacagini ve `Enter` ile calisabilecegini soyleyen kisa tooltip metinleri eklendi.
+- Boylece fareyle gezen kullanici da secili kartin eylemini tiklamadan once daha net okuyabiliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.133)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -86,4 +95,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki buton odagi da belirginlestigi icin, sonraki mantikli kucuk adim secili akis kartinin butonuna daha acik bir tooltip dili eklemek olabilir.
+- Odemeler panelindeki tooltip dili de eklendigi icin, sonraki mantikli kucuk adim secili akis kartinin buton alt boslugunu ve dikey ritmini biraz daha rafine hale getirmek olabilir.

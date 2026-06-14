@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.134 - Akis Butonu Tooltip Dili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Akis butonlarinda tooltip gorunuyor | OK | Her akis dugmesi acacagi hedefi ve `Enter` ipucunu hover aninda gosteriyor |
+| Hover dili kart diliyle uyumlu | OK | Tooltip metinleri hedef ve sonraki adim aciklamalariyla tutarli |
+| 2026-06-14 | v1.134 | OK | Odemeler panelinde akis butonu tooltip dili tamamlandi |
+
 ## v1.133 - Akis Butonu Klavye Odak Vurgusu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

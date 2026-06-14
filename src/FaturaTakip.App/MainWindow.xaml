@@ -1070,6 +1070,7 @@
                                             Style="{StaticResource PaymentsFlowPrimaryActionButton}"
                                             Margin="0,12,0,0"
                                             HorizontalAlignment="Left"
+                                            ToolTip="Faturalar ekraninda odeme alanini acar. Enter ile tetiklenebilir."
                                             Click="OpenInvoicePaymentWorkspaceButton_Click" />
                                 </StackPanel>
                             </Border>
@@ -1160,6 +1161,7 @@
                                             Style="{StaticResource PaymentsFlowSecondaryActionButton}"
                                             Margin="0,12,0,0"
                                             HorizontalAlignment="Left"
+                                            ToolTip="Eksik odeme PDF kayitlarini raporda acar. Enter ile tetiklenebilir."
                                             Click="OpenDocumentHealthReportFromPaymentsButton_Click" />
                                 </StackPanel>
                             </Border>
@@ -1249,6 +1251,7 @@
                                             Style="{StaticResource PaymentsFlowSecondaryActionButton}"
                                             Margin="0,12,0,0"
                                             HorizontalAlignment="Left"
+                                            ToolTip="Odenmemis faturalar raporunu acar. Enter ile tetiklenebilir."
                                             Click="OpenUnpaidReportFromPaymentsButton_Click" />
                                 </StackPanel>
                             </Border>
