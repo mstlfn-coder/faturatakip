@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.123 - Ozet Akis Baglanti Metni
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ozet kartlar alt akisla iliski kuruyor | OK | Her ozet kart hangi alt akis karti ile okunacagini kisa metinle soyluyor |
+| Gorsel yogunluk artmadan bag kuruluyor | OK | Cizgi veya ekstra dekor olmadan, mikro metinle yon hissi veriliyor |
+| 2026-06-14 | v1.123 | OK | Odemeler panelinde ozet ve akis baglanti metinleri tamamlandi |
+
 ## v1.122 - Aktif Yol Buton Vurgusu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

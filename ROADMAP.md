@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.123)
+
+- v1.123 tamamlandi: Odemeler panelindeki ust ozet kartlara, ilgili alt akis kartlariyla bag kuran kisa metinler eklendi.
+- Boylece kullanici ustteki sayisal ozet ile alttaki is akisi arasindaki eslesmeyi daha hizli okuyabiliyor.
+- Bu adim ekstra cizgi ya da dekor eklemeden panelin haritasini daha acik hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.122)
 
 - v1.122 tamamlandi: Odemeler panelinde aktif yolun ilgili eylem dugmesi de hafif tonlu vurgu almaya basladi.

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.123)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.123 - Ozet Akis Baglanti Metni`
+- Bu adimda Odemeler panelindeki ust ozet kartlara, ilgili alt akis kartiyla nasil okunacagini soyleyen kisa baglanti metinleri eklendi.
+- Boylece sayisal ozetler ile asagidaki is akisi kutulari arasindaki iliski daha az yorum gerektiriyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.122)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -148,4 +157,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelinde aktif yol dorduncu katmanda da okunabildigi icin, sonraki mantikli kucuk adim ozet kartlari ile akis kartlari arasina ince iliski cizgileri ya da kartlar arasi mikro yon oku dusunmek olabilir.
+- Odemeler panelinde ozet-akis baglanti dili netlestigi icin, sonraki mantikli kucuk adim alt akis kartlarinda da ilgili ust ozeti kisaca anan mikro metinler eklemek ya da kartlar arasi cok hafif yon oku denemek olabilir.
