@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-14
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.142 - Yardim Kapsulu Icerik Sikilastirma`
+- Son tamamlanan temiz faz: `v1.143 - Buton Ust Bosluk Dengeleme`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.143` Buton Ust Bosluk Dengeleme
 - `v1.142` Yardim Kapsulu Icerik Sikilastirma
 - `v1.141` Yardim Metni Satir Yuksekligi
 - `v1.140` Aktif Yol Tipografi Ayrimi
@@ -45,9 +46,9 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Bu Fazda Ne Yapildi
 
-1. `Enter ile ac` kapsullerinin ic bosluklari ve yazi boyutu biraz sikilastirildi.
-2. Yardim kapsulleri daha hafif ama hala okunur bir mikro yuzeye donustu.
-3. Boylece secili kartin alt yardim zinciri daha rafine ve daha dengeli hissettirmeye basladi.
+1. Yardim kapsulu ile buton arasindaki bosluk bir tik azaltildi.
+2. Boylece alt yonlendirme blogunun son iki parcasi birbirine daha yakin ve daha bagli okunuyor.
+3. Yeni kompakt kapsul olcegi ile buton ritmi daha tutarli hale geldi.
 4. Dogrulama rutini build ve self-test ile tekrar temiz gecti.
 
 ## Son Dogrulanan Testler
@@ -57,7 +58,7 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Secili akis kartlarindaki buton ust boslugunu yeni mikro olcekle yeniden dengelemek
+- Secili akis kartlarindaki aktif kolon rozeti ile kart basligi arasindaki ust ritmi biraz daha cilalamak
 
 ## Yeni Chat Icin Kisa Talimat
 

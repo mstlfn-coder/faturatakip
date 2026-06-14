@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.143 - Buton Ust Bosluk Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Buton ile kapsul arasi daha dengeli | OK | Ust bosluk azaltildigi icin iki mikro yuzey daha tutarli okunuyor |
+| Alt blok ritmi korundu | OK | Sikisma olmadan daha yakin bir akıs elde edildi |
+| 2026-06-14 | v1.143 | OK | Odemeler panelinde buton ust bosluk dengeleme tamamlandi |
+
 ## v1.142 - Yardim Kapsulu Icerik Sikilastirma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

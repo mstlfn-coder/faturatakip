@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.143)
+
+- v1.143 tamamlandi: Odemeler panelindeki buton ust bosluklari yeni kompakt kapsul olcegine gore dengelendi.
+- Boylece yardim kapsulu ile eylem dugmesi daha yakin ve daha tek blok gibi okunuyor.
+- Bu adim kartin alt yonlendirme akisina biraz daha ritim kazandirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.142)
 
 - v1.142 tamamlandi: Odemeler panelindeki yardim kapsulleri biraz daha kompakt hale getirildi.

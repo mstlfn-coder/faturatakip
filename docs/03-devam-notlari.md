@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.143)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.143 - Buton Ust Bosluk Dengeleme`
+- Bu adimda secili akis kartlarindaki buton ust boslugu, kompakt yardim kapsulu olcegine uyacak sekilde biraz azaltildi.
+- Boylece yardim kapsulu ile eylem dugmesi ayni alt yonlendirme blogu icinde daha yakin ve daha dengeli okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.142)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -167,4 +176,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki yardim kapsulleri de inceldigi icin, sonraki mantikli kucuk adim secili akis kartlarindaki buton ust boslugunu bu yeni mikro olcekle yeniden dengelemek olabilir.
+- Odemeler panelindeki buton ust boslugu da dengelendigi icin, sonraki mantikli kucuk adim secili akis kartlarindaki aktif kolon rozeti ile kart basligi arasindaki ust ritmi biraz daha cilalamak olabilir.
