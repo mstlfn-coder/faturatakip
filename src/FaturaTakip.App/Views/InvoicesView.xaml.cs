@@ -2941,6 +2941,11 @@ public partial class InvoicesView : UserControl
                 : lastActionPrefix;
         }
 
+        if (PaymentHelperSelectedActionRepeatText is not null)
+        {
+            PaymentHelperSelectedActionRepeatText.Text = GetPaymentHelperRepeatLabel(_lastInvokedPaymentHelperActionKey);
+        }
+
         if (PaymentHelperSelectedActionStatusButton is not null)
         {
             PaymentHelperSelectedActionStatusButton.Tag = _lastInvokedPaymentHelperActionKey;
@@ -3234,6 +3239,11 @@ public partial class InvoicesView : UserControl
             PaymentPdfSelectedActionStatusPrefixText.Text = string.IsNullOrWhiteSpace(lastActionPrefix)
                 ? "PDF"
                 : lastActionPrefix;
+        }
+
+        if (PaymentPdfSelectedActionRepeatText is not null)
+        {
+            PaymentPdfSelectedActionRepeatText.Text = GetPaymentPdfRepeatLabel(_lastInvokedPaymentPdfHelperActionKey);
         }
 
         if (PaymentPdfSelectedActionStatusButton is not null)
@@ -3594,6 +3604,27 @@ public partial class InvoicesView : UserControl
             "select_pdf" => Color.FromRgb(3, 105, 161),
             "open_pdf" => Color.FromRgb(29, 78, 216),
             _ => Color.FromRgb(3, 105, 161),
+        };
+    }
+
+    private static string GetPaymentHelperRepeatLabel(string? actionKey)
+    {
+        return actionKey switch
+        {
+            "fill_remaining" => "DOLDUR",
+            "use_last" => "KOPYALA",
+            "use_selected" => "UYGULA",
+            _ => "TEKRAR",
+        };
+    }
+
+    private static string GetPaymentPdfRepeatLabel(string? actionKey)
+    {
+        return actionKey switch
+        {
+            "select_pdf" => "SEC",
+            "open_pdf" => "AC",
+            _ => "TEKRAR",
         };
     }
 

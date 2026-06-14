@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.105)
+
+- v1.105 tamamlandi: yardim durum satirindaki tekrar rozeti secili aksiyona gore farkli etiketler kullanmaya basladi.
+- Orta rozet artik sadece tekrar niyetini degil, tekrarin ne yapacagini da daha hizli anlatıyor.
+- Boylece satirin taranabilirligi bir adim daha guclendi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.104)
 
 - v1.104 tamamlandi: secili yardim durum satirinin prefix rozeti aksiyon turune gore degismeye basladi.

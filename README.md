@@ -1048,6 +1048,12 @@ Boylece form daha kalabaliklasmadan akis takibi kolaylasmis oldu.
 Smoke test:
 - `dotnet build .\FaturaTakip.sln -c Release`
 - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+## v1.105 - Yardim Tekrar Rozetinde Aksiyon Etiketi
+
+- `TEKRAR` rozeti artik secili aksiyona gore kucuk kelime farklari aliyor.
+- Odeme yardiminda `DOLDUR`, `KOPYALA`, `UYGULA`; PDF yardiminda `SEC` ve `AC` gibi etiketler kullaniliyor.
+- Boylece yardim satirinin orta bolumu de secili aksiyonun dogasini daha hizli anlatir hale geldi.
+
 ## v1.104 - Yardim Prefixinde Aksiyon Etiketi
 
 - Secili yardim durum satirinin prefix rozeti artik sabit degil; secili aksiyona gore degisiyor.
