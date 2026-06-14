@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.189 - Odemeler Liste Hover Erisimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover vurgusu gorunur | OK | Kuyruk ve son odeme satirlari hover durumunda daha belirgin cerceve ve arka plan aliyor |
+| Acis amaci netlesti | OK | Satir dugmelerinin tooltip metinleri hedefli acis davranisini acik bicimde anlatiyor |
+| 2026-06-15 | v1.189 | OK | Odemeler listesine hover erisimi ve tooltip netligi eklendi |
+
 ## v1.188 - One Cikan Kayit Ozeti
 | Kontrol | Durum | Not |
 | --- | --- | --- |

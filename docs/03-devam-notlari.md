@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.189)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.189 - Odemeler Liste Hover Erisimi`
+- Bu adimda odemeler kuyrugu ve son odemeler satirlari icin hover vurgusu eklendi; ac dugmelerine de daha net tooltip metinleri yazildi.
+- Boylece kullanici hangi satir uzerinde oldugunu daha rahat algiliyor ve acis dugmesinin etkisini okumadan da anlayabiliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.188)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

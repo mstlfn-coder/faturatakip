@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.189)
+
+- v1.189 tamamlandi: Odemeler kuyrugu ve son odemeler listesine hover vurgusu ile daha net acis tooltipleri eklendi.
+- Boylece liste satirlari daha canli tepki veriyor ve dogrudan acis davranisi daha belirgin hale geliyor.
+- Bu adim odemeler yuzeyinin fare ile taranabilirligini bir kademe daha guclendirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.188)
 
 - v1.188 tamamlandi: Odemeler sekmesine one cikan kaydi gosteren odak ozeti eklendi.

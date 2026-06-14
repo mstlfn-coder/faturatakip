@@ -159,6 +159,12 @@
             <Setter Property="CornerRadius" Value="6" />
             <Setter Property="Padding" Value="10" />
             <Setter Property="Margin" Value="0,0,0,8" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F8FBFF" />
+                    <Setter Property="BorderBrush" Value="#CBD5E1" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="PaymentsOpsStatusBadge" TargetType="Border">
             <Setter Property="CornerRadius" Value="999" />
@@ -1473,6 +1479,7 @@
                                                                     FontSize="11"
                                                                     HorizontalAlignment="Right"
                                                                     Tag="{Binding InvoiceId}"
+                                                                    ToolTip="Bu acik faturayi odeme alaninda hedefli olarak acar."
                                                                     Click="OpenPaymentsQueueInvoiceButton_Click" />
                                                         </StackPanel>
                                                     </Grid>
@@ -1555,6 +1562,7 @@
                                                                     FontSize="11"
                                                                     HorizontalAlignment="Right"
                                                                     Tag="{Binding InvoiceId}"
+                                                                    ToolTip="Bu odemenin ait oldugu faturayi odeme alaninda yeniden acar."
                                                                     Click="OpenRecentPaymentInvoiceButton_Click" />
                                                         </StackPanel>
                                                     </Grid>
