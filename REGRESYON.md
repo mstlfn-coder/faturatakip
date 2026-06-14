@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.139 - Ton Hiyerarsisi Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardim kapsulleri daha sakin ton kullaniyor | OK | Arka plan ve cerceve tonlari bir tik daha hafifletildi |
+| Secili metinlerle uyum korundu | OK | Aciklama ve kapsul tonlari ayni renk ailesinde daha dengeli okunuyor |
+| 2026-06-14 | v1.139 | OK | Odemeler panelinde ton hiyerarsisi dengelemesi tamamlandi |
+
 ## v1.138 - Aktif Kolon Rozeti Gorunme Gecisi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

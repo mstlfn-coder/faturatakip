@@ -1089,8 +1089,8 @@
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
                                     <Border x:Name="PaymentsWorkspaceShortcutHint"
-                                            Background="#DCFCE7"
-                                            BorderBrush="#86EFAC"
+                                            Background="#F0FDF4"
+                                            BorderBrush="#BBF7D0"
                                             BorderThickness="1"
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
@@ -1098,7 +1098,7 @@
                                             Padding="8,3"
                                             Visibility="Collapsed">
                                         <TextBlock Text="Enter ile ac"
-                                                   Foreground="#166534"
+                                                   Foreground="#15803D"
                                                    FontSize="10"
                                                    FontWeight="SemiBold" />
                                     </Border>
@@ -1180,8 +1180,8 @@
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
                                     <Border x:Name="PaymentsDocumentShortcutHint"
-                                            Background="#DBEAFE"
-                                            BorderBrush="#93C5FD"
+                                            Background="#EFF6FF"
+                                            BorderBrush="#BFDBFE"
                                             BorderThickness="1"
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
@@ -1189,7 +1189,7 @@
                                             Padding="8,3"
                                             Visibility="Collapsed">
                                         <TextBlock Text="Enter ile ac"
-                                                   Foreground="#1D4ED8"
+                                                   Foreground="#2563EB"
                                                    FontSize="10"
                                                    FontWeight="SemiBold" />
                                     </Border>
@@ -1270,8 +1270,8 @@
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
                                     <Border x:Name="PaymentsUnpaidReportShortcutHint"
-                                            Background="#FEF3C7"
-                                            BorderBrush="#FCD34D"
+                                            Background="#FFFBEB"
+                                            BorderBrush="#FDE68A"
                                             BorderThickness="1"
                                             CornerRadius="999"
                                             HorizontalAlignment="Left"
@@ -1279,7 +1279,7 @@
                                             Padding="8,3"
                                             Visibility="Collapsed">
                                         <TextBlock Text="Enter ile ac"
-                                                   Foreground="#B45309"
+                                                   Foreground="#C2410C"
                                                    FontSize="10"
                                                    FontWeight="SemiBold" />
                                     </Border>

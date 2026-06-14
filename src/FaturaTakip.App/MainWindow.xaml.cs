@@ -451,9 +451,9 @@ public partial class MainWindow : Window
         SetPaymentsActiveColumnBadgeState(PaymentsWorkspaceActiveColumnBadge, routeKey == "workspace");
         SetPaymentsActiveColumnBadgeState(PaymentsDocumentActiveColumnBadge, routeKey == "document");
         SetPaymentsActiveColumnBadgeState(PaymentsUnpaidReportActiveColumnBadge, routeKey == "unpaid");
-        SetPaymentsFlowTextState(PaymentsWorkspaceTitleText, PaymentsWorkspaceDescriptionText, routeKey == "workspace", "#166534", "#166534");
-        SetPaymentsFlowTextState(PaymentsDocumentTitleText, PaymentsDocumentDescriptionText, routeKey == "document", "#1D4ED8", "#1E40AF");
-        SetPaymentsFlowTextState(PaymentsUnpaidReportTitleText, PaymentsUnpaidReportDescriptionText, routeKey == "unpaid", "#B45309", "#92400E");
+        SetPaymentsFlowTextState(PaymentsWorkspaceTitleText, PaymentsWorkspaceDescriptionText, routeKey == "workspace", "#166534", "#15803D");
+        SetPaymentsFlowTextState(PaymentsDocumentTitleText, PaymentsDocumentDescriptionText, routeKey == "document", "#1D4ED8", "#2563EB");
+        SetPaymentsFlowTextState(PaymentsUnpaidReportTitleText, PaymentsUnpaidReportDescriptionText, routeKey == "unpaid", "#B45309", "#C2410C");
         SetPaymentsActionButtonState(PaymentsMonthlyActionButton, routeKey == "monthly", "#DBEAFE", "#93C5FD", "#1D4ED8");
         SetPaymentsActionButtonState(PaymentsMissingPdfActionButton, routeKey == "document", "#F0F9FF", "#7DD3FC", "#0369A1");
         SetPaymentsActionButtonState(PaymentsUnpaidActionButton, routeKey == "workspace" || routeKey == "unpaid", "#ECFDF5", "#86EFAC", "#166534");

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.139)
+
+- v1.139 tamamlandi: Odemeler panelindeki secili kartlarda ton hiyerarsisi biraz daha dengelendi.
+- Yardim kapsulleri daha hafif arka plan tonlari aldi; secili aciklama metinleri de bu aileye biraz daha yaklasti.
+- Bu adim panelin mikro renk dilini daha olgun ve daha tutarli hissettirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.138)
 
 - v1.138 tamamlandi: Odemeler panelindeki `AKTIF KOLON` rozetlerine hafif gorunme gecisi eklendi.

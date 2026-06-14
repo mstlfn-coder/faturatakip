@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.139)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.139 - Ton Hiyerarsisi Dengeleme`
+- Bu adimda secili akis kartlarindaki yardim kapsulleri daha acik arka plan tonlarina cekildi; metin aciklamalari ile kapsuller arasindaki renk farki da yumusatildi.
+- Boylece kart ici yardimci katmanlar daha ayni aileden geliyor ama yine de kendi rollerini ayri tutuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.138)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -131,4 +140,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki aktif kolon rozeti gecisi de cilalandigi icin, sonraki mantikli kucuk adim secili akis kartlarinda metin ve yardim kapsulleri arasindaki ton farklarini bir tik daha dengelemek olabilir.
+- Odemeler panelindeki ton hiyerarsisi de dengelendigi icin, sonraki mantikli kucuk adim secili akis kartlarinda aktif yol notu ve hedef satiri arasindaki mikro tipografi farklarini rafine etmek olabilir.
