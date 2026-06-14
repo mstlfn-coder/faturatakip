@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.183 - Mikro Hiyerarsi Seri Kapanisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Butunsel ritim kontrolu tamamlandi | OK | Panel genelinde ton, bosluk ve vurgu katmanlari birlikte yeniden degerlendirildi |
+| Ek piksel duzeltmesine gerek kalmadi | OK | Son gorunum dengeli bulundugu icin seri kontrollu bicimde kapatildi |
+| 2026-06-15 | v1.183 | OK | Odemeler panelindeki mikro hiyerarsi ince ayar serisi kapatildi |
+
 ## v1.182 - Kisayol Aksiyon Son Ritim
 | Kontrol | Durum | Not |
 | --- | --- | --- |

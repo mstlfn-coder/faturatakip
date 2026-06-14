@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.183)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.183 - Mikro Hiyerarsi Seri Kapanisi`
+- Bu adimda odemeler gecis panelindeki mikro hiyerarsi butun olarak yeniden gozden gecirildi.
+- Ek piksel ayarina ihtiyac gorulmedigi icin seri kontrollu bicimde kapatildi ve sonraki ana is akisina gecis notu hazirlandi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.182)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

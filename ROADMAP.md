@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.183)
+
+- v1.183 tamamlandi: Odemeler gecis panelindeki mikro hiyerarsi serisi butunsel gozden gecirme ile kapatildi.
+- Son ritim, ton ve bosluk ayarlari birlikte degerlendirildi; ek piksel degisikligine ihtiyac duyulmadi.
+- Boylece panel ince ayar fazi kontrollu sekilde tamamlanmis oldu ve bir sonraki ana odak odemeler modulu yuzeyi olarak netlesti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.182)
 
 - v1.182 tamamlandi: Odemeler panelindeki kisayol kapsulu ile aksiyon dugmesi arasindaki bosluk hafifce azaltildi.
