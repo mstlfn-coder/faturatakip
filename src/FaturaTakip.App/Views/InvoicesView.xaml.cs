@@ -2951,6 +2951,7 @@ public partial class InvoicesView : UserControl
         {
             PaymentHelperSelectedActionHintText.Text = GetPaymentHelperHintLabel(_lastInvokedPaymentHelperActionKey);
         }
+        ApplyPaymentHelperSelectedStatusHintReplayVisualState(_isPaymentHelperReplayFeedbackActive);
 
         if (PaymentHelperSelectedActionStatusButton is not null)
         {
@@ -3257,6 +3258,7 @@ public partial class InvoicesView : UserControl
         {
             PaymentPdfSelectedActionHintText.Text = GetPaymentPdfHintLabel(_lastInvokedPaymentPdfHelperActionKey);
         }
+        ApplyPaymentPdfSelectedStatusHintReplayVisualState(_isPaymentPdfReplayFeedbackActive);
 
         if (PaymentPdfSelectedActionStatusButton is not null)
         {
@@ -3838,6 +3840,64 @@ public partial class InvoicesView : UserControl
             : FontWeights.SemiBold;
     }
 
+    private void ApplyPaymentHelperSelectedStatusHintReplayVisualState(bool isReplayActive)
+    {
+        if (PaymentHelperSelectedActionHintBorder is null || PaymentHelperSelectedActionHintText is null)
+        {
+            return;
+        }
+
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+        PaymentHelperSelectedActionHintBorder.Background = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentHelperHintReplayBackground(emphasis)
+                : Color.FromRgb(250, 252, 255));
+        PaymentHelperSelectedActionHintBorder.BorderBrush = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentHelperHintReplayBorder(emphasis)
+                : Color.FromRgb(229, 234, 241));
+        PaymentHelperSelectedActionHintBorder.BorderThickness = isReplayActive
+            ? new Thickness(1.5)
+            : new Thickness(1);
+        PaymentHelperSelectedActionHintBorder.Opacity = isReplayActive ? 1 : 0.7;
+        PaymentHelperSelectedActionHintText.Foreground = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentHelperHintReplayText(emphasis)
+                : Color.FromRgb(100, 116, 139));
+        PaymentHelperSelectedActionHintText.FontWeight = isReplayActive
+            ? FontWeights.SemiBold
+            : FontWeights.Normal;
+    }
+
+    private void ApplyPaymentPdfSelectedStatusHintReplayVisualState(bool isReplayActive)
+    {
+        if (PaymentPdfSelectedActionHintBorder is null || PaymentPdfSelectedActionHintText is null)
+        {
+            return;
+        }
+
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+        PaymentPdfSelectedActionHintBorder.Background = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentPdfHintReplayBackground(emphasis)
+                : Color.FromRgb(250, 252, 255));
+        PaymentPdfSelectedActionHintBorder.BorderBrush = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentPdfHintReplayBorder(emphasis)
+                : Color.FromRgb(229, 234, 241));
+        PaymentPdfSelectedActionHintBorder.BorderThickness = isReplayActive
+            ? new Thickness(1.5)
+            : new Thickness(1);
+        PaymentPdfSelectedActionHintBorder.Opacity = isReplayActive ? 1 : 0.7;
+        PaymentPdfSelectedActionHintText.Foreground = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentPdfHintReplayText(emphasis)
+                : Color.FromRgb(100, 116, 139));
+        PaymentPdfSelectedActionHintText.FontWeight = isReplayActive
+            ? FontWeights.SemiBold
+            : FontWeights.Normal;
+    }
+
     private void ApplyPaymentPdfReplaySummaryPrefixVisualState(bool isReplayActive)
     {
         var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
@@ -3944,6 +4004,66 @@ public partial class InvoicesView : UserControl
         {
             "low" => Color.FromRgb(14, 165, 233),
             "high" => Color.FromRgb(3, 105, 161),
+            _ => Color.FromRgb(3, 105, 161)
+        };
+    }
+
+    private static Color GetPaymentHelperHintReplayBackground(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(240, 253, 244),
+            "high" => Color.FromRgb(220, 252, 231),
+            _ => Color.FromRgb(236, 253, 245)
+        };
+    }
+
+    private static Color GetPaymentHelperHintReplayBorder(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(187, 247, 208),
+            "high" => Color.FromRgb(74, 222, 128),
+            _ => Color.FromRgb(134, 239, 172)
+        };
+    }
+
+    private static Color GetPaymentHelperHintReplayText(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(22, 101, 52),
+            "high" => Color.FromRgb(21, 128, 61),
+            _ => Color.FromRgb(22, 101, 52)
+        };
+    }
+
+    private static Color GetPaymentPdfHintReplayBackground(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(240, 249, 255),
+            "high" => Color.FromRgb(224, 242, 254),
+            _ => Color.FromRgb(239, 246, 255)
+        };
+    }
+
+    private static Color GetPaymentPdfHintReplayBorder(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(186, 230, 253),
+            "high" => Color.FromRgb(125, 211, 252),
+            _ => Color.FromRgb(125, 211, 252)
+        };
+    }
+
+    private static Color GetPaymentPdfHintReplayText(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(3, 105, 161),
+            "high" => Color.FromRgb(2, 132, 199),
             _ => Color.FromRgb(3, 105, 161)
         };
     }

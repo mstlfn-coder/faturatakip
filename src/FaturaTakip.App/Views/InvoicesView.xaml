@@ -1167,11 +1167,12 @@
                                             <TextBlock Style="{StaticResource InlineShortcutDividerText}" />
                                             <TextBlock x:Name="PaymentHelperSelectedActionStatusText"
                                                        Style="{StaticResource PaymentHelperLastActionTextStyle}" />
-                                            <Border Style="{StaticResource InlineShortcutHintBorder}">
-                                                <TextBlock x:Name="PaymentHelperSelectedActionHintText"
-                                                           Text="Enter/Space"
-                                                           Style="{StaticResource InlineShortcutHintText}" />
-                                            </Border>
+                                              <Border x:Name="PaymentHelperSelectedActionHintBorder"
+                                                      Style="{StaticResource InlineShortcutHintBorder}">
+                                                  <TextBlock x:Name="PaymentHelperSelectedActionHintText"
+                                                             Text="Enter/Space"
+                                                             Style="{StaticResource InlineShortcutHintText}" />
+                                              </Border>
                                         </StackPanel>
                                     </Button>
                                     <StackPanel Orientation="Horizontal"
@@ -1321,11 +1322,12 @@
                                             <TextBlock Style="{StaticResource InlineShortcutDividerText}" />
                                             <TextBlock x:Name="PaymentPdfSelectedActionStatusText"
                                                        Style="{StaticResource PaymentPdfLastActionTextStyle}" />
-                                            <Border Style="{StaticResource InlineShortcutHintBorder}">
-                                                <TextBlock x:Name="PaymentPdfSelectedActionHintText"
-                                                           Text="Enter/Space"
-                                                           Style="{StaticResource InlineShortcutHintText}" />
-                                            </Border>
+                                              <Border x:Name="PaymentPdfSelectedActionHintBorder"
+                                                      Style="{StaticResource InlineShortcutHintBorder}">
+                                                  <TextBlock x:Name="PaymentPdfSelectedActionHintText"
+                                                             Text="Enter/Space"
+                                                             Style="{StaticResource InlineShortcutHintText}" />
+                                              </Border>
                                         </StackPanel>
                                     </Button>
                                     <StackPanel Orientation="Horizontal"

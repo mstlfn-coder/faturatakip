@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.110)
+
+- v1.110 tamamlandi: secili yardim durum satirinin sagdaki kisayol ipucu replay aktifliginde hafif uyum tonu almaya basladi.
+- Boylece flash, tekrar rozeti ve kisayol kapsulu ayni geri bildirim ailesinin parcasi gibi hissediliyor.
+- Etki hafif tutuldu; ana metni bastirmadan satir butunlugu guclendirildi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.109)
 
 - v1.109 tamamlandi: secili yardim durum satirinin tekrar rozeti replay aktifliginde ayni vurgu dilini devralmaya basladi.

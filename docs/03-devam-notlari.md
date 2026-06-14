@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.110)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.110 - Replay Kisa Yol Ipucu Uyumu`
+- Bu adimda secili yardim durum satirinin sagdaki kisayol kapsulu replay aktifken hafif ton ve kenarlik uyumu almaya basladi.
+- Boylece satir icindeki flash, tekrar rozeti ve kisayol ipucu daha tek parca bir geri bildirim dili gibi okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.109)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -31,4 +40,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Replay aktifken secili durum satirinin kisayol ipucuna da daha hafif bir uyum tonu verip tum satiri tek dil gibi hissettirebiliriz.
+- Replay aktifliginde secili durum satirinin ayirac noktasina da cok hafif bir uyum verip satir mikroduzey tutarliligini tamamlayabiliriz.

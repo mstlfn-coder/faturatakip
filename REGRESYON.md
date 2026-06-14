@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.110 - Replay Kisa Yol Ipucu Uyumu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi kisayol ipucu replay tonuna uyum sagliyor | OK | Replay aktifken hint kapsulu hafif yesil ton ve kenarlik uyumu aliyor |
+| PDF yardimi kisayol ipucu replay tonuna uyum sagliyor | OK | Replay aktifken hint kapsulu hafif mavi ton ve kenarlik uyumu aliyor |
+| 2026-06-14 | v1.110 | OK | Replay kisa yol ipucu uyumu + build + self-test tamamlandi |
+
 ## v1.109 - Replay Rozeti Gecis Uyumu
 | Kontrol | Durum | Not |
 | --- | --- | --- |
