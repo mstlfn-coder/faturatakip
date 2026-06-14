@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.156 - Hedef Satiri Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hedef satiri daha bagli | OK | Hedef satirinin ust boslugu azaltildi ve aktif yol notuna yakinlasti |
+| Secili akis zinciri daha akici | OK | Ust bilgi blogundan hedef satirina gecis daha tek parca hissediliyor |
+| 2026-06-14 | v1.156 | OK | Odemeler panelinde hedef satiri yakinlastirma tamamlandi |
+
 ## v1.155 - Aktif Yol Notu Yakinlastirma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

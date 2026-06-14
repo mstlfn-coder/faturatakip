@@ -1080,7 +1080,7 @@
                                                FontWeight="SemiBold"
                                                LineHeight="16"
                                                LineStackingStrategy="BlockLineHeight"
-                                               Margin="0,7,0,0"
+                                               Margin="0,6,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
                                     <TextBlock x:Name="PaymentsWorkspaceNextStepText"
@@ -1175,7 +1175,7 @@
                                                FontWeight="SemiBold"
                                                LineHeight="16"
                                                LineStackingStrategy="BlockLineHeight"
-                                               Margin="0,7,0,0"
+                                               Margin="0,6,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
                                     <TextBlock x:Name="PaymentsDocumentNextStepText"
@@ -1269,7 +1269,7 @@
                                                FontWeight="SemiBold"
                                                LineHeight="16"
                                                LineStackingStrategy="BlockLineHeight"
-                                               Margin="0,7,0,0"
+                                               Margin="0,6,0,0"
                                                TextWrapping="Wrap"
                                                Visibility="Collapsed" />
                                     <TextBlock x:Name="PaymentsUnpaidReportNextStepText"

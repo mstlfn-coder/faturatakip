@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.156)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.156 - Hedef Satiri Yakinlastirma`
+- Bu adimda secili akis kartlarindaki `Hedef` satirinin ust boslugu bir kademe azaltildi.
+- Boylece aktif yol notu ile ana yonlendirme satiri daha bagli okunuyor ve secili rota bilgisi daha akici hissettiriyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.155)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

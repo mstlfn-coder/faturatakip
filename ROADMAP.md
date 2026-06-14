@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.156)
+
+- v1.156 tamamlandi: Odemeler panelindeki `Hedef` satirlarinin ust boslugu hafifce azaltildi.
+- Boylece secili rota notu ile ana yonlendirme satiri daha yakin ve daha butunlu okunuyor.
+- Bu adim kartlarin secili akis zincirini bir kademe daha toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.155)
 
 - v1.155 tamamlandi: Odemeler panelindeki baglam cumlesi ile `Aktif yol` notu arasindaki bosluk hafifce azaltildi.
