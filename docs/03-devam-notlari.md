@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.136)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.136 - Akis Karti Hover Gecisi`
+- Bu adimda Odemeler akis kartlarina cok hafif opacity ve scale tabanli hover gecisi eklendi.
+- Boylece secili kartlar fareyle taranirken biraz daha yumusak ve rafine bir canlanma hissi veriyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.135)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -104,4 +113,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki dikey ritim de toparlandigi icin, sonraki mantikli kucuk adim secili akis karti icin daha nazik bir hover gecisi ya da mikro ton animasyonu eklemek olabilir.
+- Odemeler panelindeki hover gecisi de eklendigi icin, sonraki mantikli kucuk adim secili akis kartlarinda mikro ton animasyonunu yardimci rozet veya kisayol kapsulu tarafina tasimak olabilir.

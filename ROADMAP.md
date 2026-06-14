@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.136)
+
+- v1.136 tamamlandi: Odemeler panelindeki akis kartlarina cok hafif hover gecisi eklendi.
+- Boylece panel fareyle taranirken kartlar sert degil, daha yumusak bir canlanma hissi veriyor.
+- Bu adim mevcut secili kart vurgularini buyutmadan etkilesim kalitesini biraz daha yukseltti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.135)
 
 - v1.135 tamamlandi: Odemeler panelindeki secili akis kartlarinin alt yonlendirme bolumunde dikey bosluklar toparlandi.

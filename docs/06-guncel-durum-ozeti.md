@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-14
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.135 - Akis Karti Dikey Ritim Ayari`
+- Son tamamlanan temiz faz: `v1.136 - Akis Karti Hover Gecisi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.136` Akis Karti Hover Gecisi
 - `v1.135` Akis Karti Dikey Ritim Ayari
 - `v1.134` Akis Butonu Tooltip Dili
 - `v1.133` Akis Butonu Klavye Odak Vurgusu
@@ -38,9 +39,9 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Bu Fazda Ne Yapildi
 
-1. Secili akis kartlarinin alt yonlendirme bloklarindaki dikey bosluklar biraz sikilastirildi.
-2. Hedef, sonraki adim, kisayol kapsulu ve buton arasindaki gecis daha kompakt hale geldi.
-3. Boylece secili kartin alt bolumu daha tek parca ve daha taranabilir okunuyor.
+1. Odemeler akis kartlarina cok hafif opacity ve scale tabanli hover gecisi eklendi.
+2. Hover aninda kart bir tik canlaniyor; cikista tekrar notr ritmine donuyor.
+3. Boylece secili kartin mevcut renk ve bilgi katmanlari daha yumusak bir etkilesim hissiyle destekleniyor.
 4. Dogrulama rutini build ve self-test ile tekrar temiz gecti.
 
 ## Son Dogrulanan Testler
@@ -50,7 +51,7 @@ Son guncelleme tarihi: 2026-06-14
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Secili akis karti icin daha nazik bir hover gecisi ya da mikro ton animasyonu eklemek
+- Secili akis kartlarinda mikro ton animasyonunu yardimci rozet veya kisayol kapsulu tarafina tasimak
 
 ## Yeni Chat Icin Kisa Talimat
 

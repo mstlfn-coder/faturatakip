@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.136 - Akis Karti Hover Gecisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Akis kartlari hover aninda yumusak gecis veriyor | OK | Opacity ve mikro scale animasyonu ile kart hafifce canlaniyor |
+| Genel sakin ton korundu | OK | Gecis kisa ve dusuk siddette kaldigi icin panel sakinligini bozmuyor |
+| 2026-06-14 | v1.136 | OK | Odemeler panelinde akis karti hover gecisi tamamlandi |
+
 ## v1.135 - Akis Karti Dikey Ritim Ayari
 | Kontrol | Durum | Not |
 | --- | --- | --- |
