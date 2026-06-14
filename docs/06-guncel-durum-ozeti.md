@@ -7,6 +7,7 @@ Son guncelleme tarihi: 2026-06-14
 - Aktif branch: `codex/v1.08-review-context-issue-action`
 - Son commit: `git log --oneline -1` ile teyit et; bu dosya hizli handoff ozeti olarak tutulur
 - Son tamamlanan temiz fazlar:
+  - `v1.122` Aktif Yol Buton Vurgusu
   - `v1.121` Aktif Yol Alt Notu
   - `v1.120` Son Yol Kart Secimi
   - `v1.119` Son Yol Rozeti

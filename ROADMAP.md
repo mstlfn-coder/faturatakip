@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.122)
+
+- v1.122 tamamlandi: Odemeler panelinde aktif yolun ilgili eylem dugmesi de hafif tonlu vurgu almaya basladi.
+- Boylece son kullanilan akis artik rozet, kart secimi, alt not ve dugme vurgu katmanlariyla birlikte okunuyor.
+- Bu adim odeme panelindeki yon hafizasini tam bir mini durum sistemi haline getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.121)
 
 - v1.121 tamamlandi: Odemeler panelindeki secili ozet ve akis kartlari icine kucuk bir "Aktif yol" alt notu eklendi.

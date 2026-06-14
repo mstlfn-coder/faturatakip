@@ -435,6 +435,12 @@ public partial class MainWindow : Window
         SetPaymentsRouteNote(PaymentsWorkspaceActiveRouteNote, routeKey == "workspace");
         SetPaymentsRouteNote(PaymentsDocumentActiveRouteNote, routeKey == "document");
         SetPaymentsRouteNote(PaymentsUnpaidReportActiveRouteNote, routeKey == "unpaid");
+        SetPaymentsActionButtonState(PaymentsMonthlyActionButton, routeKey == "monthly", "#DBEAFE", "#93C5FD", "#1D4ED8");
+        SetPaymentsActionButtonState(PaymentsMissingPdfActionButton, routeKey == "document", "#F0F9FF", "#7DD3FC", "#0369A1");
+        SetPaymentsActionButtonState(PaymentsUnpaidActionButton, routeKey == "workspace" || routeKey == "unpaid", "#ECFDF5", "#86EFAC", "#166534");
+        SetPaymentsActionButtonState(PaymentsWorkspaceActionButton, routeKey == "workspace", "#DCFCE7", "#4ADE80", "#166534");
+        SetPaymentsActionButtonState(PaymentsDocumentActionButton, routeKey == "document", "#DBEAFE", "#60A5FA", "#1D4ED8");
+        SetPaymentsActionButtonState(PaymentsUnpaidReportActionButton, routeKey == "unpaid", "#FEF3C7", "#FBBF24", "#B45309");
     }
 
     private static void SetPaymentsCardSelection(Border card, bool isSelected, string selectedBackgroundHex, string selectedBorderHex)
@@ -453,6 +459,21 @@ public partial class MainWindow : Window
     private static void SetPaymentsRouteNote(TextBlock note, bool isVisible)
     {
         note.Visibility = isVisible ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private static void SetPaymentsActionButtonState(Button button, bool isSelected, string backgroundHex, string borderHex, string foregroundHex)
+    {
+        if (!isSelected)
+        {
+            button.ClearValue(Button.BackgroundProperty);
+            button.ClearValue(Button.BorderBrushProperty);
+            button.ClearValue(Button.ForegroundProperty);
+            return;
+        }
+
+        button.Background = (Brush)new BrushConverter().ConvertFromString(backgroundHex)!;
+        button.BorderBrush = (Brush)new BrushConverter().ConvertFromString(borderHex)!;
+        button.Foreground = (Brush)new BrushConverter().ConvertFromString(foregroundHex)!;
     }
 
     private static string BuildPaymentsHeaderHint(string hintKey)

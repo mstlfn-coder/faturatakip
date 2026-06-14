@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.122 - Aktif Yol Buton Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif yol butonu hafif vurgu aliyor | OK | Son kullanilan yone ait eylem dugmesi kendi tonunda belirginlesiyor |
+| Uc katmanli iz dorduncu katmanla tamamlandi | OK | Rozet, kart secimi, alt not ve buton birlikte ayni akisi isaret ediyor |
+| 2026-06-14 | v1.122 | OK | Odemeler panelinde aktif yol buton vurgusu tamamlandi |
+
 ## v1.121 - Aktif Yol Alt Notu
 | Kontrol | Durum | Not |
 | --- | --- | --- |
