@@ -259,6 +259,42 @@ public partial class MainWindow : Window
         InvoicesPanel.StartPaymentWorkspaceForInvoice(invoiceId, preferUnpaidFilter: false);
     }
 
+    private void OpenNextQueueInvoiceButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (PaymentsOpenNextQueueButton.Tag is not long invoiceId)
+        {
+            return;
+        }
+
+        PersistPaymentsPanelContext(
+            "Oncelikli odeme kuyrugu kaydi odeme alaninda dogrudan acildi.",
+            "SON YOL: ONCELIK",
+            "#DCFCE7",
+            "#86EFAC",
+            "#166534",
+            routeKey: "workspace");
+        ShowInvoices();
+        InvoicesPanel.StartPaymentWorkspaceForInvoice(invoiceId, preferUnpaidFilter: true);
+    }
+
+    private void OpenLatestPaymentFromPaymentsButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (PaymentsOpenLatestPaymentButton.Tag is not long invoiceId)
+        {
+            return;
+        }
+
+        PersistPaymentsPanelContext(
+            "Son odeme kaydinin ait oldugu fatura hizli aksiyon ile yeniden acildi.",
+            "SON YOL: HIZLI ODEME",
+            "#DBEAFE",
+            "#93C5FD",
+            "#1D4ED8",
+            routeKey: "workspace");
+        ShowInvoices();
+        InvoicesPanel.StartPaymentWorkspaceForInvoice(invoiceId, preferUnpaidFilter: false);
+    }
+
     private void ReportsPanel_UnreviewedInvoiceReviewRequested(object? sender, Views.ReportsView.InvoiceReviewNavigationRequestEventArgs e)
     {
         ShowInvoices();
@@ -774,6 +810,19 @@ public partial class MainWindow : Window
         PaymentsQueueSummaryText.Text = unpaidQueueItems.Count == 0
             ? "Bekleyen odeme kuyrugu yok."
             : $"{summary.UnpaidInvoiceCount} acik faturadan en yakin {unpaidQueueItems.Count} kayit burada listeleniyor.";
+        if (unpaidQueueItems.Count == 0)
+        {
+            PaymentsOpenNextQueueButton.IsEnabled = false;
+            PaymentsOpenNextQueueButton.Tag = null;
+            PaymentsQueueActionHintText.Text = "Oncelikli kayit hazir degil.";
+        }
+        else
+        {
+            var topQueueItem = unpaidQueueItems[0];
+            PaymentsOpenNextQueueButton.IsEnabled = true;
+            PaymentsOpenNextQueueButton.Tag = topQueueItem.InvoiceId;
+            PaymentsQueueActionHintText.Text = $"{topQueueItem.Title} • {topQueueItem.Amount}";
+        }
 
         var invoicesById = invoices.ToDictionary(item => item.Id);
         var recentPaymentItems = payments
@@ -792,6 +841,19 @@ public partial class MainWindow : Window
         PaymentsRecentPaymentsSummaryText.Text = recentPaymentItems.Count == 0
             ? "Henuz kaydedilmis odeme yok."
             : $"En son {recentPaymentItems.Count} odeme kaydi burada hizlica kontrol edilebilir.";
+        if (recentPaymentItems.Count == 0)
+        {
+            PaymentsOpenLatestPaymentButton.IsEnabled = false;
+            PaymentsOpenLatestPaymentButton.Tag = null;
+            PaymentsRecentActionHintText.Text = "Son odeme kaydi hazir degil.";
+        }
+        else
+        {
+            var topRecentPaymentItem = recentPaymentItems[0];
+            PaymentsOpenLatestPaymentButton.IsEnabled = true;
+            PaymentsOpenLatestPaymentButton.Tag = topRecentPaymentItem.InvoiceId;
+            PaymentsRecentActionHintText.Text = $"{topRecentPaymentItem.Title} • {topRecentPaymentItem.Amount}";
+        }
     }
 
     private void SubscriptionsPanel_SubscriptionsChanged(object sender, EventArgs e)

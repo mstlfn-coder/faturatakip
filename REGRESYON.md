@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.186 - Odemeler Hizli Aksiyon Satiri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Oncelikli kayit hizli aciliyor | OK | Odenmemis kuyrugunun ilk kaydi hizli aksiyon butonu ile odeme alanina geciyor |
+| Son odeme hizli aciliyor | OK | Son odeme faturasina hizli aksiyon satirindan dogrudan donulebiliyor |
+| 2026-06-15 | v1.186 | OK | Odemeler paneline hizli aksiyon satiri eklendi |
+
 ## v1.185 - Odemeler Ozeti Hedefli Gecis
 | Kontrol | Durum | Not |
 | --- | --- | --- |

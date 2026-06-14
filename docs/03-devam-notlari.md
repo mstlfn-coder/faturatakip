@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.186)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.186 - Odemeler Hizli Aksiyon Satiri`
+- Bu adimda Odemeler sekmesine oncelikli kuyruk kaydini ve son odeme kaydini tek tikla acan hizli aksiyon satirlari eklendi.
+- Boylece operasyon ozeti sadece liste gostermiyor; kullanici dogrudan en yakin islemden devam edebiliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.185)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.186)
+
+- v1.186 tamamlandi: Odemeler sekmesine oncelikli kayit ve son odeme icin hizli aksiyon satirlari eklendi.
+- Liste ustunden en yakin odeme isine ya da son odeme kaydina tek tikla gecis saglandi.
+- Boylece odemeler yuzeyi daha karar-verdiren bir ozet yerine dogrudan is baslatan bir kontrol noktasina donustu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.185)
 
 - v1.185 tamamlandi: Odemeler sekmesindeki operasyon kartlarina hedefli ac butonlari eklendi.
