@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-14 / v1.168)
+
+- v1.168 tamamlandi: Odemeler panelindeki ikincil aksiyon dugmelerinin klavye odak vurgusu hafifce sakinlestirildi.
+- Boylece odak gorunurlugu korunurken, birincil aksiyon hiyerarsisi daha dengeli kaldi.
+- Bu adim kartlarin klavye odak dilini bir kademe daha rafine etti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-14 / v1.167)
 
 - v1.167 tamamlandi: Odemeler panelinde kullanilan ikincil aksiyon dugmelerinin tonlari hafifce sakinlestirildi.

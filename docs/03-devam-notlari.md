@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-14 / v1.168)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.168 - Ikincil Odak Tonu Yumusatma`
+- Bu adimda odeme akis kartlarindaki ikincil aksiyon dugmelerinin klavye odak vurgusu bir kademe sakinlestirildi.
+- Boylece klavye ile gezinirken odak gorunurlugu korunuyor, ancak birincil komut hiyerarsisi daha temiz sekilde sabit kaliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-14 / v1.167)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

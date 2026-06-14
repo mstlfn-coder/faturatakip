@@ -66,9 +66,9 @@
             <Style.Triggers>
                 <Trigger Property="IsKeyboardFocused" Value="True">
                     <Setter Property="BorderThickness" Value="2" />
-                    <Setter Property="BorderBrush" Value="#60A5FA" />
-                    <Setter Property="Background" Value="#EFF6FF" />
-                    <Setter Property="Foreground" Value="#1E3A8A" />
+                    <Setter Property="BorderBrush" Value="#93C5FD" />
+                    <Setter Property="Background" Value="#F8FBFF" />
+                    <Setter Property="Foreground" Value="#1D4ED8" />
                 </Trigger>
             </Style.Triggers>
         </Style>

@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.168 - Ikincil Odak Tonu Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ikincil odak daha sakin | OK | Klavye odak vurgusu yardimci rolu koruyacak sekilde yumusatildi |
+| Birincil hiyerarsi korundu | OK | Birincil komut odakli akis daha temiz okunuyor |
+| 2026-06-14 | v1.168 | OK | Odemeler panelinde ikincil odak tonu yumusatma tamamlandi |
+
 ## v1.167 - Ikincil Aksiyon Tonu Dengeleme
 | Kontrol | Durum | Not |
 | --- | --- | --- |
