@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.194 - Aktif Filtre Sonuc Ozeti`
+- Son tamamlanan temiz faz: `v1.195 - Bos Filtre Donus Aksiyonu`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.195` Bos Filtre Donus Aksiyonu
 - `v1.194` Aktif Filtre Sonuc Ozeti
 - `v1.193` Odemeler Filtre Sonuc Sayilari
 - `v1.192` Odemeler Aktif Filtre Rozeti
@@ -110,7 +111,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Ana Adim
 
-- Sonucsuz odeme filtre gorunumlerinde dogrudan `Hepsini Goster` donus aksiyonu eklemek
+- Bos filtre durumundaki ozet metinlerini daha yonlendirici fiil diliyle guclendirmek
 
 ## Yeni Chat Icin Kisa Talimat
 

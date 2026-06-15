@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.195)
+
+- v1.195 tamamlandi: Sonuc vermeyen odeme filtreleri icin `Hepsini Goster` donus aksiyonlari eklendi.
+- Kuyruk ve son odeme panelleri bos filtre durumunda tek tikla tum gorunume geri donebiliyor.
+- Donus dugmeleri yalnizca secili filtre sonuc vermediginde gorunuyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.194)
 
 - v1.194 tamamlandi: Odemeler aktif filtre rozetlerine secili gorunumdeki sonuc sayisi eklendi.

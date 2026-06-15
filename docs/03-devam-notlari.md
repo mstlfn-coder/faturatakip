@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.195)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.195 - Bos Filtre Donus Aksiyonu`
+- Bu adimda sonuc donmeyen odeme filtre gorunumlerinde `Hepsini Goster` donus dugmeleri eklendi.
+- Kullanici artik bos bir filtreye dustugunde ayni satirdan tum kayit gorunumune tek tikla geri donebiliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.194)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

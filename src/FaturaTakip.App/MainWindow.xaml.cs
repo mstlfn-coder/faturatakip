@@ -497,6 +497,18 @@ public partial class MainWindow : Window
         RefreshPaymentsOverview();
     }
 
+    private void ResetPaymentsQueueFilterButton_Click(object sender, RoutedEventArgs e)
+    {
+        _paymentsQueueFilterKey = "all";
+        RefreshPaymentsOverview();
+    }
+
+    private void ResetPaymentsRecentFilterButton_Click(object sender, RoutedEventArgs e)
+    {
+        _paymentsRecentFilterKey = "all";
+        RefreshPaymentsOverview();
+    }
+
     private void PaymentsHintSource_MouseEnter(object sender, MouseEventArgs e)
     {
         if (sender is not FrameworkElement { Tag: string hintKey })
@@ -880,6 +892,9 @@ public partial class MainWindow : Window
             PaymentsOpenNextQueueButton.IsEnabled = false;
             PaymentsOpenNextQueueButton.Tag = null;
             PaymentsQueueActionHintText.Text = $"{BuildQueueFilterLabel()} icin oncelikli kayit hazir degil.";
+            PaymentsQueueResetFilterButton.Visibility = _paymentsQueueFilterKey == "all"
+                ? Visibility.Collapsed
+                : Visibility.Visible;
         }
         else
         {
@@ -887,6 +902,7 @@ public partial class MainWindow : Window
             PaymentsOpenNextQueueButton.IsEnabled = true;
             PaymentsOpenNextQueueButton.Tag = topQueueItem.InvoiceId;
             PaymentsQueueActionHintText.Text = $"{topQueueItem.Title} - {topQueueItem.Amount}";
+            PaymentsQueueResetFilterButton.Visibility = Visibility.Collapsed;
         }
 
         var invoicesById = invoices.ToDictionary(item => item.Id);
@@ -923,6 +939,9 @@ public partial class MainWindow : Window
             PaymentsOpenLatestPaymentButton.IsEnabled = false;
             PaymentsOpenLatestPaymentButton.Tag = null;
             PaymentsRecentActionHintText.Text = $"{BuildRecentFilterLabel()} icin son odeme kaydi hazir degil.";
+            PaymentsRecentResetFilterButton.Visibility = _paymentsRecentFilterKey == "all"
+                ? Visibility.Collapsed
+                : Visibility.Visible;
         }
         else
         {
@@ -930,6 +949,7 @@ public partial class MainWindow : Window
             PaymentsOpenLatestPaymentButton.IsEnabled = true;
             PaymentsOpenLatestPaymentButton.Tag = topRecentPaymentItem.InvoiceId;
             PaymentsRecentActionHintText.Text = $"{topRecentPaymentItem.Title} - {topRecentPaymentItem.Amount}";
+            PaymentsRecentResetFilterButton.Visibility = Visibility.Collapsed;
         }
 
         ApplyFeaturedPaymentsSummary(

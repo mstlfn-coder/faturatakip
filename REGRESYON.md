@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.195 - Bos Filtre Donus Aksiyonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk donus dugmesi hazir | OK | Sonucsuz kuyruk filtresinde Hepsini Goster gorunuyor |
+| Son odeme donus dugmesi hazir | OK | Sonucsuz son odeme filtresinde Hepsini Goster gorunuyor |
+| Donus davranisi kosullu | OK | Dugmeler yalnizca all disi filtre ve bos sonuc kombinasyonunda gorunuyor |
+| 2026-06-15 | v1.195 | OK | Sonucsuz odeme filtrelerine geri donus aksiyonu eklendi |
+
 ## v1.194 - Aktif Filtre Sonuc Ozeti
 | Kontrol | Durum | Not |
 | --- | --- | --- |
