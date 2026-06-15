@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.193)
+
+- v1.193 tamamlandi: Odemeler filtre dugmelerine gorunum bazli sonuc sayilari eklendi.
+- Kuyruk sayilari en yakin bes kayit, son odeme sayilari en son bes kayit uzerinden hesaplaniyor.
+- Filtre tooltipleri sayilarin temsil ettigi operasyon penceresini acikliyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.192)
 
 - v1.192 tamamlandi: Odemeler kuyrugu ve son odemeler listesine aktif filtre rozetleri eklendi.

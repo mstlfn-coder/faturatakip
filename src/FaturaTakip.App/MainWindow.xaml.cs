@@ -843,7 +843,7 @@ public partial class MainWindow : Window
         PaymentsUnpaidInvoiceCountText.Text = summary.UnpaidInvoiceCount.ToString(CultureInfo.InvariantCulture);
         PaymentsUnpaidRemainingText.Text = $"Kalan {FormatMoney(summary.UnpaidRemainingTotal)}";
 
-        var unpaidQueueItems = invoices
+        var unpaidQueueCandidates = invoices
             .Where(item => !string.Equals(item.Status, "canceled", StringComparison.OrdinalIgnoreCase) && item.RemainingAmount > 0)
             .OrderBy(item => item.DueDate)
             .ThenByDescending(item => item.RemainingAmount)
@@ -859,9 +859,14 @@ public partial class MainWindow : Window
                 GetQueueStatusForeground(item),
                 item.DueDate.Date <= DateTime.Today,
                 _invoiceRepository.IsPdfMissing(item)))
+            .ToList();
+        var unpaidQueueItems = unpaidQueueCandidates
             .Where(ShouldIncludeQueueItem)
             .ToList();
 
+        PaymentsQueueFilterAllButton.Content = $"Hepsi ({unpaidQueueCandidates.Count})";
+        PaymentsQueueFilterUrgentButton.Content = $"Acil ({unpaidQueueCandidates.Count(item => item.IsUrgent)})";
+        PaymentsQueueFilterMissingPdfButton.Content = $"PDF Eksik ({unpaidQueueCandidates.Count(item => item.IsPdfMissing)})";
         ApplyPaymentsFilterButtonState(PaymentsQueueFilterAllButton, _paymentsQueueFilterKey == "all");
         ApplyPaymentsFilterButtonState(PaymentsQueueFilterUrgentButton, _paymentsQueueFilterKey == "urgent");
         ApplyPaymentsFilterButtonState(PaymentsQueueFilterMissingPdfButton, _paymentsQueueFilterKey == "missing-pdf");
@@ -885,7 +890,7 @@ public partial class MainWindow : Window
         }
 
         var invoicesById = invoices.ToDictionary(item => item.Id);
-        var recentPaymentItems = payments
+        var recentPaymentCandidates = payments
             .OrderByDescending(item => item.PaymentDate)
             .ThenByDescending(item => item.Id)
             .Take(5)
@@ -899,9 +904,13 @@ public partial class MainWindow : Window
                 _paymentRepository.IsPdfMissing(item) ? "#FECACA" : "#BFDBFE",
                 _paymentRepository.IsPdfMissing(item) ? "#B91C1C" : "#1D4ED8",
                 _paymentRepository.IsPdfMissing(item)))
+            .ToList();
+        var recentPaymentItems = recentPaymentCandidates
             .Where(ShouldIncludeRecentPaymentItem)
             .ToList();
 
+        PaymentsRecentFilterAllButton.Content = $"Hepsi ({recentPaymentCandidates.Count})";
+        PaymentsRecentFilterMissingPdfButton.Content = $"PDF Eksik ({recentPaymentCandidates.Count(item => item.IsPdfMissing)})";
         ApplyPaymentsFilterButtonState(PaymentsRecentFilterAllButton, _paymentsRecentFilterKey == "all");
         ApplyPaymentsFilterButtonState(PaymentsRecentFilterMissingPdfButton, _paymentsRecentFilterKey == "missing-pdf");
         PaymentsRecentActiveFilterText.Text = $"AKTIF: {BuildRecentFilterLabel().ToUpperInvariant()}";

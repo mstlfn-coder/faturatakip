@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.193 - Odemeler Filtre Sonuc Sayilari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk sayilari gorunur | OK | Hepsi, Acil ve PDF Eksik dugmeleri sonuc sayilarini gosteriyor |
+| Son odeme sayilari gorunur | OK | Hepsi ve PDF Eksik dugmeleri sonuc sayilarini gosteriyor |
+| Sayi kapsami acik | OK | Tooltipler sayilarin en yakin veya en son bes kaydi temsil ettigini acikliyor |
+| 2026-06-15 | v1.193 | OK | Odemeler filtrelerine sonuc sayilari eklendi |
+
 ## v1.192 - Odemeler Aktif Filtre Rozeti
 | Kontrol | Durum | Not |
 | --- | --- | --- |

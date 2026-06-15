@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.193)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.193 - Odemeler Filtre Sonuc Sayilari`
+- Bu adimda odeme kuyrugu ve son odemeler filtre dugmelerine gorunum bazli sonuc sayilari eklendi.
+- Sayilar panelin en yakin veya en son bes kayitlik operasyon penceresine gore hesaplaniyor; tooltipler de bu kapsami acikliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.192)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

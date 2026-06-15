@@ -1466,14 +1466,17 @@
                                         <Button x:Name="PaymentsQueueFilterAllButton"
                                                 Content="Hepsi"
                                                 Style="{StaticResource PaymentsFilterButton}"
+                                                ToolTip="En yakin bes kuyruk kaydinin tamamini gosterir."
                                                 Click="PaymentsQueueFilterButton_Click" />
                                         <Button x:Name="PaymentsQueueFilterUrgentButton"
                                                 Content="Acil"
                                                 Style="{StaticResource PaymentsFilterButton}"
+                                                ToolTip="En yakin bes kayit icindeki acil odemeleri gosterir."
                                                 Click="PaymentsQueueFilterButton_Click" />
                                         <Button x:Name="PaymentsQueueFilterMissingPdfButton"
                                                 Content="PDF Eksik"
                                                 Style="{StaticResource PaymentsFilterButton}"
+                                                ToolTip="En yakin bes kayit icindeki PDF eksik faturalarini gosterir."
                                                 Click="PaymentsQueueFilterButton_Click" />
                                     </StackPanel>
                                     <Border Style="{StaticResource PaymentsActiveFilterBadge}"
@@ -1574,10 +1577,12 @@
                                         <Button x:Name="PaymentsRecentFilterAllButton"
                                                 Content="Hepsi"
                                                 Style="{StaticResource PaymentsFilterButton}"
+                                                ToolTip="En son bes odeme kaydinin tamamini gosterir."
                                                 Click="PaymentsRecentFilterButton_Click" />
                                         <Button x:Name="PaymentsRecentFilterMissingPdfButton"
                                                 Content="PDF Eksik"
                                                 Style="{StaticResource PaymentsFilterButton}"
+                                                ToolTip="En son bes odeme icindeki PDF eksik kayitlari gosterir."
                                                 Click="PaymentsRecentFilterButton_Click" />
                                     </StackPanel>
                                     <Border Style="{StaticResource PaymentsActiveFilterBadge}"
