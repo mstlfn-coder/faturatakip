@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-15 / v1.210)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.210 - Reset Dugmesi Sol Mesafe`
+- Bu adimda `Hepsini Goster` dugmesinin sol mesafesi ortak stil icine alinip yardim metniyle daha dengeli hale getirildi.
+- Boylece bos filtre satirinda yardim metni ile geri donus aksiyonu arasindaki kopukluk biraz daha azaldi ve iki satir da ayni bosluk ritmini kullanir hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.207)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -771,4 +780,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- `Hepsini Goster` dugmesinin sol boslugunu yardim metniyle biraz daha dengeli hale getirmek.
+- Bos filtre komut satirindaki yardim metninin satir ici hizini reset dugmesiyle biraz daha ortaklastirmak.

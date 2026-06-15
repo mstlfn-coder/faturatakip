@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.210 - Reset Dugmesi Sol Mesafe
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satiri daha toplu | OK | Yardim metni ile geri donus dugmesi arasindaki sol bosluk hafifce azaldi |
+| Son odeme satiri daha toplu | OK | Yardim metni ile geri donus dugmesi arasindaki sol bosluk hafifce azaldi |
+| Margin ortaklasti | OK | Sol mesafe stil anahtarina tasinarak iki dugmede ayni hale getirildi |
+| 2026-06-15 | v1.210 | OK | Reset dugmesinin sol mesafesi ortak stil uzerinden dengelendi |
+
 ## v1.209 - Reset Dugmesi Ic Boslugu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

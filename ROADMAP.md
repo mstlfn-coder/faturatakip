@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.210)
+
+- v1.210 tamamlandi: `Hepsini Goster` dugmesinin sol mesafesi ortak stile alinip biraz daha dengeli hale getirildi.
+- Boylece yardim metni ile geri donus aksiyonu arasindaki bosluk daha toplu okunuyor.
+- Iki bos filtre satiri ayni margin anahtarini kullandigi icin mikro ritim daha tutarli hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.209)
 
 - v1.209 tamamlandi: `Hepsini Goster` dugmesinin ic boslugu ortak stile alinip biraz daha kompakt hale getirildi.

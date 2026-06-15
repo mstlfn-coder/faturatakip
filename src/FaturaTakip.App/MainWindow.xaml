@@ -213,6 +213,7 @@
             <Setter Property="FontSize" Value="10.5" />
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Padding" Value="9,2" />
+            <Setter Property="Margin" Value="8,0,0,0" />
         </Style>
         <Style x:Key="PaymentsActiveFilterBadge" TargetType="Border">
             <Setter Property="Background" Value="#EFF6FF" />
@@ -1518,7 +1519,6 @@
                                         <Button x:Name="PaymentsQueueResetFilterButton"
                                                 Content="Hepsini Goster"
                                                 Style="{StaticResource PaymentsResetFilterButton}"
-                                                Margin="10,0,0,0"
                                                 Visibility="Collapsed"
                                                 ToolTip="Kuyruk filtresini tum kayitlara geri dondurur."
                                                 Click="ResetPaymentsQueueFilterButton_Click" />
@@ -1636,7 +1636,6 @@
                                         <Button x:Name="PaymentsRecentResetFilterButton"
                                                 Content="Hepsini Goster"
                                                 Style="{StaticResource PaymentsResetFilterButton}"
-                                                Margin="10,0,0,0"
                                                 Visibility="Collapsed"
                                                 ToolTip="Son odeme filtresini tum kayitlara geri dondurur."
                                                 Click="ResetPaymentsRecentFilterButton_Click" />
