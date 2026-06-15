@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.205 - Yardim Metni Satir Yuksekligi`
+- Son tamamlanan temiz faz: `v1.206 - Reset Dugmesi Yatay Bosluk`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.206` Reset Dugmesi Yatay Bosluk
 - `v1.205` Yardim Metni Satir Yuksekligi
 - `v1.204` Yardim Metni Tonu
 - `v1.203` Yardim Metni Yakinlastirma
@@ -121,7 +122,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Ana Adim
 
-- Yardim metni ile reset dugmesi arasindaki yatay ritmi biraz daha dengelemek
+- Reset dugmesinin tonunu bos filtre yardim metniyle biraz daha yakinlastirmak
 
 ## Yeni Chat Icin Kisa Talimat
 

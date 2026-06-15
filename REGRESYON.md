@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.206 - Reset Dugmesi Yatay Bosluk
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk komut satiri toplandi | OK | Yardim metni ile geri donus dugmesi daha yakin duruyor |
+| Son odeme komut satiri toplandi | OK | Yardim metni ile geri donus dugmesi daha yakin duruyor |
+| Yatay nefes korundu | OK | Bosluk azaltildi ama satir sikismadi |
+| 2026-06-15 | v1.206 | OK | Reset dugmesinin yatay boslugu hafifce azaltildi |
+
 ## v1.205 - Yardim Metni Satir Yuksekligi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

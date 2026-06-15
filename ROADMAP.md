@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.206)
+
+- v1.206 tamamlandi: Yardim metni ile `Hepsini Goster` dugmesi arasindaki yatay bosluk hafifce azaltildi.
+- Bos filtre durumundaki komut satiri artik daha toplu ve daha tek parca gorunuyor.
+- Geri donus aksiyonu yardim metnine yaklasti ama satir nefesi korunuyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.205)
 
 - v1.205 tamamlandi: Aksiyon satirlarindaki yardim metinlerine daha dengeli satir yuksekligi verildi.

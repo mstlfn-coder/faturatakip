@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.206)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.206 - Reset Dugmesi Yatay Bosluk`
+- Bu adimda yardim metni ile `Hepsini Goster` dugmesi arasindaki yatay bosluk hafifce azaltildi.
+- Boylece bos filtre durumundaki komut satiri daha toplu okunuyor ve geri donus aksiyonu yardim metnine biraz daha yakin duruyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.205)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
