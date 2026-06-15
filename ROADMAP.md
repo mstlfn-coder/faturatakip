@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.201)
+
+- v1.201 tamamlandi: Filtre dugmeleriyle aktif rozet arasindaki ust bosluk hafifce azaltildi.
+- Rozet satiri filtre grubuna daha yakin duruyor ve iki katman daha tek parca okunuyor.
+- Degisiklik mikro duzeyde tutuldu; nefes alani korunurken ritim sikilasti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.200)
 
 - v1.200 tamamlandi: Aktif filtre rozetlerinin kisa metninde alan baglami daha acik hale getirildi.

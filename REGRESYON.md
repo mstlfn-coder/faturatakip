@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.201 - Rozet Ust Bosluk Sikilastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk ritmi yakinlasti | OK | Filtre ile aktif kuyruk rozeti arasindaki bosluk azaltildi |
+| Son odeme ritmi yakinlasti | OK | Filtre ile aktif son odeme rozeti arasindaki bosluk azaltildi |
+| Mikro denge korundu | OK | Siklik arttirildi ama satirlar carpmadi |
+| 2026-06-15 | v1.201 | OK | Aktif rozetin ust boslugu hafifce azaltildi |
+
 ## v1.200 - Aktif Rozet Baglam Metni
 | Kontrol | Durum | Not |
 | --- | --- | --- |
