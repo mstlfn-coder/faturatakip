@@ -1504,7 +1504,7 @@
                                         <Button x:Name="PaymentsOpenNextQueueButton"
                                                 Content="En Yakin Kaydi Ac"
                                                 Style="{StaticResource PaymentsOpsActionButton}"
-                                                Padding="12,4"
+                                                Padding="12,3"
                                                 ToolTip="Enter ile oncelikli kuyruk kaydini acar."
                                                 Click="OpenNextQueueInvoiceButton_Click" />
                                         <TextBlock x:Name="PaymentsQueueActionHintText"
@@ -1622,7 +1622,7 @@
                                         <Button x:Name="PaymentsOpenLatestPaymentButton"
                                                 Content="Son Odemeyi Ac"
                                                 Style="{StaticResource PaymentsOpsActionButton}"
-                                                Padding="12,4"
+                                                Padding="12,3"
                                                 ToolTip="Enter ile son odeme kaydini acar."
                                                 Click="OpenLatestPaymentFromPaymentsButton_Click" />
                                         <TextBlock x:Name="PaymentsRecentActionHintText"

@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-15 / v1.215)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.215 - Aksiyon Dugmesi Agirlik Dengesi`
+- Bu adimda bos filtre satirlarindaki ana aksiyon dugmelerinin dikey ic boslugu hafifce azaltildi.
+- Boylece aksiyon dugmesi yardim metnine gore hala belirgin kalsa da aradaki gorsel agirlik farki biraz daha yumusadi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.214)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -816,4 +825,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Bos filtre yardim satirinda aksiyon dugmesi ile metin arasindaki agirlik farkini bir tik daha azaltmak.
+- Bos filtre komut satirinda aksiyon dugmesi ve reset dugmesi arasindaki tipografik aile hissini biraz daha yaklastirmak.

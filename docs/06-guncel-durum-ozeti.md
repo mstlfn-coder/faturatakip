@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.214 - Reset Dugmesi Satir Yuksekligi`
+- Son tamamlanan temiz faz: `v1.215 - Aksiyon Dugmesi Agirlik Dengesi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.215` Aksiyon Dugmesi Agirlik Dengesi
 - `v1.214` Reset Dugmesi Satir Yuksekligi
 - `v1.213` Reset Dugmesi Dikey Hiz
 - `v1.212` Yardim Metni Sarmalama Siniri
@@ -130,7 +131,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Ana Adim
 
-- Bos filtre yardim satirinda aksiyon dugmesi ile metin arasindaki agirlik farkini bir tik daha azaltmak
+- Bos filtre komut satirinda aksiyon dugmesi ve reset dugmesi arasindaki tipografik aile hissini biraz daha yaklastirmak
 
 ## Yeni Chat Icin Kisa Talimat
 

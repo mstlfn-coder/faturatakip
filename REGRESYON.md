@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.215 - Aksiyon Dugmesi Agirlik Dengesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk aksiyon dugmesi yumusadi | OK | Dikey ic bosluk azaltilarak yardim metniyle agirlik farki hafifletildi |
+| Son odeme aksiyon dugmesi yumusadi | OK | Dikey ic bosluk azaltilarak yardim metniyle agirlik farki hafifletildi |
+| Aksiyon belirginligi korundu | OK | Dugmeler hala birincil komut hissini kaybetmeden okunuyor |
+| 2026-06-15 | v1.215 | OK | Aksiyon dugmelerinin dikey ic boslugu hafifce azaltildi |
+
 ## v1.214 - Reset Dugmesi Satir Yuksekligi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

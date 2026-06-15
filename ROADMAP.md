@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.215)
+
+- v1.215 tamamlandi: Bos filtre satirlarindaki ana aksiyon dugmelerinin dikey ic boslugu hafifce azaltildi.
+- Boylece aksiyon dugmesi ile yardim metni arasindaki gorsel agirlik farki biraz daha yumusadi.
+- Mikro ayar iki komut satirinda da ayni buton karakterini korurken satir yogunlugunu daha dengeli hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.214)
 
 - v1.214 tamamlandi: `Hepsini Goster` dugmesinin dikey ic boslugu hafifce azaltildi.
