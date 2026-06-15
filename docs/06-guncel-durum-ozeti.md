@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.202 - Rozet Aksiyon Yakinlastirma`
+- Son tamamlanan temiz faz: `v1.203 - Yardim Metni Yakinlastirma`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.203` Yardim Metni Yakinlastirma
 - `v1.202` Rozet Aksiyon Yakinlastirma
 - `v1.201` Rozet Ust Bosluk Sikilastirma
 - `v1.200` Aktif Rozet Baglam Metni
@@ -118,7 +119,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Ana Adim
 
-- Aktif rozet ve alt aksiyon satirini tipografik olarak biraz daha yakinlastirmak
+- Yardim metninin satir ici tonunu ve hizasini bir tik daha yumusatmak
 
 ## Yeni Chat Icin Kisa Talimat
 

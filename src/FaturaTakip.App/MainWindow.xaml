@@ -1506,7 +1506,7 @@
                                         <TextBlock x:Name="PaymentsQueueActionHintText"
                                                    Text="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun."
                                                    Style="{StaticResource MutedText}"
-                                                   Margin="12,6,0,0"
+                                                   Margin="12,4,0,0"
                                                    VerticalAlignment="Center"
                                                    TextWrapping="Wrap" />
                                         <Button x:Name="PaymentsQueueResetFilterButton"
@@ -1622,7 +1622,7 @@
                                         <TextBlock x:Name="PaymentsRecentActionHintText"
                                                    Text="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun."
                                                    Style="{StaticResource MutedText}"
-                                                   Margin="12,6,0,0"
+                                                   Margin="12,4,0,0"
                                                    VerticalAlignment="Center"
                                                    TextWrapping="Wrap" />
                                         <Button x:Name="PaymentsRecentResetFilterButton"

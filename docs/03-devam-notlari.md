@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.203)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.203 - Yardim Metni Yakinlastirma`
+- Bu adimda aktif rozet altindaki aksiyon satirlarinda yardim metninin ust boslugu hafifce azaltildi.
+- Boylece buton ile yardim metni ayni komut satiri icinde daha toplu ve daha hizli taranir hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.202)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

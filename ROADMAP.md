@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.203)
+
+- v1.203 tamamlandi: Aksiyon satirlarindaki yardim metninin ust boslugu hafifce azaltildi.
+- Buton ve yardim metni ayni komut satiri icinde daha toplu duruyor.
+- Bu mikro ayar hizli taramayi kolaylastirirken satirin nefesini koruyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.202)
 
 - v1.202 tamamlandi: Aktif filtre rozeti ile alt aksiyon satiri arasindaki bosluk hafifce azaltildi.

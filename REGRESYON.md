@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.203 - Yardim Metni Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk yardim satiri toplandi | OK | Kuyruk aksiyon satirinda buton ve yardim metni daha yakin duruyor |
+| Son odeme yardim satiri toplandi | OK | Son odeme aksiyon satirinda buton ve yardim metni daha yakin duruyor |
+| Mikro ritim korundu | OK | Metin yakinlasti ama satir sikismadi |
+| 2026-06-15 | v1.203 | OK | Yardim metinlerinin ust boslugu hafifce azaltildi |
+
 ## v1.202 - Rozet Aksiyon Yakinlastirma
 | Kontrol | Durum | Not |
 | --- | --- | --- |
