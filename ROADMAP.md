@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.199)
+
+- v1.199 tamamlandi: Aktif filtre rozetlerinin tooltip dili secili gorunume ve sonuc sayisina gore dinamik hale getirildi.
+- Tooltipler artik kullaniciya hem hangi filtrede oldugunu hem de bes kayitlik operasyon penceresinde kac sonuc gordugunu acikliyor.
+- Boylece kisa rozet metni sabit kalirken, detay isteyen kullaniciya hover aninda daha fazla baglam veriliyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.198)
 
 - v1.198 tamamlandi: Aktif filtre rozetleri secili gorunume gore hafif ton farki almaya basladi.

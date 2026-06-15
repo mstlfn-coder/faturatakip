@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.198 - Aktif Filtre Rozet Tonu`
+- Son tamamlanan temiz faz: `v1.199 - Aktif Rozet Tooltip Dili`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.199` Aktif Rozet Tooltip Dili
 - `v1.198` Aktif Filtre Rozet Tonu
 - `v1.197` Donus Dugmesi Ton Ayrimi
 - `v1.196` Bos Filtre Fiil Dili
@@ -114,7 +115,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Ana Adim
 
-- Aktif filtre rozeti tooltip dilini secili gorunume gore daha aciklayici hale getirmek
+- Aktif rozet kisa metninde kuyruk ve son odeme baglamini biraz daha aciklastirmak
 
 ## Yeni Chat Icin Kisa Talimat
 

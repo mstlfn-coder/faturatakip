@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.199 - Aktif Rozet Tooltip Dili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk tooltipi dinamik | OK | Secili kuyruk gorunumu ve sonuc sayisi hover aninda aciklaniyor |
+| Son odeme tooltipi dinamik | OK | Secili son odeme gorunumu ve sonuc sayisi hover aninda aciklaniyor |
+| Detay dili net | OK | Kisa rozet metni korunurken ek baglam tooltipte veriliyor |
+| 2026-06-15 | v1.199 | OK | Aktif filtre rozetlerinin tooltip dili dinamik hale getirildi |
+
 ## v1.198 - Aktif Filtre Rozet Tonu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

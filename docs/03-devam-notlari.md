@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.199)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.199 - Aktif Rozet Tooltip Dili`
+- Bu adimda aktif filtre rozetlerinin tooltip metinleri secili gorunume ve gorunen sonuc sayisina gore dinamik hale getirildi.
+- Rozet tooltipleri artik kullaniciya hem hangi filtrede oldugunu hem de bu filtrenin bes kayitlik operasyon penceresinde kac sonuc gosterdigini acikliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.198)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

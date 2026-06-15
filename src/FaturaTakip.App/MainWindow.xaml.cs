@@ -889,6 +889,7 @@ public partial class MainWindow : Window
             _paymentsQueueFilterKey == "urgent" ? "#FED7AA" : _paymentsQueueFilterKey == "missing-pdf" ? "#FECACA" : "#BFDBFE",
             _paymentsQueueFilterKey == "urgent" ? "#C2410C" : _paymentsQueueFilterKey == "missing-pdf" ? "#B91C1C" : "#1D4ED8");
         PaymentsQueueActiveFilterText.Text = $"AKTIF: {BuildQueueFilterLabel().ToUpperInvariant()} - {unpaidQueueItems.Count} KAYIT";
+        PaymentsQueueActiveFilterBadge.ToolTip = BuildQueueActiveFilterTooltip(unpaidQueueItems.Count);
         PaymentsQueueItemsControl.ItemsSource = unpaidQueueItems;
         PaymentsQueueSummaryText.Text = unpaidQueueItems.Count == 0
             ? $"{BuildQueueFilterLabel()} icin kayit bulunamadi. Gerekirse Hepsini Goster ile tum kuyruga donun."
@@ -942,6 +943,7 @@ public partial class MainWindow : Window
             _paymentsRecentFilterKey == "missing-pdf" ? "#FECACA" : "#BFDBFE",
             _paymentsRecentFilterKey == "missing-pdf" ? "#B91C1C" : "#1D4ED8");
         PaymentsRecentActiveFilterText.Text = $"AKTIF: {BuildRecentFilterLabel().ToUpperInvariant()} - {recentPaymentItems.Count} KAYIT";
+        PaymentsRecentActiveFilterBadge.ToolTip = BuildRecentActiveFilterTooltip(recentPaymentItems.Count);
         PaymentsRecentPaymentsItemsControl.ItemsSource = recentPaymentItems;
         PaymentsRecentPaymentsSummaryText.Text = recentPaymentItems.Count == 0
             ? $"{BuildRecentFilterLabel()} icin kayit bulunamadi. Gerekirse Hepsini Goster ile tum son odemelere donun."
@@ -1037,6 +1039,25 @@ public partial class MainWindow : Window
         {
             "missing-pdf" => "PDF eksik odemeler icinde",
             _ => "En son",
+        };
+    }
+
+    private string BuildQueueActiveFilterTooltip(int visibleCount)
+    {
+        return _paymentsQueueFilterKey switch
+        {
+            "urgent" => $"Acil odeme gorunumu acik. En yakin bes kayit icinden {visibleCount} kayit gosteriliyor.",
+            "missing-pdf" => $"PDF eksik kuyruk gorunumu acik. En yakin bes kayit icinden {visibleCount} kayit gosteriliyor.",
+            _ => $"Tum kuyruk gorunumu acik. En yakin bes kayittan {visibleCount} kayit gosteriliyor.",
+        };
+    }
+
+    private string BuildRecentActiveFilterTooltip(int visibleCount)
+    {
+        return _paymentsRecentFilterKey switch
+        {
+            "missing-pdf" => $"PDF eksik son odemeler gorunumu acik. En son bes kayit icinden {visibleCount} kayit gosteriliyor.",
+            _ => $"Tum son odemeler gorunumu acik. En son bes kayittan {visibleCount} kayit gosteriliyor.",
         };
     }
 
