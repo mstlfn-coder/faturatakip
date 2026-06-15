@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.194 - Aktif Filtre Sonuc Ozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk rozet sayisi gorunur | OK | Aktif kuyruk filtresi gorunen kayit sayisini ozetliyor |
+| Son odeme rozet sayisi gorunur | OK | Aktif son odeme filtresi gorunen kayit sayisini ozetliyor |
+| Rozet sayisi dinamik | OK | Filtre degisikliginde sonuc sayisi listeyle birlikte guncelleniyor |
+| 2026-06-15 | v1.194 | OK | Aktif filtre rozetlerine sonuc sayisi eklendi |
+
 ## v1.193 - Odemeler Filtre Sonuc Sayilari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

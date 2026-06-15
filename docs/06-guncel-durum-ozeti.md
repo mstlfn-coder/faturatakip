@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.193 - Odemeler Filtre Sonuc Sayilari`
+- Son tamamlanan temiz faz: `v1.194 - Aktif Filtre Sonuc Ozeti`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.194` Aktif Filtre Sonuc Ozeti
 - `v1.193` Odemeler Filtre Sonuc Sayilari
 - `v1.192` Odemeler Aktif Filtre Rozeti
 - `v1.191` Odemeler Klavye Odak Vurgusu
@@ -109,7 +110,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Ana Adim
 
-- Odemeler aktif filtre rozetinde secili gorunume ait sonuc sayisini da gostermek
+- Sonucsuz odeme filtre gorunumlerinde dogrudan `Hepsini Goster` donus aksiyonu eklemek
 
 ## Yeni Chat Icin Kisa Talimat
 

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.194)
+
+- v1.194 tamamlandi: Odemeler aktif filtre rozetlerine secili gorunumdeki sonuc sayisi eklendi.
+- Rozetler uygulanan filtreyi ve gorunen kayit sayisini tek satirda ozetliyor.
+- Filtre degisikliginde rozet sayisi listeyle birlikte yenileniyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.193)
 
 - v1.193 tamamlandi: Odemeler filtre dugmelerine gorunum bazli sonuc sayilari eklendi.
