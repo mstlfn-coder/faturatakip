@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-15 / v1.211)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.211 - Yardim Metni Satir Hizi`
+- Bu adimda bos filtre komut satirlarindaki yardim metninin ust boslugu hafifce azaltildi.
+- Boylece yardim metni reset dugmesiyle yatay hatta biraz daha ayni ritimde akiyor ve satir ici kopukluk biraz daha azaliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.210)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -780,4 +789,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Bos filtre komut satirindaki yardim metninin satir ici hizini reset dugmesiyle biraz daha ortaklastirmak.
+- Bos filtre komut satirindaki yardim metninin genisligini gerektiginde daha kontrollu sarmalamak.

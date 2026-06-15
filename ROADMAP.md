@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.211)
+
+- v1.211 tamamlandi: Bos filtre komut satirlarindaki yardim metninin ust boslugu hafifce azaltildi.
+- Boylece yardim metni ile `Hepsini Goster` dugmesi ayni yatay akista daha yakin hissediliyor.
+- Mikro ayar yalnizca ritmi toparladi; mevcut okunabilirlik korunarak satir ici kopukluk azaltildi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.210)
 
 - v1.210 tamamlandi: `Hepsini Goster` dugmesinin sol mesafesi ortak stile alinip biraz daha dengeli hale getirildi.

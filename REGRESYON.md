@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.211 - Yardim Metni Satir Hizi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk yardim satiri hizlandi | OK | Yardim metninin ust boslugu azaltilarak reset dugmesiyle daha yakin ritim kuruldu |
+| Son odeme yardim satiri hizlandi | OK | Yardim metninin ust boslugu azaltilarak reset dugmesiyle daha yakin ritim kuruldu |
+| Okunabilirlik korundu | OK | Satir ici toparlama yapilirken metin sarmalama davranisi bozulmadi |
+| 2026-06-15 | v1.211 | OK | Yardim metni ust boslugu hafifce azaltildi |
+
 ## v1.210 - Reset Dugmesi Sol Mesafe
 | Kontrol | Durum | Not |
 | --- | --- | --- |
