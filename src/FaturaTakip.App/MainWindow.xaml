@@ -1485,7 +1485,8 @@
                                                 ToolTip="En yakin bes kayit icindeki PDF eksik faturalarini gosterir."
                                                 Click="PaymentsQueueFilterButton_Click" />
                                     </StackPanel>
-                                    <Border Style="{StaticResource PaymentsActiveFilterBadge}"
+                                    <Border x:Name="PaymentsQueueActiveFilterBadge"
+                                            Style="{StaticResource PaymentsActiveFilterBadge}"
                                             Margin="0,8,0,0"
                                             ToolTip="Odeme kuyrugunda uygulanan guncel gorunumu gosterir.">
                                         <TextBlock x:Name="PaymentsQueueActiveFilterText"
@@ -1600,7 +1601,8 @@
                                                 ToolTip="En son bes odeme icindeki PDF eksik kayitlari gosterir."
                                                 Click="PaymentsRecentFilterButton_Click" />
                                     </StackPanel>
-                                    <Border Style="{StaticResource PaymentsActiveFilterBadge}"
+                                    <Border x:Name="PaymentsRecentActiveFilterBadge"
+                                            Style="{StaticResource PaymentsActiveFilterBadge}"
                                             Margin="0,8,0,0"
                                             ToolTip="Son odemelerde uygulanan guncel gorunumu gosterir.">
                                         <TextBlock x:Name="PaymentsRecentActiveFilterText"

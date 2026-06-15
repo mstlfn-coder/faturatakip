@@ -882,6 +882,12 @@ public partial class MainWindow : Window
         ApplyPaymentsFilterButtonState(PaymentsQueueFilterAllButton, _paymentsQueueFilterKey == "all");
         ApplyPaymentsFilterButtonState(PaymentsQueueFilterUrgentButton, _paymentsQueueFilterKey == "urgent");
         ApplyPaymentsFilterButtonState(PaymentsQueueFilterMissingPdfButton, _paymentsQueueFilterKey == "missing-pdf");
+        ApplyPaymentsActiveFilterBadgeState(
+            PaymentsQueueActiveFilterBadge,
+            PaymentsQueueActiveFilterText,
+            _paymentsQueueFilterKey == "urgent" ? "#FFF7ED" : _paymentsQueueFilterKey == "missing-pdf" ? "#FEF2F2" : "#EFF6FF",
+            _paymentsQueueFilterKey == "urgent" ? "#FED7AA" : _paymentsQueueFilterKey == "missing-pdf" ? "#FECACA" : "#BFDBFE",
+            _paymentsQueueFilterKey == "urgent" ? "#C2410C" : _paymentsQueueFilterKey == "missing-pdf" ? "#B91C1C" : "#1D4ED8");
         PaymentsQueueActiveFilterText.Text = $"AKTIF: {BuildQueueFilterLabel().ToUpperInvariant()} - {unpaidQueueItems.Count} KAYIT";
         PaymentsQueueItemsControl.ItemsSource = unpaidQueueItems;
         PaymentsQueueSummaryText.Text = unpaidQueueItems.Count == 0
@@ -929,6 +935,12 @@ public partial class MainWindow : Window
         PaymentsRecentFilterMissingPdfButton.Content = $"PDF Eksik ({recentPaymentCandidates.Count(item => item.IsPdfMissing)})";
         ApplyPaymentsFilterButtonState(PaymentsRecentFilterAllButton, _paymentsRecentFilterKey == "all");
         ApplyPaymentsFilterButtonState(PaymentsRecentFilterMissingPdfButton, _paymentsRecentFilterKey == "missing-pdf");
+        ApplyPaymentsActiveFilterBadgeState(
+            PaymentsRecentActiveFilterBadge,
+            PaymentsRecentActiveFilterText,
+            _paymentsRecentFilterKey == "missing-pdf" ? "#FEF2F2" : "#EFF6FF",
+            _paymentsRecentFilterKey == "missing-pdf" ? "#FECACA" : "#BFDBFE",
+            _paymentsRecentFilterKey == "missing-pdf" ? "#B91C1C" : "#1D4ED8");
         PaymentsRecentActiveFilterText.Text = $"AKTIF: {BuildRecentFilterLabel().ToUpperInvariant()} - {recentPaymentItems.Count} KAYIT";
         PaymentsRecentPaymentsItemsControl.ItemsSource = recentPaymentItems;
         PaymentsRecentPaymentsSummaryText.Text = recentPaymentItems.Count == 0
@@ -1034,6 +1046,13 @@ public partial class MainWindow : Window
         button.BorderBrush = (Brush)new BrushConverter().ConvertFromString(isSelected ? "#93C5FD" : "#D8E2EC")!;
         button.Foreground = (Brush)new BrushConverter().ConvertFromString(isSelected ? "#1D4ED8" : "#475569")!;
         button.FontWeight = isSelected ? FontWeights.SemiBold : FontWeights.Normal;
+    }
+
+    private static void ApplyPaymentsActiveFilterBadgeState(Border badge, TextBlock text, string backgroundHex, string borderHex, string foregroundHex)
+    {
+        badge.Background = (Brush)new BrushConverter().ConvertFromString(backgroundHex)!;
+        badge.BorderBrush = (Brush)new BrushConverter().ConvertFromString(borderHex)!;
+        text.Foreground = (Brush)new BrushConverter().ConvertFromString(foregroundHex)!;
     }
     private static string FormatMoney(decimal value)
     {

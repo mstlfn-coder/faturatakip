@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.198 - Aktif Filtre Rozet Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk rozet tonu dinamik | OK | Genel, Acil ve PDF Eksik gorunumleri farkli tonlarla ayirt ediliyor |
+| Son odeme rozet tonu dinamik | OK | PDF Eksik gorunumu rozet tonuyla daha belirginlesiyor |
+| Ton ayrimi sakin | OK | Renk ayrimi bilgi veriyor ama panel dengesini bozmuyor |
+| 2026-06-15 | v1.198 | OK | Aktif filtre rozetlerine secili gorunume gore ton farki eklendi |
+
 ## v1.197 - Donus Dugmesi Ton Ayrimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

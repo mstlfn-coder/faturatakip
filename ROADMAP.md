@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.198)
+
+- v1.198 tamamlandi: Aktif filtre rozetleri secili gorunume gore hafif ton farki almaya basladi.
+- Kuyrukta genel gorunum mavi, `Acil` sicak turuncu, `PDF Eksik` uyari kirmizisi tonuna yaklasti.
+- Son odemelerde `PDF Eksik` secimi rozet tonuyla daha belirgin ayirt ediliyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.197)
 
 - v1.197 tamamlandi: Bos filtre donus dugmeleri daha fark edilir ama sakin bir tonla ayristirildi.

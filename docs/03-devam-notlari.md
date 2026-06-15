@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.198)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.198 - Aktif Filtre Rozet Tonu`
+- Bu adimda aktif filtre rozetleri secili gorunume gore hafif ton farki almaya basladi.
+- Kuyrukta `Acil` daha sicak, `PDF Eksik` daha uyari tonunda; son odemelerde de `PDF Eksik` rozet tonu belirginlestirildi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.197)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
