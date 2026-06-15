@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.213 - Reset Dugmesi Dikey Hiz
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda merkez hissi dengeli | OK | Reset dugmesi yardim metniyle ayni satirda daha dengeli hizalaniyor |
+| Son odeme satirinda merkez hissi dengeli | OK | Reset dugmesi yardim metniyle ayni satirda daha dengeli hizalaniyor |
+| Hiz davranisi ortaklasti | OK | Dikey hiz ortak stil anahtarina tasinarak iki dugmede ayni hale getirildi |
+| 2026-06-15 | v1.213 | OK | Reset dugmesinin dikey hizasi ortak stil uzerinden sabitlendi |
+
 ## v1.212 - Yardim Metni Sarmalama Siniri
 | Kontrol | Durum | Not |
 | --- | --- | --- |

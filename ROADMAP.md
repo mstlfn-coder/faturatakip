@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.213)
+
+- v1.213 tamamlandi: `Hepsini Goster` dugmesinin dikey hizasi ortak stil uzerinden merkeze sabitlendi.
+- Boylece yardim metni ile geri donus dugmesi ayni satirda daha dengeli bir merkez hissi veriyor.
+- Mikro ayar iki bos filtre alaninda da ayni hiz davranisini koruyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.212)
 
 - v1.212 tamamlandi: Bos filtre yardim metinlerine kontrollu bir `MaxWidth` siniri eklendi.

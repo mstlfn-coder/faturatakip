@@ -214,6 +214,7 @@
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Padding" Value="9,2" />
             <Setter Property="Margin" Value="8,0,0,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
         <Style x:Key="PaymentsActiveFilterBadge" TargetType="Border">
             <Setter Property="Background" Value="#EFF6FF" />

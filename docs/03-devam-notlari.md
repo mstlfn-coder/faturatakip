@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-15 / v1.213)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.213 - Reset Dugmesi Dikey Hiz`
+- Bu adimda `Hepsini Goster` dugmesinin dikey hizasi ortak stil uzerinden merkeze sabitlendi.
+- Boylece yardim metni ile geri donus aksiyonu ayni satirda daha dengeli gorunuyor ve iki bos filtre alaninda merkez hissi daha tutarli oluyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.212)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -798,4 +807,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Bos filtre satirinda reset dugmesi ile yardim metni arasindaki dikey merkez hissini biraz daha netlestirmek.
+- Bos filtre yardim metni ve reset dugmesi grubunun toplam satir yuksekligini biraz daha sakinlestirmek.

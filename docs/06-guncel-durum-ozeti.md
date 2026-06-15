@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.212 - Yardim Metni Sarmalama Siniri`
+- Son tamamlanan temiz faz: `v1.213 - Reset Dugmesi Dikey Hiz`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.213` Reset Dugmesi Dikey Hiz
 - `v1.212` Yardim Metni Sarmalama Siniri
 - `v1.211` Yardim Metni Satir Hizi
 - `v1.210` Reset Dugmesi Sol Mesafe
@@ -128,7 +129,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Ana Adim
 
-- Bos filtre satirinda reset dugmesi ile yardim metni arasindaki dikey merkez hissini biraz daha netlestirmek
+- Bos filtre yardim metni ve reset dugmesi grubunun toplam satir yuksekligini biraz daha sakinlestirmek
 
 ## Yeni Chat Icin Kisa Talimat
 
