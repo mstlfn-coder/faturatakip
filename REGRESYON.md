@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.214 - Reset Dugmesi Satir Yuksekligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satiri sakinlesti | OK | Reset dugmesinin dikey ic boslugu azaltilarak toplam satir yuksekligi hafifletildi |
+| Son odeme satiri sakinlesti | OK | Reset dugmesinin dikey ic boslugu azaltilarak toplam satir yuksekligi hafifletildi |
+| Ortak stil korundu | OK | Dikey bosluk iki dugmede ortak stil uzerinden yonetiliyor |
+| 2026-06-15 | v1.214 | OK | Reset dugmesinin dikey ic boslugu hafifce azaltildi |
+
 ## v1.213 - Reset Dugmesi Dikey Hiz
 | Kontrol | Durum | Not |
 | --- | --- | --- |

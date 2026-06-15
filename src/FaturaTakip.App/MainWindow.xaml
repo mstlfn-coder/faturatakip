@@ -212,7 +212,7 @@
             <Setter Property="Foreground" Value="#475569" />
             <Setter Property="FontSize" Value="10.5" />
             <Setter Property="FontWeight" Value="SemiBold" />
-            <Setter Property="Padding" Value="9,2" />
+            <Setter Property="Padding" Value="9,1" />
             <Setter Property="Margin" Value="8,0,0,0" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>

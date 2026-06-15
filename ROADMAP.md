@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.214)
+
+- v1.214 tamamlandi: `Hepsini Goster` dugmesinin dikey ic boslugu hafifce azaltildi.
+- Boylece bos filtre yardim satirinin toplam yuksekligi biraz daha sakin ve toplu hale geldi.
+- Mikro ayar iki bos filtre alaninda da ayni satir yogunlugunu koruyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.213)
 
 - v1.213 tamamlandi: `Hepsini Goster` dugmesinin dikey hizasi ortak stil uzerinden merkeze sabitlendi.

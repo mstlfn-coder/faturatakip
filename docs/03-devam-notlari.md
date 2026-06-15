@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-15 / v1.214)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.214 - Reset Dugmesi Satir Yuksekligi`
+- Bu adimda `Hepsini Goster` dugmesinin dikey ic boslugu hafifce azaltildi.
+- Boylece bos filtre yardim metni ve geri donus dugmesi grubunun toplam satir yuksekligi daha sakin hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.213)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -807,4 +816,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Bos filtre yardim metni ve reset dugmesi grubunun toplam satir yuksekligini biraz daha sakinlestirmek.
+- Bos filtre yardim satirinda aksiyon dugmesi ile metin arasindaki agirlik farkini bir tik daha azaltmak.
