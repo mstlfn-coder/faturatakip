@@ -885,13 +885,13 @@ public partial class MainWindow : Window
         PaymentsQueueActiveFilterText.Text = $"AKTIF: {BuildQueueFilterLabel().ToUpperInvariant()} - {unpaidQueueItems.Count} KAYIT";
         PaymentsQueueItemsControl.ItemsSource = unpaidQueueItems;
         PaymentsQueueSummaryText.Text = unpaidQueueItems.Count == 0
-            ? $"Bekleyen odeme kuyrugu yok ({BuildQueueFilterLabel()})."
+            ? $"{BuildQueueFilterLabel()} icin kayit bulunamadi. Gerekirse Hepsini Goster ile tum kuyruga donun."
             : $"{BuildQueueFilterSummaryPrefix(summary.UnpaidInvoiceCount)} en yakin {unpaidQueueItems.Count} kayit burada listeleniyor.";
         if (unpaidQueueItems.Count == 0)
         {
             PaymentsOpenNextQueueButton.IsEnabled = false;
             PaymentsOpenNextQueueButton.Tag = null;
-            PaymentsQueueActionHintText.Text = $"{BuildQueueFilterLabel()} icin oncelikli kayit hazir degil.";
+            PaymentsQueueActionHintText.Text = $"{BuildQueueFilterLabel()} bos. Hepsini Goster ile tum kuyruga donun ya da farkli bir filtre deneyin.";
             PaymentsQueueResetFilterButton.Visibility = _paymentsQueueFilterKey == "all"
                 ? Visibility.Collapsed
                 : Visibility.Visible;
@@ -932,13 +932,13 @@ public partial class MainWindow : Window
         PaymentsRecentActiveFilterText.Text = $"AKTIF: {BuildRecentFilterLabel().ToUpperInvariant()} - {recentPaymentItems.Count} KAYIT";
         PaymentsRecentPaymentsItemsControl.ItemsSource = recentPaymentItems;
         PaymentsRecentPaymentsSummaryText.Text = recentPaymentItems.Count == 0
-            ? $"Henuz kaydedilmis odeme yok ({BuildRecentFilterLabel()})."
+            ? $"{BuildRecentFilterLabel()} icin kayit bulunamadi. Gerekirse Hepsini Goster ile tum son odemelere donun."
             : $"{BuildRecentFilterSummaryPrefix()} {recentPaymentItems.Count} odeme kaydi burada hizlica kontrol edilebilir.";
         if (recentPaymentItems.Count == 0)
         {
             PaymentsOpenLatestPaymentButton.IsEnabled = false;
             PaymentsOpenLatestPaymentButton.Tag = null;
-            PaymentsRecentActionHintText.Text = $"{BuildRecentFilterLabel()} icin son odeme kaydi hazir degil.";
+            PaymentsRecentActionHintText.Text = $"{BuildRecentFilterLabel()} bos. Hepsini Goster ile tum son odemelere donun ya da farkli bir filtre deneyin.";
             PaymentsRecentResetFilterButton.Visibility = _paymentsRecentFilterKey == "all"
                 ? Visibility.Collapsed
                 : Visibility.Visible;

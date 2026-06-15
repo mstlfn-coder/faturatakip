@@ -1497,7 +1497,7 @@
                                                 ToolTip="Enter ile oncelikli kuyruk kaydini acar."
                                                 Click="OpenNextQueueInvoiceButton_Click" />
                                         <TextBlock x:Name="PaymentsQueueActionHintText"
-                                                   Text="Oncelikli kayit hazir degil."
+                                                   Text="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun."
                                                    Style="{StaticResource MutedText}"
                                                    Margin="12,6,0,0"
                                                    VerticalAlignment="Center"
@@ -1612,7 +1612,7 @@
                                                 ToolTip="Enter ile son odeme kaydini acar."
                                                 Click="OpenLatestPaymentFromPaymentsButton_Click" />
                                         <TextBlock x:Name="PaymentsRecentActionHintText"
-                                                   Text="Son odeme kaydi hazir degil."
+                                                   Text="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun."
                                                    Style="{StaticResource MutedText}"
                                                    Margin="12,6,0,0"
                                                    VerticalAlignment="Center"

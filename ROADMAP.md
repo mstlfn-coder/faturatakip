@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.196)
+
+- v1.196 tamamlandi: Bos odeme filtre durumlarindaki ozet ve yardim metinleri fiil odakli hale getirildi.
+- Bos mesajlari artik Hepsini Goster ve farkli filtre deneme aksiyonlarini ayni cumlede yonlendiriyor.
+- Boylece sifir sonuc aninda kullanicinin sonraki hamlesi daha net okunuyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.195)
 
 - v1.195 tamamlandi: Sonuc vermeyen odeme filtreleri icin `Hepsini Goster` donus aksiyonlari eklendi.

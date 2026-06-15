@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.196 - Bos Filtre Fiil Dili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk bos metni yonlendirici | OK | Bos kuyruk durumunda geri donus ve filtre degisimi acik anlatiliyor |
+| Son odeme bos metni yonlendirici | OK | Bos son odeme durumunda geri donus ve filtre degisimi acik anlatiliyor |
+| Fiil dili net | OK | Metinler kullaniciya sonraki hareketi acik bicimde soyluyor |
+| 2026-06-15 | v1.196 | OK | Bos filtre metinleri daha yonlendirici hale getirildi |
+
 ## v1.195 - Bos Filtre Donus Aksiyonu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

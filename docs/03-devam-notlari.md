@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.196)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.196 - Bos Filtre Fiil Dili`
+- Bu adimda bos filtre durumundaki ozet ve yardim metinleri daha yonlendirici fiil diliyle guncellendi.
+- Kullanici artik sifir sonuc durumunda sadece bos mesajini degil, ayni satirda geri donus aksiyonunu da acik bicimde okuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.195)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
