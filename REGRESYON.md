@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.208 - Reset Dugmesi Tipografi Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk geri donus tipografisi dengeli | OK | Kuyruk satirindaki dugme yardim metniyle daha akraba bir olcekte gorunuyor |
+| Son odeme geri donus tipografisi dengeli | OK | Son odeme satirindaki dugme yardim metniyle daha akraba bir olcekte gorunuyor |
+| Stil ortaklasti | OK | Font boyutu stil anahtarina tasinarak iki dugmede ortak kullaniliyor |
+| 2026-06-15 | v1.208 | OK | Reset dugmesinin tipografi ayari ortak stil uzerinden duzenlendi |
+
 ## v1.207 - Reset Dugmesi Tonu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

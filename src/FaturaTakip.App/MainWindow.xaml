@@ -210,6 +210,7 @@
             <Setter Property="Background" Value="#F8FAFC" />
             <Setter Property="BorderBrush" Value="#CBD5E1" />
             <Setter Property="Foreground" Value="#475569" />
+            <Setter Property="FontSize" Value="10.5" />
             <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
         <Style x:Key="PaymentsActiveFilterBadge" TargetType="Border">
@@ -1518,7 +1519,6 @@
                                                 Style="{StaticResource PaymentsResetFilterButton}"
                                                 Margin="10,0,0,0"
                                                 Padding="10,3"
-                                                FontSize="11"
                                                 Visibility="Collapsed"
                                                 ToolTip="Kuyruk filtresini tum kayitlara geri dondurur."
                                                 Click="ResetPaymentsQueueFilterButton_Click" />
@@ -1638,7 +1638,6 @@
                                                 Style="{StaticResource PaymentsResetFilterButton}"
                                                 Margin="10,0,0,0"
                                                 Padding="10,3"
-                                                FontSize="11"
                                                 Visibility="Collapsed"
                                                 ToolTip="Son odeme filtresini tum kayitlara geri dondurur."
                                                 Click="ResetPaymentsRecentFilterButton_Click" />

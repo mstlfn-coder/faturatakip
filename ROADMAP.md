@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.208)
+
+- v1.208 tamamlandi: `Hepsini Goster` dugmesinin yazi boyutu ortak stile alinip yardim satiriyla daha akraba bir olcege cekildi.
+- Boylece iki farkli bos filtre satirinda tipografik tutarlilik daha temiz kuruldu.
+- Geri donus aksiyonu gorunur kalirken yardim metniyle daha ayni aileden hissediliyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.207)
 
 - v1.207 tamamlandi: `Hepsini Goster` dugmesinin tonu yardim metnine biraz daha yaklastirildi.
