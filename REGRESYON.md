@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.202 - Rozet Aksiyon Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk dikey ritmi toparlandi | OK | Aktif kuyruk rozeti ile komut satiri biraz daha yakinlasti |
+| Son odeme dikey ritmi toparlandi | OK | Aktif son odeme rozeti ile komut satiri biraz daha yakinlasti |
+| Mikro denge korundu | OK | Bosluk azaltildi ama katmanlar carpmadi |
+| 2026-06-15 | v1.202 | OK | Rozet ve alt aksiyon satiri arasindaki bosluk hafifce azaltildi |
+
 ## v1.201 - Rozet Ust Bosluk Sikilastirma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

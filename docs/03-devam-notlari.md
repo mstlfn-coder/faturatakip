@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.202)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.202 - Rozet Aksiyon Yakinlastirma`
+- Bu adimda aktif filtre rozeti ile alt aksiyon satiri arasindaki ust bosluk hafifce azaltildi.
+- Boylece rozet ve alt komut satiri daha bagli okunuyor; kart icindeki dikey akış biraz daha toplu hissediliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.201)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

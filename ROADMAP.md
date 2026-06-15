@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.202)
+
+- v1.202 tamamlandi: Aktif filtre rozeti ile alt aksiyon satiri arasindaki bosluk hafifce azaltildi.
+- Rozet satiri ile hizli komut satiri artik kart icinde daha bagli duruyor.
+- Degisiklik mikro duzeyde tutuldu; okunabilirlik korunurken ritim biraz daha toparlandi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.201)
 
 - v1.201 tamamlandi: Filtre dugmeleriyle aktif rozet arasindaki ust bosluk hafifce azaltildi.
