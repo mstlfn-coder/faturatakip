@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.212 - Yardim Metni Sarmalama Siniri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satiri sarmalamasi kontrollu | OK | Yardim metni genislik siniri ile daha ongorulebilir kiriliyor |
+| Son odeme satiri sarmalamasi kontrollu | OK | Yardim metni genislik siniri ile daha ongorulebilir kiriliyor |
+| Yan yana ritim korundu | OK | Yardim metni ile geri donus dugmesi arasindaki denge daha stabil kaldi |
+| 2026-06-15 | v1.212 | OK | Yardim metinlerine kontrollu sarmalama siniri eklendi |
+
 ## v1.211 - Yardim Metni Satir Hizi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

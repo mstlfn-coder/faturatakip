@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.212)
+
+- v1.212 tamamlandi: Bos filtre yardim metinlerine kontrollu bir `MaxWidth` siniri eklendi.
+- Boylece satir kirilimlari dar alanlarda daha ongorulebilir hale geldi.
+- Yardim metni ile `Hepsini Goster` dugmesi arasindaki yan yana ritim daha stabil okunuyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.211)
 
 - v1.211 tamamlandi: Bos filtre komut satirlarindaki yardim metninin ust boslugu hafifce azaltildi.
