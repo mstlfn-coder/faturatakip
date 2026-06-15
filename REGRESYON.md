@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.209 - Reset Dugmesi Ic Boslugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk geri donus ritmi toparlandi | OK | Kuyruk satirindaki dugme daha kompakt bir boslukla yardim metnine daha hafif baglaniyor |
+| Son odeme geri donus ritmi toparlandi | OK | Son odeme satirindaki dugme daha kompakt bir boslukla yardim metnine daha hafif baglaniyor |
+| Ic bosluk ortaklasti | OK | Padding stil anahtarina tasinarak iki dugmede ayni hale getirildi |
+| 2026-06-15 | v1.209 | OK | Reset dugmesinin ic boslugu ortak stil uzerinden kompaktlastirildi |
+
 ## v1.208 - Reset Dugmesi Tipografi Ayari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

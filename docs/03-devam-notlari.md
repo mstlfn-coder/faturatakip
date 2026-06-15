@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.209)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.209 - Reset Dugmesi Ic Boslugu`
+- Bu adimda `Hepsini Goster` dugmesinin ic boslugu ortak stil icine alinip biraz daha kompakt hale getirildi.
+- Boylece yardim satirinin yanindaki geri donus dugmesi daha hafif gorunuyor ve iki ayri satirda da ayni ritim korunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.207)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -762,4 +771,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- `Hepsini Goster` dugmesinin ic boslugunu yardim satirinin gorsel agirligina daha yakin hale getirmek.
+- `Hepsini Goster` dugmesinin sol boslugunu yardim metniyle biraz daha dengeli hale getirmek.

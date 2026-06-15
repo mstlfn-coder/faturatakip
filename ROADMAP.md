@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.209)
+
+- v1.209 tamamlandi: `Hepsini Goster` dugmesinin ic boslugu ortak stile alinip biraz daha kompakt hale getirildi.
+- Boylece bos filtre satirindaki geri donus aksiyonu yardim metniyle daha hafif ve daha toplu okunuyor.
+- Iki farkli satir ayni stil anahtarindan beslendigi icin mikro ritim daha tutarli kuruldu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.208)
 
 - v1.208 tamamlandi: `Hepsini Goster` dugmesinin yazi boyutu ortak stile alinip yardim satiriyla daha akraba bir olcege cekildi.
