@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.192)
+
+- v1.192 tamamlandi: Odemeler kuyrugu ve son odemeler listesine aktif filtre rozetleri eklendi.
+- Rozetler secili gorunumu filtre dugmelerinden bagimsiz ve surekli gorunur bicimde ozetliyor.
+- Filtre degisikliginde rozet metni de veri listesiyle birlikte yenileniyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.191)
 
 - v1.191 tamamlandi: Odemeler listelerinde klavye odak akisi daha gorunur hale getirildi.

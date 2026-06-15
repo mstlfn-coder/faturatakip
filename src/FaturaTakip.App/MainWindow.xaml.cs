@@ -865,6 +865,7 @@ public partial class MainWindow : Window
         ApplyPaymentsFilterButtonState(PaymentsQueueFilterAllButton, _paymentsQueueFilterKey == "all");
         ApplyPaymentsFilterButtonState(PaymentsQueueFilterUrgentButton, _paymentsQueueFilterKey == "urgent");
         ApplyPaymentsFilterButtonState(PaymentsQueueFilterMissingPdfButton, _paymentsQueueFilterKey == "missing-pdf");
+        PaymentsQueueActiveFilterText.Text = $"AKTIF: {BuildQueueFilterLabel().ToUpperInvariant()}";
         PaymentsQueueItemsControl.ItemsSource = unpaidQueueItems;
         PaymentsQueueSummaryText.Text = unpaidQueueItems.Count == 0
             ? $"Bekleyen odeme kuyrugu yok ({BuildQueueFilterLabel()})."
@@ -903,6 +904,7 @@ public partial class MainWindow : Window
 
         ApplyPaymentsFilterButtonState(PaymentsRecentFilterAllButton, _paymentsRecentFilterKey == "all");
         ApplyPaymentsFilterButtonState(PaymentsRecentFilterMissingPdfButton, _paymentsRecentFilterKey == "missing-pdf");
+        PaymentsRecentActiveFilterText.Text = $"AKTIF: {BuildRecentFilterLabel().ToUpperInvariant()}";
         PaymentsRecentPaymentsItemsControl.ItemsSource = recentPaymentItems;
         PaymentsRecentPaymentsSummaryText.Text = recentPaymentItems.Count == 0
             ? $"Henuz kaydedilmis odeme yok ({BuildRecentFilterLabel()})."

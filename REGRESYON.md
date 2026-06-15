@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.192 - Odemeler Aktif Filtre Rozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk filtresi gorunur | OK | Secili kuyruk gorunumu AKTIF rozetiyle ozetleniyor |
+| Son odeme filtresi gorunur | OK | Secili son odeme gorunumu AKTIF rozetiyle ozetleniyor |
+| Rozet dinamik yenileniyor | OK | Filtre degisikliginde rozet metni veriyle birlikte guncelleniyor |
+| 2026-06-15 | v1.192 | OK | Odemeler listelerine aktif filtre rozetleri eklendi |
+
 ## v1.191 - Odemeler Klavye Odak Vurgusu
 | Kontrol | Durum | Not |
 | --- | --- | --- |
