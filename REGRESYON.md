@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.204 - Yardim Metni Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk yardim tonu yumusadi | OK | Kuyruk yardim metni daha sakin renge ve daha kucuk tipografiye alindi |
+| Son odeme yardim tonu yumusadi | OK | Son odeme yardim metni daha sakin renge ve daha kucuk tipografiye alindi |
+| Komut hiyerarsisi korundu | OK | Yardim metni geri planda kalirken okunabilirligini koruyor |
+| 2026-06-15 | v1.204 | OK | Yardim metinlerinin tonu ve boyutu yumusatildi |
+
 ## v1.203 - Yardim Metni Yakinlastirma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

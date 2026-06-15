@@ -1506,6 +1506,8 @@
                                         <TextBlock x:Name="PaymentsQueueActionHintText"
                                                    Text="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun."
                                                    Style="{StaticResource MutedText}"
+                                                   Foreground="#64748B"
+                                                   FontSize="12"
                                                    Margin="12,4,0,0"
                                                    VerticalAlignment="Center"
                                                    TextWrapping="Wrap" />
@@ -1622,6 +1624,8 @@
                                         <TextBlock x:Name="PaymentsRecentActionHintText"
                                                    Text="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun."
                                                    Style="{StaticResource MutedText}"
+                                                   Foreground="#64748B"
+                                                   FontSize="12"
                                                    Margin="12,4,0,0"
                                                    VerticalAlignment="Center"
                                                    TextWrapping="Wrap" />

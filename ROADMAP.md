@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.204)
+
+- v1.204 tamamlandi: Aksiyon satirlarindaki yardim metinleri biraz daha sakin tona ve daha kucuk tipografiye alindi.
+- Metinler artik komut dugmesine destek oluyor ama onunla rekabet etmiyor.
+- Bu mikro ayar kart icindeki komut hiyerarsisini biraz daha temizlestirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.203)
 
 - v1.203 tamamlandi: Aksiyon satirlarindaki yardim metninin ust boslugu hafifce azaltildi.
