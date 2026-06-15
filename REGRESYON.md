@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.205 - Yardim Metni Satir Yuksekligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk yardim akisi dengeli | OK | Kuyruk yardim metninde satir yuksekligi daha sakin akiyor |
+| Son odeme yardim akisi dengeli | OK | Son odeme yardim metninde satir yuksekligi daha sakin akiyor |
+| Satir ritmi temiz | OK | Iki satirli senaryolarda komut satiri daha duzgun gorunuyor |
+| 2026-06-15 | v1.205 | OK | Yardim metinlerinin satir yuksekligi dengelendi |
+
 ## v1.204 - Yardim Metni Tonu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

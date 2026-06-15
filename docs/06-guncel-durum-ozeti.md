@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.204 - Yardim Metni Tonu`
+- Son tamamlanan temiz faz: `v1.205 - Yardim Metni Satir Yuksekligi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.205` Yardim Metni Satir Yuksekligi
 - `v1.204` Yardim Metni Tonu
 - `v1.203` Yardim Metni Yakinlastirma
 - `v1.202` Rozet Aksiyon Yakinlastirma
@@ -120,7 +121,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Ana Adim
 
-- Yardim metninin satir yuksekligini ve akisini biraz daha dengelemek
+- Yardim metni ile reset dugmesi arasindaki yatay ritmi biraz daha dengelemek
 
 ## Yeni Chat Icin Kisa Talimat
 

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.205)
+
+- v1.205 tamamlandi: Aksiyon satirlarindaki yardim metinlerine daha dengeli satir yuksekligi verildi.
+- Iki satira dusen yardim metinleri artik daha sakin ve temiz akiyor.
+- Bu mikro ayar komut satirinin okunabilirligini koruyarak gorsel ritmi iyilestirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.204)
 
 - v1.204 tamamlandi: Aksiyon satirlarindaki yardim metinleri biraz daha sakin tona ve daha kucuk tipografiye alindi.
