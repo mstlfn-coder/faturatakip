@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.197)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.197 - Donus Dugmesi Ton Ayrimi`
+- Bu adimda bos filtre durumunda gorunen `Hepsini Goster` dugmeleri daha fark edilir ama sakin bir tonla ayristirildi.
+- Dugmeler artik hafif mavi ton, ince cerceve ve yarim kalin yazi ile geri donus aksiyonu olarak daha kolay seciliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.196)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

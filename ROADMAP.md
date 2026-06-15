@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.197)
+
+- v1.197 tamamlandi: Bos filtre donus dugmeleri daha fark edilir ama sakin bir tonla ayristirildi.
+- `Hepsini Goster` aksiyonlari artik hafif mavi arka plan, ince mavi cerceve ve yari kalin yazi ile daha rahat fark ediliyor.
+- Bu ayrim yalnizca geri donus dugmelerine uygulandi; diger aksiyon dengesi korunuyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.196)
 
 - v1.196 tamamlandi: Bos odeme filtre durumlarindaki ozet ve yardim metinleri fiil odakli hale getirildi.

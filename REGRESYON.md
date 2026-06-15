@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.197 - Donus Dugmesi Ton Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk donus dugmesi ayrisiyor | OK | Bos kuyruk durumundaki geri donus dugmesi daha gorunur ton aliyor |
+| Son odeme donus dugmesi ayrisiyor | OK | Bos son odeme durumundaki geri donus dugmesi daha gorunur ton aliyor |
+| Ton dengesi korundu | OK | Ayrim sakin tutuldu, birincil aksiyon hissine tasinmadi |
+| 2026-06-15 | v1.197 | OK | Hepsini Goster dugmelerine sakin ton ayrimi eklendi |
+
 ## v1.196 - Bos Filtre Fiil Dili
 | Kontrol | Durum | Not |
 | --- | --- | --- |

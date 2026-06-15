@@ -206,6 +206,12 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="PaymentsResetFilterButton" TargetType="Button" BasedOn="{StaticResource PaymentsOpsActionButton}">
+            <Setter Property="Background" Value="#F8FBFF" />
+            <Setter Property="BorderBrush" Value="#BFDBFE" />
+            <Setter Property="Foreground" Value="#1D4ED8" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
         <Style x:Key="PaymentsActiveFilterBadge" TargetType="Border">
             <Setter Property="Background" Value="#EFF6FF" />
             <Setter Property="BorderBrush" Value="#BFDBFE" />
@@ -1504,7 +1510,7 @@
                                                    TextWrapping="Wrap" />
                                         <Button x:Name="PaymentsQueueResetFilterButton"
                                                 Content="Hepsini Goster"
-                                                Style="{StaticResource PaymentsOpsActionButton}"
+                                                Style="{StaticResource PaymentsResetFilterButton}"
                                                 Margin="12,0,0,0"
                                                 Padding="10,3"
                                                 FontSize="11"
@@ -1619,7 +1625,7 @@
                                                    TextWrapping="Wrap" />
                                         <Button x:Name="PaymentsRecentResetFilterButton"
                                                 Content="Hepsini Goster"
-                                                Style="{StaticResource PaymentsOpsActionButton}"
+                                                Style="{StaticResource PaymentsResetFilterButton}"
                                                 Margin="12,0,0,0"
                                                 Padding="10,3"
                                                 FontSize="11"
