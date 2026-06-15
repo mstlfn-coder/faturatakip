@@ -888,7 +888,7 @@ public partial class MainWindow : Window
             _paymentsQueueFilterKey == "urgent" ? "#FFF7ED" : _paymentsQueueFilterKey == "missing-pdf" ? "#FEF2F2" : "#EFF6FF",
             _paymentsQueueFilterKey == "urgent" ? "#FED7AA" : _paymentsQueueFilterKey == "missing-pdf" ? "#FECACA" : "#BFDBFE",
             _paymentsQueueFilterKey == "urgent" ? "#C2410C" : _paymentsQueueFilterKey == "missing-pdf" ? "#B91C1C" : "#1D4ED8");
-        PaymentsQueueActiveFilterText.Text = $"AKTIF: {BuildQueueFilterLabel().ToUpperInvariant()} - {unpaidQueueItems.Count} KAYIT";
+        PaymentsQueueActiveFilterText.Text = $"AKTIF KUYRUK: {BuildQueueFilterLabel().ToUpperInvariant()} - {unpaidQueueItems.Count} KAYIT";
         PaymentsQueueActiveFilterBadge.ToolTip = BuildQueueActiveFilterTooltip(unpaidQueueItems.Count);
         PaymentsQueueItemsControl.ItemsSource = unpaidQueueItems;
         PaymentsQueueSummaryText.Text = unpaidQueueItems.Count == 0
@@ -942,7 +942,7 @@ public partial class MainWindow : Window
             _paymentsRecentFilterKey == "missing-pdf" ? "#FEF2F2" : "#EFF6FF",
             _paymentsRecentFilterKey == "missing-pdf" ? "#FECACA" : "#BFDBFE",
             _paymentsRecentFilterKey == "missing-pdf" ? "#B91C1C" : "#1D4ED8");
-        PaymentsRecentActiveFilterText.Text = $"AKTIF: {BuildRecentFilterLabel().ToUpperInvariant()} - {recentPaymentItems.Count} KAYIT";
+        PaymentsRecentActiveFilterText.Text = $"AKTIF SON ODEME: {BuildRecentFilterLabel().ToUpperInvariant()} - {recentPaymentItems.Count} KAYIT";
         PaymentsRecentActiveFilterBadge.ToolTip = BuildRecentActiveFilterTooltip(recentPaymentItems.Count);
         PaymentsRecentPaymentsItemsControl.ItemsSource = recentPaymentItems;
         PaymentsRecentPaymentsSummaryText.Text = recentPaymentItems.Count == 0

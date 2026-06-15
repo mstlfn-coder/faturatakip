@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.199 - Aktif Rozet Tooltip Dili`
+- Son tamamlanan temiz faz: `v1.200 - Aktif Rozet Baglam Metni`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.200` Aktif Rozet Baglam Metni
 - `v1.199` Aktif Rozet Tooltip Dili
 - `v1.198` Aktif Filtre Rozet Tonu
 - `v1.197` Donus Dugmesi Ton Ayrimi
@@ -115,7 +116,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Ana Adim
 
-- Aktif rozet kisa metninde kuyruk ve son odeme baglamini biraz daha aciklastirmak
+- Filtre dugmeleriyle aktif rozet arasindaki mikro boslugu biraz daha sikilastirmak
 
 ## Yeni Chat Icin Kisa Talimat
 

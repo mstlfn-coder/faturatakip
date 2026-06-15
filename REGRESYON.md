@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.200 - Aktif Rozet Baglam Metni
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk rozeti acik | OK | Kisa metin dogrudan aktif kuyruk baglamini soyluyor |
+| Son odeme rozeti acik | OK | Kisa metin dogrudan aktif son odeme baglamini soyluyor |
+| Yan yana okuma hizlandi | OK | Iki rozet bir arada daha net ayirt ediliyor |
+| 2026-06-15 | v1.200 | OK | Aktif filtre rozetlerinin baglam metni netlestirildi |
+
 ## v1.199 - Aktif Rozet Tooltip Dili
 | Kontrol | Durum | Not |
 | --- | --- | --- |

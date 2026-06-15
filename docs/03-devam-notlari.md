@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.200)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.200 - Aktif Rozet Baglam Metni`
+- Bu adimda aktif filtre rozetlerinin kisa metninde baglam daha acik hale getirildi.
+- Rozetler artik dogrudan `AKTIF KUYRUK` ve `AKTIF SON ODEME` diye basliyor; iki alan yan yana okunurken anlam daha hizli oturuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.199)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

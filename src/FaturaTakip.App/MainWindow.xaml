@@ -1490,7 +1490,7 @@
                                             Margin="0,8,0,0"
                                             ToolTip="Odeme kuyrugunda uygulanan guncel gorunumu gosterir.">
                                         <TextBlock x:Name="PaymentsQueueActiveFilterText"
-                                                   Text="AKTIF: TUM KUYRUK"
+                                                   Text="AKTIF KUYRUK: TUM KUYRUK"
                                                    Foreground="#1D4ED8"
                                                    FontSize="10"
                                                    FontWeight="SemiBold" />
@@ -1606,7 +1606,7 @@
                                             Margin="0,8,0,0"
                                             ToolTip="Son odemelerde uygulanan guncel gorunumu gosterir.">
                                         <TextBlock x:Name="PaymentsRecentActiveFilterText"
-                                                   Text="AKTIF: TUM SON ODEMELER"
+                                                   Text="AKTIF SON ODEME: TUM SON ODEMELER"
                                                    Foreground="#1D4ED8"
                                                    FontSize="10"
                                                    FontWeight="SemiBold" />

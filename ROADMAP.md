@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.200)
+
+- v1.200 tamamlandi: Aktif filtre rozetlerinin kisa metninde alan baglami daha acik hale getirildi.
+- Rozetler artik `AKTIF KUYRUK` ve `AKTIF SON ODEME` ifadesiyle basliyor.
+- Boylece iki operasyon karti yan yana okunurken rozetlerin hangi bolume ait oldugu daha hizli anlasiliyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.199)
 
 - v1.199 tamamlandi: Aktif filtre rozetlerinin tooltip dili secili gorunume ve sonuc sayisina gore dinamik hale getirildi.
