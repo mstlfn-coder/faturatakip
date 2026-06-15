@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-15 / v1.207)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.207 - Reset Dugmesi Tonu`
+- Bu adimda `Hepsini Goster` dugmesinin arka plan, kenarlik ve yazi tonu yardim metnine biraz daha yakinlastirildi.
+- Boylece bos filtre durumundaki geri donus aksiyonu hala gorunur kalirken satirin geri kalanina daha sakin baglaniyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.206)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -744,4 +753,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler panelindeki yardim kapsulu agirligi da yumusadigi icin, sonraki mantikli kucuk adim secili akis kartlarinda aktif kolon rozeti ile yardim kapsulu arasindaki boyut oranini bir tik daha yaklastirmak olabilir.
+- `Hepsini Goster` dugmesinin yazi boyutunu yardim satiriyla bir tik daha akrabalastirmak.

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-15 / v1.207)
+
+- v1.207 tamamlandi: `Hepsini Goster` dugmesinin tonu yardim metnine biraz daha yaklastirildi.
+- Dugme artik daha sakin bir gri-mavi dengesiyle satirin kalanina daha uyumlu baglaniyor.
+- Geri donus aksiyonu belirgin kalirken gereksiz vurgu biraz daha azaldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.206)
 
 - v1.206 tamamlandi: Yardim metni ile `Hepsini Goster` dugmesi arasindaki yatay bosluk hafifce azaltildi.

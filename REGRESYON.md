@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.207 - Reset Dugmesi Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk geri donus tonu yumusadi | OK | Kuyruk satirindaki `Hepsini Goster` dugmesi yardim metniyle daha uyumlu gorunuyor |
+| Son odeme geri donus tonu yumusadi | OK | Son odeme satirindaki `Hepsini Goster` dugmesi yardim metniyle daha uyumlu gorunuyor |
+| Aksiyon gorunurlugu korundu | OK | Dugme daha sakin olsa da tiklanabilir komut hissini kaybetmiyor |
+| 2026-06-15 | v1.207 | OK | Reset dugmesinin tonu yardim satirina yaklastirildi |
+
 ## v1.206 - Reset Dugmesi Yatay Bosluk
 | Kontrol | Durum | Not |
 | --- | --- | --- |

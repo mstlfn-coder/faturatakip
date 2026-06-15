@@ -207,9 +207,9 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="PaymentsResetFilterButton" TargetType="Button" BasedOn="{StaticResource PaymentsOpsActionButton}">
-            <Setter Property="Background" Value="#F8FBFF" />
-            <Setter Property="BorderBrush" Value="#BFDBFE" />
-            <Setter Property="Foreground" Value="#1D4ED8" />
+            <Setter Property="Background" Value="#F8FAFC" />
+            <Setter Property="BorderBrush" Value="#CBD5E1" />
+            <Setter Property="Foreground" Value="#475569" />
             <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
         <Style x:Key="PaymentsActiveFilterBadge" TargetType="Border">
