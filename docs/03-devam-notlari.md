@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.228)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.228 - Reset Klavye Odak Ayrimi`
+- Bu adimda `Hepsini Goster` dugmesine klavye odaginda hover halinden daha net ayrisan cizgi ve ton vurgusu eklendi.
+- Boylece klavye ile gezinen kullanici reset dugmesinin odakta oldugunu daha rahat ayirt ediyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.227)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -934,4 +943,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda reset dugmesinin klavye odaginda hover ve pasif durumdan daha net ayrisarak okunmasini taramak.
+- Odemeler ekraninda reset dugmesi odaktayken satir ritminin bozulup bozulmadigini gorsel olarak taramak.

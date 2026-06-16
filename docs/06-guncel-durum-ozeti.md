@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.227 - Reset Hover Ayrimi`
+- Son tamamlanan temiz faz: `v1.228 - Reset Klavye Odak Ayrimi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.228` Reset Klavye Odak Ayrimi
 - `v1.227` Reset Hover Ayrimi
 - `v1.226` Reset Ikincil Vurgu
 - `v1.225` Odemeler Genel Scroll
@@ -143,7 +144,7 @@ Son guncelleme tarihi: 2026-06-16
 
 ## Sonraki Mantikli Ana Adim
 
-- Odemeler ekraninda reset dugmesinin klavye odaginda hover ve pasif durumdan daha net ayrisarak okunmasini taramak
+- Odemeler ekraninda reset dugmesi odaktayken satir ritminin bozulup bozulmadigini gorsel olarak taramak
 
 ## Yeni Chat Icin Kisa Talimat
 

@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.228 - Reset Klavye Odak Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Klavye odagi belirgin | OK | Reset dugmesi klavye odaginda hover durumundan daha net ayrisiyor |
+| Hover ayrimi korundu | OK | Fare ustu durumu yine pasif halden hafifce ayrisiyor |
+| Pasif sakinlik korundu | OK | Sadece odakta ek vurgu verildi, normal durum bozulmadi |
+| 2026-06-16 | v1.228 | OK | Reset dugmesine klavye odak vurgusu eklendi |
+
 ## v1.227 - Reset Hover Ayrimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

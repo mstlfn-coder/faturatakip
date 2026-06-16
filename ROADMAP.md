@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-16 / v1.228)
+
+- v1.228 tamamlandi: `Hepsini Goster` dugmesine klavye odaginda hover durumundan daha belirgin bir vurgu eklendi.
+- Boylece klavye ile gezinirken odaktaki reset aksiyonu daha net okunuyor.
+- Pasif sakinlik ve hover ayrimi korunurken ucuncu durum olan klavye odagi da belirginlestirildi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-16 / v1.227)
 
 - v1.227 tamamlandi: `Hepsini Goster` dugmesine hover aninda hafif ton yukseltmesi eklendi.
