@@ -215,6 +215,13 @@
             <Setter Property="Padding" Value="8,1" />
             <Setter Property="Margin" Value="8,0,0,0" />
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F1F5F9" />
+                    <Setter Property="BorderBrush" Value="#B8C7D8" />
+                    <Setter Property="Foreground" Value="#475569" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style x:Key="PaymentsActiveFilterBadge" TargetType="Border">
             <Setter Property="Background" Value="#EFF6FF" />

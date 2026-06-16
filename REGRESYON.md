@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.227 - Reset Hover Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover geri bildirimi belirgin | OK | Reset dugmesi fare ustunde pasif halden daha net ayrisiyor |
+| Pasif sakinlik korundu | OK | Hover disinda onceki ikincil ton korunuyor |
+| Iki reset dugmesi tutarli | OK | Ortak stil sayesinde iki yerde ayni hover davranisi var |
+| 2026-06-16 | v1.227 | OK | Reset dugmesine hafif hover ayrimi eklendi |
+
 ## v1.226 - Reset Ikincil Vurgu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-16 / v1.227)
+
+- v1.227 tamamlandi: `Hepsini Goster` dugmesine hover aninda hafif ton yukseltmesi eklendi.
+- Boylece pasif durum ile fare ustu durumu arasindaki fark daha kolay algilaniyor.
+- Duzeltme kucuk tutuldu; pasif sakinlik korunurken etkilesim geri bildirimi guclendirildi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-16 / v1.226)
 
 - v1.226 tamamlandi: `Hepsini Goster` dugmesinin punto ve yatay ic boslugu hafifce azaltildi.

@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.227)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.227 - Reset Hover Ayrimi`
+- Bu adimda `Hepsini Goster` dugmesine hover aninda hafif ton yukseltmesi veren durum stili eklendi.
+- Boylece pasif hali sakin kalirken fare uzerine geldiginde daha net bir geri donus aksiyonu gibi ayrisiyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.226)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -925,4 +934,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda reset dugmesinin hover durumunda pasif halden ne kadar ayrisdigini bir tik daha belirginlestirmek.
+- Odemeler ekraninda reset dugmesinin klavye odaginda hover ve pasif durumdan daha net ayrisarak okunmasini taramak.
