@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.219 - Reset Arka Plan Tonu`
+- Son tamamlanan temiz faz: `v1.220 - Reset Kontrast Yumusatma`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.220` Reset Kontrast Yumusatma
 - `v1.219` Reset Arka Plan Tonu
 - `v1.218` Reset Kenarlik Tonu
 - `v1.217` Reset Renk Gecisi
@@ -135,7 +136,7 @@ Son guncelleme tarihi: 2026-06-16
 
 ## Sonraki Mantikli Ana Adim
 
-- Bos filtre komut satirinda reset dugmesi ile yardim metni arasindaki genel kontrasti bir tik daha yumusatmak
+- Bos filtre komut satirinda reset dugmesinin hover disi durumunu yardim satirina gore biraz daha arka planda tutmak
 
 ## Yeni Chat Icin Kisa Talimat
 

@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.220)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.220 - Reset Kontrast Yumusatma`
+- Bu adimda `Hepsini Goster` dugmesinin yazi tonu yardim metni ile dugme arasindaki genel kontrasti bir tik daha yumusatacak sekilde guncellendi.
+- Boylece satir ici ton farki daha rafine hale gelirken reset aksiyonu hala rahatca okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.219)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -861,4 +870,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Bos filtre komut satirinda reset dugmesi ile yardim metni arasindaki genel kontrasti bir tik daha yumusatmak.
+- Bos filtre komut satirinda reset dugmesinin hover disi durumunu yardim satirina gore biraz daha arka planda tutmak.

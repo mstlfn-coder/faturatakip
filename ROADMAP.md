@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-16 / v1.220)
+
+- v1.220 tamamlandi: `Hepsini Goster` dugmesinin yazi tonu satir ici genel kontrasti biraz daha yumusatacak sekilde guncellendi.
+- Boylece yardim metni ile reset dugmesi arasindaki ton farki daha rafine hale geldi.
+- Dugme hala okunur ve tiklanabilir hissedilir kalirken satirin geri kalanina daha sakin baglaniyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-16 / v1.219)
 
 - v1.219 tamamlandi: `Hepsini Goster` dugmesinin arka plan tonu yardim satirinin genel sakinligine biraz daha yaklastirildi.

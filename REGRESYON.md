@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.220 - Reset Kontrast Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda kontrast yumusadi | OK | Reset dugmesinin yazi tonu yardim metnine daha sakin geciyor |
+| Son odeme satirinda kontrast yumusadi | OK | Reset dugmesinin yazi tonu yardim metnine daha sakin geciyor |
+| Okunurluk korundu | OK | Kontrast azalirken reset dugmesi rahatca secilebilir kaldi |
+| 2026-06-16 | v1.220 | OK | Reset dugmesinin genel kontrasti hafifce yumusatildi |
+
 ## v1.219 - Reset Arka Plan Tonu
 | Kontrol | Durum | Not |
 | --- | --- | --- |
