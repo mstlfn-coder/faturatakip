@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.231)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.231 - Reset Hover Hiyerarsisi`
+- Bu adimda `Hepsini Goster` dugmesinin hover durumu hafifletilerek odak durumuyla arasindaki hiyerarsi netlestirildi.
+- Boylece pasif, hover ve klavye odagi uc katman halinde daha okunur siralaniyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.230)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -961,4 +970,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda reset dugmesinin hover ve odak durumlari arasindaki hiyerarsiyi ikinci tur gorsel olarak taramak.
+- Odemeler ekraninda reset dugmesinin pasif, hover ve odak durumlarinin filtre satirindaki genel ritimle uyumunu ikinci tur gorsel olarak taramak.

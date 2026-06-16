@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.230 - Reset Odak Ton Dengesi`
+- Son tamamlanan temiz faz: `v1.231 - Reset Hover Hiyerarsisi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.231` Reset Hover Hiyerarsisi
 - `v1.230` Reset Odak Ton Dengesi
 - `v1.229` Reset Odak Ritmi
 - `v1.228` Reset Klavye Odak Ayrimi
@@ -146,7 +147,7 @@ Son guncelleme tarihi: 2026-06-16
 
 ## Sonraki Mantikli Ana Adim
 
-- Odemeler ekraninda reset dugmesinin hover ve odak durumlari arasindaki hiyerarsiyi ikinci tur gorsel olarak taramak
+- Odemeler ekraninda reset dugmesinin pasif, hover ve odak durumlarinin filtre satirindaki genel ritimle uyumunu ikinci tur gorsel olarak taramak
 
 ## Yeni Chat Icin Kisa Talimat
 

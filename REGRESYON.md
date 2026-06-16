@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.231 - Reset Hover Hiyerarsisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover odaktan daha hafif | OK | Hover tonu sakinlestirilerek odak hali bir ust basamakta tutuldu |
+| Pasif-hover-odak sirasi temiz | OK | Uc farkli durum daha kolay ayirt edilir hale geldi |
+| Satir ritmi korundu | OK | Mikro ton ayari boyutsal degisim yaratmadan uygulandi |
+| 2026-06-16 | v1.231 | OK | Reset dugmesinin hover hiyerarsisi netlestirildi |
+
 ## v1.230 - Reset Odak Ton Dengesi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-16 / v1.231)
+
+- v1.231 tamamlandi: `Hepsini Goster` dugmesinin hover hali hafifletilerek odak durumuyla arasindaki hiyerarsi netlestirildi.
+- Boylece pasif, hover ve odak katmanlari birbirinden daha temiz ayrisiyor.
+- Mikro ayar satir ritmini bozmadan etkilesim durumlarini daha okunur yapti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-16 / v1.230)
 
 - v1.230 tamamlandi: `Hepsini Goster` dugmesinin klavye odak tonlari sakinlestirilerek birincil aksiyon dugmeleriyle rekabeti azaltildi.
