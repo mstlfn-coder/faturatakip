@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-15
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.215 - Aksiyon Dugmesi Agirlik Dengesi`
+- Son tamamlanan temiz faz: `v1.216 - Reset Tipografi Akrabaligi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.216` Reset Tipografi Akrabaligi
 - `v1.215` Aksiyon Dugmesi Agirlik Dengesi
 - `v1.214` Reset Dugmesi Satir Yuksekligi
 - `v1.213` Reset Dugmesi Dikey Hiz
@@ -131,7 +132,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Ana Adim
 
-- Bos filtre komut satirinda aksiyon dugmesi ve reset dugmesi arasindaki tipografik aile hissini biraz daha yaklastirmak
+- Bos filtre komut satirinda yardim metni ile reset dugmesi arasindaki renk gecisini bir tik daha yumusatmak
 
 ## Yeni Chat Icin Kisa Talimat
 

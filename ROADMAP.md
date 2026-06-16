@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-16 / v1.216)
+
+- v1.216 tamamlandi: `Hepsini Goster` dugmesinin yazisi ana aksiyon dugmesiyle ayni puntoya getirildi ve agirligi normale indirildi.
+- Boylece iki dugme ayni tipografik aileden geliyor hissi daha guclu okunuyor.
+- Vurgu farki renk ve konum uzerinden korunarak satirdaki hiyerarsi bozulmadan mikro bir birlik duygusu eklendi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-15 / v1.215)
 
 - v1.215 tamamlandi: Bos filtre satirlarindaki ana aksiyon dugmelerinin dikey ic boslugu hafifce azaltildi.

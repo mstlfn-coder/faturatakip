@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.216 - Reset Tipografi Akrabaligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda tipografik aile yaklasti | OK | Reset dugmesi ana aksiyon dugmesiyle ayni puntoya gelerek daha akraba hissediyor |
+| Son odeme satirinda tipografik aile yaklasti | OK | Reset dugmesi ana aksiyon dugmesiyle ayni puntoya gelerek daha akraba hissediyor |
+| Hiyerarsi korundu | OK | Reset dugmesi agirligi normale alindigi icin dugmeler benzesirken vurgu farki kaybolmadi |
+| 2026-06-16 | v1.216 | OK | Reset dugmesinin tipografisi ana aksiyon ailesine yaklastirildi |
+
 ## v1.215 - Aksiyon Dugmesi Agirlik Dengesi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

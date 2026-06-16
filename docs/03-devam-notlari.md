@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.216)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.216 - Reset Tipografi Akrabaligi`
+- Bu adimda `Hepsini Goster` dugmesinin yazi boyutu ana aksiyon dugmesiyle ayni olcege cekildi ve yazi agirligi normale indirildi.
+- Boylece iki dugme arasindaki tipografik aile hissi yakinlasti; vurgu farki ise esas olarak renk ve konum uzerinden korunmus oldu.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.215)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -825,4 +834,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Bos filtre komut satirinda aksiyon dugmesi ve reset dugmesi arasindaki tipografik aile hissini biraz daha yaklastirmak.
+- Bos filtre komut satirinda yardim metni ile reset dugmesi arasindaki renk gecisini bir tik daha yumusatmak.
