@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-16 / v1.218)
+
+- v1.218 tamamlandi: `Hepsini Goster` dugmesinin kenarlik tonu yardim satirinin genel sakinligine biraz daha yaklastirildi.
+- Boylece yardim metni ile reset dugmesi arasindaki ton gecisi daha rafine hale geldi.
+- Dugme ayrimi korunurken gereksiz sert kenar hissi hafifletildi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-16 / v1.217)
 
 - v1.217 tamamlandi: `Hepsini Goster` dugmesinin yazi tonu yardim metnine bir tik daha yaklastirildi.

@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.218 - Reset Kenarlik Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda kenarlik yumusadi | OK | Reset dugmesinin kenarlik tonu yardim satirina daha sakin baglaniyor |
+| Son odeme satirinda kenarlik yumusadi | OK | Reset dugmesinin kenarlik tonu yardim satirina daha sakin baglaniyor |
+| Dugme ayrimi korundu | OK | Kenarlik yumusasa da reset aksiyonu ayirt edilir kaliyor |
+| 2026-06-16 | v1.218 | OK | Reset dugmesinin kenarlik tonu hafifce yumusatildi |
+
 ## v1.217 - Reset Renk Gecisi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
