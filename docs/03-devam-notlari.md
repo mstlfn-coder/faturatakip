@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.221)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.221 - Reset Pasif Tonu`
+- Bu adimda `Hepsini Goster` dugmesinin hover disi yazi tonu bir tik daha geri alindi.
+- Boylece reset dugmesi normal durumda yardim satirina gore biraz daha arka planda duruyor; etkileşim ve odak hali ise yine net kalıyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.220)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -870,4 +879,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Bos filtre komut satirinda reset dugmesinin hover disi durumunu yardim satirina gore biraz daha arka planda tutmak.
+- Bos filtre komut satirinda reset dugmesinin pasif durumunda kenarlik ve yazi iliskisini biraz daha dengeli hale getirmek.

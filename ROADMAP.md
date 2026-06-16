@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-16 / v1.221)
+
+- v1.221 tamamlandi: `Hepsini Goster` dugmesinin hover disi yazi tonu bir tik daha geri alindi.
+- Boylece reset dugmesi normal durumda yardim satirina gore daha sessiz gorunuyor.
+- Etkilesim ve odak hiyerarsisi korunurken pasif gorunum daha dengeli hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-16 / v1.220)
 
 - v1.220 tamamlandi: `Hepsini Goster` dugmesinin yazi tonu satir ici genel kontrasti biraz daha yumusatacak sekilde guncellendi.

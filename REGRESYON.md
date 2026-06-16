@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.221 - Reset Pasif Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda pasif ton sessizlesti | OK | Reset dugmesi hover disinda yardim satirina gore daha arka planda kaldi |
+| Son odeme satirinda pasif ton sessizlesti | OK | Reset dugmesi hover disinda yardim satirina gore daha arka planda kaldi |
+| Etkilesim hiyerarsisi korundu | OK | Pasif ton geri alinirken dugmenin komut hissi kaybolmadi |
+| 2026-06-16 | v1.221 | OK | Reset dugmesinin hover disi yazi tonu hafifce geri alindi |
+
 ## v1.220 - Reset Kontrast Yumusatma
 | Kontrol | Durum | Not |
 | --- | --- | --- |
