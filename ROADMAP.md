@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-16 / v1.232)
+
+- v1.232 tamamlandi: `Hepsini Goster` dugmesinin sol boslugu hafifce azaltildi.
+- Boylece yardim metni ile reset aksiyonu ayni satirda daha toplu okunuyor.
+- Mikro ayar etkileşim durumlarini bozmadan satir ritmini daha tek parca hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-16 / v1.231)
 
 - v1.231 tamamlandi: `Hepsini Goster` dugmesinin hover hali hafifletilerek odak durumuyla arasindaki hiyerarsi netlestirildi.

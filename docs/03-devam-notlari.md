@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.232)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.232 - Reset Satir Ritmi`
+- Bu adimda `Hepsini Goster` dugmesinin sol boslugu hafifce azaltildi.
+- Boylece pasif, hover ve odak durumlarinda dugme yardim metniyle daha tek parca bir satir ritmi kuruyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.231)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -970,4 +979,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda reset dugmesinin pasif, hover ve odak durumlarinin filtre satirindaki genel ritimle uyumunu ikinci tur gorsel olarak taramak.
+- Odemeler ekraninda reset dugmesinin yardim metniyle olusan satir uzunlugunu ikinci tur gorsel olarak taramak.

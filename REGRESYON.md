@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.232 - Reset Satir Ritmi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Satir daha toplu | OK | Reset dugmesinin sol boslugu azaltilarak yardim metniyle daha bagli gorunmesi saglandi |
+| Durum hiyerarsisi korundu | OK | Pasif, hover ve odak katmanlari bozulmadan korundu |
+| Iki satir tutarli | OK | Ortak stil sayesinde iki reset dugmesi ayni boslugu kullaniyor |
+| 2026-06-16 | v1.232 | OK | Reset dugmesinin satir ritmi hafifce sikilastirildi |
+
 ## v1.231 - Reset Hover Hiyerarsisi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
