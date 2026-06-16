@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.230)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.230 - Reset Odak Ton Dengesi`
+- Bu adimda `Hepsini Goster` dugmesinin klavye odagindaki arka plan, kenarlik ve yazi tonu ana aksiyon dugmesiyle daha az rekabet edecek sekilde sakinlestirildi.
+- Boylece odak hali hala belirgin kalirken birincil mavi aksiyon dugmeleriyle gorsel rol cakismasi azaltiyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.229)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -952,4 +961,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda reset dugmesinin odak tonunun ana aksiyon dugmesiyle rekabet edip etmedigini ikinci tur gorsel olarak taramak.
+- Odemeler ekraninda reset dugmesinin hover ve odak durumlari arasindaki hiyerarsiyi ikinci tur gorsel olarak taramak.

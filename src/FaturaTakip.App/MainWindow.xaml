@@ -222,10 +222,10 @@
                     <Setter Property="Foreground" Value="#475569" />
                 </Trigger>
                 <Trigger Property="IsKeyboardFocused" Value="True">
-                    <Setter Property="Background" Value="#E2E8F0" />
-                    <Setter Property="BorderBrush" Value="#475569" />
+                    <Setter Property="Background" Value="#EEF2F6" />
+                    <Setter Property="BorderBrush" Value="#5B6B7C" />
                     <Setter Property="BorderThickness" Value="1" />
-                    <Setter Property="Foreground" Value="#1F2937" />
+                    <Setter Property="Foreground" Value="#334155" />
                 </Trigger>
             </Style.Triggers>
         </Style>

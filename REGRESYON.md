@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.230 - Reset Odak Ton Dengesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odak tonu daha ikincil | OK | Reset dugmesi odakta daha sakin bir tonla gorunuyor |
+| Birincil aksiyonla rekabet azaldi | OK | Mavi ana aksiyon dugmesi gorsel liderligini koruyor |
+| Odak okunurlugu suruyor | OK | Sakinlesme yapilsa da odak hali ayirt edilmeye devam ediyor |
+| 2026-06-16 | v1.230 | OK | Reset dugmesinin odak tonlari dengelendi |
+
 ## v1.229 - Reset Odak Ritmi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

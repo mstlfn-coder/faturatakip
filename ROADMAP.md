@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-16 / v1.230)
+
+- v1.230 tamamlandi: `Hepsini Goster` dugmesinin klavye odak tonlari sakinlestirilerek birincil aksiyon dugmeleriyle rekabeti azaltildi.
+- Boylece odak hali hala okunur ama rol olarak daha ikincil hissettiriyor.
+- Mikro ayar, odak geri bildirimini kaybetmeden hiyerarsiyi daha dogru kurdu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-16 / v1.229)
 
 - v1.229 tamamlandi: `Hepsini Goster` dugmesinin klavye odagindaki kenarlik kalinligi satir ritmini bozmayacak sekilde dengelendi.
