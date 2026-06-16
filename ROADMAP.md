@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-17 / v1.236)
+
+- v1.236 tamamlandi: Yardim metninin genislik siniri biraz daha daraltilarak reset dugmesinin sag tarafta yalniz kalma hissi azaltildi.
+- Boylece iki satirli yardim senaryosunda metin ve reset aksiyonu daha yakin bir blok gibi gorunuyor.
+- Mikro ayar satir uzunlugunu kontrollu kirarak gorunur ritmi toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-17 / v1.235)
 
 - v1.235 tamamlandi: `Hepsini Goster` dugmesinin ust boslugu bir piksel arttirilip ilk satir ritmine biraz daha yaklastirildi.

@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-17 / v1.236)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.236 - Reset Sag Yalnizlik Azaltma`
+- Bu adimda yardim metninin genislik siniri bir miktar daha daraltilarak `Hepsini Goster` dugmesinin sag tarafta yalniz kalma hissi azaltildi.
+- Boylece iki satirli yardim senaryosunda metin ve reset aksiyonu birbirine daha yakin bir blok gibi okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-17 / v1.235)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -1006,4 +1015,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda iki satira dusen yardim senaryosunda reset dugmesinin butun satir bloguna gore sag tarafa fazla yaklasip yaklasmadigini gorsel olarak taramak.
+- Odemeler ekraninda iki satira dusen yardim senaryosunda reset dugmesi ve yardim metninin grid tabanli bir satira gecmesinin gerekip gerekmedigini gorsel olarak taramak.

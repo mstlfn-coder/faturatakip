@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.236 - Reset Sag Yalnizlik Azaltma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sag yalnizlik azaldi | OK | Yardim metni daha kontrollu kirilarak reset dugmesine yakinlasti |
+| Iki satirli senaryo toplandi | OK | Metin ve reset aksiyonu daha yakin bir blok gibi okundu |
+| Ortaklik korundu | OK | Iki satir ayni genislik sinirini kullanmaya devam ediyor |
+| 2026-06-17 | v1.236 | OK | Reset dugmesinin sagda yalniz kalma hissi hafifletildi |
+
 ## v1.235 - Reset Ust Hiz Yaklastirma
 | Kontrol | Durum | Not |
 | --- | --- | --- |
