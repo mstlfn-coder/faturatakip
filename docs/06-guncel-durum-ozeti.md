@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.225 - Odemeler Genel Scroll`
+- Son tamamlanan temiz faz: `v1.226 - Reset Ikincil Vurgu`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.226` Reset Ikincil Vurgu
 - `v1.225` Odemeler Genel Scroll
 - `v1.224` Odeme Akisi Tasma Duzeltmesi
 - `v1.223` Sayfa Tasarim Hata Duzeltmeleri
@@ -141,7 +142,7 @@ Son guncelleme tarihi: 2026-06-16
 
 ## Sonraki Mantikli Ana Adim
 
-- Odemeler sayfasi genel scroll ile acilip ust kart, ozetler ve akis bolumu arasindaki dikey ritmin ikinci tur gorsel taramasi
+- Odemeler ekraninda reset dugmesinin hover durumunda pasif halden ne kadar ayrisdigini bir tik daha belirginlestirmek
 
 ## Yeni Chat Icin Kisa Talimat
 

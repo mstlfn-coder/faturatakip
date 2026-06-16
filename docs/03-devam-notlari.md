@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.226)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.226 - Reset Ikincil Vurgu`
+- Bu adimda `Hepsini Goster` dugmesinin yazi boyutu ve yatay ic boslugu hafifce azaltildi.
+- Boylece pasif durumda ana aksiyon dugmesine gore daha ikincil hissediyor; yine de rahatca gorulup tiklanabiliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.225)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -916,4 +925,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler sayfasi genel scroll ile acilip ust kart, ozetler ve akis bolumu arasindaki dikey ritmin ikinci tur gorsel taramasi.
+- Odemeler ekraninda reset dugmesinin hover durumunda pasif halden ne kadar ayrisdigini bir tik daha belirginlestirmek.

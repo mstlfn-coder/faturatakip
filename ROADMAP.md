@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-16 / v1.226)
+
+- v1.226 tamamlandi: `Hepsini Goster` dugmesinin punto ve yatay ic boslugu hafifce azaltildi.
+- Boylece pasif durumda ana aksiyon dugmesine gore daha ikincil bir rol hissi veriyor.
+- Aksiyon okunurlugu korunurken komut hiyerarsisi daha dogal kuruldu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-16 / v1.225)
 
 - v1.225 tamamlandi: Odemeler ekranindaki scroll davranisi alt akis panelinden alinip sayfanin geneline tasindi.

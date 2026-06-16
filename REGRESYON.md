@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.226 - Reset Ikincil Vurgu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Pasif reset daha ikincil hissediyor | OK | Punto ve yatay bosluk azaltilarak ana aksiyonla hiyerarsi acildi |
+| Okunurluk korundu | OK | Dugme daha kucuk olsa da metin ve tik alanı yeterli kaldi |
+| Iki reset dugmesi tutarli | OK | Ortak stil sayesinde iki satir ayni mikro ayari kullaniyor |
+| 2026-06-16 | v1.226 | OK | Reset dugmesi pasif durumda daha ikincil hale getirildi |
+
 ## v1.225 - Odemeler Genel Scroll
 | Kontrol | Durum | Not |
 | --- | --- | --- |
