@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.237 - Reset Grid Satiri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Grid yerlesimi kuruldu | OK | Yardim metni ile reset dugmesi uc kolonlu satira alindi |
+| Sag blok daha kararlı | OK | Reset dugmesi sagda daha kontrollu duruyor |
+| Iki satirli senaryo toparlandi | OK | Yardim metni genisleyip kirilirken reset dugmesi dagilmiyor |
+| 2026-06-17 | v1.237 | OK | Yardim metni ve reset aksiyonu grid tabanli satira tasindi |
+
 ## v1.236 - Reset Sag Yalnizlik Azaltma
 | Kontrol | Durum | Not |
 | --- | --- | --- |

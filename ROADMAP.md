@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-17 / v1.237)
+
+- v1.237 tamamlandi: Yardim metni ve `Hepsini Goster` dugmesi uc kolonlu `Grid` satirina tasindi.
+- Boylece metin ortadaki esnek alani kullanirken reset dugmesi sagda daha kararlı ve daha az yalniz gorunuyor.
+- Mikro yerlesim adimi iki satirli senaryoda `StackPanel` akisinin dağınıklığını azaltarak daha kontrollu bir satir kurdu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-17 / v1.236)
 
 - v1.236 tamamlandi: Yardim metninin genislik siniri biraz daha daraltilarak reset dugmesinin sag tarafta yalniz kalma hissi azaltildi.

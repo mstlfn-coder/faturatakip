@@ -1526,8 +1526,12 @@
                                                    FontSize="10"
                                                    FontWeight="SemiBold" />
                                     </Border>
-                                    <StackPanel Orientation="Horizontal"
-                                                Margin="0,8,0,0">
+                                    <Grid Margin="0,8,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
                                         <Button x:Name="PaymentsOpenNextQueueButton"
                                                 Content="En Yakin Kaydi Ac"
                                                 Style="{StaticResource PaymentsOpsActionButton}"
@@ -1535,23 +1539,24 @@
                                                 ToolTip="Enter ile oncelikli kuyruk kaydini acar."
                                                 Click="OpenNextQueueInvoiceButton_Click" />
                                         <TextBlock x:Name="PaymentsQueueActionHintText"
+                                                   Grid.Column="1"
                                                    Text="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun."
                                                    Style="{StaticResource MutedText}"
                                                    Foreground="#64748B"
                                                    FontSize="12"
-                                                   MaxWidth="220"
                                                    LineHeight="16"
                                                    LineStackingStrategy="BlockLineHeight"
                                                    Margin="12,3,0,0"
-                                                   VerticalAlignment="Center"
+                                                   VerticalAlignment="Top"
                                                    TextWrapping="Wrap" />
                                         <Button x:Name="PaymentsQueueResetFilterButton"
+                                                Grid.Column="2"
                                                 Content="Hepsini Goster"
                                                 Style="{StaticResource PaymentsResetFilterButton}"
                                                 Visibility="Collapsed"
                                                 ToolTip="Kuyruk filtresini tum kayitlara geri dondurur."
                                                 Click="ResetPaymentsQueueFilterButton_Click" />
-                                    </StackPanel>
+                                    </Grid>
                                     <ItemsControl x:Name="PaymentsQueueItemsControl"
                                                   Margin="0,14,0,0">
                                         <ItemsControl.ItemTemplate>
@@ -1644,8 +1649,12 @@
                                                    FontSize="10"
                                                    FontWeight="SemiBold" />
                                     </Border>
-                                    <StackPanel Orientation="Horizontal"
-                                                Margin="0,8,0,0">
+                                    <Grid Margin="0,8,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
                                         <Button x:Name="PaymentsOpenLatestPaymentButton"
                                                 Content="Son Odemeyi Ac"
                                                 Style="{StaticResource PaymentsOpsActionButton}"
@@ -1653,23 +1662,24 @@
                                                 ToolTip="Enter ile son odeme kaydini acar."
                                                 Click="OpenLatestPaymentFromPaymentsButton_Click" />
                                         <TextBlock x:Name="PaymentsRecentActionHintText"
+                                                   Grid.Column="1"
                                                    Text="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun."
                                                    Style="{StaticResource MutedText}"
                                                    Foreground="#64748B"
                                                    FontSize="12"
-                                                   MaxWidth="220"
                                                    LineHeight="16"
                                                    LineStackingStrategy="BlockLineHeight"
                                                    Margin="12,3,0,0"
-                                                   VerticalAlignment="Center"
+                                                   VerticalAlignment="Top"
                                                    TextWrapping="Wrap" />
                                         <Button x:Name="PaymentsRecentResetFilterButton"
+                                                Grid.Column="2"
                                                 Content="Hepsini Goster"
                                                 Style="{StaticResource PaymentsResetFilterButton}"
                                                 Visibility="Collapsed"
                                                 ToolTip="Son odeme filtresini tum kayitlara geri dondurur."
                                                 Click="ResetPaymentsRecentFilterButton_Click" />
-                                    </StackPanel>
+                                    </Grid>
                                     <ItemsControl x:Name="PaymentsRecentPaymentsItemsControl"
                                                   Margin="0,14,0,0">
                                         <ItemsControl.ItemTemplate>

@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-17 / v1.237)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.237 - Reset Grid Satiri`
+- Bu adimda yardim metni ve `Hepsini Goster` dugmesi yatay `StackPanel` yerine uc kolonlu `Grid` duzenine alindi.
+- Boylece yardim metni ortadaki esnek alani kullanirken reset dugmesi sagda daha kararlı duruyor ve iki satirli senaryoda daha az dagiliyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-17 / v1.236)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -1015,4 +1024,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda iki satira dusen yardim senaryosunda reset dugmesi ve yardim metninin grid tabanli bir satira gecmesinin gerekip gerekmedigini gorsel olarak taramak.
+- Odemeler ekraninda yeni grid satirinda reset dugmesinin dikey hizinin yardim metniyle son kez ince ayar gerektirip gerektirmedigini gorsel olarak taramak.
