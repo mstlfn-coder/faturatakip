@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.224 - Odeme Akisi Tasma Duzeltmesi`
+- Son tamamlanan temiz faz: `v1.225 - Odemeler Genel Scroll`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.225` Odemeler Genel Scroll
 - `v1.224` Odeme Akisi Tasma Duzeltmesi
 - `v1.223` Sayfa Tasarim Hata Duzeltmeleri
 - `v1.222` Reset Pasif Kenarlik Dengesi
@@ -140,7 +141,7 @@ Son guncelleme tarihi: 2026-06-16
 
 ## Sonraki Mantikli Ana Adim
 
-- Odemeler akis paneli acilip yeni scroll davranisinin kart bosluklari ve alt hizalariyla birlikte gorsel olarak ikinci kez taranmasi
+- Odemeler sayfasi genel scroll ile acilip ust kart, ozetler ve akis bolumu arasindaki dikey ritmin ikinci tur gorsel taramasi
 
 ## Yeni Chat Icin Kisa Talimat
 

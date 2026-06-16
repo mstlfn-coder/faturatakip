@@ -856,7 +856,11 @@
                                 Visibility="Collapsed"
                                 InvoicesChanged="InvoicesPanel_InvoicesChanged" />
 
-            <Grid x:Name="PaymentsPanel" Visibility="Collapsed">
+            <ScrollViewer x:Name="PaymentsPanel"
+                          Visibility="Collapsed"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+            <Grid Margin="0,0,4,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -1144,9 +1148,7 @@
                 </UniformGrid>
 
                 <Border Grid.Row="2" Style="{StaticResource TileBorder}">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto"
-                                  HorizontalScrollBarVisibility="Disabled">
-                    <Grid Margin="0,0,4,0">
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -1713,9 +1715,9 @@
                             </Border>
                         </Grid>
                     </Grid>
-                    </ScrollViewer>
                 </Border>
             </Grid>
+            </ScrollViewer>
             <views:ReportsView x:Name="ReportsPanel"
                                Visibility="Collapsed" />
 

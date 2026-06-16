@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.225 - Odemeler Genel Scroll
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sayfa genel scroll aliyor | OK | Yalnizca akis paneli degil tum Odemeler sayfasi birlikte kayiyor |
+| Akis paneli sikismadi | OK | `Odeme Is Akisi` bolumu kendi genisligini koruyarak gosteriliyor |
+| Dikey akis dogallasti | OK | Ust kartlar, ozetler ve alt akis ayni scroll baglaminda kaldi |
+| 2026-06-16 | v1.225 | OK | Odemeler ekranindaki scroll davranisi sayfa geneline tasindi |
+
 ## v1.224 - Odeme Akisi Tasma Duzeltmesi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

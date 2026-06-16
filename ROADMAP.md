@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-16 / v1.225)
+
+- v1.225 tamamlandi: Odemeler ekranindaki scroll davranisi alt akis panelinden alinip sayfanin geneline tasindi.
+- Boylece `Odeme Is Akisi` bolumu dar bir scroll kutusuna sikismadan kendi genisligini koruyor.
+- Ekran yuksekligi yetmediginde tum Odemeler yuzeyi birlikte kayarak daha dogal bir masaustu akisi sunuyor.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-16 / v1.224)
 
 - v1.224 tamamlandi: Odemeler ekranindaki `Odeme Is Akisi` bolumu kendi icinde dikey kaydirma alacak sekilde duzeltildi.

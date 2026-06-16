@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.225)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.225 - Odemeler Genel Scroll`
+- Odemeler ekranindaki scroll davranisi alt panelden alinip sayfanin geneline tasindi.
+- Boylece `Odeme Is Akisi` bolumu dar bir kutuya sikismadan kendi genisligini koruyor; ekran asarsa tum Odemeler sayfasi birlikte kayiyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.224)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -907,4 +916,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler akis paneli acilip yeni scroll davranisinin kart bosluklari ve alt hizalariyla birlikte gorsel olarak ikinci kez taranmasi.
+- Odemeler sayfasi genel scroll ile acilip ust kart, ozetler ve akis bolumu arasindaki dikey ritmin ikinci tur gorsel taramasi.
