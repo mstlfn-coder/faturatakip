@@ -223,9 +223,9 @@
                 </Trigger>
                 <Trigger Property="IsKeyboardFocused" Value="True">
                     <Setter Property="Background" Value="#E2E8F0" />
-                    <Setter Property="BorderBrush" Value="#64748B" />
-                    <Setter Property="BorderThickness" Value="2" />
-                    <Setter Property="Foreground" Value="#334155" />
+                    <Setter Property="BorderBrush" Value="#475569" />
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="Foreground" Value="#1F2937" />
                 </Trigger>
             </Style.Triggers>
         </Style>

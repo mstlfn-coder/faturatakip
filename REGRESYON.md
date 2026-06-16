@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.229 - Reset Odak Ritmi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odakta satir ziplamiyor | OK | Border kalinligi normal kaldigi icin yatay satir ritmi korunuyor |
+| Odak vurgusu suruyor | OK | Kenarlik ve yazi tonu odak durumunu gostermeye devam ediyor |
+| Hover ve pasif denge korundu | OK | Diger iki durumun hiyerarsisi bozulmadi |
+| 2026-06-16 | v1.229 | OK | Reset dugmesinin odak vurgusu ritim bozmadan dengelendi |
+
 ## v1.228 - Reset Klavye Odak Ayrimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

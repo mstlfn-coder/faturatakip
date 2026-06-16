@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.229)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.229 - Reset Odak Ritmi`
+- Bu adimda `Hepsini Goster` dugmesinin klavye odagindaki cizgi kalinligi satir ritmini bozmamasi icin normale cekildi; vurgu ton uzerinden korundu.
+- Boylece odak hali hala net okunuyor ama yatay aksiyon satirinda ziplama hissi olusmuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.228)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -943,4 +952,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda reset dugmesi odaktayken satir ritminin bozulup bozulmadigini gorsel olarak taramak.
+- Odemeler ekraninda reset dugmesinin odak tonunun ana aksiyon dugmesiyle rekabet edip etmedigini ikinci tur gorsel olarak taramak.
