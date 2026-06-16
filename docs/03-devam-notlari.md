@@ -11,6 +11,16 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.223)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.223 - Sayfa Tasarim Hata Duzeltmeleri`
+- Odemeler ekraninda sag ust yonlendirme alani kart icine alinip bosluk dagilimi toparlandi; buyuk bosluk ve daginik rozet yerlesimi duzeltildi.
+- Yedekleme ekraninda geri yukleme bolumundeki satir tanimlari tamamlanarak onizleme ile aksiyon satirinin ust uste binmesi giderildi.
+- Faturalar ekraninda liste gridinin gereksiz satir basligi kapatilarak soldaki bos alan kaldirildi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.222)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -888,4 +898,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Bos filtre komut satirinda reset dugmesinin pasif durumunu ana aksiyon dugmesine gore biraz daha ikincil hissettirmek.
+- Duzelen sayfalar acilip gorunur yerlesim taramasi yapilarak kalan hiz ve bosluk kusurlarini ikinci turda toparlamak.

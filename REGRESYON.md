@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.223 - Sayfa Tasarim Hata Duzeltmeleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odemeler ust yonlendirme toparlandi | OK | Sag ust aksiyonlar kart icinde hizali ve rozetle birlikte daha duzenli gorunuyor |
+| Yedekleme geri yukleme paneli cakismasi gitti | OK | Onizleme ve alt aksiyon satiri artik ust uste binmiyor |
+| Faturalar grid sol boslugu kalkti | OK | Satir basligi kapatildigi icin listenin solundaki gereksiz alan kaldirildi |
+| 2026-06-16 | v1.223 | OK | Gorunur sayfa tasarim hatalari ilk turda duzeltildi |
+
 ## v1.222 - Reset Pasif Kenarlik Dengesi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

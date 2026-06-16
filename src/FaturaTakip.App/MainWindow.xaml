@@ -863,9 +863,10 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Grid>
+                <Grid HorizontalAlignment="Left">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="28" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
@@ -940,44 +941,53 @@
                         </Border>
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1"
-                                VerticalAlignment="Center">
-                        <StackPanel Orientation="Horizontal"
-                                    HorizontalAlignment="Right">
-                            <Button Content="Fatura Listesine Git"
-                                    Style="{StaticResource SecondaryButton}"
-                                    Margin="0,0,8,0"
-                                    MouseEnter="PaymentsHeaderAction_MouseEnter"
-                                    MouseLeave="PaymentsHintSource_MouseLeave"
-                                    Tag="header_invoices"
-                                    Click="OpenInvoicesFromPaymentsButton_Click" />
-                            <Button Content="Rapor Merkezine Git"
-                                    Style="{StaticResource PrimaryButton}"
-                                    MouseEnter="PaymentsHeaderAction_MouseEnter"
-                                    MouseLeave="PaymentsHintSource_MouseLeave"
-                                    Tag="header_reports"
-                                    Click="OpenReportsFromPaymentsButton_Click" />
-                        </StackPanel>
-                        <TextBlock x:Name="PaymentsHeaderHintText"
-                                   Text="Soldaki yol calisma ekranina, sagdaki yol rapor ve kontrol ekranlarina goturur."
-                                   Style="{StaticResource MutedText}"
-                                   Margin="0,8,0,0"
-                                   HorizontalAlignment="Right" />
-                        <Border x:Name="PaymentsLastRouteBadgeBorder"
-                                Background="#E2E8F0"
-                                BorderBrush="#CBD5E1"
-                                BorderThickness="1"
-                                CornerRadius="999"
-                                Padding="8,3"
-                                Margin="0,8,0,0"
-                                HorizontalAlignment="Right">
-                            <TextBlock x:Name="PaymentsLastRouteBadgeText"
-                                       Text="SON YOL: GENEL"
-                                       Foreground="#475569"
-                                       FontSize="11"
+                    <Border Grid.Column="2"
+                            Style="{StaticResource PaymentsOpsCard}"
+                            Width="340"
+                            Margin="0,50,0,0"
+                            VerticalAlignment="Top">
+                        <StackPanel>
+                            <TextBlock Text="Hizli Yonler"
+                                       Foreground="#1F2937"
+                                       FontSize="14"
                                        FontWeight="SemiBold" />
-                        </Border>
-                    </StackPanel>
+                            <TextBlock x:Name="PaymentsHeaderHintText"
+                                       Text="Soldaki yol calisma ekranina, sagdaki yol rapor ve kontrol ekranlarina goturur."
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,8,0,0"
+                                       TextWrapping="Wrap" />
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,14,0,0">
+                                <Button Content="Fatura Listesine Git"
+                                        Style="{StaticResource SecondaryButton}"
+                                        Margin="0,0,8,0"
+                                        MouseEnter="PaymentsHeaderAction_MouseEnter"
+                                        MouseLeave="PaymentsHintSource_MouseLeave"
+                                        Tag="header_invoices"
+                                        Click="OpenInvoicesFromPaymentsButton_Click" />
+                                <Button Content="Rapor Merkezine Git"
+                                        Style="{StaticResource PrimaryButton}"
+                                        MouseEnter="PaymentsHeaderAction_MouseEnter"
+                                        MouseLeave="PaymentsHintSource_MouseLeave"
+                                        Tag="header_reports"
+                                        Click="OpenReportsFromPaymentsButton_Click" />
+                            </StackPanel>
+                            <Border x:Name="PaymentsLastRouteBadgeBorder"
+                                    Background="#E2E8F0"
+                                    BorderBrush="#CBD5E1"
+                                    BorderThickness="1"
+                                    CornerRadius="999"
+                                    Padding="8,3"
+                                    Margin="0,12,0,0"
+                                    HorizontalAlignment="Left">
+                                <TextBlock x:Name="PaymentsLastRouteBadgeText"
+                                           Text="SON YOL: GENEL"
+                                           Foreground="#475569"
+                                           FontSize="11"
+                                           FontWeight="SemiBold" />
+                            </Border>
+                        </StackPanel>
+                    </Border>
                 </Grid>
 
                 <UniformGrid Grid.Row="1"

@@ -885,8 +885,8 @@
                               LoadingRow="InvoiceGrid_LoadingRow"
                               BorderBrush="#E5EAF1"
                               BorderThickness="1"
-                              HeadersVisibility="All"
-                              RowHeaderWidth="58"
+                              HeadersVisibility="Column"
+                              RowHeaderWidth="0"
                               GridLinesVisibility="Horizontal">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Dönem"

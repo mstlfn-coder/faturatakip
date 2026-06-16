@@ -1,5 +1,13 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-16 / v1.223)
+
+- v1.223 tamamlandi: Uc farkli sayfadaki gorunur tasarim hatalari birlikte duzeltildi.
+- Odemeler ekraninda ust sag yonlendirme alani daha derli toplu bir kart duzenine alindi.
+- Yedekleme ekraninda geri yukleme panelindeki satir cakismasi giderildi.
+- Faturalar ekraninda liste gridinin solundaki gereksiz satir baslik alani kapatildi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-16 / v1.222)
 
 - v1.222 tamamlandi: `Hepsini Goster` dugmesinin pasif durum kenarligi yazi tonuyla daha dengeli hale getirildi.

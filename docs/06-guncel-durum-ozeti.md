@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.222 - Reset Pasif Kenarlik Dengesi`
+- Son tamamlanan temiz faz: `v1.223 - Sayfa Tasarim Hata Duzeltmeleri`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.223` Sayfa Tasarim Hata Duzeltmeleri
 - `v1.222` Reset Pasif Kenarlik Dengesi
 - `v1.221` Reset Pasif Tonu
 - `v1.220` Reset Kontrast Yumusatma
@@ -138,7 +139,7 @@ Son guncelleme tarihi: 2026-06-16
 
 ## Sonraki Mantikli Ana Adim
 
-- Bos filtre komut satirinda reset dugmesinin pasif durumunu ana aksiyon dugmesine gore biraz daha ikincil hissettirmek
+- Duzelen sayfalar acilip gorunur yerlesim taramasi yapilarak kalan hiz ve bosluk kusurlarini ikinci turda toparlamak
 
 ## Yeni Chat Icin Kisa Talimat
 
