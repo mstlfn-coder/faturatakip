@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.222 - Reset Pasif Kenarlik Dengesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda kenarlik yaziya yaklasti | OK | Pasif durumda kenarlik ve yazi tonu daha dengeli gorunuyor |
+| Son odeme satirinda kenarlik yaziya yaklasti | OK | Pasif durumda kenarlik ve yazi tonu daha dengeli gorunuyor |
+| Aksiyon ayrimi korundu | OK | Ton dengesi artarken reset dugmesi hala ayirt ediliyor |
+| 2026-06-16 | v1.222 | OK | Reset dugmesinin pasif kenarlik tonu dengelendi |
+
 ## v1.221 - Reset Pasif Tonu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

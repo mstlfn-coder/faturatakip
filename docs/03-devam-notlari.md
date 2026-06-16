@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.222)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.222 - Reset Pasif Kenarlik Dengesi`
+- Bu adimda `Hepsini Goster` dugmesinin pasif durum kenarlik tonu yazi tonuyla daha dengeli olacak sekilde guncellendi.
+- Boylece hover disi durumda dugmenin cizgisi ve yazi tonu birbirine daha akraba gorunuyor; ama aksiyon ayrimi korunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.221)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -879,4 +888,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Bos filtre komut satirinda reset dugmesinin pasif durumunda kenarlik ve yazi iliskisini biraz daha dengeli hale getirmek.
+- Bos filtre komut satirinda reset dugmesinin pasif durumunu ana aksiyon dugmesine gore biraz daha ikincil hissettirmek.

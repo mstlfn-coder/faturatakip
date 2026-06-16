@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-16 / v1.222)
+
+- v1.222 tamamlandi: `Hepsini Goster` dugmesinin pasif durum kenarligi yazi tonuyla daha dengeli hale getirildi.
+- Boylece hover disi durumda dugmenin cizgisi ve yazisi ayni aileden geliyor hissi daha tutarli gorunuyor.
+- Reset aksiyonu ayirt edilir kalirken pasif sunum daha rafine hale geldi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-16 / v1.221)
 
 - v1.221 tamamlandi: `Hepsini Goster` dugmesinin hover disi yazi tonu bir tik daha geri alindi.

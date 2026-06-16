@@ -208,7 +208,7 @@
         </Style>
         <Style x:Key="PaymentsResetFilterButton" TargetType="Button" BasedOn="{StaticResource PaymentsOpsActionButton}">
             <Setter Property="Background" Value="#FAFBFC" />
-            <Setter Property="BorderBrush" Value="#D5DEE8" />
+            <Setter Property="BorderBrush" Value="#CDD8E3" />
             <Setter Property="Foreground" Value="#64748B" />
             <Setter Property="FontSize" Value="11" />
             <Setter Property="FontWeight" Value="Normal" />
