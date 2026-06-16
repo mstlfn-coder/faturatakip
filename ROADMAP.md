@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-17 / v1.234)
+
+- v1.234 tamamlandi: `Hepsini Goster` dugmesinin dikey hizasi ustten baslayacak sekilde duzenlendi.
+- Boylece yardim metni iki satira dustugunde reset dugmesi ortada yuzmek yerine daha dengeli bir ust hatta tutunuyor.
+- Mikro ayar satir ritmini sakinlestirirken etkileşim hiyerarsisini bozmadi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-16 / v1.233)
 
 - v1.233 tamamlandi: Yardim metninin genislik siniri hafifce daraltilarak reset dugmesiyle kurdugu toplam satir uzunlugu dengelendi.

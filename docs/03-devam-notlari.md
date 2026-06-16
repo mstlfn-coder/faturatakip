@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-17 / v1.234)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.234 - Reset Dikey Ritim`
+- Bu adimda `Hepsini Goster` dugmesinin dikey hizasi ustten baslayacak sekilde ayarlandi ve ust boslugu hafifce duzenlendi.
+- Boylece yardim metni iki satira dustugunde reset dugmesi orta yerine daha dengeli bir ust hizada duruyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.233)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -988,4 +997,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda reset dugmesinin yardim metniyle birlikte iki satira dustugu durumda dikey ritmi ikinci tur gorsel olarak taramak.
+- Odemeler ekraninda reset dugmesinin ust hizasi ile ana aksiyon dugmesinin ilk satir ritmi arasindaki iliskiyi ikinci tur gorsel olarak taramak.

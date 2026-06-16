@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.234 - Reset Dikey Ritim
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Iki satirli senaryoda hiz dengeli | OK | Reset dugmesi ust hizada tutularak yardim metniyle daha dogal gorunuyor |
+| Tek satirli ritim korundu | OK | Mikro ust bosluk ayari satirin genel akisini bozmadı |
+| Ortak stil korundu | OK | Iki reset dugmesi ayni dikey ritim ayarini kullaniyor |
+| 2026-06-17 | v1.234 | OK | Reset dugmesinin dikey hizasi iki satirli senaryo icin dengelendi |
+
 ## v1.233 - Reset Satir Uzunlugu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

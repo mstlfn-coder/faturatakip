@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.233 - Reset Satir Uzunlugu`
+- Son tamamlanan temiz faz: `v1.234 - Reset Dikey Ritim`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.234` Reset Dikey Ritim
 - `v1.233` Reset Satir Uzunlugu
 - `v1.232` Reset Satir Ritmi
 - `v1.231` Reset Hover Hiyerarsisi
@@ -149,7 +150,7 @@ Son guncelleme tarihi: 2026-06-16
 
 ## Sonraki Mantikli Ana Adim
 
-- Odemeler ekraninda reset dugmesinin yardim metniyle birlikte iki satira dustugu durumda dikey ritmi ikinci tur gorsel olarak taramak
+- Odemeler ekraninda reset dugmesinin ust hizasi ile ana aksiyon dugmesinin ilk satir ritmi arasindaki iliskiyi ikinci tur gorsel olarak taramak
 
 ## Yeni Chat Icin Kisa Talimat
 
