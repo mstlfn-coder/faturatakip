@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.217 - Reset Renk Gecisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda renk gecisi yumusadi | OK | Reset dugmesinin yazi tonu yardim metnine daha yakin hale geldi |
+| Son odeme satirinda renk gecisi yumusadi | OK | Reset dugmesinin yazi tonu yardim metnine daha yakin hale geldi |
+| Komut hissi korundu | OK | Dugme tonu yumusasa da ayri bir aksiyon olarak okunmaya devam ediyor |
+| 2026-06-16 | v1.217 | OK | Reset dugmesinin yazi tonu yardim metnine yaklastirildi |
+
 ## v1.216 - Reset Tipografi Akrabaligi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

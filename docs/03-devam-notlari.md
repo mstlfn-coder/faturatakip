@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.217)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.217 - Reset Renk Gecisi`
+- Bu adimda `Hepsini Goster` dugmesinin yazi tonu yardim metnine bir tik daha yaklastirildi.
+- Boylece yardim metni ile reset dugmesi arasindaki renk gecisi daha yumusak okunurken dugmenin komut hissi korunmus oldu.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.216)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -834,4 +843,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Bos filtre komut satirinda yardim metni ile reset dugmesi arasindaki renk gecisini bir tik daha yumusatmak.
+- Bos filtre komut satirinda reset dugmesinin kenarlik tonunu yardim satirinin genel sakinligine biraz daha yaklastirmak.

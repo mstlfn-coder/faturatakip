@@ -1,16 +1,17 @@
 # Guncel Durum Ozeti
 
-Son guncelleme tarihi: 2026-06-15
+Son guncelleme tarihi: 2026-06-16
 
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.216 - Reset Tipografi Akrabaligi`
+- Son tamamlanan temiz faz: `v1.217 - Reset Renk Gecisi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.217` Reset Renk Gecisi
 - `v1.216` Reset Tipografi Akrabaligi
 - `v1.215` Aksiyon Dugmesi Agirlik Dengesi
 - `v1.214` Reset Dugmesi Satir Yuksekligi
@@ -132,7 +133,7 @@ Son guncelleme tarihi: 2026-06-15
 
 ## Sonraki Mantikli Ana Adim
 
-- Bos filtre komut satirinda yardim metni ile reset dugmesi arasindaki renk gecisini bir tik daha yumusatmak
+- Bos filtre komut satirinda reset dugmesinin kenarlik tonunu yardim satirinin genel sakinligine biraz daha yaklastirmak
 
 ## Yeni Chat Icin Kisa Talimat
 
