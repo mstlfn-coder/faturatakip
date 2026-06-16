@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-16 / v1.233)
+
+- v1.233 tamamlandi: Yardim metninin genislik siniri hafifce daraltilarak reset dugmesiyle kurdugu toplam satir uzunlugu dengelendi.
+- Boylece aksiyon satiri daha kontrollu kiriliyor ve toplam yuzey daha toplu gorunuyor.
+- Mikro ayar yardim metni ve reset aksiyonu arasindaki birlik duygusunu koruyarak uygulandi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-16 / v1.232)
 
 - v1.232 tamamlandi: `Hepsini Goster` dugmesinin sol boslugu hafifce azaltildi.

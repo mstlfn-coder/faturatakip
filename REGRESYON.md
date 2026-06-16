@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.233 - Reset Satir Uzunlugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Satir uzunlugu dengelendi | OK | Yardim metni daha kontrollu kirilarak reset dugmesiyle birlikte toplu gorunuyor |
+| Iki satir tutarli | OK | Kuyruk ve son odeme satirlari ayni genislik sinirini kullaniyor |
+| Etkilesim hiyerarsisi korundu | OK | Pasif, hover ve odak tonlari bu ayardan etkilenmeden korundu |
+| 2026-06-16 | v1.233 | OK | Reset dugmesiyle yardim metninin toplam satir uzunlugu dengelendi |
+
 ## v1.232 - Reset Satir Ritmi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

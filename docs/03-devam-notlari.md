@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.233)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.233 - Reset Satir Uzunlugu`
+- Bu adimda yardim metninin genislik siniri hafifce daraltilarak `Hepsini Goster` dugmesiyle kurdugu toplam satir uzunlugu dengelendi.
+- Boylece aksiyon satiri daha kontrollu kiriliyor ve dugme yardim metniyle birlikte daha toplu gorunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.232)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -979,4 +988,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda reset dugmesinin yardim metniyle olusan satir uzunlugunu ikinci tur gorsel olarak taramak.
+- Odemeler ekraninda reset dugmesinin yardim metniyle birlikte iki satira dustugu durumda dikey ritmi ikinci tur gorsel olarak taramak.
