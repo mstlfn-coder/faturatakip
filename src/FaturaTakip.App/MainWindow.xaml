@@ -1144,7 +1144,9 @@
                 </UniformGrid>
 
                 <Border Grid.Row="2" Style="{StaticResource TileBorder}">
-                    <Grid>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
+                    <Grid Margin="0,0,4,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -1711,6 +1713,7 @@
                             </Border>
                         </Grid>
                     </Grid>
+                    </ScrollViewer>
                 </Border>
             </Grid>
             <views:ReportsView x:Name="ReportsPanel"

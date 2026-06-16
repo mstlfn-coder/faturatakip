@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-16 / v1.224)
+
+- v1.224 tamamlandi: Odemeler ekranindaki `Odeme Is Akisi` bolumu kendi icinde dikey kaydirma alacak sekilde duzeltildi.
+- Boylece alt akis kartlari ve alt paneller dar ekran yuksekliklerinde kesilmeden ulasilabilir hale geldi.
+- Bu duzeltme tasan icerigi saklamak yerine kontrollu kaydirma ile gorunur tuttu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-16 / v1.223)
 
 - v1.223 tamamlandi: Uc farkli sayfadaki gorunur tasarim hatalari birlikte duzeltildi.

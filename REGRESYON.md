@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.224 - Odeme Akisi Tasma Duzeltmesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Akis paneli kaydirilabilir | OK | Alt akis kartlari ve alt paneller dar yukseklikte de ulasilabilir hale geldi |
+| Tasma giderildi | OK | Akis bolumu ekran altina kesilmek yerine kendi icinde scroll aliyor |
+| Ust icerik korundu | OK | Baslik ve baglam metinleri ayni panel icinde kalmaya devam ediyor |
+| 2026-06-16 | v1.224 | OK | Odemeler akis paneline dikey kaydirma eklendi |
+
 ## v1.223 - Sayfa Tasarim Hata Duzeltmeleri
 | Kontrol | Durum | Not |
 | --- | --- | --- |
