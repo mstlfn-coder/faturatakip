@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-17 / v1.235)
+
+- v1.235 tamamlandi: `Hepsini Goster` dugmesinin ust boslugu bir piksel arttirilip ilk satir ritmine biraz daha yaklastirildi.
+- Boylece yardim metni iki satira dustugunde ust hiza daha toplu okunuyor.
+- Mikro ayar olcek degisikligi yapmadan yalnizca satir akis hissini iyilestirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-17 / v1.234)
 
 - v1.234 tamamlandi: `Hepsini Goster` dugmesinin dikey hizasi ustten baslayacak sekilde duzenlendi.

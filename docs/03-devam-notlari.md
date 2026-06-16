@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-17 / v1.235)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.235 - Reset Ust Hiz Yaklastirma`
+- Bu adimda `Hepsini Goster` dugmesinin ust boslugu bir piksel arttirilip yardim metni ve ana aksiyon dugmesinin ilk satir ritmine yaklastirildi.
+- Boylece iki satirli yardim senaryosunda ust hizada daha derli toplu bir satir akisi olusuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-17 / v1.234)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -997,4 +1006,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda reset dugmesinin ust hizasi ile ana aksiyon dugmesinin ilk satir ritmi arasindaki iliskiyi ikinci tur gorsel olarak taramak.
+- Odemeler ekraninda iki satira dusen yardim senaryosunda reset dugmesinin butun satir bloguna gore sag tarafa fazla yaklasip yaklasmadigini gorsel olarak taramak.

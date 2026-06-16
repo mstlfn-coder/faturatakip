@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.235 - Reset Ust Hiz Yaklastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ust hiza toparlandi | OK | Reset dugmesinin ust boslugu yardim metni ve ana aksiyon ritmine daha yakin oldu |
+| Iki satirli senaryo sakin | OK | Yardim metni iki satira dusunce dugme daha dengeli bir ust hatta duruyor |
+| Ortak stil korundu | OK | Iki reset dugmesi ayni piksel ayarini kullaniyor |
+| 2026-06-17 | v1.235 | OK | Reset dugmesinin ust hiza ritmi hafifce yaklastirildi |
+
 ## v1.234 - Reset Dikey Ritim
 | Kontrol | Durum | Not |
 | --- | --- | --- |
