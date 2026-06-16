@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-16 / v1.219)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.219 - Reset Arka Plan Tonu`
+- Bu adimda `Hepsini Goster` dugmesinin arka plan tonu yardim satirinin genel sakinligine bir tik daha yaklastirildi.
+- Boylece yardim metni ile reset dugmesi ayni satirda daha yumusak bir ton gecisi kuruyor ve dugme arka plani daha rafine gorunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-16 / v1.218)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -852,4 +861,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Bos filtre komut satirinda reset dugmesinin arka plan tonunu yardim satirinin genel sakinligine biraz daha yaklastirmak.
+- Bos filtre komut satirinda reset dugmesi ile yardim metni arasindaki genel kontrasti bir tik daha yumusatmak.

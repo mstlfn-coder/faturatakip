@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.219 - Reset Arka Plan Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda arka plan yumusadi | OK | Reset dugmesinin zemin tonu yardim satirina daha sakin baglaniyor |
+| Son odeme satirinda arka plan yumusadi | OK | Reset dugmesinin zemin tonu yardim satirina daha sakin baglaniyor |
+| Aksiyon okunurlugu korundu | OK | Dugme arka plani hafiflesse de reset aksiyonu belirgin kaldi |
+| 2026-06-16 | v1.219 | OK | Reset dugmesinin arka plan tonu hafifce yumusatildi |
+
 ## v1.218 - Reset Kenarlik Tonu
 | Kontrol | Durum | Not |
 | --- | --- | --- |
