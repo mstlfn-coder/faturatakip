@@ -175,6 +175,7 @@
             <Setter Property="CornerRadius" Value="999" />
             <Setter Property="Padding" Value="8,2" />
             <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Margin" Value="0,6,0,0" />
             <Setter Property="HorizontalAlignment" Value="Right" />
         </Style>
         <Style x:Key="PaymentsFilterButton" TargetType="Button" BasedOn="{StaticResource SecondaryButton}">
@@ -1639,8 +1640,7 @@
                                                                        Style="{StaticResource PaymentsItemAmountText}" />
                                                             <Border Style="{StaticResource PaymentsOpsStatusBadge}"
                                                                     Background="{Binding StatusBackground}"
-                                                                    BorderBrush="{Binding StatusBorder}"
-                                                                    Margin="0,6,0,0">
+                                                                    BorderBrush="{Binding StatusBorder}">
                                                                 <TextBlock Text="{Binding Status}"
                                                                            Foreground="{Binding StatusForeground}"
                                                                            Style="{StaticResource PaymentsItemStatusText}" />
@@ -1727,8 +1727,7 @@
                                                                        Style="{StaticResource PaymentsItemAmountText}" />
                                                             <Border Style="{StaticResource PaymentsOpsStatusBadge}"
                                                                     Background="{Binding StatusBackground}"
-                                                                    BorderBrush="{Binding StatusBorder}"
-                                                                    Margin="0,6,0,0">
+                                                                    BorderBrush="{Binding StatusBorder}">
                                                                 <TextBlock Text="{Binding Status}"
                                                                            Foreground="{Binding StatusForeground}"
                                                                            Style="{StaticResource PaymentsItemStatusText}" />

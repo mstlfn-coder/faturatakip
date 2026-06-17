@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.267 - Durum Rozeti Ortak Ust Bosluk
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak rozet ust boslugu kuruldu | OK | Iki listedeki durum rozetleri ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Durum rozetlerinin dikey ritminde gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Rozet margin tanimi tek yerde toplandi |
+| 2026-06-18 | v1.267 | OK | Durum rozeti ust boslugu ortak stile tasindi |
+
 ## v1.266 - Liste Sol Blok Ortak Iskeleti
 | Kontrol | Durum | Not |
 | --- | --- | --- |

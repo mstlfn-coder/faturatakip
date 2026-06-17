@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.267)
+
+- v1.267 tamamlandi: Durum rozetlerinin ortak ust boslugu stile tasindi.
+- Boylece iki liste ayni rozet ritmini tek noktadan aliyor.
+- Kucuk refactor, durum sunumunu korurken tekrar eden margin tanimini sadeleştirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.266)
 
 - v1.266 tamamlandi: Liste ogelerinin sol blok iskeleti ortak stile tasindi.

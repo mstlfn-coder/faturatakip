@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.267)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.267 - Durum Rozeti Ortak Ust Bosluk`
+- Bu adimda Odemeler listelerindeki durum rozetlerinin ust boslugu `PaymentsOpsStatusBadge` stiline tasindi.
+- Boylece iki listedeki durum rozetleri ayni dikey ritmi tek kaynaktan alir hale geldi ve satir ici tekrar biraz daha azaldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.266)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
