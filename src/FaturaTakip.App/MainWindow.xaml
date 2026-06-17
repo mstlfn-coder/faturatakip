@@ -249,6 +249,10 @@
         <Style x:Key="PaymentsActionRowGrid" TargetType="Grid">
             <Setter Property="Margin" Value="0,8,0,0" />
         </Style>
+        <Style x:Key="PaymentsFilterRow" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+        </Style>
         <Style x:Key="PaymentsActiveFilterText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#1D4ED8" />
             <Setter Property="FontSize" Value="10" />
@@ -1524,8 +1528,7 @@
                                                Style="{StaticResource MutedText}"
                                                Margin="0,6,0,0"
                                                TextWrapping="Wrap" />
-                                    <StackPanel Orientation="Horizontal"
-                                                Margin="0,10,0,0">
+                                    <StackPanel Style="{StaticResource PaymentsFilterRow}">
                                         <Button x:Name="PaymentsQueueFilterAllButton"
                                                 Content="Hepsi"
                                                 Style="{StaticResource PaymentsFilterButton}"
@@ -1638,8 +1641,7 @@
                                                Style="{StaticResource MutedText}"
                                                Margin="0,6,0,0"
                                                TextWrapping="Wrap" />
-                                    <StackPanel Orientation="Horizontal"
-                                                Margin="0,10,0,0">
+                                    <StackPanel Style="{StaticResource PaymentsFilterRow}">
                                         <Button x:Name="PaymentsRecentFilterAllButton"
                                                 Content="Hepsi"
                                                 Style="{StaticResource PaymentsFilterButton}"

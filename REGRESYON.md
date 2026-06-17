@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.254 - Filtre Satiri Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak filtre satiri stili kuruldu | OK | Iki filtre dugmesi satiri ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Yatay akista ve ust boslukta gozle gorulur sapma yok |
+| XAML tekrar azaldi | OK | Orientation ve margin artik tek yerde tanimli |
+| 2026-06-18 | v1.254 | OK | Filtre satiri ortak stile tasindi |
+
 ## v1.253 - Aktif Filtre Rozeti Ortak Bosluk
 | Kontrol | Durum | Not |
 | --- | --- | --- |

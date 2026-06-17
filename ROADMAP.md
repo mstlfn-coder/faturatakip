@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.254)
+
+- v1.254 tamamlandi: Filtre dugmesi satirlari ortak stile toplandi.
+- Boylece iki kart ayni yatay akis ve ust bosluk davranisini tek noktadan aliyor.
+- Kucuk refactor, ust bolum yerlesimini korurken XAML tekrarini azaltti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.253)
 
 - v1.253 tamamlandi: Aktif filtre rozetlerinin ortak ust boslugu stile tasindi.

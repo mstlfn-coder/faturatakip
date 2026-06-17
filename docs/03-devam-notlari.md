@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.254)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.254 - Filtre Satiri Ortak Stili`
+- Bu adimda Odemeler kartlarindaki filtre dugmesi satirlari ortak `PaymentsFilterRow` stiline tasindi.
+- Boylece filtrelerin yatay akisi ve ust boslugu iki kartta da tek kaynaktan yonetilir hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.253)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
