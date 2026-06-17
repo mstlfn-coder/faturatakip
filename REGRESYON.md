@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.269 - Liste Kolon Ust Hizasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kolon ust hizasi aciklandi | OK | Sol ve sag kolon stilleri `VerticalAlignment=Top` kullaniyor |
+| Gorunum korundu | OK | Liste oge hiyerarsisinde gorunur bozulma yok |
+| Iskelet kararliligi artti | OK | Iki kolon ayni ust hatta daha tutarli oturuyor |
+| 2026-06-18 | v1.269 | OK | Liste kolonlarina acik ust hizalama verildi |
+
 ## v1.268 - Sol Kolon Rol Acikligi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

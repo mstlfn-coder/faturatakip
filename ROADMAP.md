@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.269)
+
+- v1.269 tamamlandi: Liste oge kolonlarina acik ust hizalama verildi.
+- Boylece sol bilgi kolonu ile sag aksiyon kolonu ayni ust hatta daha kararlı duruyor.
+- Kucuk duzenleme, gorunur sonucu bozmadan kolon davranisini daha acik hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.268)
 
 - v1.268 tamamlandi: Sol bilgi kolonunun grid rolu ortak stile acikca eklendi.
