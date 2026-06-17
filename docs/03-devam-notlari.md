@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.256)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.256 - Kart Basligi Ortak Stili`
+- Bu adimda Odemeler kartlarindaki ust basliklar ortak `PaymentsSectionTitle` stiline tasindi.
+- Boylece iki kartta ayni baslik hiyerarsisi tek kaynaktan yonetilir hale geldi ve XAML tekrari biraz daha azaldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.255)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

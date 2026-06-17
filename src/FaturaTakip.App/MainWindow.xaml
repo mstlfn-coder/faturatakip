@@ -253,6 +253,11 @@
             <Setter Property="Orientation" Value="Horizontal" />
             <Setter Property="Margin" Value="0,10,0,0" />
         </Style>
+        <Style x:Key="PaymentsSectionTitle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#1F2937" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
         <Style x:Key="PaymentsSummaryText" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
             <Setter Property="Margin" Value="0,6,0,0" />
             <Setter Property="TextWrapping" Value="Wrap" />
@@ -1524,9 +1529,7 @@
                                     Style="{StaticResource PaymentsOpsCard}">
                                 <StackPanel>
                                     <TextBlock Text="Odeme Calisma Kuyrugu"
-                                               Foreground="#1F2937"
-                                               FontSize="15"
-                                               FontWeight="SemiBold" />
+                                               Style="{StaticResource PaymentsSectionTitle}" />
                                     <TextBlock x:Name="PaymentsQueueSummaryText"
                                                Text="Odenmemis odemeler burada listelenir."
                                                Style="{StaticResource PaymentsSummaryText}" />
@@ -1635,9 +1638,7 @@
                                     Style="{StaticResource PaymentsOpsCard}">
                                 <StackPanel>
                                     <TextBlock Text="Son Odemeler"
-                                               Foreground="#1F2937"
-                                               FontSize="15"
-                                               FontWeight="SemiBold" />
+                                               Style="{StaticResource PaymentsSectionTitle}" />
                                     <TextBlock x:Name="PaymentsRecentPaymentsSummaryText"
                                                Text="Son odemeler burada listelenir."
                                                Style="{StaticResource PaymentsSummaryText}" />

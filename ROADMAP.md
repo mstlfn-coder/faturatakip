@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.256)
+
+- v1.256 tamamlandi: Odemeler kart basliklari ortak stile toplandi.
+- Boylece iki kart ayni baslik renk, boyut ve agirlik ayarini tek noktadan aliyor.
+- Kucuk refactor, ust hiyerarsiyi korurken XAML tekrarini azaltti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.255)
 
 - v1.255 tamamlandi: Ozet aciklama metinleri ortak stile toplandi.

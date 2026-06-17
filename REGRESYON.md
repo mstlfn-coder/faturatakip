@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.256 - Kart Basligi Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak kart basligi stili kuruldu | OK | Iki kart basligi ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Baslik hiyerarsisinde gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Renk, boyut ve agirlik tek yerde tanimli |
+| 2026-06-18 | v1.256 | OK | Kart basliklari ortak stile tasindi |
+
 ## v1.255 - Ozet Metni Ortak Stili
 | Kontrol | Durum | Not |
 | --- | --- | --- |
