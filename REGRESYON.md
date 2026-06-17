@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.263 - Liste Durum Metni Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak durum metni stili kuruldu | OK | Iki listedeki rozet metinleri ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Rozet tipografisi ve sag hiza davranisinda gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Durum metni ayarlari tek yerde toplandi |
+| 2026-06-18 | v1.263 | OK | Liste durum metni ortak stile tasindi |
+
 ## v1.262 - Liste Tutar Metni Ortak Stili
 | Kontrol | Durum | Not |
 | --- | --- | --- |

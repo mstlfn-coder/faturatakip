@@ -284,6 +284,11 @@
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="HorizontalAlignment" Value="Right" />
         </Style>
+        <Style x:Key="PaymentsItemStatusText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
         <Style x:Key="PaymentsActiveFilterText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#1D4ED8" />
             <Setter Property="FontSize" Value="10" />
@@ -1627,9 +1632,7 @@
                                                                     Margin="0,6,0,0">
                                                                 <TextBlock Text="{Binding Status}"
                                                                            Foreground="{Binding StatusForeground}"
-                                                                           FontSize="10"
-                                                                           FontWeight="SemiBold"
-                                                                           HorizontalAlignment="Right" />
+                                                                           Style="{StaticResource PaymentsItemStatusText}" />
                                                             </Border>
                                                             <Button Content="Ac"
                                                                     Style="{StaticResource PaymentsOpsActionButton}"
@@ -1724,9 +1727,7 @@
                                                                     Margin="0,6,0,0">
                                                                 <TextBlock Text="{Binding Status}"
                                                                            Foreground="{Binding StatusForeground}"
-                                                                           FontSize="10"
-                                                                           FontWeight="SemiBold"
-                                                                           HorizontalAlignment="Right" />
+                                                                           Style="{StaticResource PaymentsItemStatusText}" />
                                                             </Border>
                                                             <Button Content="Ac"
                                                                     Style="{StaticResource PaymentsOpsActionButton}"

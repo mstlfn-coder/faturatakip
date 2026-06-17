@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.263)
+
+- v1.263 tamamlandi: Liste ogelerinin durum rozet metinleri ortak stile toplandi.
+- Boylece iki liste ayni durum tipografisini ve sag hiza davranisini tek noktadan aliyor.
+- Kucuk refactor, rozet sunumunu korurken tekrar eden metin ayarlarini sadeleştirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.262)
 
 - v1.262 tamamlandi: Liste ogelerinin tutar metinleri ortak stile toplandi.
