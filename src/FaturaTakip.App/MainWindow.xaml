@@ -260,6 +260,7 @@
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="CornerRadius" Value="999" />
             <Setter Property="Padding" Value="8,3" />
+            <Setter Property="Margin" Value="0,6,0,0" />
             <Setter Property="HorizontalAlignment" Value="Left" />
         </Style>
     </Window.Resources>
@@ -1543,7 +1544,6 @@
                                     </StackPanel>
                                     <Border x:Name="PaymentsQueueActiveFilterBadge"
                                             Style="{StaticResource PaymentsActiveFilterBadge}"
-                                            Margin="0,6,0,0"
                                             ToolTip="Odeme kuyrugunda uygulanan guncel gorunumu gosterir.">
                                         <TextBlock x:Name="PaymentsQueueActiveFilterText"
                                                    Text="AKTIF KUYRUK: TUM KUYRUK"
@@ -1653,7 +1653,6 @@
                                     </StackPanel>
                                     <Border x:Name="PaymentsRecentActiveFilterBadge"
                                             Style="{StaticResource PaymentsActiveFilterBadge}"
-                                            Margin="0,6,0,0"
                                             ToolTip="Son odemelerde uygulanan guncel gorunumu gosterir.">
                                         <TextBlock x:Name="PaymentsRecentActiveFilterText"
                                                    Text="AKTIF SON ODEME: TUM SON ODEMELER"

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.253)
+
+- v1.253 tamamlandi: Aktif filtre rozetlerinin ortak ust boslugu stile tasindi.
+- Boylece iki rozet ayni dikey nefesi tek noktadan aliyor.
+- Kucuk refactor, rozetlerin akisini korurken yerlesim tekrarini azaltti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.252)
 
 - v1.252 tamamlandi: Aktif filtre rozetlerinin metin gorunumu ortak stile toplandi.

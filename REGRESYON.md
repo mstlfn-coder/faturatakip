@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.253 - Aktif Filtre Rozeti Ortak Bosluk
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak rozet boslugu stile tasindi | OK | Iki aktif filtre rozeti ayni margin degerini paylasiyor |
+| Gorunum korundu | OK | Rozetlerin kart icindeki dikey konumu degismedi |
+| XAML tekrar azaldi | OK | Margin satiri artik tek yerde tanimli |
+| 2026-06-18 | v1.253 | OK | Aktif filtre rozeti boslugu ortak stile tasindi |
+
 ## v1.252 - Aktif Filtre Metni Ortak Stili
 | Kontrol | Durum | Not |
 | --- | --- | --- |
