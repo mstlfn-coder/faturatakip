@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.250 - Grid Kolon Ortak Rolleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kolon rolleri ortaklasti | OK | Yardim metni ve reset dugmesi kolonu stillerden aliyor |
+| Layout korunuyor | OK | Uc kolonlu satirin gorunur davranisinda degisiklik yok |
+| XAML sadeleşti | OK | Satir ici tekrarlar azaltildi |
+| 2026-06-18 | v1.250 | OK | Grid kolon rolleri ortak stillere tasindi |
+
 ## v1.249 - Ana Aksiyon Ortak Stili
 | Kontrol | Durum | Not |
 | --- | --- | --- |

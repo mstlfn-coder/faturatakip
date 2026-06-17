@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.250)
+
+- v1.250 tamamlandi: Yardim metni ve reset aksiyonu icin grid kolon rolleri ortak stillere tasindi.
+- Boylece aksiyon satirindaki eleman gorevleri daha az tekrar ile okunur hale geldi.
+- Kucuk refactor, layout davranisini degistirmeden XAML yuzeyini sadeleştirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.249)
 
 - v1.249 tamamlandi: Iki ana acilis dugmesi ortak buton stiline toplandi.

@@ -210,6 +210,7 @@
             <Setter Property="Padding" Value="12,3" />
         </Style>
         <Style x:Key="PaymentsResetFilterButton" TargetType="Button" BasedOn="{StaticResource PaymentsOpsActionButton}">
+            <Setter Property="Grid.Column" Value="2" />
             <Setter Property="Background" Value="#FAFBFC" />
             <Setter Property="BorderBrush" Value="#CDD8E3" />
             <Setter Property="Foreground" Value="#64748B" />
@@ -235,6 +236,7 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="PaymentsActionHintText" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
+            <Setter Property="Grid.Column" Value="1" />
             <Setter Property="Foreground" Value="#64748B" />
             <Setter Property="FontSize" Value="12" />
             <Setter Property="LineHeight" Value="15" />
@@ -1555,11 +1557,9 @@
                                                 ToolTip="Enter ile oncelikli kuyruk kaydini acar."
                                                 Click="OpenNextQueueInvoiceButton_Click" />
                                         <TextBlock x:Name="PaymentsQueueActionHintText"
-                                                   Grid.Column="1"
                                                    Text="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun."
                                                    Style="{StaticResource PaymentsActionHintText}" />
                                         <Button x:Name="PaymentsQueueResetFilterButton"
-                                                Grid.Column="2"
                                                 Content="Hepsini Goster"
                                                 Style="{StaticResource PaymentsResetFilterButton}"
                                                 Visibility="Collapsed"
@@ -1670,11 +1670,9 @@
                                                 ToolTip="Enter ile son odeme kaydini acar."
                                                 Click="OpenLatestPaymentFromPaymentsButton_Click" />
                                         <TextBlock x:Name="PaymentsRecentActionHintText"
-                                                   Grid.Column="1"
                                                    Text="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun."
                                                    Style="{StaticResource PaymentsActionHintText}" />
                                         <Button x:Name="PaymentsRecentResetFilterButton"
-                                                Grid.Column="2"
                                                 Content="Hepsini Goster"
                                                 Style="{StaticResource PaymentsResetFilterButton}"
                                                 Visibility="Collapsed"

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.250)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.250 - Grid Kolon Ortak Rolleri`
+- Bu adimda yardim metni ve reset dugmesinin `Grid.Column` rolleri ilgili ortak stiller icine tasindi.
+- Boylece uc parcali aksiyon satirinda rol dagilimi XAML icinde daha sade hale geldi ve kolon yerlesimi tek kaynaktan korunur oldu.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.249)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
