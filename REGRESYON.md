@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.244 - Yardim Metni Sag Nefesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Metin ve reset arasi bosluk dengelendi | OK | Yardim metni sagdan biraz nefes alarak reset dugmesine carpismiyor |
+| Uc parcali satir daha temiz | OK | Orta metin alani ile sag aksiyon kolonu daha belirgin ayrisiyor |
+| Diger hiz ayarlari korundu | OK | Min genislik ve saga yaslama davranisi aynen calisiyor |
+| 2026-06-18 | v1.244 | OK | Yardim metni ile reset kolonu arasina sabit sag bosluk eklendi |
+
 ## v1.243 - Reset Sag Hiz Sabitleme
 | Kontrol | Durum | Not |
 | --- | --- | --- |

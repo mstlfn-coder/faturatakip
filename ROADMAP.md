@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.244)
+
+- v1.244 tamamlandi: Yardim metinlerinin sag tarafina kucuk ve sabit bir nefes alani eklendi.
+- Boylece reset dugmesi ile metin arasindaki ayrim daha kontrollu ve daha tutarli gorunuyor.
+- Mikro ayar uc parcali satirin orta ve sag bolumu arasindaki ritmi yumusatti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.243)
 
 - v1.243 tamamlandi: `Hepsini Goster` dugmesi kolon icinde saga yaslanacak sekilde sabitlendi.

@@ -1548,7 +1548,7 @@
                                                    FontSize="12"
                                                    LineHeight="16"
                                                    LineStackingStrategy="BlockLineHeight"
-                                                   Margin="10,3,0,0"
+                                                   Margin="10,3,8,0"
                                                    VerticalAlignment="Top"
                                                    TextWrapping="Wrap" />
                                         <Button x:Name="PaymentsQueueResetFilterButton"
@@ -1671,7 +1671,7 @@
                                                    FontSize="12"
                                                    LineHeight="16"
                                                    LineStackingStrategy="BlockLineHeight"
-                                                   Margin="10,3,0,0"
+                                                   Margin="10,3,8,0"
                                                    VerticalAlignment="Top"
                                                    TextWrapping="Wrap" />
                                         <Button x:Name="PaymentsRecentResetFilterButton"

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.244)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.244 - Yardim Metni Sag Nefesi`
+- Bu adimda iki yardim metnine sag tarafta sabit bir bosluk tanimlanarak reset aksiyon kolonu ile aralarindaki nefes dengelendi.
+- Boylece uc parcali satirda metin ile sag aksiyon arasinda daha temiz ve daha tutarli bir ayrim olustu.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.243)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
