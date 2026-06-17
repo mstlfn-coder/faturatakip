@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.268)
+
+- v1.268 tamamlandi: Sol bilgi kolonunun grid rolu ortak stile acikca eklendi.
+- Boylece liste oge iskeletinde iki kolonun gorevleri stil seviyesinde tamamlandi.
+- Kucuk refactor, gorunur sonucu degistirmeden iskelet okunurlugunu arttirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.267)
 
 - v1.267 tamamlandi: Durum rozetlerinin ortak ust boslugu stile tasindi.

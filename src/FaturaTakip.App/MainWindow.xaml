@@ -261,7 +261,9 @@
         <Style x:Key="PaymentsSectionItemsControl" TargetType="ItemsControl">
             <Setter Property="Margin" Value="0,14,0,0" />
         </Style>
-        <Style x:Key="PaymentsItemLeftStack" TargetType="StackPanel" />
+        <Style x:Key="PaymentsItemLeftStack" TargetType="StackPanel">
+            <Setter Property="Grid.Column" Value="0" />
+        </Style>
         <Style x:Key="PaymentsItemRightStack" TargetType="StackPanel">
             <Setter Property="Grid.Column" Value="1" />
             <Setter Property="Margin" Value="16,0,0,0" />

@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.268 - Sol Kolon Rol Acikligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sol kolon rolu aciklandi | OK | Sol bilgi kolonu `Grid.Column=0` rolunu stilden aliyor |
+| Gorunum korundu | OK | Liste oge yerlesiminde gorunur bozulma yok |
+| Iskelet okunurlugu artti | OK | Sol ve sag kolon rolleri birlikte stiller uzerinden okunuyor |
+| 2026-06-18 | v1.268 | OK | Sol kolon rolü ortak stile acikca eklendi |
+
 ## v1.267 - Durum Rozeti Ortak Ust Bosluk
 | Kontrol | Durum | Not |
 | --- | --- | --- |
