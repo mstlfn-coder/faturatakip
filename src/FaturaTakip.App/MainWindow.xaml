@@ -279,6 +279,11 @@
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
+        <Style x:Key="PaymentsItemAmountText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
         <Style x:Key="PaymentsActiveFilterText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#1D4ED8" />
             <Setter Property="FontSize" Value="10" />
@@ -1615,9 +1620,7 @@
                                                                     HorizontalAlignment="Right">
                                                             <TextBlock Text="{Binding Amount}"
                                                                        Foreground="#166534"
-                                                                       FontSize="12"
-                                                                       FontWeight="SemiBold"
-                                                                       HorizontalAlignment="Right" />
+                                                                       Style="{StaticResource PaymentsItemAmountText}" />
                                                             <Border Style="{StaticResource PaymentsOpsStatusBadge}"
                                                                     Background="{Binding StatusBackground}"
                                                                     BorderBrush="{Binding StatusBorder}"
@@ -1714,9 +1717,7 @@
                                                                     HorizontalAlignment="Right">
                                                             <TextBlock Text="{Binding Amount}"
                                                                        Foreground="#1D4ED8"
-                                                                       FontSize="12"
-                                                                       FontWeight="SemiBold"
-                                                                       HorizontalAlignment="Right" />
+                                                                       Style="{StaticResource PaymentsItemAmountText}" />
                                                             <Border Style="{StaticResource PaymentsOpsStatusBadge}"
                                                                     Background="{Binding StatusBackground}"
                                                                     BorderBrush="{Binding StatusBorder}"

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.262)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.262 - Liste Tutar Metni Ortak Stili`
+- Bu adimda Odemeler listelerindeki sag blok tutar metinleri ortak `PaymentsItemAmountText` stiline tasindi.
+- Boylece iki listedeki tutar satirlarinin boyut, agirlik ve sag hiza davranisi tek kaynaktan yonetilir hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.261)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

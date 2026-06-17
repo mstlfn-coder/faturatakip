@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.262)
+
+- v1.262 tamamlandi: Liste ogelerinin tutar metinleri ortak stile toplandi.
+- Boylece iki liste ayni tutar hiyerarsisini ve sag hiza davranisini tek noktadan aliyor.
+- Kucuk refactor, miktar sunumunu korurken tekrar eden tipografi ayarlarini sadeleştirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.261)
 
 - v1.261 tamamlandi: Liste ogelerinin baslik satirlari ortak stile toplandi.

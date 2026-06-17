@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.262 - Liste Tutar Metni Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak tutar metni stili kuruldu | OK | Iki listedeki tutar satirlari ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Tutar hiyerarsisi ve sag hiza davranisinda gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Tutar tipografisi tek yerde toplandi |
+| 2026-06-18 | v1.262 | OK | Liste tutar metni ortak stile tasindi |
+
 ## v1.261 - Liste Baslik Metni Ortak Stili
 | Kontrol | Durum | Not |
 | --- | --- | --- |
