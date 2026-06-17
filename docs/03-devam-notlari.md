@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.264)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.264 - Liste Ac Dugmesi Ortak Stili`
+- Bu adimda Odemeler listelerindeki sag blok `Ac` dugmeleri ortak `PaymentsItemOpenButton` stiline tasindi.
+- Boylece iki listedeki ikincil acilis aksiyonu tek kaynaktan yonetilir hale geldi ve alt bloktaki tekrar biraz daha azaldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.263)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

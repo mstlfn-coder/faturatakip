@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.264)
+
+- v1.264 tamamlandi: Liste ogelerinin `Ac` dugmeleri ortak stile toplandi.
+- Boylece iki liste ayni ikincil aksiyon boslugu ve tipografisini tek noktadan aliyor.
+- Kucuk refactor, sag blok aksiyonlarini korurken tekrar eden dugme ayarlarini sadeleştirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.263)
 
 - v1.263 tamamlandi: Liste ogelerinin durum rozet metinleri ortak stile toplandi.

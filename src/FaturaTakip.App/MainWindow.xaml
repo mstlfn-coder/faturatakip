@@ -289,6 +289,13 @@
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="HorizontalAlignment" Value="Right" />
         </Style>
+        <Style x:Key="PaymentsItemOpenButton" TargetType="Button" BasedOn="{StaticResource PaymentsOpsActionButton}">
+            <Setter Property="Content" Value="Ac" />
+            <Setter Property="Margin" Value="0,8,0,0" />
+            <Setter Property="Padding" Value="10,3" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
         <Style x:Key="PaymentsActiveFilterText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#1D4ED8" />
             <Setter Property="FontSize" Value="10" />
@@ -1634,12 +1641,7 @@
                                                                            Foreground="{Binding StatusForeground}"
                                                                            Style="{StaticResource PaymentsItemStatusText}" />
                                                             </Border>
-                                                            <Button Content="Ac"
-                                                                    Style="{StaticResource PaymentsOpsActionButton}"
-                                                                    Margin="0,8,0,0"
-                                                                    Padding="10,3"
-                                                                    FontSize="11"
-                                                                    HorizontalAlignment="Right"
+                                                            <Button Style="{StaticResource PaymentsItemOpenButton}"
                                                                     Tag="{Binding InvoiceId}"
                                                                     ToolTip="Bu acik faturayi odeme alaninda hedefli olarak acar."
                                                                     Click="OpenPaymentsQueueInvoiceButton_Click" />
@@ -1729,12 +1731,7 @@
                                                                            Foreground="{Binding StatusForeground}"
                                                                            Style="{StaticResource PaymentsItemStatusText}" />
                                                             </Border>
-                                                            <Button Content="Ac"
-                                                                    Style="{StaticResource PaymentsOpsActionButton}"
-                                                                    Margin="0,8,0,0"
-                                                                    Padding="10,3"
-                                                                    FontSize="11"
-                                                                    HorizontalAlignment="Right"
+                                                            <Button Style="{StaticResource PaymentsItemOpenButton}"
                                                                     Tag="{Binding InvoiceId}"
                                                                     ToolTip="Bu odemenin ait oldugu faturayi odeme alaninda yeniden acar."
                                                                     Click="OpenRecentPaymentInvoiceButton_Click" />

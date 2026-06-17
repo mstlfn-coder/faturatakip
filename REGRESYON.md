@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.264 - Liste Ac Dugmesi Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak ac dugmesi stili kuruldu | OK | Iki listedeki sag blok `Ac` dugmeleri ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Dugme boslugu ve tipografisinde gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Dugme icerigi ve yerlesim ayarlari tek yerde toplandi |
+| 2026-06-18 | v1.264 | OK | Liste `Ac` dugmesi ortak stile tasindi |
+
 ## v1.263 - Liste Durum Metni Ortak Stili
 | Kontrol | Durum | Not |
 | --- | --- | --- |
