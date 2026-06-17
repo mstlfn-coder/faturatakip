@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-18 / v1.241)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.241 - Reset Son Yatay Nefes`
+- Bu adimda `Hepsini Goster` dugmesinin yardim metninden sonraki sol boslugu hafifce azaltildi.
+- Boylece grid satirinda yardim metni ile reset dugmesi arasindaki son yatay nefes daha dogal ve daha bagli okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.240)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -1051,4 +1060,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda grid satirinda yardim metni ile reset dugmesi arasindaki son yatay nefesin yeterli olup olmadigini gorsel olarak taramak.
+- Odemeler ekraninda uc parcali grid satirinin artik sabitlenip sabitlenmedigini gorusel olarak kontrol etmek.

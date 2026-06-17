@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.241)
+
+- v1.241 tamamlandi: `Hepsini Goster` dugmesinin yardim metninden sonraki sol boslugu hafifce azaltildi.
+- Boylece metin ile reset aksiyonu arasindaki son yatay nefes daha dogal hale geldi.
+- Mikro ayar uc parcali satirin yatay butunlugunu bir tik daha guclendirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.240)
 
 - v1.240 tamamlandi: Yardim metninin ana aksiyon dugmesinden sonraki baslangic boslugu hafifce azaltildi.

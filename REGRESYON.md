@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.241 - Reset Son Yatay Nefes
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Son yatay bosluk dengelendi | OK | Yardim metni ile reset dugmesi birbirine biraz daha yakin duruyor |
+| Uc parcali satir toparlandi | OK | Ana aksiyon, yardim metni ve reset dugmesi daha bagli akiyor |
+| Diger durumlar korundu | OK | Pasif, hover ve odak davranislari bozulmadi |
+| 2026-06-18 | v1.241 | OK | Reset dugmesinin son yatay boslugu hafifce azaltildi |
+
 ## v1.240 - Grid Orta Bosluk
 | Kontrol | Durum | Not |
 | --- | --- | --- |
