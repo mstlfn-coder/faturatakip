@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.249)
+
+- v1.249 tamamlandi: Iki ana acilis dugmesi ortak buton stiline toplandi.
+- Boylece pad degeri ve genel buton davranisi tek noktadan yonetilir hale geldi.
+- Kucuk refactor, aksiyon satirinin buton tarafini da ortaklasarak bakimi kolaylastirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.248)
 
 - v1.248 tamamlandi: Uc kolonlu aksiyon satiri ortak grid stiline toplandi.

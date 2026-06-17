@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.249 - Ana Aksiyon Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak ana aksiyon stili kuruldu | OK | Iki acilis dugmesi ayni stil kaynagini kullaniyor |
+| Pad davranisi korundu | OK | Dugmelerin gorunur olcusu degismeden ayni kaldi |
+| Bakim kolaylasti | OK | Sonraki buton ayarlari tek noktadan yapilabilecek |
+| 2026-06-18 | v1.249 | OK | Ana aksiyon dugmeleri ortak stile tasindi |
+
 ## v1.248 - Aksiyon Satiri Ortak Gridi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

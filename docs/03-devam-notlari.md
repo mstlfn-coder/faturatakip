@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.249)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.249 - Ana Aksiyon Ortak Stili`
+- Bu adimda iki ana acilis dugmesinin ortak yerlesim ayari `PaymentsPrimaryActionButton` stiline tasindi.
+- Boylece Odemeler akisindaki ana aksiyonlarin ic boslugu ve buton davranisi tek kaynaktan korunur hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.248)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
