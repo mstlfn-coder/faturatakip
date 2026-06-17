@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.265 - Liste Sag Blok Ortak Iskeleti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak sag blok stili kuruldu | OK | Iki listedeki yan kolon ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Sag blok boslugu ve hizalanma davranisinda gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Yan kolon yerlesim ayarlari tek yerde toplandi |
+| 2026-06-18 | v1.265 | OK | Liste sag blok iskeleti ortak stile tasindi |
+
 ## v1.264 - Liste Ac Dugmesi Ortak Stili
 | Kontrol | Durum | Not |
 | --- | --- | --- |

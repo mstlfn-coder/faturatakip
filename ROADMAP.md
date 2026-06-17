@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.265)
+
+- v1.265 tamamlandi: Liste ogelerinin sag blok iskeleti ortak stile toplandi.
+- Boylece iki liste ayni yan kolon boslugu ve hizalanma davranisini tek noktadan aliyor.
+- Kucuk refactor, sag blok yapisini korurken tekrar eden yerlesim ayarlarini sadeleştirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.264)
 
 - v1.264 tamamlandi: Liste ogelerinin `Ac` dugmeleri ortak stile toplandi.
