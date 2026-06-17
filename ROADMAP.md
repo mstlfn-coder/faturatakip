@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.245)
+
+- v1.245 tamamlandi: Yardim metinlerinin ust boslugu bir piksel azaltildi.
+- Boylece orta metnin ilk satiri ana aksiyon ve reset dugmesiyle daha yakin bir ust hatta okundu.
+- Mikro ayar satirin dikey ritmini bozmayip daha toplu bir baslangic hissi verdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.244)
 
 - v1.244 tamamlandi: Yardim metinlerinin sag tarafina kucuk ve sabit bir nefes alani eklendi.

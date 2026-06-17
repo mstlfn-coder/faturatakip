@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.245 - Yardim Metni Ust Hiz
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ust hat yakinlasti | OK | Yardim metninin ilk satiri aksiyonlarla daha dengeli basliyor |
+| Dikey ritim korundu | OK | Satir iki satira kirildiginda da akista bozulma yok |
+| Diger sag hiz ayarlari korundu | OK | Sag nefes ve reset kolonu ayarlari aynen calisiyor |
+| 2026-06-18 | v1.245 | OK | Yardim metninin ust boslugu bir piksel azaltildi |
+
 ## v1.244 - Yardim Metni Sag Nefesi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

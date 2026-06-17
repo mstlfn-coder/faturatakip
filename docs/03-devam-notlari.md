@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.245)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.245 - Yardim Metni Ust Hiz`
+- Bu adimda iki yardim metninin ust boslugu bir piksel azaltilarak ana aksiyon ve reset dugmesiyle ilk satir hizasi yakinlastirildi.
+- Boylece uc parcali satirda ust ritim biraz daha sakin ve tek parca gorunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.244)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
