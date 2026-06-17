@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.252)
+
+- v1.252 tamamlandi: Aktif filtre rozetlerinin metin gorunumu ortak stile toplandi.
+- Boylece iki rozet ayni renk, boyut ve agirlik ayarini tek noktadan aliyor.
+- Kucuk refactor, rozet dilini korurken sunum tekrarini azaltti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.251)
 
 - v1.251 tamamlandi: Yardim metnindeki ortak aciklama cumlesi stile tasindi.

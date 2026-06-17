@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.252 - Aktif Filtre Metni Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak aktif filtre stili kuruldu | OK | Iki rozet metni ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Mavi rozet metinlerinin sunumu degismedi |
+| XAML tekrar azaldi | OK | Renk, punto ve agirlik tekrar yazilmiyor |
+| 2026-06-18 | v1.252 | OK | Aktif filtre rozet metinleri ortak stile tasindi |
+
 ## v1.251 - Yardim Cumlesi Ortak Kaynagi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -249,6 +249,11 @@
         <Style x:Key="PaymentsActionRowGrid" TargetType="Grid">
             <Setter Property="Margin" Value="0,8,0,0" />
         </Style>
+        <Style x:Key="PaymentsActiveFilterText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#1D4ED8" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
         <Style x:Key="PaymentsActiveFilterBadge" TargetType="Border">
             <Setter Property="Background" Value="#EFF6FF" />
             <Setter Property="BorderBrush" Value="#BFDBFE" />
@@ -1542,9 +1547,7 @@
                                             ToolTip="Odeme kuyrugunda uygulanan guncel gorunumu gosterir.">
                                         <TextBlock x:Name="PaymentsQueueActiveFilterText"
                                                    Text="AKTIF KUYRUK: TUM KUYRUK"
-                                                   Foreground="#1D4ED8"
-                                                   FontSize="10"
-                                                   FontWeight="SemiBold" />
+                                                   Style="{StaticResource PaymentsActiveFilterText}" />
                                     </Border>
                                     <Grid Style="{StaticResource PaymentsActionRowGrid}">
                                         <Grid.ColumnDefinitions>
@@ -1654,9 +1657,7 @@
                                             ToolTip="Son odemelerde uygulanan guncel gorunumu gosterir.">
                                         <TextBlock x:Name="PaymentsRecentActiveFilterText"
                                                    Text="AKTIF SON ODEME: TUM SON ODEMELER"
-                                                   Foreground="#1D4ED8"
-                                                   FontSize="10"
-                                                   FontWeight="SemiBold" />
+                                                   Style="{StaticResource PaymentsActiveFilterText}" />
                                     </Border>
                                     <Grid Style="{StaticResource PaymentsActionRowGrid}">
                                         <Grid.ColumnDefinitions>
