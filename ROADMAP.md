@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.251)
+
+- v1.251 tamamlandi: Yardim metnindeki ortak aciklama cumlesi stile tasindi.
+- Boylece iki kart ayni yardim dilini tek noktadan aliyor.
+- Kucuk refactor, gorsel sonucu korurken satir ici metin tekrarini azaltti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.250)
 
 - v1.250 tamamlandi: Yardim metni ve reset aksiyonu icin grid kolon rolleri ortak stillere tasindi.

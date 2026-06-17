@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.251)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.251 - Yardim Cumlesi Ortak Kaynagi`
+- Bu adimda iki yardim metninde tekrar eden aciklama cumlesi `PaymentsActionHintText` stili icine tasindi.
+- Boylece uc parcali aksiyon satirindaki ortak yardim dili tek kaynaktan korunur hale geldi ve XAML tekrari biraz daha azaldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.250)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

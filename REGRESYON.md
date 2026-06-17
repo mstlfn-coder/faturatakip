@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.251 - Yardim Cumlesi Ortak Kaynagi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak yardim cumlesi stile tasindi | OK | Iki yardim metni ayni aciklama metnini paylasiyor |
+| Gorunum korundu | OK | Yardim satirinin gorunur davranisinda degisiklik yok |
+| XAML tekrar azaldi | OK | Aksiyon satirinda icerik tekrari azaltildi |
+| 2026-06-18 | v1.251 | OK | Yardim cumlesi ortak stile tasindi |
+
 ## v1.250 - Grid Kolon Ortak Rolleri
 | Kontrol | Durum | Not |
 | --- | --- | --- |

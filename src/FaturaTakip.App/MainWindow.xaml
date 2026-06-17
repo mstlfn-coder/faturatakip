@@ -237,6 +237,7 @@
         </Style>
         <Style x:Key="PaymentsActionHintText" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
             <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="Text" Value="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun." />
             <Setter Property="Foreground" Value="#64748B" />
             <Setter Property="FontSize" Value="12" />
             <Setter Property="LineHeight" Value="15" />
@@ -1557,7 +1558,6 @@
                                                 ToolTip="Enter ile oncelikli kuyruk kaydini acar."
                                                 Click="OpenNextQueueInvoiceButton_Click" />
                                         <TextBlock x:Name="PaymentsQueueActionHintText"
-                                                   Text="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun."
                                                    Style="{StaticResource PaymentsActionHintText}" />
                                         <Button x:Name="PaymentsQueueResetFilterButton"
                                                 Content="Hepsini Goster"
@@ -1670,7 +1670,6 @@
                                                 ToolTip="Enter ile son odeme kaydini acar."
                                                 Click="OpenLatestPaymentFromPaymentsButton_Click" />
                                         <TextBlock x:Name="PaymentsRecentActionHintText"
-                                                   Text="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun."
                                                    Style="{StaticResource PaymentsActionHintText}" />
                                         <Button x:Name="PaymentsRecentResetFilterButton"
                                                 Content="Hepsini Goster"
