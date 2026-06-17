@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.257)
+
+- v1.257 tamamlandi: Odemeler kartlarinin ic dikey iskeleti ortak stile tasindi.
+- Boylece iki kart ayni icerik kabini tek noktadan paylasiyor.
+- Kucuk refactor, gorsel sonucu degistirmeden kart yapisini daha okunur hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.256)
 
 - v1.256 tamamlandi: Odemeler kart basliklari ortak stile toplandi.

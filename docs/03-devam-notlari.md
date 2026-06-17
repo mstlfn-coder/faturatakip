@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.257)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.257 - Kart Icerigi Ortak Iskeleti`
+- Bu adimda Odemeler kartlarinin ic `StackPanel` iskeleti ortak `PaymentsSectionStack` stiline tasindi.
+- Boylece iki kartin ustten alta ilerleyen icerik yapisi tek kaynaktan okunur hale geldi ve ust bolum sadeleşti.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.256)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

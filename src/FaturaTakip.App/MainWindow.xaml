@@ -253,6 +253,7 @@
             <Setter Property="Orientation" Value="Horizontal" />
             <Setter Property="Margin" Value="0,10,0,0" />
         </Style>
+        <Style x:Key="PaymentsSectionStack" TargetType="StackPanel" />
         <Style x:Key="PaymentsSectionTitle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#1F2937" />
             <Setter Property="FontSize" Value="15" />
@@ -1527,7 +1528,7 @@
 
                             <Border Grid.Column="0"
                                     Style="{StaticResource PaymentsOpsCard}">
-                                <StackPanel>
+                                <StackPanel Style="{StaticResource PaymentsSectionStack}">
                                     <TextBlock Text="Odeme Calisma Kuyrugu"
                                                Style="{StaticResource PaymentsSectionTitle}" />
                                     <TextBlock x:Name="PaymentsQueueSummaryText"
@@ -1636,7 +1637,7 @@
 
                             <Border Grid.Column="2"
                                     Style="{StaticResource PaymentsOpsCard}">
-                                <StackPanel>
+                                <StackPanel Style="{StaticResource PaymentsSectionStack}">
                                     <TextBlock Text="Son Odemeler"
                                                Style="{StaticResource PaymentsSectionTitle}" />
                                     <TextBlock x:Name="PaymentsRecentPaymentsSummaryText"

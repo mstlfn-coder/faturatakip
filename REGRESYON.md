@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.257 - Kart Icerigi Ortak Iskeleti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak kart iskeleti kuruldu | OK | Iki kart ayni `StackPanel` stilini kullaniyor |
+| Gorunum korundu | OK | Kart icerik akisi ve bosluklarda gorunur bozulma yok |
+| XAML sadeleşti | OK | Kart iskeleti tek noktadan okunuyor |
+| 2026-06-18 | v1.257 | OK | Kart icerigi ortak stile tasindi |
+
 ## v1.256 - Kart Basligi Ortak Stili
 | Kontrol | Durum | Not |
 | --- | --- | --- |
