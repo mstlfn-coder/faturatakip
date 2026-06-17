@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.243)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.243 - Reset Sag Hiz Sabitleme`
+- Bu adimda `Hepsini Goster` dugmesine `HorizontalAlignment=Right` verilerek sag aksiyon kolonu icindeki durusu sabitlendi.
+- Boylece minimum genislik ile birlikte reset dugmesi satir sonunda daha temiz ve daha tutarli bir hizada gorunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.242)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

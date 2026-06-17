@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.243)
+
+- v1.243 tamamlandi: `Hepsini Goster` dugmesi kolon icinde saga yaslanacak sekilde sabitlendi.
+- Boylece uc parcali grid satirinin bitis hatti daha temiz ve daha kararlı gorunuyor.
+- Mikro ayar minimum genislik adimini tamamlayarak satir sonu hizini daha profesyonel hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.242)
 
 - v1.242 tamamlandi: `Hepsini Goster` dugmesine tutarli bir minimum genislik verildi.

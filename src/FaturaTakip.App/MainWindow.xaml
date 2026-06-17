@@ -215,6 +215,7 @@
             <Setter Property="MinWidth" Value="92" />
             <Setter Property="Padding" Value="8,1" />
             <Setter Property="Margin" Value="4,1,2,0" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">

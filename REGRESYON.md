@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.243 - Reset Sag Hiz Sabitleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sag hiza sabitlendi | OK | Reset dugmesi sag aksiyon kolonunun bitisinde daha tutarli duruyor |
+| Min genislik ile uyumlu | OK | Kolon sabitleme ve hiz ayari birlikte daha toplu bir satir veriyor |
+| Etkilesim durumlari korundu | OK | Pasif, hover ve odak davranislari bozulmadi |
+| 2026-06-18 | v1.243 | OK | Reset dugmesi kolon icinde saga sabitlendi |
+
 ## v1.242 - Reset Kolon Sabitleme
 | Kontrol | Durum | Not |
 | --- | --- | --- |
