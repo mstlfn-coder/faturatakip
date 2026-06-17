@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.240 - Grid Orta Bosluk
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Orta bosluk toplandi | OK | Yardim metni ana aksiyon dugmesine biraz daha yakin basliyor |
+| Uc parcali satir baglandi | OK | Ana aksiyon, yardim metni ve reset dugmesi daha tek parca akiyor |
+| Kırilim korundu | OK | Metin sarma davranisinda istenmeyen bozulma olmadi |
+| 2026-06-18 | v1.240 | OK | Grid satirinin orta boslugu hafifce azaltildi |
+
 ## v1.239 - Reset Sag Kenar Nefesi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

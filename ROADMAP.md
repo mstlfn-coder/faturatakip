@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.240)
+
+- v1.240 tamamlandi: Yardim metninin ana aksiyon dugmesinden sonraki baslangic boslugu hafifce azaltildi.
+- Boylece uc parcali grid satiri biraz daha bagli ve tek parca gorunuyor.
+- Mikro ayar yatay ritmi iyilestirirken mevcut kirilim davranisini korudu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.239)
 
 - v1.239 tamamlandi: `Hepsini Goster` dugmesine sag tarafta kucuk bir nefes alani eklendi.

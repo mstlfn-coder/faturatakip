@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-18 / v1.240)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.240 - Grid Orta Bosluk`
+- Bu adimda yardim metninin ana aksiyon dugmesinden sonraki baslangic boslugu hafifce azaltildi.
+- Boylece ana aksiyon, yardim metni ve reset dugmesi ayni satirda daha bagli bir yatay akis veriyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.239)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -1042,4 +1051,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda grid satirinin yatay dagiliminin ana aksiyon, yardim metni ve reset dugmesi arasinda son kez gorsel olarak taranmasi.
+- Odemeler ekraninda grid satirinda yardim metni ile reset dugmesi arasindaki son yatay nefesin yeterli olup olmadigini gorsel olarak taramak.

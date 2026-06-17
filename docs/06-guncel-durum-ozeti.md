@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.239 - Reset Sag Kenar Nefesi`
+- Son tamamlanan temiz faz: `v1.240 - Grid Orta Bosluk`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.240` Grid Orta Bosluk
 - `v1.239` Reset Sag Kenar Nefesi
 - `v1.238` Reset Ust Hat Ince Ayari
 - `v1.237` Reset Grid Satiri
@@ -155,7 +156,7 @@ Son guncelleme tarihi: 2026-06-16
 
 ## Sonraki Mantikli Ana Adim
 
-- Odemeler ekraninda grid satirinin yatay dagiliminin ana aksiyon, yardim metni ve reset dugmesi arasinda son kez gorsel olarak taranmasi
+- Odemeler ekraninda grid satirinda yardim metni ile reset dugmesi arasindaki son yatay nefesin yeterli olup olmadigini gorsel olarak taramak
 
 ## Yeni Chat Icin Kisa Talimat
 
