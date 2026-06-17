@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.255)
+
+- v1.255 tamamlandi: Ozet aciklama metinleri ortak stile toplandi.
+- Boylece iki kart ayni ust bosluk ve sarmalama davranisini tek noktadan aliyor.
+- Kucuk refactor, ust bilgi katmanini korurken XAML tekrarini azaltti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.254)
 
 - v1.254 tamamlandi: Filtre dugmesi satirlari ortak stile toplandi.

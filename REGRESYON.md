@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.255 - Ozet Metni Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak ozet metni stili kuruldu | OK | Iki ozet metni ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Ust bosluk ve sarmalama davranisinda gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Ozet satir ayarlari tek yerde tanimli |
+| 2026-06-18 | v1.255 | OK | Ozet metinleri ortak stile tasindi |
+
 ## v1.254 - Filtre Satiri Ortak Stili
 | Kontrol | Durum | Not |
 | --- | --- | --- |

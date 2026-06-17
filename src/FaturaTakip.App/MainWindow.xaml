@@ -253,6 +253,10 @@
             <Setter Property="Orientation" Value="Horizontal" />
             <Setter Property="Margin" Value="0,10,0,0" />
         </Style>
+        <Style x:Key="PaymentsSummaryText" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
+            <Setter Property="Margin" Value="0,6,0,0" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
         <Style x:Key="PaymentsActiveFilterText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#1D4ED8" />
             <Setter Property="FontSize" Value="10" />
@@ -1525,9 +1529,7 @@
                                                FontWeight="SemiBold" />
                                     <TextBlock x:Name="PaymentsQueueSummaryText"
                                                Text="Odenmemis odemeler burada listelenir."
-                                               Style="{StaticResource MutedText}"
-                                               Margin="0,6,0,0"
-                                               TextWrapping="Wrap" />
+                                               Style="{StaticResource PaymentsSummaryText}" />
                                     <StackPanel Style="{StaticResource PaymentsFilterRow}">
                                         <Button x:Name="PaymentsQueueFilterAllButton"
                                                 Content="Hepsi"
@@ -1638,9 +1640,7 @@
                                                FontWeight="SemiBold" />
                                     <TextBlock x:Name="PaymentsRecentPaymentsSummaryText"
                                                Text="Son odemeler burada listelenir."
-                                               Style="{StaticResource MutedText}"
-                                               Margin="0,6,0,0"
-                                               TextWrapping="Wrap" />
+                                               Style="{StaticResource PaymentsSummaryText}" />
                                     <StackPanel Style="{StaticResource PaymentsFilterRow}">
                                         <Button x:Name="PaymentsRecentFilterAllButton"
                                                 Content="Hepsi"

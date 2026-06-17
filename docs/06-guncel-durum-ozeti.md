@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.254 - Filtre Satiri Ortak Stili`
+- Son tamamlanan temiz faz: `v1.255 - Ozet Metni Ortak Stili`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.255` Ozet Metni Ortak Stili
 - `v1.254` Filtre Satiri Ortak Stili
 - `v1.253` Aktif Filtre Rozeti Ortak Bosluk
 - `v1.252` Aktif Filtre Metni Ortak Stili
