@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.270 - Liste Icerik Gridi Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak icerik grid stili kuruldu | OK | Iki listedeki oge gridleri ayni stil kaynagini kullaniyor |
+| Piksel hizasi korundu | OK | Grid iceriği daha tutarli piksel yuvarlama davranisi aliyor |
+| XAML tekrar azaldi | OK | Oge grid stili tek yerde toplandi |
+| 2026-06-18 | v1.270 | OK | Liste icerik gridleri ortak stile tasindi |
+
 ## v1.269 - Liste Kolon Ust Hizasi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

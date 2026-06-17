@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.270)
+
+- v1.270 tamamlandi: Liste oge icerik gridleri ortak stile toplandi.
+- Boylece iki liste ayni piksel yakalama ve yerlesim yuvarlama davranisini tek noktadan aliyor.
+- Kucuk duzenleme, oge iskeletini korurken grid davranisini daha tutarli hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.269)
 
 - v1.269 tamamlandi: Liste oge kolonlarina acik ust hizalama verildi.

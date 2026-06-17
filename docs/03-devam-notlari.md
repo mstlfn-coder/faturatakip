@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.270)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.270 - Liste Icerik Gridi Ortak Stili`
+- Bu adimda Odemeler liste ogelerinin iki kolonlu ic grid yapisi ortak `PaymentsItemGrid` stiline tasindi.
+- Boylece iki listedeki oge icerik gridi ayni piksel hizasi ve yerlesim yuvarlama davranisini tek kaynaktan alir hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.269)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

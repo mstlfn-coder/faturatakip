@@ -261,6 +261,10 @@
         <Style x:Key="PaymentsSectionItemsControl" TargetType="ItemsControl">
             <Setter Property="Margin" Value="0,14,0,0" />
         </Style>
+        <Style x:Key="PaymentsItemGrid" TargetType="Grid">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+        </Style>
         <Style x:Key="PaymentsItemLeftStack" TargetType="StackPanel">
             <Setter Property="Grid.Column" Value="0" />
             <Setter Property="VerticalAlignment" Value="Top" />
@@ -1627,7 +1631,7 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <Border Style="{StaticResource PaymentsOpsItemBorder}">
-                                                    <Grid>
+                                                    <Grid Style="{StaticResource PaymentsItemGrid}">
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="*" />
                                                             <ColumnDefinition Width="Auto" />
@@ -1714,7 +1718,7 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <Border Style="{StaticResource PaymentsOpsItemBorder}">
-                                                    <Grid>
+                                                    <Grid Style="{StaticResource PaymentsItemGrid}">
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="*" />
                                                             <ColumnDefinition Width="Auto" />
