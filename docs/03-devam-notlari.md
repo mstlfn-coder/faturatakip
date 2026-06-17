@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.246)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.246 - Yardim Metni Satir Siklik`
+- Bu adimda iki yardim metninin satir yuksekligi bir piksel azaltildi.
+- Boylece iki satira kirilan yardim bloklari daha kompakt ve daha toplu okunuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.245)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

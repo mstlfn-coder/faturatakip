@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.246 - Yardim Metni Satir Siklik
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Iki satirli blok kompaktlasti | OK | Yardim metni daha sik ve daha kontrollu gorunuyor |
+| Dikey ritim korundu | OK | Ust hiz ve satir basi akisi bozulmadi |
+| Reset kolonu korunuyor | OK | Sag kolon ve bosluk dengesi aynen calisiyor |
+| 2026-06-18 | v1.246 | OK | Yardim metni satir yuksekligi bir piksel azaltildi |
+
 ## v1.245 - Yardim Metni Ust Hiz
 | Kontrol | Durum | Not |
 | --- | --- | --- |

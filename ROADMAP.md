@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.246)
+
+- v1.246 tamamlandi: Yardim metinlerinin satir yuksekligi bir piksel daraltildi.
+- Boylece orta aciklama blogu iki satirli senaryoda daha kompakt gorunuyor.
+- Mikro ayar ust hiz ve sag nefes ayarlarini bozmadan satir ritmini sikilastirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.245)
 
 - v1.245 tamamlandi: Yardim metinlerinin ust boslugu bir piksel azaltildi.
