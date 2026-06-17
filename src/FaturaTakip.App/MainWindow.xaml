@@ -249,6 +249,9 @@
         <Style x:Key="PaymentsActionRowGrid" TargetType="Grid">
             <Setter Property="Margin" Value="0,8,0,0" />
         </Style>
+        <Style x:Key="PaymentsSectionGrid" TargetType="Grid">
+            <Setter Property="Margin" Value="0,22,0,0" />
+        </Style>
         <Style x:Key="PaymentsFilterRow" TargetType="StackPanel">
             <Setter Property="Orientation" Value="Horizontal" />
             <Setter Property="Margin" Value="0,10,0,0" />
@@ -1522,7 +1525,7 @@
                         </UniformGrid>
 
                         <Grid Grid.Row="3"
-                              Margin="0,22,0,0">
+                              Style="{StaticResource PaymentsSectionGrid}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="16" />

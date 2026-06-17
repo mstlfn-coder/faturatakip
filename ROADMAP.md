@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.259)
+
+- v1.259 tamamlandi: Iki karti tasiyan ana gridin ortak ust boslugu stile tasindi.
+- Boylece kart bolumu ayni sayfa ritmini tek noktadan aliyor.
+- Kucuk refactor, ust yerlesimi korurken tekrar eden margin tanimini azaltti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.258)
 
 - v1.258 tamamlandi: Liste bloklarinin ortak ust boslugu stile tasindi.
