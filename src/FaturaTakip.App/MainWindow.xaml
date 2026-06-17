@@ -260,6 +260,7 @@
         <Style x:Key="PaymentsSectionItemsControl" TargetType="ItemsControl">
             <Setter Property="Margin" Value="0,14,0,0" />
         </Style>
+        <Style x:Key="PaymentsItemLeftStack" TargetType="StackPanel" />
         <Style x:Key="PaymentsItemRightStack" TargetType="StackPanel">
             <Setter Property="Grid.Column" Value="1" />
             <Setter Property="Margin" Value="16,0,0,0" />
@@ -1626,7 +1627,7 @@
                                                             <ColumnDefinition Width="*" />
                                                             <ColumnDefinition Width="Auto" />
                                                         </Grid.ColumnDefinitions>
-                                                        <StackPanel>
+                                                        <StackPanel Style="{StaticResource PaymentsItemLeftStack}">
                                                             <TextBlock Text="{Binding Title}"
                                                                        Style="{StaticResource PaymentsItemTitleText}" />
                                                             <TextBlock Text="{Binding Meta}"
@@ -1714,7 +1715,7 @@
                                                             <ColumnDefinition Width="*" />
                                                             <ColumnDefinition Width="Auto" />
                                                         </Grid.ColumnDefinitions>
-                                                        <StackPanel>
+                                                        <StackPanel Style="{StaticResource PaymentsItemLeftStack}">
                                                             <TextBlock Text="{Binding Title}"
                                                                        Style="{StaticResource PaymentsItemTitleText}" />
                                                             <TextBlock Text="{Binding Meta}"

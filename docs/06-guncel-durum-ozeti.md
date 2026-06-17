@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.265 - Liste Sag Blok Ortak Iskeleti`
+- Son tamamlanan temiz faz: `v1.266 - Liste Sol Blok Ortak Iskeleti`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.266` Liste Sol Blok Ortak Iskeleti
 - `v1.265` Liste Sag Blok Ortak Iskeleti
 - `v1.264` Liste Ac Dugmesi Ortak Stili
 - `v1.263` Liste Durum Metni Ortak Stili

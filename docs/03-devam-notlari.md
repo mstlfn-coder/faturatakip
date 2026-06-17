@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.266)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.266 - Liste Sol Blok Ortak Iskeleti`
+- Bu adimda Odemeler listelerindeki sol bilgi kolonu ortak `PaymentsItemLeftStack` stiline tasindi.
+- Boylece kayit basligi ve meta satirlarini tasiyan sol blok da tek kaynaktan okunur hale geldi ve liste ogesi iskeleti iki tarafta esitlenmis oldu.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.265)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.266 - Liste Sol Blok Ortak Iskeleti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak sol blok stili kuruldu | OK | Iki listedeki bilgi kolonu ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Sol blok akisi ve hiyerarsisinde gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Sol blok iskeleti tek yerde toplandi |
+| 2026-06-18 | v1.266 | OK | Liste sol blok iskeleti ortak stile tasindi |
+
 ## v1.265 - Liste Sag Blok Ortak Iskeleti
 | Kontrol | Durum | Not |
 | --- | --- | --- |

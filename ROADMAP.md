@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.266)
+
+- v1.266 tamamlandi: Liste ogelerinin sol blok iskeleti ortak stile tasindi.
+- Boylece iki liste ayni bilgi kolonu iskeletini tek noktadan aliyor.
+- Kucuk refactor, liste oge yapisini korurken tekrar eden sol blok tanimini sadeleştirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.265)
 
 - v1.265 tamamlandi: Liste ogelerinin sag blok iskeleti ortak stile toplandi.
