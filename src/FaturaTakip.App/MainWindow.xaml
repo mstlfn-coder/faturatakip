@@ -269,6 +269,10 @@
             <Setter Property="Margin" Value="0,6,0,0" />
             <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
+        <Style x:Key="PaymentsItemMetaText" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
+            <Setter Property="Margin" Value="0,4,0,0" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
         <Style x:Key="PaymentsActiveFilterText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#1D4ED8" />
             <Setter Property="FontSize" Value="10" />
@@ -1601,9 +1605,7 @@
                                                                        FontWeight="SemiBold"
                                                                        TextWrapping="Wrap" />
                                                             <TextBlock Text="{Binding Meta}"
-                                                                       Style="{StaticResource MutedText}"
-                                                                       Margin="0,4,0,0"
-                                                                       TextWrapping="Wrap" />
+                                                                       Style="{StaticResource PaymentsItemMetaText}" />
                                                         </StackPanel>
                                                         <StackPanel Grid.Column="1"
                                                                     Margin="16,0,0,0"
@@ -1705,9 +1707,7 @@
                                                                        FontWeight="SemiBold"
                                                                        TextWrapping="Wrap" />
                                                             <TextBlock Text="{Binding Meta}"
-                                                                       Style="{StaticResource MutedText}"
-                                                                       Margin="0,4,0,0"
-                                                                       TextWrapping="Wrap" />
+                                                                       Style="{StaticResource PaymentsItemMetaText}" />
                                                         </StackPanel>
                                                         <StackPanel Grid.Column="1"
                                                                     Margin="16,0,0,0"

@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.260 - Liste Meta Metni Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak meta metin stili kuruldu | OK | Iki listedeki aciklama satirlari ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Ikinci satir boslugu ve sarmalama davranisinda gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Liste meta metni ayarlari tek yerde toplandi |
+| 2026-06-18 | v1.260 | OK | Liste meta metni ortak stile tasindi |
+
 ## v1.259 - Kart Izgarasi Ortak Bosluk
 | Kontrol | Durum | Not |
 | --- | --- | --- |

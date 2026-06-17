@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.260)
+
+- v1.260 tamamlandi: Liste ogelerinin aciklama satirlari ortak stile toplandi.
+- Boylece iki liste ayni ikinci satir boslugu ve sarmalama davranisini tek noktadan aliyor.
+- Kucuk refactor, alt bilgi blogunu korurken tekrar eden metin ayarlarini sadeleştirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.259)
 
 - v1.259 tamamlandi: Iki karti tasiyan ana gridin ortak ust boslugu stile tasindi.

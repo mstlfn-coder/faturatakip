@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.260)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.260 - Liste Meta Metni Ortak Stili`
+- Bu adimda Odemeler listelerindeki kart aciklama satirlari ortak `PaymentsItemMetaText` stiline tasindi.
+- Boylece liste ogelerinin ikinci satir ritmi tek kaynaktan yonetilir hale geldi ve alt bloklardaki XAML tekrari biraz daha azaldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.259)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
