@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.239)
+
+- v1.239 tamamlandi: `Hepsini Goster` dugmesine sag tarafta kucuk bir nefes alani eklendi.
+- Boylece grid satiri kartin sag kenarinda daha rahat bitiyor.
+- Mikro ayar yatay dagilimi bozmadan satirin son noktasini daha rafine hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.238)
 
 - v1.238 tamamlandi: `Hepsini Goster` dugmesinin ust boslugu iki satirli grid satirinda biraz daha yukariya cekildi.

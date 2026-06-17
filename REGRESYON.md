@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.239 - Reset Sag Kenar Nefesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sag kenar rahat | OK | Reset dugmesi kart kenarina yapismadan biraz daha nefesli bitiyor |
+| Grid dagilimi korundu | OK | Ana aksiyon ve yardim metni dengesi bozulmadi |
+| Iki satir tutarli | OK | Iki reset dugmesi ayni sag kenar boslugunu kullaniyor |
+| 2026-06-18 | v1.239 | OK | Reset dugmesinin sag kenar nefesi hafifce artirildi |
+
 ## v1.238 - Reset Ust Hat Ince Ayari
 | Kontrol | Durum | Not |
 | --- | --- | --- |

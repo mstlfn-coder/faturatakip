@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-18 / v1.239)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.239 - Reset Sag Kenar Nefesi`
+- Bu adimda `Hepsini Goster` dugmesine sag tarafta cok kucuk bir nefes alani eklendi.
+- Boylece grid satirinda dugme kart kenarina yapismadan biraz daha rahat bir bitis hissi veriyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.238)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -1033,4 +1042,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda yeni grid satirinda reset dugmesinin sag kolon nefesini son kez gorsel olarak taramak.
+- Odemeler ekraninda grid satirinin yatay dagiliminin ana aksiyon, yardim metni ve reset dugmesi arasinda son kez gorsel olarak taranmasi.
