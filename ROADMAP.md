@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.242)
+
+- v1.242 tamamlandi: `Hepsini Goster` dugmesine tutarli bir minimum genislik verildi.
+- Boylece uc parcali grid satirinda sag aksiyon kolonu daha kararlı hale geldi.
+- Mikro ayar yardim metni uzayip kisalirken satir sonunun ziplama hissini azaltti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.241)
 
 - v1.241 tamamlandi: `Hepsini Goster` dugmesinin yardim metninden sonraki sol boslugu hafifce azaltildi.

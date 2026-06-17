@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.242)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.242 - Reset Kolon Sabitleme`
+- Bu adimda `Hepsini Goster` dugmesine tutarli bir `MinWidth` verilerek uc kolonlu satirdaki sag aksiyon kolonu sabitlendi.
+- Boylece yardim metni degisse bile reset dugmesi iki satirda da daha kararlı bir sag hiza koruyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-15 / v1.209)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

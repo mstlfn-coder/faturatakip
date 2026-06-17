@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.242 - Reset Kolon Sabitleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sag kolon sabitlendi | OK | Reset dugmesi iki satirda da benzer sag hizada kaluyor |
+| Yardim metni degisimleri tolere edildi | OK | Metin uzayip kisalsa da reset aksiyonu daha az oynuyor |
+| Etkilesim durumlari korundu | OK | Pasif, hover ve odak durumlari ayni sekilde calisiyor |
+| 2026-06-18 | v1.242 | OK | Reset dugmesine minimum genislik verilerek sag kolon dengelendi |
+
 ## v1.241 - Reset Son Yatay Nefes
 | Kontrol | Durum | Not |
 | --- | --- | --- |
