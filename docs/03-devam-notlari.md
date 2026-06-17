@@ -11,6 +11,15 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
 - Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
 
+## Son Guncelleme (2026-06-18 / v1.238)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.238 - Reset Ust Hat Ince Ayari`
+- Bu adimda `Hepsini Goster` dugmesinin ust boslugu iki satirli grid satirinda biraz daha yukariya cekildi.
+- Boylece reset dugmesi yardim metninin ilk satiri ve ana aksiyon dugmesinin ust ritmiyle daha yakin bir hatta oturuyor.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-17 / v1.237)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -1024,4 +1033,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda yeni grid satirinda reset dugmesinin dikey hizinin yardim metniyle son kez ince ayar gerektirip gerektirmedigini gorsel olarak taramak.
+- Odemeler ekraninda yeni grid satirinda reset dugmesinin sag kolon nefesini son kez gorsel olarak taramak.

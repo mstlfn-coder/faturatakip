@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.238 - Reset Ust Hat Ince Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ust hat yakinlasti | OK | Reset dugmesi iki satirli senaryoda ust ritme daha yakin duruyor |
+| Grid yapisi korundu | OK | Uc kolonlu satir yapisi bozulmadan korundu |
+| Iki reset dugmesi tutarli | OK | Ortak stil sayesinde ayni ust hat ayari iki yerde de gecerli |
+| 2026-06-18 | v1.238 | OK | Reset dugmesinin ust hat hizasi ince ayarlandi |
+
 ## v1.237 - Reset Grid Satiri
 | Kontrol | Durum | Not |
 | --- | --- | --- |

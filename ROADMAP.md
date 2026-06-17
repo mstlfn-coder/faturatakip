@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.238)
+
+- v1.238 tamamlandi: `Hepsini Goster` dugmesinin ust boslugu iki satirli grid satirinda biraz daha yukariya cekildi.
+- Boylece reset dugmesi yardim metninin ilk satiri ve ana aksiyon dugmesiyle daha yakin bir ust ritim yakaladi.
+- Mikro ayar yerlesim yapisini degistirmeden yalnizca ust hat dengesini inceltti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-17 / v1.237)
 
 - v1.237 tamamlandi: Yardim metni ve `Hepsini Goster` dugmesi uc kolonlu `Grid` satirina tasindi.

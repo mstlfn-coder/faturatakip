@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.237 - Reset Grid Satiri`
+- Son tamamlanan temiz faz: `v1.238 - Reset Ust Hat Ince Ayari`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.238` Reset Ust Hat Ince Ayari
 - `v1.237` Reset Grid Satiri
 - `v1.236` Reset Sag Yalnizlik Azaltma
 - `v1.235` Reset Ust Hiz Yaklastirma
@@ -153,7 +154,7 @@ Son guncelleme tarihi: 2026-06-16
 
 ## Sonraki Mantikli Ana Adim
 
-- Odemeler ekraninda yeni grid satirinda reset dugmesinin dikey hizinin yardim metniyle son kez ince ayar gerektirip gerektirmedigini gorsel olarak taramak
+- Odemeler ekraninda yeni grid satirinda reset dugmesinin sag kolon nefesini son kez gorsel olarak taramak
 
 ## Yeni Chat Icin Kisa Talimat
 
