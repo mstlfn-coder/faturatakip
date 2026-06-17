@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.247 - Yardim Metni Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak stil olusturuldu | OK | Iki yardim metni ayni stil kaynagini kullaniyor |
+| Gorunum korunuyor | OK | Font, satir ritmi ve bosluk ayarlari ayni kaldi |
+| Sonraki ayarlar kolaylasti | OK | Tek kaynaktan guncelleme yapilabilecek duzen kuruldu |
+| 2026-06-18 | v1.247 | OK | Yardim metni ayarlari ortak stile tasindi |
+
 ## v1.246 - Yardim Metni Satir Siklik
 | Kontrol | Durum | Not |
 | --- | --- | --- |

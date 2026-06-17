@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.247)
+
+- v1.247 tamamlandi: Yardim metinlerinin gorunumu ortak bir stile toplandi.
+- Boylece iki kartta ayni tipografi, bosluk ve satir ritmi tek noktadan korunuyor.
+- Kucuk refactor, gorunur sonucu sabitlerken sonraki tasarim dokunuslarinin riskini dusurdu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.246)
 
 - v1.246 tamamlandi: Yardim metinlerinin satir yuksekligi bir piksel daraltildi.

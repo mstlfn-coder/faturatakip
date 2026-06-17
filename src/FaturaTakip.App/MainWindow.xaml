@@ -231,6 +231,15 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="PaymentsActionHintText" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
+            <Setter Property="Foreground" Value="#64748B" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="LineHeight" Value="15" />
+            <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+            <Setter Property="Margin" Value="10,2,8,0" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
         <Style x:Key="PaymentsActiveFilterBadge" TargetType="Border">
             <Setter Property="Background" Value="#EFF6FF" />
             <Setter Property="BorderBrush" Value="#BFDBFE" />
@@ -1543,14 +1552,7 @@
                                         <TextBlock x:Name="PaymentsQueueActionHintText"
                                                    Grid.Column="1"
                                                    Text="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun."
-                                                   Style="{StaticResource MutedText}"
-                                                   Foreground="#64748B"
-                                                   FontSize="12"
-                                                   LineHeight="15"
-                                                   LineStackingStrategy="BlockLineHeight"
-                                                   Margin="10,2,8,0"
-                                                   VerticalAlignment="Top"
-                                                   TextWrapping="Wrap" />
+                                                   Style="{StaticResource PaymentsActionHintText}" />
                                         <Button x:Name="PaymentsQueueResetFilterButton"
                                                 Grid.Column="2"
                                                 Content="Hepsini Goster"
@@ -1666,14 +1668,7 @@
                                         <TextBlock x:Name="PaymentsRecentActionHintText"
                                                    Grid.Column="1"
                                                    Text="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun."
-                                                   Style="{StaticResource MutedText}"
-                                                   Foreground="#64748B"
-                                                   FontSize="12"
-                                                   LineHeight="15"
-                                                   LineStackingStrategy="BlockLineHeight"
-                                                   Margin="10,2,8,0"
-                                                   VerticalAlignment="Top"
-                                                   TextWrapping="Wrap" />
+                                                   Style="{StaticResource PaymentsActionHintText}" />
                                         <Button x:Name="PaymentsRecentResetFilterButton"
                                                 Grid.Column="2"
                                                 Content="Hepsini Goster"
