@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.261)
+
+- v1.261 tamamlandi: Liste ogelerinin baslik satirlari ortak stile toplandi.
+- Boylece iki liste ayni ilk satir renk, boyut ve agirlik davranisini tek noktadan aliyor.
+- Kucuk refactor, kart icindeki bilgi hiyerarsisini korurken XAML tekrarini azaltti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.260)
 
 - v1.260 tamamlandi: Liste ogelerinin aciklama satirlari ortak stile toplandi.

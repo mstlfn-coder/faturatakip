@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.261 - Liste Baslik Metni Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak baslik metni stili kuruldu | OK | Iki listedeki kayit basliklari ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Ilk satir hiyerarsisinde gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Baslik renk, boyut ve agirlik tek yerde toplandi |
+| 2026-06-18 | v1.261 | OK | Liste baslik metni ortak stile tasindi |
+
 ## v1.260 - Liste Meta Metni Ortak Stili
 | Kontrol | Durum | Not |
 | --- | --- | --- |

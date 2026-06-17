@@ -273,6 +273,12 @@
             <Setter Property="Margin" Value="0,4,0,0" />
             <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
+        <Style x:Key="PaymentsItemTitleText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#1F2937" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
         <Style x:Key="PaymentsActiveFilterText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#1D4ED8" />
             <Setter Property="FontSize" Value="10" />
@@ -1600,10 +1606,7 @@
                                                         </Grid.ColumnDefinitions>
                                                         <StackPanel>
                                                             <TextBlock Text="{Binding Title}"
-                                                                       Foreground="#1F2937"
-                                                                       FontSize="12"
-                                                                       FontWeight="SemiBold"
-                                                                       TextWrapping="Wrap" />
+                                                                       Style="{StaticResource PaymentsItemTitleText}" />
                                                             <TextBlock Text="{Binding Meta}"
                                                                        Style="{StaticResource PaymentsItemMetaText}" />
                                                         </StackPanel>
@@ -1702,10 +1705,7 @@
                                                         </Grid.ColumnDefinitions>
                                                         <StackPanel>
                                                             <TextBlock Text="{Binding Title}"
-                                                                       Foreground="#1F2937"
-                                                                       FontSize="12"
-                                                                       FontWeight="SemiBold"
-                                                                       TextWrapping="Wrap" />
+                                                                       Style="{StaticResource PaymentsItemTitleText}" />
                                                             <TextBlock Text="{Binding Meta}"
                                                                        Style="{StaticResource PaymentsItemMetaText}" />
                                                         </StackPanel>
