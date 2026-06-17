@@ -254,6 +254,9 @@
             <Setter Property="Margin" Value="0,10,0,0" />
         </Style>
         <Style x:Key="PaymentsSectionStack" TargetType="StackPanel" />
+        <Style x:Key="PaymentsSectionItemsControl" TargetType="ItemsControl">
+            <Setter Property="Margin" Value="0,14,0,0" />
+        </Style>
         <Style x:Key="PaymentsSectionTitle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#1F2937" />
             <Setter Property="FontSize" Value="15" />
@@ -1579,7 +1582,7 @@
                                                 Click="ResetPaymentsQueueFilterButton_Click" />
                                     </Grid>
                                     <ItemsControl x:Name="PaymentsQueueItemsControl"
-                                                  Margin="0,14,0,0">
+                                                  Style="{StaticResource PaymentsSectionItemsControl}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <Border Style="{StaticResource PaymentsOpsItemBorder}">
@@ -1683,7 +1686,7 @@
                                                 Click="ResetPaymentsRecentFilterButton_Click" />
                                     </Grid>
                                     <ItemsControl x:Name="PaymentsRecentPaymentsItemsControl"
-                                                  Margin="0,14,0,0">
+                                                  Style="{StaticResource PaymentsSectionItemsControl}">
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <Border Style="{StaticResource PaymentsOpsItemBorder}">

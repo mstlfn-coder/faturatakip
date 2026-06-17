@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.258)
+
+- v1.258 tamamlandi: Liste bloklarinin ortak ust boslugu stile tasindi.
+- Boylece iki kart ayni liste baslangic ritmini tek noktadan aliyor.
+- Kucuk refactor, kart alt bolumunu korurken tekrar eden margin tanimini azaltti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.257)
 
 - v1.257 tamamlandi: Odemeler kartlarinin ic dikey iskeleti ortak stile tasindi.

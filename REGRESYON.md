@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.258 - Liste Blogu Ortak Bosluk
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak liste boslugu kuruldu | OK | Iki `ItemsControl` ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Liste bloklarinin baslangic ritminde gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Liste margin tanimi tek yerde toplandi |
+| 2026-06-18 | v1.258 | OK | Liste blogu ortak stile tasindi |
+
 ## v1.257 - Kart Icerigi Ortak Iskeleti
 | Kontrol | Durum | Not |
 | --- | --- | --- |
