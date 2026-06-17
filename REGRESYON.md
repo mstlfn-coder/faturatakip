@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.248 - Aksiyon Satiri Ortak Gridi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak grid stili kuruldu | OK | Iki aksiyon satiri ayni grid stilini kullaniyor |
+| Ust bosluk korundu | OK | Satirin kart icindeki ust nefesi ayni kaldi |
+| Gorsel davranis tek kaynaga indi | OK | Sonraki layout ayarlari daha guvenli hale geldi |
+| 2026-06-18 | v1.248 | OK | Uc kolonlu aksiyon satiri ortak stile tasindi |
+
 ## v1.247 - Yardim Metni Ortak Stili
 | Kontrol | Durum | Not |
 | --- | --- | --- |

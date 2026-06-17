@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.248)
+
+- v1.248 tamamlandi: Uc kolonlu aksiyon satiri ortak grid stiline toplandi.
+- Boylece iki kartta ayni ust bosluk ve genel satir davranisi tek noktadan yonetiliyor.
+- Kucuk refactor, gorsel tutarliligi kilitlerken sonraki ince ayarlari daha risksiz hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.247)
 
 - v1.247 tamamlandi: Yardim metinlerinin gorunumu ortak bir stile toplandi.
