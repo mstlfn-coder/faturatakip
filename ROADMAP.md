@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.283)
+
+- v1.283 tamamlandi: Odemeler ortak aksiyon butonu stiline piksel hizasi ve yerlesim yuvarlama destegi eklendi.
+- Boylece ust aksiyon satirinda yardim metni, rozet ve butonlar ayni netlik davranis ailesinde bulustu.
+- Kucuk duzenleme, buton gorunumunu bozmadan aksiyon satirini daha tutarli hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.282)
 
 - v1.282 tamamlandi: Odemeler aksiyon yardim metnine piksel hizasi ve yerlesim yuvarlama destegi eklendi.

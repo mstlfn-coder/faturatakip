@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.283)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.283 - Aksiyon Butonu Piksel Destegi`
+- Bu adimda Odemeler ortak aksiyon butonu stiline `SnapsToDevicePixels=True` ve `UseLayoutRounding=True` eklendi.
+- Boylece ust aksiyon satirindaki yardim metni, rozet ve butonlar ayni netlik davranisini paylasir hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.282)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.283 - Aksiyon Butonu Piksel Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aksiyon butonuna piksel destegi eklendi | OK | `PaymentsOpsActionButton` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Ust aksiyon butonlarinda gorunur bozulma yok |
+| Ust satir netlik zinciri genisledi | OK | Yardim metni, rozet ve butonlar ayni netlik ailesinde bulustu |
+| 2026-06-18 | v1.283 | OK | Ortak aksiyon butonu stiline piksel ve yuvarlama destegi eklendi |
+
 ## v1.282 - Yardim Metni Piksel Destegi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

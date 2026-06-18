@@ -201,6 +201,8 @@
             </Style.Triggers>
         </Style>
         <Style x:Key="PaymentsOpsActionButton" TargetType="Button" BasedOn="{StaticResource SecondaryButton}">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
             <Style.Triggers>
                 <Trigger Property="IsKeyboardFocused" Value="True">
                     <Setter Property="Background" Value="#EFF6FF" />
