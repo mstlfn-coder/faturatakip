@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-19 / v1.319)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.319 - PDF Secili Aksiyon Gecisi Rahatladi`
+- Bu adimda rozet blogundan `PaymentPdfSelectedActionStatusButton` alanina gecis boslugu hafifce artirildi.
+- Boylece PDF/evrak yardim zincirinin alt halkasi da odeme yardim blogundaki ritimle daha uyumlu hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-19 / v1.318)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

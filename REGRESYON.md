@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.319 - PDF Secili Aksiyon Gecisi Rahatladi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili PDF aksiyon gecisi rahatlatildi | OK | `PaymentPdfSelectedActionStatusButton` marjini `0,6,0,0` oldu |
+| Gorunum korundu | OK | Secili PDF yardim alani ve rozet blogu yerlesimi bozulmadi |
+| Ikinci yardim zinciri tamamlandi | OK | Rozetlerden secili PDF yardim alanina gecis daha rahat ayrildi |
+| 2026-06-19 | v1.319 | OK | PDF secili aksiyon gecisi rahatlatildi |
+
 ## v1.318 - PDF Son Aksiyon Gecisi Rahatladi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

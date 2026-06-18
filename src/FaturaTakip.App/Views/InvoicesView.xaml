@@ -1309,7 +1309,7 @@
                                     </ItemsControl>
                                     <Button x:Name="PaymentPdfSelectedActionStatusButton"
                                             Style="{StaticResource SelectedActionStatusButton}"
-                                            Margin="0,4,0,0"
+                                            Margin="0,6,0,0"
                                             ToolTip="Secili PDF yardimini yeniden calistir"
                                             Visibility="Collapsed"
                                             Click="PaymentPdfSelectedActionStatusButton_Click">

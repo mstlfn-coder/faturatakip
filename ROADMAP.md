@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.319)
+
+- v1.319 tamamlandi: PDF rozet blogundan secili yardim durum alanina gecis boslugu hafifce artirildi.
+- Boylece PDF/evrak yardim zincirinin alt halkasi da odeme yardim blogundaki ritimle daha uyumlu hale geldi.
+- Kucuk duzenleme, secili PDF yardim alanini rozetlerden daha net ayirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-19 / v1.318)
 
 - v1.318 tamamlandi: PDF replay tercih satirindan `PaymentPdfHelperLastActionButton` alanina hafif bir ust bosluk eklendi.
