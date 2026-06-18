@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.282 - Yardim Metni Piksel Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardim metnine piksel destegi eklendi | OK | `PaymentsActionHintText` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Aksiyon yardim metninde gorunur bozulma yok |
+| Ust satir netlik zinciri tamamlandi | OK | Rozet, satir ve yardim metni ayni netlik ailesinde bulustu |
+| 2026-06-18 | v1.282 | OK | Aksiyon yardim metnine piksel ve yuvarlama destegi eklendi |
+
 ## v1.281 - Aktif Rozet Metni Piksel Destegi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

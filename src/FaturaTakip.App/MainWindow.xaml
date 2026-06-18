@@ -248,6 +248,8 @@
             <Setter Property="LineHeight" Value="15" />
             <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
             <Setter Property="Margin" Value="10,2,8,0" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="TextWrapping" Value="Wrap" />
         </Style>

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.282)
+
+- v1.282 tamamlandi: Odemeler aksiyon yardim metnine piksel hizasi ve yerlesim yuvarlama destegi eklendi.
+- Boylece aksiyon rozetleri, satir kapsami ve yardim metni ayni netlik davranis ailesinde bulustu.
+- Kucuk duzenleme, ust aksiyon satirinin metin netligini bozmadan daha tutarli hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.281)
 
 - v1.281 tamamlandi: Aktif filtre rozet metinlerine piksel hizasi ve yuvarlama destegi eklendi.
