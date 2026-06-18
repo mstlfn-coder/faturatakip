@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.279)
+
+- v1.279 tamamlandi: Iki karti tasiyan section gridine piksel hizasi ve yerlesim yuvarlama desteği eklendi.
+- Boylece ust bolumdeki tasiyici yerlesim de ayni netlik davranis ailesine katildi.
+- Kucuk duzenleme, kart akisini bozmadan section seviyesinde tutarliligi arttirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.278)
 
 - v1.278 tamamlandi: Uc parcali aksiyon satirlarina piksel hizasi ve yerlesim yuvarlama desteği eklendi.

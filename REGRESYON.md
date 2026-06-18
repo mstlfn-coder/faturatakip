@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.279 - Kart Izgarasi Yuvarlama Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Section gridine yuvarlama destegi eklendi | OK | `PaymentsSectionGrid` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Kart yerlesimi ve bosluklarda gorunur bozulma yok |
+| Davranis zinciri genisledi | OK | Tasiyici grid de ayni netlik ailesine katildi |
+| 2026-06-18 | v1.279 | OK | Kart izgarasina piksel ve yuvarlama destegi eklendi |
+
 ## v1.278 - Aksiyon Satiri Yuvarlama Destegi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

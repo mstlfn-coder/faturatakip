@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.279)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.279 - Kart Izgarasi Yuvarlama Destegi`
+- Bu adimda Odemeler ekranindaki iki karti tasiyan ana section gridine `SnapsToDevicePixels=True` ve `UseLayoutRounding=True` eklendi.
+- Boylece kart yerlesimi de ust akisin diger katmanlariyla ayni piksel davranisini paylasir hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.278)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
