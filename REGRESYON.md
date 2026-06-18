@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.296 - Form Baglam Ipucu Ritmi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baglam ipucu ritmi ayarlandi | OK | `InvoiceFormContextHintText` icin `LineHeight=16` ve `BlockLineHeight` eklendi |
+| Bosluk dengelendi | OK | Baglam ipucu ust marjini `0,8,0,0` oldu |
+| Gorunum korundu | OK | Baslik ve baglam ipucu yerlesimi bozulmadi |
+| 2026-06-18 | v1.296 | OK | Form baglam ipucu ritmi iyilestirildi |
+
 ## v1.295 - Footer Dikey Denge
 | Kontrol | Durum | Not |
 | --- | --- | --- |

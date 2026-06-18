@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.296)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.296 - Form Baglam Ipucu Ritmi`
+- Bu adimda form basligi altindaki baglam ipucuna kontrollu satir yuksekligi ve biraz daha rahat ust bosluk eklendi.
+- Boylece uzun baglam metni baslik alaninda daha temiz satirlanarak sag panelin ust girisi daha duzenli gorunur hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.295)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

@@ -936,9 +936,11 @@
                                    FontSize="18"
                                    FontWeight="SemiBold" />
                         <TextBlock x:Name="InvoiceFormContextHintText"
-                                   Margin="0,6,0,0"
+                                   Margin="0,8,0,0"
                                    Foreground="#475569"
                                    FontSize="12"
+                                   LineHeight="16"
+                                   LineStackingStrategy="BlockLineHeight"
                                    Visibility="Collapsed" />
                     </StackPanel>
 
