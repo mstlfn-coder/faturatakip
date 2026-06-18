@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.316)
+
+- v1.316 tamamlandi: `PaymentGrid` sonrasindaki `PaymentPdfInfoText` giris boslugu 12px ritme getirildi.
+- Boylece odeme kartinin tablo bolumunden PDF/evrak yardim bloguna gecis de ayni olcu diliyle daha tutarli hale geldi.
+- Kucuk duzenleme, kartin son alt bolumune girisi bozmadan daha derli toplu hissettirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.315)
 
 - v1.315 tamamlandi: Odeme alt komut satirindan `PaymentGrid` alanina gecis boslugu 12px ritme getirildi.

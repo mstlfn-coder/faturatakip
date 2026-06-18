@@ -1237,7 +1237,7 @@
                                     <TextBlock x:Name="PaymentPdfInfoText"
                                                Style="{StaticResource MutedText}"
                                                TextWrapping="Wrap"
-                                               Margin="0,10,0,0" />
+                                               Margin="0,12,0,0" />
                                     <TextBlock x:Name="PaymentPdfHelperSummaryText"
                                                 Style="{StaticResource MutedText}"
                                                 TextWrapping="Wrap"
