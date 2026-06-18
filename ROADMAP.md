@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.288)
+
+- v1.288 tamamlandi: Fatura formu alt footer bandina hafif bir zemin tonu eklendi.
+- Boylece durum mesaji ve kaydet alani sadece cizgiyle degil, yumusak bir ton farkiyla da ayrisiyor.
+- Kucuk duzenleme, sag panel kapanisini akisi bozmadan daha net hissettirir hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.287)
 
 - v1.287 tamamlandi: Fatura formunun alt durum ve kaydet alani ustten ince bir ayirici bant ile ayrildi.

@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.288 - Fatura Formu Footer Zemini
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Footer zemini eklendi | OK | Alt kaydet bandi `#F8FAFC` zemin tonu kullaniyor |
+| Gorunum korundu | OK | Durum mesaji ve `Kaydet` dugmesi ulasilabilir kaldi |
+| Footer ayrimi guclendi | OK | Ayirici cizgiye ek olarak yumusak ton farki saglandi |
+| 2026-06-18 | v1.288 | OK | Fatura formu footer zemin tonu eklendi |
+
 ## v1.287 - Fatura Formu Alt Bant Ayrimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

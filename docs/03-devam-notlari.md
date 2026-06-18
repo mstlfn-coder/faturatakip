@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.288)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.288 - Fatura Formu Footer Zemini`
+- Bu adimda sag panel altindaki footer bandina hafif bir arka plan tonu eklendi.
+- Boylece durum mesaji ve `Kaydet` alani sadece cizgiyle degil, ton farkiyla da ayrisarak daha rahat okunur hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.287)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
