@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.305)
+
+- v1.305 tamamlandi: `Kullanim Birimi` blogunun ust boslugu orta form ritmiyle esitlenerek hafifce sikilastirildi.
+- Boylece `Tutar/Kullanim` ciftinden tek satirli kullanim birimi alanina gecis daha tutarli hale geldi.
+- Kucuk duzenleme, orta bolum gecislerini bozmadan daha derli toplu bir akis olusturdu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.304)
 
 - v1.304 tamamlandi: `Tutar/Kullanim` alan blogunun ust boslugu ust form ritmiyle esitlenerek hafifce sikilastirildi.

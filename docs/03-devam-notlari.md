@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.305)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.305 - Kullanim Birimi Blogu Ust Ritmi Esitlendi`
+- Bu adimda `Kullanim Birimi` blogunun ust boslugu orta form ritmiyle esitlenerek hafifce sikilastirildi.
+- Boylece `Tutar/Kullanim` alan ciftinden sonraki tek satirli alan da ayni olcu diliyle daha tutarli hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.304)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

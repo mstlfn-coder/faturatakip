@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.305 - Kullanim Birimi Blogu Ust Ritmi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kullanim birimi blogu ritmi esitlenildi | OK | `Kullanim Birimi` etiket marjini `0,12,0,6` oldu |
+| Gorunum korundu | OK | Kullanim birimi alaninin yerlesimi bozulmadi |
+| Orta alan gecisi tutarli hale geldi | OK | `Tutar/Kullanim` blogundan sonraki tek alan da 12px ritme katildi |
+| 2026-06-18 | v1.305 | OK | Kullanim birimi blogu ust ritmi esitlenildi |
+
 ## v1.304 - Tutar Blogu Ust Ritmi Esitlendi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
