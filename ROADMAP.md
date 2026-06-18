@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.317)
+
+- v1.317 tamamlandi: PDF yardim ozetinden replay tercih satirina gecis boslugu hafifce artirildi.
+- Boylece PDF/evrak yardim blogu, odeme yardim blogundaki ritimle daha yakin ve rahat okunur hale geldi.
+- Kucuk duzenleme, kartin alt yardim akisinda gorunur sikisikligi yumusatti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.316)
 
 - v1.316 tamamlandi: `PaymentGrid` sonrasindaki `PaymentPdfInfoText` giris boslugu 12px ritme getirildi.

@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.317 - PDF Yardim Satiri Boslugu Dengelendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF yardim satiri boslugu dengelendi | OK | Replay tercih satiri marjini `0,6,0,0` oldu |
+| Gorunum korundu | OK | PDF yardim ozeti ve replay satiri yerlesimi bozulmadi |
+| Alt yardim blogu rahatlasti | OK | Ozet metni ile tercih satiri daha rahat ayrildi |
+| 2026-06-19 | v1.317 | OK | PDF yardim satiri boslugu dengelendi |
+
 ## v1.316 - Odeme PDF Bilgi Girisi Esitlendi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
