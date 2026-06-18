@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.271 - Liste Kolon Piksel Hizasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kolonlara piksel hizasi eklendi | OK | Sol ve sag kolon stilleri `SnapsToDevicePixels=True` kullaniyor |
+| Gorunum korundu | OK | Liste oge ritminde gorunur bozulma yok |
+| Netlik desteği artti | OK | Kolon icerikleri daha tutarli piksel ızgarasına oturuyor |
+| 2026-06-18 | v1.271 | OK | Liste kolonlarina piksel hizasi eklendi |
+
 ## v1.270 - Liste Icerik Gridi Ortak Stili
 | Kontrol | Durum | Not |
 | --- | --- | --- |

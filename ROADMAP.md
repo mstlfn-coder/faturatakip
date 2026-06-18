@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.271)
+
+- v1.271 tamamlandi: Liste oge kolonlarina piksel hizasi desteği eklendi.
+- Boylece sol bilgi kolonu ile sag aksiyon kolonu ayni piksel ızgarasına daha tutarli oturuyor.
+- Kucuk duzenleme, iskeleti bozmadan cizgi netligini destekledi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.270)
 
 - v1.270 tamamlandi: Liste oge icerik gridleri ortak stile toplandi.

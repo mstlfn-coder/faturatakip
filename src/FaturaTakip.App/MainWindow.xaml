@@ -267,12 +267,14 @@
         </Style>
         <Style x:Key="PaymentsItemLeftStack" TargetType="StackPanel">
             <Setter Property="Grid.Column" Value="0" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
         <Style x:Key="PaymentsItemRightStack" TargetType="StackPanel">
             <Setter Property="Grid.Column" Value="1" />
             <Setter Property="Margin" Value="16,0,0,0" />
             <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
         <Style x:Key="PaymentsSectionTitle" TargetType="TextBlock">
