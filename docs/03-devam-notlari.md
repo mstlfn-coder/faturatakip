@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-19 / v1.318)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.318 - PDF Son Aksiyon Gecisi Rahatladi`
+- Bu adimda replay tercih satirindan `PaymentPdfHelperLastActionButton` alanina hafif bir ust bosluk eklendi.
+- Boylece PDF/evrak yardim zincirindeki son aksiyon alani daha rahat ve katmanli okunur hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-19 / v1.317)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

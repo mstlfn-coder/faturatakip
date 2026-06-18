@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.318 - PDF Son Aksiyon Gecisi Rahatladi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF son aksiyon gecisi rahatlatildi | OK | `PaymentPdfHelperLastActionButton` icin `Margin=\"0,6,0,0\"` eklendi |
+| Gorunum korundu | OK | PDF yardim butonu ve alt rozetler yerlesimi bozulmadi |
+| Ikinci yardim zinciri netlesti | OK | Replay satirindan son aksiyon alanina gecis daha rahat ayrildi |
+| 2026-06-19 | v1.318 | OK | PDF son aksiyon gecisi rahatlatildi |
+
 ## v1.317 - PDF Yardim Satiri Boslugu Dengelendi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

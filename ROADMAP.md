@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.318)
+
+- v1.318 tamamlandi: PDF replay tercih satirindan `PaymentPdfHelperLastActionButton` alanina hafif bir ust bosluk eklendi.
+- Boylece PDF/evrak yardim zincirindeki son aksiyon alani daha rahat ve katmanli okunur hale geldi.
+- Kucuk duzenleme, ikinci yardim blogunu odeme yardim blogundaki akisla daha uyumlu hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-19 / v1.317)
 
 - v1.317 tamamlandi: PDF yardim ozetinden replay tercih satirina gecis boslugu hafifce artirildi.
