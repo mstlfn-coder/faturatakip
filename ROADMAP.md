@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.304)
+
+- v1.304 tamamlandi: `Tutar/Kullanim` alan blogunun ust boslugu ust form ritmiyle esitlenerek hafifce sikilastirildi.
+- Boylece numara alanindan sonraki cift kolonlu bolum de ayni olcu diliyle daha tutarli akmaya basladi.
+- Kucuk duzenleme, formun orta bolum gecislerini bozmadan daha derli toplu hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.303)
 
 - v1.303 tamamlandi: Fatura numarasi blogunun ust boslugu ust alan ritmiyle esitlenerek hafifce sikilastirildi.

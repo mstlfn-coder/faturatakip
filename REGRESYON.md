@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.304 - Tutar Blogu Ust Ritmi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tutar blogu ritmi esitlenildi | OK | `Tutar/Kullanim` `Grid` marjini `0,12,0,0` oldu |
+| Gorunum korundu | OK | Tutar ve kullanim alanlarinin yerlesimi bozulmadi |
+| Orta alan olcu dili tutarli hale geldi | OK | Numara blogundan sonraki alan cifti de 12px ritme katildi |
+| 2026-06-18 | v1.304 | OK | Tutar blogu ust ritmi esitlenildi |
+
 ## v1.303 - Numara Blogu Ust Ritmi Esitlendi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
