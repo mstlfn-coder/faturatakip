@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.280)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.280 - Aktif Rozet Yuvarlama Destegi`
+- Bu adimda Odemeler kartlarindaki aktif filtre rozetlerine `SnapsToDevicePixels=True` ve `UseLayoutRounding=True` eklendi.
+- Boylece ust katmandaki durum kapsulleri de kart, aksiyon ve liste yapisiyla ayni netlik davranisini paylasir hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.279)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.280)
+
+- v1.280 tamamlandi: Aktif filtre rozetlerine piksel hizasi ve yerlesim yuvarlama desteği eklendi.
+- Boylece ust katmandaki durum kapsulleri de ayni netlik davranis ailesine katildi.
+- Kucuk duzenleme, rozet sunumunu bozmadan kapsul netligini daha tutarli hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.279)
 
 - v1.279 tamamlandi: Iki karti tasiyan section gridine piksel hizasi ve yerlesim yuvarlama desteği eklendi.

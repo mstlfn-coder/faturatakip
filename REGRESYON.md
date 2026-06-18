@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.280 - Aktif Rozet Yuvarlama Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif rozete yuvarlama destegi eklendi | OK | `PaymentsActiveFilterBadge` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Aktif rozet kapsullerinde gorunur bozulma yok |
+| Davranis zinciri genisledi | OK | Rozet katmani da ayni netlik ailesine katildi |
+| 2026-06-18 | v1.280 | OK | Aktif rozete piksel ve yuvarlama destegi eklendi |
+
 ## v1.279 - Kart Izgarasi Yuvarlama Destegi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

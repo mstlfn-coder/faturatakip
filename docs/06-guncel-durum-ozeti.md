@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.279 - Kart Izgarasi Yuvarlama Destegi`
+- Son tamamlanan temiz faz: `v1.280 - Aktif Rozet Yuvarlama Destegi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.280` Aktif Rozet Yuvarlama Destegi
 - `v1.279` Kart Izgarasi Yuvarlama Destegi
 - `v1.278` Aksiyon Satiri Yuvarlama Destegi
 - `v1.277` Filtre Satiri Yuvarlama Destegi

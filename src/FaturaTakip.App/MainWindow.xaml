@@ -343,6 +343,8 @@
             <Setter Property="Padding" Value="8,3" />
             <Setter Property="Margin" Value="0,6,0,0" />
             <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
         </Style>
     </Window.Resources>
 
