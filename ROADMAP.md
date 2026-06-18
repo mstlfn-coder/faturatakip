@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.311)
+
+- v1.311 tamamlandi: Replay tercih satirindan `PaymentHelperLastActionButton` alanina hafif bir ust bosluk eklendi.
+- Boylece odeme kartindaki yardimci aksiyon zinciri daha rahat ve katmanli okunur hale geldi.
+- Kucuk duzenleme, kart ici yardim akisinda son aksiyon alanini daha net ayirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.310)
 
 - v1.310 tamamlandi: Odeme yardim ozetinden replay tercih satirina gecis boslugu hafifce artirildi.

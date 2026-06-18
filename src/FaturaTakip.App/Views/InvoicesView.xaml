@@ -1110,6 +1110,7 @@
                                     </StackPanel>
                                     <Button x:Name="PaymentHelperLastActionButton"
                                             Style="{StaticResource InlineShortcutButton}"
+                                            Margin="0,6,0,0"
                                             Visibility="Collapsed"
                                             Click="PaymentHelperLastActionButton_Click">
                                         <StackPanel Orientation="Horizontal">

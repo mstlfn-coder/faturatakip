@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.311 - Odeme Son Aksiyon Gecisi Rahatladi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Son aksiyon gecisi rahatlatildi | OK | `PaymentHelperLastActionButton` icin `Margin=\"0,6,0,0\"` eklendi |
+| Gorunum korundu | OK | Yardimci aksiyon butonu ve alt rozetler yerlesimi bozulmadi |
+| Yardim aksiyon zinciri netlesti | OK | Replay satirindan son aksiyon alanina gecis daha rahat ayrildi |
+| 2026-06-18 | v1.311 | OK | Odeme son aksiyon gecisi rahatlatildi |
+
 ## v1.310 - Odeme Yardim Satiri Boslugu Dengelendi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
