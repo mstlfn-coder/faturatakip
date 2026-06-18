@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.272)
+
+- v1.272 tamamlandi: Liste oge kolonlarina yerlesim yuvarlama desteği eklendi.
+- Boylece sol ve sag kolonlar grid ile ayni yuvarlama davranisini tek noktadan paylasiyor.
+- Kucuk duzenleme, kolon netligini bozmadan yerlesim davranisini biraz daha tutarli hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.271)
 
 - v1.271 tamamlandi: Liste oge kolonlarina piksel hizasi desteği eklendi.

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.272)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.272 - Liste Kolon Yerlesim Yuvarlama`
+- Bu adimda Odemeler liste ogelerindeki sol ve sag kolon stillerine `UseLayoutRounding=True` eklendi.
+- Boylece kolonlar grid ile ayni yerlesim yuvarlama davranisini paylasir hale geldi ve uzun listelerde cizgi netligi biraz daha sabitlendi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.271)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

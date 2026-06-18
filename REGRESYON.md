@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.272 - Liste Kolon Yerlesim Yuvarlama
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kolonlara yuvarlama eklendi | OK | Sol ve sag kolon stilleri `UseLayoutRounding=True` kullaniyor |
+| Gorunum korundu | OK | Liste oge ritminde gorunur bozulma yok |
+| Netlik destegi artti | OK | Kolonlar grid ile ayni yuvarlama davranisini paylasiyor |
+| 2026-06-18 | v1.272 | OK | Liste kolonlarina yerlesim yuvarlama eklendi |
+
 ## v1.271 - Liste Kolon Piksel Hizasi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
