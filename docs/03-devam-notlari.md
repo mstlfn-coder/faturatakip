@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.278)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.278 - Aksiyon Satiri Yuvarlama Destegi`
+- Bu adimda Odemeler kartlarindaki uc parcali aksiyon satirlarina `SnapsToDevicePixels=True` ve `UseLayoutRounding=True` eklendi.
+- Boylece ana aksiyon, yardim metni ve reset dugmesi ayni netlik davranisini kartin diger katmanlariyla paylasir hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.277)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.278)
+
+- v1.278 tamamlandi: Uc parcali aksiyon satirlarina piksel hizasi ve yerlesim yuvarlama desteği eklendi.
+- Boylece ust bolumdeki aksiyon grubu da ayni netlik davranis ailesine katildi.
+- Kucuk duzenleme, aksiyon akisini bozmadan ust ritmi daha tutarli hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.277)
 
 - v1.277 tamamlandi: Filtre satirlarina piksel hizasi ve yerlesim yuvarlama desteği eklendi.

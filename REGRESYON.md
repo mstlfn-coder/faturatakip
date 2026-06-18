@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.278 - Aksiyon Satiri Yuvarlama Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aksiyon satirina yuvarlama destegi eklendi | OK | `PaymentsActionRowGrid` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Ana aksiyon, yardim metni ve reset akışında gorunur bozulma yok |
+| Davranis zinciri genisledi | OK | Ust akistaki aksiyon satiri da ayni netlik ailesine katildi |
+| 2026-06-18 | v1.278 | OK | Aksiyon satirina piksel ve yuvarlama destegi eklendi |
+
 ## v1.277 - Filtre Satiri Yuvarlama Destegi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
