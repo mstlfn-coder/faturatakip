@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.308)
+
+- v1.308 tamamlandi: `Odeme Bilgisi` kartinda ozet metninden ilk alan ciftine gecis boslugu 12px ritme getirildi.
+- Boylece kart ici giris, dis formdaki olcu diliyle daha uyumlu hale geldi.
+- Kucuk duzenleme, odeme kartinin ic baslangicini bozmadan daha duzenli hissettirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.307)
 
 - v1.307 tamamlandi: `Odeme Bilgisi` blogunun ust boslugu orta form ritmiyle esitlenerek hafifce sikilastirildi.

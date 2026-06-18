@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.308)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.308 - Odeme Karti Giris Ritmi Esitlendi`
+- Bu adimda odeme kartinda ozet metninden ilk alan ciftine gecis boslugu 12px ritme getirildi.
+- Boylece kart ici giris, dis formdaki olcu diliyle daha uyumlu ve derli toplu hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.307)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

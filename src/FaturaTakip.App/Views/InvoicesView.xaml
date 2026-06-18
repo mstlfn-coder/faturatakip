@@ -1056,7 +1056,7 @@
                                                Style="{StaticResource MutedText}"
                                                TextWrapping="Wrap" />
 
-                                    <Grid Margin="0,10,0,0">
+                                    <Grid Margin="0,12,0,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="12" />

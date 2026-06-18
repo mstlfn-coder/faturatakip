@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.308 - Odeme Karti Giris Ritmi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kart ici giris ritmi esitlenildi | OK | Ilk odeme `Grid` marjini `0,12,0,0` oldu |
+| Gorunum korundu | OK | Odeme ozeti ve ilk alan cifti yerlesimi bozulmadi |
+| Dis-ic olcu dili yaklasti | OK | Kart ici giris artik 12px ritimle dis formla uyumlu |
+| 2026-06-18 | v1.308 | OK | Odeme karti giris ritmi esitlenildi |
+
 ## v1.307 - Odeme Blogu Ust Ritmi Esitlendi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
