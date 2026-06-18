@@ -1476,7 +1476,7 @@
                                                    Style="{StaticResource MutedText}"
                                                    FontWeight="SemiBold"
                                                    Margin="0,0,0,6" />
-                                        <WrapPanel ItemHeight="34">
+                                        <WrapPanel>
                                             <CheckBox x:Name="ShowInvoiceReviewContextCheckBox"
                                                       Content="Bağlamı Göster"
                                                       IsChecked="True"
@@ -1523,7 +1523,7 @@
                                                    Style="{StaticResource MutedText}"
                                                    FontWeight="SemiBold"
                                                    Margin="0,2,0,6" />
-                                        <WrapPanel ItemHeight="34">
+                                        <WrapPanel>
                                             <Button x:Name="ApplyInvoiceReviewContextPeriodButton"
                                                     Content="Bağlam Dönemi"
                                                     Style="{StaticResource ContextActionButton}"
@@ -1547,57 +1547,57 @@
                                                     Click="ApplyInvoiceReviewContextInvoiceNoButton_Click" />
                                         </WrapPanel>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal"
-                                                Margin="0,10,0,0">
+                                    <WrapPanel Margin="0,10,0,0">
                                         <Button x:Name="SaveInvoiceReviewNoteButton"
                                                 Content="İnceleme Notunu Kaydet"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="SaveInvoiceReviewNoteButton_Click" />
                                         <Button x:Name="MarkReviewedAndNextButton"
                                                 Content="Bakıldı + Sonraki"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="MarkReviewedAndNextButton_Click" />
                                         <Button x:Name="ClearInvoiceReviewNoteButton"
                                                 Content="İşareti Temizle"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="ClearInvoiceReviewNoteButton_Click" />
                                         <Button Content="PDF Seç"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="SelectInvoicePdfButton_Click" />
                                         <Button x:Name="OpenInvoicePdfButton"
                                                 Content="PDF Aç"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="OpenInvoicePdfButton_Click" />
                                         <Button x:Name="RevealInvoicePdfFolderButton"
                                                 Content="Klasörde Göster"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="RevealInvoicePdfFolderButton_Click" />
                                         <Button x:Name="OpenInvoicePdfAndNextButton"
                                                 Content="PDF Aç + Sonraki"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="OpenInvoicePdfAndNextButton_Click" />
                                         <Button x:Name="RevealInvoicePdfFolderAndNextButton"
                                                 Content="Klasör + Sonraki"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="RevealInvoicePdfFolderAndNextButton_Click" />
                                         <Button x:Name="PreviousInvoiceButton"
                                                 Content="Önceki Kayıt"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="PreviousInvoiceButton_Click" />
                                         <Button x:Name="NextInvoiceButton"
                                                 Content="Sonraki Kayıt"
                                                 Style="{StaticResource SecondaryButton}"
+                                                Margin="0,0,8,8"
                                                 Click="NextInvoiceButton_Click" />
-                                    </StackPanel>
+                                    </WrapPanel>
                                 </StackPanel>
                             </Border>
                         </StackPanel>

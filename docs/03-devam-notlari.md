@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.285)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.285 - Inceleme Aksiyon Yerlesimi Duzenlendi`
+- Bu adimda Faturayi Duzenle alanindaki Ana Aksiyonlar, Detay Araclari ve alt komut dugmeleri sarilan duzene gecirildi.
+- Boylece daralan dikey alanda butonlar kesilmeden gorunur kaldi ve inceleme panelinin kaydirma davranisi daha dengeli hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.284)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

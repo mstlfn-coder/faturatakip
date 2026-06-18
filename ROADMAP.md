@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.285)
+
+- v1.285 tamamlandi: Fatura inceleme alanindaki aksiyon dugmeleri sarilan duzene gecirildi ve sabit satir yuksekligi kaldirildi.
+- Boylece Ana Aksiyonlar, Detay Araclari ve alt komut sirasi dar alanlarda kesilmeden gorunur hale geldi.
+- Kucuk duzenleme, inceleme panelinin dikey akisinda sikismayi azaltip kaydirma davranisini daha dogal hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.284)
 
 - v1.284 tamamlandi: Odemeler bolum basligi stiline piksel hizasi ve yerlesim yuvarlama destegi eklendi.

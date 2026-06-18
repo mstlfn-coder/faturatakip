@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.285 - Inceleme Aksiyon Yerlesimi Duzenlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aksiyon satirlari sarilan duzene gecti | OK | Inceleme aksiyon ve alt komut satirlari `WrapPanel` ile tasiniyor |
+| Sabit satir yuksekligi kaldirildi | OK | Ana Aksiyonlar ve Detay Araclari butonlari artik kesilmiyor |
+| Gorunum korundu | OK | Inceleme panelindeki buton isimleri daha rahat okunuyor |
+| 2026-06-18 | v1.285 | OK | Fatura inceleme aksiyon yerlesimi duzenlendi |
+
 ## v1.284 - Bolum Basligi Piksel Destegi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
