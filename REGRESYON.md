@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.306 - Aciklama Blogu Ust Ritmi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aciklama blogu ritmi esitlenildi | OK | `Aciklama` etiket marjini `0,12,0,6` oldu |
+| Gorunum korundu | OK | Aciklama alaninin yerlesimi bozulmadi |
+| Orta akis tutarli hale geldi | OK | `Kullanim Birimi` sonrasindaki metin blogu da 12px ritme katildi |
+| 2026-06-18 | v1.306 | OK | Aciklama blogu ust ritmi esitlenildi |
+
 ## v1.305 - Kullanim Birimi Blogu Ust Ritmi Esitlendi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

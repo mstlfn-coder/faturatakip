@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.306)
+
+- v1.306 tamamlandi: `Aciklama` blogunun ust boslugu orta form ritmiyle esitlenerek hafifce sikilastirildi.
+- Boylece `Kullanim Birimi` alanindan metin aciklama bloguna gecis de ayni olcu diliyle daha tutarli hale geldi.
+- Kucuk duzenleme, orta form akisinda bloklar arasi gecisi bozmadan daha derli toplu bir yapi kurdu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.305)
 
 - v1.305 tamamlandi: `Kullanim Birimi` blogunun ust boslugu orta form ritmiyle esitlenerek hafifce sikilastirildi.

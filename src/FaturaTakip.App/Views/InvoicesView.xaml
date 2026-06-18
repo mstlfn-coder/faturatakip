@@ -1035,7 +1035,7 @@
 
                             <TextBlock Text="Açıklama"
                                        Style="{StaticResource FieldLabel}"
-                                       Margin="0,14,0,6" />
+                                       Margin="0,12,0,6" />
                             <TextBox x:Name="InvoiceDescriptionInput"
                                       MinHeight="96"
                                       MaxLength="500"

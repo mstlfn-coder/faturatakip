@@ -5,7 +5,7 @@ Kurum aboneliklerine ait fatura, PDF evrak, odeme kaydi ve raporlama sureclerini
 ## Son Durum
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan faz: `v1.305 - Kullanim Birimi Blogu Ust Ritmi Esitlendi`
+- Son tamamlanan faz: `v1.306 - Aciklama Blogu Ust Ritmi Esitlendi`
 - Son smoke test:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
