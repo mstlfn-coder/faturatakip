@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.281 - Aktif Rozet Metni Piksel Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif rozet metnine piksel destegi eklendi | OK | `PaymentsActiveFilterText` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Rozet metninde gorunur bozulma yok |
+| Davranis zinciri tamamlandi | OK | Rozet kabugu ve metni ayni netlik ailesinde bulustu |
+| 2026-06-18 | v1.281 | OK | Aktif rozet metnine piksel ve yuvarlama destegi eklendi |
+
 ## v1.280 - Aktif Rozet Yuvarlama Destegi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

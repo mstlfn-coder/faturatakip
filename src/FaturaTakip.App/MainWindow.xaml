@@ -334,6 +334,8 @@
             <Setter Property="Foreground" Value="#1D4ED8" />
             <Setter Property="FontSize" Value="10" />
             <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
         </Style>
         <Style x:Key="PaymentsActiveFilterBadge" TargetType="Border">
             <Setter Property="Background" Value="#EFF6FF" />

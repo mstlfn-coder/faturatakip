@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.281)
+
+- v1.281 tamamlandi: Aktif filtre rozet metinlerine piksel hizasi ve yuvarlama destegi eklendi.
+- Boylece kapsul ve metin ayni netlik davranisini tek noktadan daha tutarli paylasiyor.
+- Kucuk duzenleme, rozet okunurlugunu bozmadan metin netligini destekledi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.280)
 
 - v1.280 tamamlandi: Aktif filtre rozetlerine piksel hizasi ve yerlesim yuvarlama desteği eklendi.
