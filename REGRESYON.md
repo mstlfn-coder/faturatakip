@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.298 - Form Basligi Alt Nefesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baslik blogu alt boslugu eklendi | OK | Ust `StackPanel` marjini `0,0,0,2` oldu |
+| Gorunum korundu | OK | Baslik, baglam ipucu ve icerik yerlesimi bozulmadi |
+| Ust gecis rahatlasti | OK | Baslik blogu ile form icerigi daha rahat ayriliyor |
+| 2026-06-18 | v1.298 | OK | Form basligi bloguna alt bosluk eklendi |
+
 ## v1.297 - Form Basligi Satir Ritmi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.298)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.298 - Form Basligi Alt Nefesi`
+- Bu adimda form basligi bloguna hafif bir alt bosluk eklendi.
+- Boylece baslik ve baglam ipucu ile asagidaki form icerigi arasinda daha rahat bir gecis olustu.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.297)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
