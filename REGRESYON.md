@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.325 - Baglamdan Ana Aksiyona Gecis Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Gecis ritmi esitlenildi | OK | `Ana Aksiyonlar` blogunu tasiyan `StackPanel` marjini `0,12,0,0` oldu |
+| Gorunum korundu | OK | Baglam paneli ve aksiyon blogu yerlesimi bozulmadi |
+| Ic panel akisi tutarli hale geldi | OK | Kisayol tercihlerinden ana aksiyonlara gecis 12px ritme katildi |
+| 2026-06-19 | v1.325 | OK | Baglamdan ana aksiyona gecis esitlenildi |
+
 ## v1.324 - Baglam Ici Kisayol Basligi Ritmi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

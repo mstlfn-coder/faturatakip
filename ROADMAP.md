@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.325)
+
+- v1.325 tamamlandi: Baglam panelindeki kisayol tercih satirindan `Ana Aksiyonlar` bloguna gecis boslugu 12px ritme getirildi.
+- Boylece baglam ic panelinden ana aksiyon bloguna gecis daha tutarli ve rahat okunur hale geldi.
+- Kucuk duzenleme, PDF inceleme kartinin ic akisinda bloklar arasi gecisi bozmadan toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-19 / v1.324)
 
 - v1.324 tamamlandi: Baglam panelindeki `Kisayol Geri Bildirimi` basliginin ust boslugu 12px ritme getirildi.
