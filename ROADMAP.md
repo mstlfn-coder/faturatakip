@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.302)
+
+- v1.302 tamamlandi: Ust formdaki sonraki iki kolonlu alan blogunun ust boslugu ilk blokla ayni ritme getirildi.
+- Boylece ust bolumdeki alan ciftleri daha tutarli bir olcu diliyle akmaya basladi.
+- Kucuk duzenleme, alan gruplamasini bozmadan dikey ritmi esitledi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.301)
 
 - v1.301 tamamlandi: Ilk abonelik alanindan sonraki iki kolonlu blogun ust boslugu hafifce sikilastirildi.

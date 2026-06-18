@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.302)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.302 - Ust Alan Cifti Ritmi Esitlendi`
+- Bu adimda ust formdaki sonraki iki kolonlu alan blogunun ust boslugu ilk blokla ayni olcuye getirildi.
+- Boylece ust bolumdeki alan ciftleri ayni ritimle akarak daha tutarli bir form girisi olustu.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.301)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

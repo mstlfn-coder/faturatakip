@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.302 - Ust Alan Cifti Ritmi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ust alan ciftinin ritmi esitlendi | OK | Sonraki iki kolonlu `Grid` marjini `0,12,0,0` oldu |
+| Gorunum korundu | OK | Ust alan ciftlerinin yerlesimi bozulmadi |
+| Dikey olcu dili tutarli hale geldi | OK | Ilk iki alan blogu ayni bosluk ritmini kullaniyor |
+| 2026-06-18 | v1.302 | OK | Ust alan ciftleri arasindaki ritim esitlenildi |
+
 ## v1.301 - Ilk Blok Gecisi Dengelendi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
