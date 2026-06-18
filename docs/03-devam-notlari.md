@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.301)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.301 - Ilk Blok Gecisi Dengelendi`
+- Bu adimda ilk abonelik secicisinden sonraki iki kolonlu blogun ust boslugu hafifce sikilastirildi.
+- Boylece ust giris alani ilk seciciden donem alanlarina daha tek parca bir akisla baglandi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.300)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

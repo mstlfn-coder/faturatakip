@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.301)
+
+- v1.301 tamamlandi: Ilk abonelik alanindan sonraki iki kolonlu blogun ust boslugu hafifce sikilastirildi.
+- Boylece ust giris alani ilk seciciden sonraki form bloguna daha tek parca bir akisla baglandi.
+- Kucuk duzenleme, alan gruplamasini bozmadan ilk form gecisini daha derli toplu hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.300)
 
 - v1.300 tamamlandi: Fatura formundaki ilk abonelik alanina hafif bir alt bosluk eklendi.

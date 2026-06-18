@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.300 - Ilk Alan Alt Ayirimi`
+- Son tamamlanan temiz faz: `v1.301 - Ilk Blok Gecisi Dengelendi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.301` Ilk Blok Gecisi Dengelendi
 - `v1.300` Ilk Alan Alt Ayirimi
 - `v1.299` Form Giris Gecisi Sikilasti
 - `v1.298` Form Basligi Alt Nefesi

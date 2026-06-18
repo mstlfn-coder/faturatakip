@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.301 - Ilk Blok Gecisi Dengelendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ilk blok gecisi dengelendi | OK | Iki kolonlu ilk `Grid` marjini `0,12,0,0` oldu |
+| Gorunum korundu | OK | Abonelik secicisi ve sonraki alan blogu yerlesimi bozulmadi |
+| Ust akis toparlandi | OK | Ilk secici ile donem alanlari daha tek parca gorunuyor |
+| 2026-06-18 | v1.301 | OK | Ilk blok gecisi hafifce sikilastirildi |
+
 ## v1.300 - Ilk Alan Alt Ayirimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
