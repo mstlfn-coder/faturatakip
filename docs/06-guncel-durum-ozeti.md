@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.296 - Form Baglam Ipucu Ritmi`
+- Son tamamlanan temiz faz: `v1.297 - Form Basligi Satir Ritmi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.297` Form Basligi Satir Ritmi
 - `v1.296` Form Baglam Ipucu Ritmi
 - `v1.295` Footer Dikey Denge
 - `v1.294` Footer Icerik Hizasi

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.297)
+
+- v1.297 tamamlandi: Fatura formu basligina kontrollu satir yuksekligi eklendi.
+- Boylece baslik ve baglam ipucu ayni tipografik ritimde daha toplu gorunur hale geldi.
+- Kucuk duzenleme, sag panelin ust girisinde metin akisini daha dengeli hissettirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.296)
 
 - v1.296 tamamlandi: Fatura formu basligi altindaki baglam ipucuna kontrollu satir ritmi ve biraz daha rahat ust bosluk eklendi.

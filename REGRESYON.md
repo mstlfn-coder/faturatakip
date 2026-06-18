@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.297 - Form Basligi Satir Ritmi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baslik ritmi ayarlandi | OK | `InvoiceFormTitleText` icin `LineHeight=22` ve `BlockLineHeight` eklendi |
+| Gorunum korundu | OK | Baslik ve ust blok yerlesimi bozulmadi |
+| Tipografik uyum artti | OK | Baslik ve baglam ipucu daha ayni ailede gorunuyor |
+| 2026-06-18 | v1.297 | OK | Form basligi satir ritmi iyilestirildi |
+
 ## v1.296 - Form Baglam Ipucu Ritmi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
