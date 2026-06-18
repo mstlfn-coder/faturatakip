@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.299)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.299 - Form Giris Gecisi Sikilasti`
+- Bu adimda baslik blogundan forma gecis boslugu hafifce sikilastirildi.
+- Boylece baslik, baglam ipucu ve ilk form alani daha tek parca ve duzenli bir giris akisi kurdu.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.298)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

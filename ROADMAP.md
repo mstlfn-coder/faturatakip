@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.299)
+
+- v1.299 tamamlandi: Fatura formu baslik blogundan icerige gecis boslugu hafifce sikilastirildi.
+- Boylece baslik, baglam ipucu ve ilk form alani daha tek parca bir giris akisi kurdu.
+- Kucuk duzenleme, sag panelin ust ritmini bozmadan daha toplu hissettirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.298)
 
 - v1.298 tamamlandi: Fatura formu baslik bloguna hafif bir alt bosluk eklendi.

@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.299 - Form Giris Gecisi Sikilasti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Giris gecisi sikilasti | OK | Icerik `ScrollViewer` ust marjini `0,14,0,0` oldu |
+| Gorunum korundu | OK | Baslik, baglam ve ilk alan yerlesimi bozulmadi |
+| Ust akis toparlandi | OK | Giris bolumu daha tek parca hissediliyor |
+| 2026-06-18 | v1.299 | OK | Form giris gecisi hafifce sikilastirildi |
+
 ## v1.298 - Form Basligi Alt Nefesi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
