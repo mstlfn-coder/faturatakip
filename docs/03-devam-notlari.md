@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.315)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.315 - Odeme Grid Gecisi Esitlendi`
+- Bu adimda odeme alt komut satirindan `PaymentGrid` alanina gecis boslugu 12px ritme getirildi.
+- Boylece kartin alt bolumunde komutlardan kayit listesine gecis daha tutarli ve derli toplu hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.314)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

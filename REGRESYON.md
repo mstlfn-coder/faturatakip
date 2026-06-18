@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.315 - Odeme Grid Gecisi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Grid gecisi esitlenildi | OK | `PaymentGrid` marjini `0,12,0,0` oldu |
+| Gorunum korundu | OK | Alt komut satiri ve tablo yerlesimi bozulmadi |
+| Kart alt ritmi toparlandi | OK | Komutlardan kayit listesine gecis 12px ritme katildi |
+| 2026-06-18 | v1.315 | OK | Odeme grid gecisi esitlenildi |
+
 ## v1.314 - Odeme Alt Komutlari Sarildi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

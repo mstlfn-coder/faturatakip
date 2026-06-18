@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.315)
+
+- v1.315 tamamlandi: Odeme alt komut satirindan `PaymentGrid` alanina gecis boslugu 12px ritme getirildi.
+- Boylece odeme kartinin alt bolumunde komutlardan kayit listesine gecis de ayni olcu diliyle daha tutarli hale geldi.
+- Kucuk duzenleme, kart alt akisinda tablo girisini bozmadan daha derli toplu bir ritim kurdu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.314)
 
 - v1.314 tamamlandi: Odeme kartinin alt komut dugmeleri sarilan duzene gecirildi.
