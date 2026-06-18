@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.321)
+
+- v1.321 tamamlandi: `PDF Evrakı` blogunun ust boslugu 12px ritme getirildi.
+- Boylece odeme kartindan alttaki PDF inceleme kartina gecis de ayni olcu diliyle daha tutarli hale geldi.
+- Kucuk duzenleme, kartlar arasi gecisi bozmadan daha derli toplu bir akis kurdu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-19 / v1.320)
 
 - v1.320 tamamlandi: PDF yardim blogunun alt komut dugmeleri sarilan duzene gecirildi.

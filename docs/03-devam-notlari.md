@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-19 / v1.321)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.321 - PDF Evraki Giris Ritmi Esitlendi`
+- Bu adimda `PDF Evrakı` blogunun ust boslugu 12px ritme getirildi.
+- Boylece odeme kartindan alttaki PDF inceleme kartina gecis daha tutarli ve derli toplu hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-19 / v1.320)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.321 - PDF Evraki Giris Ritmi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF evraki girisi esitlenildi | OK | `PDF Evrakı` etiket marjini `0,12,0,6` oldu |
+| Gorunum korundu | OK | Odeme karti ve PDF karti yerlesimi bozulmadi |
+| Kartlar arasi gecis tutarli hale geldi | OK | Ust karttan PDF kartina gecis 12px ritme katildi |
+| 2026-06-19 | v1.321 | OK | PDF evraki giris ritmi esitlenildi |
+
 ## v1.320 - PDF Alt Komutlari Sarildi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
