@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.273 - Liste Karti Piksel Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kartlara piksel destegi eklendi | OK | Liste kartlari `SnapsToDevicePixels=True` ve `UseLayoutRounding=True` kullaniyor |
+| Gorunum korundu | OK | Kart sinirlarinda gorunur bozulma yok |
+| Netlik zinciri tamamlandi | OK | Kart, grid ve kolonlar ayni piksel davranisini paylasiyor |
+| 2026-06-18 | v1.273 | OK | Liste kartlarina piksel netligi desteği eklendi |
+
 ## v1.272 - Liste Kolon Yerlesim Yuvarlama
 | Kontrol | Durum | Not |
 | --- | --- | --- |

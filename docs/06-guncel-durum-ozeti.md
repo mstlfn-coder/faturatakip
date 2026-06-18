@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.272 - Liste Kolon Yerlesim Yuvarlama`
+- Son tamamlanan temiz faz: `v1.273 - Liste Karti Piksel Destegi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.273` Liste Karti Piksel Destegi
 - `v1.272` Liste Kolon Yerlesim Yuvarlama
 - `v1.271` Liste Kolon Piksel Hizasi
 - `v1.270` Liste Icerik Gridi Ortak Stili

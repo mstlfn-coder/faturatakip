@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.273)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.273 - Liste Karti Piksel Destegi`
+- Bu adimda Odemeler liste kartlarina `SnapsToDevicePixels=True` ve `UseLayoutRounding=True` eklendi.
+- Boylece oge sinirlari, ic grid ve kolon davranisiyla ayni piksel ızgarasına daha tutarli oturur hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.272)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

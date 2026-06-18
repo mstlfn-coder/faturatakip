@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.273)
+
+- v1.273 tamamlandi: Liste kartlarina piksel hizasi ve yerlesim yuvarlama desteği eklendi.
+- Boylece oge cercevesi ile ic yerlesim ayni piksel davranisini paylasiyor.
+- Kucuk duzenleme, kart netligini korurken dis cerceveyi ic iskeletle daha uyumlu hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.272)
 
 - v1.272 tamamlandi: Liste oge kolonlarina yerlesim yuvarlama desteği eklendi.
