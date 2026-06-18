@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.289)
+
+- v1.289 tamamlandi: Fatura formu footer bandinin alt ic boslugu hafifce artirildi.
+- Boylece durum mesaji ve kaydet dugmesi alt kenara daha rahat nefesle oturur hale geldi.
+- Kucuk duzenleme, footer kapanisini akisi bozmadan daha dengeli gostermeye yardim etti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.288)
 
 - v1.288 tamamlandi: Fatura formu alt footer bandina hafif bir zemin tonu eklendi.

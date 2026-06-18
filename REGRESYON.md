@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.289 - Fatura Formu Footer Boslugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Footer alt boslugu artirildi | OK | Alt bandin `Padding` degeri `0,14,0,4` oldu |
+| Gorunum korundu | OK | Durum mesaji ve `Kaydet` dugmesi ulasilabilir kaldi |
+| Footer kapanisi yumusadi | OK | Alt kenarda daha dengeli bir bosluk olustu |
+| 2026-06-18 | v1.289 | OK | Fatura formu footer alt boslugu artirildi |
+
 ## v1.288 - Fatura Formu Footer Zemini
 | Kontrol | Durum | Not |
 | --- | --- | --- |
