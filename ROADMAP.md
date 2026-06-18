@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.303)
+
+- v1.303 tamamlandi: Fatura numarasi blogunun ust boslugu ust alan ritmiyle esitlenerek hafifce sikilastirildi.
+- Boylece ust formdaki alan gecisleri ayni olcu diliyle daha tutarli akmaya basladi.
+- Kucuk duzenleme, formun ilk yarisindaki blok gecislerini bozmadan daha derli toplu hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.302)
 
 - v1.302 tamamlandi: Ust formdaki sonraki iki kolonlu alan blogunun ust boslugu ilk blokla ayni ritme getirildi.

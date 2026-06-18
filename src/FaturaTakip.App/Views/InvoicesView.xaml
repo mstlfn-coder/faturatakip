@@ -1001,7 +1001,7 @@
 
                             <TextBlock Text="Fatura Numarası"
                                        Style="{StaticResource FieldLabel}"
-                                       Margin="0,14,0,6" />
+                                       Margin="0,12,0,6" />
                             <TextBox x:Name="InvoiceNoInput"
                                      Height="34"
                                      MaxLength="100" />

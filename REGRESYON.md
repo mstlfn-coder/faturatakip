@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.303 - Numara Blogu Ust Ritmi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Numara blogu ritmi esitlenildi | OK | `Fatura Numarası` etiket marjini `0,12,0,6` oldu |
+| Gorunum korundu | OK | Numara alaninin yerlesimi bozulmadi |
+| Ust alan olcu dili tutarli hale geldi | OK | Numara blogu da ustteki 12px ritme katildi |
+| 2026-06-18 | v1.303 | OK | Numara blogu ust ritmi esitlenildi |
+
 ## v1.302 - Ust Alan Cifti Ritmi Esitlendi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

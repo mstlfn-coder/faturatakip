@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.303)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.303 - Numara Blogu Ust Ritmi Esitlendi`
+- Bu adimda `Fatura Numarası` blogunun ust boslugu ust alan ritmiyle esitlenerek hafifce sikilastirildi.
+- Boylece ust formdaki iki kolonlu bloklardan tek satirli numara alanina gecis daha tutarli hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.302)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
