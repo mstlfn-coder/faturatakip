@@ -1077,7 +1077,7 @@
 
                                     <TextBlock Text="Ödeme Açıklaması"
                                                Style="{StaticResource FieldLabel}"
-                                               Margin="0,10,0,6" />
+                                               Margin="0,12,0,6" />
                                     <TextBox x:Name="PaymentDescriptionInput"
                                              Height="34"
                                              MaxLength="500" />

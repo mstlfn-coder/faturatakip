@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.309)
+
+- v1.309 tamamlandi: `Odeme Aciklamasi` etiketinin ust boslugu kart ici 12px ritme getirildi.
+- Boylece odeme kartinda ilk alan ciftinden aciklama alanina gecis de ayni olcu diliyle daha tutarli hale geldi.
+- Kucuk duzenleme, kart ic akisini bozmadan ikinci gecis halkasini da toparladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.308)
 
 - v1.308 tamamlandi: `Odeme Bilgisi` kartinda ozet metninden ilk alan ciftine gecis boslugu 12px ritme getirildi.

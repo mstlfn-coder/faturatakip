@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.309 - Odeme Aciklama Gecisi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme aciklama gecisi esitlenildi | OK | `Odeme Açıklaması` etiket marjini `0,12,0,6` oldu |
+| Gorunum korundu | OK | Odeme aciklama alani yerlesimi bozulmadi |
+| Kart ici ritim guclendi | OK | Ilk alan ciftinden aciklama alanina gecis 12px ritme katildi |
+| 2026-06-18 | v1.309 | OK | Odeme aciklama gecisi esitlenildi |
+
 ## v1.308 - Odeme Karti Giris Ritmi Esitlendi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
