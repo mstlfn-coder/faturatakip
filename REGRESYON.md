@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.275 - Kart Icerigi Yuvarlama Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kart icerigine yuvarlama destegi eklendi | OK | `PaymentsSectionStack` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Kart icerik akisinda gorunur bozulma yok |
+| Davranis zinciri tamamlandi | OK | Kabuk, icerik, grid ve oge katmanlari ayni ailede toplandi |
+| 2026-06-18 | v1.275 | OK | Kart icerigine piksel ve yuvarlama destegi eklendi |
+
 ## v1.274 - Kart Kabugu Piksel Destegi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

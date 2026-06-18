@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.275)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.275 - Kart Icerigi Yuvarlama Destegi`
+- Bu adimda Odemeler operasyon kartlarinin ic `StackPanel` iskeletine `SnapsToDevicePixels=True` ve `UseLayoutRounding=True` eklendi.
+- Boylece dis kart kabugu ile ic akisin piksel ve yuvarlama davranisi daha tutarli hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.274)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

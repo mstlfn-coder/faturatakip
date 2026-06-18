@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.275)
+
+- v1.275 tamamlandi: Operasyon kartlarinin ic iskeletine piksel hizasi ve yerlesim yuvarlama destegi eklendi.
+- Boylece kart kabugu ile icerik blogu ayni davranis ailesini paylasiyor.
+- Kucuk duzenleme, gorsel sonucu bozmadan ic akis netligini destekledi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.274)
 
 - v1.274 tamamlandi: Ust seviye Odemeler kartlarina piksel hizasi ve yerlesim yuvarlama desteği eklendi.
