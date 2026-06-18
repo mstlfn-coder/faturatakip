@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.284 - Bolum Basligi Piksel Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Bolum basligina piksel destegi eklendi | OK | `PaymentsSectionTitle` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Kart basliklarinda gorunur bozulma yok |
+| Baslik zinciri genisledi | OK | Basliklar da ayni netlik ailesine katildi |
+| 2026-06-18 | v1.284 | OK | Bolum basligi stiline piksel ve yuvarlama destegi eklendi |
+
 ## v1.283 - Aksiyon Butonu Piksel Destegi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

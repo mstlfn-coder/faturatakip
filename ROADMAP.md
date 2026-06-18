@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.284)
+
+- v1.284 tamamlandi: Odemeler bolum basligi stiline piksel hizasi ve yerlesim yuvarlama destegi eklendi.
+- Boylece kart basliklari da ust aksiyon ve liste yapisiyla ayni netlik davranis ailesine katildi.
+- Kucuk duzenleme, baslik okunurlugunu bozmadan ust katmanin tipografik tutarliligini artirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.283)
 
 - v1.283 tamamlandi: Odemeler ortak aksiyon butonu stiline piksel hizasi ve yerlesim yuvarlama destegi eklendi.

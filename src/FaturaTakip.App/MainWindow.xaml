@@ -302,6 +302,8 @@
             <Setter Property="Foreground" Value="#1F2937" />
             <Setter Property="FontSize" Value="15" />
             <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
         </Style>
         <Style x:Key="PaymentsSummaryText" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
             <Setter Property="Margin" Value="0,6,0,0" />
