@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.291 - Inceleme Komut Alt Boslugu`
+- Son tamamlanan temiz faz: `v1.292 - Footer Durum Metni Satir Ritmi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.292` Footer Durum Metni Satir Ritmi
 - `v1.291` Inceleme Komut Alt Boslugu
 - `v1.290` Inceleme Aksiyon Ust Boslugu
 - `v1.289` Fatura Formu Footer Boslugu

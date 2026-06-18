@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.292 - Footer Durum Metni Satir Ritmi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Footer durum metni ritmi ayarlandi | OK | `InvoiceStatusText` icin `LineHeight=18` ve `BlockLineHeight` eklendi |
+| Gorunum korundu | OK | `Kaydet` dugmesi ve footer yerlesimi bozulmadi |
+| Uzun metin okunurlugu artti | OK | Footer durum mesaji daha dengeli satirlandi |
+| 2026-06-18 | v1.292 | OK | Footer durum metnine satir ritmi duzenlemesi eklendi |
+
 ## v1.291 - Inceleme Komut Alt Boslugu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

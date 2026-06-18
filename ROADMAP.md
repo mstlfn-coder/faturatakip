@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.292)
+
+- v1.292 tamamlandi: Fatura formu footer durum metnine kontrollu satir yuksekligi eklendi.
+- Boylece uzun durum mesajlari footer alaninda daha duzenli ve sakin okunur hale geldi.
+- Kucuk duzenleme, kaydet bolumu akisini bozmadan metin ritmini iyilestirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.291)
 
 - v1.291 tamamlandi: Inceleme komut sarmalinin alt boslugu hafifce artirildi.

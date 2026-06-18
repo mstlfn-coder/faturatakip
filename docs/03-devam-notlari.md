@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.292)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.292 - Footer Durum Metni Satir Ritmi`
+- Bu adimda sag panel footer durum metnine kontrollu satir yuksekligi eklendi.
+- Boylece uzun durum mesajlari daha sakin satirlanarak `Kaydet` alaninin ustunde daha duzenli okunur hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.291)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
