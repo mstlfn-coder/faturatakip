@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.323)
+
+- v1.323 tamamlandi: `InvoiceReviewHintText` sonrasindaki baglam karti giris boslugu 12px ritme getirildi.
+- Boylece PDF inceleme kartinda ipucu metninden baglam alanina gecis de ayni olcu diliyle daha tutarli hale geldi.
+- Kucuk duzenleme, yardim ve baglam bloklarini bozmadan daha derli toplu bir akis kurdu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-19 / v1.322)
 
 - v1.322 tamamlandi: `InvoicePdfInfoText` sonrasindaki `İnceleme Notu` gecisi 12px ritme getirildi.

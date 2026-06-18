@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.322 - PDF Inceleme Notu Gecisi Esitlendi`
+- Son tamamlanan temiz faz: `v1.323 - PDF Baglam Gecisi Esitlendi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.323` PDF Baglam Gecisi Esitlendi
 - `v1.322` PDF Inceleme Notu Gecisi Esitlendi
 - `v1.321` PDF Evraki Giris Ritmi Esitlendi
 - `v1.320` PDF Alt Komutlari Sarildi

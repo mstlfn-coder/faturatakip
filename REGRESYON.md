@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.323 - PDF Baglam Gecisi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF baglam gecisi esitlenildi | OK | `InvoiceReviewContextBorder` marjini `0,12,0,0` oldu |
+| Gorunum korundu | OK | Ipucu metni ve baglam karti yerlesimi bozulmadi |
+| Yardim-baglam akisi tutarli hale geldi | OK | Ipucundan baglam kartina gecis 12px ritme katildi |
+| 2026-06-19 | v1.323 | OK | PDF baglam gecisi esitlenildi |
+
 ## v1.322 - PDF Inceleme Notu Gecisi Esitlendi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
