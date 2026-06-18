@@ -1045,7 +1045,7 @@
 
                             <TextBlock Text="Ödeme Bilgisi"
                                        Style="{StaticResource FieldLabel}"
-                                       Margin="0,14,0,6" />
+                                       Margin="0,12,0,6" />
                             <Border Background="#F8FAFC"
                                     BorderBrush="#DDE4EC"
                                     BorderThickness="1"

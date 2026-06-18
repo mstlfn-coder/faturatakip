@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-16
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.306 - Aciklama Blogu Ust Ritmi Esitlendi`
+- Son tamamlanan temiz faz: `v1.307 - Odeme Blogu Ust Ritmi Esitlendi`
 - Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.307` Odeme Blogu Ust Ritmi Esitlendi
 - `v1.306` Aciklama Blogu Ust Ritmi Esitlendi
 - `v1.305` Kullanim Birimi Blogu Ust Ritmi Esitlendi
 - `v1.304` Tutar Blogu Ust Ritmi Esitlendi

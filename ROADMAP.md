@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.307)
+
+- v1.307 tamamlandi: `Odeme Bilgisi` blogunun ust boslugu orta form ritmiyle esitlenerek hafifce sikilastirildi.
+- Boylece aciklama alanindan odeme ozet kartina gecis de ayni olcu diliyle daha tutarli hale geldi.
+- Kucuk duzenleme, orta formdan odeme bloguna gecisi bozmadan daha derli toplu bir akis kurdu.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.306)
 
 - v1.306 tamamlandi: `Aciklama` blogunun ust boslugu orta form ritmiyle esitlenerek hafifce sikilastirildi.
