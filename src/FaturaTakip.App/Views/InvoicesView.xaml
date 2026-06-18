@@ -1086,7 +1086,7 @@
                                                TextWrapping="Wrap"
                                                Margin="0,8,0,0" />
                                     <StackPanel Orientation="Horizontal"
-                                                Margin="0,4,0,0">
+                                                Margin="0,6,0,0">
                                         <Border x:Name="PaymentHelperReplayPreferencePrefixBorder"
                                                 Style="{StaticResource InlineShortcutPrefixBorder}"
                                                 Background="#ECFDF5"

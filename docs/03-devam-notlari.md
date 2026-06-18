@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.310)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.310 - Odeme Yardim Satiri Boslugu Dengelendi`
+- Bu adimda odeme yardim ozetinden replay tercih satirina gecis boslugu hafifce artirildi.
+- Boylece odeme kartindaki yardimci bilgi blogu daha rahat ve katmanli okunur hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.309)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

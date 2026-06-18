@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.310)
+
+- v1.310 tamamlandi: Odeme yardim ozetinden replay tercih satirina gecis boslugu hafifce artirildi.
+- Boylece odeme kartindaki yardimci bilgi blogu daha rahat ve katmanli okunur hale geldi.
+- Kucuk duzenleme, kart ici yardim akisina dokunmadan gorunur sikisikligi yumusatti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.309)
 
 - v1.309 tamamlandi: `Odeme Aciklamasi` etiketinin ust boslugu kart ici 12px ritme getirildi.
