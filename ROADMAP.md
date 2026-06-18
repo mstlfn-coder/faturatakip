@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.314)
+
+- v1.314 tamamlandi: Odeme kartinin alt komut dugmeleri sarilan duzene gecirildi.
+- Boylece dar alanlarda dugmeler tek satira sikismadan alt satira akarak daha rahat gorunur hale geldi.
+- Kucuk duzenleme, odeme kartinin alt aksiyon bolumunu bozmadan daha esnek hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.313)
 
 - v1.313 tamamlandi: Rozet blogundan secili yardim durum alanina gecis boslugu hafifce artirildi.

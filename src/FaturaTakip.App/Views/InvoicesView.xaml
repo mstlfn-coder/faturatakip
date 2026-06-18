@@ -1182,29 +1182,29 @@
                                               </Border>
                                         </StackPanel>
                                     </Button>
-                                    <StackPanel Orientation="Horizontal"
-                                                Margin="0,10,0,0">
+                                    <WrapPanel Margin="0,10,0,0">
                                         <Button x:Name="FillRemainingPaymentButton"
                                                 Content="Kalani Doldur"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="FillRemainingPaymentButton_Click" />
                                         <Button x:Name="UseSelectedPaymentTemplateButton"
                                                 Content="Secili Odemeden Doldur"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="UseSelectedPaymentTemplateButton_Click" />
                                         <Button x:Name="UseLastPaymentTemplateButton"
                                                 Content="Son Odemeden Doldur"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="UseLastPaymentTemplateButton_Click" />
                                         <Button x:Name="SavePaymentButton"
                                                 Content="Ödeme Kaydet"
                                                 Style="{StaticResource SecondaryButton}"
+                                                Margin="0,0,8,8"
                                                 HorizontalAlignment="Left"
                                                 Click="SavePaymentButton_Click" />
-                                    </StackPanel>
+                                    </WrapPanel>
 
                                     <DataGrid x:Name="PaymentGrid"
                                               AutoGenerateColumns="False"

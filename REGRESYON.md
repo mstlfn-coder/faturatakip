@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.314 - Odeme Alt Komutlari Sarildi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Alt komutlar sarilan duzene gecti | OK | Alt komut satiri `WrapPanel` olarak guncellendi |
+| Gorunum korundu | OK | Komut dugmeleri erisilebilir ve gorunur kaldi |
+| Dar alan esnekligi artti | OK | Dugmeler alt satira akarak sikisma riskini azaltıyor |
+| 2026-06-18 | v1.314 | OK | Odeme alt komutlari sarilan duzene gecirildi |
+
 ## v1.313 - Odeme Secili Aksiyon Gecisi Rahatladi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
