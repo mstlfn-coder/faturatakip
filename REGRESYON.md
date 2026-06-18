@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.294 - Footer Icerik Hizasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Footer yatay hizasi iyilesti | OK | Footer `Padding` degeri `2,14,2,4` oldu |
+| Gorunum korundu | OK | Durum metni ve `Kaydet` dugmesi yerlesimi bozulmadi |
+| Kapanis ritmi toplandi | OK | Footer icerigi ust form kolonuyla daha dengeli hizalandi |
+| 2026-06-18 | v1.294 | OK | Footer icerik hizasi iyilestirildi |
+
 ## v1.293 - Footer Kose Uyumlu Kapanis
 | Kontrol | Durum | Not |
 | --- | --- | --- |
