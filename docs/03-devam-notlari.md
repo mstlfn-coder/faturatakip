@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.313)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.313 - Odeme Secili Aksiyon Gecisi Rahatladi`
+- Bu adimda rozet blogundan `PaymentHelperSelectedActionStatusButton` alanina gecis boslugu hafifce artirildi.
+- Boylece odeme kartindaki yardimci aksiyon zincirinin alt halkasi da daha rahat ve katmanli okunur hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.312)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

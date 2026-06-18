@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.313 - Odeme Secili Aksiyon Gecisi Rahatladi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili aksiyon gecisi rahatlatildi | OK | `PaymentHelperSelectedActionStatusButton` marjini `0,6,0,0` oldu |
+| Gorunum korundu | OK | Secili yardim alani ve rozet blogu yerlesimi bozulmadi |
+| Yardim aksiyon zinciri tamamlandi | OK | Rozetlerden secili yardim alanina gecis daha rahat ayrildi |
+| 2026-06-18 | v1.313 | OK | Odeme secili aksiyon gecisi rahatlatildi |
+
 ## v1.312 - Odeme Rozet Gecisi Rahatladi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

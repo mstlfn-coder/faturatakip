@@ -1152,7 +1152,7 @@
                                     </ItemsControl>
                                     <Button x:Name="PaymentHelperSelectedActionStatusButton"
                                             Style="{StaticResource SelectedActionStatusButton}"
-                                            Margin="0,4,0,0"
+                                            Margin="0,6,0,0"
                                             ToolTip="Secili yardimi yeniden calistir"
                                             Visibility="Collapsed"
                                             Click="PaymentHelperSelectedActionStatusButton_Click">

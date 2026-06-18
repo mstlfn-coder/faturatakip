@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.313)
+
+- v1.313 tamamlandi: Rozet blogundan secili yardim durum alanina gecis boslugu hafifce artirildi.
+- Boylece odeme kartindaki yardimci aksiyon zincirinin alt halkasi da daha rahat ve katmanli okunur hale geldi.
+- Kucuk duzenleme, secili yardim durum alanini rozetlerden daha net ayirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.312)
 
 - v1.312 tamamlandi: `PaymentHelperLastActionButton` alanindan rozetlere gecis boslugu hafifce artirildi.
