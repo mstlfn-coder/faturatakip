@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.312 - Odeme Rozet Gecisi Rahatladi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozet gecisi rahatlatildi | OK | `PaymentHelperBadges` marjini `0,8,0,0` oldu |
+| Gorunum korundu | OK | Rozet blogu ve secili yardim alani yerlesimi bozulmadi |
+| Yardim aksiyon zinciri netlesti | OK | Son aksiyon alanindan rozetlere gecis daha rahat ayrildi |
+| 2026-06-18 | v1.312 | OK | Odeme rozet gecisi rahatlatildi |
+
 ## v1.311 - Odeme Son Aksiyon Gecisi Rahatladi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.312)
+
+- v1.312 tamamlandi: `PaymentHelperLastActionButton` alanindan rozetlere gecis boslugu hafifce artirildi.
+- Boylece odeme kartindaki yardimci aksiyon zinciri daha katmanli ve rahat okunur hale geldi.
+- Kucuk duzenleme, rozet blogunu onceki yardim satirlarindan daha net ayirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.311)
 
 - v1.311 tamamlandi: Replay tercih satirindan `PaymentHelperLastActionButton` alanina hafif bir ust bosluk eklendi.

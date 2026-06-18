@@ -1124,7 +1124,7 @@
                                         </StackPanel>
                                     </Button>
                                     <ItemsControl x:Name="PaymentHelperBadges"
-                                                  Margin="0,6,0,0">
+                                                  Margin="0,8,0,0">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <WrapPanel />
