@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.322)
+
+- v1.322 tamamlandi: `InvoicePdfInfoText` sonrasindaki `İnceleme Notu` gecisi 12px ritme getirildi.
+- Boylece PDF inceleme kartinin ic girisi de odeme kartindaki olcu diliyle daha tutarli hale geldi.
+- Kucuk duzenleme, PDF kartinin ilk form adimini bozmadan daha derli toplu hissettirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-19 / v1.321)
 
 - v1.321 tamamlandi: `PDF Evrakı` blogunun ust boslugu 12px ritme getirildi.

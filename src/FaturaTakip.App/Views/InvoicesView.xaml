@@ -1368,7 +1368,7 @@
                                                TextWrapping="Wrap" />
                                     <TextBlock Text="İnceleme Notu"
                                                Style="{StaticResource FieldLabel}"
-                                               Margin="0,10,0,6" />
+                                               Margin="0,12,0,6" />
                                     <TextBox x:Name="InvoiceReviewNoteInput"
                                              MinHeight="72"
                                              MaxLength="500"

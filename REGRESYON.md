@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.322 - PDF Inceleme Notu Gecisi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF inceleme notu gecisi esitlenildi | OK | `İnceleme Notu` etiket marjini `0,12,0,6` oldu |
+| Gorunum korundu | OK | PDF bilgi ve not alani yerlesimi bozulmadi |
+| Kart ici ritim basladi | OK | PDF bilgi metninden ilk form alanina gecis 12px ritme katildi |
+| 2026-06-19 | v1.322 | OK | PDF inceleme notu gecisi esitlenildi |
+
 ## v1.321 - PDF Evraki Giris Ritmi Esitlendi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-19 / v1.322)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.322 - PDF Inceleme Notu Gecisi Esitlendi`
+- Bu adimda `InvoicePdfInfoText` sonrasindaki `İnceleme Notu` gecisi 12px ritme getirildi.
+- Boylece PDF inceleme kartinin ic girisi de odeme kartindaki olcu diliyle daha tutarli hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-19 / v1.321)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
