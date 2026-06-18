@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.293)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.293 - Footer Kose Uyumlu Kapanis`
+- Bu adimda sag panel footer bandina alt kose yuvarlama eklendi.
+- Boylece footer kapanisi kart kabugunun alt kose diliyle daha uyumlu hale geldi ve panelin bitis hissi butunlesti.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.292)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

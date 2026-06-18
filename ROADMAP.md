@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.293)
+
+- v1.293 tamamlandi: Fatura formu footer bandina alt kose yuvarlama eklendi.
+- Boylece footer kapanisi kart kabugunun alt kose diliyle daha uyumlu hale geldi.
+- Kucuk duzenleme, sag panelin bitis hissini akisi bozmadan daha butunlu gosterdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.292)
 
 - v1.292 tamamlandi: Fatura formu footer durum metnine kontrollu satir yuksekligi eklendi.

@@ -1609,7 +1609,8 @@
                             Padding="0,14,0,4"
                             Background="#F8FAFC"
                             BorderBrush="#E2E8F0"
-                            BorderThickness="0,1,0,0">
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0,0,6,6">
                         <StackPanel>
                             <TextBlock x:Name="InvoiceStatusText"
                                        Style="{StaticResource MutedText}"

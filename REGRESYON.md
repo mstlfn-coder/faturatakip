@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.293 - Footer Kose Uyumlu Kapanis
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Footer kose uyumu eklendi | OK | Footer bandi `CornerRadius=\"0,0,6,6\"` kullaniyor |
+| Gorunum korundu | OK | Footer metni ve `Kaydet` dugmesi etkilenmedi |
+| Panel kapanisi butunlesti | OK | Alt bant kart kabuguyla daha uyumlu gorunuyor |
+| 2026-06-18 | v1.293 | OK | Footer bandina alt kose uyumu eklendi |
+
 ## v1.292 - Footer Durum Metni Satir Ritmi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
