@@ -1548,7 +1548,7 @@
                                                     Click="ApplyInvoiceReviewContextInvoiceNoButton_Click" />
                                         </WrapPanel>
                                     </StackPanel>
-                                    <WrapPanel Margin="0,10,0,0">
+                                    <WrapPanel Margin="0,10,0,4">
                                         <Button x:Name="SaveInvoiceReviewNoteButton"
                                                 Content="İnceleme Notunu Kaydet"
                                                 Style="{StaticResource SecondaryButton}"

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.291)
+
+- v1.291 tamamlandi: Inceleme komut sarmalinin alt boslugu hafifce artirildi.
+- Boylece son komut satiri ile footer bandi arasindaki gecis daha rahat ve dengeli gorunur hale geldi.
+- Kucuk duzenleme, sag panel kapanisinda cizgiye yapisma hissini yumusatti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.290)
 
 - v1.290 tamamlandi: Inceleme aksiyon blogunun ust boslugu hafifce artirildi.

@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.291 - Inceleme Komut Alt Boslugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Komut blogu alt boslugu artirildi | OK | Son `WrapPanel` marjini `0,10,0,4` oldu |
+| Gorunum korundu | OK | Komut dugmeleri ulasilabilir ve sarilan duzende kaldi |
+| Footer gecisi yumusadi | OK | Komut blogu ile footer arasinda hafif bir nefes alani olustu |
+| 2026-06-18 | v1.291 | OK | Inceleme komut alt boslugu artirildi |
+
 ## v1.290 - Inceleme Aksiyon Ust Boslugu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

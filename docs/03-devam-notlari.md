@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.291)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.291 - Inceleme Komut Alt Boslugu`
+- Bu adimda inceleme komut sarmalinin alt boslugu hafifce artirildi.
+- Boylece son komut satiri ile footer bandi arasinda daha rahat bir gecis olustu ve panelin kapanisi yumusadi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.290)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
