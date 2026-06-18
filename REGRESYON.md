@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.295 - Footer Dikey Denge
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Footer ust boslugu dengelendi | OK | Footer `Padding` degeri `2,12,2,4` oldu |
+| Gorunum korundu | OK | Durum metni ve `Kaydet` dugmesi yerlesimi bozulmadi |
+| Dikey ritim toparlandi | OK | Footer daha kompakt ama rahat gorunuyor |
+| 2026-06-18 | v1.295 | OK | Footer dikey dengesi iyilestirildi |
+
 ## v1.294 - Footer Icerik Hizasi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

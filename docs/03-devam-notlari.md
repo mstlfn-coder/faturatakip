@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.295)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.295 - Footer Dikey Denge`
+- Bu adimda sag panel footer bandinin ust ic boslugu hafifce dengelendi.
+- Boylece footer daha kompakt gorunurken durum mesaji ve `Kaydet` dugmesi rahatligindan odun vermeden daha toplu bir kapanis kazandi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.294)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

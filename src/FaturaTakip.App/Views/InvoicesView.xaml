@@ -1606,7 +1606,7 @@
 
                     <Border Grid.Row="2"
                             Margin="0,18,0,0"
-                            Padding="2,14,2,4"
+                            Padding="2,12,2,4"
                             Background="#F8FAFC"
                             BorderBrush="#E2E8F0"
                             BorderThickness="0,1,0,0"
