@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.300)
+
+- v1.300 tamamlandi: Fatura formundaki ilk abonelik alanina hafif bir alt bosluk eklendi.
+- Boylece ilk secici ile altindaki iki kolonlu bolum arasinda daha dogal bir gecis olustu.
+- Kucuk duzenleme, formun ust bolumundeki alan gruplamasini bozmadan daha okunur hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.299)
 
 - v1.299 tamamlandi: Fatura formu baslik blogundan icerige gecis boslugu hafifce sikilastirildi.

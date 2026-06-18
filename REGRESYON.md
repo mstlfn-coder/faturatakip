@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.300 - Ilk Alan Alt Ayirimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ilk alan ayirimi eklendi | OK | `InvoiceSubscriptionInput` icin `Margin=\"0,0,0,2\"` eklendi |
+| Gorunum korundu | OK | Abonelik secicisi ve ust akisin yerlesimi bozulmadi |
+| Alan gecisi yumusadi | OK | Ilk secici ile alttaki alan blogu daha net ayrildi |
+| 2026-06-18 | v1.300 | OK | Ilk alan alt ayirimi iyilestirildi |
+
 ## v1.299 - Form Giris Gecisi Sikilasti
 | Kontrol | Durum | Not |
 | --- | --- | --- |
