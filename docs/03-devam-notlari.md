@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.287)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.287 - Fatura Formu Alt Bant Ayrimi`
+- Bu adimda sag panel altindaki durum mesaji ve `Kaydet` dugmesi ustten ince bir bant ile ayrildi.
+- Boylece uzun inceleme icerigi sonrasinda ana kaydet alani daha belirgin bir kapanis bolumu olarak okunur hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.286)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

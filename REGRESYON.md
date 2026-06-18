@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.287 - Fatura Formu Alt Bant Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Alt durum alani ayrildi | OK | `InvoiceStatusText` ve `Kaydet` alani ustten bant cizgisi ile ayrildi |
+| Gorunum korundu | OK | Kaydet dugmesi ve durum mesaji ulasilabilir kaldi |
+| Footer okunurlugu arttı | OK | Sag panel altinda icerik ve kaydet alani daha net ayrisiyor |
+| 2026-06-18 | v1.287 | OK | Fatura formu alt bant ayrimi eklendi |
+
 ## v1.286 - Inceleme Tercih Satiri Sarildi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -1604,16 +1604,22 @@
                         </StackPanel>
                     </ScrollViewer>
 
-                    <StackPanel Grid.Row="2" Margin="0,18,0,0">
-                        <TextBlock x:Name="InvoiceStatusText"
-                                   Style="{StaticResource MutedText}"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,12" />
-                        <Button Content="Kaydet"
-                                Style="{StaticResource PrimaryButton}"
-                                HorizontalAlignment="Left"
-                                Click="SaveInvoiceButton_Click" />
-                    </StackPanel>
+                    <Border Grid.Row="2"
+                            Margin="0,18,0,0"
+                            Padding="0,14,0,0"
+                            BorderBrush="#E2E8F0"
+                            BorderThickness="0,1,0,0">
+                        <StackPanel>
+                            <TextBlock x:Name="InvoiceStatusText"
+                                       Style="{StaticResource MutedText}"
+                                       TextWrapping="Wrap"
+                                       Margin="0,0,0,12" />
+                            <Button Content="Kaydet"
+                                    Style="{StaticResource PrimaryButton}"
+                                    HorizontalAlignment="Left"
+                                    Click="SaveInvoiceButton_Click" />
+                        </StackPanel>
+                    </Border>
                 </Grid>
             </Border>
         </Grid>

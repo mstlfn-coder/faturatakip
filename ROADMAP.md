@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.287)
+
+- v1.287 tamamlandi: Fatura formunun alt durum ve kaydet alani ustten ince bir ayirici bant ile ayrildi.
+- Boylece inceleme icerigi ile ana kaydet alani arasindaki gecis daha belirgin hale geldi.
+- Kucuk duzenleme, sag paneldeki footer bolumunu akisi bozmadan daha okunur yapti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.286)
 
 - v1.286 tamamlandi: Fatura inceleme baglamindaki kisayol geri bildirimi tercih satiri sarilan duzene gecirildi.
