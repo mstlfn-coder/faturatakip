@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.276)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.276 - Liste Blogu Yuvarlama Destegi`
+- Bu adimda Odemeler kartlarindaki liste bloklarina `SnapsToDevicePixels=True` ve `UseLayoutRounding=True` eklendi.
+- Boylece kart icerigi, liste blogu ve liste oge yapisi ayni piksel davranisini daha butunlu sekilde paylasir hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.275)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

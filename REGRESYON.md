@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.276 - Liste Blogu Yuvarlama Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Liste bloguna yuvarlama destegi eklendi | OK | `PaymentsSectionItemsControl` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Liste baslangic akisi ve ritminde gorunur bozulma yok |
+| Davranis zinciri genisledi | OK | Kart, icerik, liste ve oge katmanlari ayni aileye yaklasti |
+| 2026-06-18 | v1.276 | OK | Liste bloguna piksel ve yuvarlama destegi eklendi |
+
 ## v1.275 - Kart Icerigi Yuvarlama Destegi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

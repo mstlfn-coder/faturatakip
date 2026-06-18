@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.276)
+
+- v1.276 tamamlandi: Liste bloklarina piksel hizasi ve yerlesim yuvarlama desteği eklendi.
+- Boylece ust kart icerigi ile liste oge zinciri ayni davranis ailesine biraz daha yaklasti.
+- Kucuk duzenleme, gorsel sonucu bozmadan akisin iskeletini daha tutarli hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.275)
 
 - v1.275 tamamlandi: Operasyon kartlarinin ic iskeletine piksel hizasi ve yerlesim yuvarlama destegi eklendi.
