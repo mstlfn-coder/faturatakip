@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-19 / v1.320)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.320 - PDF Alt Komutlari Sarildi`
+- Bu adimda PDF yardim blogunun alt komut dugmeleri sarilan duzene gecirildi.
+- Boylece dar alanlarda PDF sec/ac dugmeleri tek satira sikismadan alt satira akarak daha rahat gorunur hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-19 / v1.319)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

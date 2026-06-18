@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.320)
+
+- v1.320 tamamlandi: PDF yardim blogunun alt komut dugmeleri sarilan duzene gecirildi.
+- Boylece dar alanlarda PDF sec ve ac dugmeleri tek satira sikismadan alt satira akabiliyor.
+- Kucuk duzenleme, ikinci yardim blogunun alt aksiyon bolumunu daha esnek hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-19 / v1.319)
 
 - v1.319 tamamlandi: PDF rozet blogundan secili yardim durum alanina gecis boslugu hafifce artirildi.

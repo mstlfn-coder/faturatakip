@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.320 - PDF Alt Komutlari Sarildi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF alt komutlar sarilan duzene gecti | OK | Alt komut satiri `WrapPanel` olarak guncellendi |
+| Gorunum korundu | OK | PDF sec/ac dugmeleri erisilebilir kaldi |
+| Dar alan esnekligi artti | OK | Dugmeler alt satira akarak sikisma riskini azaltiyor |
+| 2026-06-19 | v1.320 | OK | PDF alt komutlari sarilan duzene gecirildi |
+
 ## v1.319 - PDF Secili Aksiyon Gecisi Rahatladi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
