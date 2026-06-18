@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.286)
+
+- v1.286 tamamlandi: Fatura inceleme baglamindaki kisayol geri bildirimi tercih satiri sarilan duzene gecirildi.
+- Boylece iki secim kutusu dar alanda alta akarak panel icinde tasma riski olmadan gorunur kaldi.
+- Kucuk duzenleme, inceleme baglami ayarlarini ana aksiyon bloguyla daha dengeli hizaladi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.285)
 
 - v1.285 tamamlandi: Fatura inceleme alanindaki aksiyon dugmeleri sarilan duzene gecirildi ve sabit satir yuksekligi kaldirildi.

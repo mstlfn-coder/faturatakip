@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.286)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.286 - Inceleme Tercih Satiri Sarildi`
+- Bu adimda inceleme baglamindaki kisayol geri bildirimi tercih satiri sarilan duzene gecirildi.
+- Boylece iki secim kutusu dar alanlarda alta akarak panel icinde tasma yapmadan gorunur kaldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.285)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -9,7 +18,7 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Bu adimda Faturayi Duzenle alanindaki Ana Aksiyonlar, Detay Araclari ve alt komut dugmeleri sarilan duzene gecirildi.
 - Boylece daralan dikey alanda butonlar kesilmeden gorunur kaldi ve inceleme panelinin kaydirma davranisi daha dengeli hale geldi.
 - Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
-- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test`
 
 ## Son Guncelleme (2026-06-18 / v1.284)
 

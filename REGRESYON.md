@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.286 - Inceleme Tercih Satiri Sarildi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tercih satiri sarilan duzene gecti | OK | `PaymentShortcutReplaySecondsComboBox` ve `PaymentShortcutReplayEmphasisComboBox` `WrapPanel` icinde tasiniyor |
+| Dar alanda tasma azaldi | OK | Inceleme baglami tercih alaninda yatay sikisma azaltildi |
+| Gorunum korundu | OK | Tercih secim kutulari okunur ve ulasilabilir kaldi |
+| 2026-06-18 | v1.286 | OK | Inceleme tercih satiri sarilan duzene gecirildi |
+
 ## v1.285 - Inceleme Aksiyon Yerlesimi Duzenlendi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
