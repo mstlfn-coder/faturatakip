@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.274)
+
+- v1.274 tamamlandi: Ust seviye Odemeler kartlarina piksel hizasi ve yerlesim yuvarlama desteği eklendi.
+- Boylece dis kart kabugu ile ic liste kartlari ayni piksel davranisini tek noktadan daha tutarli paylasiyor.
+- Kucuk duzenleme, ust panel cizgilerini bozmadan kabuk netligini destekledi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.273)
 
 - v1.273 tamamlandi: Liste kartlarina piksel hizasi ve yerlesim yuvarlama desteği eklendi.

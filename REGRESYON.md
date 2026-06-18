@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.274 - Kart Kabugu Piksel Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kart kabuguna piksel destegi eklendi | OK | `PaymentsOpsCard` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Ust kart sinirlarinda gorunur bozulma yok |
+| Netlik zinciri genisledi | OK | Dis kart, ic kart ve kolonlar ayni davranis ailesine yaklasti |
+| 2026-06-18 | v1.274 | OK | Kart kabugu piksel destegi eklendi |
+
 ## v1.273 - Liste Karti Piksel Destegi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
