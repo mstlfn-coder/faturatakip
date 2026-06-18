@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.290 - Inceleme Aksiyon Ust Boslugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aksiyon blogu ust boslugu artirildi | OK | Ana aksiyon blogunun `Margin` degeri `0,10,0,0` oldu |
+| Gorunum korundu | OK | Aksiyon dugmeleri ulasilabilir ve sirali kaldi |
+| Dikey ritim yumusadi | OK | Baglam karti ile aksiyon bolumu daha net ayrildi |
+| 2026-06-18 | v1.290 | OK | Inceleme aksiyon blogunun ust boslugu artirildi |
+
 ## v1.289 - Fatura Formu Footer Boslugu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

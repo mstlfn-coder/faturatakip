@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.290)
+
+- v1.290 tamamlandi: Inceleme aksiyon blogunun ust boslugu hafifce artirildi.
+- Boylece baglam karti ile Ana Aksiyonlar bolumu arasindaki gecis daha rahat okunur hale geldi.
+- Kucuk duzenleme, sag paneldeki katman hissini bozmadan dikey ritmi yumusatti.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.289)
 
 - v1.289 tamamlandi: Fatura formu footer bandinin alt ic boslugu hafifce artirildi.
