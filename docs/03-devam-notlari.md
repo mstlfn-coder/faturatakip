@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-18 / v1.277)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.277 - Filtre Satiri Yuvarlama Destegi`
+- Bu adimda Odemeler kartlarindaki filtre satirlarina `SnapsToDevicePixels=True` ve `UseLayoutRounding=True` eklendi.
+- Boylece ust akistaki filtre buton gruplari da kart, liste ve oge katmanlariyla ayni piksel davranisini paylasir hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-18 / v1.276)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

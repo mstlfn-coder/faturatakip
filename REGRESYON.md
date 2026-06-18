@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.277 - Filtre Satiri Yuvarlama Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Filtre satirina yuvarlama destegi eklendi | OK | `PaymentsFilterRow` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Filtre buton akisi ve bosluklarinda gorunur bozulma yok |
+| Davranis zinciri genisledi | OK | Ust akistaki filtreler de ayni netlik ailesine katildi |
+| 2026-06-18 | v1.277 | OK | Filtre satirina piksel ve yuvarlama destegi eklendi |
+
 ## v1.276 - Liste Blogu Yuvarlama Destegi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

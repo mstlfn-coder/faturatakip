@@ -260,6 +260,8 @@
         <Style x:Key="PaymentsFilterRow" TargetType="StackPanel">
             <Setter Property="Orientation" Value="Horizontal" />
             <Setter Property="Margin" Value="0,10,0,0" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
         </Style>
         <Style x:Key="PaymentsSectionStack" TargetType="StackPanel">
             <Setter Property="SnapsToDevicePixels" Value="True" />

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-18 / v1.277)
+
+- v1.277 tamamlandi: Filtre satirlarina piksel hizasi ve yerlesim yuvarlama desteği eklendi.
+- Boylece ust bolumdeki filtre gruplari da ayni netlik davranis ailesine katildi.
+- Kucuk duzenleme, filtre buton akisini bozmadan ust ritmi daha tutarli hale getirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-18 / v1.276)
 
 - v1.276 tamamlandi: Liste bloklarina piksel hizasi ve yerlesim yuvarlama desteği eklendi.
