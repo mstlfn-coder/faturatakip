@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-19 / v1.324)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.324 - Baglam Ici Kisayol Basligi Ritmi`
+- Bu adimda baglam panelindeki `Kisayol Geri Bildirimi` basliginin ust boslugu 12px ritme getirildi.
+- Boylece `Detay Metin` seceneginden kisayol tercih alanina gecis daha tutarli hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-19 / v1.323)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

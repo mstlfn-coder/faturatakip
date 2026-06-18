@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.324 - Baglam Ici Kisayol Basligi Ritmi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kisayol basligi ritmi esitlenildi | OK | `Kisayol Geri Bildirimi` marjini `0,12,0,4` oldu |
+| Gorunum korundu | OK | Baglam panelindeki tercih alani yerlesimi bozulmadi |
+| Ic panel ritmi guclendi | OK | Detay seceneginden kisayol alanina gecis 12px ritme katildi |
+| 2026-06-19 | v1.324 | OK | Baglam ici kisayol basligi ritmi esitlenildi |
+
 ## v1.323 - PDF Baglam Gecisi Esitlendi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.324)
+
+- v1.324 tamamlandi: Baglam panelindeki `Kisayol Geri Bildirimi` basliginin ust boslugu 12px ritme getirildi.
+- Boylece `Detay Metin` seceneginden kisayol tercih alanina gecis daha tutarli ve derli toplu hale geldi.
+- Kucuk duzenleme, baglam ic panelinin ic ritmini bozmadan daha net hissettirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-19 / v1.323)
 
 - v1.323 tamamlandi: `InvoiceReviewHintText` sonrasindaki baglam karti giris boslugu 12px ritme getirildi.
