@@ -1,5 +1,14 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.345)
+
+- v1.345 tamamlandi: PR #104 squash merge ile `master` branchine alindi.
+- Uzak ve yerel `master`, `91c3304 feat: complete invoice review context interactions (#104)` commitinde esitlendi.
+- Birlesme sonrasinda Release build, `--self-test` ve `--health-check` temiz gecti.
+- Kapanis kaydi icin `codex/v1.345-post-merge-verification` takip branchi acildi.
+- Yerel `config/invoice-review-preferences.json` dosyasi takip kapsaminda degil ve korunmaya devam ediyor.
+- Sonraki adim yeni gelistirme fazinin kapsamını secmek olarak belirlendi.
+
 ## Son Guncelleme (2026-06-19 / v1.344)
 
 - v1.344 tamamlandi: `codex/v1.08-review-context-issue-action` branchi `origin` deposuna push edildi ve upstream baglantisi kuruldu.

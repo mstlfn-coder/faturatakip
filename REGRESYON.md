@@ -1,5 +1,16 @@
 # Regresyon Kontrol Listesi
 
+## v1.345 - PR Sonrasi Master Dogrulamasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| PR #104 birlestirildi | OK | Squash merge tamamlandi |
+| Yerel master guncellendi | OK | Yerel ve uzak master `91c3304` commitinde eslesti |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release, 0 hata ve 0 uyari |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| --health-check basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --health-check temiz gecti |
+| Yerel tercih dosyasi korunuyor | OK | `config/invoice-review-preferences.json` takip kapsami disinda |
+| 2026-06-19 | v1.345 | OK | PR sonrasi master dogrulamasi tamamlandi |
+
 ## v1.344 - Uzak Branch Yayinlama
 | Kontrol | Durum | Not |
 | --- | --- | --- |

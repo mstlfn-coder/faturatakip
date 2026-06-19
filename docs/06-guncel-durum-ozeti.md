@@ -4,13 +4,14 @@ Son guncelleme tarihi: 2026-06-19
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.344 - Uzak Branch Yayinlama`
+- Aktif branch: `codex/v1.345-post-merge-verification`
+- Son tamamlanan temiz faz: `v1.345 - PR Sonrasi Master Dogrulamasi`
 - Bu dalin ana odagi: Faturalar review baglami, replay ve erisilebilir etkilesim akislarini guvenli smoke testlerle olgunlastirmak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.345` PR Sonrasi Master Dogrulamasi
 - `v1.344` Uzak Branch Yayinlama
 - `v1.343` Checkpoint Sonrasi Saglik Dogrulamasi
 - `v1.342` Birikmis Degisiklikler Checkpoint Denetimi
@@ -260,7 +261,7 @@ Son guncelleme tarihi: 2026-06-19
 
 ## Sonraki Mantikli Ana Adim
 
-- `origin/master...HEAD` kapsamını ozetleyip acik ve incelenebilir bir draft PR hazirlamak
+- Guncel master tabaninda yeni gelistirme fazinin kapsamını belirleyip ilk kucuk adimi uygulamak
 
 ## Yeni Chat Icin Kisa Talimat
 

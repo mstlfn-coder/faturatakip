@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-19 / v1.345)
+
+- Aktif branch: `codex/v1.345-post-merge-verification`
+- Son tamamlanan faz: `v1.345 - PR Sonrasi Master Dogrulamasi`
+- PR #104 squash merge ile kapandi; `master` ucu `91c3304` commitine tasindi.
+- Yerel `master`, `origin/master` ile esitlendi.
+- Birlesme sonrasinda Release build, `--self-test` ve `--health-check` temiz gecti.
+- Yerel `config/invoice-review-preferences.json` dosyasi takip kapsami disinda tutulmaya devam ediyor.
+
 ## Son Guncelleme (2026-06-19 / v1.344)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -2025,4 +2034,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- `origin/master...HEAD` kapsamını ozetleyip acik ve incelenebilir bir draft PR hazirlamak.
+- Guncel master tabaninda yeni gelistirme fazinin kapsamını belirleyip ilk kucuk adimi uygulamak.
