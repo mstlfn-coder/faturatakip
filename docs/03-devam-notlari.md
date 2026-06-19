@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-19 / v1.343)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.343 - Checkpoint Sonrasi Saglik Dogrulamasi`
+- v1.327-v1.342 degisiklikleri `dc9906a` commitinde toplandi.
+- Commit sonrasinda Release `--health-check` temiz gecti.
+- Yerel `config/invoice-review-preferences.json` dosyasi takip ve commit kapsami disinda kalmaya devam ediyor.
+- Sonraki adim uzak depo/branch durumunu okuyup yayinlama kapsamını belirlemek.
+
 ## Son Guncelleme (2026-06-19 / v1.342)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -2007,4 +2016,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Yerel tercih JSON'unu disarida birakarak takip edilen v1.327-v1.342 degisikliklerini temiz bir checkpoint commitine donusturmek.
+- Uzak depo ve branch durumunu salt okunur kontrol edip checkpoint branchinin push/PR hazirligini belirlemek.

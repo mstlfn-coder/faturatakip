@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.343)
+
+- v1.343 tamamlandi: `dc9906a` checkpoint commitinden sonra Release ciktisi butunsel saglik kontrolunden gecirildi.
+- `--health-check` temiz sonuc verdi; uygulama acilisi ve temel altyapi baglantilari dogrulandi.
+- Yerel `config/invoice-review-preferences.json` dosyasi yine kapsam disinda tutuldu.
+- Sonraki adim branch ile uzak depo durumunu kontrol edip yayinlama kapsamını belirlemek olarak belirlendi.
+
 ## Son Guncelleme (2026-06-19 / v1.342)
 
 - v1.342 tamamlandi: v1.327-v1.341 arasinda biriken kod ve dokuman degisiklikleri butunsel diff denetiminden gecirildi.

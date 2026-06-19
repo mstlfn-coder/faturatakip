@@ -1,5 +1,13 @@
 # Regresyon Kontrol Listesi
 
+## v1.343 - Checkpoint Sonrasi Saglik Dogrulamasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Checkpoint commit mevcut | OK | `dc9906a feat: complete invoice review context interactions` |
+| --health-check basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --health-check temiz gecti |
+| Yerel tercih dosyasi korunuyor | OK | `config/invoice-review-preferences.json` takip ve commit kapsami disinda |
+| 2026-06-19 | v1.343 | OK | Checkpoint sonrasi butunsel saglik dogrulamasi tamamlandi |
+
 ## v1.342 - Birikmis Degisiklikler Checkpoint Denetimi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

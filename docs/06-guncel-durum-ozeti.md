@@ -5,12 +5,13 @@ Son guncelleme tarihi: 2026-06-19
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.342 - Birikmis Degisiklikler Checkpoint Denetimi`
+- Son tamamlanan temiz faz: `v1.343 - Checkpoint Sonrasi Saglik Dogrulamasi`
 - Bu dalin ana odagi: Faturalar review baglami, replay ve erisilebilir etkilesim akislarini guvenli smoke testlerle olgunlastirmak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.343` Checkpoint Sonrasi Saglik Dogrulamasi
 - `v1.342` Birikmis Degisiklikler Checkpoint Denetimi
 - `v1.341` Zengin Rapor Baglami Serisi Kapanisi
 - `v1.340` Detay Cipleri Kopyalama ve Menu Smoke
@@ -258,7 +259,7 @@ Son guncelleme tarihi: 2026-06-19
 
 ## Sonraki Mantikli Ana Adim
 
-- Yerel tercih JSON'unu disarida birakarak takip edilen v1.327-v1.342 degisikliklerini temiz bir checkpoint commitine donusturmek
+- Uzak depo ve branch durumunu salt okunur kontrol edip checkpoint branchinin push/PR hazirligini belirlemek
 
 ## Yeni Chat Icin Kisa Talimat
 
