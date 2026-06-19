@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.344 - Uzak Branch Yayinlama
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Branch origin'e push edildi | OK | `origin/codex/v1.08-review-context-issue-action` olusturuldu |
+| Upstream baglantisi kuruldu | OK | Yerel branch uzak branchi takip ediyor |
+| Yerel ve uzak HEAD eslesiyor | OK | Her iki taraf `648d194` commitinde |
+| PR kapsami olculdu | OK | `origin/master` uzerinde 324 commit ve 25 dosya |
+| Yerel tercih dosyasi korunuyor | OK | `config/invoice-review-preferences.json` push kapsami disinda |
+| 2026-06-19 | v1.344 | OK | Uzak branch yayinlama ve dogrulama tamamlandi |
+
 ## v1.343 - Checkpoint Sonrasi Saglik Dogrulamasi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

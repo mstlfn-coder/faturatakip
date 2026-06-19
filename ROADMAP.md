@@ -1,5 +1,13 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.344)
+
+- v1.344 tamamlandi: `codex/v1.08-review-context-issue-action` branchi `origin` deposuna push edildi ve upstream baglantisi kuruldu.
+- Yerel ve uzak HEAD `648d194` commitinde birebir eslesti.
+- Branch `origin/master` tabanindan 324 commit ileride ve PR diffi 25 takip edilen dosyayi kapsiyor.
+- Yerel `config/invoice-review-preferences.json` dosyasi yayinlama kapsamina girmedi.
+- Sonraki adim genis PR kapsamını ozetleyip draft PR hazirligini tamamlamak olarak belirlendi.
+
 ## Son Guncelleme (2026-06-19 / v1.343)
 
 - v1.343 tamamlandi: `dc9906a` checkpoint commitinden sonra Release ciktisi butunsel saglik kontrolunden gecirildi.

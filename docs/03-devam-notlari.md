@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-19 / v1.344)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.344 - Uzak Branch Yayinlama`
+- Branch `origin/codex/v1.08-review-context-issue-action` hedefine push edildi ve upstream kuruldu.
+- Yerel ve uzak HEAD `648d194` commitinde eslesiyor.
+- `origin/master` ile karsilastirmada branch 324 commit ve 25 dosyalik genis bir PR kapsami tasiyor.
+- Yerel `config/invoice-review-preferences.json` dosyasi takip ve yayinlama kapsami disinda.
+
 ## Son Guncelleme (2026-06-19 / v1.343)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -2016,4 +2025,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Uzak depo ve branch durumunu salt okunur kontrol edip checkpoint branchinin push/PR hazirligini belirlemek.
+- `origin/master...HEAD` kapsamını ozetleyip acik ve incelenebilir bir draft PR hazirlamak.
