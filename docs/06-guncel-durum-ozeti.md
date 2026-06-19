@@ -4,13 +4,14 @@ Son guncelleme tarihi: 2026-06-19
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.346-doc-encoding-cleanup`
-- Son tamamlanan temiz faz: `v1.346 - Belge Encoding Kalintilari Temizligi`
-- Bu dalin ana odagi: Aktif belgeler ve uygulama kaynaklarinda karakter kodlama kalitesini temiz ve denetlenebilir tutmak
+- Aktif branch: `codex/v1.347-encoding-validation`
+- Son tamamlanan temiz faz: `v1.347 - Tekrar Kullanilabilir Encoding Dogrulamasi`
+- Bu dalin ana odagi: Karakter kodlama kalitesini otomatik, tekrar kullanilabilir kontrollerle korumak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.347` Tekrar Kullanilabilir Encoding Dogrulamasi
 - `v1.346` Belge Encoding Kalintilari Temizligi
 - `v1.345` PR Sonrasi Master Dogrulamasi
 - `v1.344` Uzak Branch Yayinlama
@@ -262,7 +263,7 @@ Son guncelleme tarihi: 2026-06-19
 
 ## Sonraki Mantikli Ana Adim
 
-- Mojibake ve kontrol karakteri kalintilarini tekrar girmeden yakalayacak kucuk, tekrar kullanilabilir bir encoding dogrulama mekanizmasi eklemek
+- `EncodingKontrol.bat` kontrolunu self-test ile birlikte calisan tek bir hizli dogrulama akimina baglamak
 
 ## Yeni Chat Icin Kisa Talimat
 

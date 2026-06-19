@@ -2,6 +2,16 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-19 / v1.347)
+
+- Aktif branch: `codex/v1.347-encoding-validation`
+- Son tamamlanan faz: `v1.347 - Tekrar Kullanilabilir Encoding Dogrulamasi`
+- `tools/Test-TextEncoding.ps1` aktif belgeleri, uygulama kaynaklarini ve kendi arac dosyalarini katı UTF-8/kod noktasi kontrolunden geciriyor.
+- `EncodingKontrol.bat`, sistem execution policy ayarindan bagimsiz tek komutlu giris sagliyor.
+- Pozitif tarama 102 dosyada temiz gecti; negatif fikstur `U+00C3` ve satir bilgisiyle yakalandi.
+- Negatif test fiksturu kaldirildi.
+- Release build 0 hata/0 uyari ve `--self-test` temiz gecti.
+
 ## Son Guncelleme (2026-06-19 / v1.346)
 
 - Aktif branch: `codex/v1.346-doc-encoding-cleanup`
@@ -2043,4 +2053,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Mojibake ve kontrol karakteri kalintilarini tekrar girmeden yakalayacak kucuk, tekrar kullanilabilir bir encoding dogrulama mekanizmasi eklemek.
+- `EncodingKontrol.bat` kontrolunu self-test ile birlikte calisan tek bir hizli dogrulama akimina baglamak.
