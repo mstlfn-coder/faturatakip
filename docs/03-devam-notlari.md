@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-19 / v1.346)
+
+- Aktif branch: `codex/v1.346-doc-encoding-cleanup`
+- Son tamamlanan faz: `v1.346 - Belge Encoding Kalintilari Temizligi`
+- Aktif belgeler ile uygulama `.cs`/`.xaml` kaynaklari mojibake ve kontrol karakteri desenleri icin tarandi.
+- ROADMAP icindeki bozuk `gecmisi` ifadesi ile ROADMAP/REGRESYON icindeki iki kontrol karakterli `bu-ay` kaydi duzeltildi.
+- Duzeltme sonrasi hedefli encoding taramasi sifir sonuc verdi.
+- Release build 0 hata/0 uyari ve `--self-test` temiz gecti.
+
 ## Son Guncelleme (2026-06-19 / v1.345)
 
 - Aktif branch: `codex/v1.345-post-merge-verification`
@@ -2034,4 +2043,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Guncel master tabaninda yeni gelistirme fazinin kapsamını belirleyip ilk kucuk adimi uygulamak.
+- Mojibake ve kontrol karakteri kalintilarini tekrar girmeden yakalayacak kucuk, tekrar kullanilabilir bir encoding dogrulama mekanizmasi eklemek.

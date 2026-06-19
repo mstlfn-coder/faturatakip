@@ -1,5 +1,14 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.346)
+
+- v1.346 tamamlandi: aktif belgeler ve uygulama kaynaklari mojibake/kontrol karakteri desenleri icin tarandi.
+- Tarihsel kayitlarda kalan bozuk export gecmisi ifadesi `gecmisi` olarak duzeltildi.
+- ROADMAP ve REGRESYON icindeki kontrol karakterli iki `bu-ay` slug kaydi temizlendi.
+- Hedefli encoding taramasi sifir sonuc verdi.
+- Release build 0 hata/0 uyari ve `--self-test` temiz gecti.
+- Sonraki adim encoding kalintilarinin yeniden girmesini otomatik olarak yakalayacak kucuk bir dogrulama mekanizmasi eklemek olarak belirlendi.
+
 ## Son Guncelleme (2026-06-19 / v1.345)
 
 - v1.345 tamamlandi: PR #104 squash merge ile `master` branchine alindi.
@@ -2363,7 +2372,7 @@ Her faz bittiğinde:
 ## Son Guncelleme (2026-06-05 / v0.51)
 
 - v0.51 tamamlandi: audit log araclarina son disa aktarilan dosyayi acma aksiyonu eklendi.
-- Siradaki mantikli faz: secili kayda hizli odaklanma veya export geÃ§misi rahatliklari.
+- Siradaki mantikli faz: secili kayda hizli odaklanma veya export gecmisi rahatliklari.
 
 
 
@@ -2532,7 +2541,7 @@ Her faz bittiğinde:
 ## Son Guncelleme (2026-06-07 / v0.80)
 
 - v0.80 tamamlandi: Faturalar ekranindaki filtreli export akisi baglam bilgisiyle guclendirildi.
-- Excel/PDF export dosya adlari aktif filtreye gore pdf-eksik, gecikmis, u-ay gibi anlamli slug uretiyor.
+- Excel/PDF export dosya adlari aktif filtreye gore pdf-eksik, gecikmis, bu-ay gibi anlamli slug uretiyor.
 - Siradaki mantikli faz: filtreli listeyi toplu PDF kontrol ya da bir sonraki kayda hizli gecis akisi ile birlestirmek.
 
 ## Son Guncelleme (2026-06-07 / v0.81)

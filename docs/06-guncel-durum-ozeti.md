@@ -4,13 +4,14 @@ Son guncelleme tarihi: 2026-06-19
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.345-post-merge-verification`
-- Son tamamlanan temiz faz: `v1.345 - PR Sonrasi Master Dogrulamasi`
-- Bu dalin ana odagi: Faturalar review baglami, replay ve erisilebilir etkilesim akislarini guvenli smoke testlerle olgunlastirmak
+- Aktif branch: `codex/v1.346-doc-encoding-cleanup`
+- Son tamamlanan temiz faz: `v1.346 - Belge Encoding Kalintilari Temizligi`
+- Bu dalin ana odagi: Aktif belgeler ve uygulama kaynaklarinda karakter kodlama kalitesini temiz ve denetlenebilir tutmak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.346` Belge Encoding Kalintilari Temizligi
 - `v1.345` PR Sonrasi Master Dogrulamasi
 - `v1.344` Uzak Branch Yayinlama
 - `v1.343` Checkpoint Sonrasi Saglik Dogrulamasi
@@ -261,7 +262,7 @@ Son guncelleme tarihi: 2026-06-19
 
 ## Sonraki Mantikli Ana Adim
 
-- Guncel master tabaninda yeni gelistirme fazinin kapsamını belirleyip ilk kucuk adimi uygulamak
+- Mojibake ve kontrol karakteri kalintilarini tekrar girmeden yakalayacak kucuk, tekrar kullanilabilir bir encoding dogrulama mekanizmasi eklemek
 
 ## Yeni Chat Icin Kisa Talimat
 
