@@ -8,7 +8,8 @@
 - Ayni branch/ref icin eski calismalar concurrency ayariyla iptal ediliyor ve job 20 dakika ile sinirli.
 - Workflow `.yml` dosyalari encoding kontrol kapsamına alindi.
 - Yerel CI esdegeri 104 dosya encoding temiz, build 0 hata/0 uyari ve self-test basarili sonuc verdi.
-- Sonraki adim workflow'u pull request uzerinde gercek GitHub runner'da calistirip sonucu dogrulamak olarak belirlendi.
+- PR #109 uzerindeki ilk gercek Windows runner kontrolu 1 dakika 22 saniyede basarili tamamlandi.
+- Sonraki adim PR #109'u birlestirip branch protection icin zorunlu kontrol gereksinimini degerlendirmek olarak belirlendi.
 
 ## Son Guncelleme (2026-06-19 / v1.348)
 

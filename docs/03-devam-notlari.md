@@ -11,6 +11,7 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Concurrency eski ayni-ref calismasini iptal ediyor; job timeoutu 20 dakika.
 - Workflow dosyalari encoding kontrol kapsamına alindi.
 - Yerel CI esdegeri: 104 dosya temiz, build 0 hata/0 uyari ve self-test basarili.
+- PR #109 uzerindeki ilk `Encoding, build and self-test` Windows runner kontrolu 1 dakika 22 saniyede basarili tamamlandi.
 
 ## Son Guncelleme (2026-06-19 / v1.348)
 
@@ -2072,4 +2073,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- v1.349 branchini PR'a tasiyip `Quick Validation` kontrolunun gercek GitHub Windows runner'inda basarili tamamlandigini dogrulamak.
+- PR #109'u birlestirip `Quick Validation` kontrolunun branch protection icin zorunlu tutulup tutulmayacagini degerlendirmek.
