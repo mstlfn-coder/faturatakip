@@ -1,5 +1,17 @@
 # Regresyon Kontrol Listesi
 
+## v1.347 - Tekrar Kullanilabilir Encoding Dogrulamasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Encoding kontrol scripti eklendi | OK | `tools/Test-TextEncoding.ps1` |
+| Tek komut girisi eklendi | OK | `EncodingKontrol.bat` execution policy bypass ile calisiyor |
+| Pozitif tarama basarili | OK | 102 dosyada sorun bulunmadi |
+| Negatif tarama basarili | OK | Gecici bozuk karakter `U+00C3` ve satir bilgisiyle yakalandi |
+| Gecici fikstur temizlendi | OK | Negatif test dosyasi calisma alaninda kalmadi |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release, 0 hata ve 0 uyari |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| 2026-06-19 | v1.347 | OK | Tekrar kullanilabilir encoding dogrulamasi tamamlandi |
+
 ## v1.346 - Belge Encoding Kalintilari Temizligi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

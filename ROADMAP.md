@@ -1,5 +1,16 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.347)
+
+- v1.347 tamamlandi: tekrar kullanilabilir `tools/Test-TextEncoding.ps1` kontrol araci eklendi.
+- `EncodingKontrol.bat`, PowerShell execution policy ayarindan etkilenmeden tek komutla kontrolu calistiriyor.
+- Arac UTF-8 byte dizilerini, supheli mojibake kod noktalarini ve gorunmez kontrol karakterlerini dosya/satir bilgisiyle denetliyor.
+- Varsayilan kapsam aktif belgeler, uygulama `.cs`/`.xaml` kaynaklari ve kontrol aracinin kendi dosyalarindan olusuyor; `bin/obj` haric tutuluyor.
+- Temiz proje taramasi 102 dosyada basarili oldu.
+- Gecici bozuk karakter fiksturu `U+00C3` olarak yakalandi ve negatif test sonrasinda kaldirildi.
+- Release build 0 hata/0 uyari ve `--self-test` temiz gecti.
+- Sonraki adim encoding kontrolunu birlesik hizli test akimina baglamak olarak belirlendi.
+
 ## Son Guncelleme (2026-06-19 / v1.346)
 
 - v1.346 tamamlandi: aktif belgeler ve uygulama kaynaklari mojibake/kontrol karakteri desenleri icin tarandi.
