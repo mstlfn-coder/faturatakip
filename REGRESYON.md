@@ -1,5 +1,16 @@
 # Regresyon Kontrol Listesi
 
+## v1.348 - Birlesik Hizli Dogrulama
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Birlesik komut eklendi | OK | `HizliDogrulama.bat` |
+| Encoding adimi basarili | OK | 103 dosya temiz |
+| Release build basarili | OK | 0 hata ve 0 uyari |
+| --self-test basarili | OK | Birlesik akisin ucuncu adimi temiz gecti |
+| Hata aktarimi mevcut | OK | Her adim `errorlevel` ile kontrol edilip cikis kodu korunuyor |
+| README guncellendi | OK | Tek komutlu kullanim ve batch dosyasi listesi eklendi |
+| 2026-06-19 | v1.348 | OK | Encoding + build + self-test hizli dogrulama akisi tamamlandi |
+
 ## v1.347 - Tekrar Kullanilabilir Encoding Dogrulamasi
 | Kontrol | Durum | Not |
 | --- | --- | --- |

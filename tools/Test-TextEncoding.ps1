@@ -31,6 +31,7 @@ if (-not $Path) {
         'docs/07-review-context-ui-smoke-checklist.md',
         'docs/08-replay-indicator-ui-smoke-checklist.md',
         'EncodingKontrol.bat',
+        'HizliDogrulama.bat',
         'tools/Test-TextEncoding.ps1',
         'src/FaturaTakip.App'
     )

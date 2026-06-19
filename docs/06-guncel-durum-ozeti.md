@@ -4,13 +4,14 @@ Son guncelleme tarihi: 2026-06-19
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.347-encoding-validation`
-- Son tamamlanan temiz faz: `v1.347 - Tekrar Kullanilabilir Encoding Dogrulamasi`
-- Bu dalin ana odagi: Karakter kodlama kalitesini otomatik, tekrar kullanilabilir kontrollerle korumak
+- Aktif branch: `codex/v1.348-quick-validation`
+- Son tamamlanan temiz faz: `v1.348 - Birlesik Hizli Dogrulama`
+- Bu dalin ana odagi: Encoding, derleme ve self-test kontrollerini tek ve otomatiklestirilebilir bir dogrulama akiminda toplamak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.348` Birlesik Hizli Dogrulama
 - `v1.347` Tekrar Kullanilabilir Encoding Dogrulamasi
 - `v1.346` Belge Encoding Kalintilari Temizligi
 - `v1.345` PR Sonrasi Master Dogrulamasi
@@ -263,7 +264,7 @@ Son guncelleme tarihi: 2026-06-19
 
 ## Sonraki Mantikli Ana Adim
 
-- `EncodingKontrol.bat` kontrolunu self-test ile birlikte calisan tek bir hizli dogrulama akimina baglamak
+- `HizliDogrulama.bat` adimlarini pull requestlerde otomatik calistiracak Windows GitHub Actions is akisi eklemek
 
 ## Yeni Chat Icin Kisa Talimat
 

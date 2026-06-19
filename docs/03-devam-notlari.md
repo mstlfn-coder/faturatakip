@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-19 / v1.348)
+
+- Aktif branch: `codex/v1.348-quick-validation`
+- Son tamamlanan faz: `v1.348 - Birlesik Hizli Dogrulama`
+- `HizliDogrulama.bat`, encoding kontrolu, Release build ve `--self-test` adimlarini sirali calistiriyor.
+- Ilk basarisiz adimda akis duruyor ve hata cikis kodu korunuyor.
+- Uctan uca smoke: 103 dosya encoding temiz, build 0 hata/0 uyari ve self-test basarili.
+- `tools/Test-TextEncoding.ps1` yeni batch dosyasini da varsayilan kapsamda denetliyor.
+
 ## Son Guncelleme (2026-06-19 / v1.347)
 
 - Aktif branch: `codex/v1.347-encoding-validation`
@@ -2053,4 +2062,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- `EncodingKontrol.bat` kontrolunu self-test ile birlikte calisan tek bir hizli dogrulama akimina baglamak.
+- `HizliDogrulama.bat` adimlarini pull requestlerde otomatik calistiracak Windows GitHub Actions is akisi eklemek.

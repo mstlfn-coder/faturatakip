@@ -4,8 +4,8 @@ Kurum aboneliklerine ait fatura, PDF evrak, odeme kaydi ve raporlama sureclerini
 
 ## Son Durum
 
-- Aktif branch: `codex/v1.347-encoding-validation`
-- Son tamamlanan faz: `v1.347 - Tekrar Kullanilabilir Encoding Dogrulamasi`
+- Aktif branch: `codex/v1.348-quick-validation`
+- Son tamamlanan faz: `v1.348 - Birlesik Hizli Dogrulama`
 - Son smoke test:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -73,11 +73,18 @@ Metin encoding kontrolu icin:
 EncodingKontrol.bat
 ```
 
+Encoding, Release build ve self-test adimlarini birlikte calistirmak icin:
+
+```text
+HizliDogrulama.bat
+```
+
 Windows uzerinden hizli acilis icin repo kokunde su dosyalar bulunur:
 
 - `UygulamayiCalistir.bat`
 - `SelfTestCalistir.bat`
 - `EncodingKontrol.bat`
+- `HizliDogrulama.bat`
 
 ## Once Okunacak Dosyalar
 

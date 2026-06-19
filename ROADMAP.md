@@ -1,5 +1,14 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.348)
+
+- v1.348 tamamlandi: `HizliDogrulama.bat` ile encoding kontrolu, Release build ve self-test tek komutta birlestirildi.
+- Her adim sirali calisiyor; ilk hata sonraki adimlara gecmeden ayni cikis koduyla komutu sonlandiriyor.
+- Encoding tarama kapsamina yeni hizli dogrulama batch dosyasi da eklendi.
+- Uctan uca calistirmada 103 dosya encoding kontrolunden gecti, build 0 hata/0 uyari verdi ve self-test basarili oldu.
+- README tek komutlu kullanim ve kok batch dosyalari listesiyle guncellendi.
+- Sonraki adim ayni dogrulamayi pull requestlerde otomatik calistiracak Windows CI is akisi eklemek olarak belirlendi.
+
 ## Son Guncelleme (2026-06-19 / v1.347)
 
 - v1.347 tamamlandi: tekrar kullanilabilir `tools/Test-TextEncoding.ps1` kontrol araci eklendi.
