@@ -1530,7 +1530,7 @@
                                         <TextBlock Text="Detay Araçlari"
                                                    Style="{StaticResource MutedText}"
                                                    FontWeight="SemiBold"
-                                                   Margin="0,2,0,6" />
+                                                   Margin="0,4,0,6" />
                                         <WrapPanel>
                                             <Button x:Name="ApplyInvoiceReviewContextPeriodButton"
                                                     Content="Bağlam Dönemi"

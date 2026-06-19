@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-19 / v1.326)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.326 - Detay Araclari Gecisi Rahatladi`
+- Bu adimda `Detay Araçlari` basliginin ust boslugu hafifce artirildi.
+- Boylece `Ana Aksiyonlar` blogundan `Detay Araçlari` bloguna gecis daha rahat ve katmanli hale geldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-19 / v1.325)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`

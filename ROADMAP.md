@@ -1,5 +1,12 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.326)
+
+- v1.326 tamamlandi: `Detay Araçlari` basliginin ust boslugu hafifce artirildi.
+- Boylece `Ana Aksiyonlar` blogundan `Detay Araçlari` bloguna gecis daha rahat ve katmanli hale geldi.
+- Kucuk duzenleme, PDF inceleme kartindaki iki aksiyon bolumunu bozmadan daha net ayirdi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-19 / v1.325)
 
 - v1.325 tamamlandi: Baglam panelindeki kisayol tercih satirindan `Ana Aksiyonlar` bloguna gecis boslugu 12px ritme getirildi.

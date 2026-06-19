@@ -1,5 +1,15 @@
 # Regresyon Kontrol Listesi
 
+## v1.326 - Detay Araclari Gecisi Rahatladi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Detay araclari gecisi rahatlatildi | OK | `Detay Araçlari` baslik marjini `0,4,0,6` oldu |
+| Gorunum korundu | OK | Ana aksiyon ve detay araclari yerlesimi bozulmadi |
+| Ic aksiyon bolumleri netlesti | OK | Iki aksiyon blogu daha rahat ayrildi |
+| 2026-06-19 | v1.326 | OK | Detay araclari gecisi rahatlatildi |
+
 ## v1.325 - Baglamdan Ana Aksiyona Gecis Esitlendi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
