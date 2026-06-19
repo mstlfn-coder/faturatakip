@@ -1,5 +1,2973 @@
 # Regresyon Kontrol Listesi
 
+## v1.344 - Uzak Branch Yayinlama
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Branch origin'e push edildi | OK | `origin/codex/v1.08-review-context-issue-action` olusturuldu |
+| Upstream baglantisi kuruldu | OK | Yerel branch uzak branchi takip ediyor |
+| Yerel ve uzak HEAD eslesiyor | OK | Her iki taraf `648d194` commitinde |
+| PR kapsami olculdu | OK | `origin/master` uzerinde 324 commit ve 25 dosya |
+| Yerel tercih dosyasi korunuyor | OK | `config/invoice-review-preferences.json` push kapsami disinda |
+| 2026-06-19 | v1.344 | OK | Uzak branch yayinlama ve dogrulama tamamlandi |
+
+## v1.343 - Checkpoint Sonrasi Saglik Dogrulamasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Checkpoint commit mevcut | OK | `dc9906a feat: complete invoice review context interactions` |
+| --health-check basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --health-check temiz gecti |
+| Yerel tercih dosyasi korunuyor | OK | `config/invoice-review-preferences.json` takip ve commit kapsami disinda |
+| 2026-06-19 | v1.343 | OK | Checkpoint sonrasi butunsel saglik dogrulamasi tamamlandi |
+
+## v1.342 - Birikmis Degisiklikler Checkpoint Denetimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Butunsel diff denetimi tamamlandi | OK | v1.327-v1.341 kapsamindaki takip edilen degisiklikler incelendi |
+| Diff bicim denetimi temiz | OK | `git diff --check` hata vermedi |
+| Review menu girisleri tutarli | OK | Klavye, sag tik ve context-menu acilisi ortak menu kurucusuna ulasiyor |
+| Donem normalizasyonu kapsami korundu | OK | `YYYY/MM` girdisi `YYYY-MM` cipi ve donem aksiyonu uretiyor |
+| Dokuman tutarsizliklari giderildi | OK | Dal odagi ve sag tik menu anlatimi guncellendi |
+| Yerel tercih dosyasi ayrildi | OK | `config/invoice-review-preferences.json` checkpoint kapsaminda degil |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| 2026-06-19 | v1.342 | OK | Birikmis degisiklikler temiz checkpoint icin hazirlandi |
+
+## v1.341 - Zengin Rapor Baglami Serisi Kapanisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Genel baglam matrisi kaydedildi | OK | Ana aksiyonlar aktif, veri olmayan detay aksiyonlari pasif |
+| Gecikmis secili matrisi kaydedildi | OK | Tur ve Fatura No aksiyonlari aktif |
+| PDF Eksik secili matrisi kaydedildi | OK | Donem aksiyonu aktif |
+| Slash donem duzeltmesi kapatildi | OK | `2026/06` -> `DNM | 2026-06 | UYG` |
+| Enter/Space sonuclari toplandi | OK | Tur/No/Donem cipleri `Klavye:` mesaji uretiyor |
+| Ctrl+C sonuclari toplandi | OK | Uc detay cipi dogru pano metnini uretiyor |
+| Menu sonuclari toplandi | OK | Uygula gercek filtreyi, Kopyala `Menu:` mesajini uretiyor |
+| Review checklist guncellendi | OK | Zengin baglam serisi v1.341 kapanisina tasindi |
+| Kalici veri degismedi | OK | Veritabani ve tercih hash degerleri korundu |
+| 2026-06-19 | v1.341 | OK | Zengin rapor baglami serisi kapatildi |
+
+## v1.340 - Detay Cipleri Kopyalama ve Menu Smoke
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tur Ctrl+C calisti | OK | Pano `Telefon`, mesaj `Klavye: Telefon kopyalandi.` |
+| No Ctrl+C calisti | OK | Pano ve mesaj hedef fatura numarasini tasidi |
+| Donem Ctrl+C calisti | OK | Pano `2026-06`, mesaj klavye kaynagini tasidi |
+| Tur menusu dogru | OK | `Uygula: Baglam Turu` ve `Kopyala: Telefon` gorundu |
+| No menusu dogru | OK | `Uygula: Baglam No` ve numaraya ozel Kopyala gorundu |
+| Donem menusu dogru | OK | `Uygula: Baglam Donemi` ve `Kopyala: 2026-06` gorundu |
+| Menu Kopyala aksiyonlari calisti | OK | Uc cipte de `Menu:` mesaji ve dogru pano metni goruldu |
+| Menu Tur Uygula calisti | OK | Telefon, InvoiceTypeId 4 secildi |
+| Menu No Uygula calisti | OK | Arama alani `1241231231123123` oldu |
+| Menu Donem Uygula calisti | OK | Yil 2026, ay Haziran (6) secildi |
+| Gecici artik temiz | OK | Pano temizlendi, kalici veri yazilmadi |
+| 2026-06-19 | v1.340 | OK | Detay cipleri kopyalama ve menu smoke tamamlandi |
+
+## v1.339 - Detay Cipleri Klavye Smoke
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tur cipi Enter ile calisti | OK | `Klavye: Tur uygulandi - Telefon.` mesaji goruldu |
+| Tur cipi Space ile calisti | OK | Ayni klavye kaynak mesaji goruldu |
+| Tur filtresi gercekten secildi | OK | Telefon, InvoiceTypeId 4 olarak secildi |
+| Fatura no cipi Enter ile calisti | OK | Hedef no arama alanina uygulandi |
+| Fatura no cipi Space ile calisti | OK | Hedef no arama alanina uygulandi |
+| Fatura no kaynak mesaji dogru | OK | `Klavye: Fatura no uygulandi - 1241231231123123.` goruldu |
+| Donem cipi Enter ile calisti | OK | `Klavye: Donem uygulandi - 2026-06.` goruldu |
+| Donem cipi Space ile calisti | OK | Ayni klavye kaynak mesaji goruldu |
+| Donem filtreleri gercekten secildi | OK | Yil 2026, ay Haziran (6) oldu |
+| Kalici veri yazilmadi | OK | Yalnizca filtre ve arama durumu degisti |
+| 2026-06-19 | v1.339 | OK | Detay cipleri klavye smoke tamamlandi |
+
+## v1.338 - Rapor Baglami Aksiyon Uygunlugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | Slash donem testleri dahil tum self-testler temiz gecti |
+| Gecikmis genel baglami dogru | OK | Odak/daralt/filtre/kopyala/temizle aktif, detay aksiyonlari pasif |
+| PDF Eksik genel baglami dogru | OK | Odak/daralt/filtre/kopyala/temizle aktif, detay aksiyonlari pasif |
+| Gecikmis secili baglami zengin | OK | Telefon turu ve fatura no cipleri UYG olarak olustu |
+| Gecikmis detay aksiyonlari dogru | OK | Baglam Turu ve Baglam No etkinlesti |
+| Slash donem sorunu yakalandi | OK | `2026/06` once iki DET cipine bolunuyordu |
+| Slash donem normalize edildi | OK | Yalnizca `YYYY/MM` deseni `YYYY-MM` bicimine donusturuluyor |
+| PDF Eksik donem cipi dogru | OK | `DNM | 2026-06 | UYG` cipi olustu |
+| Baglam Donemi etkin | OK | Donem dugmesi etkinlesti |
+| Donem aksiyonu calisti | OK | `Baglam: Donem uygulandi - 2026-06.` mesaji goruldu |
+| 2026-06-19 | v1.338 | OK | Rapor baglami aksiyon uygunlugu duzeltildi |
+
+## v1.337 - Inceleme Turu Kisayol Smoke
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ctrl+Shift+Sag calisti | OK | Tek kayitta `Son kayittasiniz.` mesaji gorundu |
+| Ctrl+Shift+Sol calisti | OK | Tek kayitta `Ilk kayittasiniz.` mesaji gorundu |
+| Ctrl+Shift+O calisti | OK | Eksik PDF icin `PDF dosyasi bulunamadi.` mesaji gorundu |
+| Ctrl+Shift+K calisti | OK | Beklenen PDF klasoru acildi ve tur sonu mesaji gorundu |
+| Ctrl+Shift+B calisti | OK | Inceleme baglami gizlendi ve tercih Off oldu |
+| Ctrl+Shift+C calisti | OK | Pano `Rapor: İncelenmedi` metnini aldi |
+| Ctrl+Shift+I calisti | OK | Hedef fatura numarasini tasiyan baglam inceleme mesaji gorundu |
+| Ctrl+Shift+X calisti | OK | `Baglam: Temizlendi - Normal akis.` mesaji gorundu |
+| Yerel tercih geri yuklendi | OK | SHA-256 `D15C7D0E...0CE67` degerine geri donuldu |
+| Veritabani degismedi | OK | SHA-256 `DF946F2E...67A29E` degeri korundu |
+| Gecici artik temiz | OK | Tercih yedegi, pano icerigi ve hedefli Explorer penceresi temizlendi |
+| 2026-06-19 | v1.337 | OK | Inceleme turu kisayol smoke tamamlandi |
+
+## v1.336 - Review Smoke Serisi Kapanisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sag tik menu regresyonu duzeltildi | OK | `MouseRightButtonUp` yeniden ortak menu olusturucuya baglandi |
+| Sag tik menusu acildi | OK | Uygula ve Kopyala secenekleri gorundu |
+| Sag tik Uygula calisti | OK | `Menu: Filtre uygulandi - Incelenmedi.` mesaji uretti |
+| Sag tik Kopyala calisti | OK | Pano `Rapor: İncelenmedi` metnini aldi |
+| Kopyala kaynak mesaji dogru | OK | `Menu: Rapor: İncelenmedi kopyalandi.` mesaji uretti |
+| Klavye menu yolu korundu | OK | Shift+F10 ve Menu tusu duzeltme sonrasinda calismaya devam ediyor |
+| Review checklist kapatildi | OK | Fare, klavye, menu, pano ve odak sonuclari birlestirildi |
+| Gecici test artigi temiz | OK | Pano ve smoke ekran goruntuleri temizlendi |
+| 2026-06-19 | v1.336 | OK | Review smoke serisi kapatildi |
+
+## v1.335 - Review Cipi Menu ve Odak Smoke
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ctrl+C kopyalama calisti | OK | Pano `Rapor: İncelenmedi` metnini aldi |
+| Ctrl+C kaynak mesaji dogru | OK | Durum mesaji `Klavye: Rapor: İncelenmedi kopyalandi.` oldu |
+| Menu acilis olayi duzeltildi | OK | Sag tik/klavye menusu `ContextMenuOpening` uzerinden ortaklastirildi |
+| Shift+F10 menuyu acti | OK | Uygula ve Kopyala secenekleri gorundu |
+| Menu tusu menuyu acti | OK | Uygula ve Kopyala secenekleri gorundu |
+| Menu Uygula calisti | OK | `Menu: Filtre uygulandi - Incelenmedi.` mesaji uretti |
+| Menu Kopyala calisti | OK | Pano metni ve `Menu:` kaynak mesaji dogrulandi |
+| Esc odak donusu calisti | OK | Odak `ShowInvoiceReviewContextCheckBox` alanina dondu |
+| Gecici test artigi temiz | OK | Pano temizlendi ve smoke ekran goruntuleri silindi |
+| 2026-06-19 | v1.335 | OK | Review cipi menu ve odak smoke tamamlandi |
+
+## v1.334 - Review Cipi Klavye Kaynak Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Incelenmedi baglami olustu | OK | Rapor gecis baglami `Rapor: İncelenmedi` olarak gorundu |
+| Cip fare akisi calisti | OK | Durum mesaji `Cip: Filtre uygulandi - Incelenmedi.` oldu |
+| Cip Enter akisi calisti | OK | Duzeltme sonrasi durum mesaji `Klavye: Filtre uygulandi - Incelenmedi.` oldu |
+| Cip Space akisi calisti | OK | Duzeltme sonrasi durum mesaji `Klavye: Filtre uygulandi - Incelenmedi.` oldu |
+| Olay sirasi duzeltildi | OK | Cip `KeyDown` baglantisi `PreviewKeyDown` olarak degistirildi |
+| Baglam filtresi calisti | OK | Ana aksiyon `Baglam: Filtre uygulandi - Incelenmedi.` mesaji uretti |
+| Baglam daraltma calisti | OK | Enter ile `Baglam: Daraltma uygulandi - Incelenmedi.` mesaji uretti |
+| Baglamdan incele calisti | OK | Space ile hedef fatura numarasini tasiyan inceleme mesaji uretti |
+| Uygulanamayan detaylar pasif | OK | Donem, tur ve fatura no dugmeleri baglamda bilgi olmadigi icin pasif kaldi |
+| 2026-06-19 | v1.334 | OK | Review cipi klavye kaynak ayrimi duzeltildi |
+
+## v1.333 - Replay Smoke Serisi Kapanisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Replay checklist guncellendi | OK | Son aksiyon ve secili yardim klavye yuzeyleri dokumante edildi |
+| Enter/Space beklentileri kaydedildi | OK | Aksiyon ve odak koruma kriterleri checklistte aciklandi |
+| Gecici veri guvenligi kaydedildi | OK | Yedek, SHA-256 geri donus ve artik temizligi adimlari eklendi |
+| Smoke sonuclari toplandi | OK | v1.329-v1.332 dogrulamalari tek kapanis kaydinda ozetlendi |
+| Veritabani temiz | OK | SHA-256 degeri `DF946F2E...67A29E` olarak korundu |
+| Test artigi yok | OK | Gecici v1.33x yedegi ve odeme PDF eki bulunmuyor |
+| 2026-06-19 | v1.333 | OK | Replay smoke serisi butunsel olarak kapatildi |
+
+## v1.332 - Secili PDF Yardim Klavye Smoke
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Gecici odeme olusturuldu | OK | PDF yardim yuzeyini etkinlestirmek icin `210,00` odeme kaydi kullanildi |
+| Secili PDF yardimi hazirlandi | OK | Durum metni `PDF Sec hazir. Enter/Space ile tekrar.` oldu |
+| Secili PDF yardimi Enter ile calisti | OK | Dosya secim penceresi acildi ve Esc ile iptal edildi |
+| Secili PDF yardimi Space ile calisti | OK | Dosya secim penceresi acildi ve Esc ile iptal edildi |
+| Klavye odagi korundu | OK | Enter ve Space sonrasinda odak secili PDF yardim dugmesinde kaldi |
+| Replay geri bildirimi gorundu | OK | Son aksiyon metni `yeniden tetiklendi` oldu |
+| PDF eklenmedi | OK | Tum dosya secim pencereleri Esc ile iptal edildi |
+| Veritabani geri yuklendi | OK | Test sonrasi SHA-256 hash test oncesi degerle birebir eslesti |
+| Gecici yedek temizlendi | OK | Geri yukleme sonrasi test yedegi silindi |
+| 2026-06-19 | v1.332 | OK | Secili PDF yardim klavye smoke tamamlandi |
+
+## v1.331 - PDF Son Aksiyon Replay Klavye Smoke
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Gecici odeme olusturuldu | OK | PDF yardim aksiyonlarini etkinlestirmek icin `210,00` odeme kaydi kullanildi |
+| PDF Sec Enter ile acildi | OK | Dosya secim penceresi acildi ve Esc ile iptal edildi |
+| PDF replay Enter ile calisti | OK | Son aksiyon replay dugmesi PDF Sec penceresini yeniden acti |
+| PDF replay Space ile calisti | OK | Son aksiyon replay dugmesi PDF Sec penceresini yeniden acti |
+| Klavye odagi korundu | OK | Enter ve Space sonrasinda odak PDF son aksiyon dugmesinde kaldi |
+| Replay geri bildirimi gorundu | OK | Son aksiyon metni `yeniden tetiklendi` oldu |
+| Replay tercihi gorunur | OK | Ozet satirinda `2 sn, orta vurgu` bilgisi okundu |
+| PDF eklenmedi | OK | Tum dosya secim pencereleri Esc ile iptal edildi |
+| Veritabani geri yuklendi | OK | Test sonrasi SHA-256 hash test oncesi degerle birebir eslesti |
+| Gecici yedek temizlendi | OK | Geri yukleme sonrasi test yedegi silindi |
+| 2026-06-19 | v1.331 | OK | PDF son aksiyon replay klavye smoke tamamlandi |
+
+## v1.330 - Odeme Replay Klavye Smoke Kontrolu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Son hizli yardim Enter ile calisti | OK | Replay dugmesi kalan tutar taslagini yeniden uyguladi |
+| Son hizli yardim Space ile calisti | OK | Replay dugmesi kalan tutar taslagini yeniden uyguladi |
+| Secili yardim Enter ile calisti | OK | Secili yardim yuzeyi ayni replay aksiyonunu tetikledi |
+| Secili yardim Space ile calisti | OK | Secili yardim yuzeyi ayni replay aksiyonunu tetikledi |
+| Klavye odagi korundu | OK | Enter ve Space sonrasinda odak ilgili replay dugmesinde kaldi |
+| Replay geri bildirimi gorundu | OK | Durum mesaji kaynak etiketi tasidi ve son aksiyon metni `yeniden tetiklendi` oldu |
+| PDF aksiyonlari dogru pasif | OK | Odeme kaydi olmadigi icin PDF sec/ac dugmeleri etkinlesmedi |
+| Kalici veri yazilmadi | OK | Odeme kaydetme ve PDF secme islemleri tetiklenmedi |
+| 2026-06-19 | v1.330 | OK | Odeme replay klavye smoke kontrolu tamamlandi |
+
+## v1.329 - Odeme ve PDF Hizli Aksiyon Smoke Kontrolu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kalan tutar taslagi calisti | OK | `Kalani Doldur` odeme tutarini `210,00` olarak doldurdu |
+| Bos odeme durumu dogru | OK | Son odeme bulunmadigi aciklayici durum mesaji ile bildirildi |
+| Uygun olmayan aksiyonlar pasif | OK | Secili odeme ile iki PDF aksiyonu odeme kaydi olmadiginda pasif kaldi |
+| Replay geri bildirimi calisti | OK | Son aksiyon yeniden calistirildi ve `yeniden tetiklendi` metni goruldu |
+| Replay tercihi gorunur | OK | Ozet satirinda `2 sn, orta vurgu` bilgisi okundu |
+| Kalici veri yazilmadi | OK | Odeme kaydetme ve PDF secme islemleri tetiklenmedi |
+| 2026-06-19 | v1.329 | OK | Odeme ve PDF hizli aksiyon smoke kontrolu tamamlandi |
+
+## v1.328 - Fatura Formu Butunsel Kontrolu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Form ust akisi kontrol edildi | OK | Alan ciftleri, aciklama ve odeme bilgisi girisi ayni ritimde gorunuyor |
+| Alt kart zinciri kontrol edildi | OK | Odeme ve PDF inceleme bolumlerinin kaydirma ve aksiyon yerlesimleri tutarli |
+| Tasma veya hizalama kusuru yok | OK | Kaynak kodda ek piksel degisikligi gerektiren sorun bulunmadi |
+| 2026-06-19 | v1.328 | OK | Fatura formu butunsel kontrolu tamamlandi |
+
+## v1.327 - Uclu Ozet Grid Gorunumu Dogrulandi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Uclu kart satiri gorusel olarak kontrol edildi | OK | Aylik rapor, evrak kontrolu ve odeme calismasi kartlari birlikte incelendi |
+| Kart hizalari korundu | OK | Uc kart esit genislikte ve ayni yatay hatta gorunuyor |
+| Tasma yok | OK | Mevcut pencere genisliginde kart icerikleri ve aksiyonlari panel disina tasmiyor |
+| 2026-06-19 | v1.327 | OK | Uclu ozet grid gorunumu dogrulandi |
+
+## v1.326 - Detay Araclari Gecisi Rahatladi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Detay araclari gecisi rahatlatildi | OK | `Detay Araçlari` baslik marjini `0,4,0,6` oldu |
+| Gorunum korundu | OK | Ana aksiyon ve detay araclari yerlesimi bozulmadi |
+| Ic aksiyon bolumleri netlesti | OK | Iki aksiyon blogu daha rahat ayrildi |
+| 2026-06-19 | v1.326 | OK | Detay araclari gecisi rahatlatildi |
+
+## v1.325 - Baglamdan Ana Aksiyona Gecis Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Gecis ritmi esitlenildi | OK | `Ana Aksiyonlar` blogunu tasiyan `StackPanel` marjini `0,12,0,0` oldu |
+| Gorunum korundu | OK | Baglam paneli ve aksiyon blogu yerlesimi bozulmadi |
+| Ic panel akisi tutarli hale geldi | OK | Kisayol tercihlerinden ana aksiyonlara gecis 12px ritme katildi |
+| 2026-06-19 | v1.325 | OK | Baglamdan ana aksiyona gecis esitlenildi |
+
+## v1.324 - Baglam Ici Kisayol Basligi Ritmi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kisayol basligi ritmi esitlenildi | OK | `Kisayol Geri Bildirimi` marjini `0,12,0,4` oldu |
+| Gorunum korundu | OK | Baglam panelindeki tercih alani yerlesimi bozulmadi |
+| Ic panel ritmi guclendi | OK | Detay seceneginden kisayol alanina gecis 12px ritme katildi |
+| 2026-06-19 | v1.324 | OK | Baglam ici kisayol basligi ritmi esitlenildi |
+
+## v1.323 - PDF Baglam Gecisi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF baglam gecisi esitlenildi | OK | `InvoiceReviewContextBorder` marjini `0,12,0,0` oldu |
+| Gorunum korundu | OK | Ipucu metni ve baglam karti yerlesimi bozulmadi |
+| Yardim-baglam akisi tutarli hale geldi | OK | Ipucundan baglam kartina gecis 12px ritme katildi |
+| 2026-06-19 | v1.323 | OK | PDF baglam gecisi esitlenildi |
+
+## v1.322 - PDF Inceleme Notu Gecisi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF inceleme notu gecisi esitlenildi | OK | `İnceleme Notu` etiket marjini `0,12,0,6` oldu |
+| Gorunum korundu | OK | PDF bilgi ve not alani yerlesimi bozulmadi |
+| Kart ici ritim basladi | OK | PDF bilgi metninden ilk form alanina gecis 12px ritme katildi |
+| 2026-06-19 | v1.322 | OK | PDF inceleme notu gecisi esitlenildi |
+
+## v1.321 - PDF Evraki Giris Ritmi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF evraki girisi esitlenildi | OK | `PDF Evrakı` etiket marjini `0,12,0,6` oldu |
+| Gorunum korundu | OK | Odeme karti ve PDF karti yerlesimi bozulmadi |
+| Kartlar arasi gecis tutarli hale geldi | OK | Ust karttan PDF kartina gecis 12px ritme katildi |
+| 2026-06-19 | v1.321 | OK | PDF evraki giris ritmi esitlenildi |
+
+## v1.320 - PDF Alt Komutlari Sarildi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF alt komutlar sarilan duzene gecti | OK | Alt komut satiri `WrapPanel` olarak guncellendi |
+| Gorunum korundu | OK | PDF sec/ac dugmeleri erisilebilir kaldi |
+| Dar alan esnekligi artti | OK | Dugmeler alt satira akarak sikisma riskini azaltiyor |
+| 2026-06-19 | v1.320 | OK | PDF alt komutlari sarilan duzene gecirildi |
+
+## v1.319 - PDF Secili Aksiyon Gecisi Rahatladi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili PDF aksiyon gecisi rahatlatildi | OK | `PaymentPdfSelectedActionStatusButton` marjini `0,6,0,0` oldu |
+| Gorunum korundu | OK | Secili PDF yardim alani ve rozet blogu yerlesimi bozulmadi |
+| Ikinci yardim zinciri tamamlandi | OK | Rozetlerden secili PDF yardim alanina gecis daha rahat ayrildi |
+| 2026-06-19 | v1.319 | OK | PDF secili aksiyon gecisi rahatlatildi |
+
+## v1.318 - PDF Son Aksiyon Gecisi Rahatladi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF son aksiyon gecisi rahatlatildi | OK | `PaymentPdfHelperLastActionButton` icin `Margin=\"0,6,0,0\"` eklendi |
+| Gorunum korundu | OK | PDF yardim butonu ve alt rozetler yerlesimi bozulmadi |
+| Ikinci yardim zinciri netlesti | OK | Replay satirindan son aksiyon alanina gecis daha rahat ayrildi |
+| 2026-06-19 | v1.318 | OK | PDF son aksiyon gecisi rahatlatildi |
+
+## v1.317 - PDF Yardim Satiri Boslugu Dengelendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF yardim satiri boslugu dengelendi | OK | Replay tercih satiri marjini `0,6,0,0` oldu |
+| Gorunum korundu | OK | PDF yardim ozeti ve replay satiri yerlesimi bozulmadi |
+| Alt yardim blogu rahatlasti | OK | Ozet metni ile tercih satiri daha rahat ayrildi |
+| 2026-06-19 | v1.317 | OK | PDF yardim satiri boslugu dengelendi |
+
+## v1.316 - Odeme PDF Bilgi Girisi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF bilgi girisi esitlenildi | OK | `PaymentPdfInfoText` marjini `0,12,0,0` oldu |
+| Gorunum korundu | OK | Grid ve PDF bilgi blogu yerlesimi bozulmadi |
+| Alt bolum girisi tutarli hale geldi | OK | Tablo sonrasindaki PDF yardim girisi 12px ritme katildi |
+| 2026-06-18 | v1.316 | OK | Odeme PDF bilgi girisi esitlenildi |
+
+## v1.315 - Odeme Grid Gecisi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Grid gecisi esitlenildi | OK | `PaymentGrid` marjini `0,12,0,0` oldu |
+| Gorunum korundu | OK | Alt komut satiri ve tablo yerlesimi bozulmadi |
+| Kart alt ritmi toparlandi | OK | Komutlardan kayit listesine gecis 12px ritme katildi |
+| 2026-06-18 | v1.315 | OK | Odeme grid gecisi esitlenildi |
+
+## v1.314 - Odeme Alt Komutlari Sarildi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Alt komutlar sarilan duzene gecti | OK | Alt komut satiri `WrapPanel` olarak guncellendi |
+| Gorunum korundu | OK | Komut dugmeleri erisilebilir ve gorunur kaldi |
+| Dar alan esnekligi artti | OK | Dugmeler alt satira akarak sikisma riskini azaltıyor |
+| 2026-06-18 | v1.314 | OK | Odeme alt komutlari sarilan duzene gecirildi |
+
+## v1.313 - Odeme Secili Aksiyon Gecisi Rahatladi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili aksiyon gecisi rahatlatildi | OK | `PaymentHelperSelectedActionStatusButton` marjini `0,6,0,0` oldu |
+| Gorunum korundu | OK | Secili yardim alani ve rozet blogu yerlesimi bozulmadi |
+| Yardim aksiyon zinciri tamamlandi | OK | Rozetlerden secili yardim alanina gecis daha rahat ayrildi |
+| 2026-06-18 | v1.313 | OK | Odeme secili aksiyon gecisi rahatlatildi |
+
+## v1.312 - Odeme Rozet Gecisi Rahatladi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozet gecisi rahatlatildi | OK | `PaymentHelperBadges` marjini `0,8,0,0` oldu |
+| Gorunum korundu | OK | Rozet blogu ve secili yardim alani yerlesimi bozulmadi |
+| Yardim aksiyon zinciri netlesti | OK | Son aksiyon alanindan rozetlere gecis daha rahat ayrildi |
+| 2026-06-18 | v1.312 | OK | Odeme rozet gecisi rahatlatildi |
+
+## v1.311 - Odeme Son Aksiyon Gecisi Rahatladi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Son aksiyon gecisi rahatlatildi | OK | `PaymentHelperLastActionButton` icin `Margin=\"0,6,0,0\"` eklendi |
+| Gorunum korundu | OK | Yardimci aksiyon butonu ve alt rozetler yerlesimi bozulmadi |
+| Yardim aksiyon zinciri netlesti | OK | Replay satirindan son aksiyon alanina gecis daha rahat ayrildi |
+| 2026-06-18 | v1.311 | OK | Odeme son aksiyon gecisi rahatlatildi |
+
+## v1.310 - Odeme Yardim Satiri Boslugu Dengelendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardim satiri boslugu dengelendi | OK | Replay tercih satiri marjini `0,6,0,0` oldu |
+| Gorunum korundu | OK | Yardimci bilgi ve replay satiri yerlesimi bozulmadi |
+| Yardim blogu rahatlasti | OK | Ozet metni ile tercih satiri daha rahat ayrildi |
+| 2026-06-18 | v1.310 | OK | Odeme yardim satiri boslugu dengelendi |
+
+## v1.309 - Odeme Aciklama Gecisi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme aciklama gecisi esitlenildi | OK | `Odeme Açıklaması` etiket marjini `0,12,0,6` oldu |
+| Gorunum korundu | OK | Odeme aciklama alani yerlesimi bozulmadi |
+| Kart ici ritim guclendi | OK | Ilk alan ciftinden aciklama alanina gecis 12px ritme katildi |
+| 2026-06-18 | v1.309 | OK | Odeme aciklama gecisi esitlenildi |
+
+## v1.308 - Odeme Karti Giris Ritmi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kart ici giris ritmi esitlenildi | OK | Ilk odeme `Grid` marjini `0,12,0,0` oldu |
+| Gorunum korundu | OK | Odeme ozeti ve ilk alan cifti yerlesimi bozulmadi |
+| Dis-ic olcu dili yaklasti | OK | Kart ici giris artik 12px ritimle dis formla uyumlu |
+| 2026-06-18 | v1.308 | OK | Odeme karti giris ritmi esitlenildi |
+
+## v1.307 - Odeme Blogu Ust Ritmi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme blogu ritmi esitlenildi | OK | `Odeme Bilgisi` etiket marjini `0,12,0,6` oldu |
+| Gorunum korundu | OK | Odeme ozet blogunun yerlesimi bozulmadi |
+| Orta form gecisi tutarli hale geldi | OK | Aciklama blogundan odeme bloguna gecis 12px ritme katildi |
+| 2026-06-18 | v1.307 | OK | Odeme blogu ust ritmi esitlenildi |
+
+## v1.306 - Aciklama Blogu Ust Ritmi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aciklama blogu ritmi esitlenildi | OK | `Aciklama` etiket marjini `0,12,0,6` oldu |
+| Gorunum korundu | OK | Aciklama alaninin yerlesimi bozulmadi |
+| Orta akis tutarli hale geldi | OK | `Kullanim Birimi` sonrasindaki metin blogu da 12px ritme katildi |
+| 2026-06-18 | v1.306 | OK | Aciklama blogu ust ritmi esitlenildi |
+
+## v1.305 - Kullanim Birimi Blogu Ust Ritmi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kullanim birimi blogu ritmi esitlenildi | OK | `Kullanim Birimi` etiket marjini `0,12,0,6` oldu |
+| Gorunum korundu | OK | Kullanim birimi alaninin yerlesimi bozulmadi |
+| Orta alan gecisi tutarli hale geldi | OK | `Tutar/Kullanim` blogundan sonraki tek alan da 12px ritme katildi |
+| 2026-06-18 | v1.305 | OK | Kullanim birimi blogu ust ritmi esitlenildi |
+
+## v1.304 - Tutar Blogu Ust Ritmi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tutar blogu ritmi esitlenildi | OK | `Tutar/Kullanim` `Grid` marjini `0,12,0,0` oldu |
+| Gorunum korundu | OK | Tutar ve kullanim alanlarinin yerlesimi bozulmadi |
+| Orta alan olcu dili tutarli hale geldi | OK | Numara blogundan sonraki alan cifti de 12px ritme katildi |
+| 2026-06-18 | v1.304 | OK | Tutar blogu ust ritmi esitlenildi |
+
+## v1.303 - Numara Blogu Ust Ritmi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Numara blogu ritmi esitlenildi | OK | `Fatura Numarası` etiket marjini `0,12,0,6` oldu |
+| Gorunum korundu | OK | Numara alaninin yerlesimi bozulmadi |
+| Ust alan olcu dili tutarli hale geldi | OK | Numara blogu da ustteki 12px ritme katildi |
+| 2026-06-18 | v1.303 | OK | Numara blogu ust ritmi esitlenildi |
+
+## v1.302 - Ust Alan Cifti Ritmi Esitlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ust alan ciftinin ritmi esitlendi | OK | Sonraki iki kolonlu `Grid` marjini `0,12,0,0` oldu |
+| Gorunum korundu | OK | Ust alan ciftlerinin yerlesimi bozulmadi |
+| Dikey olcu dili tutarli hale geldi | OK | Ilk iki alan blogu ayni bosluk ritmini kullaniyor |
+| 2026-06-18 | v1.302 | OK | Ust alan ciftleri arasindaki ritim esitlenildi |
+
+## v1.301 - Ilk Blok Gecisi Dengelendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ilk blok gecisi dengelendi | OK | Iki kolonlu ilk `Grid` marjini `0,12,0,0` oldu |
+| Gorunum korundu | OK | Abonelik secicisi ve sonraki alan blogu yerlesimi bozulmadi |
+| Ust akis toparlandi | OK | Ilk secici ile donem alanlari daha tek parca gorunuyor |
+| 2026-06-18 | v1.301 | OK | Ilk blok gecisi hafifce sikilastirildi |
+
+## v1.300 - Ilk Alan Alt Ayirimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ilk alan ayirimi eklendi | OK | `InvoiceSubscriptionInput` icin `Margin=\"0,0,0,2\"` eklendi |
+| Gorunum korundu | OK | Abonelik secicisi ve ust akisin yerlesimi bozulmadi |
+| Alan gecisi yumusadi | OK | Ilk secici ile alttaki alan blogu daha net ayrildi |
+| 2026-06-18 | v1.300 | OK | Ilk alan alt ayirimi iyilestirildi |
+
+## v1.299 - Form Giris Gecisi Sikilasti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Giris gecisi sikilasti | OK | Icerik `ScrollViewer` ust marjini `0,14,0,0` oldu |
+| Gorunum korundu | OK | Baslik, baglam ve ilk alan yerlesimi bozulmadi |
+| Ust akis toparlandi | OK | Giris bolumu daha tek parca hissediliyor |
+| 2026-06-18 | v1.299 | OK | Form giris gecisi hafifce sikilastirildi |
+
+## v1.298 - Form Basligi Alt Nefesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baslik blogu alt boslugu eklendi | OK | Ust `StackPanel` marjini `0,0,0,2` oldu |
+| Gorunum korundu | OK | Baslik, baglam ipucu ve icerik yerlesimi bozulmadi |
+| Ust gecis rahatlasti | OK | Baslik blogu ile form icerigi daha rahat ayriliyor |
+| 2026-06-18 | v1.298 | OK | Form basligi bloguna alt bosluk eklendi |
+
+## v1.297 - Form Basligi Satir Ritmi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baslik ritmi ayarlandi | OK | `InvoiceFormTitleText` icin `LineHeight=22` ve `BlockLineHeight` eklendi |
+| Gorunum korundu | OK | Baslik ve ust blok yerlesimi bozulmadi |
+| Tipografik uyum artti | OK | Baslik ve baglam ipucu daha ayni ailede gorunuyor |
+| 2026-06-18 | v1.297 | OK | Form basligi satir ritmi iyilestirildi |
+
+## v1.296 - Form Baglam Ipucu Ritmi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baglam ipucu ritmi ayarlandi | OK | `InvoiceFormContextHintText` icin `LineHeight=16` ve `BlockLineHeight` eklendi |
+| Bosluk dengelendi | OK | Baglam ipucu ust marjini `0,8,0,0` oldu |
+| Gorunum korundu | OK | Baslik ve baglam ipucu yerlesimi bozulmadi |
+| 2026-06-18 | v1.296 | OK | Form baglam ipucu ritmi iyilestirildi |
+
+## v1.295 - Footer Dikey Denge
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Footer ust boslugu dengelendi | OK | Footer `Padding` degeri `2,12,2,4` oldu |
+| Gorunum korundu | OK | Durum metni ve `Kaydet` dugmesi yerlesimi bozulmadi |
+| Dikey ritim toparlandi | OK | Footer daha kompakt ama rahat gorunuyor |
+| 2026-06-18 | v1.295 | OK | Footer dikey dengesi iyilestirildi |
+
+## v1.294 - Footer Icerik Hizasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Footer yatay hizasi iyilesti | OK | Footer `Padding` degeri `2,14,2,4` oldu |
+| Gorunum korundu | OK | Durum metni ve `Kaydet` dugmesi yerlesimi bozulmadi |
+| Kapanis ritmi toplandi | OK | Footer icerigi ust form kolonuyla daha dengeli hizalandi |
+| 2026-06-18 | v1.294 | OK | Footer icerik hizasi iyilestirildi |
+
+## v1.293 - Footer Kose Uyumlu Kapanis
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Footer kose uyumu eklendi | OK | Footer bandi `CornerRadius=\"0,0,6,6\"` kullaniyor |
+| Gorunum korundu | OK | Footer metni ve `Kaydet` dugmesi etkilenmedi |
+| Panel kapanisi butunlesti | OK | Alt bant kart kabuguyla daha uyumlu gorunuyor |
+| 2026-06-18 | v1.293 | OK | Footer bandina alt kose uyumu eklendi |
+
+## v1.292 - Footer Durum Metni Satir Ritmi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Footer durum metni ritmi ayarlandi | OK | `InvoiceStatusText` icin `LineHeight=18` ve `BlockLineHeight` eklendi |
+| Gorunum korundu | OK | `Kaydet` dugmesi ve footer yerlesimi bozulmadi |
+| Uzun metin okunurlugu artti | OK | Footer durum mesaji daha dengeli satirlandi |
+| 2026-06-18 | v1.292 | OK | Footer durum metnine satir ritmi duzenlemesi eklendi |
+
+## v1.291 - Inceleme Komut Alt Boslugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Komut blogu alt boslugu artirildi | OK | Son `WrapPanel` marjini `0,10,0,4` oldu |
+| Gorunum korundu | OK | Komut dugmeleri ulasilabilir ve sarilan duzende kaldi |
+| Footer gecisi yumusadi | OK | Komut blogu ile footer arasinda hafif bir nefes alani olustu |
+| 2026-06-18 | v1.291 | OK | Inceleme komut alt boslugu artirildi |
+
+## v1.290 - Inceleme Aksiyon Ust Boslugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aksiyon blogu ust boslugu artirildi | OK | Ana aksiyon blogunun `Margin` degeri `0,10,0,0` oldu |
+| Gorunum korundu | OK | Aksiyon dugmeleri ulasilabilir ve sirali kaldi |
+| Dikey ritim yumusadi | OK | Baglam karti ile aksiyon bolumu daha net ayrildi |
+| 2026-06-18 | v1.290 | OK | Inceleme aksiyon blogunun ust boslugu artirildi |
+
+## v1.289 - Fatura Formu Footer Boslugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Footer alt boslugu artirildi | OK | Alt bandin `Padding` degeri `0,14,0,4` oldu |
+| Gorunum korundu | OK | Durum mesaji ve `Kaydet` dugmesi ulasilabilir kaldi |
+| Footer kapanisi yumusadi | OK | Alt kenarda daha dengeli bir bosluk olustu |
+| 2026-06-18 | v1.289 | OK | Fatura formu footer alt boslugu artirildi |
+
+## v1.288 - Fatura Formu Footer Zemini
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Footer zemini eklendi | OK | Alt kaydet bandi `#F8FAFC` zemin tonu kullaniyor |
+| Gorunum korundu | OK | Durum mesaji ve `Kaydet` dugmesi ulasilabilir kaldi |
+| Footer ayrimi guclendi | OK | Ayirici cizgiye ek olarak yumusak ton farki saglandi |
+| 2026-06-18 | v1.288 | OK | Fatura formu footer zemin tonu eklendi |
+
+## v1.287 - Fatura Formu Alt Bant Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Alt durum alani ayrildi | OK | `InvoiceStatusText` ve `Kaydet` alani ustten bant cizgisi ile ayrildi |
+| Gorunum korundu | OK | Kaydet dugmesi ve durum mesaji ulasilabilir kaldi |
+| Footer okunurlugu arttı | OK | Sag panel altinda icerik ve kaydet alani daha net ayrisiyor |
+| 2026-06-18 | v1.287 | OK | Fatura formu alt bant ayrimi eklendi |
+
+## v1.286 - Inceleme Tercih Satiri Sarildi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tercih satiri sarilan duzene gecti | OK | `PaymentShortcutReplaySecondsComboBox` ve `PaymentShortcutReplayEmphasisComboBox` `WrapPanel` icinde tasiniyor |
+| Dar alanda tasma azaldi | OK | Inceleme baglami tercih alaninda yatay sikisma azaltildi |
+| Gorunum korundu | OK | Tercih secim kutulari okunur ve ulasilabilir kaldi |
+| 2026-06-18 | v1.286 | OK | Inceleme tercih satiri sarilan duzene gecirildi |
+
+## v1.285 - Inceleme Aksiyon Yerlesimi Duzenlendi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aksiyon satirlari sarilan duzene gecti | OK | Inceleme aksiyon ve alt komut satirlari `WrapPanel` ile tasiniyor |
+| Sabit satir yuksekligi kaldirildi | OK | Ana Aksiyonlar ve Detay Araclari butonlari artik kesilmiyor |
+| Gorunum korundu | OK | Inceleme panelindeki buton isimleri daha rahat okunuyor |
+| 2026-06-18 | v1.285 | OK | Fatura inceleme aksiyon yerlesimi duzenlendi |
+
+## v1.284 - Bolum Basligi Piksel Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Bolum basligina piksel destegi eklendi | OK | `PaymentsSectionTitle` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Kart basliklarinda gorunur bozulma yok |
+| Baslik zinciri genisledi | OK | Basliklar da ayni netlik ailesine katildi |
+| 2026-06-18 | v1.284 | OK | Bolum basligi stiline piksel ve yuvarlama destegi eklendi |
+
+## v1.283 - Aksiyon Butonu Piksel Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aksiyon butonuna piksel destegi eklendi | OK | `PaymentsOpsActionButton` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Ust aksiyon butonlarinda gorunur bozulma yok |
+| Ust satir netlik zinciri genisledi | OK | Yardim metni, rozet ve butonlar ayni netlik ailesinde bulustu |
+| 2026-06-18 | v1.283 | OK | Ortak aksiyon butonu stiline piksel ve yuvarlama destegi eklendi |
+
+## v1.282 - Yardim Metni Piksel Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardim metnine piksel destegi eklendi | OK | `PaymentsActionHintText` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Aksiyon yardim metninde gorunur bozulma yok |
+| Ust satir netlik zinciri tamamlandi | OK | Rozet, satir ve yardim metni ayni netlik ailesinde bulustu |
+| 2026-06-18 | v1.282 | OK | Aksiyon yardim metnine piksel ve yuvarlama destegi eklendi |
+
+## v1.281 - Aktif Rozet Metni Piksel Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif rozet metnine piksel destegi eklendi | OK | `PaymentsActiveFilterText` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Rozet metninde gorunur bozulma yok |
+| Davranis zinciri tamamlandi | OK | Rozet kabugu ve metni ayni netlik ailesinde bulustu |
+| 2026-06-18 | v1.281 | OK | Aktif rozet metnine piksel ve yuvarlama destegi eklendi |
+
+## v1.280 - Aktif Rozet Yuvarlama Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif rozete yuvarlama destegi eklendi | OK | `PaymentsActiveFilterBadge` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Aktif rozet kapsullerinde gorunur bozulma yok |
+| Davranis zinciri genisledi | OK | Rozet katmani da ayni netlik ailesine katildi |
+| 2026-06-18 | v1.280 | OK | Aktif rozete piksel ve yuvarlama destegi eklendi |
+
+## v1.279 - Kart Izgarasi Yuvarlama Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Section gridine yuvarlama destegi eklendi | OK | `PaymentsSectionGrid` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Kart yerlesimi ve bosluklarda gorunur bozulma yok |
+| Davranis zinciri genisledi | OK | Tasiyici grid de ayni netlik ailesine katildi |
+| 2026-06-18 | v1.279 | OK | Kart izgarasina piksel ve yuvarlama destegi eklendi |
+
+## v1.278 - Aksiyon Satiri Yuvarlama Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aksiyon satirina yuvarlama destegi eklendi | OK | `PaymentsActionRowGrid` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Ana aksiyon, yardim metni ve reset akışında gorunur bozulma yok |
+| Davranis zinciri genisledi | OK | Ust akistaki aksiyon satiri da ayni netlik ailesine katildi |
+| 2026-06-18 | v1.278 | OK | Aksiyon satirina piksel ve yuvarlama destegi eklendi |
+
+## v1.277 - Filtre Satiri Yuvarlama Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Filtre satirina yuvarlama destegi eklendi | OK | `PaymentsFilterRow` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Filtre buton akisi ve bosluklarinda gorunur bozulma yok |
+| Davranis zinciri genisledi | OK | Ust akistaki filtreler de ayni netlik ailesine katildi |
+| 2026-06-18 | v1.277 | OK | Filtre satirina piksel ve yuvarlama destegi eklendi |
+
+## v1.276 - Liste Blogu Yuvarlama Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Liste bloguna yuvarlama destegi eklendi | OK | `PaymentsSectionItemsControl` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Liste baslangic akisi ve ritminde gorunur bozulma yok |
+| Davranis zinciri genisledi | OK | Kart, icerik, liste ve oge katmanlari ayni aileye yaklasti |
+| 2026-06-18 | v1.276 | OK | Liste bloguna piksel ve yuvarlama destegi eklendi |
+
+## v1.275 - Kart Icerigi Yuvarlama Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kart icerigine yuvarlama destegi eklendi | OK | `PaymentsSectionStack` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Kart icerik akisinda gorunur bozulma yok |
+| Davranis zinciri tamamlandi | OK | Kabuk, icerik, grid ve oge katmanlari ayni ailede toplandi |
+| 2026-06-18 | v1.275 | OK | Kart icerigine piksel ve yuvarlama destegi eklendi |
+
+## v1.274 - Kart Kabugu Piksel Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kart kabuguna piksel destegi eklendi | OK | `PaymentsOpsCard` stili piksel hizasi ve yuvarlama kullaniyor |
+| Gorunum korundu | OK | Ust kart sinirlarinda gorunur bozulma yok |
+| Netlik zinciri genisledi | OK | Dis kart, ic kart ve kolonlar ayni davranis ailesine yaklasti |
+| 2026-06-18 | v1.274 | OK | Kart kabugu piksel destegi eklendi |
+
+## v1.273 - Liste Karti Piksel Destegi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kartlara piksel destegi eklendi | OK | Liste kartlari `SnapsToDevicePixels=True` ve `UseLayoutRounding=True` kullaniyor |
+| Gorunum korundu | OK | Kart sinirlarinda gorunur bozulma yok |
+| Netlik zinciri tamamlandi | OK | Kart, grid ve kolonlar ayni piksel davranisini paylasiyor |
+| 2026-06-18 | v1.273 | OK | Liste kartlarina piksel netligi desteği eklendi |
+
+## v1.272 - Liste Kolon Yerlesim Yuvarlama
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kolonlara yuvarlama eklendi | OK | Sol ve sag kolon stilleri `UseLayoutRounding=True` kullaniyor |
+| Gorunum korundu | OK | Liste oge ritminde gorunur bozulma yok |
+| Netlik destegi artti | OK | Kolonlar grid ile ayni yuvarlama davranisini paylasiyor |
+| 2026-06-18 | v1.272 | OK | Liste kolonlarina yerlesim yuvarlama eklendi |
+
+## v1.271 - Liste Kolon Piksel Hizasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kolonlara piksel hizasi eklendi | OK | Sol ve sag kolon stilleri `SnapsToDevicePixels=True` kullaniyor |
+| Gorunum korundu | OK | Liste oge ritminde gorunur bozulma yok |
+| Netlik desteği artti | OK | Kolon icerikleri daha tutarli piksel ızgarasına oturuyor |
+| 2026-06-18 | v1.271 | OK | Liste kolonlarina piksel hizasi eklendi |
+
+## v1.270 - Liste Icerik Gridi Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak icerik grid stili kuruldu | OK | Iki listedeki oge gridleri ayni stil kaynagini kullaniyor |
+| Piksel hizasi korundu | OK | Grid iceriği daha tutarli piksel yuvarlama davranisi aliyor |
+| XAML tekrar azaldi | OK | Oge grid stili tek yerde toplandi |
+| 2026-06-18 | v1.270 | OK | Liste icerik gridleri ortak stile tasindi |
+
+## v1.269 - Liste Kolon Ust Hizasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kolon ust hizasi aciklandi | OK | Sol ve sag kolon stilleri `VerticalAlignment=Top` kullaniyor |
+| Gorunum korundu | OK | Liste oge hiyerarsisinde gorunur bozulma yok |
+| Iskelet kararliligi artti | OK | Iki kolon ayni ust hatta daha tutarli oturuyor |
+| 2026-06-18 | v1.269 | OK | Liste kolonlarina acik ust hizalama verildi |
+
+## v1.268 - Sol Kolon Rol Acikligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sol kolon rolu aciklandi | OK | Sol bilgi kolonu `Grid.Column=0` rolunu stilden aliyor |
+| Gorunum korundu | OK | Liste oge yerlesiminde gorunur bozulma yok |
+| Iskelet okunurlugu artti | OK | Sol ve sag kolon rolleri birlikte stiller uzerinden okunuyor |
+| 2026-06-18 | v1.268 | OK | Sol kolon rolü ortak stile acikca eklendi |
+
+## v1.267 - Durum Rozeti Ortak Ust Bosluk
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak rozet ust boslugu kuruldu | OK | Iki listedeki durum rozetleri ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Durum rozetlerinin dikey ritminde gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Rozet margin tanimi tek yerde toplandi |
+| 2026-06-18 | v1.267 | OK | Durum rozeti ust boslugu ortak stile tasindi |
+
+## v1.266 - Liste Sol Blok Ortak Iskeleti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak sol blok stili kuruldu | OK | Iki listedeki bilgi kolonu ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Sol blok akisi ve hiyerarsisinde gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Sol blok iskeleti tek yerde toplandi |
+| 2026-06-18 | v1.266 | OK | Liste sol blok iskeleti ortak stile tasindi |
+
+## v1.265 - Liste Sag Blok Ortak Iskeleti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak sag blok stili kuruldu | OK | Iki listedeki yan kolon ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Sag blok boslugu ve hizalanma davranisinda gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Yan kolon yerlesim ayarlari tek yerde toplandi |
+| 2026-06-18 | v1.265 | OK | Liste sag blok iskeleti ortak stile tasindi |
+
+## v1.264 - Liste Ac Dugmesi Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak ac dugmesi stili kuruldu | OK | Iki listedeki sag blok `Ac` dugmeleri ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Dugme boslugu ve tipografisinde gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Dugme icerigi ve yerlesim ayarlari tek yerde toplandi |
+| 2026-06-18 | v1.264 | OK | Liste `Ac` dugmesi ortak stile tasindi |
+
+## v1.263 - Liste Durum Metni Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak durum metni stili kuruldu | OK | Iki listedeki rozet metinleri ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Rozet tipografisi ve sag hiza davranisinda gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Durum metni ayarlari tek yerde toplandi |
+| 2026-06-18 | v1.263 | OK | Liste durum metni ortak stile tasindi |
+
+## v1.262 - Liste Tutar Metni Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak tutar metni stili kuruldu | OK | Iki listedeki tutar satirlari ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Tutar hiyerarsisi ve sag hiza davranisinda gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Tutar tipografisi tek yerde toplandi |
+| 2026-06-18 | v1.262 | OK | Liste tutar metni ortak stile tasindi |
+
+## v1.261 - Liste Baslik Metni Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak baslik metni stili kuruldu | OK | Iki listedeki kayit basliklari ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Ilk satir hiyerarsisinde gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Baslik renk, boyut ve agirlik tek yerde toplandi |
+| 2026-06-18 | v1.261 | OK | Liste baslik metni ortak stile tasindi |
+
+## v1.260 - Liste Meta Metni Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak meta metin stili kuruldu | OK | Iki listedeki aciklama satirlari ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Ikinci satir boslugu ve sarmalama davranisinda gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Liste meta metni ayarlari tek yerde toplandi |
+| 2026-06-18 | v1.260 | OK | Liste meta metni ortak stile tasindi |
+
+## v1.259 - Kart Izgarasi Ortak Bosluk
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak kart grid boslugu kuruldu | OK | Ana kart gridi ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Kart bolumunun sayfa icindeki ust ritminde gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Grid margin tanimi tek yerde toplandi |
+| 2026-06-18 | v1.259 | OK | Kart izgarasi ust boslugu ortak stile tasindi |
+
+## v1.258 - Liste Blogu Ortak Bosluk
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak liste boslugu kuruldu | OK | Iki `ItemsControl` ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Liste bloklarinin baslangic ritminde gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Liste margin tanimi tek yerde toplandi |
+| 2026-06-18 | v1.258 | OK | Liste blogu ortak stile tasindi |
+
+## v1.257 - Kart Icerigi Ortak Iskeleti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak kart iskeleti kuruldu | OK | Iki kart ayni `StackPanel` stilini kullaniyor |
+| Gorunum korundu | OK | Kart icerik akisi ve bosluklarda gorunur bozulma yok |
+| XAML sadeleşti | OK | Kart iskeleti tek noktadan okunuyor |
+| 2026-06-18 | v1.257 | OK | Kart icerigi ortak stile tasindi |
+
+## v1.256 - Kart Basligi Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak kart basligi stili kuruldu | OK | Iki kart basligi ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Baslik hiyerarsisinde gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Renk, boyut ve agirlik tek yerde tanimli |
+| 2026-06-18 | v1.256 | OK | Kart basliklari ortak stile tasindi |
+
+## v1.255 - Ozet Metni Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak ozet metni stili kuruldu | OK | Iki ozet metni ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Ust bosluk ve sarmalama davranisinda gorunur bozulma yok |
+| XAML tekrar azaldi | OK | Ozet satir ayarlari tek yerde tanimli |
+| 2026-06-18 | v1.255 | OK | Ozet metinleri ortak stile tasindi |
+
+## v1.254 - Filtre Satiri Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak filtre satiri stili kuruldu | OK | Iki filtre dugmesi satiri ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Yatay akista ve ust boslukta gozle gorulur sapma yok |
+| XAML tekrar azaldi | OK | Orientation ve margin artik tek yerde tanimli |
+| 2026-06-18 | v1.254 | OK | Filtre satiri ortak stile tasindi |
+
+## v1.253 - Aktif Filtre Rozeti Ortak Bosluk
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak rozet boslugu stile tasindi | OK | Iki aktif filtre rozeti ayni margin degerini paylasiyor |
+| Gorunum korundu | OK | Rozetlerin kart icindeki dikey konumu degismedi |
+| XAML tekrar azaldi | OK | Margin satiri artik tek yerde tanimli |
+| 2026-06-18 | v1.253 | OK | Aktif filtre rozeti boslugu ortak stile tasindi |
+
+## v1.252 - Aktif Filtre Metni Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak aktif filtre stili kuruldu | OK | Iki rozet metni ayni stil kaynagini kullaniyor |
+| Gorunum korundu | OK | Mavi rozet metinlerinin sunumu degismedi |
+| XAML tekrar azaldi | OK | Renk, punto ve agirlik tekrar yazilmiyor |
+| 2026-06-18 | v1.252 | OK | Aktif filtre rozet metinleri ortak stile tasindi |
+
+## v1.251 - Yardim Cumlesi Ortak Kaynagi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak yardim cumlesi stile tasindi | OK | Iki yardim metni ayni aciklama metnini paylasiyor |
+| Gorunum korundu | OK | Yardim satirinin gorunur davranisinda degisiklik yok |
+| XAML tekrar azaldi | OK | Aksiyon satirinda icerik tekrari azaltildi |
+| 2026-06-18 | v1.251 | OK | Yardim cumlesi ortak stile tasindi |
+
+## v1.250 - Grid Kolon Ortak Rolleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kolon rolleri ortaklasti | OK | Yardim metni ve reset dugmesi kolonu stillerden aliyor |
+| Layout korunuyor | OK | Uc kolonlu satirin gorunur davranisinda degisiklik yok |
+| XAML sadeleşti | OK | Satir ici tekrarlar azaltildi |
+| 2026-06-18 | v1.250 | OK | Grid kolon rolleri ortak stillere tasindi |
+
+## v1.249 - Ana Aksiyon Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak ana aksiyon stili kuruldu | OK | Iki acilis dugmesi ayni stil kaynagini kullaniyor |
+| Pad davranisi korundu | OK | Dugmelerin gorunur olcusu degismeden ayni kaldi |
+| Bakim kolaylasti | OK | Sonraki buton ayarlari tek noktadan yapilabilecek |
+| 2026-06-18 | v1.249 | OK | Ana aksiyon dugmeleri ortak stile tasindi |
+
+## v1.248 - Aksiyon Satiri Ortak Gridi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak grid stili kuruldu | OK | Iki aksiyon satiri ayni grid stilini kullaniyor |
+| Ust bosluk korundu | OK | Satirin kart icindeki ust nefesi ayni kaldi |
+| Gorsel davranis tek kaynaga indi | OK | Sonraki layout ayarlari daha guvenli hale geldi |
+| 2026-06-18 | v1.248 | OK | Uc kolonlu aksiyon satiri ortak stile tasindi |
+
+## v1.247 - Yardim Metni Ortak Stili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ortak stil olusturuldu | OK | Iki yardim metni ayni stil kaynagini kullaniyor |
+| Gorunum korunuyor | OK | Font, satir ritmi ve bosluk ayarlari ayni kaldi |
+| Sonraki ayarlar kolaylasti | OK | Tek kaynaktan guncelleme yapilabilecek duzen kuruldu |
+| 2026-06-18 | v1.247 | OK | Yardim metni ayarlari ortak stile tasindi |
+
+## v1.246 - Yardim Metni Satir Siklik
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Iki satirli blok kompaktlasti | OK | Yardim metni daha sik ve daha kontrollu gorunuyor |
+| Dikey ritim korundu | OK | Ust hiz ve satir basi akisi bozulmadi |
+| Reset kolonu korunuyor | OK | Sag kolon ve bosluk dengesi aynen calisiyor |
+| 2026-06-18 | v1.246 | OK | Yardim metni satir yuksekligi bir piksel azaltildi |
+
+## v1.245 - Yardim Metni Ust Hiz
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ust hat yakinlasti | OK | Yardim metninin ilk satiri aksiyonlarla daha dengeli basliyor |
+| Dikey ritim korundu | OK | Satir iki satira kirildiginda da akista bozulma yok |
+| Diger sag hiz ayarlari korundu | OK | Sag nefes ve reset kolonu ayarlari aynen calisiyor |
+| 2026-06-18 | v1.245 | OK | Yardim metninin ust boslugu bir piksel azaltildi |
+
+## v1.244 - Yardim Metni Sag Nefesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Metin ve reset arasi bosluk dengelendi | OK | Yardim metni sagdan biraz nefes alarak reset dugmesine carpismiyor |
+| Uc parcali satir daha temiz | OK | Orta metin alani ile sag aksiyon kolonu daha belirgin ayrisiyor |
+| Diger hiz ayarlari korundu | OK | Min genislik ve saga yaslama davranisi aynen calisiyor |
+| 2026-06-18 | v1.244 | OK | Yardim metni ile reset kolonu arasina sabit sag bosluk eklendi |
+
+## v1.243 - Reset Sag Hiz Sabitleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sag hiza sabitlendi | OK | Reset dugmesi sag aksiyon kolonunun bitisinde daha tutarli duruyor |
+| Min genislik ile uyumlu | OK | Kolon sabitleme ve hiz ayari birlikte daha toplu bir satir veriyor |
+| Etkilesim durumlari korundu | OK | Pasif, hover ve odak davranislari bozulmadi |
+| 2026-06-18 | v1.243 | OK | Reset dugmesi kolon icinde saga sabitlendi |
+
+## v1.242 - Reset Kolon Sabitleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sag kolon sabitlendi | OK | Reset dugmesi iki satirda da benzer sag hizada kaluyor |
+| Yardim metni degisimleri tolere edildi | OK | Metin uzayip kisalsa da reset aksiyonu daha az oynuyor |
+| Etkilesim durumlari korundu | OK | Pasif, hover ve odak durumlari ayni sekilde calisiyor |
+| 2026-06-18 | v1.242 | OK | Reset dugmesine minimum genislik verilerek sag kolon dengelendi |
+
+## v1.241 - Reset Son Yatay Nefes
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Son yatay bosluk dengelendi | OK | Yardim metni ile reset dugmesi birbirine biraz daha yakin duruyor |
+| Uc parcali satir toparlandi | OK | Ana aksiyon, yardim metni ve reset dugmesi daha bagli akiyor |
+| Diger durumlar korundu | OK | Pasif, hover ve odak davranislari bozulmadi |
+| 2026-06-18 | v1.241 | OK | Reset dugmesinin son yatay boslugu hafifce azaltildi |
+
+## v1.240 - Grid Orta Bosluk
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Orta bosluk toplandi | OK | Yardim metni ana aksiyon dugmesine biraz daha yakin basliyor |
+| Uc parcali satir baglandi | OK | Ana aksiyon, yardim metni ve reset dugmesi daha tek parca akiyor |
+| Kırilim korundu | OK | Metin sarma davranisinda istenmeyen bozulma olmadi |
+| 2026-06-18 | v1.240 | OK | Grid satirinin orta boslugu hafifce azaltildi |
+
+## v1.239 - Reset Sag Kenar Nefesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sag kenar rahat | OK | Reset dugmesi kart kenarina yapismadan biraz daha nefesli bitiyor |
+| Grid dagilimi korundu | OK | Ana aksiyon ve yardim metni dengesi bozulmadi |
+| Iki satir tutarli | OK | Iki reset dugmesi ayni sag kenar boslugunu kullaniyor |
+| 2026-06-18 | v1.239 | OK | Reset dugmesinin sag kenar nefesi hafifce artirildi |
+
+## v1.238 - Reset Ust Hat Ince Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ust hat yakinlasti | OK | Reset dugmesi iki satirli senaryoda ust ritme daha yakin duruyor |
+| Grid yapisi korundu | OK | Uc kolonlu satir yapisi bozulmadan korundu |
+| Iki reset dugmesi tutarli | OK | Ortak stil sayesinde ayni ust hat ayari iki yerde de gecerli |
+| 2026-06-18 | v1.238 | OK | Reset dugmesinin ust hat hizasi ince ayarlandi |
+
+## v1.237 - Reset Grid Satiri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Grid yerlesimi kuruldu | OK | Yardim metni ile reset dugmesi uc kolonlu satira alindi |
+| Sag blok daha kararlı | OK | Reset dugmesi sagda daha kontrollu duruyor |
+| Iki satirli senaryo toparlandi | OK | Yardim metni genisleyip kirilirken reset dugmesi dagilmiyor |
+| 2026-06-17 | v1.237 | OK | Yardim metni ve reset aksiyonu grid tabanli satira tasindi |
+
+## v1.236 - Reset Sag Yalnizlik Azaltma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sag yalnizlik azaldi | OK | Yardim metni daha kontrollu kirilarak reset dugmesine yakinlasti |
+| Iki satirli senaryo toplandi | OK | Metin ve reset aksiyonu daha yakin bir blok gibi okundu |
+| Ortaklik korundu | OK | Iki satir ayni genislik sinirini kullanmaya devam ediyor |
+| 2026-06-17 | v1.236 | OK | Reset dugmesinin sagda yalniz kalma hissi hafifletildi |
+
+## v1.235 - Reset Ust Hiz Yaklastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ust hiza toparlandi | OK | Reset dugmesinin ust boslugu yardim metni ve ana aksiyon ritmine daha yakin oldu |
+| Iki satirli senaryo sakin | OK | Yardim metni iki satira dusunce dugme daha dengeli bir ust hatta duruyor |
+| Ortak stil korundu | OK | Iki reset dugmesi ayni piksel ayarini kullaniyor |
+| 2026-06-17 | v1.235 | OK | Reset dugmesinin ust hiza ritmi hafifce yaklastirildi |
+
+## v1.234 - Reset Dikey Ritim
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Iki satirli senaryoda hiz dengeli | OK | Reset dugmesi ust hizada tutularak yardim metniyle daha dogal gorunuyor |
+| Tek satirli ritim korundu | OK | Mikro ust bosluk ayari satirin genel akisini bozmadı |
+| Ortak stil korundu | OK | Iki reset dugmesi ayni dikey ritim ayarini kullaniyor |
+| 2026-06-17 | v1.234 | OK | Reset dugmesinin dikey hizasi iki satirli senaryo icin dengelendi |
+
+## v1.233 - Reset Satir Uzunlugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Satir uzunlugu dengelendi | OK | Yardim metni daha kontrollu kirilarak reset dugmesiyle birlikte toplu gorunuyor |
+| Iki satir tutarli | OK | Kuyruk ve son odeme satirlari ayni genislik sinirini kullaniyor |
+| Etkilesim hiyerarsisi korundu | OK | Pasif, hover ve odak tonlari bu ayardan etkilenmeden korundu |
+| 2026-06-16 | v1.233 | OK | Reset dugmesiyle yardim metninin toplam satir uzunlugu dengelendi |
+
+## v1.232 - Reset Satir Ritmi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Satir daha toplu | OK | Reset dugmesinin sol boslugu azaltilarak yardim metniyle daha bagli gorunmesi saglandi |
+| Durum hiyerarsisi korundu | OK | Pasif, hover ve odak katmanlari bozulmadan korundu |
+| Iki satir tutarli | OK | Ortak stil sayesinde iki reset dugmesi ayni boslugu kullaniyor |
+| 2026-06-16 | v1.232 | OK | Reset dugmesinin satir ritmi hafifce sikilastirildi |
+
+## v1.231 - Reset Hover Hiyerarsisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover odaktan daha hafif | OK | Hover tonu sakinlestirilerek odak hali bir ust basamakta tutuldu |
+| Pasif-hover-odak sirasi temiz | OK | Uc farkli durum daha kolay ayirt edilir hale geldi |
+| Satir ritmi korundu | OK | Mikro ton ayari boyutsal degisim yaratmadan uygulandi |
+| 2026-06-16 | v1.231 | OK | Reset dugmesinin hover hiyerarsisi netlestirildi |
+
+## v1.230 - Reset Odak Ton Dengesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odak tonu daha ikincil | OK | Reset dugmesi odakta daha sakin bir tonla gorunuyor |
+| Birincil aksiyonla rekabet azaldi | OK | Mavi ana aksiyon dugmesi gorsel liderligini koruyor |
+| Odak okunurlugu suruyor | OK | Sakinlesme yapilsa da odak hali ayirt edilmeye devam ediyor |
+| 2026-06-16 | v1.230 | OK | Reset dugmesinin odak tonlari dengelendi |
+
+## v1.229 - Reset Odak Ritmi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odakta satir ziplamiyor | OK | Border kalinligi normal kaldigi icin yatay satir ritmi korunuyor |
+| Odak vurgusu suruyor | OK | Kenarlik ve yazi tonu odak durumunu gostermeye devam ediyor |
+| Hover ve pasif denge korundu | OK | Diger iki durumun hiyerarsisi bozulmadi |
+| 2026-06-16 | v1.229 | OK | Reset dugmesinin odak vurgusu ritim bozmadan dengelendi |
+
+## v1.228 - Reset Klavye Odak Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Klavye odagi belirgin | OK | Reset dugmesi klavye odaginda hover durumundan daha net ayrisiyor |
+| Hover ayrimi korundu | OK | Fare ustu durumu yine pasif halden hafifce ayrisiyor |
+| Pasif sakinlik korundu | OK | Sadece odakta ek vurgu verildi, normal durum bozulmadi |
+| 2026-06-16 | v1.228 | OK | Reset dugmesine klavye odak vurgusu eklendi |
+
+## v1.227 - Reset Hover Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover geri bildirimi belirgin | OK | Reset dugmesi fare ustunde pasif halden daha net ayrisiyor |
+| Pasif sakinlik korundu | OK | Hover disinda onceki ikincil ton korunuyor |
+| Iki reset dugmesi tutarli | OK | Ortak stil sayesinde iki yerde ayni hover davranisi var |
+| 2026-06-16 | v1.227 | OK | Reset dugmesine hafif hover ayrimi eklendi |
+
+## v1.226 - Reset Ikincil Vurgu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Pasif reset daha ikincil hissediyor | OK | Punto ve yatay bosluk azaltilarak ana aksiyonla hiyerarsi acildi |
+| Okunurluk korundu | OK | Dugme daha kucuk olsa da metin ve tik alanı yeterli kaldi |
+| Iki reset dugmesi tutarli | OK | Ortak stil sayesinde iki satir ayni mikro ayari kullaniyor |
+| 2026-06-16 | v1.226 | OK | Reset dugmesi pasif durumda daha ikincil hale getirildi |
+
+## v1.225 - Odemeler Genel Scroll
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sayfa genel scroll aliyor | OK | Yalnizca akis paneli degil tum Odemeler sayfasi birlikte kayiyor |
+| Akis paneli sikismadi | OK | `Odeme Is Akisi` bolumu kendi genisligini koruyarak gosteriliyor |
+| Dikey akis dogallasti | OK | Ust kartlar, ozetler ve alt akis ayni scroll baglaminda kaldi |
+| 2026-06-16 | v1.225 | OK | Odemeler ekranindaki scroll davranisi sayfa geneline tasindi |
+
+## v1.224 - Odeme Akisi Tasma Duzeltmesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Akis paneli kaydirilabilir | OK | Alt akis kartlari ve alt paneller dar yukseklikte de ulasilabilir hale geldi |
+| Tasma giderildi | OK | Akis bolumu ekran altina kesilmek yerine kendi icinde scroll aliyor |
+| Ust icerik korundu | OK | Baslik ve baglam metinleri ayni panel icinde kalmaya devam ediyor |
+| 2026-06-16 | v1.224 | OK | Odemeler akis paneline dikey kaydirma eklendi |
+
+## v1.223 - Sayfa Tasarim Hata Duzeltmeleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odemeler ust yonlendirme toparlandi | OK | Sag ust aksiyonlar kart icinde hizali ve rozetle birlikte daha duzenli gorunuyor |
+| Yedekleme geri yukleme paneli cakismasi gitti | OK | Onizleme ve alt aksiyon satiri artik ust uste binmiyor |
+| Faturalar grid sol boslugu kalkti | OK | Satir basligi kapatildigi icin listenin solundaki gereksiz alan kaldirildi |
+| 2026-06-16 | v1.223 | OK | Gorunur sayfa tasarim hatalari ilk turda duzeltildi |
+
+## v1.222 - Reset Pasif Kenarlik Dengesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda kenarlik yaziya yaklasti | OK | Pasif durumda kenarlik ve yazi tonu daha dengeli gorunuyor |
+| Son odeme satirinda kenarlik yaziya yaklasti | OK | Pasif durumda kenarlik ve yazi tonu daha dengeli gorunuyor |
+| Aksiyon ayrimi korundu | OK | Ton dengesi artarken reset dugmesi hala ayirt ediliyor |
+| 2026-06-16 | v1.222 | OK | Reset dugmesinin pasif kenarlik tonu dengelendi |
+
+## v1.221 - Reset Pasif Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda pasif ton sessizlesti | OK | Reset dugmesi hover disinda yardim satirina gore daha arka planda kaldi |
+| Son odeme satirinda pasif ton sessizlesti | OK | Reset dugmesi hover disinda yardim satirina gore daha arka planda kaldi |
+| Etkilesim hiyerarsisi korundu | OK | Pasif ton geri alinirken dugmenin komut hissi kaybolmadi |
+| 2026-06-16 | v1.221 | OK | Reset dugmesinin hover disi yazi tonu hafifce geri alindi |
+
+## v1.220 - Reset Kontrast Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda kontrast yumusadi | OK | Reset dugmesinin yazi tonu yardim metnine daha sakin geciyor |
+| Son odeme satirinda kontrast yumusadi | OK | Reset dugmesinin yazi tonu yardim metnine daha sakin geciyor |
+| Okunurluk korundu | OK | Kontrast azalirken reset dugmesi rahatca secilebilir kaldi |
+| 2026-06-16 | v1.220 | OK | Reset dugmesinin genel kontrasti hafifce yumusatildi |
+
+## v1.219 - Reset Arka Plan Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda arka plan yumusadi | OK | Reset dugmesinin zemin tonu yardim satirina daha sakin baglaniyor |
+| Son odeme satirinda arka plan yumusadi | OK | Reset dugmesinin zemin tonu yardim satirina daha sakin baglaniyor |
+| Aksiyon okunurlugu korundu | OK | Dugme arka plani hafiflesse de reset aksiyonu belirgin kaldi |
+| 2026-06-16 | v1.219 | OK | Reset dugmesinin arka plan tonu hafifce yumusatildi |
+
+## v1.218 - Reset Kenarlik Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda kenarlik yumusadi | OK | Reset dugmesinin kenarlik tonu yardim satirina daha sakin baglaniyor |
+| Son odeme satirinda kenarlik yumusadi | OK | Reset dugmesinin kenarlik tonu yardim satirina daha sakin baglaniyor |
+| Dugme ayrimi korundu | OK | Kenarlik yumusasa da reset aksiyonu ayirt edilir kaliyor |
+| 2026-06-16 | v1.218 | OK | Reset dugmesinin kenarlik tonu hafifce yumusatildi |
+
+## v1.217 - Reset Renk Gecisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda renk gecisi yumusadi | OK | Reset dugmesinin yazi tonu yardim metnine daha yakin hale geldi |
+| Son odeme satirinda renk gecisi yumusadi | OK | Reset dugmesinin yazi tonu yardim metnine daha yakin hale geldi |
+| Komut hissi korundu | OK | Dugme tonu yumusasa da ayri bir aksiyon olarak okunmaya devam ediyor |
+| 2026-06-16 | v1.217 | OK | Reset dugmesinin yazi tonu yardim metnine yaklastirildi |
+
+## v1.216 - Reset Tipografi Akrabaligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda tipografik aile yaklasti | OK | Reset dugmesi ana aksiyon dugmesiyle ayni puntoya gelerek daha akraba hissediyor |
+| Son odeme satirinda tipografik aile yaklasti | OK | Reset dugmesi ana aksiyon dugmesiyle ayni puntoya gelerek daha akraba hissediyor |
+| Hiyerarsi korundu | OK | Reset dugmesi agirligi normale alindigi icin dugmeler benzesirken vurgu farki kaybolmadi |
+| 2026-06-16 | v1.216 | OK | Reset dugmesinin tipografisi ana aksiyon ailesine yaklastirildi |
+
+## v1.215 - Aksiyon Dugmesi Agirlik Dengesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk aksiyon dugmesi yumusadi | OK | Dikey ic bosluk azaltilarak yardim metniyle agirlik farki hafifletildi |
+| Son odeme aksiyon dugmesi yumusadi | OK | Dikey ic bosluk azaltilarak yardim metniyle agirlik farki hafifletildi |
+| Aksiyon belirginligi korundu | OK | Dugmeler hala birincil komut hissini kaybetmeden okunuyor |
+| 2026-06-15 | v1.215 | OK | Aksiyon dugmelerinin dikey ic boslugu hafifce azaltildi |
+
+## v1.214 - Reset Dugmesi Satir Yuksekligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satiri sakinlesti | OK | Reset dugmesinin dikey ic boslugu azaltilarak toplam satir yuksekligi hafifletildi |
+| Son odeme satiri sakinlesti | OK | Reset dugmesinin dikey ic boslugu azaltilarak toplam satir yuksekligi hafifletildi |
+| Ortak stil korundu | OK | Dikey bosluk iki dugmede ortak stil uzerinden yonetiliyor |
+| 2026-06-15 | v1.214 | OK | Reset dugmesinin dikey ic boslugu hafifce azaltildi |
+
+## v1.213 - Reset Dugmesi Dikey Hiz
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satirinda merkez hissi dengeli | OK | Reset dugmesi yardim metniyle ayni satirda daha dengeli hizalaniyor |
+| Son odeme satirinda merkez hissi dengeli | OK | Reset dugmesi yardim metniyle ayni satirda daha dengeli hizalaniyor |
+| Hiz davranisi ortaklasti | OK | Dikey hiz ortak stil anahtarina tasinarak iki dugmede ayni hale getirildi |
+| 2026-06-15 | v1.213 | OK | Reset dugmesinin dikey hizasi ortak stil uzerinden sabitlendi |
+
+## v1.212 - Yardim Metni Sarmalama Siniri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satiri sarmalamasi kontrollu | OK | Yardim metni genislik siniri ile daha ongorulebilir kiriliyor |
+| Son odeme satiri sarmalamasi kontrollu | OK | Yardim metni genislik siniri ile daha ongorulebilir kiriliyor |
+| Yan yana ritim korundu | OK | Yardim metni ile geri donus dugmesi arasindaki denge daha stabil kaldi |
+| 2026-06-15 | v1.212 | OK | Yardim metinlerine kontrollu sarmalama siniri eklendi |
+
+## v1.211 - Yardim Metni Satir Hizi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk yardim satiri hizlandi | OK | Yardim metninin ust boslugu azaltilarak reset dugmesiyle daha yakin ritim kuruldu |
+| Son odeme yardim satiri hizlandi | OK | Yardim metninin ust boslugu azaltilarak reset dugmesiyle daha yakin ritim kuruldu |
+| Okunabilirlik korundu | OK | Satir ici toparlama yapilirken metin sarmalama davranisi bozulmadi |
+| 2026-06-15 | v1.211 | OK | Yardim metni ust boslugu hafifce azaltildi |
+
+## v1.210 - Reset Dugmesi Sol Mesafe
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk satiri daha toplu | OK | Yardim metni ile geri donus dugmesi arasindaki sol bosluk hafifce azaldi |
+| Son odeme satiri daha toplu | OK | Yardim metni ile geri donus dugmesi arasindaki sol bosluk hafifce azaldi |
+| Margin ortaklasti | OK | Sol mesafe stil anahtarina tasinarak iki dugmede ayni hale getirildi |
+| 2026-06-15 | v1.210 | OK | Reset dugmesinin sol mesafesi ortak stil uzerinden dengelendi |
+
+## v1.209 - Reset Dugmesi Ic Boslugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk geri donus ritmi toparlandi | OK | Kuyruk satirindaki dugme daha kompakt bir boslukla yardim metnine daha hafif baglaniyor |
+| Son odeme geri donus ritmi toparlandi | OK | Son odeme satirindaki dugme daha kompakt bir boslukla yardim metnine daha hafif baglaniyor |
+| Ic bosluk ortaklasti | OK | Padding stil anahtarina tasinarak iki dugmede ayni hale getirildi |
+| 2026-06-15 | v1.209 | OK | Reset dugmesinin ic boslugu ortak stil uzerinden kompaktlastirildi |
+
+## v1.208 - Reset Dugmesi Tipografi Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk geri donus tipografisi dengeli | OK | Kuyruk satirindaki dugme yardim metniyle daha akraba bir olcekte gorunuyor |
+| Son odeme geri donus tipografisi dengeli | OK | Son odeme satirindaki dugme yardim metniyle daha akraba bir olcekte gorunuyor |
+| Stil ortaklasti | OK | Font boyutu stil anahtarina tasinarak iki dugmede ortak kullaniliyor |
+| 2026-06-15 | v1.208 | OK | Reset dugmesinin tipografi ayari ortak stil uzerinden duzenlendi |
+
+## v1.207 - Reset Dugmesi Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk geri donus tonu yumusadi | OK | Kuyruk satirindaki `Hepsini Goster` dugmesi yardim metniyle daha uyumlu gorunuyor |
+| Son odeme geri donus tonu yumusadi | OK | Son odeme satirindaki `Hepsini Goster` dugmesi yardim metniyle daha uyumlu gorunuyor |
+| Aksiyon gorunurlugu korundu | OK | Dugme daha sakin olsa da tiklanabilir komut hissini kaybetmiyor |
+| 2026-06-15 | v1.207 | OK | Reset dugmesinin tonu yardim satirina yaklastirildi |
+
+## v1.206 - Reset Dugmesi Yatay Bosluk
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk komut satiri toplandi | OK | Yardim metni ile geri donus dugmesi daha yakin duruyor |
+| Son odeme komut satiri toplandi | OK | Yardim metni ile geri donus dugmesi daha yakin duruyor |
+| Yatay nefes korundu | OK | Bosluk azaltildi ama satir sikismadi |
+| 2026-06-15 | v1.206 | OK | Reset dugmesinin yatay boslugu hafifce azaltildi |
+
+## v1.205 - Yardim Metni Satir Yuksekligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk yardim akisi dengeli | OK | Kuyruk yardim metninde satir yuksekligi daha sakin akiyor |
+| Son odeme yardim akisi dengeli | OK | Son odeme yardim metninde satir yuksekligi daha sakin akiyor |
+| Satir ritmi temiz | OK | Iki satirli senaryolarda komut satiri daha duzgun gorunuyor |
+| 2026-06-15 | v1.205 | OK | Yardim metinlerinin satir yuksekligi dengelendi |
+
+## v1.204 - Yardim Metni Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk yardim tonu yumusadi | OK | Kuyruk yardim metni daha sakin renge ve daha kucuk tipografiye alindi |
+| Son odeme yardim tonu yumusadi | OK | Son odeme yardim metni daha sakin renge ve daha kucuk tipografiye alindi |
+| Komut hiyerarsisi korundu | OK | Yardim metni geri planda kalirken okunabilirligini koruyor |
+| 2026-06-15 | v1.204 | OK | Yardim metinlerinin tonu ve boyutu yumusatildi |
+
+## v1.203 - Yardim Metni Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk yardim satiri toplandi | OK | Kuyruk aksiyon satirinda buton ve yardim metni daha yakin duruyor |
+| Son odeme yardim satiri toplandi | OK | Son odeme aksiyon satirinda buton ve yardim metni daha yakin duruyor |
+| Mikro ritim korundu | OK | Metin yakinlasti ama satir sikismadi |
+| 2026-06-15 | v1.203 | OK | Yardim metinlerinin ust boslugu hafifce azaltildi |
+
+## v1.202 - Rozet Aksiyon Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk dikey ritmi toparlandi | OK | Aktif kuyruk rozeti ile komut satiri biraz daha yakinlasti |
+| Son odeme dikey ritmi toparlandi | OK | Aktif son odeme rozeti ile komut satiri biraz daha yakinlasti |
+| Mikro denge korundu | OK | Bosluk azaltildi ama katmanlar carpmadi |
+| 2026-06-15 | v1.202 | OK | Rozet ve alt aksiyon satiri arasindaki bosluk hafifce azaltildi |
+
+## v1.201 - Rozet Ust Bosluk Sikilastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk ritmi yakinlasti | OK | Filtre ile aktif kuyruk rozeti arasindaki bosluk azaltildi |
+| Son odeme ritmi yakinlasti | OK | Filtre ile aktif son odeme rozeti arasindaki bosluk azaltildi |
+| Mikro denge korundu | OK | Siklik arttirildi ama satirlar carpmadi |
+| 2026-06-15 | v1.201 | OK | Aktif rozetin ust boslugu hafifce azaltildi |
+
+## v1.200 - Aktif Rozet Baglam Metni
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk rozeti acik | OK | Kisa metin dogrudan aktif kuyruk baglamini soyluyor |
+| Son odeme rozeti acik | OK | Kisa metin dogrudan aktif son odeme baglamini soyluyor |
+| Yan yana okuma hizlandi | OK | Iki rozet bir arada daha net ayirt ediliyor |
+| 2026-06-15 | v1.200 | OK | Aktif filtre rozetlerinin baglam metni netlestirildi |
+
+## v1.199 - Aktif Rozet Tooltip Dili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk tooltipi dinamik | OK | Secili kuyruk gorunumu ve sonuc sayisi hover aninda aciklaniyor |
+| Son odeme tooltipi dinamik | OK | Secili son odeme gorunumu ve sonuc sayisi hover aninda aciklaniyor |
+| Detay dili net | OK | Kisa rozet metni korunurken ek baglam tooltipte veriliyor |
+| 2026-06-15 | v1.199 | OK | Aktif filtre rozetlerinin tooltip dili dinamik hale getirildi |
+
+## v1.198 - Aktif Filtre Rozet Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk rozet tonu dinamik | OK | Genel, Acil ve PDF Eksik gorunumleri farkli tonlarla ayirt ediliyor |
+| Son odeme rozet tonu dinamik | OK | PDF Eksik gorunumu rozet tonuyla daha belirginlesiyor |
+| Ton ayrimi sakin | OK | Renk ayrimi bilgi veriyor ama panel dengesini bozmuyor |
+| 2026-06-15 | v1.198 | OK | Aktif filtre rozetlerine secili gorunume gore ton farki eklendi |
+
+## v1.197 - Donus Dugmesi Ton Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk donus dugmesi ayrisiyor | OK | Bos kuyruk durumundaki geri donus dugmesi daha gorunur ton aliyor |
+| Son odeme donus dugmesi ayrisiyor | OK | Bos son odeme durumundaki geri donus dugmesi daha gorunur ton aliyor |
+| Ton dengesi korundu | OK | Ayrim sakin tutuldu, birincil aksiyon hissine tasinmadi |
+| 2026-06-15 | v1.197 | OK | Hepsini Goster dugmelerine sakin ton ayrimi eklendi |
+
+## v1.196 - Bos Filtre Fiil Dili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk bos metni yonlendirici | OK | Bos kuyruk durumunda geri donus ve filtre degisimi acik anlatiliyor |
+| Son odeme bos metni yonlendirici | OK | Bos son odeme durumunda geri donus ve filtre degisimi acik anlatiliyor |
+| Fiil dili net | OK | Metinler kullaniciya sonraki hareketi acik bicimde soyluyor |
+| 2026-06-15 | v1.196 | OK | Bos filtre metinleri daha yonlendirici hale getirildi |
+
+## v1.195 - Bos Filtre Donus Aksiyonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk donus dugmesi hazir | OK | Sonucsuz kuyruk filtresinde Hepsini Goster gorunuyor |
+| Son odeme donus dugmesi hazir | OK | Sonucsuz son odeme filtresinde Hepsini Goster gorunuyor |
+| Donus davranisi kosullu | OK | Dugmeler yalnizca all disi filtre ve bos sonuc kombinasyonunda gorunuyor |
+| 2026-06-15 | v1.195 | OK | Sonucsuz odeme filtrelerine geri donus aksiyonu eklendi |
+
+## v1.194 - Aktif Filtre Sonuc Ozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk rozet sayisi gorunur | OK | Aktif kuyruk filtresi gorunen kayit sayisini ozetliyor |
+| Son odeme rozet sayisi gorunur | OK | Aktif son odeme filtresi gorunen kayit sayisini ozetliyor |
+| Rozet sayisi dinamik | OK | Filtre degisikliginde sonuc sayisi listeyle birlikte guncelleniyor |
+| 2026-06-15 | v1.194 | OK | Aktif filtre rozetlerine sonuc sayisi eklendi |
+
+## v1.193 - Odemeler Filtre Sonuc Sayilari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk sayilari gorunur | OK | Hepsi, Acil ve PDF Eksik dugmeleri sonuc sayilarini gosteriyor |
+| Son odeme sayilari gorunur | OK | Hepsi ve PDF Eksik dugmeleri sonuc sayilarini gosteriyor |
+| Sayi kapsami acik | OK | Tooltipler sayilarin en yakin veya en son bes kaydi temsil ettigini acikliyor |
+| 2026-06-15 | v1.193 | OK | Odemeler filtrelerine sonuc sayilari eklendi |
+
+## v1.192 - Odemeler Aktif Filtre Rozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk filtresi gorunur | OK | Secili kuyruk gorunumu AKTIF rozetiyle ozetleniyor |
+| Son odeme filtresi gorunur | OK | Secili son odeme gorunumu AKTIF rozetiyle ozetleniyor |
+| Rozet dinamik yenileniyor | OK | Filtre degisikliginde rozet metni veriyle birlikte guncelleniyor |
+| 2026-06-15 | v1.192 | OK | Odemeler listelerine aktif filtre rozetleri eklendi |
+
+## v1.191 - Odemeler Klavye Odak Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Filtre odagi gorunur | OK | Filtre dugmeleri klavye odaginda belirgin cerceve aliyor |
+| Aksiyon odagi gorunur | OK | Hizli ve satir ici acis dugmeleri odakta daha belirgin hale geliyor |
+| Satir odagi gorunur | OK | Satir ici dugmeye odak gelince ilgili kaydin tamami vurgulaniyor |
+| 2026-06-15 | v1.191 | OK | Odemeler listesinde klavye odak akisi belirginlestirildi |
+
+## v1.190 - Odemeler Liste Filtreleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk filtreleri calisiyor | OK | Hepsi, Acil ve PDF Eksik secimleri kuyruk listesini daraltiyor |
+| Son odeme filtreleri calisiyor | OK | Hepsi ve PDF Eksik secimleri son odeme listesini daraltiyor |
+| Filtre ozeti gorunur | OK | Ozet metni ve aksiyon ipucu secili filtreye gore yenileniyor |
+| 2026-06-15 | v1.190 | OK | Odemeler listesine gorunum filtreleri ve filtre baglam metinleri eklendi |
+
+## v1.189 - Odemeler Liste Hover Erisimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover vurgusu gorunur | OK | Kuyruk ve son odeme satirlari hover durumunda daha belirgin cerceve ve arka plan aliyor |
+| Acis amaci netlesti | OK | Satir dugmelerinin tooltip metinleri hedefli acis davranisini acik bicimde anlatiyor |
+| 2026-06-15 | v1.189 | OK | Odemeler listesine hover erisimi ve tooltip netligi eklendi |
+
+## v1.188 - One Cikan Kayit Ozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odak karti gorunur | OK | Ust alanda one cikan kaydi baslik, meta, durum ve tutar ile gosteriyor |
+| Hizli acis korunuyor | OK | Odak kartindan ilgili fatura odeme alanina tek tikla acilabiliyor |
+| 2026-06-15 | v1.188 | OK | Odemeler paneline one cikan kayit ozeti eklendi |
+
+## v1.187 - Odemeler Durum Rozetleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruk durum rozetleri gorunur | OK | Odenmedi ve kismi durumlari satir icinde belirgin rozetlerle ayrisiyor |
+| Son odeme PDF rozetleri gorunur | OK | PDF hazir ve PDF eksik durumlari tek bakista secilebiliyor |
+| 2026-06-15 | v1.187 | OK | Odemeler paneline satir ici durum rozetleri eklendi |
+
+## v1.186 - Odemeler Hizli Aksiyon Satiri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Oncelikli kayit hizli aciliyor | OK | Odenmemis kuyrugunun ilk kaydi hizli aksiyon butonu ile odeme alanina geciyor |
+| Son odeme hizli aciliyor | OK | Son odeme faturasina hizli aksiyon satirindan dogrudan donulebiliyor |
+| 2026-06-15 | v1.186 | OK | Odemeler paneline hizli aksiyon satiri eklendi |
+
+## v1.185 - Odemeler Ozeti Hedefli Gecis
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kuyruktan hedefli gecis var | OK | Bekleyen odeme kaydindan ilgili faturayi odeme alaninda ac butonu ile acmak mumkun |
+| Son odemeden hedefli gecis var | OK | Son odeme listesinden ilgili fatura odeme alanina tek tikla donulebiliyor |
+| 2026-06-15 | v1.185 | OK | Odemeler panelinde hedefli gecis dugmeleri eklendi |
+
+## v1.184 - Odemeler Operasyon Ozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme kuyrugu gorunur | OK | Odenmemis faturalardan en yakin kayitlar Odemeler sekmesinde listeleniyor |
+| Son odemeler gorunur | OK | En yeni odeme kayitlari ve PDF durumu ayni panelde izlenebiliyor |
+| 2026-06-15 | v1.184 | OK | Odemeler paneline operasyon ozeti eklendi |
+
+## v1.183 - Mikro Hiyerarsi Seri Kapanisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Butunsel ritim kontrolu tamamlandi | OK | Panel genelinde ton, bosluk ve vurgu katmanlari birlikte yeniden degerlendirildi |
+| Ek piksel duzeltmesine gerek kalmadi | OK | Son gorunum dengeli bulundugu icin seri kontrollu bicimde kapatildi |
+| 2026-06-15 | v1.183 | OK | Odemeler panelindeki mikro hiyerarsi ince ayar serisi kapatildi |
+
+## v1.182 - Kisayol Aksiyon Son Ritim
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Alt komut ritmi toparlandi | OK | Kisayol kapsulu ile aksiyon dugmesi arasindaki bosluk azaltildigi icin blok daha toplu okunuyor |
+| Komut agirligi korundu | OK | Aksiyon dugmeleri hala belirgin ve kolay secilebilir durumda |
+| 2026-06-15 | v1.182 | OK | Odemeler panelinde kisayol aksiyon son ritim ayari tamamlandi |
+
+## v1.181 - Hedef Kisayol Bosluk Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Gecis boslugu dengelendi | OK | Hedef satiri ile kisayol kapsulu arasindaki bosluk azaltildigi icin alt akis daha toplu gorunuyor |
+| Katman okunurlugu korundu | OK | Hedef, kisayol ve aksiyon katmanlari birbirine karismadan okunabiliyor |
+| 2026-06-15 | v1.181 | OK | Odemeler panelinde hedef kisayol bosluk ayari tamamlandi |
+
+## v1.180 - Sonraki Adim Ton Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ton hiyerarsisi netlesti | OK | Sonraki adim metinleri yumusatildigi icin hedef satiri daha belirgin ana yon oldu |
+| Akis okunurlugu korundu | OK | Destekleyici metinler hala rahat okunuyor ve baglam kaybi olusmadi |
+| 2026-06-15 | v1.180 | OK | Odemeler panelinde sonraki adim ton ayrimi tamamlandi |
+
+## v1.179 - Aktif Yol Gecis Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif yol gecisi yumusadi | OK | Aktif yol notlarinin tonu ve ust boslugu azaltildigi icin aciklama ile gecis daha akici oldu |
+| Hiyerarsi korundu | OK | Aktif yol ipucu hala secili akis bilgisini net bicimde ayiriyor |
+| 2026-06-15 | v1.179 | OK | Odemeler panelinde aktif yol gecis yumusatma tamamlandi |
+
+## v1.178 - Yardim Aksiyon Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardim ve aksiyon dengelendi | OK | Yardim kapsulu ile aksiyon dugmesi arasindaki bosluk azaltildigi icin komut alani daha butun gorunuyor |
+| Komut okunurlugu korundu | OK | Dugmeler ayrisikligini koruyor ve tiklanabilirlik algisi zayiflamadi |
+| 2026-06-15 | v1.178 | OK | Odemeler panelinde yardim aksiyon yakinlastirma tamamlandi |
+
+## v1.177 - Aktif Rozet Oran Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif rozet boyutu dengelendi | OK | Aktif kolon rozetlerinin ic boslugu azaltildigi icin yardim kapsulu ile daha yakin oran yakalandi |
+| Katman okunurlugu korundu | OK | Secili akis vurgusu hala net ve yardim katmanlariyla karismiyor |
+| 2026-06-15 | v1.177 | OK | Odemeler panelinde aktif rozet oran ayari tamamlandi |
+
+## v1.176 - Hover Kenarlik Tonu Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover kenarligi daha sakin | OK | Hover kenarlik tonu hafifce yumusatilarak cerceve vurgusu daha kontrollu hale getirildi |
+| Vurgu okunurlugu korundu | OK | Kart hover durumu hala belirgin ve panel akisi kolay takip ediliyor |
+| 2026-06-15 | v1.176 | OK | Odemeler panelinde hover kenarlik tonu ayari tamamlandi |
+
+## v1.175 - Hover Arka Plan Tonu Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover tonu daha sakin | OK | Hover arka plan tonu hafifce yumusatilarak kart vurgusu daha kontrollu hale getirildi |
+| Etkilesim okunurlugu korundu | OK | Hover durumu hala kolay fark ediliyor ve aktif kart hissi kaybolmadi |
+| 2026-06-15 | v1.175 | OK | Odemeler panelinde hover arka plan tonu ayari tamamlandi |
+
+## v1.174 - Hover Buyume Orani Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover buyumesi daha sakin | OK | Mikro olcek buyumesi azaltildigi icin kart tepkisi daha kontrollu hissediliyor |
+| Hareket okunurlugu korundu | OK | Hover animasyonu hala fark edilir ve akisin yon hissi kaybolmadi |
+| 2026-06-15 | v1.174 | OK | Odemeler panelinde hover buyume orani ayari tamamlandi |
+
+## v1.173 - Hover Donus Hiz Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover donusu daha cevik | OK | Hover cikis sureleri kisaltilarak temel hale daha hizli donus saglandi |
+| Sakin ton korundu | OK | Kartlar daha cevik donse de yumusak panel dili bozulmadi |
+| 2026-06-15 | v1.173 | OK | Odemeler panelinde hover donus hiz ayari tamamlandi |
+
+## v1.172 - Hover Opaklik Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover opaklik daha sakin | OK | Dinlenim ve hover opaklik farki azaltildi |
+| Kart tonu daha kararli | OK | Kartlar panel icinde daha istikrarli bir gorunum veriyor |
+| 2026-06-15 | v1.172 | OK | Odemeler panelinde hover opaklik dengeleme tamamlandi |
+
+## v1.171 - Hover Gecisi Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hover daha sakin | OK | Hover kenarligi ve mikro buyume yeni ton dengesine gore yumusatildi |
+| Kart hareketi korundu | OK | Kartlar hala hissedilir ama daha rafine bir geri bildirim veriyor |
+| 2026-06-15 | v1.171 | OK | Odemeler panelinde hover gecisi yumusatma tamamlandi |
+
+## v1.170 - Birincil Odak Tonu Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Birincil odak daha sakin | OK | Birincil dugmenin klavye odak tonu panel dengesiyle daha uyumlu hale geldi |
+| Ana komut rolu korundu | OK | Odeme alanini ac dugmesi hala en belirgin ana aksiyon olarak kaliyor |
+| 2026-06-15 | v1.170 | OK | Odemeler panelinde birincil odak tonu yumusatma tamamlandi |
+
+## v1.169 - Renk Ailesi Agirlik Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Renk aileleri daha dengeli | OK | Mavi ve turuncu rozet tonlari yesil akisla daha yakin algisal agirlikta |
+| Uc akis karti daha butunlu | OK | Kartlar ayni panel dili icinde daha esit vurgu dagitiyor |
+| 2026-06-14 | v1.169 | OK | Odemeler panelinde renk ailesi agirlik dengeleme tamamlandi |
+
+## v1.168 - Ikincil Odak Tonu Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ikincil odak daha sakin | OK | Klavye odak vurgusu yardimci rolu koruyacak sekilde yumusatildi |
+| Birincil hiyerarsi korundu | OK | Birincil komut odakli akis daha temiz okunuyor |
+| 2026-06-14 | v1.168 | OK | Odemeler panelinde ikincil odak tonu yumusatma tamamlandi |
+
+## v1.167 - Ikincil Aksiyon Tonu Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ikincil aksiyon daha sakin | OK | Ikincil buton tonlari yardimci rolune daha uygun hale geldi |
+| Birincil aksiyon onde | OK | Odeme calisma dugmesi panelde daha net ana komut gibi gorunuyor |
+| 2026-06-14 | v1.167 | OK | Odemeler panelinde ikincil aksiyon tonu dengeleme tamamlandi |
+
+## v1.166 - Kisayol Tonu Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kisayol daha sakin | OK | Kisayol kapsulu metinleri daha yardimci tonda okunuyor |
+| Hiyerarsi korundu | OK | Aksiyon dugmesi ana komut olarak onde kalmaya devam ediyor |
+| 2026-06-14 | v1.166 | OK | Odemeler panelinde kisayol tonu yumusatma tamamlandi |
+
+## v1.165 - Sonraki Adim Tonu Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sonraki adim daha sakin | OK | Sonraki adim satirlari daha yardimci tonda okunuyor |
+| Hiyerarsi korundu | OK | Hedef satiri ve aksiyon dugmesi ana odakta kalmaya devam ediyor |
+| 2026-06-14 | v1.165 | OK | Odemeler panelinde sonraki adim tonu yumusatma tamamlandi |
+
+## v1.164 - Aktif Yol Tonu Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif yol daha sakin | OK | Aktif yol notlari daha yardimci tonda okunuyor |
+| Hiyerarsi korundu | OK | Hedef ve sonraki adim satirlari ana odakta kalmaya devam ediyor |
+| 2026-06-14 | v1.164 | OK | Odemeler panelinde aktif yol tonu yumusatma tamamlandi |
+
+## v1.163 - Baglam Cumlesi Tonu Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baglam cumlesi daha sakin | OK | Baglam cumleleri daha yardimci ton ve agirlikla okunuyor |
+| Hiyerarsi korundu | OK | Baslik, aktif yol ve hedef satirlari ana odakta kalmaya devam ediyor |
+| 2026-06-14 | v1.163 | OK | Odemeler panelinde baglam cumlesi tonu yumusatma tamamlandi |
+
+## v1.162 - Aciklama Tonu Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aciklama daha sakin | OK | Aciklama satirlari daha yardimci bir tonla okunuyor |
+| Metin hiyerarsisi korundu | OK | Aktif durum ve yonlendirme satirlari ana odakta kalmaya devam ediyor |
+| 2026-06-14 | v1.162 | OK | Odemeler panelinde aciklama tonu yumusatma tamamlandi |
+
+## v1.161 - Baslik Ust Bosluk Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baslik daha bagli | OK | Basligin ust boslugu azaltildi ve aktif kolon rozetine yakinlasti |
+| Ust giris daha butunlu | OK | Secili kartin ust blogu daha yekpare okunuyor |
+| 2026-06-14 | v1.161 | OK | Odemeler panelinde baslik ust bosluk dengeleme tamamlandi |
+
+## v1.160 - Rozet Ust Bosluk Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozet daha bagli | OK | Rozetin ust boslugu azaltildi ve kartin ust bloguna yakinlasti |
+| Ust durum zinciri daha butunlu | OK | Secili durum girisi daha kompakt okunuyor |
+| 2026-06-14 | v1.160 | OK | Odemeler panelinde rozet ust bosluk dengeleme tamamlandi |
+
+## v1.159 - Aksiyon Butonu Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Buton daha bagli | OK | Butonun ust boslugu azaltildi ve kisayol kapsulune yakinlasti |
+| Alt eylem zinciri daha butunlu | OK | Kapsul ve buton daha tek blok gibi okunuyor |
+| 2026-06-14 | v1.159 | OK | Odemeler panelinde aksiyon butonu yakinlastirma tamamlandi |
+
+## v1.158 - Kisayol Kapsulu Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kisayol kapsulu daha bagli | OK | Kapsulun ust boslugu azaltilarak sonraki adim satirina yakinlastirildi |
+| Alt yardim zinciri daha toplu | OK | Sonraki adim ve kapsul daha tek akis gibi okunuyor |
+| 2026-06-14 | v1.158 | OK | Odemeler panelinde kisayol kapsulu yakinlastirma tamamlandi |
+
+## v1.157 - Sonraki Adim Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sonraki adim daha bagli | OK | Sonraki adim satiri hedef satirina yakinlastirildi |
+| Alt yonlendirme blogu daha toplu | OK | Hedef ve sonraki adim daha tek blok gibi okunuyor |
+| 2026-06-14 | v1.157 | OK | Odemeler panelinde sonraki adim yakinlastirma tamamlandi |
+
+## v1.156 - Hedef Satiri Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hedef satiri daha bagli | OK | Hedef satirinin ust boslugu azaltildi ve aktif yol notuna yakinlasti |
+| Secili akis zinciri daha akici | OK | Ust bilgi blogundan hedef satirina gecis daha tek parca hissediliyor |
+| 2026-06-14 | v1.156 | OK | Odemeler panelinde hedef satiri yakinlastirma tamamlandi |
+
+## v1.155 - Aktif Yol Notu Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif yol notu daha bagli | OK | Ust bosluk azaltilarak baglam satirina daha yakin okunur hale geldi |
+| Secili durum geri bildirimi daha akici | OK | Ust bilgi blogu icindeki yardimci not daha dogal bir devam hissi veriyor |
+| 2026-06-14 | v1.155 | OK | Odemeler panelinde aktif yol notu yakinlastirma tamamlandi |
+
+## v1.154 - Aciklama Baglam Bosluk Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aciklama ve baglam daha bagli | OK | Baglam cumlesi ust boslugu azaltilarak aciklama satirina yakinlastirildi |
+| Ust bilgi blogu daha butunlu | OK | Rozet-baslik-aciklama-baglam zinciri daha akici okunuyor |
+| 2026-06-14 | v1.154 | OK | Odemeler panelinde aciklama-baglam bosluk ayari tamamlandi |
+
+## v1.153 - Baslik Aciklama Ritim Sikilastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baslik ve aciklama daha bagli | OK | Aciklama ust boslugu azaltilarak ust bilgi blogu sikilastirildi |
+| Ilk bakis ritmi daha akici | OK | Rozet-baslik-aciklama zinciri daha tek parca hissediliyor |
+| 2026-06-14 | v1.153 | OK | Odemeler panelinde baslik-aciklama ritim sikilastirma tamamlandi |
+
+## v1.152 - Rozet Baslik Yakinlastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozet ile baslik daha bagli | OK | Baslik ust boslugu azaltilarak secili durum etiketiyle yakinlastirildi |
+| Ust giris ritmi daha toplu | OK | Kartin ilk bilgi blogu daha birlesik okunuyor |
+| 2026-06-14 | v1.152 | OK | Odemeler panelinde rozet-baslik yakinlastirma tamamlandi |
+
+## v1.151 - Mikro Rozet Animasyon Ritmi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif rozet fade ritmi daha tutarli | OK | Rozet fade baslangici ve suresi yardim kapsuluyle hizalandi |
+| Secim geri bildirimi daha butunlu | OK | Kart icindeki mikro durum isaretleri ayni tempoda aciliyor |
+| 2026-06-14 | v1.151 | OK | Odemeler panelinde mikro rozet animasyon ritmi duzenlendi |
+
+## v1.150 - Mikro Rozet Agirlik Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif kolon rozet metni daha sakin | OK | Rozet metinleri normal agirlikla daha yumusak okunuyor |
+| Renkli vurgu korunuyor | OK | Kapsul arka plani aktif baglami belirgin gostermeye devam ediyor |
+| 2026-06-14 | v1.150 | OK | Odemeler panelinde mikro rozet agirlik yumusatma tamamlandi |
+
+## v1.149 - Mikro Rozet Olcek Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif kolon rozetleri daha dengeli | OK | Rozet padding ve yazi boyutu yardim kapsullerine yaklastirildi |
+| Mikro etiket ailesi daha butunlu | OK | Rozet ile kapsul ayni kart dilinin parcalari gibi daha tutarli gorunuyor |
+| 2026-06-14 | v1.149 | OK | Odemeler panelinde mikro rozet olcek dengeleme tamamlandi |
+
+## v1.148 - Yardim Kapsulu Agirlik Yumusatma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardim kapsulu daha hafif gorunuyor | OK | `Enter ile ac` metni normal agirlikla daha yardimci bir katman gibi okunuyor |
+| Buton ana aksiyon olarak onde kaliyor | OK | Kapsul ile buton arasindaki agirlik farki daha net |
+| 2026-06-14 | v1.148 | OK | Odemeler panelinde yardim kapsulu agirlik yumusatma tamamlandi |
+
+## v1.147 - Hedef Sonraki Adim Aralik Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Hedef ve sonraki adim daha toplu | OK | Aralik azaltilarak iki satir daha bagli okunur hale geldi |
+| Alt yardim ritmi korundu | OK | Sikisma olmadan daha birlesik bir yonlendirme blogu elde edildi |
+| 2026-06-14 | v1.147 | OK | Odemeler panelinde hedef-sonraki adim aralik ayari tamamlandi |
+
+## v1.146 - Ust Bilgi Mikro Bosluk Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ust bilgi blogu daha yakin | OK | `Aktif yol` notunun ust boslugu hafifce azaltildi |
+| Okunabilirlik korundu | OK | Satirlar birbirine girmeden daha toplu bir akis veriyor |
+| 2026-06-14 | v1.146 | OK | Odemeler panelinde ust bilgi mikro bosluk ayari tamamlandi |
+
+## v1.145 - Ilk Aciklama Tonu Sakinlestirme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ilk aciklama satiri daha sakin | OK | Secili kartta aciklama tonu baslik ve hedefe gore yumusatildi |
+| Metin hiyerarsisi net | OK | Baslik, hedef ve aciklama rolleri daha kolay ayrisiyor |
+| 2026-06-14 | v1.145 | OK | Odemeler panelinde ilk aciklama tonu sakinlestirme tamamlandi |
+
+## v1.144 - Ust Ritim Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozet ve baslik daha dengeli | OK | Ust bosluk hafifce azaltilarak ilk blog daha tek parca gorunuyor |
+| Ilk bakis taramasi iyilesti | OK | Kartin ust akisinda gereksiz nefes azaltilip ritim toparlandi |
+| 2026-06-14 | v1.144 | OK | Odemeler panelinde ust ritim dengeleme tamamlandi |
+
+## v1.143 - Buton Ust Bosluk Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Buton ile kapsul arasi daha dengeli | OK | Ust bosluk azaltildigi icin iki mikro yuzey daha tutarli okunuyor |
+| Alt blok ritmi korundu | OK | Sikisma olmadan daha yakin bir akıs elde edildi |
+| 2026-06-14 | v1.143 | OK | Odemeler panelinde buton ust bosluk dengeleme tamamlandi |
+
+## v1.142 - Yardim Kapsulu Icerik Sikilastirma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardim kapsulleri daha kompakt | OK | Padding ve yazi boyutu biraz azaltilarak daha rafine bir mikro yuzey elde edildi |
+| Okunabilirlik korundu | OK | `Enter ile ac` metni hala rahat seciliyor |
+| 2026-06-14 | v1.142 | OK | Odemeler panelinde yardim kapsulu icerik sikilastirma tamamlandi |
+
+## v1.141 - Yardim Metni Satir Yuksekligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardim satirlari daha duzgun akiyor | OK | `Hedef` ve `Sonraki adim` satirlari sabit line-height ile daha temiz hizada |
+| Uzun metin ritmi korundu | OK | Sarma durumunda satirlar daha dengeli boslukla okunuyor |
+| 2026-06-14 | v1.141 | OK | Odemeler panelinde yardim metni satir yuksekligi tamamlandi |
+
+## v1.140 - Aktif Yol Tipografi Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif yol notu daha yardimci gorunuyor | OK | Boyut ve agirlik azaltildigi icin `Hedef` satiriyle karismiyor |
+| Mikro hiyerarsi netlesti | OK | Aktif yol notu, hedef ve sonraki adim arasindaki rol farki daha belirgin |
+| 2026-06-14 | v1.140 | OK | Odemeler panelinde aktif yol tipografi ayrimi tamamlandi |
+
+## v1.139 - Ton Hiyerarsisi Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardim kapsulleri daha sakin ton kullaniyor | OK | Arka plan ve cerceve tonlari bir tik daha hafifletildi |
+| Secili metinlerle uyum korundu | OK | Aciklama ve kapsul tonlari ayni renk ailesinde daha dengeli okunuyor |
+| 2026-06-14 | v1.139 | OK | Odemeler panelinde ton hiyerarsisi dengelemesi tamamlandi |
+
+## v1.138 - Aktif Kolon Rozeti Gorunme Gecisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif kolon rozeti yumusak sekilde gorunuyor | OK | `AKTIF KOLON` rozeti secili kartta hafif opacity gecisiyle beliriyor |
+| Kisayol kapsuluyla uyum korundu | OK | Iki yardimci mikro unsur ayni sakin geri bildirim diline yaklasti |
+| 2026-06-14 | v1.138 | OK | Odemeler panelinde aktif kolon rozeti gorunme gecisi tamamlandi |
+
+## v1.137 - Kisayol Kapsulu Gorunme Canlanmasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kisayol kapsulu yumusak sekilde gorunuyor | OK | `Enter ile ac` kapsulu secili oldugunda hafif opacity canlanmasi aliyor |
+| Geri bildirim dili sakin kaldi | OK | Etki kisa ve dusuk siddette tutuldu |
+| 2026-06-14 | v1.137 | OK | Odemeler panelinde kisayol kapsulu gorunme canlanmasi tamamlandi |
+
+## v1.136 - Akis Karti Hover Gecisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Akis kartlari hover aninda yumusak gecis veriyor | OK | Opacity ve mikro scale animasyonu ile kart hafifce canlaniyor |
+| Genel sakin ton korundu | OK | Gecis kisa ve dusuk siddette kaldigi icin panel sakinligini bozmuyor |
+| 2026-06-14 | v1.136 | OK | Odemeler panelinde akis karti hover gecisi tamamlandi |
+
+## v1.135 - Akis Karti Dikey Ritim Ayari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Alt yonlendirme bloku daha toparli | OK | Hedef, sonraki adim, kisayol kapsulu ve buton araliklari daha kompakt |
+| Okunabilirlik korundu | OK | Metinler ve butonlar birbirine girmeden daha tek parca okunuyor |
+| 2026-06-14 | v1.135 | OK | Odemeler panelinde akis karti dikey ritim ayari tamamlandi |
+
+## v1.134 - Akis Butonu Tooltip Dili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Akis butonlarinda tooltip gorunuyor | OK | Her akis dugmesi acacagi hedefi ve `Enter` ipucunu hover aninda gosteriyor |
+| Hover dili kart diliyle uyumlu | OK | Tooltip metinleri hedef ve sonraki adim aciklamalariyla tutarli |
+| 2026-06-14 | v1.134 | OK | Odemeler panelinde akis butonu tooltip dili tamamlandi |
+
+## v1.133 - Akis Butonu Klavye Odak Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Akis butonlari klavye odaginda belirginlesiyor | OK | Secili karttaki butonlar odakta daha net cerceve ve ton vurgu aliyor |
+| Kisayol ipucuyla uyum korundu | OK | `Enter ile ac` kapsulu ile buton odagi ayni aksiyon dilini destekliyor |
+| 2026-06-14 | v1.133 | OK | Odemeler panelinde akis butonu klavye odak vurgusu tamamlandi |
+
+## v1.132 - Aktif Kolon Kisayol Kapsulu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili akis kartinda kisayol kapsulu gorunuyor | OK | `Enter ile ac` kapsulu secili kartta butondan once gorunuyor |
+| Diger kartlar sakin kaliyor | OK | Secili olmayan kartlarda kisayol kapsulu gorunmuyor |
+| 2026-06-14 | v1.132 | OK | Odemeler panelinde aktif kolon kisayol kapsulu tamamlandi |
+
+## v1.131 - Aksiyon Butonu Fiil Dili
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Buton metinleri daha net fiil dili kullaniyor | OK | `Odeme Alanini Ac`, `Eksik Evrak Raporunu Ac`, `Odenmemisler Raporunu Ac` ifadeleri gorunuyor |
+| Kart ici dil ile uyum korundu | OK | Hedef ve sonraki adim satirlariyla buton komutu ayni aksiyon tonunda okunuyor |
+| 2026-06-14 | v1.131 | OK | Odemeler panelinde aksiyon butonu fiil dili tamamlandi |
+
+## v1.130 - Aktif Kolon Sonraki Adim Ipuclari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili akis kartinda sonraki adim ipucu gorunuyor | OK | `Sonraki adim:` satiri secili kartta hedef bilgisinin altinda beliriyor |
+| Diger kartlar sakin kaliyor | OK | Secili olmayan kartlarda bu ipucu gorunmuyor |
+| 2026-06-14 | v1.130 | OK | Odemeler panelinde aktif kolon sonraki adim ipuclari tamamlandi |
+
+## v1.129 - Aktif Kolon Hedef Satiri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili akis kartinda hedef satiri gorunuyor | OK | `Hedef:` satiri secili kartta dugmeden hemen once beliriyor |
+| Diger kartlar sakin kaliyor | OK | Secili olmayan akis kartlarinda hedef satiri gorunmuyor |
+| 2026-06-14 | v1.129 | OK | Odemeler panelinde aktif kolon hedef satiri tamamlandi |
+
+## v1.128 - Aktif Kolon Metin Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili akis karti metin tonu aliyor | OK | Aktif kolonun baslik ve aciklama satiri kendi renk ailesine hafifce yaklasiyor |
+| Diger kartlar notr kaliyor | OK | Secim kalktiginda title ve description renkleri varsayilan gorunume donuyor |
+| 2026-06-14 | v1.128 | OK | Odemeler panelinde aktif kolon metin tonu tamamlandi |
+
+## v1.127 - Aktif Kolon Rozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili akis kartinda aktif kolon rozeti gorunuyor | OK | `ISLEM`, `EVRAK` ve `RAPOR` kartlari secildiginde ilgili kartta `AKTIF KOLON` rozeti beliriyor |
+| Odak daha toparli hissediliyor | OK | Aktif yolun kart ici okunabilirligi ek mikro katmanla desteklendi |
+| 2026-06-14 | v1.127 | OK | Odemeler panelinde aktif kolon rozeti tamamlandi |
+
+## v1.126 - Akis Baslik Baglami
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Akis basligi aktif kolonu ozetliyor | OK | Odeme Is Akisi altinda secili yone gore kisa baglam satiri guncelleniyor |
+| Varsayilan metin korunuyor | OK | Aktif yol yokken alan genel aciklama halinde kaliyor |
+| 2026-06-14 | v1.126 | OK | Odemeler panelinde akis baslik baglami tamamlandi |
+
+## v1.125 - Ozet Yonu Ipuclari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ozet kartlar asagi akis yonu veriyor | OK | Baglanti metinlerinde asagi yon ipucu kullaniliyor |
+| Gorsel yogunluk sakin kaldi | OK | Ek cizgi olmadan sadece mikro yon etiketiyle iliski guclendi |
+| 2026-06-14 | v1.125 | OK | Odemeler panelinde ozet yon ipuclari tamamlandi |
+
+## v1.124 - Akis Ozet Geri Baglantisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Akis kartlari ust ozeti aniyor | OK | Her alt akis karti iliskili ust ozet kartini kisa mikro metinle isaret ediyor |
+| Panel iki yonlu okunuyor | OK | Ustten alta ve alttan uste bag kurulabiliyor |
+| 2026-06-14 | v1.124 | OK | Odemeler panelinde akis-ozet geri baglantisi tamamlandi |
+
+## v1.123 - Ozet Akis Baglanti Metni
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ozet kartlar alt akisla iliski kuruyor | OK | Her ozet kart hangi alt akis karti ile okunacagini kisa metinle soyluyor |
+| Gorsel yogunluk artmadan bag kuruluyor | OK | Cizgi veya ekstra dekor olmadan, mikro metinle yon hissi veriliyor |
+| 2026-06-14 | v1.123 | OK | Odemeler panelinde ozet ve akis baglanti metinleri tamamlandi |
+
+## v1.122 - Aktif Yol Buton Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aktif yol butonu hafif vurgu aliyor | OK | Son kullanilan yone ait eylem dugmesi kendi tonunda belirginlesiyor |
+| Uc katmanli iz dorduncu katmanla tamamlandi | OK | Rozet, kart secimi, alt not ve buton birlikte ayni akisi isaret ediyor |
+| 2026-06-14 | v1.122 | OK | Odemeler panelinde aktif yol buton vurgusu tamamlandi |
+
+## v1.121 - Aktif Yol Alt Notu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili kartta aktif yol alt notu gorunuyor | OK | Son kullanilan yon ilgili ozet veya akis kartinda kucuk "Aktif yol" notu aliyor |
+| Rozet, kart ve not birlikte calisiyor | OK | Ust rozet, kart secimi ve alt not ayni akis duygusunu birlestiriyor |
+| 2026-06-14 | v1.121 | OK | Odemeler panelinde aktif yol alt notu tamamlandi |
+
+## v1.120 - Son Yol Kart Secimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Son yol ilgili kartta da gorunuyor | OK | Son kullanilan akis ilgili ozet veya akis kartinda hafif secili duruma geliyor |
+| Rozet ile kart arasinda gorsel bag kuruldu | OK | Aylik, evrak, islem ve bakiye yollarinda ust rozet alttaki kartla eslesiyor |
+| 2026-06-14 | v1.120 | OK | Odemeler panelinde son yol kart secimi tamamlandi |
+
+## v1.119 - Son Yol Rozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Son kullanilan akis rozeti gorunuyor | OK | Ust yardim alaninda son yol icin metinsel rozet gosteriliyor |
+| Rozet akis turune gore renkleniyor | OK | Liste, islem, rapor, evrak ve bakiye yollarinda rozet tonu degisiyor |
+| 2026-06-14 | v1.119 | OK | Odemeler panelinde son yol rozeti tamamlandi |
+
+## v1.118 - Dinamik Odeme Ipucu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ust yardim metni baglama gore degisiyor | OK | Kart hover ve ust buton hover aninda metin ilgili yone gore guncelleniyor |
+| Son kullanilan akis ozeti korunuyor | OK | Kart veya buton kullanilinca yardim metni o akis ozetini gostermeye devam ediyor |
+| 2026-06-14 | v1.118 | OK | Odemeler panelinde dinamik baglam ipucu tamamlandi |
+
+## v1.117 - Odeme Kart Hover Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ozet kartlar hover geri bildirimi veriyor | OK | Fare ustune gelince kart arka plani ve kenarligi hafif vurgu aliyor |
+| Akis kartlari hover geri bildirimi veriyor | OK | Islem, evrak ve rapor kartlari ayni sakin vurgu diliyle canlaniyor |
+| 2026-06-14 | v1.117 | OK | Odemeler panelinde hover okunabilirligi guclendirildi |
+
+## v1.116 - Ust Yonlendirme Netligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ust yonlendirme butonlari daha acik | OK | Fatura listesi ve rapor merkezi ifadeleri daha niyetli okunuyor |
+| Yardimci durum metni gorunuyor | OK | Iki ust butonun hangi yone goturdugu kisa metinle aciklaniyor |
+| 2026-06-14 | v1.116 | OK | Odemeler paneli ust genel yonlendirmesi netlestirildi |
+
+## v1.115 - Odeme Ozet Baglami
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ozet kartlar baglam etiketi aldi | OK | Aylik rapor, evrak kontrolu ve odeme calismasi baglamlari kartlarda gorunuyor |
+| Kartlar neyi actigini acikliyor | OK | Her kart kendi rapor veya akis hedefini kisa metinle anlatiyor |
+| 2026-06-14 | v1.115 | OK | Odemeler paneli ust ozet kartlarinda baglam netlestirildi |
+
+## v1.114 - Odeme Akisi Rozetleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme akis yollari daha belirgin | OK | Islem, Evrak ve Rapor olarak uc ayri rozetli yonlendirme karti gorunuyor |
+| Aksiyon aciklamalari ekranda okunuyor | OK | Her kisa yolun ne actigi ve ne icin kullanildigi panel icinde yaziyor |
+| 2026-06-14 | v1.114 | OK | Odemeler panelinde rozetli akis aciklamalari tamamlandi |
+
+## v1.113 - Odemeye Hedefli Gecis
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odemeler panelinden odeme alani aciliyor | OK | Odeme odakli butonlar Faturalar ekraninda odeme calisma modunu aciyor |
+| Odenmemis filtre ve odak uygulanabiliyor | OK | Odenmemis kayitlar filtreleniyor, secili kayitta odeme tarihi alanina odak veriliyor |
+| 2026-06-14 | v1.113 | OK | Odemeler paneli artik daha hedefli gecis sunuyor |
+
+## v1.112 - Odemeler Gecis Paneli
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odemeler menusu artik tiklanabiliyor | OK | Sol menudeki Odemeler artik calisan bir navigasyon dugmesi |
+| Odemeler paneli dogru akis noktalari sunuyor | OK | Faturalar ve Raporlar icin tek tik gecisleri ile mevcut odeme akisini acikliyor |
+| 2026-06-14 | v1.112 | OK | Odemeler gecis paneli + build + self-test tamamlandi |
+
+## v1.111 - Replay Ayirac Uyumu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi ayirac noktasi replay tonuna uyum sagliyor | OK | Replay aktifken ayirac nokta hafif yesil vurgu ile satir diline katiliyor |
+| PDF yardimi ayirac noktasi replay tonuna uyum sagliyor | OK | Replay aktifken ayirac nokta hafif mavi vurgu ile satir diline katiliyor |
+| 2026-06-14 | v1.111 | OK | Replay ayirac uyumu + build + self-test tamamlandi |
+
+## v1.110 - Replay Kisa Yol Ipucu Uyumu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi kisayol ipucu replay tonuna uyum sagliyor | OK | Replay aktifken hint kapsulu hafif yesil ton ve kenarlik uyumu aliyor |
+| PDF yardimi kisayol ipucu replay tonuna uyum sagliyor | OK | Replay aktifken hint kapsulu hafif mavi ton ve kenarlik uyumu aliyor |
+| 2026-06-14 | v1.110 | OK | Replay kisa yol ipucu uyumu + build + self-test tamamlandi |
+
+## v1.109 - Replay Rozeti Gecis Uyumu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi secili durum rozetinde replay gecisi var | OK | Replay aktifken tekrar rozeti replay tonunu devralip satir flashi ile uyumlu canlaniyor |
+| PDF yardimi secili durum rozetinde replay gecisi var | OK | Replay aktifken tekrar rozeti replay tonunu devralip satir flashi ile uyumlu canlaniyor |
+| 2026-06-14 | v1.109 | OK | Replay rozeti gecis uyumu + build + self-test tamamlandi |
+
+## v1.108 - Yardim Durum Satiri Geri Donus Isigi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satiri kisa geri donus isigi veriyor | OK | Secili aksiyon tetiklenince tum satir hafif yesil bir flash ile geri bildirim veriyor |
+| PDF yardimi durum satiri kisa geri donus isigi veriyor | OK | Secili aksiyon tetiklenince tum satir hafif mavi bir flash ile geri bildirim veriyor |
+| 2026-06-14 | v1.108 | OK | Yardim durum satiri geri donus isigi + build + self-test tamamlandi |
+
+## v1.107 - Yardim Mikro Vurgu Kademesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi mikro vurgu kademeli | OK | Prefix, tekrar ve kisayol bloklari farkli siddetlerde belirginlesiyor |
+| PDF yardimi mikro vurgu kademeli | OK | Prefix, tekrar ve kisayol bloklari farkli siddetlerde belirginlesiyor |
+| 2026-06-14 | v1.107 | OK | Yardim mikro vurgu kademesi + build + self-test tamamlandi |
+
+## v1.106 - Yardim Kisayol Ipucunda Aksiyon Varyanti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi kisayol ipucu aksiyona gore degisiyor | OK | `Enter/Space Doldur`, `Kopyala`, `Uygula` gibi varyantlar gorunuyor |
+| PDF yardimi kisayol ipucu aksiyona gore degisiyor | OK | `Enter/Space Sec` ve `Ac` varyantlari gorunuyor |
+| 2026-06-14 | v1.106 | OK | Yardim kisayol ipucunda aksiyon varyanti + build + self-test tamamlandi |
+
+## v1.105 - Yardim Tekrar Rozetinde Aksiyon Etiketi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi tekrar rozeti aksiyona gore degisiyor | OK | `DOLDUR`, `KOPYALA`, `UYGULA` etiketleri gorunuyor |
+| PDF yardimi tekrar rozeti aksiyona gore degisiyor | OK | `SEC` ve `AC` etiketleri gorunuyor |
+| 2026-06-14 | v1.105 | OK | Yardim tekrar rozetinde aksiyon etiketi + build + self-test tamamlandi |
+
+## v1.104 - Yardim Prefixinde Aksiyon Etiketi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi prefixi aksiyona gore degisiyor | OK | `KLN`, `SON`, `SEC` gibi kisaltmalar secili yardimi gosteriyor |
+| PDF yardimi prefixi aksiyona gore degisiyor | OK | `SEC` ve `AC` kisaltmalari secili yardimi gosteriyor |
+| 2026-06-14 | v1.104 | OK | Yardim prefixinde aksiyon etiketi + build + self-test tamamlandi |
+
+## v1.103 - Yardim Metninde Aksiyon Tonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi metni aksiyona gore ton farki aliyor | OK | Farkli yardim turleri hafif renk nuansi ile ayrisiyor |
+| PDF yardimi metni aksiyona gore ton farki aliyor | OK | `PDF Sec` ve `PDF Ac` hafif renk nuansi ile ayrisiyor |
+| 2026-06-14 | v1.103 | OK | Yardim metninde aksiyon tonu + build + self-test tamamlandi |
+
+## v1.102 - Yardim Etiketlerinde Etkilesim Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi yardimci etiketleri etkilesimde belirginlesiyor | OK | Tekrar ve kisayol etiketleri normal durumda sakin, hover/odakta daha net |
+| PDF yardimi yardimci etiketleri etkilesimde belirginlesiyor | OK | Tekrar ve kisayol etiketleri normal durumda sakin, hover/odakta daha net |
+| 2026-06-14 | v1.102 | OK | Yardim etiketlerinde etkilesim vurgusu + build + self-test tamamlandi |
+
+## v1.101 - Yardim Durum Satiri Ince Ayrac
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satirinda ince ayrac var | OK | Prefix ve ana metin arasinda hafif nokta ayraci gorunuyor |
+| PDF yardimi durum satirinda ince ayrac var | OK | Prefix ve ana metin arasinda hafif nokta ayraci gorunuyor |
+| 2026-06-14 | v1.101 | OK | Yardim durum satiri ince ayrac + build + self-test tamamlandi |
+
+## v1.100 - Yardim Rozet Ton Dengeleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi rozet tonlari yumusadi | OK | Tekrar ve kisayol rozetleri ana metni bastirmiyor |
+| PDF yardimi rozet tonlari yumusadi | OK | Tekrar ve kisayol rozetleri ana metni bastirmiyor |
+| 2026-06-14 | v1.100 | OK | Yardim rozet ton dengeleme + build + self-test tamamlandi |
+
+## v1.99 - Yardim Durum Satiri Kompakt Gorunum
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satiri kompakt gorunuyor | OK | Rozet ve kisayol alanlari daha sik boyutlarla gosteriliyor |
+| PDF yardimi durum satiri kompakt gorunuyor | OK | Rozet ve kisayol alanlari daha sik boyutlarla gosteriliyor |
+| 2026-06-14 | v1.99 | OK | Yardim durum satiri kompakt gorunum + build + self-test tamamlandi |
+
+## v1.98 - Yardim Durum Satiri Tekrar Rozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satirinda tekrar rozeti var | OK | `TEKRAR` rozeti prefix yaninda gorunuyor |
+| PDF yardimi durum satirinda tekrar rozeti var | OK | `TEKRAR` rozeti prefix yaninda gorunuyor |
+| 2026-06-14 | v1.98 | OK | Yardim durum satiri tekrar rozeti + build + self-test tamamlandi |
+
+## v1.97 - Yardim Durum Satiri Kisayol Etiketi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satirinda kisayol etiketi var | OK | `Enter/Space` etiketi gorunur halde |
+| PDF yardimi durum satirinda kisayol etiketi var | OK | `Enter/Space` etiketi gorunur halde |
+| 2026-06-14 | v1.97 | OK | Yardim durum satiri kisayol etiketi + build + self-test tamamlandi |
+
+## v1.96 - Yardim Tooltip Dili Sadelestirme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi secili durum tooltip dili sade | OK | Tooltip `Yeniden calistir: ...` biciminde kisa gosteriliyor |
+| PDF yardimi secili durum tooltip dili sade | OK | Tooltip `Yeniden calistir: ...` biciminde kisa gosteriliyor |
+| 2026-06-14 | v1.96 | OK | Yardim tooltip dili sadelestirme + build + self-test tamamlandi |
+
+## v1.95 - Yardim Durum Satiri Klavye Odak Cercevesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satiri odak cercevesi gorunuyor | OK | Klavye odaginda mavi cerceve ve hafif vurgu cikiyor |
+| PDF yardimi durum satiri odak cercevesi gorunuyor | OK | Klavye odaginda mavi cerceve ve hafif vurgu cikiyor |
+| 2026-06-13 | v1.95 | OK | Yardim durum satiri klavye odak cercevesi + build + self-test tamamlandi |
+
+## v1.94 - Yardim Durum Satiri Hover Focus Ipuclari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satiri hover/focus ipucu veriyor | OK | Hover ve klavye odaginda metin alt cizgiyle belirginlesiyor |
+| PDF yardimi durum satiri hover/focus ipucu veriyor | OK | Hover ve klavye odaginda metin alt cizgiyle belirginlesiyor |
+| 2026-06-13 | v1.94 | OK | Yardim durum satiri hover/focus ipuclari + build + self-test tamamlandi |
+
+## v1.93 - Tiklanabilir Yardim Durum Satiri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satiri tiklanabilir | OK | Durum satiri secili yardimi yeniden tetikleyen buton gibi davraniyor |
+| PDF yardimi durum satiri tiklanabilir | OK | Durum satiri secili yardimi yeniden tetikleyen buton gibi davraniyor |
+| 2026-06-13 | v1.93 | OK | Tiklanabilir yardim durum satiri + build + self-test tamamlandi |
+
+## v1.92 - Yardim Durum Prefix Ipuclari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satirinda YRD prefixi var | OK | Secili durum satiri `YRD` etiketiyle basliyor |
+| PDF yardimi durum satirinda PDF prefixi var | OK | Secili durum satiri `PDF` etiketiyle basliyor |
+| 2026-06-13 | v1.92 | OK | Yardim durum prefix ipuclari + build + self-test tamamlandi |
+
+## v1.91 - Yardim Durum Satiri Mikro Vurgu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satiri mikro vurgu aliyor | OK | Secili durum satiri kisa sureli daha belirginlesiyor |
+| PDF yardimi durum satiri mikro vurgu aliyor | OK | Secili durum satiri kisa sureli daha belirginlesiyor |
+| 2026-06-13 | v1.91 | OK | Yardim durum satiri mikro vurgu + build + self-test tamamlandi |
+
+## v1.90 - Yardim Durum Satiri Kisa Yol Ipuclari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satirinda klavye ipucu var | OK | `Enter/Space ile tekrar.` ifadesi gorunuyor |
+| PDF yardimi durum satirinda klavye ipucu var | OK | `Enter/Space ile tekrar.` ifadesi gorunuyor |
+| 2026-06-13 | v1.90 | OK | Yardim durum satiri kisa yol ipuclari + build + self-test tamamlandi |
+
+## v1.89 - Durum Satiri Tooltip Birlesimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satiri tooltipi paylasiyor | OK | Durum satiri son aksiyon butonuyla ayni tooltip dilini kullaniyor |
+| PDF yardimi durum satiri tooltipi paylasiyor | OK | Durum satiri son aksiyon butonuyla ayni tooltip dilini kullaniyor |
+| 2026-06-13 | v1.89 | OK | Durum satiri tooltip birlesimi + build + self-test tamamlandi |
+
+## v1.88 - Yardim Durum Satiri Tooltip Birlesimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi durum satiri tooltipi var | OK | Durum satiri son aksiyon butonuyla ayni tooltip dilini kullaniyor |
+| PDF yardimi durum satiri tooltipi var | OK | Durum satiri son aksiyon butonuyla ayni tooltip dilini kullaniyor |
+| 2026-06-13 | v1.88 | OK | Yardim durum satiri tooltip birlesimi + build + self-test tamamlandi |
+
+## v1.87 - Secili Yardim Durum Satiri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi secili durum satiri var | OK | `Secili yardim: ... hazir.` metni gorunuyor |
+| PDF yardimi secili durum satiri var | OK | `Secili yardim: ... hazir.` metni gorunuyor |
+| 2026-06-13 | v1.87 | OK | Secili yardim durum satiri + build + self-test tamamlandi |
+
+## v1.86 - Yardim Rozeti Mikro Vurgu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi rozeti mikro vurgu aliyor | OK | Son secilen rozet kisa sureli `YENI` etiketi ve daha guclu vurgu aliyor |
+| PDF yardimi rozeti mikro vurgu aliyor | OK | Son secilen rozet kisa sureli `YENI` etiketi ve daha guclu vurgu aliyor |
+| 2026-06-13 | v1.86 | OK | Yardim rozeti mikro vurgu + build + self-test tamamlandi |
+
+## v1.85 - Secili Yardim Rozeti Ipuclari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardimi secili rozette aktif etiketi var | OK | Secili rozetlerde `AKTIF` isareti gorunuyor |
+| PDF yardimi secili rozette aktif etiketi var | OK | Secili rozetlerde `AKTIF` isareti gorunuyor |
+| 2026-06-13 | v1.85 | OK | Secili yardim rozeti ipuclari + build + self-test tamamlandi |
+
+## v1.84 - Replay Ozet Tooltip Genisleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme replay ozet metninde tooltip var | OK | Replay aciklamasi artik summary text ustunde de okunuyor |
+| PDF replay ozet metninde tooltip var | OK | Replay aciklamasi artik summary text ustunde de okunuyor |
+| 2026-06-13 | v1.84 | OK | Replay ozet tooltip genisleme + build + self-test tamamlandi |
+
+## v1.83 - Replay Indicator UI Smoke Checklist
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Replay indicator UI smoke checklist var | OK | `docs/08-replay-indicator-ui-smoke-checklist.md` eklendi |
+| Replay odeme/PDF akis adimlari belgeli | OK | Odeme yardimi, PDF yardimi ve bos durum kontrol adimlari yazildi |
+| 2026-06-13 | v1.83 | OK | Replay indicator UI smoke checklist + build + self-test tamamlandi |
+
+## v1.82 - Replay Indicator Self-Test
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Replay indicator aktif pattern asserti var | OK | Aktif desen `***|||` dogrudan kontrol ediliyor |
+| Replay indicator tooltip assertleri var | OK | Actionli ve bos durum tooltip metinleri self-test ile korunuyor |
+| 2026-06-13 | v1.82 | OK | Replay indicator self-test + build + self-test tamamlandi |
+
+## v1.81 - Replay Indicator Helper
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Replay indicator mantigi ortak helperda | OK | Indicator ve tooltip metin kararlari tek formatter icine tasindi |
+| InvoicesView sadeleşti | OK | Tekrarlayan replay yardim mantigi view icinden cikartildi |
+| 2026-06-13 | v1.81 | OK | Replay indicator helper + build + self-test tamamlandi |
+
+## v1.80 - Replay Tooltip Ton Sadeleştirmesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Actionli tooltip tonu daha kompakt | OK | Son cumle `Hazir` kadar kisa tutuldu |
+| Actionsiz tooltip tonu daha kisa | OK | Yonlendirme cumlesi daha sikistirilmis yardim tonuna cekildi |
+| 2026-06-13 | v1.80 | OK | Replay tooltip ton sadeleştirmesi + build + self-test tamamlandi |
+
+## v1.79 - Replay Bekleme Dili Uyumu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Actionli tooltip bekleme dili yumusak | OK | Bekleme hali `Replay hazir` tonuna cekildi |
+| Actionsiz tooltip bekleme dili yonlendirici | OK | Replay yardiminin ne zaman gorunecegi daha acik anlatiliyor |
+| 2026-06-13 | v1.79 | OK | Replay bekleme dili uyumu + build + self-test tamamlandi |
+
+## v1.78 - Replay Aktiflik Dili Uyumu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Actionli tooltip aktiflik dili uyumlu | OK | Replay aktifken tooltip `Yeniden tetiklendi` ifadesini kullaniyor |
+| Actionsiz tooltip aktiflik dili uyumlu | OK | Replay aktifken hazir metni de yeniden tetiklenme diliyle yaklasti |
+| 2026-06-13 | v1.78 | OK | Replay aktiflik dili uyumu + build + self-test tamamlandi |
+
+## v1.77 - Replay Dili Uyumu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Actionli replay tooltip dili uyumlu | OK | Tooltip action varsa replay ayari / vurgu kalibini kullaniyor |
+| Actionsiz replay tooltip dili uyumlu | OK | Tooltip replay ayari hazir kalibini koruyor |
+| 2026-06-13 | v1.77 | OK | Replay dili uyumu + build + self-test tamamlandi |
+
+## v1.76 - Replay Tooltip Metin Sikilastirmasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Actionli replay tooltip daha kisa | OK | Action varsa tooltip dogrudan action replay ozeti veriyor |
+| Actionsiz replay tooltip daha yonlendirici | OK | Action yoksa replay'in ne zaman canlanacagi anlatiliyor |
+| 2026-06-13 | v1.76 | OK | Replay tooltip metin sikilastirmasi + build + self-test tamamlandi |
+
+## v1.75 - Replay Tooltip Action Adi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme replay tooltip action adi var | OK | Tooltip kaynak action adini acikca gosteriyor |
+| PDF replay tooltip action adi var | OK | Tooltip kaynak action adini acikca gosteriyor |
+| 2026-06-13 | v1.75 | OK | Replay tooltip action adi + build + self-test tamamlandi |
+
+## v1.74 - Replay Tooltip Durum Mesaji
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme replay tooltip durum mesaji var | OK | Tooltip replay aktif veya beklemede bilgisini de veriyor |
+| PDF replay tooltip durum mesaji var | OK | Tooltip replay aktif veya beklemede bilgisini de veriyor |
+| 2026-06-13 | v1.74 | OK | Replay tooltip durum mesaji + build + self-test tamamlandi |
+
+## v1.73 - Replay Isaret Tooltipi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme replay tooltipi var | OK | Mini isaret ve prefix alani tooltip ile aciklama veriyor |
+| PDF replay tooltipi var | OK | Mini isaret ve prefix alani tooltip ile aciklama veriyor |
+| 2026-06-13 | v1.73 | OK | Replay isaret tooltipi + build + self-test tamamlandi |
+
+## v1.72 - Replay Sekil Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Actionli replay isareti daha canli | OK | Sure izi action varsa dik cizgilerle gosteriliyor |
+| Pasif replay isareti daha sakin | OK | Sure izi action yoksa noktalı izlerle gosteriliyor |
+| 2026-06-13 | v1.72 | OK | Replay sekil ayrimi + build + self-test tamamlandi |
+
+## v1.71 - Replay Sure Izi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme replay sure isareti var | OK | Prefix icinde sure 1-4 arasi cizgi yogunluguyla ayristiriliyor |
+| PDF replay sure isareti var | OK | Prefix icinde sure 1-4 arasi cizgi yogunluguyla ayristiriliyor |
+| 2026-06-13 | v1.71 | OK | Replay sure izi + build + self-test tamamlandi |
+
+## v1.70 - Replay Vurgu Seviye Isareti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme replay seviye isareti var | OK | Prefix icinde dusuk/orta/guclu vurgu seviyesi nokta yogunluguyla ayristiriliyor |
+| PDF replay seviye isareti var | OK | Prefix icinde dusuk/orta/guclu vurgu seviyesi nokta yogunluguyla ayristiriliyor |
+| 2026-06-13 | v1.70 | OK | Replay seviye isareti + build + self-test tamamlandi |
+
+## v1.69 - Replay Ozet Prefix Canlanmasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme replay ozet prefixi canlaniyor | OK | Replay aktifken ozet prefixi de yesil replay vurgusu aliyor |
+| PDF replay ozet prefixi canlaniyor | OK | Replay aktifken ozet prefixi de mavi replay vurgusu aliyor |
+| 2026-06-13 | v1.69 | OK | Replay ozet prefix canlanmasi + build + self-test tamamlandi |
+
+## v1.68 - Replay Ozet Prefix Isareti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme replay ozet prefixi var | OK | Son aksiyona gore `KLN`, `SON`, `SEC` veya bos durumda `AYR` gorunuyor |
+| PDF replay ozet prefixi var | OK | Son aksiyona gore `SEC`, `AC` veya bos durumda `AYR` gorunuyor |
+| 2026-06-13 | v1.68 | OK | Replay ozet prefixi + build + self-test tamamlandi |
+
+## v1.67 - Replay Ozet Ton Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme replay ozeti ton ayriyor | OK | Son aksiyon varsa yesil, yoksa notr ton kullaniliyor |
+| PDF replay ozeti ton ayriyor | OK | Son aksiyon varsa mavi, yoksa notr ton kullaniliyor |
+| 2026-06-13 | v1.67 | OK | Replay ozet ton ayrimi + build + self-test tamamlandi |
+
+## v1.66 - Replay Bos Durum Metni
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim bos durum replay ozeti sakin | OK | Son aksiyon yokken `Replay ayari hazir` ifadesi kullaniliyor |
+| PDF yardim bos durum replay ozeti sakin | OK | Son aksiyon yokken `Replay ayari hazir` ifadesi kullaniliyor |
+| 2026-06-13 | v1.66 | OK | Replay bos durum metni + build + self-test tamamlandi |
+
+## v1.65 - Baglamsal Replay Ozet Satiri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim replay ozeti baglamsal | OK | `Kalan Tutar`, `Son Aciklama`, `Secili Odeme` gibi aksiyon adlari ozet satirinda okunuyor |
+| PDF yardim replay ozeti baglamsal | OK | `PDF Sec` veya `PDF Ac` aksiyon adlari ozet satirinda okunuyor |
+| 2026-06-13 | v1.65 | OK | Baglamsal replay ozeti + build + self-test tamamlandi |
+
+## v1.64 - Replay Tercih Ozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim replay ozeti var | OK | Sure ve vurgu seviyesi odeme yardim alaninda metinle gorunuyor |
+| PDF yardim replay ozeti var | OK | Sure ve vurgu seviyesi PDF yardim alaninda metinle gorunuyor |
+| 2026-06-13 | v1.64 | OK | Replay tercih ozeti + build + self-test tamamlandi |
+
+## v1.63 - Kisayol Replay Tercihleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Replay suresi tercihi var | OK | 1-4 saniye arasi replay suresi preference olarak secilebiliyor |
+| Replay vurgu tercihi var | OK | Dusuk/Orta/Guclu vurgu seviyesi preference olarak secilebiliyor |
+| 2026-06-13 | v1.63 | OK | Replay tercihleri + build + self-test tamamlandi |
+
+## v1.62 - Prefix Rozette Tekrar Canlanmasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim prefix replay canlanmasi var | OK | Tekrar aksiyonunda yesil rozet gecici olarak daha parlak ve beyaz yazili oluyor |
+| PDF yardim prefix replay canlanmasi var | OK | Tekrar aksiyonunda mavi rozet gecici olarak daha parlak ve beyaz yazili oluyor |
+| 2026-06-13 | v1.62 | OK | Prefix replay canlanmasi + build + self-test tamamlandi |
+
+## v1.61 - Mikro Kisayol Tekrar Geri Bildirimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim tekrar geri bildirimi var | OK | Mikro kisayol tekrarlandiginda satir gecici olarak `yeniden tetiklendi` eki aliyor |
+| PDF yardim tekrar geri bildirimi var | OK | Mikro kisayol tekrarlandiginda satir gecici olarak `yeniden tetiklendi` eki aliyor |
+| 2026-06-13 | v1.61 | OK | Tekrar geri bildirimi + build + self-test tamamlandi |
+
+## v1.60 - Aktif Prefix Rozet Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim prefix rozeti aktif vurgulu | OK | Hover ve klavye odaginda yesil rozet daha belirgin gorunuyor |
+| PDF yardim prefix rozeti aktif vurgulu | OK | Hover ve klavye odaginda mavi rozet daha belirgin gorunuyor |
+| 2026-06-13 | v1.60 | OK | Aktif prefix vurgusu + build + self-test tamamlandi |
+
+## v1.59 - Mikro Kisayol Prefix Rozetleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim prefix rozeti var | OK | Son kullanilan odeme yardimi `KLN`, `SON`, `SEC` gibi kisa rozetle okunuyor |
+| PDF yardim prefix rozeti var | OK | Son kullanilan PDF yardimi `SEC` veya `AC` gibi kisa rozetle okunuyor |
+| 2026-06-13 | v1.59 | OK | Prefix rozeti + build + self-test tamamlandi |
+
+## v1.58 - Mikro Kisayol Odak Gorunurlugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim mikro kisayolu hover izi var | OK | Hover durumunda hafif arka plan ve alt cizgi gorunuyor |
+| PDF yardim mikro kisayolu klavye odagi var | OK | Klavye odaginda daha belirgin arka plan ve alt cizgi gorunuyor |
+| 2026-06-13 | v1.58 | OK | Mikro kisayol odak gorunurlugu + build + self-test tamamlandi |
+
+## v1.57 - Son Aksiyon Mikro Kisayollari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim mikro kisayol tooltipi var | OK | Son aksiyon satiri secili yardimi yeniden calistirmayi anlatan tooltip uretiyor |
+| PDF yardim mikro kisayol tooltipi var | OK | Son aksiyon satiri secili PDF yardimini yeniden calistirmayi anlatan tooltip uretiyor |
+| 2026-06-13 | v1.57 | OK | Mikro kisayol satiri + build + self-test tamamlandi |
+
+## v1.56 - Son Aksiyon Satirinda Gecici Vurgu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim son aksiyon vurgu aliyor | OK | Son aksiyon satiri guncellenince kisa sureli daha parlak yesil ve kalin yazi ile gosteriliyor |
+| PDF yardim son aksiyon vurgu aliyor | OK | Son aksiyon satiri guncellenince kisa sureli daha parlak mavi ve kalin yazi ile gosteriliyor |
+| 2026-06-13 | v1.56 | OK | Son aksiyon vurgusu + build + self-test tamamlandi |
+
+## v1.55 - Odeme Yardiminda Son Aksiyon Satiri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim son aksiyon satiri var | OK | Son kullanilan `fill_remaining`, `use_last` ve `use_selected` yardimlari kisa alt metinle okunuyor |
+| PDF yardim son aksiyon satiri var | OK | Son kullanilan `select_pdf` ve `open_pdf` yardimlari kisa alt metinle okunuyor |
+| 2026-06-13 | v1.55 | OK | Son aksiyon satiri + build + self-test tamamlandi |
+
+## v1.54 - Baglamsal Odeme Durum Mesajlari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Odeme yardim mesaji etiketli | OK | Rozetten gelen odeme yardim mesajlari `Odeme Yardimi` etiketiyle uretiliyor |
+| PDF yardim mesaji etiketli | OK | Rozetten gelen odeme PDF mesajlari `PDF Yardimi` etiketiyle uretiliyor |
+| 2026-06-13 | v1.54 | OK | Baglamsal odeme durum mesajlari + build + self-test tamamlandi |
+
+## v1.53 - Tiklanabilir Odeme PDF Rozetleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF rozetleri aksiyon tasiyor | OK | Uygun durumlarda rozetler `select_pdf` veya `open_pdf` aksiyon anahtarlarini tasiyor |
+| Son kullanilan PDF rozeti secilebiliyor | OK | Son kullanilan PDF yardim rozeti secim vurgusuna uygun `IsSelected` durumu tasiyor |
+| 2026-06-13 | v1.53 | OK | Tiklanabilir odeme PDF rozetleri + build + self-test tamamlandi |
+
+## v1.52 - Odeme PDF Yardim Ozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| PDF yardim rozetleri uretiliyor | OK | `PDF Bekleniyor`, `PDF Kayitli`, `PDF Kayip` durumlari uygun sekilde rozet uretiyor |
+| Bos durum metni var | OK | Secili odeme yoksa `PDF islemleri icin secili odeme yok.` metni kullaniliyor |
+| 2026-06-13 | v1.52 | OK | Odeme PDF yardim ozeti + build + self-test tamamlandi |
+
+## v1.51 - Odeme Yardim Rozeti Klavye Gorunurlugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tooltip klavye ipucu tasiyor | OK | Odeme yardim rozetleri tooltip icinde `Enter/Space` ipucunu gosteriyor |
+| Odak gorunurlugu eklendi | OK | Odakli rozet daha belirgin cerceveyle gorunuyor |
+| 2026-06-13 | v1.51 | OK | Odeme yardim rozeti klavye gorunurlugu + build + self-test tamamlandi |
+
+## v1.50 - Tiklanabilir Odeme Yardim Rozetleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozetler aksiyon anahtari tasiyor | OK | Yardim rozetleri `fill_remaining`, `use_last`, `use_selected` aksiyon anahtarlarini tasiyor |
+| Son kullanilan rozet secilebiliyor | OK | Son kullanilan yardim rozeti secim vurgusuna uygun `IsSelected` durumu tasiyor |
+| 2026-06-13 | v1.50 | OK | Tiklanabilir odeme yardim rozetleri + build + self-test tamamlandi |
+
+## v1.49 - Odeme Yardim Ozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardim rozetleri uretiliyor | OK | `Kalan Tutar`, `Son Aciklama`, `Secili Odeme` yardimlari uygun kosullarda ozet rozetlere donusuyor |
+| Bos durum metni var | OK | Yardim yoksa `Hazir odeme yardimi yok.` metni kullaniliyor |
+| 2026-06-13 | v1.49 | OK | Odeme yardim ozeti + build + self-test tamamlandi |
+
+## v1.48 - Review Context UI Smoke Checklist
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| --health-check basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --health-check temiz gecti |
+| UI smoke checklist hazir | OK | `docs/07-review-context-ui-smoke-checklist.md` review baglam cipi akislari icin tekrar kullanilabilir elle dogrulama adimlarini iceriyor |
+| 2026-06-13 | v1.48 | OK | Review context UI smoke checklist + build + self-test + health-check tamamlandi |
+
+## v1.47 - Baglam Durum Cubugu Mikro Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kaynak etiketi ayristiriliyor | OK | `Çip`, `Klavye`, `Menü` durum mesajlari formatter seviyesinde ayristiriliyor |
+| Mikro vurgu mantigi korundu | OK | Kaynakli durum mesajlari kisa sureli belirgin gorunup sonra varsayilan renge donuyor |
+| 2026-06-13 | v1.47 | OK | Baglam durum cubugu mikro vurgusu + build + self-test tamamlandi |
+
+## v1.46 - Baglam Cipi Self-Test Guvencesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tooltip kisayollari dogrulaniyor | OK | Baglam cipi tooltip'lerinde `Enter/Space`, `Ctrl+C`, `Shift+F10` ipuclari self-test ile kontrol ediliyor |
+| Kisa mesaj bicimleri dogrulaniyor | OK | `Çip`, `Klavye`, `Menü` kisa durum mesaji formatlari self-test ile kontrol ediliyor |
+| 2026-06-13 | v1.46 | OK | Baglam cipi self-test guvencesi + build + self-test tamamlandi |
+
+## v1.45 - Baglam Cipi Kisa Durum Mesajlari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Cip mesajlari kisaldi | OK | Cip aksiyonlari durum cubugunda `Çip`, `Klavye`, `Menü` etiketiyle daha kisa gorunuyor |
+| Ana dugme mesajlari korundu | OK | Baglam panelindeki ana aksiyon dugmeleri eski `Bağlam: ...` mesaj formatini koruyor |
+| 2026-06-13 | v1.45 | OK | Baglam cipi kisa durum mesajlari + build + self-test tamamlandi |
+
+## v1.44 - Baglam Cipi Escape Odak Cikisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Esc odagi temiz alana tasiyor | OK | Odaktaki ciptte `Esc` odagi once baglam checkbox'ina, gerekirse not alanina tasiyor |
+| Diger klavye kisayollari korunuyor | OK | `Enter/Space`, `Ctrl+C` ve `Shift+F10` davranislari etkilenmeden calismaya devam ediyor |
+| 2026-06-13 | v1.44 | OK | Baglam cipi Escape odak cikisi + build + self-test tamamlandi |
+
+## v1.43 - Baglam Cipi Tooltip Kisayol Ipuclari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tooltip kisayol ipucu veriyor | OK | Cip tooltip'leri tik davranisinin yaninda `Enter/Space`, `Ctrl+C` ve `Shift+F10` bilgisini de tasiyor |
+| Aksiyon ve kopya ayirimi korunuyor | OK | Aksiyonlu ve kopya ciplerinde ana davranis aciklamasi korunurken ortak kisayol ipuclari eklendi |
+| 2026-06-13 | v1.43 | OK | Baglam cipi tooltip kisayol ipuclari + build + self-test tamamlandi |
+
+## v1.42 - Baglam Cipi Hizli Klavye Kisayollari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Enter ana aksiyonu calistiriyor | OK | Odaktaki cipte `Enter` veya `Space` birincil davranisi tetikliyor |
+| Ctrl+C kopyaliyor | OK | Odaktaki cipte `Ctrl+C` metni panoya kopyalarken son kullanilan cip kaydini da guncelliyor |
+| 2026-06-13 | v1.42 | OK | Baglam cipi hizli klavye kisayollari + build + self-test tamamlandi |
+
+## v1.41 - Son Baglam Cipi Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Son kullanilan cip vurgulaniyor | OK | Tiklanan veya menuden kullanilan cip ayni baglamda belirgin cerceveyle secili kaliyor |
+| Baglam degisince vurgu sifirlaniyor | OK | Yeni baglam imzasinda onceki cip secimi otomatik temizleniyor |
+| 2026-06-13 | v1.41 | OK | Son baglam cipi vurgusu + build + self-test tamamlandi |
+
 Bu dosya, her geliştirme fazından sonra mevcut çalışan davranışların bozulmadığını kontrol etmek için tutulur. Yeni Codex chatlerinde önce bu dosya okunmalı, sonra ilgili fazın testleri çalıştırılmalıdır.
 
 ## Kullanım
@@ -1286,3 +4254,314 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Panel aksiyonu var | OK | `Bağlam Dönemi` dugmesi yil/ay filtresini tek tikla kuruyor |
 | Donem yoksa aksiyon pasif | OK | Baglamda donem bilgisi yoksa dugme devre disi |
 | 2026-06-12 | v1.07 | OK | Baglam donemi filtresi + build + self-test tamamlandi |
+
+## v1.08 - Baglam Turu Filtresi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tur cikarimi var | OK | `TryResolveInvoiceTypeName()` actionable rapor baglamindan fatura turunu ayristiriyor |
+| Panel aksiyonu var | OK | `Bağlam Türü` dugmesi mevcut fatura turu filtresini tek tikla kuruyor |
+| Evrak kontrol baglami disarida | OK | `Rapor: Evrak Kontrol` baglamlari bu aksiyonu aktiflestirmiyor |
+| 2026-06-12 | v1.08 | OK | Baglam turu filtresi + build + self-test tamamlandi |
+
+## v1.09 - Baglam No Aramasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Fatura no cikarimi var | OK | `TryResolveInvoiceNumber()` actionable rapor baglamindan fatura no ayristiriyor |
+| Panel aksiyonu var | OK | `Bağlam No` dugmesi arama kutusunu baglamdaki fatura no ile dolduruyor |
+| Evrak kontrol baglami disarida | OK | `Rapor: Evrak Kontrol` baglamlari bu aksiyonu aktiflestirmiyor |
+| 2026-06-12 | v1.09 | OK | Baglam no aramasi + build + self-test tamamlandi |
+
+## v1.10 - Baglam Paneli Turkce Metin Temizligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baglam dugmeleri dogru Turkce | OK | `Bağlamı Kopyala`, `Bağlam Dönemi`, `Bağlam Türü`, `Bağlam No` metinleri duzeltildi |
+| Baglam durum mesajlari dogru Turkce | OK | Kopyalama, filtre, donem, tur ve no aksiyon durum mesajlari duzeltildi |
+| Donem algisi daraltildi | OK | `INV-001` gibi numaralar artik yanlislikla donem gibi yorumlanmiyor |
+| 2026-06-12 | v1.10 | OK | Baglam paneli Turkce temizlik + parser duzeltmesi + build + self-test tamamlandi |
+
+## v1.11 - ReportsView Turkce Metin Temizligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| ReportsView sekme/metinleri duzgun | OK | `Ödenmemiş`, `Gecikmiş`, `Yaklaşan`, `İncelenmedi` metinleri duzeltildi |
+| PDF rapor basliklari duzgun | OK | `ÖDENMEMİŞ`, `GECİKMİŞ`, `YAKLAŞAN`, `İŞLEM GEÇMİŞİ` basliklari duzeltildi |
+| Ortak hata basligi duzgun | OK | `Uygulama başlatılamadı` metni guncellendi |
+| 2026-06-12 | v1.11 | OK | ReportsView Turkce temizlik + build + self-test tamamlandi |
+
+## v1.12 - Temiz Handoff Ozet Dosyasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Temiz ozet dosyasi var | OK | `docs/06-guncel-durum-ozeti.md` olusturuldu |
+| Temiz devam kilavuzu var | OK | `docs/00-codex-devam-kilavuzu.md` yeniden yazildi |
+| Handoff okuma sirasi guncel | OK | Yeni chatlerde once temiz ozet dosyasi okunacak |
+| 2026-06-12 | v1.12 | OK | Temiz handoff ozet dosyasi + build + self-test tamamlandi |
+
+## v1.13 - Baglami Tek Tikla Daraltma
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Birlesik daraltma aksiyonu var | OK | `Bağlamı Daralt` dugmesi filtre + donem + tur + no ipuclarini tek tikta uyguluyor |
+| Parser Turkce eslesmeleri temiz | OK | `İncelenmedi`, `Gecikmiş`, `PDF Kayıp` baglamlari dogru ayristiriliyor |
+| 2026-06-12 | v1.13 | OK | Baglami tek tikla daraltma + build + self-test tamamlandi |
+
+## v1.14 - Daraltma Sonrasi Otomatik Odak
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tercihli kayda odak var | OK | Baglam kaydi gorunur listedeyse `Bağlamı Daralt` dogrudan o kaydi seciyor |
+| Fallback secim var | OK | Tercihli kayit bulunamazsa ilk uygun kayda dusulup kullaniciya acik mesaj veriliyor |
+| 2026-06-12 | v1.14 | OK | Daraltma sonrasi otomatik odak + build + self-test tamamlandi |
+
+## v1.15 - Baglamdan Inceleme Akisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Guclu baglam aksiyonu var | OK | `Bağlamdan İncele` uygun oldugunda ilgili review modunu dogrudan kuruyor |
+| Ikincil baglam ipuclari uygulaniyor | OK | Donem, tur ve fatura no ayni akista uygulanip secim odagi korunuyor |
+| 2026-06-12 | v1.15 | OK | Baglamdan inceleme akisi + build + self-test tamamlandi |
+
+## v1.16 - Baglam Inceleme Kisayolu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kisayol aktif | OK | `Ctrl+Shift+I` ile `Bağlamdan İncele` akisi tetikleniyor |
+| Inceleme ipucu guncel | OK | Kisa yol listesi yeni aksiyonu da gosteriyor |
+| 2026-06-12 | v1.16 | OK | Baglam inceleme kisayolu + build + self-test tamamlandi |
+
+## v1.17 - Baglam Aksiyon Tooltipleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tooltip'ler eklendi | OK | Baglam panelindeki butonlar kisa aciklamalar gosteriyor |
+| Kisayol gorunur | OK | `Bağlamdan İncele` tooltip'i `Ctrl+Shift+I` bilgisini de tasiyor |
+| 2026-06-12 | v1.17 | OK | Baglam aksiyon tooltipleri + build + self-test tamamlandi |
+
+## v1.18 - Baglam Aksiyon Satir Duzeni
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| WrapPanel duzeni var | OK | Baglam aksiyon satiri dar alanlarda alt satira akiyor |
+| Buton bosluklari tutarli | OK | Aksiyonlar arasinda daha dengeli yatay/dikey bosluk verildi |
+| 2026-06-12 | v1.18 | OK | Baglam aksiyon satir duzeni + build + self-test tamamlandi |
+
+## v1.19 - Baglam Aksiyon Hiyerarsisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ana/ikincil grup var | OK | Baglam aksiyonlari iki ayri baslik altinda toplandi |
+| Birincil aksiyon vurgusu var | OK | `Bağlamdan İncele` artik `PrimaryButton` ile one cikiyor |
+| 2026-06-12 | v1.19 | OK | Baglam aksiyon hiyerarsisi + build + self-test tamamlandi |
+
+## v1.19.1 - Acilis NullReference Hotfix
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| --health-check basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --health-check temiz gecti |
+| Acilis korumasi var | OK | Inceleme navigasyon kontrolleri daha olusmadan gelen event akisi guvenli sekilde atlanıyor |
+| 2026-06-12 | v1.19.1 | OK | Acilis NullReference hotfix + build + self-test + health-check tamamlandi |
+
+## v1.20 - Baglam Aksiyon Durum Vurgulari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Renkli durum vurgusu var | OK | Uygulanabilir baglam aksiyonlari baglam tipine gore renkleniyor |
+| Pasif aksiyonlar soluk | OK | Islenemeyen butonlar daha dusuk vurgu ile gosteriliyor |
+| 2026-06-13 | v1.20 | OK | Baglam aksiyon durum vurgulari + build + self-test tamamlandi |
+
+## v1.21 - Hazir Aksiyon Ozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ozet satiri var | OK | Hazir aksiyon sayisi ve aksiyon adlari panelde metin olarak gosteriliyor |
+| Baglam yoksa gizleniyor | OK | Ozet satiri yalnizca baglam gorunuyorsa aktif |
+| 2026-06-13 | v1.21 | OK | Hazir aksiyon ozeti + build + self-test tamamlandi |
+
+## v1.22 - Rozetli Hazir Aksiyon Ozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozetli ozet var | OK | Hazir aksiyonlar mini rozetler halinde gosteriliyor |
+| Renk uyumu var | OK | Rozet renkleri baglam aksiyon turleriyle tutarli |
+| 2026-06-13 | v1.22 | OK | Rozetli hazir aksiyon ozeti + build + self-test tamamlandi |
+
+## v1.23 - Tiklanabilir Aksiyon Rozetleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozetler tiklanabilir | OK | Hazir aksiyon rozetleri ilgili baglam aksiyonunu dogrudan tetikliyor |
+| Tooltip destegi var | OK | Rozetler de kendi aksiyon aciklamasini gosteriyor |
+| 2026-06-13 | v1.23 | OK | Tiklanabilir aksiyon rozetleri + build + self-test tamamlandi |
+
+## v1.24 - Rozet Secim Geri Bildirimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Secili rozet vurgusu var | OK | Son tiklanan rozet daha belirgin kenarlik ve tonla gosteriliyor |
+| Rozet secimi korunuyor | OK | Son calistirilan aksiyon anahtarina gore rozet secimi guncelleniyor |
+| 2026-06-13 | v1.24 | OK | Rozet secim geri bildirimi + build + self-test tamamlandi |
+
+## v1.25 - Rozet Secim Temizleme
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Baglam degisiminde sifirlaniyor | OK | Yeni baglam imzasi gelince eski secili rozet vurgusu temizleniyor |
+| Ayni baglamda korunuyor | OK | Ayni baglam icinde son tiklanan aksiyon rozet vurgusu korunuyor |
+| 2026-06-13 | v1.25 | OK | Rozet secim temizleme + build + self-test tamamlandi |
+
+## v1.26 - Baglami Temizle Aksiyonu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Temizleme dugmesi var | OK | `Bağlamı Temizle` review baglamini ve izlerini sifirliyor |
+| Normal moda donus var | OK | Filtreler varsayilan akisina geri donuyor |
+| 2026-06-13 | v1.26 | OK | Baglami temizle aksiyonu + build + self-test tamamlandi |
+
+## v1.40 - Baglam Cipi Klavye Erisimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Klavye odagi gorunur | OK | Odaklanan cip daha belirgin cerceveyle gosteriliyor |
+| Klavyeden menu aciliyor | OK | `Shift+F10` veya menu tusu ile cip menusu aciliyor |
+| 2026-06-13 | v1.40 | OK | Baglam cipi klavye erisimi + build + self-test tamamlandi |
+
+## v1.39 - Baglam Cipi Sag Tik Menusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sag tik menusu var | OK | Baglam ciplerinde sag tikla `Uygula` ve/veya `Kopyala` secenekleri aciliyor |
+| Sol tik davranisi korundu | OK | Hizli tik akisinda onceki davranis bozulmadi |
+| 2026-06-13 | v1.39 | OK | Baglam cipi sag tik menusu + build + self-test tamamlandi |
+
+## v1.38 - Cip Davranis Isareti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Davranis isareti var | OK | Aksiyonlu ciplere `UYG`, kopyalama ciplere `KPY` etiketi eklendi |
+| Tooltip uyumu var | OK | Mikro isaret ile tooltip davranis bilgisi birbiriyle uyumlu |
+| 2026-06-13 | v1.38 | OK | Cip davranis isareti + build + self-test tamamlandi |
+
+## v1.37 - Aksiyonlu Baglam Cipleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Aksiyonlu ciplere tiklama var | OK | Uygun ciplere tiklandiginda baglam filtresi, donem, tur veya no akisi tetikleniyor |
+| Kopyalama davranisi korundu | OK | Aksiyon tanimsiz ciplere tiklama panoya kopyalama olarak devam ediyor |
+| 2026-06-13 | v1.37 | OK | Aksiyonlu baglam cipleri + build + self-test tamamlandi |
+
+## v1.36 - Baglam Cipi Hizli Kopyalama
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ciplere tiklama var | OK | Baglam cipleri tiklandiginda ilgili metin panoya kopyalaniyor |
+| Durum geri bildirimi var | OK | Kopyalama sonrasi alt durum cubugunda kisa mesaj gosteriliyor |
+| 2026-06-13 | v1.36 | OK | Baglam cipi hizli kopyalama + build + self-test tamamlandi |
+
+## v1.35 - Baglam Ozet/Detay Gorunumu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ozet/detay gecisi var | OK | `Detay Metin` secimi ile tam baglam ve ozet metin arasinda gecis yapiliyor |
+| Tercih saklaniyor | OK | Review baglam gorunumu tercihi config altina kaydediliyor |
+| 2026-06-13 | v1.35 | OK | Baglam ozet/detay gorunumu + build + self-test tamamlandi |
+
+## v1.34 - Pasif Baglam Aksiyon Nedenleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Pasif tooltip acik | OK | Pasif aksiyonlarda neden kullanilamadigi tooltip ile gosteriliyor |
+| Aktif tooltip korundu | OK | Aktif aksiyonlarda kisa gorev aciklamasi korunuyor |
+| 2026-06-13 | v1.34 | OK | Pasif baglam aksiyon nedenleri + build + self-test tamamlandi |
+
+## v1.33 - Son Aksiyon Dugme Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Dugme vurgusu var | OK | Son kullanilan ana baglam aksiyon dugmesi kenarlik ve yazi agirligi ile ayristiriliyor |
+| Kaynak birligi var | OK | Dugme vurgusu `Son aksiyon` metniyle ayni aksiyon anahtarini kullaniyor |
+| 2026-06-13 | v1.33 | OK | Son aksiyon dugme vurgusu + build + self-test tamamlandi |
+
+## v1.32 - Son Baglam Aksiyonu Gosterimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Son aksiyon satiri var | OK | Baglam panelinde `Son aksiyon: ...` satiri gosteriliyor |
+| Kaynak birligi var | OK | Rozet, ana dugme ve kisayol akislarinda son aksiyon ayni kaynaktan izleniyor |
+| 2026-06-13 | v1.32 | OK | Son baglam aksiyonu gosterimi + build + self-test tamamlandi |
+
+## v1.31 - Filtre Ozetinde Gecici Baglam Vurgusu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Gecici vurgu var | OK | Filtre ozet satiri baglam aksiyonu sonrasi `Bağlam: ...` etiketiyle belirginlesiyor |
+| Otomatik geri donus var | OK | Kisa sure sonra filtre ozeti normal metne geri donuyor |
+| 2026-06-13 | v1.31 | OK | Filtre ozetinde gecici baglam vurgusu + build + self-test tamamlandi |
+
+## v1.30 - Form Basliginda Baglam Odagi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Yardimci satir gorunurlugu var | OK | Baglam aksiyonuyla secilen kayitta form basligi altinda odak aciklamasi gosteriliyor |
+| Yardimci satir otomatik gizleniyor | OK | Normal secim veya baglam temizleme sonrasi metin kapanıyor |
+| 2026-06-13 | v1.30 | OK | Form basliginda baglam odagi + build + self-test tamamlandi |
+
+## v1.29 - Baglam Odak Rozeti
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Rozet gorunurlugu var | OK | Baglam aksiyonuyla hedeflenen secili satirda `ODAK` rozeti gosteriliyor |
+| Rozet otomatik temizleniyor | OK | Farkli satira gecis veya baglam temizleme sonrasi odak izi kaldiriliyor |
+| 2026-06-13 | v1.29 | OK | Baglam odak rozeti + build + self-test tamamlandi |
+
+## v1.28 - Baglam Durum Mesaji Temizligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Mesaj formati ortak | OK | Baglam aksiyonlari `Bağlam: ...` biciminde kisa durum mesaji uretir hale geldi |
+| Kapsam yeterli | OK | Filtre, daraltma, inceleme, donem, tur, no ve temizleme akislarinda yeni format kullaniliyor |
+| 2026-06-13 | v1.28 | OK | Baglam durum mesaji temizligi + build + self-test tamamlandi |
+
+## v1.27 - Baglami Temizle Kisayolu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kisayol aktif | OK | `Ctrl+Shift+X` ile `Bağlamı Temizle` akisi tetikleniyor |
+| Inceleme ipucu guncel | OK | Kisayol listesi yeni temizleme aksiyonunu da gosteriyor |
+| 2026-06-13 | v1.27 | OK | Baglami temizle kisayolu + build + self-test tamamlandi |

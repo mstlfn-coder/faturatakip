@@ -54,6 +54,6 @@ public static class InvoiceReviewNavigator
             return baseText;
         }
 
-        return $"{baseText} | Kisayollar: Ctrl+Shift+Sol/Sag, Ctrl+Shift+O, Ctrl+Shift+K, Ctrl+Shift+B, Ctrl+Shift+C";
+        return $"{baseText} | Kisayollar: Ctrl+Shift+Sol/Sag, Ctrl+Shift+O, Ctrl+Shift+K, Ctrl+Shift+B, Ctrl+Shift+C, Ctrl+Shift+I, Ctrl+Shift+X";
     }
 }

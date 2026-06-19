@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -791,7 +791,7 @@ public partial class ReportsView : UserControl
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or InvalidOperationException)
         {
-            // Raporlar ekran�nda ortak bir status band� yok; ipucu alan�n� hata mesaj� için kullan�yoruz.
+            // Raporlar ekranï¿½nda ortak bir status bandï¿½ yok; ipucu alanï¿½nï¿½ hata mesajï¿½ için kullanï¿½yoruz.
             var message = exception.Message;
             TypeYearlyHintText.Text = message;
             MonthlyFilterHintText.Text = message;
@@ -939,7 +939,7 @@ public partial class ReportsView : UserControl
 
     private void SetPdfHint(string message)
     {
-        // Raporlar ekran�nda ortak bir status band� yok; mevcut ipucu alanlar�n� kullan�yoruz.
+        // Raporlar ekranï¿½nda ortak bir status bandï¿½ yok; mevcut ipucu alanlarï¿½nï¿½ kullanï¿½yoruz.
         TypeYearlyHintText.Text = message;
         MonthlyFilterHintText.Text = message;
         SubscriptionHintText.Text = message;
@@ -959,7 +959,7 @@ public partial class ReportsView : UserControl
             ReportTab.SubscriptionYearly => "ABONELİK YILLIK FATURA RAPORU",
             ReportTab.TypeYearly => "TÜR YILLIK FATURA RAPORU",
             ReportTab.DocumentHealth => "EVRAK KONTROL RAPORU",
-            ReportTab.AuditLog => "ISLEM GECMISI RAPORU",
+            ReportTab.AuditLog => "İŞLEM GEÇMİŞİ RAPORU",
             _ => "RAPOR",
         };
     }
@@ -3280,4 +3280,5 @@ public partial class ReportsView : UserControl
         public string DisplayName => $"{TimestampLabel} {FileName}";
     }
 }
+
 

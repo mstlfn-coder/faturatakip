@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.Payments;
 using FaturaTakip.App.Data.Subscriptions;
@@ -33,6 +34,33 @@ public partial class InvoicesView : UserControl
     private string? _invoiceReviewModeLabel;
     private string? _invoiceReviewContextLabel;
     private long? _invoiceReviewPreferredInvoiceId;
+    private long? _reviewContextFocusedInvoiceId;
+    private string? _reviewContextFocusedActionLabel;
+    private int _lastInvoiceFilterCount;
+    private string? _pendingInvoiceFilterHintHighlightLabel;
+    private string? _activeInvoiceFilterHintHighlightLabel;
+    private DispatcherTimer? _invoiceFilterHintHighlightTimer;
+    private DispatcherTimer? _invoiceStatusHighlightTimer;
+    private DispatcherTimer? _paymentHelperLastActionHighlightTimer;
+    private DispatcherTimer? _paymentPdfHelperLastActionHighlightTimer;
+    private DispatcherTimer? _paymentHelperSelectedStatusHighlightTimer;
+    private DispatcherTimer? _paymentPdfSelectedStatusHighlightTimer;
+    private DispatcherTimer? _paymentHelperReplayFeedbackTimer;
+    private DispatcherTimer? _paymentPdfReplayFeedbackTimer;
+    private DispatcherTimer? _paymentHelperBadgeActivationTimer;
+    private DispatcherTimer? _paymentPdfBadgeActivationTimer;
+    private string? _lastInvokedReviewActionKey;
+    private string? _lastInvokedReviewContextChipKey;
+    private string? _pendingReviewContextStatusLead;
+    private string? _lastInvokedPaymentHelperActionKey;
+    private string? _lastInvokedPaymentPdfHelperActionKey;
+    private string? _highlightedPaymentHelperBadgeActionKey;
+    private string? _highlightedPaymentPdfBadgeActionKey;
+    private string? _pendingPaymentStatusLead;
+    private string? _pendingPaymentPdfStatusLead;
+    private bool _isPaymentHelperReplayFeedbackActive;
+    private bool _isPaymentPdfReplayFeedbackActive;
+    private string? _lastReviewContextSignature;
     private string _rootDirectory = string.Empty;
     private InvoiceReviewPreferences _invoiceReviewPreferences = InvoiceReviewPreferences.Default;
 
@@ -84,6 +112,21 @@ public partial class InvoicesView : UserControl
         };
         InvoiceReviewStatusFilterInput.SelectedIndex = 0;
         ShowInvoiceReviewContextCheckBox.IsChecked = _invoiceReviewPreferences.ShowContext;
+        ShowInvoiceReviewContextDetailsCheckBox.IsChecked = _invoiceReviewPreferences.ShowContextDetails;
+        PaymentShortcutReplaySecondsComboBox.ItemsSource = new[]
+        {
+            new ReplaySecondsOption("1 sn", 1),
+            new ReplaySecondsOption("2 sn", 2),
+            new ReplaySecondsOption("3 sn", 3),
+            new ReplaySecondsOption("4 sn", 4),
+        };
+        PaymentShortcutReplayEmphasisComboBox.ItemsSource = new[]
+        {
+            new ReplayEmphasisOption("Dusuk Vurgu", "low"),
+            new ReplayEmphasisOption("Orta Vurgu", "medium"),
+            new ReplayEmphasisOption("Guclu Vurgu", "high"),
+        };
+        SelectReplayPreferenceOptions();
 
         RefreshSubscriptionLists();
         RefreshInvoices();
@@ -165,6 +208,86 @@ public partial class InvoicesView : UserControl
             successMessage: "PDF eksik inceleme akışı rapor üzerinden başlatıldı.",
             preferredInvoiceId: preferredInvoiceId,
             contextLabel: contextLabel);
+    }
+
+    public void StartPaymentWorkspace(bool preferUnpaid = true)
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        RefreshSubscriptionLists();
+        RefreshInvoices(_selectedInvoice?.Id);
+
+        if (preferUnpaid)
+        {
+            ResetQuickFilters();
+            SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Unpaid);
+            QueueInvoiceFilterHintHighlight("Odeme alani");
+            ApplyFiltersToGrid(selectFirstIfAvailable: true);
+        }
+        else
+        {
+            ApplyFiltersToGrid(selectedId: _selectedInvoice?.Id, selectFirstIfAvailable: true);
+        }
+
+        Dispatcher.BeginInvoke(new Action(() =>
+        {
+            if (_selectedInvoice is null)
+            {
+                InvoiceGrid.Focus();
+                return;
+            }
+
+            PaymentDateInput.Focus();
+        }), DispatcherPriority.Input);
+
+        var statusMessage = _selectedInvoice is null
+            ? "Odeme alani hazir. Devam etmek icin listeden bir fatura secin."
+            : $"Odeme alani hazir: {_selectedInvoice.InvoiceNo}";
+        SetInvoiceStatus(statusMessage, isError: false);
+    }
+
+    public void StartPaymentWorkspaceForInvoice(long invoiceId, bool preferUnpaidFilter = true)
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        RefreshSubscriptionLists();
+        RefreshInvoices(_selectedInvoice?.Id);
+
+        if (preferUnpaidFilter)
+        {
+            ResetQuickFilters();
+            SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Unpaid);
+            QueueInvoiceFilterHintHighlight("Odeme alani");
+        }
+
+        ApplyFiltersToGrid(selectedId: invoiceId, selectFirstIfAvailable: true);
+
+        if (_selectedInvoice?.Id != invoiceId)
+        {
+            ApplyFiltersToGrid(selectedId: invoiceId, selectFirstIfAvailable: true);
+        }
+
+        Dispatcher.BeginInvoke(new Action(() =>
+        {
+            if (_selectedInvoice is null)
+            {
+                InvoiceGrid.Focus();
+                return;
+            }
+
+            PaymentDateInput.Focus();
+        }), DispatcherPriority.Input);
+
+        var statusMessage = _selectedInvoice?.Id == invoiceId
+            ? $"Odeme alani hedef kayitla acildi: {_selectedInvoice.InvoiceNo}"
+            : "Hedef odeme kaydi mevcut filtrelerde bulunamadi; liste odeme alaniyla acildi.";
+        SetInvoiceStatus(statusMessage, isError: false);
     }
 
     private void RefreshSubscriptionLists()
@@ -358,13 +481,18 @@ public partial class InvoicesView : UserControl
             SearchText: InvoiceSearchInput.Text);
     }
 
-    private void ApplyFiltersToGrid(long? selectedId = null, bool selectFirstIfAvailable = false)
+    private Invoice? ApplyFiltersToGridCore(long? selectedId = null, bool selectFirstIfAvailable = false)
     {
         var filtered = ApplyFilters(_invoices).ToList();
+        _lastInvoiceFilterCount = filtered.Count;
         InvoiceGrid.ItemsSource = filtered;
-        InvoiceFilterHintText.Text = filtered.Count == 0
-            ? "Filtre sonucunda kayit bulunamadi."
-            : $"{filtered.Count} kayit listeleniyor.";
+        if (!string.IsNullOrWhiteSpace(_pendingInvoiceFilterHintHighlightLabel))
+        {
+            _activeInvoiceFilterHintHighlightLabel = _pendingInvoiceFilterHintHighlightLabel;
+            _pendingInvoiceFilterHintHighlightLabel = null;
+        }
+
+        UpdateInvoiceFilterHintPresentation();
 
         var selected = selectedId is null
             ? null
@@ -379,13 +507,74 @@ public partial class InvoicesView : UserControl
         {
             InvoiceGrid.SelectedItem = null;
             ClearInvoiceForm();
+            ClearReviewContextFocusedInvoice();
             UpdateInvoiceReviewNavigationControls();
-            return;
+            return null;
         }
 
         InvoiceGrid.SelectedItem = selected;
         InvoiceGrid.ScrollIntoView(selected);
         ApplySelectedInvoice(selected);
+        return selected;
+    }
+
+    private void ApplyFiltersToGrid(long? selectedId = null, bool selectFirstIfAvailable = false)
+    {
+        _ = ApplyFiltersToGridCore(selectedId, selectFirstIfAvailable);
+    }
+
+    private void QueueInvoiceFilterHintHighlight(string actionLabel)
+    {
+        _pendingInvoiceFilterHintHighlightLabel = actionLabel;
+    }
+
+    private void UpdateInvoiceFilterHintPresentation()
+    {
+        if (InvoiceFilterHintText is null)
+        {
+            return;
+        }
+
+        var baseText = _lastInvoiceFilterCount == 0
+            ? "Filtre sonucunda kayit bulunamadi."
+            : $"{_lastInvoiceFilterCount} kayit listeleniyor.";
+
+        if (string.IsNullOrWhiteSpace(_activeInvoiceFilterHintHighlightLabel))
+        {
+            InvoiceFilterHintText.Text = baseText;
+            InvoiceFilterHintText.Foreground = (Brush)new BrushConverter().ConvertFromString("#5F6B7A")!;
+            InvoiceFilterHintText.FontWeight = FontWeights.Normal;
+            return;
+        }
+
+        InvoiceFilterHintText.Text = $"{baseText} • Bağlam: {_activeInvoiceFilterHintHighlightLabel}";
+        InvoiceFilterHintText.Foreground = (Brush)new BrushConverter().ConvertFromString("#1D4ED8")!;
+        InvoiceFilterHintText.FontWeight = FontWeights.SemiBold;
+        StartInvoiceFilterHintHighlightResetTimer();
+    }
+
+    private void StartInvoiceFilterHintHighlightResetTimer()
+    {
+        _invoiceFilterHintHighlightTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(3)
+        };
+
+        _invoiceFilterHintHighlightTimer.Tick -= InvoiceFilterHintHighlightTimer_Tick;
+        _invoiceFilterHintHighlightTimer.Tick += InvoiceFilterHintHighlightTimer_Tick;
+        _invoiceFilterHintHighlightTimer.Stop();
+        _invoiceFilterHintHighlightTimer.Start();
+    }
+
+    private void InvoiceFilterHintHighlightTimer_Tick(object? sender, EventArgs e)
+    {
+        if (_invoiceFilterHintHighlightTimer is not null)
+        {
+            _invoiceFilterHintHighlightTimer.Stop();
+        }
+
+        _activeInvoiceFilterHintHighlightLabel = null;
+        UpdateInvoiceFilterHintPresentation();
     }
 
     private void ResetQuickFilters()
@@ -420,6 +609,25 @@ public partial class InvoicesView : UserControl
 
         InvoiceMonthFilterInput.SelectedItem = options.FirstOrDefault(item => item.Month == month)
             ?? options.FirstOrDefault();
+    }
+
+    private bool SelectInvoiceTypeFilter(string invoiceTypeName)
+    {
+        if (InvoiceTypeFilterInput.ItemsSource is not IEnumerable<InvoiceTypeFilterOption> options)
+        {
+            return false;
+        }
+
+        var match = options.FirstOrDefault(item =>
+            item.InvoiceTypeId is not null &&
+            string.Equals(item.Label, invoiceTypeName, StringComparison.CurrentCultureIgnoreCase));
+        if (match is null)
+        {
+            return false;
+        }
+
+        InvoiceTypeFilterInput.SelectedItem = match;
+        return true;
     }
 
     private void SelectPaymentStatusFilter(InvoicePaymentStatusFilter status)
@@ -459,8 +667,21 @@ public partial class InvoicesView : UserControl
     {
         if (InvoiceGrid.SelectedItem is Invoice invoice)
         {
+            if (_reviewContextFocusedInvoiceId is not null && _reviewContextFocusedInvoiceId != invoice.Id)
+            {
+                ClearReviewContextFocusedInvoice();
+            }
+
             ApplySelectedInvoice(invoice);
+            return;
         }
+
+        ClearReviewContextFocusedInvoice();
+    }
+
+    private void InvoiceGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+    {
+        UpdateInvoiceGridRowReviewFocus(e.Row);
     }
 
     private void InvoicesView_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -504,6 +725,14 @@ public partial class InvoicesView : UserControl
                 CopyInvoiceReviewContextToClipboard();
                 e.Handled = true;
                 break;
+            case Key.I:
+                FocusInvoiceFromReviewContext();
+                e.Handled = true;
+                break;
+            case Key.X:
+                ClearInvoiceReviewContextState();
+                e.Handled = true;
+                break;
         }
     }
 
@@ -528,6 +757,8 @@ public partial class InvoicesView : UserControl
         UpdatePdfControls(invoice);
         RefreshPaymentControls(invoice);
         SetInvoiceStatus($"Seçili kayıt: {invoice.InvoiceNo}", isError: false);
+        UpdateInvoiceGridReviewFocusVisuals();
+        UpdateInvoiceFormContextHint();
     }
 
     private void PreviousInvoiceButton_Click(object sender, RoutedEventArgs e)
@@ -828,6 +1059,13 @@ public partial class InvoicesView : UserControl
 
     private void UpdateInvoiceReviewNavigationControls()
     {
+        if (PreviousInvoiceButton is null ||
+            NextInvoiceButton is null ||
+            InvoiceReviewHintText is null)
+        {
+            return;
+        }
+
         var visibleInvoices = GetVisibleInvoices();
         var contextLabel = ShowInvoiceReviewContextCheckBox?.IsChecked == true
             ? _invoiceReviewContextLabel
@@ -858,10 +1096,47 @@ public partial class InvoicesView : UserControl
 
     private void ShowInvoiceReviewContextCheckBox_Changed(object sender, RoutedEventArgs e)
     {
-        _invoiceReviewPreferences = new InvoiceReviewPreferences(
-            ShowContext: ShowInvoiceReviewContextCheckBox.IsChecked == true);
+        _invoiceReviewPreferences = _invoiceReviewPreferences with
+        {
+            ShowContext = ShowInvoiceReviewContextCheckBox.IsChecked == true,
+            ShowContextDetails = ShowInvoiceReviewContextDetailsCheckBox?.IsChecked == true
+        };
         TrySaveInvoiceReviewPreferences();
         UpdateInvoiceReviewNavigationControls();
+    }
+
+    private void ShowInvoiceReviewContextDetailsCheckBox_Changed(object sender, RoutedEventArgs e)
+    {
+        _invoiceReviewPreferences = _invoiceReviewPreferences with
+        {
+            ShowContext = ShowInvoiceReviewContextCheckBox?.IsChecked == true,
+            ShowContextDetails = ShowInvoiceReviewContextDetailsCheckBox.IsChecked == true
+        };
+        TrySaveInvoiceReviewPreferences();
+        UpdateInvoiceReviewNavigationControls();
+    }
+
+    private void PaymentShortcutReplayPreference_Changed(object sender, SelectionChangedEventArgs e)
+    {
+        if (!_isInitialized)
+        {
+            return;
+        }
+
+        var seconds = (PaymentShortcutReplaySecondsComboBox.SelectedItem as ReplaySecondsOption)?.Seconds
+            ?? _invoiceReviewPreferences.PaymentShortcutReplaySeconds;
+        var emphasis = (PaymentShortcutReplayEmphasisComboBox.SelectedItem as ReplayEmphasisOption)?.Value
+            ?? _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+
+        _invoiceReviewPreferences = _invoiceReviewPreferences with
+        {
+            PaymentShortcutReplaySeconds = seconds,
+            PaymentShortcutReplayEmphasis = emphasis
+        };
+        TrySaveInvoiceReviewPreferences();
+        UpdatePaymentHelperSummary(_selectedInvoice);
+        var paymentPdfExists = _selectedPayment is not null && _paymentRepository?.PdfFileExists(_selectedPayment) == true;
+        UpdatePaymentPdfHelperSummary(_selectedPayment, paymentPdfExists);
     }
 
     private void ToggleInvoiceReviewContextVisibility()
@@ -874,8 +1149,8 @@ public partial class InvoicesView : UserControl
         ShowInvoiceReviewContextCheckBox.IsChecked = ShowInvoiceReviewContextCheckBox.IsChecked != true;
         SetInvoiceStatus(
             ShowInvoiceReviewContextCheckBox.IsChecked == true
-                ? "Inceleme baglami gosteriliyor."
-                : "Inceleme baglami gizlendi.",
+                ? "İnceleme bağlamı gösteriliyor."
+                : "İnceleme bağlamı gizlendi.",
             isError: false);
     }
 
@@ -884,9 +1159,212 @@ public partial class InvoicesView : UserControl
         CopyInvoiceReviewContextToClipboard();
     }
 
+    private void InvoiceReviewContextChipButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { Tag: InvoiceReviewContextFormatter.ContextChip chip } ||
+            string.IsNullOrWhiteSpace(chip.Text))
+        {
+            return;
+        }
+
+        ExecuteReviewContextChipPrimaryAction(chip, "Çip");
+    }
+
+    private void InvoiceReviewContextChipButton_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+    {
+        if (sender is not Button { Tag: InvoiceReviewContextFormatter.ContextChip chip } button ||
+            string.IsNullOrWhiteSpace(chip.Text))
+        {
+            return;
+        }
+
+        ShowReviewContextChipContextMenu(button, chip);
+        e.Handled = true;
+    }
+
+    private void InvoiceReviewContextChipButton_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+    {
+        if (sender is not Button { Tag: InvoiceReviewContextFormatter.ContextChip chip } button ||
+            string.IsNullOrWhiteSpace(chip.Text))
+        {
+            return;
+        }
+
+        ShowReviewContextChipContextMenu(button, chip);
+        e.Handled = true;
+    }
+
+    private void InvoiceReviewContextChipButton_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (sender is not Button { Tag: InvoiceReviewContextFormatter.ContextChip chip } button ||
+            string.IsNullOrWhiteSpace(chip.Text))
+        {
+            return;
+        }
+
+        if (e.Key == Key.Enter || e.Key == Key.Space)
+        {
+            ExecuteReviewContextChipPrimaryAction(chip, "Klavye");
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.C && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+        {
+            RememberReviewContextChip(chip);
+            CopyReviewContextChipToClipboard(chip.Text, "Klavye");
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.Escape)
+        {
+            FocusInvoiceReviewContextAnchor();
+            e.Handled = true;
+            return;
+        }
+
+        if (e.Key == Key.Apps || (e.Key == Key.F10 && Keyboard.Modifiers.HasFlag(ModifierKeys.Shift)))
+        {
+            ShowReviewContextChipContextMenu(button, chip);
+            e.Handled = true;
+        }
+    }
+
+    private void ExecuteReviewContextChipPrimaryAction(InvoiceReviewContextFormatter.ContextChip chip, string? statusLead = null)
+    {
+        RememberReviewContextChip(chip);
+        _pendingReviewContextStatusLead = statusLead;
+
+        switch (chip.ActionKey)
+        {
+            case "apply_filter":
+                ApplyInvoiceReviewContextFilter();
+                return;
+            case "apply_period":
+                ApplyInvoiceReviewContextPeriod();
+                return;
+            case "apply_type":
+                ApplyInvoiceReviewContextType();
+                return;
+            case "apply_invoice_no":
+                ApplyInvoiceReviewContextInvoiceNo();
+                return;
+        }
+
+        CopyReviewContextChipToClipboard(chip.Text, statusLead);
+    }
+
+    private void ShowReviewContextChipContextMenu(Button button, InvoiceReviewContextFormatter.ContextChip chip)
+    {
+        var menu = new ContextMenu();
+        if (!string.Equals(chip.ActionKey, "copy", StringComparison.OrdinalIgnoreCase))
+        {
+            var applyItem = new MenuItem
+            {
+                Header = $"Uygula: {BuildReviewContextChipActionLabel(chip.ActionKey)}"
+            };
+            applyItem.Click += (_, _) => ExecuteReviewContextChipPrimaryAction(chip, "Menü");
+            menu.Items.Add(applyItem);
+        }
+
+        var copyItem = new MenuItem
+        {
+            Header = $"Kopyala: {chip.Text}"
+        };
+        copyItem.Click += (_, _) =>
+        {
+            RememberReviewContextChip(chip);
+            CopyReviewContextChipToClipboard(chip.Text, "Menü");
+        };
+        menu.Items.Add(copyItem);
+
+        button.ContextMenu = menu;
+        menu.PlacementTarget = button;
+        menu.IsOpen = true;
+    }
+
+    private void CopyReviewContextChipToClipboard(string chipText, string? statusLead = null)
+    {
+        try
+        {
+            Clipboard.SetText(chipText);
+            var lead = statusLead ?? _pendingReviewContextStatusLead;
+            SetInvoiceStatus(ReviewContextStatusMessageFormatter.BuildCopySuccess(chipText, lead), isError: false);
+        }
+        catch (Exception exception) when (exception is ExternalException or InvalidOperationException)
+        {
+            var lead = statusLead ?? _pendingReviewContextStatusLead;
+            SetInvoiceStatus(ReviewContextStatusMessageFormatter.BuildCopyError(exception.Message, lead), isError: true);
+        }
+        finally
+        {
+            _pendingReviewContextStatusLead = null;
+        }
+    }
+
+    private void RememberReviewContextChip(InvoiceReviewContextFormatter.ContextChip chip)
+    {
+        var chipKey = BuildReviewContextChipKey(chip);
+        if (string.IsNullOrWhiteSpace(chipKey))
+        {
+            return;
+        }
+
+        _lastInvokedReviewContextChipKey = chipKey;
+        UpdateInvoiceReviewContextPresentation(ShowInvoiceReviewContextCheckBox?.IsChecked == true ? _invoiceReviewContextLabel : null);
+    }
+
+    private static string BuildReviewContextChipKey(InvoiceReviewContextFormatter.ContextChip chip)
+    {
+        return string.IsNullOrWhiteSpace(chip.Text)
+            ? string.Empty
+            : $"{chip.Kind}|{chip.ActionKey}|{chip.Text}";
+    }
+
+    private void FocusInvoiceReviewContextAnchor()
+    {
+        if (ShowInvoiceReviewContextCheckBox is not null &&
+            ShowInvoiceReviewContextCheckBox.IsVisible &&
+            ShowInvoiceReviewContextCheckBox.IsEnabled)
+        {
+            ShowInvoiceReviewContextCheckBox.Focus();
+            return;
+        }
+
+        if (InvoiceReviewNoteInput is not null &&
+            InvoiceReviewNoteInput.IsVisible &&
+            InvoiceReviewNoteInput.IsEnabled)
+        {
+            InvoiceReviewNoteInput.Focus();
+        }
+    }
+
+    private static string BuildReviewContextChipActionLabel(string actionKey)
+    {
+        return actionKey switch
+        {
+            "apply_filter" => "Bağlam Filtresi",
+            "apply_period" => "Bağlam Dönemi",
+            "apply_type" => "Bağlam Türü",
+            "apply_invoice_no" => "Bağlam No",
+            _ => "Kopyala"
+        };
+    }
+
+    private void ClearInvoiceReviewContextButton_Click(object sender, RoutedEventArgs e)
+    {
+        ClearInvoiceReviewContextState();
+    }
+
     private void ApplyInvoiceReviewContextFilterButton_Click(object sender, RoutedEventArgs e)
     {
         ApplyInvoiceReviewContextFilter();
+    }
+
+    private void ApplyInvoiceReviewContextNarrowButton_Click(object sender, RoutedEventArgs e)
+    {
+        ApplyInvoiceReviewContextNarrow();
     }
 
     private void FocusInvoiceFromReviewContextButton_Click(object sender, RoutedEventArgs e)
@@ -899,30 +1377,118 @@ public partial class InvoicesView : UserControl
         ApplyInvoiceReviewContextPeriod();
     }
 
+    private void ApplyInvoiceReviewContextTypeButton_Click(object sender, RoutedEventArgs e)
+    {
+        ApplyInvoiceReviewContextType();
+    }
+
+    private void ApplyInvoiceReviewContextInvoiceNoButton_Click(object sender, RoutedEventArgs e)
+    {
+        ApplyInvoiceReviewContextInvoiceNo();
+    }
+
+    private void InvoiceReviewActionBadgeButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { Tag: string actionKey })
+        {
+            return;
+        }
+
+        switch (actionKey)
+        {
+            case "focus":
+                FocusInvoiceFromReviewContext();
+                break;
+            case "narrow":
+                ApplyInvoiceReviewContextNarrow();
+                break;
+            case "filter":
+                ApplyInvoiceReviewContextFilter();
+                break;
+            case "period":
+                ApplyInvoiceReviewContextPeriod();
+                break;
+            case "type":
+                ApplyInvoiceReviewContextType();
+                break;
+            case "invoice_no":
+                ApplyInvoiceReviewContextInvoiceNo();
+                break;
+        }
+    }
+
+    private List<string> ApplyInvoiceReviewContextSecondaryHints()
+    {
+        var appliedParts = new List<string>();
+
+        if (InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out var year, out var month))
+        {
+            SelectYearFilter(year);
+            SelectMonthFilter(month);
+            appliedParts.Add($"{year:D4}-{month:D2}");
+        }
+
+        if (InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out var invoiceTypeName) &&
+            SelectInvoiceTypeFilter(invoiceTypeName))
+        {
+            appliedParts.Add(invoiceTypeName);
+        }
+
+        if (InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out var invoiceNumber))
+        {
+            InvoiceSearchInput.Text = invoiceNumber;
+            appliedParts.Add(invoiceNumber);
+        }
+
+        return appliedParts;
+    }
+
     private void CopyInvoiceReviewContextToClipboard()
     {
         if (string.IsNullOrWhiteSpace(_invoiceReviewContextLabel))
         {
-            SetInvoiceStatus("Kopyalanacak baglam bilgisi yok.", isError: true);
+            SetInvoiceStatus("Kopyalanacak bağlam bilgisi yok.", isError: true);
             return;
         }
 
         try
         {
             Clipboard.SetText(_invoiceReviewContextLabel);
-            SetInvoiceStatus("Inceleme baglami panoya kopyalandi.", isError: false);
+            SetInvoiceStatus("İnceleme bağlamı panoya kopyalandı.", isError: false);
         }
         catch (Exception exception) when (exception is ExternalException or InvalidOperationException)
         {
-            SetInvoiceStatus($"Baglam panoya kopyalanamadi: {exception.Message}", isError: true);
+            SetInvoiceStatus($"Bağlam panoya kopyalanamadı: {exception.Message}", isError: true);
         }
+    }
+
+    private void SetReviewContextActionSuccess(string actionLabel, string? detail = null)
+    {
+        var lead = _pendingReviewContextStatusLead;
+        _pendingReviewContextStatusLead = null;
+        SetInvoiceStatus(ReviewContextStatusMessageFormatter.BuildActionSuccess(actionLabel, detail, lead), isError: false);
+    }
+
+    private void RememberReviewContextAction(string actionKey)
+    {
+        _lastInvokedReviewActionKey = actionKey;
+        UpdateInvoiceReviewContextPresentation(ShowInvoiceReviewContextCheckBox?.IsChecked == true ? _invoiceReviewContextLabel : null);
+    }
+
+    private void SetReviewContextActionError(string message)
+    {
+        var lead = _pendingReviewContextStatusLead;
+        _pendingReviewContextStatusLead = null;
+        SetInvoiceStatus(ReviewContextStatusMessageFormatter.BuildActionError(message, lead), isError: true);
     }
 
     private void ApplyInvoiceReviewContextFilter()
     {
+        RememberReviewContextAction("filter");
+
         if (!InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out var suggestedFilter))
         {
-            SetInvoiceStatus("Baglamdan uygulanabilir bir filtre cikarilamadi.", isError: true);
+            SetReviewContextActionError("Bağlamdan uygulanabilir bir filtre çıkarılamadı.");
             return;
         }
 
@@ -933,31 +1499,141 @@ public partial class InvoicesView : UserControl
         {
             case InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed:
                 SelectReviewStatusFilter(InvoiceReviewStatusFilter.Unreviewed);
-                ApplyFiltersToGrid(selectFirstIfAvailable: true);
-                SetInvoiceStatus("Baglamdan 'Incelenmedi' filtresi uygulandi.", isError: false);
+                QueueInvoiceFilterHintHighlight("Filtre");
+                SetReviewContextFocusedInvoice(ApplyFiltersToGridCore(selectFirstIfAvailable: true), "Filtre");
+                SetReviewContextActionSuccess("Filtre uygulandı", "İncelenmedi");
                 break;
             case InvoiceReviewContextFormatter.SuggestedFilter.Overdue:
                 SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Overdue);
-                ApplyFiltersToGrid(selectFirstIfAvailable: true);
-                SetInvoiceStatus("Baglamdan 'Gecikmis' filtresi uygulandi.", isError: false);
+                QueueInvoiceFilterHintHighlight("Filtre");
+                SetReviewContextFocusedInvoice(ApplyFiltersToGridCore(selectFirstIfAvailable: true), "Filtre");
+                SetReviewContextActionSuccess("Filtre uygulandı", "Gecikmiş");
                 break;
             case InvoiceReviewContextFormatter.SuggestedFilter.MissingPdf:
                 SelectPdfStatusFilter(InvoicePdfStatusFilter.MissingPdf);
-                ApplyFiltersToGrid(selectFirstIfAvailable: true);
-                SetInvoiceStatus("Baglamdan 'PDF Eksik' filtresi uygulandi.", isError: false);
+                QueueInvoiceFilterHintHighlight("Filtre");
+                SetReviewContextFocusedInvoice(ApplyFiltersToGridCore(selectFirstIfAvailable: true), "Filtre");
+                SetReviewContextActionSuccess("Filtre uygulandı", "PDF Eksik");
                 break;
         }
     }
 
-    private void FocusInvoiceFromReviewContext()
+    private void ClearInvoiceReviewContextState()
     {
-        if (_invoiceReviewPreferredInvoiceId is null)
+        _invoiceReviewModeLabel = null;
+        _invoiceReviewContextLabel = null;
+        _invoiceReviewPreferredInvoiceId = null;
+        ClearReviewContextFocusedInvoice();
+        _lastInvokedReviewActionKey = null;
+        _lastReviewContextSignature = null;
+        ResetQuickFilters();
+        QueueInvoiceFilterHintHighlight("Temizle");
+        ApplyFiltersToGrid(selectedId: _selectedInvoice?.Id, selectFirstIfAvailable: true);
+        UpdateInvoiceReviewNavigationControls();
+        SetReviewContextActionSuccess("Temizlendi", "Normal akış");
+    }
+
+    private void ApplyInvoiceReviewContextNarrow()
+    {
+        RememberReviewContextAction("narrow");
+
+        var hasSuggestedFilter = InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out var suggestedFilter);
+        var hasPeriod = InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out var year, out var month);
+        var hasInvoiceType = InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out var invoiceTypeName);
+        var hasInvoiceNumber = InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out var invoiceNumber);
+
+        if (!hasSuggestedFilter && !hasPeriod && !hasInvoiceType && !hasInvoiceNumber)
         {
-            SetInvoiceStatus("Baglamdan odaklanacak bir kayit bulunamadi.", isError: true);
+            SetReviewContextActionError("Bağlamdan daraltılacak bir ipucu çıkarılamadı.");
             return;
         }
 
-        switch (InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out var suggestedFilter))
+        _invoiceReviewModeLabel = null;
+        ResetQuickFilters();
+
+        var appliedParts = new List<string>();
+        if (hasSuggestedFilter)
+        {
+            switch (suggestedFilter)
+            {
+                case InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed:
+                    SelectReviewStatusFilter(InvoiceReviewStatusFilter.Unreviewed);
+                    appliedParts.Add("İncelenmedi");
+                    break;
+                case InvoiceReviewContextFormatter.SuggestedFilter.Overdue:
+                    SelectPaymentStatusFilter(InvoicePaymentStatusFilter.Overdue);
+                    appliedParts.Add("Gecikmiş");
+                    break;
+                case InvoiceReviewContextFormatter.SuggestedFilter.MissingPdf:
+                    SelectPdfStatusFilter(InvoicePdfStatusFilter.MissingPdf);
+                    appliedParts.Add("PDF Eksik");
+                    break;
+            }
+        }
+
+        if (hasPeriod)
+        {
+            SelectYearFilter(year);
+            SelectMonthFilter(month);
+            appliedParts.Add($"{year:D4}-{month:D2}");
+        }
+
+        if (hasInvoiceType && SelectInvoiceTypeFilter(invoiceTypeName))
+        {
+            appliedParts.Add(invoiceTypeName);
+        }
+
+        if (hasInvoiceNumber)
+        {
+            InvoiceSearchInput.Text = invoiceNumber;
+            appliedParts.Add(invoiceNumber);
+        }
+
+        QueueInvoiceFilterHintHighlight("Daraltma");
+        var selectedInvoice = ApplyFiltersToGridCore(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: true);
+        if (selectedInvoice is null)
+        {
+            SetReviewContextActionError($"Bağlam daraltması uygulandı fakat eslesen kayit bulunamadi: {string.Join(" + ", appliedParts)}");
+            return;
+        }
+
+        if (_invoiceReviewPreferredInvoiceId is not null && selectedInvoice.Id == _invoiceReviewPreferredInvoiceId.Value)
+        {
+            SetReviewContextFocusedInvoice(selectedInvoice, "Daraltma");
+            SetReviewContextActionSuccess("Daraltma uygulandı", $"Odak {selectedInvoice.InvoiceNo}");
+            return;
+        }
+
+        if (_invoiceReviewPreferredInvoiceId is not null)
+        {
+            SetReviewContextFocusedInvoice(selectedInvoice, "Daraltma");
+            SetReviewContextActionSuccess("Daraltma uygulandı", $"En uygun odak {selectedInvoice.InvoiceNo}");
+            return;
+        }
+
+        SetReviewContextFocusedInvoice(selectedInvoice, "Daraltma");
+        SetReviewContextActionSuccess("Daraltma uygulandı", string.Join(" + ", appliedParts));
+    }
+
+    private void FocusInvoiceFromReviewContext()
+    {
+        RememberReviewContextAction("focus");
+
+        var hasSuggestedFilter = InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out var suggestedFilter);
+        var hasPreferredInvoice = _invoiceReviewPreferredInvoiceId is not null;
+        var appliedSecondaryParts = Array.Empty<string>();
+
+        if (!hasSuggestedFilter &&
+            !hasPreferredInvoice &&
+            !InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out _, out _) &&
+            !InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out _) &&
+            !InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out _))
+        {
+            SetReviewContextActionError("Bağlamdan kurulacak bir inceleme akışı çıkarılamadı.");
+            return;
+        }
+
+        switch (hasSuggestedFilter)
         {
             case true when suggestedFilter == InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed:
                 StartUnreviewedReviewMode(_invoiceReviewPreferredInvoiceId, _invoiceReviewContextLabel);
@@ -969,24 +1645,63 @@ public partial class InvoicesView : UserControl
                 StartMissingPdfReviewMode(_invoiceReviewPreferredInvoiceId, _invoiceReviewContextLabel);
                 break;
             default:
-                ApplyFiltersToGrid(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: false);
+                ResetQuickFilters();
+                _invoiceReviewModeLabel = null;
+                ApplyFiltersToGrid(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: hasPreferredInvoice);
                 break;
         }
 
-        if (_selectedInvoice?.Id == _invoiceReviewPreferredInvoiceId)
+        appliedSecondaryParts = ApplyInvoiceReviewContextSecondaryHints().ToArray();
+        QueueInvoiceFilterHintHighlight("İnceleme");
+        var selectedInvoice = ApplyFiltersToGridCore(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: true);
+
+        if (selectedInvoice is null)
         {
-            SetInvoiceStatus($"Baglam kaydina odaklanildi: {_selectedInvoice.InvoiceNo}", isError: false);
+            var detailText = appliedSecondaryParts.Length == 0
+                ? string.Empty
+                : $" ({string.Join(" + ", appliedSecondaryParts)})";
+            SetReviewContextActionError($"Bağlamdan inceleme görünümü kuruldu fakat eslesen kayit bulunamadi{detailText}.");
             return;
         }
 
-        SetInvoiceStatus("Baglam kaydi mevcut filtre icinde bulunamadi.", isError: true);
+        var modeLabel = hasSuggestedFilter
+            ? suggestedFilter switch
+            {
+                InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed => "İncelenmedi",
+                InvoiceReviewContextFormatter.SuggestedFilter.Overdue => "Gecikmiş",
+                InvoiceReviewContextFormatter.SuggestedFilter.MissingPdf => "PDF Eksik",
+                _ => "Bağlam"
+            }
+            : "Bağlam";
+        var suffix = appliedSecondaryParts.Length == 0
+            ? string.Empty
+            : $" ({string.Join(" + ", appliedSecondaryParts)})";
+
+        if (hasPreferredInvoice && selectedInvoice.Id == _invoiceReviewPreferredInvoiceId)
+        {
+            SetReviewContextFocusedInvoice(selectedInvoice, "İnceleme");
+            SetReviewContextActionSuccess($"{modeLabel} incelemesi", $"Odak {selectedInvoice.InvoiceNo}{suffix}");
+            return;
+        }
+
+        if (hasPreferredInvoice)
+        {
+            SetReviewContextFocusedInvoice(selectedInvoice, "İnceleme");
+            SetReviewContextActionSuccess($"{modeLabel} incelemesi", $"En uygun odak {selectedInvoice.InvoiceNo}{suffix}");
+            return;
+        }
+
+        SetReviewContextFocusedInvoice(selectedInvoice, "İnceleme");
+        SetReviewContextActionSuccess($"{modeLabel} incelemesi", $"{selectedInvoice.InvoiceNo}{suffix}");
     }
 
     private void ApplyInvoiceReviewContextPeriod()
     {
+        RememberReviewContextAction("period");
+
         if (!InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out var year, out var month))
         {
-            SetInvoiceStatus("Baglamdan uygulanabilir bir donem cikarilamadi.", isError: true);
+            SetReviewContextActionError("Bağlamdan uygulanabilir bir dönem çıkarılamadı.");
             return;
         }
 
@@ -994,16 +1709,345 @@ public partial class InvoicesView : UserControl
         ResetQuickFilters();
         SelectYearFilter(year);
         SelectMonthFilter(month);
-        ApplyFiltersToGrid(selectFirstIfAvailable: true);
-        SetInvoiceStatus($"Baglamdan donem filtresi uygulandi: {year:D4}-{month:D2}", isError: false);
+        QueueInvoiceFilterHintHighlight("Dönem");
+        SetReviewContextFocusedInvoice(ApplyFiltersToGridCore(selectFirstIfAvailable: true), "Dönem");
+        SetReviewContextActionSuccess("Dönem uygulandı", $"{year:D4}-{month:D2}");
+    }
+
+    private void ApplyInvoiceReviewContextType()
+    {
+        RememberReviewContextAction("type");
+
+        if (!InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out var invoiceTypeName))
+        {
+            SetReviewContextActionError("Bağlamdan uygulanabilir bir fatura türü çıkarılamadı.");
+            return;
+        }
+
+        _invoiceReviewModeLabel = null;
+        ResetQuickFilters();
+        if (!SelectInvoiceTypeFilter(invoiceTypeName))
+        {
+            SetReviewContextActionError($"Bağlamdaki fatura türü listede bulunamadı: {invoiceTypeName}");
+            return;
+        }
+
+        QueueInvoiceFilterHintHighlight("Tür");
+        SetReviewContextFocusedInvoice(ApplyFiltersToGridCore(selectFirstIfAvailable: true), "Tür");
+        SetReviewContextActionSuccess("Tür uygulandı", invoiceTypeName);
+    }
+
+    private void ApplyInvoiceReviewContextInvoiceNo()
+    {
+        RememberReviewContextAction("invoice_no");
+
+        if (!InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out var invoiceNumber))
+        {
+            SetReviewContextActionError("Bağlamdan uygulanabilir bir fatura no çıkarılamadı.");
+            return;
+        }
+
+        _invoiceReviewModeLabel = null;
+        ResetQuickFilters();
+        InvoiceSearchInput.Text = invoiceNumber;
+        QueueInvoiceFilterHintHighlight("No");
+        SetReviewContextFocusedInvoice(
+            ApplyFiltersToGridCore(selectedId: _invoiceReviewPreferredInvoiceId, selectFirstIfAvailable: true),
+            "No");
+        SetReviewContextActionSuccess("Fatura no uygulandı", invoiceNumber);
+    }
+
+    private void SetReviewContextFocusedInvoice(Invoice? invoice, string actionLabel)
+    {
+        _reviewContextFocusedInvoiceId = invoice?.Id;
+        _reviewContextFocusedActionLabel = invoice is null ? null : actionLabel;
+        UpdateInvoiceGridReviewFocusVisuals();
+        UpdateInvoiceFormContextHint();
+    }
+
+    private void ClearReviewContextFocusedInvoice()
+    {
+        if (_reviewContextFocusedInvoiceId is null && string.IsNullOrWhiteSpace(_reviewContextFocusedActionLabel))
+        {
+            return;
+        }
+
+        _reviewContextFocusedInvoiceId = null;
+        _reviewContextFocusedActionLabel = null;
+        UpdateInvoiceGridReviewFocusVisuals();
+        UpdateInvoiceFormContextHint();
+    }
+
+    private void UpdateInvoiceFormContextHint()
+    {
+        if (InvoiceFormContextHintText is null)
+        {
+            return;
+        }
+
+        if (_selectedInvoice is null ||
+            _reviewContextFocusedInvoiceId is null ||
+            _reviewContextFocusedInvoiceId != _selectedInvoice.Id ||
+            string.IsNullOrWhiteSpace(_reviewContextFocusedActionLabel))
+        {
+            InvoiceFormContextHintText.Text = string.Empty;
+            InvoiceFormContextHintText.Visibility = Visibility.Collapsed;
+            return;
+        }
+
+        InvoiceFormContextHintText.Text = $"Bağlam odağı: {BuildReviewContextFocusDescription(_reviewContextFocusedActionLabel)}";
+        InvoiceFormContextHintText.Visibility = Visibility.Visible;
+    }
+
+    private void UpdateInvoiceGridReviewFocusVisuals()
+    {
+        if (InvoiceGrid is null)
+        {
+            return;
+        }
+
+        foreach (var item in InvoiceGrid.Items)
+        {
+            if (InvoiceGrid.ItemContainerGenerator.ContainerFromItem(item) is DataGridRow row)
+            {
+                UpdateInvoiceGridRowReviewFocus(row);
+            }
+        }
+    }
+
+    private void UpdateInvoiceGridRowReviewFocus(DataGridRow row)
+    {
+        if (row.Item is not Invoice invoice ||
+            _reviewContextFocusedInvoiceId is null ||
+            _reviewContextFocusedInvoiceId != invoice.Id ||
+            string.IsNullOrWhiteSpace(_reviewContextFocusedActionLabel))
+        {
+            row.Header = null;
+            row.ClearValue(ToolTipProperty);
+            return;
+        }
+
+        var titleText = new TextBlock
+        {
+            Text = "ODAK",
+            Style = (Style)FindResource("ReviewFocusMarkerTitle")
+        };
+
+        var actionText = new TextBlock
+        {
+            Text = BuildReviewContextFocusShortLabel(_reviewContextFocusedActionLabel),
+            Style = (Style)FindResource("ReviewFocusMarkerText")
+        };
+
+        var stack = new StackPanel();
+        stack.Children.Add(titleText);
+        stack.Children.Add(actionText);
+
+        row.Header = new Border
+        {
+            Style = (Style)FindResource("ReviewFocusMarkerBorder"),
+            Child = stack
+        };
+        row.ToolTip = $"Bağlam odağı: {_reviewContextFocusedActionLabel}";
+    }
+
+    private static string BuildReviewContextFocusShortLabel(string actionLabel)
+    {
+        if (actionLabel.Contains("Daralt", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "DARALT";
+        }
+
+        if (actionLabel.Contains("İnce", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "İNCELE";
+        }
+
+        if (actionLabel.Contains("Dönem", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "DÖNEM";
+        }
+
+        if (actionLabel.Contains("Tür", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "TÜR";
+        }
+
+        if (actionLabel.Contains("No", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "NO";
+        }
+
+        return "FİLTRE";
+    }
+
+    private static string BuildReviewContextFocusDescription(string actionLabel)
+    {
+        if (actionLabel.Contains("Daralt", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "daraltma aksiyonuyla seçildi";
+        }
+
+        if (actionLabel.Contains("İnce", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "inceleme aksiyonuyla seçildi";
+        }
+
+        if (actionLabel.Contains("Dönem", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "dönem aksiyonuyla seçildi";
+        }
+
+        if (actionLabel.Contains("Tür", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "tür aksiyonuyla seçildi";
+        }
+
+        if (actionLabel.Contains("No", StringComparison.CurrentCultureIgnoreCase))
+        {
+            return "fatura no aksiyonuyla seçildi";
+        }
+
+        return "filtre aksiyonuyla seçildi";
+    }
+
+    private static string? BuildReviewContextLastActionLabel(string? actionKey)
+    {
+        return actionKey switch
+        {
+            "focus" => "Bağlamdan İncele",
+            "narrow" => "Bağlamı Daralt",
+            "filter" => "Bağlam Filtresi",
+            "period" => "Bağlam Dönemi",
+            "type" => "Bağlam Türü",
+            "invoice_no" => "Bağlam No",
+            _ => null
+        };
+    }
+
+    private static string BuildInvoiceReviewContextSummary(string? contextLabel)
+    {
+        var chips = InvoiceReviewContextFormatter.BuildChips(contextLabel);
+        if (chips.Count == 0)
+        {
+            return string.Empty;
+        }
+
+        return string.Join(" | ", chips.Select(chip => chip.Text));
+    }
+
+    private void UpdateReviewContextPrimaryActionButtonEmphasis()
+    {
+        ResetReviewContextActionButtonEmphasis(FocusInvoiceFromReviewContextButton);
+        ResetReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextNarrowButton);
+        ResetReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextFilterButton);
+        ResetReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextPeriodButton);
+        ResetReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextTypeButton);
+        ResetReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextInvoiceNoButton);
+
+        switch (_lastInvokedReviewActionKey)
+        {
+            case "focus":
+                ApplyReviewContextActionButtonEmphasis(FocusInvoiceFromReviewContextButton, "#1E40AF");
+                break;
+            case "narrow":
+                ApplyReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextNarrowButton, "#2563EB");
+                break;
+            case "filter":
+                ApplyReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextFilterButton, "#16A34A");
+                break;
+            case "period":
+                ApplyReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextPeriodButton, "#D97706");
+                break;
+            case "type":
+                ApplyReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextTypeButton, "#9333EA");
+                break;
+            case "invoice_no":
+                ApplyReviewContextActionButtonEmphasis(ApplyInvoiceReviewContextInvoiceNoButton, "#9333EA");
+                break;
+        }
+    }
+
+    private static void ResetReviewContextActionButtonEmphasis(Button? button)
+    {
+        if (button is null)
+        {
+            return;
+        }
+
+        button.ClearValue(Control.BorderBrushProperty);
+        button.ClearValue(Control.BorderThicknessProperty);
+        button.ClearValue(Control.FontWeightProperty);
+    }
+
+    private static void ApplyReviewContextActionButtonEmphasis(Button? button, string borderHex)
+    {
+        if (button is null)
+        {
+            return;
+        }
+
+        button.BorderBrush = (Brush)new BrushConverter().ConvertFromString(borderHex)!;
+        button.BorderThickness = new Thickness(2);
+        button.FontWeight = FontWeights.Bold;
+    }
+
+    private static void UpdateReviewContextActionButtonToolTip(Button? button, bool isEnabled, string enabledText, string disabledReason)
+    {
+        if (button is null)
+        {
+            return;
+        }
+
+        button.ToolTip = isEnabled
+            ? enabledText
+            : $"{enabledText} Kullanılamıyor: {disabledReason}";
     }
 
     private void UpdateInvoiceReviewContextPresentation(string? contextLabel)
     {
+        var currentContextSignature = string.IsNullOrWhiteSpace(contextLabel)
+            ? null
+            : $"{contextLabel}|{_invoiceReviewPreferredInvoiceId?.ToString(CultureInfo.InvariantCulture) ?? "-"}";
+        if (!string.Equals(_lastReviewContextSignature, currentContextSignature, StringComparison.Ordinal))
+        {
+            _lastInvokedReviewActionKey = null;
+            _lastInvokedReviewContextChipKey = null;
+            _lastReviewContextSignature = currentContextSignature;
+        }
+
         var hasContext = !string.IsNullOrWhiteSpace(contextLabel);
         var hasSuggestedFilter = InvoiceReviewContextFormatter.TryResolveSuggestedFilter(_invoiceReviewContextLabel, out _);
         var hasPreferredInvoice = _invoiceReviewPreferredInvoiceId is not null;
         var hasPeriod = InvoiceReviewContextFormatter.TryResolvePeriod(_invoiceReviewContextLabel, out _, out _);
+        var hasInvoiceType = InvoiceReviewContextFormatter.TryResolveInvoiceTypeName(_invoiceReviewContextLabel, out _);
+        var hasInvoiceNumber = InvoiceReviewContextFormatter.TryResolveInvoiceNumber(_invoiceReviewContextLabel, out _);
+        var hasAnyNarrowing = hasSuggestedFilter || hasPeriod || hasInvoiceType || hasInvoiceNumber;
+        var availableActionBadges = new List<ReviewActionBadge>();
+        if (hasSuggestedFilter || hasPreferredInvoice || hasPeriod || hasInvoiceType || hasInvoiceNumber)
+        {
+            availableActionBadges.Add(new ReviewActionBadge("AKS", "Baglamdan Incele", "context", "focus", "Baglamdan inceleme akisini calistir", _lastInvokedReviewActionKey == "focus"));
+        }
+        if (hasAnyNarrowing)
+        {
+            availableActionBadges.Add(new ReviewActionBadge("DAR", "Baglami Daralt", "context", "narrow", "Baglam ipuclarini birlikte uygula", _lastInvokedReviewActionKey == "narrow"));
+        }
+        if (hasSuggestedFilter)
+        {
+            availableActionBadges.Add(new ReviewActionBadge("FLT", "Baglam Filtresi", "filter", "filter", "Baglamdan onerilen hizli filtreyi uygula", _lastInvokedReviewActionKey == "filter"));
+        }
+        if (hasPeriod)
+        {
+            availableActionBadges.Add(new ReviewActionBadge("DNM", "Baglam Donemi", "period", "period", "Baglamdaki donemi yil ve ay filtresine uygula", _lastInvokedReviewActionKey == "period"));
+        }
+        if (hasInvoiceType)
+        {
+            availableActionBadges.Add(new ReviewActionBadge("TUR", "Baglam Turu", "detail", "type", "Baglamdaki fatura turunu uygula", _lastInvokedReviewActionKey == "type"));
+        }
+        if (hasInvoiceNumber)
+        {
+            availableActionBadges.Add(new ReviewActionBadge("NO", "Baglam No", "detail", "invoice_no", "Baglamdaki fatura numarasini ara", _lastInvokedReviewActionKey == "invoice_no"));
+        }
 
         if (InvoiceReviewContextBorder is not null)
         {
@@ -1012,13 +2056,51 @@ public partial class InvoicesView : UserControl
 
         if (InvoiceReviewContextText is not null)
         {
-            InvoiceReviewContextText.Text = hasContext ? contextLabel : string.Empty;
+            InvoiceReviewContextText.Text = hasContext
+                ? (_invoiceReviewPreferences.ShowContextDetails
+                    ? contextLabel
+                    : BuildInvoiceReviewContextSummary(contextLabel))
+                : string.Empty;
+        }
+
+        if (InvoiceReviewActionBadges is not null)
+        {
+            InvoiceReviewActionBadges.ItemsSource = hasContext
+                ? availableActionBadges
+                : Array.Empty<ReviewActionBadge>();
+            InvoiceReviewActionBadges.Visibility = hasContext
+                ? System.Windows.Visibility.Visible
+                : System.Windows.Visibility.Collapsed;
+        }
+
+        if (InvoiceReviewLastActionText is not null)
+        {
+            var lastActionLabel = hasContext
+                ? BuildReviewContextLastActionLabel(_lastInvokedReviewActionKey)
+                : null;
+            InvoiceReviewLastActionText.Text = string.IsNullOrWhiteSpace(lastActionLabel)
+                ? string.Empty
+                : $"Son aksiyon: {lastActionLabel}";
+            InvoiceReviewLastActionText.Visibility = string.IsNullOrWhiteSpace(lastActionLabel)
+                ? System.Windows.Visibility.Collapsed
+                : System.Windows.Visibility.Visible;
         }
 
         if (InvoiceReviewContextChips is not null)
         {
-            InvoiceReviewContextChips.ItemsSource = hasContext
+            IReadOnlyList<InvoiceReviewContextFormatter.ContextChip> reviewContextChips = hasContext
                 ? InvoiceReviewContextFormatter.BuildChips(contextLabel)
+                    .Select(chip => chip with
+                    {
+                        IsSelected = string.Equals(
+                            BuildReviewContextChipKey(chip),
+                            _lastInvokedReviewContextChipKey,
+                            StringComparison.Ordinal)
+                    })
+                    .ToList()
+                : Array.Empty<InvoiceReviewContextFormatter.ContextChip>();
+            InvoiceReviewContextChips.ItemsSource = hasContext
+                ? reviewContextChips
                 : Array.Empty<InvoiceReviewContextFormatter.ContextChip>();
         }
 
@@ -1027,20 +2109,76 @@ public partial class InvoicesView : UserControl
             CopyInvoiceReviewContextButton.IsEnabled = !string.IsNullOrWhiteSpace(_invoiceReviewContextLabel);
         }
 
+        if (ClearInvoiceReviewContextButton is not null)
+        {
+            ClearInvoiceReviewContextButton.IsEnabled =
+                hasContext ||
+                !string.IsNullOrWhiteSpace(_invoiceReviewModeLabel) ||
+                !string.IsNullOrWhiteSpace(_lastInvokedReviewActionKey);
+        }
+
         if (ApplyInvoiceReviewContextFilterButton is not null)
         {
             ApplyInvoiceReviewContextFilterButton.IsEnabled = hasSuggestedFilter;
+            UpdateReviewContextActionButtonToolTip(
+                ApplyInvoiceReviewContextFilterButton,
+                hasSuggestedFilter,
+                "Baglamdan onerilen hizli filtreyi uygular.",
+                "Baglamdan uygulanabilir filtre bilgisi cikmadi.");
         }
 
+        if (ApplyInvoiceReviewContextNarrowButton is not null)
+        {
+            ApplyInvoiceReviewContextNarrowButton.IsEnabled = hasAnyNarrowing;
+            UpdateReviewContextActionButtonToolTip(
+                ApplyInvoiceReviewContextNarrowButton,
+                hasAnyNarrowing,
+                "Filtre, donem, tur ve fatura no ipuclarini birlikte uygular.",
+                "Daraltma icin filtre, donem, tur veya fatura no ipucu yok.");
+        }
+
+        var canFocusFromContext = hasSuggestedFilter || hasPreferredInvoice || hasPeriod || hasInvoiceType || hasInvoiceNumber;
         if (FocusInvoiceFromReviewContextButton is not null)
         {
-            FocusInvoiceFromReviewContextButton.IsEnabled = hasPreferredInvoice;
+            FocusInvoiceFromReviewContextButton.IsEnabled = canFocusFromContext;
+            UpdateReviewContextActionButtonToolTip(
+                FocusInvoiceFromReviewContextButton,
+                canFocusFromContext,
+                "Review akisini baglamdan kurar (Ctrl+Shift+I).",
+                "Inceleme akisi kuracak baglam ipucu yok.");
         }
 
         if (ApplyInvoiceReviewContextPeriodButton is not null)
         {
             ApplyInvoiceReviewContextPeriodButton.IsEnabled = hasPeriod;
+            UpdateReviewContextActionButtonToolTip(
+                ApplyInvoiceReviewContextPeriodButton,
+                hasPeriod,
+                "Baglamdaki donemi yil/ay filtresine uygular.",
+                "Baglamda donem bilgisi yok.");
         }
+
+        if (ApplyInvoiceReviewContextTypeButton is not null)
+        {
+            ApplyInvoiceReviewContextTypeButton.IsEnabled = hasInvoiceType;
+            UpdateReviewContextActionButtonToolTip(
+                ApplyInvoiceReviewContextTypeButton,
+                hasInvoiceType,
+                "Baglamdaki fatura turunu filtreye uygular.",
+                "Baglamda fatura turu bilgisi yok.");
+        }
+
+        if (ApplyInvoiceReviewContextInvoiceNoButton is not null)
+        {
+            ApplyInvoiceReviewContextInvoiceNoButton.IsEnabled = hasInvoiceNumber;
+            UpdateReviewContextActionButtonToolTip(
+                ApplyInvoiceReviewContextInvoiceNoButton,
+                hasInvoiceNumber,
+                "Baglamdaki fatura numarasini arama kutusuna uygular.",
+                "Baglamda fatura numarasi bilgisi yok.");
+        }
+
+        UpdateReviewContextPrimaryActionButtonEmphasis();
     }
 
     private void TrySaveInvoiceReviewPreferences()
@@ -1305,64 +2443,93 @@ public partial class InvoicesView : UserControl
 
     private void FillRemainingPaymentButton_Click(object sender, RoutedEventArgs e)
     {
+        RememberPaymentHelperAction("fill_remaining");
+
         if (_selectedInvoice is null)
         {
-            SetInvoiceStatus("Kalan tutari doldurmak icin once bir fatura secin.", isError: true);
+            SetPaymentStatusError("Kalan tutari doldurmak icin once bir fatura secin.");
             return;
         }
 
         ApplyPaymentSuggestion(PaymentEntrySuggestionBuilder.CreateDefault(_selectedInvoice, DateTime.Today));
-        SetInvoiceStatus("Odeme taslagi kalan tutarla guncellendi.", isError: false);
+        SetPaymentStatusSuccess("Odeme taslagi kalan tutarla guncellendi.");
     }
 
     private void UseLastPaymentTemplateButton_Click(object sender, RoutedEventArgs e)
     {
+        RememberPaymentHelperAction("use_last");
+
         if (_selectedInvoice is null)
         {
-            SetInvoiceStatus("Son odemeden doldurmak icin once bir fatura secin.", isError: true);
+            SetPaymentStatusError("Son odemeden doldurmak icin once bir fatura secin.");
             return;
         }
 
         if (_payments.Count == 0)
         {
-            SetInvoiceStatus("Bu fatura icin daha once kaydedilmis odeme yok.", isError: true);
+            SetPaymentStatusError("Bu fatura icin daha once kaydedilmis odeme yok.");
             return;
         }
 
         var suggestion = PaymentEntrySuggestionBuilder.CreateFromRecentPayment(_selectedInvoice, _payments, DateTime.Today);
         if (string.IsNullOrWhiteSpace(suggestion.Description))
         {
-            SetInvoiceStatus("Son odemelerde kopyalanacak bir aciklama bulunamadi.", isError: true);
+            SetPaymentStatusError("Son odemelerde kopyalanacak bir aciklama bulunamadi.");
             return;
         }
 
         ApplyPaymentSuggestion(suggestion);
-        SetInvoiceStatus("Odeme taslagi son aciklama ve kalan tutarla dolduruldu.", isError: false);
+        SetPaymentStatusSuccess("Odeme taslagi son aciklama ve kalan tutarla dolduruldu.");
     }
 
     private void UseSelectedPaymentTemplateButton_Click(object sender, RoutedEventArgs e)
     {
+        RememberPaymentHelperAction("use_selected");
+
         if (_selectedInvoice is null)
         {
-            SetInvoiceStatus("Secili odemeden doldurmak icin once bir fatura secin.", isError: true);
+            SetPaymentStatusError("Secili odemeden doldurmak icin once bir fatura secin.");
             return;
         }
 
         if (_selectedPayment is null)
         {
-            SetInvoiceStatus("Secili odemeden doldurmak icin once odeme listesinden bir kayit secin.", isError: true);
+            SetPaymentStatusError("Secili odemeden doldurmak icin once odeme listesinden bir kayit secin.");
             return;
         }
 
         var suggestion = PaymentEntrySuggestionBuilder.CreateFromSelectedPayment(_selectedInvoice, _selectedPayment, DateTime.Today);
         if (suggestion.Amount <= 0)
         {
-            SetInvoiceStatus("Secili odemeden yeni taslak olusturulamadi; faturanin kalan tutari yok.", isError: true);
+            SetPaymentStatusError("Secili odemeden yeni taslak olusturulamadi; faturanin kalan tutari yok.");
             return;
         }
 
         ApplyPaymentSuggestion(suggestion);
-        SetInvoiceStatus("Odeme taslagi secili odemeye gore dolduruldu.", isError: false);
+        SetPaymentStatusSuccess("Odeme taslagi secili odemeye gore dolduruldu.");
+    }
+
+    private void PaymentHelperBadgeButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { Tag: string actionKey })
+        {
+            return;
+        }
+
+        _pendingPaymentStatusLead = "Odeme Yardimi";
+
+        switch (actionKey)
+        {
+            case "fill_remaining":
+                FillRemainingPaymentButton_Click(sender, e);
+                break;
+            case "use_last":
+                UseLastPaymentTemplateButton_Click(sender, e);
+                break;
+            case "use_selected":
+                UseSelectedPaymentTemplateButton_Click(sender, e);
+                break;
+        }
     }
 
     private void PaymentGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1371,15 +2538,19 @@ public partial class InvoicesView : UserControl
         {
             _selectedPayment = payment;
             UpdatePaymentPdfControls(payment);
+            UpdatePaymentHelperSummary(_selectedInvoice);
             return;
         }
 
         _selectedPayment = null;
         UpdatePaymentPdfControls(null);
+        UpdatePaymentHelperSummary(_selectedInvoice);
     }
 
     private void SelectPaymentPdfButton_Click(object sender, RoutedEventArgs e)
     {
+        RememberPaymentPdfHelperAction("select_pdf");
+
         if (_paymentRepository is null || _selectedInvoice is null || _selectedPayment is null)
         {
             return;
@@ -1403,16 +2574,18 @@ public partial class InvoicesView : UserControl
             var attached = _paymentRepository.AttachPdf(_selectedPayment.Id, dialog.FileName);
             RefreshPaymentControls(_selectedInvoice);
             SelectPayment(attached.Id);
-            SetInvoiceStatus("Ödeme PDF evrakı kaydedildi.", isError: false);
+            SetPaymentPdfStatusSuccess("Ödeme PDF evrakı kaydedildi.");
         }
         catch (Exception exception) when (exception is InvalidOperationException or Microsoft.Data.Sqlite.SqliteException or IOException or UnauthorizedAccessException)
         {
-            SetInvoiceStatus(exception.Message, isError: true);
+            SetPaymentPdfStatusError(exception.Message);
         }
     }
 
     private void OpenPaymentPdfButton_Click(object sender, RoutedEventArgs e)
     {
+        RememberPaymentPdfHelperAction("open_pdf");
+
         if (_paymentRepository is null || _selectedPayment is null)
         {
             return;
@@ -1423,7 +2596,7 @@ public partial class InvoicesView : UserControl
             var pdfPath = _paymentRepository.GetPdfAbsolutePath(_selectedPayment);
             if (string.IsNullOrWhiteSpace(pdfPath) || !File.Exists(pdfPath))
             {
-                SetInvoiceStatus("Ödeme PDF dosyası bulunamadı.", isError: true);
+                SetPaymentPdfStatusError("Ödeme PDF dosyası bulunamadı.");
                 UpdatePaymentPdfControls(_selectedPayment);
                 return;
             }
@@ -1432,10 +2605,11 @@ public partial class InvoicesView : UserControl
             {
                 UseShellExecute = true,
             });
+            SetPaymentPdfStatusSuccess("Ödeme PDF dosyası açıldı.");
         }
         catch (Exception exception) when (exception is InvalidOperationException or IOException or UnauthorizedAccessException or System.ComponentModel.Win32Exception)
         {
-            SetInvoiceStatus(exception.Message, isError: true);
+            SetPaymentPdfStatusError(exception.Message);
         }
     }
 
@@ -1515,6 +2689,7 @@ public partial class InvoicesView : UserControl
         UpdatePdfControls(null);
         RefreshPaymentControls(null);
         SetInvoiceStatus("Yeni kayıt için alanları doldurun.", isError: false);
+        UpdateInvoiceFormContextHint();
     }
 
     private void ApplyInvoiceDraft(InvoiceDraftTemplate draft)
@@ -1539,6 +2714,7 @@ public partial class InvoicesView : UserControl
         UpdateInvoiceReviewNoteControls(null);
         UpdatePdfControls(null);
         RefreshPaymentControls(null);
+        UpdateInvoiceFormContextHint();
     }
 
     private static decimal ParseDecimal(string value, string label)
@@ -1561,9 +2737,63 @@ public partial class InvoicesView : UserControl
     private void SetInvoiceStatus(string message, bool isError)
     {
         InvoiceStatusText.Text = message;
+        ApplyInvoiceStatusVisualState(message, isError);
+    }
+
+    private void ApplyInvoiceStatusVisualState(string message, bool isError)
+    {
+        _invoiceStatusHighlightTimer?.Stop();
+
+        if (InvoiceStatusText is null)
+        {
+            return;
+        }
+
+        InvoiceStatusText.FontWeight = FontWeights.Normal;
         InvoiceStatusText.Foreground = isError
             ? new SolidColorBrush(Color.FromRgb(185, 28, 28))
             : new SolidColorBrush(Color.FromRgb(95, 107, 122));
+
+        if (isError || !ReviewContextStatusMessageFormatter.TryResolveLead(message, out var lead))
+        {
+            return;
+        }
+
+        InvoiceStatusText.FontWeight = FontWeights.SemiBold;
+        InvoiceStatusText.Foreground = lead switch
+        {
+            "Çip" => new SolidColorBrush(Color.FromRgb(29, 78, 216)),
+            "Klavye" => new SolidColorBrush(Color.FromRgb(126, 34, 206)),
+            "Menü" => new SolidColorBrush(Color.FromRgb(180, 83, 9)),
+            "Odeme Yardimi" => new SolidColorBrush(Color.FromRgb(22, 101, 52)),
+            "PDF Yardimi" => new SolidColorBrush(Color.FromRgb(3, 105, 161)),
+            _ => new SolidColorBrush(Color.FromRgb(95, 107, 122))
+        };
+
+        _invoiceStatusHighlightTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(2)
+        };
+        _invoiceStatusHighlightTimer.Tick -= InvoiceStatusHighlightTimer_Tick;
+        _invoiceStatusHighlightTimer.Tick += InvoiceStatusHighlightTimer_Tick;
+        _invoiceStatusHighlightTimer.Start();
+    }
+
+    private void InvoiceStatusHighlightTimer_Tick(object? sender, EventArgs e)
+    {
+        _invoiceStatusHighlightTimer?.Stop();
+        if (InvoiceStatusText is null)
+        {
+            return;
+        }
+
+        if (!ReviewContextStatusMessageFormatter.TryResolveLead(InvoiceStatusText.Text, out _))
+        {
+            return;
+        }
+
+        InvoiceStatusText.FontWeight = FontWeights.Normal;
+        InvoiceStatusText.Foreground = new SolidColorBrush(Color.FromRgb(95, 107, 122));
     }
 
     private void UpdatePdfControls(Invoice? invoice)
@@ -1638,6 +2868,7 @@ public partial class InvoicesView : UserControl
         PaymentAmountInput.Text = "0,00";
         PaymentDescriptionInput.Text = string.Empty;
         UpdatePaymentPdfControls(null);
+        UpdatePaymentHelperSummary(invoice);
 
         if (invoice is null)
         {
@@ -1649,6 +2880,7 @@ public partial class InvoicesView : UserControl
         _payments = _paymentRepository?.GetForInvoice(invoice.Id) ?? Array.Empty<Payment>();
         PaymentGrid.ItemsSource = _payments;
         SelectPayment();
+        UpdatePaymentHelperSummary(invoice);
 
         if (invoice.Status == "canceled")
         {
@@ -1667,6 +2899,240 @@ public partial class InvoicesView : UserControl
         PaymentAmountInput.Text = invoice.RemainingAmount.ToString("N2", TurkishCulture);
         SetPaymentInfo(invoice.PaymentSummaryText, isError: false);
         SetPaymentInputEnabled(true);
+    }
+
+    private void UpdatePaymentHelperSummary(Invoice? invoice)
+    {
+        var helperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(invoice, _payments, _selectedPayment, _lastInvokedPaymentHelperActionKey, _highlightedPaymentHelperBadgeActionKey);
+        var lastActionText = PaymentEntryHelperSummaryBuilder.BuildLastActionText(_lastInvokedPaymentHelperActionKey);
+        lastActionText = PaymentEntryHelperSummaryBuilder.BuildReplayFeedbackText(lastActionText, _isPaymentHelperReplayFeedbackActive);
+        var lastActionToolTip = PaymentEntryHelperSummaryBuilder.BuildLastActionToolTip(_lastInvokedPaymentHelperActionKey);
+        var selectedActionToolTip = PaymentEntryHelperSummaryBuilder.BuildSelectedActionToolTip(_lastInvokedPaymentHelperActionKey);
+        var lastActionPrefix = PaymentEntryHelperSummaryBuilder.BuildLastActionPrefix(_lastInvokedPaymentHelperActionKey);
+        var selectedActionStatusText = PaymentEntryHelperSummaryBuilder.BuildSelectedActionStatusText(_lastInvokedPaymentHelperActionKey);
+
+        if (PaymentHelperSummaryText is not null)
+        {
+            PaymentHelperSummaryText.Text = PaymentEntryHelperSummaryBuilder.BuildSummaryText(invoice, _payments, _selectedPayment);
+        }
+
+        if (PaymentHelperReplayPreferenceSummaryText is not null)
+        {
+            var hasAction = !string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey);
+            PaymentHelperReplayPreferenceSummaryText.Text = PaymentEntryHelperSummaryBuilder.BuildReplayPreferenceSummaryText(
+                _lastInvokedPaymentHelperActionKey,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis);
+            PaymentHelperReplayPreferenceSummaryText.ToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                hasAction,
+                _isPaymentHelperReplayFeedbackActive,
+                _lastInvokedPaymentHelperActionKey);
+            PaymentHelperReplayPreferenceSummaryText.Foreground = new SolidColorBrush(
+                hasAction
+                    ? Color.FromRgb(22, 101, 52)
+                    : Color.FromRgb(95, 107, 122));
+        }
+
+        if (PaymentHelperReplayPreferencePrefixText is not null)
+        {
+            PaymentHelperReplayPreferencePrefixText.Text = PaymentEntryHelperSummaryBuilder.BuildReplayPreferencePrefix(_lastInvokedPaymentHelperActionKey);
+            PaymentHelperReplayPreferencePrefixText.Foreground = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
+                    ? Color.FromRgb(95, 107, 122)
+                    : Color.FromRgb(22, 101, 52));
+        }
+
+        if (PaymentHelperReplayPreferenceLevelText is not null)
+        {
+            var hasAction = !string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey);
+            PaymentHelperReplayPreferenceLevelText.Text = ReplayPreferenceIndicatorFormatter.BuildIndicator(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                hasAction);
+            PaymentHelperReplayPreferenceLevelText.ToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                hasAction,
+                _isPaymentHelperReplayFeedbackActive,
+                _lastInvokedPaymentHelperActionKey);
+            PaymentHelperReplayPreferenceLevelText.Foreground = new SolidColorBrush(
+                hasAction
+                    ? Color.FromRgb(22, 101, 52)
+                    : Color.FromRgb(95, 107, 122));
+        }
+
+        if (PaymentHelperReplayPreferencePrefixBorder is not null)
+        {
+            PaymentHelperReplayPreferencePrefixBorder.ToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                !string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey),
+                _isPaymentHelperReplayFeedbackActive,
+                _lastInvokedPaymentHelperActionKey);
+            PaymentHelperReplayPreferencePrefixBorder.Background = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
+                    ? Color.FromRgb(248, 250, 252)
+                    : Color.FromRgb(236, 253, 245));
+            PaymentHelperReplayPreferencePrefixBorder.BorderBrush = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
+                    ? Color.FromRgb(226, 232, 240)
+                    : Color.FromRgb(187, 247, 208));
+        }
+
+        ApplyPaymentHelperReplaySummaryPrefixVisualState(_isPaymentHelperReplayFeedbackActive);
+
+        if (PaymentHelperLastActionText is not null)
+        {
+            PaymentHelperLastActionText.Text = lastActionText;
+        }
+
+        if (PaymentHelperLastActionPrefixText is not null)
+        {
+            PaymentHelperLastActionPrefixText.Text = lastActionPrefix;
+        }
+
+        ApplyPaymentHelperPrefixReplayVisualState(_isPaymentHelperReplayFeedbackActive);
+
+        if (PaymentHelperLastActionButton is not null)
+        {
+            PaymentHelperLastActionButton.Tag = _lastInvokedPaymentHelperActionKey;
+            PaymentHelperLastActionButton.ToolTip = lastActionToolTip;
+            PaymentHelperLastActionButton.Visibility = helperBadges.Count > 0 && !string.IsNullOrWhiteSpace(lastActionText)
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+            if (PaymentHelperLastActionButton.Visibility == Visibility.Visible)
+            {
+                StartPaymentHelperLastActionHighlight();
+            }
+            else
+            {
+                ResetPaymentHelperLastActionHighlight();
+            }
+        }
+
+        if (PaymentHelperBadges is not null)
+        {
+            PaymentHelperBadges.ItemsSource = helperBadges;
+            PaymentHelperBadges.Visibility = helperBadges.Count > 0
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
+
+        if (PaymentHelperSelectedActionStatusText is not null)
+        {
+            PaymentHelperSelectedActionStatusText.Text = selectedActionStatusText;
+            PaymentHelperSelectedActionStatusText.Foreground = new SolidColorBrush(GetPaymentHelperSelectedActionColor(_lastInvokedPaymentHelperActionKey));
+        }
+
+        if (PaymentHelperSelectedActionStatusPrefixText is not null)
+        {
+            PaymentHelperSelectedActionStatusPrefixText.Text = string.IsNullOrWhiteSpace(lastActionPrefix)
+                ? "YRD"
+                : lastActionPrefix;
+        }
+
+        if (PaymentHelperSelectedActionRepeatText is not null)
+        {
+            PaymentHelperSelectedActionRepeatText.Text = GetPaymentHelperRepeatLabel(_lastInvokedPaymentHelperActionKey);
+        }
+        ApplyPaymentHelperSelectedStatusReplayVisualState(_isPaymentHelperReplayFeedbackActive);
+
+        if (PaymentHelperSelectedActionHintText is not null)
+        {
+            PaymentHelperSelectedActionHintText.Text = GetPaymentHelperHintLabel(_lastInvokedPaymentHelperActionKey);
+        }
+        ApplyPaymentHelperSelectedStatusHintReplayVisualState(_isPaymentHelperReplayFeedbackActive);
+        ApplyPaymentHelperSelectedStatusDividerReplayVisualState(_isPaymentHelperReplayFeedbackActive);
+
+        if (PaymentHelperSelectedActionStatusButton is not null)
+        {
+            PaymentHelperSelectedActionStatusButton.Tag = _lastInvokedPaymentHelperActionKey;
+            PaymentHelperSelectedActionStatusButton.ToolTip = selectedActionToolTip;
+            PaymentHelperSelectedActionStatusButton.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
+                ? Visibility.Collapsed
+                : Visibility.Visible;
+            if (PaymentHelperSelectedActionStatusButton.Visibility == Visibility.Visible)
+            {
+                StartPaymentHelperSelectedStatusHighlight();
+            }
+            else
+            {
+                ResetPaymentHelperSelectedStatusHighlight();
+            }
+        }
+    }
+
+    private void PaymentPdfHelperBadgeButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { Tag: string actionKey })
+        {
+            return;
+        }
+
+        _pendingPaymentPdfStatusLead = "PDF Yardimi";
+
+        switch (actionKey)
+        {
+            case "select_pdf":
+                SelectPaymentPdfButton_Click(sender, e);
+                break;
+            case "open_pdf":
+                OpenPaymentPdfButton_Click(sender, e);
+                break;
+        }
+    }
+
+    private void RememberPaymentHelperAction(string actionKey)
+    {
+        _lastInvokedPaymentHelperActionKey = actionKey;
+        StartPaymentHelperBadgeActivation(actionKey);
+        UpdatePaymentHelperSummary(_selectedInvoice);
+    }
+
+    private void PaymentHelperLastActionButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { Tag: string actionKey })
+        {
+            return;
+        }
+
+        _pendingPaymentStatusLead = "Odeme Yardimi";
+
+        switch (actionKey)
+        {
+            case "fill_remaining":
+                FillRemainingPaymentButton_Click(sender, e);
+                break;
+            case "use_last":
+                UseLastPaymentTemplateButton_Click(sender, e);
+                break;
+            case "use_selected":
+                UseSelectedPaymentTemplateButton_Click(sender, e);
+                break;
+        }
+
+        ActivatePaymentHelperReplayFeedback();
+    }
+
+    private void PaymentHelperSelectedActionStatusButton_Click(object sender, RoutedEventArgs e)
+    {
+        PaymentHelperLastActionButton_Click(sender, e);
+    }
+
+    private void SetPaymentStatusSuccess(string message)
+    {
+        var lead = _pendingPaymentStatusLead;
+        _pendingPaymentStatusLead = null;
+        SetInvoiceStatus(PaymentStatusMessageFormatter.BuildActionSuccess(message, lead), isError: false);
+    }
+
+    private void SetPaymentStatusError(string message)
+    {
+        var lead = _pendingPaymentStatusLead;
+        _pendingPaymentStatusLead = null;
+        SetInvoiceStatus(PaymentStatusMessageFormatter.BuildActionError(message, lead), isError: true);
     }
 
     private void SetPaymentInfo(string message, bool isError)
@@ -1715,6 +3181,7 @@ public partial class InvoicesView : UserControl
         if (payment is null)
         {
             SetPaymentPdfInfo("PDF eklemek için ödeme kaydı seçin.", isError: false);
+            UpdatePaymentPdfHelperSummary(null, paymentPdfExists: false);
             SelectPaymentPdfButton.IsEnabled = false;
             OpenPaymentPdfButton.IsEnabled = false;
             return;
@@ -1724,6 +3191,7 @@ public partial class InvoicesView : UserControl
         if (!payment.HasPdf)
         {
             SetPaymentPdfInfo("Bu ödeme kaydına PDF evrak eklenmemiş.", isError: false);
+            UpdatePaymentPdfHelperSummary(payment, paymentPdfExists: false);
             OpenPaymentPdfButton.IsEnabled = false;
             return;
         }
@@ -1731,12 +3199,267 @@ public partial class InvoicesView : UserControl
         if (_paymentRepository?.PdfFileExists(payment) == true)
         {
             SetPaymentPdfInfo($"PDF kayıtlı: {payment.PdfOriginalFileName}", isError: false);
+            UpdatePaymentPdfHelperSummary(payment, paymentPdfExists: true);
             OpenPaymentPdfButton.IsEnabled = true;
             return;
         }
 
         SetPaymentPdfInfo($"PDF kaydı var ancak dosya bulunamadı: {payment.PdfFilePath}", isError: true);
+        UpdatePaymentPdfHelperSummary(payment, paymentPdfExists: false);
         OpenPaymentPdfButton.IsEnabled = false;
+    }
+
+    private void UpdatePaymentPdfHelperSummary(Payment? payment, bool paymentPdfExists)
+    {
+        var helperBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(payment, paymentPdfExists, _lastInvokedPaymentPdfHelperActionKey, _highlightedPaymentPdfBadgeActionKey);
+        var lastActionText = PaymentPdfHelperSummaryBuilder.BuildLastActionText(_lastInvokedPaymentPdfHelperActionKey);
+        lastActionText = PaymentPdfHelperSummaryBuilder.BuildReplayFeedbackText(lastActionText, _isPaymentPdfReplayFeedbackActive);
+        var lastActionToolTip = PaymentPdfHelperSummaryBuilder.BuildLastActionToolTip(_lastInvokedPaymentPdfHelperActionKey);
+        var selectedActionToolTip = PaymentPdfHelperSummaryBuilder.BuildSelectedActionToolTip(_lastInvokedPaymentPdfHelperActionKey);
+        var lastActionPrefix = PaymentPdfHelperSummaryBuilder.BuildLastActionPrefix(_lastInvokedPaymentPdfHelperActionKey);
+        var selectedActionStatusText = PaymentPdfHelperSummaryBuilder.BuildSelectedActionStatusText(_lastInvokedPaymentPdfHelperActionKey);
+
+        if (PaymentPdfHelperSummaryText is not null)
+        {
+            PaymentPdfHelperSummaryText.Text = PaymentPdfHelperSummaryBuilder.BuildSummaryText(payment, paymentPdfExists);
+        }
+
+        if (PaymentPdfReplayPreferenceSummaryText is not null)
+        {
+            var hasAction = !string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey);
+            PaymentPdfReplayPreferenceSummaryText.Text = PaymentPdfHelperSummaryBuilder.BuildReplayPreferenceSummaryText(
+                _lastInvokedPaymentPdfHelperActionKey,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis);
+            PaymentPdfReplayPreferenceSummaryText.ToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                hasAction,
+                _isPaymentPdfReplayFeedbackActive,
+                _lastInvokedPaymentPdfHelperActionKey);
+            PaymentPdfReplayPreferenceSummaryText.Foreground = new SolidColorBrush(
+                hasAction
+                    ? Color.FromRgb(3, 105, 161)
+                    : Color.FromRgb(95, 107, 122));
+        }
+
+        if (PaymentPdfReplayPreferencePrefixText is not null)
+        {
+            PaymentPdfReplayPreferencePrefixText.Text = PaymentPdfHelperSummaryBuilder.BuildReplayPreferencePrefix(_lastInvokedPaymentPdfHelperActionKey);
+            PaymentPdfReplayPreferencePrefixText.Foreground = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
+                    ? Color.FromRgb(95, 107, 122)
+                    : Color.FromRgb(3, 105, 161));
+        }
+
+        if (PaymentPdfReplayPreferenceLevelText is not null)
+        {
+            var hasAction = !string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey);
+            PaymentPdfReplayPreferenceLevelText.Text = ReplayPreferenceIndicatorFormatter.BuildIndicator(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                hasAction);
+            PaymentPdfReplayPreferenceLevelText.ToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                hasAction,
+                _isPaymentPdfReplayFeedbackActive,
+                _lastInvokedPaymentPdfHelperActionKey);
+            PaymentPdfReplayPreferenceLevelText.Foreground = new SolidColorBrush(
+                hasAction
+                    ? Color.FromRgb(3, 105, 161)
+                    : Color.FromRgb(95, 107, 122));
+        }
+
+        if (PaymentPdfReplayPreferencePrefixBorder is not null)
+        {
+            PaymentPdfReplayPreferencePrefixBorder.ToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip(
+                _invoiceReviewPreferences.PaymentShortcutReplayEmphasis,
+                _invoiceReviewPreferences.PaymentShortcutReplaySeconds,
+                !string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey),
+                _isPaymentPdfReplayFeedbackActive,
+                _lastInvokedPaymentPdfHelperActionKey);
+            PaymentPdfReplayPreferencePrefixBorder.Background = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
+                    ? Color.FromRgb(248, 250, 252)
+                    : Color.FromRgb(240, 249, 255));
+            PaymentPdfReplayPreferencePrefixBorder.BorderBrush = new SolidColorBrush(
+                string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
+                    ? Color.FromRgb(226, 232, 240)
+                    : Color.FromRgb(186, 230, 253));
+        }
+
+        ApplyPaymentPdfReplaySummaryPrefixVisualState(_isPaymentPdfReplayFeedbackActive);
+
+        if (PaymentPdfHelperLastActionText is not null)
+        {
+            PaymentPdfHelperLastActionText.Text = lastActionText;
+        }
+
+        if (PaymentPdfHelperLastActionPrefixText is not null)
+        {
+            PaymentPdfHelperLastActionPrefixText.Text = lastActionPrefix;
+        }
+
+        ApplyPaymentPdfPrefixReplayVisualState(_isPaymentPdfReplayFeedbackActive);
+
+        if (PaymentPdfHelperLastActionButton is not null)
+        {
+            PaymentPdfHelperLastActionButton.Tag = _lastInvokedPaymentPdfHelperActionKey;
+            PaymentPdfHelperLastActionButton.ToolTip = lastActionToolTip;
+            PaymentPdfHelperLastActionButton.Visibility = helperBadges.Count > 0 && !string.IsNullOrWhiteSpace(lastActionText)
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+            if (PaymentPdfHelperLastActionButton.Visibility == Visibility.Visible)
+            {
+                StartPaymentPdfHelperLastActionHighlight();
+            }
+            else
+            {
+                ResetPaymentPdfHelperLastActionHighlight();
+            }
+        }
+
+        if (PaymentPdfHelperBadges is not null)
+        {
+            PaymentPdfHelperBadges.ItemsSource = helperBadges;
+            PaymentPdfHelperBadges.Visibility = helperBadges.Count > 0
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
+
+        if (PaymentPdfSelectedActionStatusText is not null)
+        {
+            PaymentPdfSelectedActionStatusText.Text = selectedActionStatusText;
+            PaymentPdfSelectedActionStatusText.Foreground = new SolidColorBrush(GetPaymentPdfSelectedActionColor(_lastInvokedPaymentPdfHelperActionKey));
+        }
+
+        if (PaymentPdfSelectedActionStatusPrefixText is not null)
+        {
+            PaymentPdfSelectedActionStatusPrefixText.Text = string.IsNullOrWhiteSpace(lastActionPrefix)
+                ? "PDF"
+                : lastActionPrefix;
+        }
+
+        if (PaymentPdfSelectedActionRepeatText is not null)
+        {
+            PaymentPdfSelectedActionRepeatText.Text = GetPaymentPdfRepeatLabel(_lastInvokedPaymentPdfHelperActionKey);
+        }
+        ApplyPaymentPdfSelectedStatusReplayVisualState(_isPaymentPdfReplayFeedbackActive);
+
+        if (PaymentPdfSelectedActionHintText is not null)
+        {
+            PaymentPdfSelectedActionHintText.Text = GetPaymentPdfHintLabel(_lastInvokedPaymentPdfHelperActionKey);
+        }
+        ApplyPaymentPdfSelectedStatusHintReplayVisualState(_isPaymentPdfReplayFeedbackActive);
+        ApplyPaymentPdfSelectedStatusDividerReplayVisualState(_isPaymentPdfReplayFeedbackActive);
+
+        if (PaymentPdfSelectedActionStatusButton is not null)
+        {
+            PaymentPdfSelectedActionStatusButton.Tag = _lastInvokedPaymentPdfHelperActionKey;
+            PaymentPdfSelectedActionStatusButton.ToolTip = selectedActionToolTip;
+            PaymentPdfSelectedActionStatusButton.Visibility = string.IsNullOrWhiteSpace(selectedActionStatusText)
+                ? Visibility.Collapsed
+                : Visibility.Visible;
+            if (PaymentPdfSelectedActionStatusButton.Visibility == Visibility.Visible)
+            {
+                StartPaymentPdfSelectedStatusHighlight();
+            }
+            else
+            {
+                ResetPaymentPdfSelectedStatusHighlight();
+            }
+        }
+    }
+
+    private void RememberPaymentPdfHelperAction(string actionKey)
+    {
+        _lastInvokedPaymentPdfHelperActionKey = actionKey;
+        StartPaymentPdfBadgeActivation(actionKey);
+        var paymentPdfExists = _selectedPayment is not null && _paymentRepository?.PdfFileExists(_selectedPayment) == true;
+        UpdatePaymentPdfHelperSummary(_selectedPayment, paymentPdfExists);
+    }
+
+    private void StartPaymentHelperBadgeActivation(string actionKey)
+    {
+        _highlightedPaymentHelperBadgeActionKey = actionKey;
+        _paymentHelperBadgeActivationTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(1.2)
+        };
+        _paymentHelperBadgeActivationTimer.Stop();
+        _paymentHelperBadgeActivationTimer.Tick -= PaymentHelperBadgeActivationTimer_Tick;
+        _paymentHelperBadgeActivationTimer.Tick += PaymentHelperBadgeActivationTimer_Tick;
+        _paymentHelperBadgeActivationTimer.Start();
+    }
+
+    private void PaymentHelperBadgeActivationTimer_Tick(object? sender, EventArgs e)
+    {
+        _paymentHelperBadgeActivationTimer?.Stop();
+        _highlightedPaymentHelperBadgeActionKey = null;
+        UpdatePaymentHelperSummary(_selectedInvoice);
+    }
+
+    private void StartPaymentPdfBadgeActivation(string actionKey)
+    {
+        _highlightedPaymentPdfBadgeActionKey = actionKey;
+        _paymentPdfBadgeActivationTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(1.2)
+        };
+        _paymentPdfBadgeActivationTimer.Stop();
+        _paymentPdfBadgeActivationTimer.Tick -= PaymentPdfBadgeActivationTimer_Tick;
+        _paymentPdfBadgeActivationTimer.Tick += PaymentPdfBadgeActivationTimer_Tick;
+        _paymentPdfBadgeActivationTimer.Start();
+    }
+
+    private void PaymentPdfBadgeActivationTimer_Tick(object? sender, EventArgs e)
+    {
+        _paymentPdfBadgeActivationTimer?.Stop();
+        _highlightedPaymentPdfBadgeActionKey = null;
+        var paymentPdfExists = _selectedPayment is not null && _paymentRepository?.PdfFileExists(_selectedPayment) == true;
+        UpdatePaymentPdfHelperSummary(_selectedPayment, paymentPdfExists);
+    }
+
+    private void PaymentPdfHelperLastActionButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { Tag: string actionKey })
+        {
+            return;
+        }
+
+        _pendingPaymentPdfStatusLead = "PDF Yardimi";
+
+        switch (actionKey)
+        {
+            case "select_pdf":
+                SelectPaymentPdfButton_Click(sender, e);
+                break;
+            case "open_pdf":
+                OpenPaymentPdfButton_Click(sender, e);
+                break;
+        }
+
+        ActivatePaymentPdfReplayFeedback();
+    }
+
+    private void PaymentPdfSelectedActionStatusButton_Click(object sender, RoutedEventArgs e)
+    {
+        PaymentPdfHelperLastActionButton_Click(sender, e);
+    }
+
+    private void SetPaymentPdfStatusSuccess(string message)
+    {
+        var lead = _pendingPaymentPdfStatusLead;
+        _pendingPaymentPdfStatusLead = null;
+        SetInvoiceStatus(PaymentStatusMessageFormatter.BuildActionSuccess(message, lead), isError: false);
+    }
+
+    private void SetPaymentPdfStatusError(string message)
+    {
+        var lead = _pendingPaymentPdfStatusLead;
+        _pendingPaymentPdfStatusLead = null;
+        SetInvoiceStatus(PaymentStatusMessageFormatter.BuildActionError(message, lead), isError: true);
     }
 
     private void SetPaymentPdfInfo(string message, bool isError)
@@ -1747,7 +3470,763 @@ public partial class InvoicesView : UserControl
             : new SolidColorBrush(Color.FromRgb(95, 107, 122));
     }
 
+    private void StartPaymentHelperLastActionHighlight()
+    {
+        if (PaymentHelperLastActionText is null)
+        {
+            return;
+        }
+
+        PaymentHelperLastActionText.FontWeight = FontWeights.Bold;
+        PaymentHelperLastActionText.Foreground = new SolidColorBrush(Color.FromRgb(21, 128, 61));
+
+        _paymentHelperLastActionHighlightTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(2)
+        };
+        _paymentHelperLastActionHighlightTimer.Tick -= PaymentHelperLastActionHighlightTimer_Tick;
+        _paymentHelperLastActionHighlightTimer.Tick += PaymentHelperLastActionHighlightTimer_Tick;
+        _paymentHelperLastActionHighlightTimer.Stop();
+        _paymentHelperLastActionHighlightTimer.Start();
+    }
+
+    private void StartPaymentHelperSelectedStatusHighlight()
+    {
+        if (PaymentHelperSelectedActionStatusText is null)
+        {
+            return;
+        }
+
+        PaymentHelperSelectedActionStatusText.FontWeight = FontWeights.Bold;
+        PaymentHelperSelectedActionStatusText.Foreground = new SolidColorBrush(Color.FromRgb(21, 128, 61));
+        if (PaymentHelperSelectedActionStatusButton is not null)
+        {
+            PaymentHelperSelectedActionStatusButton.Background = new SolidColorBrush(Color.FromRgb(240, 253, 244));
+            PaymentHelperSelectedActionStatusButton.BorderBrush = new SolidColorBrush(Color.FromRgb(134, 239, 172));
+        }
+        if (PaymentHelperSelectedActionStatusPrefixBorder is not null)
+        {
+            PaymentHelperSelectedActionStatusPrefixBorder.Background = new SolidColorBrush(Color.FromRgb(187, 247, 208));
+            PaymentHelperSelectedActionStatusPrefixBorder.BorderBrush = new SolidColorBrush(Color.FromRgb(22, 163, 74));
+        }
+        if (PaymentHelperSelectedActionStatusPrefixText is not null)
+        {
+            PaymentHelperSelectedActionStatusPrefixText.Foreground = new SolidColorBrush(Color.FromRgb(21, 128, 61));
+        }
+
+        _paymentHelperSelectedStatusHighlightTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(1.2)
+        };
+
+        _paymentHelperSelectedStatusHighlightTimer.Stop();
+        _paymentHelperSelectedStatusHighlightTimer.Tick -= PaymentHelperSelectedStatusHighlightTimer_Tick;
+        _paymentHelperSelectedStatusHighlightTimer.Tick += PaymentHelperSelectedStatusHighlightTimer_Tick;
+        _paymentHelperSelectedStatusHighlightTimer.Start();
+    }
+
+    private void PaymentHelperLastActionHighlightTimer_Tick(object? sender, EventArgs e)
+    {
+        _paymentHelperLastActionHighlightTimer?.Stop();
+        ResetPaymentHelperLastActionHighlight();
+    }
+
+    private void PaymentHelperSelectedStatusHighlightTimer_Tick(object? sender, EventArgs e)
+    {
+        _paymentHelperSelectedStatusHighlightTimer?.Stop();
+        ResetPaymentHelperSelectedStatusHighlight();
+    }
+
+    private void ResetPaymentHelperLastActionHighlight()
+    {
+        if (PaymentHelperLastActionText is null)
+        {
+            return;
+        }
+
+        PaymentHelperLastActionText.FontWeight = FontWeights.SemiBold;
+        PaymentHelperLastActionText.Foreground = new SolidColorBrush(Color.FromRgb(22, 101, 52));
+    }
+
+    private void ResetPaymentHelperSelectedStatusHighlight()
+    {
+        if (PaymentHelperSelectedActionStatusText is null)
+        {
+            return;
+        }
+
+        PaymentHelperSelectedActionStatusText.FontWeight = FontWeights.SemiBold;
+        PaymentHelperSelectedActionStatusText.Foreground = new SolidColorBrush(GetPaymentHelperSelectedActionColor(_lastInvokedPaymentHelperActionKey));
+        if (PaymentHelperSelectedActionStatusButton is not null)
+        {
+            PaymentHelperSelectedActionStatusButton.Background = Brushes.Transparent;
+            PaymentHelperSelectedActionStatusButton.BorderBrush = Brushes.Transparent;
+        }
+        if (PaymentHelperSelectedActionStatusPrefixBorder is not null)
+        {
+            PaymentHelperSelectedActionStatusPrefixBorder.Background = new SolidColorBrush(Color.FromRgb(220, 252, 231));
+            PaymentHelperSelectedActionStatusPrefixBorder.BorderBrush = new SolidColorBrush(Color.FromRgb(134, 239, 172));
+        }
+        if (PaymentHelperSelectedActionStatusPrefixText is not null)
+        {
+            PaymentHelperSelectedActionStatusPrefixText.Foreground = new SolidColorBrush(Color.FromRgb(22, 101, 52));
+        }
+    }
+
+    private void ActivatePaymentHelperReplayFeedback()
+    {
+        _isPaymentHelperReplayFeedbackActive = true;
+        UpdatePaymentHelperSummary(_selectedInvoice);
+
+        _paymentHelperReplayFeedbackTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(_invoiceReviewPreferences.PaymentShortcutReplaySeconds)
+        };
+        _paymentHelperReplayFeedbackTimer.Tick -= PaymentHelperReplayFeedbackTimer_Tick;
+        _paymentHelperReplayFeedbackTimer.Tick += PaymentHelperReplayFeedbackTimer_Tick;
+        _paymentHelperReplayFeedbackTimer.Stop();
+        _paymentHelperReplayFeedbackTimer.Start();
+    }
+
+    private void PaymentHelperReplayFeedbackTimer_Tick(object? sender, EventArgs e)
+    {
+        _paymentHelperReplayFeedbackTimer?.Stop();
+        _isPaymentHelperReplayFeedbackActive = false;
+        UpdatePaymentHelperSummary(_selectedInvoice);
+    }
+
+    private void StartPaymentPdfHelperLastActionHighlight()
+    {
+        if (PaymentPdfHelperLastActionText is null)
+        {
+            return;
+        }
+
+        PaymentPdfHelperLastActionText.FontWeight = FontWeights.Bold;
+        PaymentPdfHelperLastActionText.Foreground = new SolidColorBrush(Color.FromRgb(2, 132, 199));
+
+        _paymentPdfHelperLastActionHighlightTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(2)
+        };
+        _paymentPdfHelperLastActionHighlightTimer.Tick -= PaymentPdfHelperLastActionHighlightTimer_Tick;
+        _paymentPdfHelperLastActionHighlightTimer.Tick += PaymentPdfHelperLastActionHighlightTimer_Tick;
+        _paymentPdfHelperLastActionHighlightTimer.Stop();
+        _paymentPdfHelperLastActionHighlightTimer.Start();
+    }
+
+    private void StartPaymentPdfSelectedStatusHighlight()
+    {
+        if (PaymentPdfSelectedActionStatusText is null)
+        {
+            return;
+        }
+
+        PaymentPdfSelectedActionStatusText.FontWeight = FontWeights.Bold;
+        PaymentPdfSelectedActionStatusText.Foreground = new SolidColorBrush(Color.FromRgb(2, 132, 199));
+        if (PaymentPdfSelectedActionStatusButton is not null)
+        {
+            PaymentPdfSelectedActionStatusButton.Background = new SolidColorBrush(Color.FromRgb(240, 249, 255));
+            PaymentPdfSelectedActionStatusButton.BorderBrush = new SolidColorBrush(Color.FromRgb(125, 211, 252));
+        }
+        if (PaymentPdfSelectedActionStatusPrefixBorder is not null)
+        {
+            PaymentPdfSelectedActionStatusPrefixBorder.Background = new SolidColorBrush(Color.FromRgb(186, 230, 253));
+            PaymentPdfSelectedActionStatusPrefixBorder.BorderBrush = new SolidColorBrush(Color.FromRgb(14, 165, 233));
+        }
+        if (PaymentPdfSelectedActionStatusPrefixText is not null)
+        {
+            PaymentPdfSelectedActionStatusPrefixText.Foreground = new SolidColorBrush(Color.FromRgb(2, 132, 199));
+        }
+
+        _paymentPdfSelectedStatusHighlightTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(1.2)
+        };
+
+        _paymentPdfSelectedStatusHighlightTimer.Stop();
+        _paymentPdfSelectedStatusHighlightTimer.Tick -= PaymentPdfSelectedStatusHighlightTimer_Tick;
+        _paymentPdfSelectedStatusHighlightTimer.Tick += PaymentPdfSelectedStatusHighlightTimer_Tick;
+        _paymentPdfSelectedStatusHighlightTimer.Start();
+    }
+
+    private void PaymentPdfHelperLastActionHighlightTimer_Tick(object? sender, EventArgs e)
+    {
+        _paymentPdfHelperLastActionHighlightTimer?.Stop();
+        ResetPaymentPdfHelperLastActionHighlight();
+    }
+
+    private void PaymentPdfSelectedStatusHighlightTimer_Tick(object? sender, EventArgs e)
+    {
+        _paymentPdfSelectedStatusHighlightTimer?.Stop();
+        ResetPaymentPdfSelectedStatusHighlight();
+    }
+
+    private void ResetPaymentPdfHelperLastActionHighlight()
+    {
+        if (PaymentPdfHelperLastActionText is null)
+        {
+            return;
+        }
+
+        PaymentPdfHelperLastActionText.FontWeight = FontWeights.SemiBold;
+        PaymentPdfHelperLastActionText.Foreground = new SolidColorBrush(Color.FromRgb(3, 105, 161));
+    }
+
+    private void ResetPaymentPdfSelectedStatusHighlight()
+    {
+        if (PaymentPdfSelectedActionStatusText is null)
+        {
+            return;
+        }
+
+        PaymentPdfSelectedActionStatusText.FontWeight = FontWeights.SemiBold;
+        PaymentPdfSelectedActionStatusText.Foreground = new SolidColorBrush(GetPaymentPdfSelectedActionColor(_lastInvokedPaymentPdfHelperActionKey));
+        if (PaymentPdfSelectedActionStatusButton is not null)
+        {
+            PaymentPdfSelectedActionStatusButton.Background = Brushes.Transparent;
+            PaymentPdfSelectedActionStatusButton.BorderBrush = Brushes.Transparent;
+        }
+        if (PaymentPdfSelectedActionStatusPrefixBorder is not null)
+        {
+            PaymentPdfSelectedActionStatusPrefixBorder.Background = new SolidColorBrush(Color.FromRgb(224, 242, 254));
+            PaymentPdfSelectedActionStatusPrefixBorder.BorderBrush = new SolidColorBrush(Color.FromRgb(125, 211, 252));
+        }
+        if (PaymentPdfSelectedActionStatusPrefixText is not null)
+        {
+            PaymentPdfSelectedActionStatusPrefixText.Foreground = new SolidColorBrush(Color.FromRgb(3, 105, 161));
+        }
+    }
+
+    private void ActivatePaymentPdfReplayFeedback()
+    {
+        _isPaymentPdfReplayFeedbackActive = true;
+        var paymentPdfExists = _selectedPayment is not null && _paymentRepository?.PdfFileExists(_selectedPayment) == true;
+        UpdatePaymentPdfHelperSummary(_selectedPayment, paymentPdfExists);
+
+        _paymentPdfReplayFeedbackTimer ??= new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(_invoiceReviewPreferences.PaymentShortcutReplaySeconds)
+        };
+        _paymentPdfReplayFeedbackTimer.Tick -= PaymentPdfReplayFeedbackTimer_Tick;
+        _paymentPdfReplayFeedbackTimer.Tick += PaymentPdfReplayFeedbackTimer_Tick;
+        _paymentPdfReplayFeedbackTimer.Stop();
+        _paymentPdfReplayFeedbackTimer.Start();
+    }
+
+    private static Color GetPaymentHelperSelectedActionColor(string? actionKey)
+    {
+        return actionKey switch
+        {
+            "fill_remaining" => Color.FromRgb(22, 101, 52),
+            "use_last" => Color.FromRgb(13, 148, 136),
+            "use_selected" => Color.FromRgb(109, 40, 217),
+            _ => Color.FromRgb(22, 101, 52),
+        };
+    }
+
+    private static Color GetPaymentPdfSelectedActionColor(string? actionKey)
+    {
+        return actionKey switch
+        {
+            "select_pdf" => Color.FromRgb(3, 105, 161),
+            "open_pdf" => Color.FromRgb(29, 78, 216),
+            _ => Color.FromRgb(3, 105, 161),
+        };
+    }
+
+    private static string GetPaymentHelperRepeatLabel(string? actionKey)
+    {
+        return actionKey switch
+        {
+            "fill_remaining" => "DOLDUR",
+            "use_last" => "KOPYALA",
+            "use_selected" => "UYGULA",
+            _ => "TEKRAR",
+        };
+    }
+
+    private static string GetPaymentPdfRepeatLabel(string? actionKey)
+    {
+        return actionKey switch
+        {
+            "select_pdf" => "SEC",
+            "open_pdf" => "AC",
+            _ => "TEKRAR",
+        };
+    }
+
+    private static string GetPaymentHelperHintLabel(string? actionKey)
+    {
+        return actionKey switch
+        {
+            "fill_remaining" => "Enter/Space Doldur",
+            "use_last" => "Enter/Space Kopyala",
+            "use_selected" => "Enter/Space Uygula",
+            _ => "Enter/Space",
+        };
+    }
+
+    private static string GetPaymentPdfHintLabel(string? actionKey)
+    {
+        return actionKey switch
+        {
+            "select_pdf" => "Enter/Space Sec",
+            "open_pdf" => "Enter/Space Ac",
+            _ => "Enter/Space",
+        };
+    }
+
+    private void PaymentPdfReplayFeedbackTimer_Tick(object? sender, EventArgs e)
+    {
+        _paymentPdfReplayFeedbackTimer?.Stop();
+        _isPaymentPdfReplayFeedbackActive = false;
+        var paymentPdfExists = _selectedPayment is not null && _paymentRepository?.PdfFileExists(_selectedPayment) == true;
+        UpdatePaymentPdfHelperSummary(_selectedPayment, paymentPdfExists);
+    }
+
+    private void ApplyPaymentHelperPrefixReplayVisualState(bool isReplayActive)
+    {
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+        if (PaymentHelperLastActionPrefixBorder is not null)
+        {
+            PaymentHelperLastActionPrefixBorder.Background = new SolidColorBrush(
+                isReplayActive
+                    ? GetPaymentHelperReplayBackground(emphasis)
+                    : Color.FromRgb(220, 252, 231));
+            PaymentHelperLastActionPrefixBorder.BorderBrush = new SolidColorBrush(
+                isReplayActive
+                    ? GetPaymentHelperReplayBorder(emphasis)
+                    : Color.FromRgb(134, 239, 172));
+            PaymentHelperLastActionPrefixBorder.BorderThickness = isReplayActive
+                ? new Thickness(GetReplayBorderThickness(emphasis))
+                : new Thickness(1);
+        }
+
+        if (PaymentHelperLastActionPrefixText is not null)
+        {
+            PaymentHelperLastActionPrefixText.Foreground = new SolidColorBrush(
+                isReplayActive ? Colors.White : Color.FromRgb(22, 101, 52));
+        }
+    }
+
+    private void ApplyPaymentPdfPrefixReplayVisualState(bool isReplayActive)
+    {
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+        if (PaymentPdfHelperLastActionPrefixBorder is not null)
+        {
+            PaymentPdfHelperLastActionPrefixBorder.Background = new SolidColorBrush(
+                isReplayActive
+                    ? GetPaymentPdfReplayBackground(emphasis)
+                    : Color.FromRgb(224, 242, 254));
+            PaymentPdfHelperLastActionPrefixBorder.BorderBrush = new SolidColorBrush(
+                isReplayActive
+                    ? GetPaymentPdfReplayBorder(emphasis)
+                    : Color.FromRgb(125, 211, 252));
+            PaymentPdfHelperLastActionPrefixBorder.BorderThickness = isReplayActive
+                ? new Thickness(GetReplayBorderThickness(emphasis))
+                : new Thickness(1);
+        }
+
+        if (PaymentPdfHelperLastActionPrefixText is not null)
+        {
+            PaymentPdfHelperLastActionPrefixText.Foreground = new SolidColorBrush(
+                isReplayActive ? Colors.White : Color.FromRgb(3, 105, 161));
+        }
+    }
+
+    private void ApplyPaymentHelperReplaySummaryPrefixVisualState(bool isReplayActive)
+    {
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+        if (PaymentHelperReplayPreferencePrefixBorder is not null)
+        {
+            PaymentHelperReplayPreferencePrefixBorder.Background = new SolidColorBrush(
+                isReplayActive
+                    ? GetPaymentHelperReplayBackground(emphasis)
+                    : (string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
+                        ? Color.FromRgb(248, 250, 252)
+                        : Color.FromRgb(236, 253, 245)));
+            PaymentHelperReplayPreferencePrefixBorder.BorderBrush = new SolidColorBrush(
+                isReplayActive
+                    ? GetPaymentHelperReplayBorder(emphasis)
+                    : (string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
+                        ? Color.FromRgb(226, 232, 240)
+                        : Color.FromRgb(187, 247, 208)));
+            PaymentHelperReplayPreferencePrefixBorder.BorderThickness = isReplayActive
+                ? new Thickness(GetReplayBorderThickness(emphasis))
+                : new Thickness(1);
+        }
+
+        if (PaymentHelperReplayPreferencePrefixText is not null)
+        {
+            PaymentHelperReplayPreferencePrefixText.Foreground = new SolidColorBrush(
+                isReplayActive
+                    ? Colors.White
+                    : (string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
+                        ? Color.FromRgb(95, 107, 122)
+                        : Color.FromRgb(22, 101, 52)));
+        }
+
+        if (PaymentHelperReplayPreferenceLevelText is not null)
+        {
+            PaymentHelperReplayPreferenceLevelText.Foreground = new SolidColorBrush(
+                isReplayActive
+                    ? Colors.White
+                    : (string.IsNullOrWhiteSpace(_lastInvokedPaymentHelperActionKey)
+                        ? Color.FromRgb(95, 107, 122)
+                        : Color.FromRgb(22, 101, 52)));
+        }
+    }
+
+    private void ApplyPaymentHelperSelectedStatusReplayVisualState(bool isReplayActive)
+    {
+        if (PaymentHelperSelectedActionRepeatBorder is null || PaymentHelperSelectedActionRepeatText is null)
+        {
+            return;
+        }
+
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+        PaymentHelperSelectedActionRepeatBorder.Background = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentHelperReplayBackground(emphasis)
+                : Color.FromRgb(240, 253, 244));
+        PaymentHelperSelectedActionRepeatBorder.BorderBrush = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentHelperReplayBorder(emphasis)
+                : Color.FromRgb(187, 247, 208));
+        PaymentHelperSelectedActionRepeatBorder.BorderThickness = isReplayActive
+            ? new Thickness(GetReplayBorderThickness(emphasis))
+            : new Thickness(1);
+        PaymentHelperSelectedActionRepeatText.Foreground = new SolidColorBrush(
+            isReplayActive
+                ? Colors.White
+                : Color.FromRgb(22, 101, 52));
+        PaymentHelperSelectedActionRepeatText.FontWeight = isReplayActive
+            ? FontWeights.Bold
+            : FontWeights.SemiBold;
+    }
+
+    private void ApplyPaymentPdfSelectedStatusReplayVisualState(bool isReplayActive)
+    {
+        if (PaymentPdfSelectedActionRepeatBorder is null || PaymentPdfSelectedActionRepeatText is null)
+        {
+            return;
+        }
+
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+        PaymentPdfSelectedActionRepeatBorder.Background = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentPdfReplayBackground(emphasis)
+                : Color.FromRgb(239, 246, 255));
+        PaymentPdfSelectedActionRepeatBorder.BorderBrush = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentPdfReplayBorder(emphasis)
+                : Color.FromRgb(186, 230, 253));
+        PaymentPdfSelectedActionRepeatBorder.BorderThickness = isReplayActive
+            ? new Thickness(GetReplayBorderThickness(emphasis))
+            : new Thickness(1);
+        PaymentPdfSelectedActionRepeatText.Foreground = new SolidColorBrush(
+            isReplayActive
+                ? Colors.White
+                : Color.FromRgb(3, 105, 161));
+        PaymentPdfSelectedActionRepeatText.FontWeight = isReplayActive
+            ? FontWeights.Bold
+            : FontWeights.SemiBold;
+    }
+
+    private void ApplyPaymentHelperSelectedStatusHintReplayVisualState(bool isReplayActive)
+    {
+        if (PaymentHelperSelectedActionHintBorder is null || PaymentHelperSelectedActionHintText is null)
+        {
+            return;
+        }
+
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+        PaymentHelperSelectedActionHintBorder.Background = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentHelperHintReplayBackground(emphasis)
+                : Color.FromRgb(250, 252, 255));
+        PaymentHelperSelectedActionHintBorder.BorderBrush = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentHelperHintReplayBorder(emphasis)
+                : Color.FromRgb(229, 234, 241));
+        PaymentHelperSelectedActionHintBorder.BorderThickness = isReplayActive
+            ? new Thickness(1.5)
+            : new Thickness(1);
+        PaymentHelperSelectedActionHintBorder.Opacity = isReplayActive ? 1 : 0.7;
+        PaymentHelperSelectedActionHintText.Foreground = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentHelperHintReplayText(emphasis)
+                : Color.FromRgb(100, 116, 139));
+        PaymentHelperSelectedActionHintText.FontWeight = isReplayActive
+            ? FontWeights.SemiBold
+            : FontWeights.Normal;
+    }
+
+    private void ApplyPaymentPdfSelectedStatusHintReplayVisualState(bool isReplayActive)
+    {
+        if (PaymentPdfSelectedActionHintBorder is null || PaymentPdfSelectedActionHintText is null)
+        {
+            return;
+        }
+
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+        PaymentPdfSelectedActionHintBorder.Background = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentPdfHintReplayBackground(emphasis)
+                : Color.FromRgb(250, 252, 255));
+        PaymentPdfSelectedActionHintBorder.BorderBrush = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentPdfHintReplayBorder(emphasis)
+                : Color.FromRgb(229, 234, 241));
+        PaymentPdfSelectedActionHintBorder.BorderThickness = isReplayActive
+            ? new Thickness(1.5)
+            : new Thickness(1);
+        PaymentPdfSelectedActionHintBorder.Opacity = isReplayActive ? 1 : 0.7;
+        PaymentPdfSelectedActionHintText.Foreground = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentPdfHintReplayText(emphasis)
+                : Color.FromRgb(100, 116, 139));
+        PaymentPdfSelectedActionHintText.FontWeight = isReplayActive
+            ? FontWeights.SemiBold
+            : FontWeights.Normal;
+    }
+
+    private void ApplyPaymentHelperSelectedStatusDividerReplayVisualState(bool isReplayActive)
+    {
+        if (PaymentHelperSelectedActionDividerText is null)
+        {
+            return;
+        }
+
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+        PaymentHelperSelectedActionDividerText.Foreground = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentHelperDividerReplayColor(emphasis)
+                : Color.FromRgb(148, 163, 184));
+        PaymentHelperSelectedActionDividerText.Opacity = isReplayActive ? 0.95 : 1;
+        PaymentHelperSelectedActionDividerText.FontWeight = isReplayActive
+            ? FontWeights.Bold
+            : FontWeights.SemiBold;
+    }
+
+    private void ApplyPaymentPdfSelectedStatusDividerReplayVisualState(bool isReplayActive)
+    {
+        if (PaymentPdfSelectedActionDividerText is null)
+        {
+            return;
+        }
+
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+        PaymentPdfSelectedActionDividerText.Foreground = new SolidColorBrush(
+            isReplayActive
+                ? GetPaymentPdfDividerReplayColor(emphasis)
+                : Color.FromRgb(148, 163, 184));
+        PaymentPdfSelectedActionDividerText.Opacity = isReplayActive ? 0.95 : 1;
+        PaymentPdfSelectedActionDividerText.FontWeight = isReplayActive
+            ? FontWeights.Bold
+            : FontWeights.SemiBold;
+    }
+
+    private void ApplyPaymentPdfReplaySummaryPrefixVisualState(bool isReplayActive)
+    {
+        var emphasis = _invoiceReviewPreferences.PaymentShortcutReplayEmphasis;
+        if (PaymentPdfReplayPreferencePrefixBorder is not null)
+        {
+            PaymentPdfReplayPreferencePrefixBorder.Background = new SolidColorBrush(
+                isReplayActive
+                    ? GetPaymentPdfReplayBackground(emphasis)
+                    : (string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
+                        ? Color.FromRgb(248, 250, 252)
+                        : Color.FromRgb(240, 249, 255)));
+            PaymentPdfReplayPreferencePrefixBorder.BorderBrush = new SolidColorBrush(
+                isReplayActive
+                    ? GetPaymentPdfReplayBorder(emphasis)
+                    : (string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
+                        ? Color.FromRgb(226, 232, 240)
+                        : Color.FromRgb(186, 230, 253)));
+            PaymentPdfReplayPreferencePrefixBorder.BorderThickness = isReplayActive
+                ? new Thickness(GetReplayBorderThickness(emphasis))
+                : new Thickness(1);
+        }
+
+        if (PaymentPdfReplayPreferencePrefixText is not null)
+        {
+            PaymentPdfReplayPreferencePrefixText.Foreground = new SolidColorBrush(
+                isReplayActive
+                    ? Colors.White
+                    : (string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
+                        ? Color.FromRgb(95, 107, 122)
+                        : Color.FromRgb(3, 105, 161)));
+        }
+
+        if (PaymentPdfReplayPreferenceLevelText is not null)
+        {
+            PaymentPdfReplayPreferenceLevelText.Foreground = new SolidColorBrush(
+                isReplayActive
+                    ? Colors.White
+                    : (string.IsNullOrWhiteSpace(_lastInvokedPaymentPdfHelperActionKey)
+                        ? Color.FromRgb(95, 107, 122)
+                        : Color.FromRgb(3, 105, 161)));
+        }
+    }
+
+    private void SelectReplayPreferenceOptions()
+    {
+        if (PaymentShortcutReplaySecondsComboBox?.ItemsSource is IEnumerable<ReplaySecondsOption> secondOptions)
+        {
+            PaymentShortcutReplaySecondsComboBox.SelectedItem = secondOptions
+                .FirstOrDefault(item => item.Seconds == _invoiceReviewPreferences.PaymentShortcutReplaySeconds)
+                ?? secondOptions.First();
+        }
+
+        if (PaymentShortcutReplayEmphasisComboBox?.ItemsSource is IEnumerable<ReplayEmphasisOption> emphasisOptions)
+        {
+            PaymentShortcutReplayEmphasisComboBox.SelectedItem = emphasisOptions
+                .FirstOrDefault(item => string.Equals(item.Value, _invoiceReviewPreferences.PaymentShortcutReplayEmphasis, StringComparison.OrdinalIgnoreCase))
+                ?? emphasisOptions.First();
+        }
+    }
+
+    private static double GetReplayBorderThickness(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => 1.5,
+            "high" => 3,
+            _ => 2
+        };
+    }
+
+    private static Color GetPaymentHelperReplayBackground(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(74, 222, 128),
+            "high" => Color.FromRgb(22, 163, 74),
+            _ => Color.FromRgb(34, 197, 94)
+        };
+    }
+
+    private static Color GetPaymentHelperReplayBorder(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(22, 163, 74),
+            "high" => Color.FromRgb(21, 128, 61),
+            _ => Color.FromRgb(21, 128, 61)
+        };
+    }
+
+    private static Color GetPaymentPdfReplayBackground(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(56, 189, 248),
+            "high" => Color.FromRgb(2, 132, 199),
+            _ => Color.FromRgb(14, 165, 233)
+        };
+    }
+
+    private static Color GetPaymentPdfReplayBorder(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(14, 165, 233),
+            "high" => Color.FromRgb(3, 105, 161),
+            _ => Color.FromRgb(3, 105, 161)
+        };
+    }
+
+    private static Color GetPaymentHelperHintReplayBackground(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(240, 253, 244),
+            "high" => Color.FromRgb(220, 252, 231),
+            _ => Color.FromRgb(236, 253, 245)
+        };
+    }
+
+    private static Color GetPaymentHelperHintReplayBorder(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(187, 247, 208),
+            "high" => Color.FromRgb(74, 222, 128),
+            _ => Color.FromRgb(134, 239, 172)
+        };
+    }
+
+    private static Color GetPaymentHelperHintReplayText(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(22, 101, 52),
+            "high" => Color.FromRgb(21, 128, 61),
+            _ => Color.FromRgb(22, 101, 52)
+        };
+    }
+
+    private static Color GetPaymentPdfHintReplayBackground(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(240, 249, 255),
+            "high" => Color.FromRgb(224, 242, 254),
+            _ => Color.FromRgb(239, 246, 255)
+        };
+    }
+
+    private static Color GetPaymentPdfHintReplayBorder(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(186, 230, 253),
+            "high" => Color.FromRgb(125, 211, 252),
+            _ => Color.FromRgb(125, 211, 252)
+        };
+    }
+
+    private static Color GetPaymentPdfHintReplayText(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(3, 105, 161),
+            "high" => Color.FromRgb(2, 132, 199),
+            _ => Color.FromRgb(3, 105, 161)
+        };
+    }
+
+    private static Color GetPaymentHelperDividerReplayColor(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(74, 222, 128),
+            "high" => Color.FromRgb(21, 128, 61),
+            _ => Color.FromRgb(34, 197, 94)
+        };
+    }
+
+    private static Color GetPaymentPdfDividerReplayColor(string emphasis)
+    {
+        return emphasis switch
+        {
+            "low" => Color.FromRgb(56, 189, 248),
+            "high" => Color.FromRgb(3, 105, 161),
+            _ => Color.FromRgb(14, 165, 233)
+        };
+    }
+
     private sealed record MonthOption(int Value, string Label);
+    private sealed record ReplaySecondsOption(string Label, int Seconds)
+    {
+        public override string ToString() => Label;
+    }
+    private sealed record ReplayEmphasisOption(string Label, string Value)
+    {
+        public override string ToString() => Label;
+    }
 
     private sealed record InvoiceTypeFilterOption(string Label, long? InvoiceTypeId);
 
@@ -1762,7 +4241,11 @@ public partial class InvoicesView : UserControl
     private sealed record PdfStatusFilterOption(string Label, InvoicePdfStatusFilter Value);
 
     private sealed record ReviewStatusFilterOption(string Label, InvoiceReviewStatusFilter Value);
+
+    private sealed record ReviewActionBadge(string Prefix, string Text, string Kind, string ActionKey, string ToolTip, bool IsSelected);
 }
+
+
 
 
 

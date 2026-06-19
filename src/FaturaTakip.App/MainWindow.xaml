@@ -50,10 +50,309 @@
             <Setter Property="MinWidth" Value="96" />
             <Setter Property="Cursor" Value="Hand" />
         </Style>
+        <Style x:Key="PaymentsFlowPrimaryActionButton" TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="#BFDBFE" />
+                    <Setter Property="Background" Value="#2563EB" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentsFlowSecondaryActionButton" TargetType="Button" BasedOn="{StaticResource SecondaryButton}">
+            <Setter Property="Background" Value="#F2F6FB" />
+            <Setter Property="BorderBrush" Value="#D6E2EE" />
+            <Setter Property="Foreground" Value="#475569" />
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="#93C5FD" />
+                    <Setter Property="Background" Value="#F8FBFF" />
+                    <Setter Property="Foreground" Value="#1D4ED8" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="FieldLabel" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#334155" />
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="Margin" Value="0,0,0,6" />
+        </Style>
+        <Style x:Key="FlowBadgeBorder" TargetType="Border">
+            <Setter Property="CornerRadius" Value="999" />
+            <Setter Property="Padding" Value="8,3" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+        <Style x:Key="FlowBadgeText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style x:Key="PaymentsSummaryCard" TargetType="Border" BasedOn="{StaticResource TileBorder}">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="#DDE4EC" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F8FBFF" />
+                    <Setter Property="BorderBrush" Value="#93C5FD" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentsFlowCard" TargetType="Border">
+            <Setter Property="Background" Value="#F8FAFC" />
+            <Setter Property="BorderBrush" Value="#DDE4EC" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="14" />
+            <Setter Property="Opacity" Value="0.99" />
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F8FAFE" />
+                    <Setter Property="BorderBrush" Value="#C9DCF4" />
+                </Trigger>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                             To="1"
+                                             Duration="0:0:0.16" />
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
+                                             To="1.005"
+                                             Duration="0:0:0.16" />
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
+                                             To="1.005"
+                                             Duration="0:0:0.16" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                             To="0.99"
+                                             Duration="0:0:0.16" />
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
+                                             To="1"
+                                             Duration="0:0:0.16" />
+                            <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
+                                             To="1"
+                                             Duration="0:0:0.16" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentsOpsCard" TargetType="Border" BasedOn="{StaticResource TileBorder}">
+            <Setter Property="Background" Value="#FCFDFE" />
+            <Setter Property="BorderBrush" Value="#D9E2EC" />
+            <Setter Property="Padding" Value="16" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+        </Style>
+        <Style x:Key="PaymentsOpsItemBorder" TargetType="Border">
+            <Setter Property="Background" Value="#F8FAFC" />
+            <Setter Property="BorderBrush" Value="#E2E8F0" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="0,0,0,8" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F8FBFF" />
+                    <Setter Property="BorderBrush" Value="#CBD5E1" />
+                </Trigger>
+                <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                    <Setter Property="Background" Value="#EFF6FF" />
+                    <Setter Property="BorderBrush" Value="#60A5FA" />
+                    <Setter Property="BorderThickness" Value="2" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentsOpsStatusBadge" TargetType="Border">
+            <Setter Property="CornerRadius" Value="999" />
+            <Setter Property="Padding" Value="8,2" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Margin" Value="0,6,0,0" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+        <Style x:Key="PaymentsFilterButton" TargetType="Button" BasedOn="{StaticResource SecondaryButton}">
+            <Setter Property="Padding" Value="10,4" />
+            <Setter Property="MinWidth" Value="0" />
+            <Setter Property="Margin" Value="0,0,8,0" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="Background" Value="#F8FAFC" />
+            <Setter Property="BorderBrush" Value="#D8E2EC" />
+            <Setter Property="Foreground" Value="#475569" />
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="Background" Value="#DBEAFE" />
+                    <Setter Property="BorderBrush" Value="#2563EB" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="Foreground" Value="#1D4ED8" />
+                    <Setter Property="FontWeight" Value="SemiBold" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentsOpsActionButton" TargetType="Button" BasedOn="{StaticResource SecondaryButton}">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="Background" Value="#EFF6FF" />
+                    <Setter Property="BorderBrush" Value="#2563EB" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="Foreground" Value="#1D4ED8" />
+                    <Setter Property="FontWeight" Value="SemiBold" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentsPrimaryActionButton" TargetType="Button" BasedOn="{StaticResource PaymentsOpsActionButton}">
+            <Setter Property="Padding" Value="12,3" />
+        </Style>
+        <Style x:Key="PaymentsResetFilterButton" TargetType="Button" BasedOn="{StaticResource PaymentsOpsActionButton}">
+            <Setter Property="Grid.Column" Value="2" />
+            <Setter Property="Background" Value="#FAFBFC" />
+            <Setter Property="BorderBrush" Value="#CDD8E3" />
+            <Setter Property="Foreground" Value="#64748B" />
+            <Setter Property="FontSize" Value="10.5" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="MinWidth" Value="92" />
+            <Setter Property="Padding" Value="8,1" />
+            <Setter Property="Margin" Value="4,1,2,0" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F6F8FA" />
+                    <Setter Property="BorderBrush" Value="#C7D2DE" />
+                    <Setter Property="Foreground" Value="#526275" />
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="Background" Value="#EEF2F6" />
+                    <Setter Property="BorderBrush" Value="#5B6B7C" />
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="Foreground" Value="#334155" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentsActionHintText" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="Text" Value="Sonuc yoksa farkli bir filtre secin veya Hepsini Goster ile geri donun." />
+            <Setter Property="Foreground" Value="#64748B" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="LineHeight" Value="15" />
+            <Setter Property="LineStackingStrategy" Value="BlockLineHeight" />
+            <Setter Property="Margin" Value="10,2,8,0" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="PaymentsActionRowGrid" TargetType="Grid">
+            <Setter Property="Margin" Value="0,8,0,0" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+        </Style>
+        <Style x:Key="PaymentsSectionGrid" TargetType="Grid">
+            <Setter Property="Margin" Value="0,22,0,0" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+        </Style>
+        <Style x:Key="PaymentsFilterRow" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="Margin" Value="0,10,0,0" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+        </Style>
+        <Style x:Key="PaymentsSectionStack" TargetType="StackPanel">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+        </Style>
+        <Style x:Key="PaymentsSectionItemsControl" TargetType="ItemsControl">
+            <Setter Property="Margin" Value="0,14,0,0" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+        </Style>
+        <Style x:Key="PaymentsItemGrid" TargetType="Grid">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+        </Style>
+        <Style x:Key="PaymentsItemLeftStack" TargetType="StackPanel">
+            <Setter Property="Grid.Column" Value="0" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+        <Style x:Key="PaymentsItemRightStack" TargetType="StackPanel">
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="Margin" Value="16,0,0,0" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+        </Style>
+        <Style x:Key="PaymentsSectionTitle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#1F2937" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+        </Style>
+        <Style x:Key="PaymentsSummaryText" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
+            <Setter Property="Margin" Value="0,6,0,0" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="PaymentsItemMetaText" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
+            <Setter Property="Margin" Value="0,4,0,0" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="PaymentsItemTitleText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#1F2937" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <Style x:Key="PaymentsItemAmountText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+        <Style x:Key="PaymentsItemStatusText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+        <Style x:Key="PaymentsItemOpenButton" TargetType="Button" BasedOn="{StaticResource PaymentsOpsActionButton}">
+            <Setter Property="Content" Value="Ac" />
+            <Setter Property="Margin" Value="0,8,0,0" />
+            <Setter Property="Padding" Value="10,3" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+        <Style x:Key="PaymentsActiveFilterText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#1D4ED8" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
+        </Style>
+        <Style x:Key="PaymentsActiveFilterBadge" TargetType="Border">
+            <Setter Property="Background" Value="#EFF6FF" />
+            <Setter Property="BorderBrush" Value="#BFDBFE" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="999" />
+            <Setter Property="Padding" Value="8,3" />
+            <Setter Property="Margin" Value="0,6,0,0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="UseLayoutRounding" Value="True" />
         </Style>
     </Window.Resources>
 
@@ -99,9 +398,10 @@
                             Content="Faturalar"
                             Style="{StaticResource NavButton}"
                             Click="InvoicesNavButton_Click" />
-                    <TextBlock Text="Ödemeler"
-                               Foreground="#64748B"
-                               Margin="0,0,0,14" />
+                    <Button x:Name="PaymentsNavButton"
+                            Content="Odemeler"
+                            Style="{StaticResource NavButton}"
+                            Click="PaymentsNavButton_Click" />
                     <Button x:Name="ReportsNavButton"
                             Content="Raporlar"
                             Style="{StaticResource NavButton}"
@@ -686,6 +986,806 @@
                                 Visibility="Collapsed"
                                 InvoicesChanged="InvoicesPanel_InvoicesChanged" />
 
+            <ScrollViewer x:Name="PaymentsPanel"
+                          Visibility="Collapsed"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+            <Grid Margin="0,0,4,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="28" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <TextBlock Text="Odemeler"
+                                   Foreground="#1F2937"
+                                   FontSize="28"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Text="Odeme kayitlari su an Faturalar ekranindaki odeme alaninda yonetiliyor."
+                                   Style="{StaticResource MutedText}"
+                                   Margin="0,6,0,0" />
+                        <Border x:Name="PaymentsFeaturedSummaryCard"
+                                Style="{StaticResource PaymentsOpsCard}"
+                                Margin="0,14,0,0"
+                                MaxWidth="560">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="One Cikan Kayit"
+                                               Foreground="#1F2937"
+                                               FontSize="14"
+                                               FontWeight="SemiBold" />
+                                    <TextBlock x:Name="PaymentsFeaturedTitleText"
+                                               Text="Oncelikli odeme kaydi hazir degil."
+                                               Foreground="#0F172A"
+                                               FontSize="13"
+                                               FontWeight="SemiBold"
+                                               Margin="0,8,0,0"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock x:Name="PaymentsFeaturedMetaText"
+                                               Text="Bekleyen ya da son odeme baglami olustugunda burada gorunur."
+                                               Style="{StaticResource MutedText}"
+                                               Margin="0,4,0,0"
+                                               TextWrapping="Wrap" />
+                                    <Border x:Name="PaymentsFeaturedStatusBadge"
+                                            Style="{StaticResource PaymentsOpsStatusBadge}"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,10,0,0">
+                                        <TextBlock x:Name="PaymentsFeaturedStatusText"
+                                                   Text="HAZIR DEGIL"
+                                                   FontSize="10"
+                                                   FontWeight="SemiBold" />
+                                    </Border>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1"
+                                            Margin="16,0,0,0"
+                                            HorizontalAlignment="Right">
+                                    <TextBlock x:Name="PaymentsFeaturedAmountText"
+                                               Text="0,00"
+                                               Foreground="#166534"
+                                               FontSize="18"
+                                               FontWeight="SemiBold"
+                                               HorizontalAlignment="Right" />
+                                    <TextBlock x:Name="PaymentsFeaturedHintText"
+                                               Text="Oncelik olusunca hizli acis burada hazirlanir."
+                                               Style="{StaticResource MutedText}"
+                                               Margin="0,6,0,0"
+                                               HorizontalAlignment="Right"
+                                               TextWrapping="Wrap" />
+                                    <Button x:Name="PaymentsOpenFeaturedButton"
+                                            Content="Kaydi Ac"
+                                            Style="{StaticResource PrimaryButton}"
+                                            Margin="0,10,0,0"
+                                            Padding="12,4"
+                                            HorizontalAlignment="Right"
+                                            Click="OpenFeaturedPaymentsInvoiceButton_Click" />
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+
+                    <Border Grid.Column="2"
+                            Style="{StaticResource PaymentsOpsCard}"
+                            Width="340"
+                            Margin="0,50,0,0"
+                            VerticalAlignment="Top">
+                        <StackPanel>
+                            <TextBlock Text="Hizli Yonler"
+                                       Foreground="#1F2937"
+                                       FontSize="14"
+                                       FontWeight="SemiBold" />
+                            <TextBlock x:Name="PaymentsHeaderHintText"
+                                       Text="Soldaki yol calisma ekranina, sagdaki yol rapor ve kontrol ekranlarina goturur."
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,8,0,0"
+                                       TextWrapping="Wrap" />
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,14,0,0">
+                                <Button Content="Fatura Listesine Git"
+                                        Style="{StaticResource SecondaryButton}"
+                                        Margin="0,0,8,0"
+                                        MouseEnter="PaymentsHeaderAction_MouseEnter"
+                                        MouseLeave="PaymentsHintSource_MouseLeave"
+                                        Tag="header_invoices"
+                                        Click="OpenInvoicesFromPaymentsButton_Click" />
+                                <Button Content="Rapor Merkezine Git"
+                                        Style="{StaticResource PrimaryButton}"
+                                        MouseEnter="PaymentsHeaderAction_MouseEnter"
+                                        MouseLeave="PaymentsHintSource_MouseLeave"
+                                        Tag="header_reports"
+                                        Click="OpenReportsFromPaymentsButton_Click" />
+                            </StackPanel>
+                            <Border x:Name="PaymentsLastRouteBadgeBorder"
+                                    Background="#E2E8F0"
+                                    BorderBrush="#CBD5E1"
+                                    BorderThickness="1"
+                                    CornerRadius="999"
+                                    Padding="8,3"
+                                    Margin="0,12,0,0"
+                                    HorizontalAlignment="Left">
+                                <TextBlock x:Name="PaymentsLastRouteBadgeText"
+                                           Text="SON YOL: GENEL"
+                                           Foreground="#475569"
+                                           FontSize="11"
+                                           FontWeight="SemiBold" />
+                            </Border>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <UniformGrid Grid.Row="1"
+                             Columns="3"
+                             Margin="0,24,0,24">
+                    <Border Style="{StaticResource PaymentsSummaryCard}"
+                            x:Name="PaymentsMonthlySummaryCard"
+                            Margin="0,0,12,0"
+                            Tag="summary_monthly"
+                            MouseEnter="PaymentsHintSource_MouseEnter"
+                            MouseLeave="PaymentsHintSource_MouseLeave">
+                        <StackPanel>
+                            <Border Style="{StaticResource FlowBadgeBorder}"
+                                    Background="#DBEAFE"
+                                    BorderBrush="#93C5FD">
+                                <TextBlock Text="AYLIK RAPOR"
+                                           Style="{StaticResource FlowBadgeText}"
+                                           Foreground="#1D4ED8" />
+                            </Border>
+                            <TextBlock Text="Bu Ay Odeme" Style="{StaticResource MutedText}" />
+                            <TextBlock x:Name="PaymentsMonthlyTotalText"
+                                       Text="0,00"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="28"
+                                       FontWeight="SemiBold" />
+                            <TextBlock x:Name="PaymentsMonthlyCountText"
+                                       Text="0 kayit"
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,6,0,0" />
+                            <TextBlock x:Name="PaymentsMonthlyActiveRouteNote"
+                                       Text="Aktif yol"
+                                       Foreground="#1D4ED8"
+                                       FontSize="11"
+                                       FontWeight="SemiBold"
+                                       Margin="0,6,0,0"
+                                       Visibility="Collapsed" />
+                            <TextBlock Text="Bu kart aylik odeme raporunun toplu gorunumu ile baglidir."
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,8,0,0"
+                                       TextWrapping="Wrap" />
+                            <TextBlock Text="↓ Alt akista RAPOR karti ile birlikte okunur."
+                                       Foreground="#1D4ED8"
+                                       FontSize="11"
+                                       FontWeight="SemiBold"
+                                       Margin="0,6,0,0"
+                                       TextWrapping="Wrap" />
+                            <Button Content="Aylik Rapora Git"
+                                    x:Name="PaymentsMonthlyActionButton"
+                                    Style="{StaticResource SecondaryButton}"
+                                    Margin="0,14,0,0"
+                                    HorizontalAlignment="Left"
+                                    Click="OpenMonthlyReportFromPaymentsButton_Click" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource PaymentsSummaryCard}"
+                            x:Name="PaymentsMissingPdfSummaryCard"
+                            Margin="0,0,12,0"
+                            Tag="summary_missing_pdf"
+                            MouseEnter="PaymentsHintSource_MouseEnter"
+                            MouseLeave="PaymentsHintSource_MouseLeave">
+                        <StackPanel>
+                            <Border Style="{StaticResource FlowBadgeBorder}"
+                                    Background="#F0F9FF"
+                                    BorderBrush="#BAE6FD">
+                                <TextBlock Text="EVRAK KONTROLU"
+                                           Style="{StaticResource FlowBadgeText}"
+                                           Foreground="#0369A1" />
+                            </Border>
+                            <TextBlock Text="Odeme PDF Eksik" Style="{StaticResource MutedText}" />
+                            <TextBlock x:Name="PaymentsMissingPdfCountText"
+                                       Text="0"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="28"
+                                       FontWeight="SemiBold" />
+                            <TextBlock Text="Evragi eksik odemeler"
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,6,0,0" />
+                            <TextBlock x:Name="PaymentsMissingPdfActiveRouteNote"
+                                       Text="Aktif yol"
+                                       Foreground="#0369A1"
+                                       FontSize="11"
+                                       FontWeight="SemiBold"
+                                       Margin="0,6,0,0"
+                                       Visibility="Collapsed" />
+                            <TextBlock Text="Kontrol raporu uzerinden eksik odeme PDF kayitlarini ayiklar."
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,8,0,0"
+                                       TextWrapping="Wrap" />
+                            <TextBlock Text="↓ Alt akista EVRAK karti ile birlikte okunur."
+                                       Foreground="#0369A1"
+                                       FontSize="11"
+                                       FontWeight="SemiBold"
+                                       Margin="0,6,0,0"
+                                       TextWrapping="Wrap" />
+                            <Button Content="Kontrol Raporuna Git"
+                                    x:Name="PaymentsMissingPdfActionButton"
+                                    Style="{StaticResource SecondaryButton}"
+                                    Margin="0,14,0,0"
+                                    HorizontalAlignment="Left"
+                                    Click="OpenDocumentHealthReportFromPaymentsButton_Click" />
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource PaymentsSummaryCard}"
+                            x:Name="PaymentsUnpaidSummaryCard"
+                            Tag="summary_unpaid"
+                            MouseEnter="PaymentsHintSource_MouseEnter"
+                            MouseLeave="PaymentsHintSource_MouseLeave">
+                        <StackPanel>
+                            <Border Style="{StaticResource FlowBadgeBorder}"
+                                    Background="#ECFDF5"
+                                    BorderBrush="#BBF7D0">
+                                <TextBlock Text="ODEME CALISMASI"
+                                           Style="{StaticResource FlowBadgeText}"
+                                           Foreground="#166534" />
+                            </Border>
+                            <TextBlock Text="Odenmemis Faturalar" Style="{StaticResource MutedText}" />
+                            <TextBlock x:Name="PaymentsUnpaidInvoiceCountText"
+                                       Text="0"
+                                       Margin="0,10,0,0"
+                                       Foreground="#111827"
+                                       FontSize="28"
+                                       FontWeight="SemiBold" />
+                            <TextBlock x:Name="PaymentsUnpaidRemainingText"
+                                       Text="Kalan 0,00"
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,6,0,0" />
+                            <TextBlock x:Name="PaymentsUnpaidActiveRouteNote"
+                                       Text="Aktif yol"
+                                       Foreground="#166534"
+                                       FontSize="11"
+                                       FontWeight="SemiBold"
+                                       Margin="0,6,0,0"
+                                       Visibility="Collapsed" />
+                            <TextBlock Text="Odeme alani, odenmemis kayitlara gecis icin hizli calisma kartidir."
+                                       Style="{StaticResource MutedText}"
+                                       Margin="0,8,0,0"
+                                       TextWrapping="Wrap" />
+                            <TextBlock Text="↓ Alt akista ISLEM ve RAPOR yollarina baglanir."
+                                       Foreground="#166534"
+                                       FontSize="11"
+                                       FontWeight="SemiBold"
+                                       Margin="0,6,0,0"
+                                       TextWrapping="Wrap" />
+                            <Button Content="Odeme Akisina Git"
+                                    x:Name="PaymentsUnpaidActionButton"
+                                    Style="{StaticResource SecondaryButton}"
+                                    Margin="0,14,0,0"
+                                    HorizontalAlignment="Left"
+                                    Click="OpenInvoicePaymentWorkspaceButton_Click" />
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <Border Grid.Row="2" Style="{StaticResource TileBorder}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Odeme Is Akisi"
+                                   Foreground="#1F2937"
+                                   FontSize="18"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Grid.Row="1"
+                                   Margin="0,14,0,0"
+                                   Text="Odeme ekleme, taslak yardimlari, secili odemeden kopyalama ve odeme PDF evragi islemleri Faturalar ekraninda secili fatura baglaminda calisir."
+                                   Foreground="#334155"
+                                   TextWrapping="Wrap" />
+                        <TextBlock x:Name="PaymentsFlowContextText"
+                                   Grid.Row="1"
+                                   Margin="0,44,0,0"
+                                   Foreground="#5F6B7A"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Text="Aktif kolon secildiginde ilgili akis burada kisaca ozetlenir."
+                                   TextWrapping="Wrap" />
+                        <UniformGrid Grid.Row="2"
+                                     Columns="3"
+                                     Margin="0,18,0,0">
+                            <Border Style="{StaticResource PaymentsFlowCard}"
+                                    x:Name="PaymentsWorkspaceFlowCard"
+                                    Tag="flow_workspace"
+                                    MouseEnter="PaymentsHintSource_MouseEnter"
+                                    MouseLeave="PaymentsHintSource_MouseLeave"
+                                    Margin="0,0,12,0">
+                                <StackPanel>
+                                    <Border Style="{StaticResource FlowBadgeBorder}"
+                                            Background="#DCFCE7"
+                                            BorderBrush="#86EFAC">
+                                        <TextBlock Text="ISLEM"
+                                                   Style="{StaticResource FlowBadgeText}"
+                                                   Foreground="#166534" />
+                                    </Border>
+                                    <Border x:Name="PaymentsWorkspaceActiveColumnBadge"
+                                            Background="#166534"
+                                            BorderBrush="#166534"
+                                            BorderThickness="1"
+                                            CornerRadius="999"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,5,0,0"
+                                            Padding="6,2"
+                                            Visibility="Collapsed">
+                                        <TextBlock Text="AKTIF KOLON"
+                                                   Foreground="White"
+                                                   FontSize="9"
+                                                   FontWeight="Normal" />
+                                    </Border>
+                                    <TextBlock x:Name="PaymentsWorkspaceTitleText"
+                                               Text="Fatura icinde odeme ekleme ve taslak yardimlari"
+                                               Foreground="#1F2937"
+                                               FontSize="13"
+                                               FontWeight="SemiBold"
+                                               Margin="0,6,0,0"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock x:Name="PaymentsWorkspaceDescriptionText"
+                                               Text="Odenmemis filtre ile odeme giris alanina gecer."
+                                               Style="{StaticResource MutedText}"
+                                               Foreground="#6B7280"
+                                               Margin="0,5,0,0"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock Text="Ustte Odenmemis Faturalar ozeti ile baglidir."
+                                               Foreground="#15803D"
+                                               FontSize="11"
+                                               FontWeight="Normal"
+                                               Margin="0,5,0,0"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock x:Name="PaymentsWorkspaceActiveRouteNote"
+                                               Text="Aktif yol"
+                                               Foreground="#22A35A"
+                                               FontSize="10"
+                                               FontWeight="Normal"
+                                               Margin="0,3,0,0"
+                                               Visibility="Collapsed" />
+                                    <TextBlock x:Name="PaymentsWorkspaceTargetText"
+                                               Text="Hedef: Faturalar ekraninda odeme alanini ac."
+                                               Foreground="#166534"
+                                               FontSize="11"
+                                               FontWeight="SemiBold"
+                                               LineHeight="16"
+                                               LineStackingStrategy="BlockLineHeight"
+                                               Margin="0,6,0,0"
+                                               TextWrapping="Wrap"
+                                               Visibility="Collapsed" />
+                                    <TextBlock x:Name="PaymentsWorkspaceNextStepText"
+                                               Text="Sonraki adim: uygun kaydi secip odeme tarihini ve tutari gir."
+                                               Foreground="#2F8F57"
+                                               FontSize="10"
+                                               LineHeight="15"
+                                               LineStackingStrategy="BlockLineHeight"
+                                               Margin="0,1,0,0"
+                                               TextWrapping="Wrap"
+                                               Visibility="Collapsed" />
+                                    <Border x:Name="PaymentsWorkspaceShortcutHint"
+                                            Background="#F0FDF4"
+                                            BorderBrush="#BBF7D0"
+                                            BorderThickness="1"
+                                            CornerRadius="999"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,4,0,0"
+                                            Padding="7,2"
+                                            Visibility="Collapsed">
+                                        <TextBlock Text="Enter ile ac"
+                                                   Foreground="#16A34A"
+                                                   FontSize="9"
+                                                   FontWeight="Normal" />
+                                    </Border>
+                                    <Button Content="Odeme Alanini Ac"
+                                            x:Name="PaymentsWorkspaceActionButton"
+                                            Style="{StaticResource PaymentsFlowPrimaryActionButton}"
+                                            Margin="0,5,0,0"
+                                            HorizontalAlignment="Left"
+                                            ToolTip="Faturalar ekraninda odeme alanini acar. Enter ile tetiklenebilir."
+                                            Click="OpenInvoicePaymentWorkspaceButton_Click" />
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource PaymentsFlowCard}"
+                                    x:Name="PaymentsDocumentFlowCard"
+                                    Tag="flow_document"
+                                    MouseEnter="PaymentsHintSource_MouseEnter"
+                                    MouseLeave="PaymentsHintSource_MouseLeave"
+                                    Margin="0,0,12,0">
+                                <StackPanel>
+                                    <Border Style="{StaticResource FlowBadgeBorder}"
+                                            Background="#DBEAFE"
+                                            BorderBrush="#93C5FD">
+                                        <TextBlock Text="EVRAK"
+                                                   Style="{StaticResource FlowBadgeText}"
+                                                   Foreground="#1D4ED8" />
+                                    </Border>
+                                    <Border x:Name="PaymentsDocumentActiveColumnBadge"
+                                            Background="#2563EB"
+                                            BorderBrush="#2563EB"
+                                            BorderThickness="1"
+                                            CornerRadius="999"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,5,0,0"
+                                            Padding="6,2"
+                                            Visibility="Collapsed">
+                                        <TextBlock Text="AKTIF KOLON"
+                                                   Foreground="White"
+                                                   FontSize="9"
+                                                   FontWeight="Normal" />
+                                    </Border>
+                                    <TextBlock x:Name="PaymentsDocumentTitleText"
+                                               Text="Odeme PDF eksiklerini hizli kontrol et"
+                                               Foreground="#1F2937"
+                                               FontSize="13"
+                                               FontWeight="SemiBold"
+                                               Margin="0,6,0,0"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock x:Name="PaymentsDocumentDescriptionText"
+                                               Text="Eksik odeme evraklarini rapor ekraninda listeler."
+                                               Style="{StaticResource MutedText}"
+                                               Foreground="#6B7280"
+                                               Margin="0,5,0,0"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock Text="Ustte Odeme PDF Eksik ozeti ile baglidir."
+                                               Foreground="#2563EB"
+                                               FontSize="11"
+                                               FontWeight="Normal"
+                                               Margin="0,5,0,0"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock x:Name="PaymentsDocumentActiveRouteNote"
+                                               Text="Aktif yol"
+                                               Foreground="#4B88EF"
+                                               FontSize="10"
+                                               FontWeight="Normal"
+                                               Margin="0,3,0,0"
+                                               Visibility="Collapsed" />
+                                    <TextBlock x:Name="PaymentsDocumentTargetText"
+                                               Text="Hedef: Eksik odeme PDF listesini ac."
+                                               Foreground="#1D4ED8"
+                                               FontSize="11"
+                                               FontWeight="SemiBold"
+                                               LineHeight="16"
+                                               LineStackingStrategy="BlockLineHeight"
+                                               Margin="0,6,0,0"
+                                               TextWrapping="Wrap"
+                                               Visibility="Collapsed" />
+                                    <TextBlock x:Name="PaymentsDocumentNextStepText"
+                                               Text="Sonraki adim: eksik kaydi acip PDF evrakini tamamla."
+                                               Foreground="#4B7FE0"
+                                               FontSize="10"
+                                               LineHeight="15"
+                                               LineStackingStrategy="BlockLineHeight"
+                                               Margin="0,1,0,0"
+                                               TextWrapping="Wrap"
+                                               Visibility="Collapsed" />
+                                    <Border x:Name="PaymentsDocumentShortcutHint"
+                                            Background="#EFF6FF"
+                                            BorderBrush="#BFDBFE"
+                                            BorderThickness="1"
+                                            CornerRadius="999"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,4,0,0"
+                                            Padding="7,2"
+                                            Visibility="Collapsed">
+                                        <TextBlock Text="Enter ile ac"
+                                                   Foreground="#3B82F6"
+                                                   FontSize="9"
+                                                   FontWeight="Normal" />
+                                    </Border>
+                                    <Button Content="Eksik Evrak Raporunu Ac"
+                                            x:Name="PaymentsDocumentActionButton"
+                                            Style="{StaticResource PaymentsFlowSecondaryActionButton}"
+                                            Margin="0,5,0,0"
+                                            HorizontalAlignment="Left"
+                                            ToolTip="Eksik odeme PDF kayitlarini raporda acar. Enter ile tetiklenebilir."
+                                            Click="OpenDocumentHealthReportFromPaymentsButton_Click" />
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource PaymentsFlowCard}"
+                                    x:Name="PaymentsUnpaidReportFlowCard"
+                                    Tag="flow_unpaid_report"
+                                    MouseEnter="PaymentsHintSource_MouseEnter"
+                                    MouseLeave="PaymentsHintSource_MouseLeave">
+                                <StackPanel>
+                                    <Border Style="{StaticResource FlowBadgeBorder}"
+                                            Background="#FEF3C7"
+                                            BorderBrush="#FCD34D">
+                                        <TextBlock Text="RAPOR"
+                                                   Style="{StaticResource FlowBadgeText}"
+                                                   Foreground="#B45309" />
+                                    </Border>
+                                    <Border x:Name="PaymentsUnpaidReportActiveColumnBadge"
+                                            Background="#C2410C"
+                                            BorderBrush="#C2410C"
+                                            BorderThickness="1"
+                                            CornerRadius="999"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,5,0,0"
+                                            Padding="6,2"
+                                            Visibility="Collapsed">
+                                        <TextBlock Text="AKTIF KOLON"
+                                                   Foreground="White"
+                                                   FontSize="9"
+                                                   FontWeight="Normal" />
+                                    </Border>
+                                    <TextBlock x:Name="PaymentsUnpaidReportTitleText"
+                                               Text="Odenmemis bakiyeyi rapor akisinda izle"
+                                               Foreground="#1F2937"
+                                               FontSize="13"
+                                               FontWeight="SemiBold"
+                                               Margin="0,6,0,0"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock x:Name="PaymentsUnpaidReportDescriptionText"
+                                               Text="Kalan toplam ve acik faturalari rapor sekmesinde ac."
+                                               Style="{StaticResource MutedText}"
+                                               Foreground="#6B7280"
+                                               Margin="0,5,0,0"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock Text="Ustte Bu Ay Odeme ve Odenmemis Faturalar ozetleri ile birlikte okunur."
+                                               Foreground="#C2410C"
+                                               FontSize="11"
+                                               FontWeight="Normal"
+                                               Margin="0,5,0,0"
+                                               TextWrapping="Wrap" />
+                                    <TextBlock x:Name="PaymentsUnpaidReportActiveRouteNote"
+                                               Text="Aktif yol"
+                                               Foreground="#E46A28"
+                                               FontSize="10"
+                                               FontWeight="Normal"
+                                               Margin="0,3,0,0"
+                                               Visibility="Collapsed" />
+                                    <TextBlock x:Name="PaymentsUnpaidReportTargetText"
+                                               Text="Hedef: Odenmemisler raporunda acik bakiyeyi incele."
+                                               Foreground="#B45309"
+                                               FontSize="11"
+                                               FontWeight="SemiBold"
+                                               LineHeight="16"
+                                               LineStackingStrategy="BlockLineHeight"
+                                               Margin="0,6,0,0"
+                                               TextWrapping="Wrap"
+                                               Visibility="Collapsed" />
+                                    <TextBlock x:Name="PaymentsUnpaidReportNextStepText"
+                                               Text="Sonraki adim: acik bakiyeyi filtreleyip uygun tahsilat kaydina ilerle."
+                                               Foreground="#CB6432"
+                                               FontSize="10"
+                                               LineHeight="15"
+                                               LineStackingStrategy="BlockLineHeight"
+                                               Margin="0,1,0,0"
+                                               TextWrapping="Wrap"
+                                               Visibility="Collapsed" />
+                                    <Border x:Name="PaymentsUnpaidReportShortcutHint"
+                                            Background="#FFFBEB"
+                                            BorderBrush="#FDE68A"
+                                            BorderThickness="1"
+                                            CornerRadius="999"
+                                            HorizontalAlignment="Left"
+                                            Margin="0,4,0,0"
+                                            Padding="7,2"
+                                            Visibility="Collapsed">
+                                        <TextBlock Text="Enter ile ac"
+                                                   Foreground="#EA580C"
+                                                   FontSize="9"
+                                                   FontWeight="Normal" />
+                                    </Border>
+                                    <Button Content="Odenmemisler Raporunu Ac"
+                                            x:Name="PaymentsUnpaidReportActionButton"
+                                            Style="{StaticResource PaymentsFlowSecondaryActionButton}"
+                                            Margin="0,5,0,0"
+                                            HorizontalAlignment="Left"
+                                            ToolTip="Odenmemis faturalar raporunu acar. Enter ile tetiklenebilir."
+                                            Click="OpenUnpaidReportFromPaymentsButton_Click" />
+                                </StackPanel>
+                            </Border>
+                        </UniformGrid>
+
+                        <Grid Grid.Row="3"
+                              Style="{StaticResource PaymentsSectionGrid}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="16" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0"
+                                    Style="{StaticResource PaymentsOpsCard}">
+                                <StackPanel Style="{StaticResource PaymentsSectionStack}">
+                                    <TextBlock Text="Odeme Calisma Kuyrugu"
+                                               Style="{StaticResource PaymentsSectionTitle}" />
+                                    <TextBlock x:Name="PaymentsQueueSummaryText"
+                                               Text="Odenmemis odemeler burada listelenir."
+                                               Style="{StaticResource PaymentsSummaryText}" />
+                                    <StackPanel Style="{StaticResource PaymentsFilterRow}">
+                                        <Button x:Name="PaymentsQueueFilterAllButton"
+                                                Content="Hepsi"
+                                                Style="{StaticResource PaymentsFilterButton}"
+                                                ToolTip="En yakin bes kuyruk kaydinin tamamini gosterir."
+                                                Click="PaymentsQueueFilterButton_Click" />
+                                        <Button x:Name="PaymentsQueueFilterUrgentButton"
+                                                Content="Acil"
+                                                Style="{StaticResource PaymentsFilterButton}"
+                                                ToolTip="En yakin bes kayit icindeki acil odemeleri gosterir."
+                                                Click="PaymentsQueueFilterButton_Click" />
+                                        <Button x:Name="PaymentsQueueFilterMissingPdfButton"
+                                                Content="PDF Eksik"
+                                                Style="{StaticResource PaymentsFilterButton}"
+                                                ToolTip="En yakin bes kayit icindeki PDF eksik faturalarini gosterir."
+                                                Click="PaymentsQueueFilterButton_Click" />
+                                    </StackPanel>
+                                    <Border x:Name="PaymentsQueueActiveFilterBadge"
+                                            Style="{StaticResource PaymentsActiveFilterBadge}"
+                                            ToolTip="Odeme kuyrugunda uygulanan guncel gorunumu gosterir.">
+                                        <TextBlock x:Name="PaymentsQueueActiveFilterText"
+                                                   Text="AKTIF KUYRUK: TUM KUYRUK"
+                                                   Style="{StaticResource PaymentsActiveFilterText}" />
+                                    </Border>
+                                    <Grid Style="{StaticResource PaymentsActionRowGrid}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Button x:Name="PaymentsOpenNextQueueButton"
+                                                Content="En Yakin Kaydi Ac"
+                                                Style="{StaticResource PaymentsPrimaryActionButton}"
+                                                ToolTip="Enter ile oncelikli kuyruk kaydini acar."
+                                                Click="OpenNextQueueInvoiceButton_Click" />
+                                        <TextBlock x:Name="PaymentsQueueActionHintText"
+                                                   Style="{StaticResource PaymentsActionHintText}" />
+                                        <Button x:Name="PaymentsQueueResetFilterButton"
+                                                Content="Hepsini Goster"
+                                                Style="{StaticResource PaymentsResetFilterButton}"
+                                                Visibility="Collapsed"
+                                                ToolTip="Kuyruk filtresini tum kayitlara geri dondurur."
+                                                Click="ResetPaymentsQueueFilterButton_Click" />
+                                    </Grid>
+                                    <ItemsControl x:Name="PaymentsQueueItemsControl"
+                                                  Style="{StaticResource PaymentsSectionItemsControl}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Style="{StaticResource PaymentsOpsItemBorder}">
+                                                    <Grid Style="{StaticResource PaymentsItemGrid}">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <StackPanel Style="{StaticResource PaymentsItemLeftStack}">
+                                                            <TextBlock Text="{Binding Title}"
+                                                                       Style="{StaticResource PaymentsItemTitleText}" />
+                                                            <TextBlock Text="{Binding Meta}"
+                                                                       Style="{StaticResource PaymentsItemMetaText}" />
+                                                        </StackPanel>
+                                                        <StackPanel Style="{StaticResource PaymentsItemRightStack}">
+                                                            <TextBlock Text="{Binding Amount}"
+                                                                       Foreground="#166534"
+                                                                       Style="{StaticResource PaymentsItemAmountText}" />
+                                                            <Border Style="{StaticResource PaymentsOpsStatusBadge}"
+                                                                    Background="{Binding StatusBackground}"
+                                                                    BorderBrush="{Binding StatusBorder}">
+                                                                <TextBlock Text="{Binding Status}"
+                                                                           Foreground="{Binding StatusForeground}"
+                                                                           Style="{StaticResource PaymentsItemStatusText}" />
+                                                            </Border>
+                                                            <Button Style="{StaticResource PaymentsItemOpenButton}"
+                                                                    Tag="{Binding InvoiceId}"
+                                                                    ToolTip="Bu acik faturayi odeme alaninda hedefli olarak acar."
+                                                                    Click="OpenPaymentsQueueInvoiceButton_Click" />
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Column="2"
+                                    Style="{StaticResource PaymentsOpsCard}">
+                                <StackPanel Style="{StaticResource PaymentsSectionStack}">
+                                    <TextBlock Text="Son Odemeler"
+                                               Style="{StaticResource PaymentsSectionTitle}" />
+                                    <TextBlock x:Name="PaymentsRecentPaymentsSummaryText"
+                                               Text="Son odemeler burada listelenir."
+                                               Style="{StaticResource PaymentsSummaryText}" />
+                                    <StackPanel Style="{StaticResource PaymentsFilterRow}">
+                                        <Button x:Name="PaymentsRecentFilterAllButton"
+                                                Content="Hepsi"
+                                                Style="{StaticResource PaymentsFilterButton}"
+                                                ToolTip="En son bes odeme kaydinin tamamini gosterir."
+                                                Click="PaymentsRecentFilterButton_Click" />
+                                        <Button x:Name="PaymentsRecentFilterMissingPdfButton"
+                                                Content="PDF Eksik"
+                                                Style="{StaticResource PaymentsFilterButton}"
+                                                ToolTip="En son bes odeme icindeki PDF eksik kayitlari gosterir."
+                                                Click="PaymentsRecentFilterButton_Click" />
+                                    </StackPanel>
+                                    <Border x:Name="PaymentsRecentActiveFilterBadge"
+                                            Style="{StaticResource PaymentsActiveFilterBadge}"
+                                            ToolTip="Son odemelerde uygulanan guncel gorunumu gosterir.">
+                                        <TextBlock x:Name="PaymentsRecentActiveFilterText"
+                                                   Text="AKTIF SON ODEME: TUM SON ODEMELER"
+                                                   Style="{StaticResource PaymentsActiveFilterText}" />
+                                    </Border>
+                                    <Grid Style="{StaticResource PaymentsActionRowGrid}">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Button x:Name="PaymentsOpenLatestPaymentButton"
+                                                Content="Son Odemeyi Ac"
+                                                Style="{StaticResource PaymentsPrimaryActionButton}"
+                                                ToolTip="Enter ile son odeme kaydini acar."
+                                                Click="OpenLatestPaymentFromPaymentsButton_Click" />
+                                        <TextBlock x:Name="PaymentsRecentActionHintText"
+                                                   Style="{StaticResource PaymentsActionHintText}" />
+                                        <Button x:Name="PaymentsRecentResetFilterButton"
+                                                Content="Hepsini Goster"
+                                                Style="{StaticResource PaymentsResetFilterButton}"
+                                                Visibility="Collapsed"
+                                                ToolTip="Son odeme filtresini tum kayitlara geri dondurur."
+                                                Click="ResetPaymentsRecentFilterButton_Click" />
+                                    </Grid>
+                                    <ItemsControl x:Name="PaymentsRecentPaymentsItemsControl"
+                                                  Style="{StaticResource PaymentsSectionItemsControl}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Style="{StaticResource PaymentsOpsItemBorder}">
+                                                    <Grid Style="{StaticResource PaymentsItemGrid}">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="Auto" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <StackPanel Style="{StaticResource PaymentsItemLeftStack}">
+                                                            <TextBlock Text="{Binding Title}"
+                                                                       Style="{StaticResource PaymentsItemTitleText}" />
+                                                            <TextBlock Text="{Binding Meta}"
+                                                                       Style="{StaticResource PaymentsItemMetaText}" />
+                                                        </StackPanel>
+                                                        <StackPanel Style="{StaticResource PaymentsItemRightStack}">
+                                                            <TextBlock Text="{Binding Amount}"
+                                                                       Foreground="#1D4ED8"
+                                                                       Style="{StaticResource PaymentsItemAmountText}" />
+                                                            <Border Style="{StaticResource PaymentsOpsStatusBadge}"
+                                                                    Background="{Binding StatusBackground}"
+                                                                    BorderBrush="{Binding StatusBorder}">
+                                                                <TextBlock Text="{Binding Status}"
+                                                                           Foreground="{Binding StatusForeground}"
+                                                                           Style="{StaticResource PaymentsItemStatusText}" />
+                                                            </Border>
+                                                            <Button Style="{StaticResource PaymentsItemOpenButton}"
+                                                                    Tag="{Binding InvoiceId}"
+                                                                    ToolTip="Bu odemenin ait oldugu faturayi odeme alaninda yeniden acar."
+                                                                    Click="OpenRecentPaymentInvoiceButton_Click" />
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+            </ScrollViewer>
             <views:ReportsView x:Name="ReportsPanel"
                                Visibility="Collapsed" />
 

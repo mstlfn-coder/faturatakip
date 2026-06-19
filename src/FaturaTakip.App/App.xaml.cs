@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -114,7 +114,7 @@ public partial class App : Application
             {
                 MessageBox.Show(
                     exception.Message,
-                    "Uygulama baslatilamadi",
+                    "Uygulama başlatılamadı",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
@@ -191,3 +191,4 @@ public partial class App : Application
         }
     }
 }
+

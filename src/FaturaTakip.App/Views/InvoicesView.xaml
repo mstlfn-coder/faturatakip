@@ -1,4 +1,4 @@
-<UserControl x:Class="FaturaTakip.App.Views.InvoicesView"
+﻿<UserControl x:Class="FaturaTakip.App.Views.InvoicesView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -40,6 +40,71 @@
             <Setter Property="MinWidth" Value="96" />
             <Setter Property="Cursor" Value="Hand" />
         </Style>
+        <Style x:Key="ContextPrimaryActionButton" TargetType="Button" BasedOn="{StaticResource PrimaryButton}">
+            <Setter Property="Opacity" Value="0.45" />
+            <Setter Property="Cursor" Value="Arrow" />
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="Opacity" Value="1" />
+                    <Setter Property="Cursor" Value="Hand" />
+                    <Setter Property="Background" Value="#2563EB" />
+                    <Setter Property="Foreground" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ContextActionButton" TargetType="Button" BasedOn="{StaticResource SecondaryButton}">
+            <Setter Property="Background" Value="#F8FAFC" />
+            <Setter Property="Foreground" Value="#94A3B8" />
+            <Setter Property="BorderBrush" Value="#E2E8F0" />
+            <Setter Property="Opacity" Value="0.75" />
+            <Setter Property="Cursor" Value="Arrow" />
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsEnabled" Value="True" />
+                        <Condition Property="Tag" Value="filter" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="#DCFCE7" />
+                    <Setter Property="Foreground" Value="#166534" />
+                    <Setter Property="BorderBrush" Value="#86EFAC" />
+                    <Setter Property="Opacity" Value="1" />
+                    <Setter Property="Cursor" Value="Hand" />
+                </MultiTrigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsEnabled" Value="True" />
+                        <Condition Property="Tag" Value="context" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="#DBEAFE" />
+                    <Setter Property="Foreground" Value="#1D4ED8" />
+                    <Setter Property="BorderBrush" Value="#93C5FD" />
+                    <Setter Property="Opacity" Value="1" />
+                    <Setter Property="Cursor" Value="Hand" />
+                </MultiTrigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsEnabled" Value="True" />
+                        <Condition Property="Tag" Value="period" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="#FEF3C7" />
+                    <Setter Property="Foreground" Value="#B45309" />
+                    <Setter Property="BorderBrush" Value="#FCD34D" />
+                    <Setter Property="Opacity" Value="1" />
+                    <Setter Property="Cursor" Value="Hand" />
+                </MultiTrigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsEnabled" Value="True" />
+                        <Condition Property="Tag" Value="detail" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="#F3E8FF" />
+                    <Setter Property="Foreground" Value="#7E22CE" />
+                    <Setter Property="BorderBrush" Value="#D8B4FE" />
+                    <Setter Property="Opacity" Value="1" />
+                    <Setter Property="Cursor" Value="Hand" />
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="ContextChipBorder" TargetType="Border">
             <Setter Property="Background" Value="#DBEAFE" />
             <Setter Property="BorderBrush" Value="#BFDBFE" />
@@ -48,6 +113,14 @@
             <Setter Property="Padding" Value="8,3" />
             <Setter Property="Margin" Value="0,0,6,6" />
             <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="#1D4ED8" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="#0F172A" />
+                </DataTrigger>
                 <DataTrigger Binding="{Binding Kind}" Value="report">
                     <Setter Property="Background" Value="#DBEAFE" />
                     <Setter Property="BorderBrush" Value="#93C5FD" />
@@ -85,6 +158,29 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="ContextChipActionText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#475569" />
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="8,0,0,0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ActionKey}" Value="copy">
+                    <Setter Property="Foreground" Value="#64748B" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ActionKey}" Value="apply_filter">
+                    <Setter Property="Foreground" Value="#166534" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ActionKey}" Value="apply_period">
+                    <Setter Property="Foreground" Value="#B45309" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ActionKey}" Value="apply_type">
+                    <Setter Property="Foreground" Value="#7E22CE" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ActionKey}" Value="apply_invoice_no">
+                    <Setter Property="Foreground" Value="#7E22CE" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="ContextChipPrefixText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#475569" />
             <Setter Property="FontSize" Value="10" />
@@ -102,6 +198,441 @@
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Kind}" Value="period">
                     <Setter Property="Foreground" Value="#92400E" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ContextChipButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+        <Style x:Key="ActionBadgeBorder" TargetType="Border">
+            <Setter Property="Background" Value="#F8FAFC" />
+            <Setter Property="BorderBrush" Value="#CBD5E1" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="999" />
+            <Setter Property="Padding" Value="8,3" />
+            <Setter Property="Margin" Value="0,0,6,6" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="#0F172A" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsRecentlyActivated}" Value="True">
+                    <Setter Property="BorderThickness" Value="3" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="filter">
+                    <Setter Property="Background" Value="#DCFCE7" />
+                    <Setter Property="BorderBrush" Value="#86EFAC" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="context">
+                    <Setter Property="Background" Value="#DBEAFE" />
+                    <Setter Property="BorderBrush" Value="#93C5FD" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="period">
+                    <Setter Property="Background" Value="#FEF3C7" />
+                    <Setter Property="BorderBrush" Value="#FCD34D" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="detail">
+                    <Setter Property="Background" Value="#F3E8FF" />
+                    <Setter Property="BorderBrush" Value="#D8B4FE" />
+                </DataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="filter" />
+                        <Condition Binding="{Binding IsRecentlyActivated}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#86EFAC" />
+                    <Setter Property="BorderBrush" Value="#15803D" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="context" />
+                        <Condition Binding="{Binding IsRecentlyActivated}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#93C5FD" />
+                    <Setter Property="BorderBrush" Value="#1D4ED8" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="period" />
+                        <Condition Binding="{Binding IsRecentlyActivated}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#FCD34D" />
+                    <Setter Property="BorderBrush" Value="#B45309" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="detail" />
+                        <Condition Binding="{Binding IsRecentlyActivated}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#D8B4FE" />
+                    <Setter Property="BorderBrush" Value="#7E22CE" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="filter" />
+                        <Condition Binding="{Binding IsSelected}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#BBF7D0" />
+                    <Setter Property="BorderBrush" Value="#16A34A" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="context" />
+                        <Condition Binding="{Binding IsSelected}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#BFDBFE" />
+                    <Setter Property="BorderBrush" Value="#2563EB" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="period" />
+                        <Condition Binding="{Binding IsSelected}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#FDE68A" />
+                    <Setter Property="BorderBrush" Value="#D97706" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Kind}" Value="detail" />
+                        <Condition Binding="{Binding IsSelected}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="#E9D5FF" />
+                    <Setter Property="BorderBrush" Value="#9333EA" />
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ActionBadgePrefixText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#475569" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="0,0,6,0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Kind}" Value="filter">
+                    <Setter Property="Foreground" Value="#166534" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="context">
+                    <Setter Property="Foreground" Value="#1E40AF" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="period">
+                    <Setter Property="Foreground" Value="#92400E" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="detail">
+                    <Setter Property="Foreground" Value="#6B21A8" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ActionBadgeText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#334155" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Kind}" Value="filter">
+                    <Setter Property="Foreground" Value="#166534" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="context">
+                    <Setter Property="Foreground" Value="#1D4ED8" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="period">
+                    <Setter Property="Foreground" Value="#B45309" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="detail">
+                    <Setter Property="Foreground" Value="#7E22CE" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ActionBadgeStateText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#0F172A" />
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="6,0,0,0" />
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsRecentlyActivated}" Value="True">
+                    <Setter Property="Text" Value="YENI" />
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="filter">
+                    <Setter Property="Foreground" Value="#166534" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="context">
+                    <Setter Property="Foreground" Value="#1D4ED8" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="period">
+                    <Setter Property="Foreground" Value="#B45309" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Kind}" Value="detail">
+                    <Setter Property="Foreground" Value="#7E22CE" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ReviewFocusMarkerBorder" TargetType="Border">
+            <Setter Property="Background" Value="#DBEAFE" />
+            <Setter Property="BorderBrush" Value="#93C5FD" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="4,3" />
+        </Style>
+        <Style x:Key="ReviewFocusMarkerTitle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#1E3A8A" />
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="ReviewFocusMarkerText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#1D4ED8" />
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="ActionBadgeButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+        <Style x:Key="InlineShortcutButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="2,1" />
+            <Setter Property="Margin" Value="-2,4,0,0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#ECFDF5" />
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="Background" Value="#DCFCE7" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="SelectedActionStatusButton" TargetType="Button" BasedOn="{StaticResource InlineShortcutButton}">
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#ECFDF5" />
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="Background" Value="#DCFCE7" />
+                    <Setter Property="BorderBrush" Value="#2563EB" />
+                    <Setter Property="BorderThickness" Value="1.5" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentHelperLastActionTextStyle" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
+            <Setter Property="Foreground" Value="#166534" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="TextDecorations" Value="Underline" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="TextDecorations" Value="Underline" />
+                    <Setter Property="Foreground" Value="#14532D" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="InlineShortcutPrefixBorder" TargetType="Border">
+            <Setter Property="CornerRadius" Value="999" />
+            <Setter Property="Padding" Value="5,1" />
+            <Setter Property="Margin" Value="0,0,4,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="InlineShortcutPrefixText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="InlineShortcutHintBorder" TargetType="Border">
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Padding" Value="4,1" />
+            <Setter Property="Margin" Value="6,0,0,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="#FAFCFF" />
+            <Setter Property="BorderBrush" Value="#E5EAF1" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Opacity" Value="0.7" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Background" Value="#F1F5F9" />
+                    <Setter Property="BorderBrush" Value="#CBD5E1" />
+                    <Setter Property="Opacity" Value="0.88" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Background" Value="#EFF6FF" />
+                    <Setter Property="BorderBrush" Value="#93C5FD" />
+                    <Setter Property="Opacity" Value="1" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="InlineShortcutHintText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="#64748B" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#475569" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#1D4ED8" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="InlineShortcutRepeatBorder" TargetType="Border">
+            <Setter Property="CornerRadius" Value="999" />
+            <Setter Property="Padding" Value="5,1" />
+            <Setter Property="Margin" Value="0,0,4,0" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="#FFFBEB" />
+            <Setter Property="BorderBrush" Value="#FDE68A" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Opacity" Value="0.78" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Background" Value="#FEF3C7" />
+                    <Setter Property="BorderBrush" Value="#FBBF24" />
+                    <Setter Property="Opacity" Value="0.93" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Background" Value="#FEF3C7" />
+                    <Setter Property="BorderBrush" Value="#F59E0B" />
+                    <Setter Property="Opacity" Value="1" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="InlineShortcutRepeatText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="8" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="#B45309" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#92400E" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#92400E" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="InlineShortcutDividerText" TargetType="TextBlock">
+            <Setter Property="Text" Value="•" />
+            <Setter Property="Margin" Value="1,0,5,0" />
+            <Setter Property="FontSize" Value="8" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="#94A3B8" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#64748B" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#475569" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentHelperPrefixBorderStyle" TargetType="Border" BasedOn="{StaticResource InlineShortcutPrefixBorder}">
+            <Setter Property="Background" Value="#DCFCE7" />
+            <Setter Property="BorderBrush" Value="#86EFAC" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Opacity" Value="0.9" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Background" Value="#BBF7D0" />
+                    <Setter Property="BorderBrush" Value="#4ADE80" />
+                    <Setter Property="Opacity" Value="1" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Background" Value="#86EFAC" />
+                    <Setter Property="BorderBrush" Value="#15803D" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="Opacity" Value="1" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentPdfPrefixBorderStyle" TargetType="Border" BasedOn="{StaticResource InlineShortcutPrefixBorder}">
+            <Setter Property="Background" Value="#E0F2FE" />
+            <Setter Property="BorderBrush" Value="#7DD3FC" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Opacity" Value="0.9" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Background" Value="#BAE6FD" />
+                    <Setter Property="BorderBrush" Value="#38BDF8" />
+                    <Setter Property="Opacity" Value="1" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Background" Value="#7DD3FC" />
+                    <Setter Property="BorderBrush" Value="#0369A1" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="Opacity" Value="1" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentHelperPrefixTextStyle" TargetType="TextBlock" BasedOn="{StaticResource InlineShortcutPrefixText}">
+            <Setter Property="Foreground" Value="#166534" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#14532D" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#14532D" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentPdfPrefixTextStyle" TargetType="TextBlock" BasedOn="{StaticResource InlineShortcutPrefixText}">
+            <Setter Property="Foreground" Value="#0369A1" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#0C4A6E" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="Foreground" Value="#082F49" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="PaymentPdfLastActionTextStyle" TargetType="TextBlock" BasedOn="{StaticResource MutedText}">
+            <Setter Property="Foreground" Value="#0369A1" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="TextDecorations" Value="Underline" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsKeyboardFocused, RelativeSource={RelativeSource AncestorType=Button}}" Value="True">
+                    <Setter Property="TextDecorations" Value="Underline" />
+                    <Setter Property="Foreground" Value="#0C4A6E" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -351,9 +882,11 @@
                               IsReadOnly="True"
                               SelectionMode="Single"
                               SelectionChanged="InvoiceGrid_SelectionChanged"
+                              LoadingRow="InvoiceGrid_LoadingRow"
                               BorderBrush="#E5EAF1"
                               BorderThickness="1"
                               HeadersVisibility="Column"
+                              RowHeaderWidth="0"
                               GridLinesVisibility="Horizontal">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Dönem"
@@ -396,24 +929,36 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <TextBlock x:Name="InvoiceFormTitleText"
-                               Text="Yeni Fatura"
-                               Foreground="#1F2937"
-                               FontSize="18"
-                               FontWeight="SemiBold" />
+                    <StackPanel Margin="0,0,0,2">
+                        <TextBlock x:Name="InvoiceFormTitleText"
+                                   Text="Yeni Fatura"
+                                   Foreground="#1F2937"
+                                   FontSize="18"
+                                   LineHeight="22"
+                                   LineStackingStrategy="BlockLineHeight"
+                                   FontWeight="SemiBold" />
+                        <TextBlock x:Name="InvoiceFormContextHintText"
+                                   Margin="0,8,0,0"
+                                   Foreground="#475569"
+                                   FontSize="12"
+                                   LineHeight="16"
+                                   LineStackingStrategy="BlockLineHeight"
+                                   Visibility="Collapsed" />
+                    </StackPanel>
 
                     <ScrollViewer Grid.Row="1"
-                                  Margin="0,16,0,0"
+                                  Margin="0,14,0,0"
                                   VerticalScrollBarVisibility="Auto">
                         <StackPanel>
                             <TextBlock Text="Abonelik" Style="{StaticResource FieldLabel}" />
                             <ComboBox x:Name="InvoiceSubscriptionInput"
+                                      Margin="0,0,0,2"
                                       Height="34"
                                       DisplayMemberPath="SubscriptionName"
                                       SelectedValuePath="Id"
                                       SelectionChanged="InvoiceSubscriptionInput_SelectionChanged" />
 
-                            <Grid Margin="0,14,0,0">
+                            <Grid Margin="0,12,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="12" />
@@ -436,7 +981,7 @@
                                 </StackPanel>
                             </Grid>
 
-                            <Grid Margin="0,14,0,0">
+                            <Grid Margin="0,12,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="12" />
@@ -456,12 +1001,12 @@
 
                             <TextBlock Text="Fatura Numarası"
                                        Style="{StaticResource FieldLabel}"
-                                       Margin="0,14,0,6" />
+                                       Margin="0,12,0,6" />
                             <TextBox x:Name="InvoiceNoInput"
                                      Height="34"
                                      MaxLength="100" />
 
-                            <Grid Margin="0,14,0,0">
+                            <Grid Margin="0,12,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="12" />
@@ -483,14 +1028,14 @@
 
                             <TextBlock Text="Kullanım Birimi"
                                        Style="{StaticResource FieldLabel}"
-                                       Margin="0,14,0,6" />
+                                       Margin="0,12,0,6" />
                             <TextBox x:Name="UsageUnitInput"
                                      Height="34"
                                      MaxLength="30" />
 
                             <TextBlock Text="Açıklama"
                                        Style="{StaticResource FieldLabel}"
-                                       Margin="0,14,0,6" />
+                                       Margin="0,12,0,6" />
                             <TextBox x:Name="InvoiceDescriptionInput"
                                       MinHeight="96"
                                       MaxLength="500"
@@ -500,7 +1045,7 @@
 
                             <TextBlock Text="Ödeme Bilgisi"
                                        Style="{StaticResource FieldLabel}"
-                                       Margin="0,14,0,6" />
+                                       Margin="0,12,0,6" />
                             <Border Background="#F8FAFC"
                                     BorderBrush="#DDE4EC"
                                     BorderThickness="1"
@@ -511,7 +1056,7 @@
                                                Style="{StaticResource MutedText}"
                                                TextWrapping="Wrap" />
 
-                                    <Grid Margin="0,10,0,0">
+                                    <Grid Margin="0,12,0,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="12" />
@@ -532,40 +1077,141 @@
 
                                     <TextBlock Text="Ödeme Açıklaması"
                                                Style="{StaticResource FieldLabel}"
-                                               Margin="0,10,0,6" />
+                                               Margin="0,12,0,6" />
                                     <TextBox x:Name="PaymentDescriptionInput"
                                              Height="34"
                                              MaxLength="500" />
+                                    <TextBlock x:Name="PaymentHelperSummaryText"
+                                               Style="{StaticResource MutedText}"
+                                               TextWrapping="Wrap"
+                                               Margin="0,8,0,0" />
                                     <StackPanel Orientation="Horizontal"
-                                                Margin="0,10,0,0">
+                                                Margin="0,6,0,0">
+                                        <Border x:Name="PaymentHelperReplayPreferencePrefixBorder"
+                                                Style="{StaticResource InlineShortcutPrefixBorder}"
+                                                Background="#ECFDF5"
+                                                BorderBrush="#BBF7D0"
+                                                BorderThickness="1"
+                                                Margin="0,0,6,0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock x:Name="PaymentHelperReplayPreferencePrefixText"
+                                                           Style="{StaticResource InlineShortcutPrefixText}"
+                                                           Foreground="#166534" />
+                                                <TextBlock x:Name="PaymentHelperReplayPreferenceLevelText"
+                                                           Margin="4,0,0,0"
+                                                           Style="{StaticResource InlineShortcutPrefixText}"
+                                                           Foreground="#166534"
+                                                           FontSize="9" />
+                                            </StackPanel>
+                                        </Border>
+                                        <TextBlock x:Name="PaymentHelperReplayPreferenceSummaryText"
+                                                   Style="{StaticResource MutedText}"
+                                                   TextWrapping="Wrap" />
+                                    </StackPanel>
+                                    <Button x:Name="PaymentHelperLastActionButton"
+                                            Style="{StaticResource InlineShortcutButton}"
+                                            Margin="0,6,0,0"
+                                            Visibility="Collapsed"
+                                            Click="PaymentHelperLastActionButton_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border x:Name="PaymentHelperLastActionPrefixBorder"
+                                                    Style="{StaticResource PaymentHelperPrefixBorderStyle}">
+                                                <TextBlock x:Name="PaymentHelperLastActionPrefixText"
+                                                           Style="{StaticResource PaymentHelperPrefixTextStyle}" />
+                                            </Border>
+                                            <TextBlock x:Name="PaymentHelperLastActionText"
+                                                       Style="{StaticResource PaymentHelperLastActionTextStyle}" />
+                                        </StackPanel>
+                                    </Button>
+                                    <ItemsControl x:Name="PaymentHelperBadges"
+                                                  Margin="0,8,0,0">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Button Style="{StaticResource ActionBadgeButton}"
+                                                        Tag="{Binding ActionKey}"
+                                                        ToolTip="{Binding ToolTip}"
+                                                        Click="PaymentHelperBadgeButton_Click">
+                                                    <Border Style="{StaticResource ActionBadgeBorder}">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="{Binding Prefix}"
+                                                                       Style="{StaticResource ActionBadgePrefixText}" />
+                                                            <TextBlock Text="{Binding Text}"
+                                                                       Style="{StaticResource ActionBadgeText}" />
+                                                            <TextBlock Text="AKTIF"
+                                                                       Style="{StaticResource ActionBadgeStateText}" />
+                                                        </StackPanel>
+                                                    </Border>
+                                                </Button>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <Button x:Name="PaymentHelperSelectedActionStatusButton"
+                                            Style="{StaticResource SelectedActionStatusButton}"
+                                            Margin="0,6,0,0"
+                                            ToolTip="Secili yardimi yeniden calistir"
+                                            Visibility="Collapsed"
+                                            Click="PaymentHelperSelectedActionStatusButton_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border x:Name="PaymentHelperSelectedActionStatusPrefixBorder"
+                                                    Style="{StaticResource PaymentHelperPrefixBorderStyle}">
+                                                <TextBlock x:Name="PaymentHelperSelectedActionStatusPrefixText"
+                                                           Text="YRD"
+                                                           Style="{StaticResource InlineShortcutPrefixText}"
+                                                           Foreground="#166534" />
+                                            </Border>
+                                              <Border x:Name="PaymentHelperSelectedActionRepeatBorder"
+                                                      Style="{StaticResource InlineShortcutRepeatBorder}">
+                                                  <TextBlock x:Name="PaymentHelperSelectedActionRepeatText"
+                                                             Text="TEKRAR"
+                                                             Style="{StaticResource InlineShortcutRepeatText}" />
+                                              </Border>
+                                              <TextBlock x:Name="PaymentHelperSelectedActionDividerText"
+                                                         Style="{StaticResource InlineShortcutDividerText}" />
+                                            <TextBlock x:Name="PaymentHelperSelectedActionStatusText"
+                                                       Style="{StaticResource PaymentHelperLastActionTextStyle}" />
+                                              <Border x:Name="PaymentHelperSelectedActionHintBorder"
+                                                      Style="{StaticResource InlineShortcutHintBorder}">
+                                                  <TextBlock x:Name="PaymentHelperSelectedActionHintText"
+                                                             Text="Enter/Space"
+                                                             Style="{StaticResource InlineShortcutHintText}" />
+                                              </Border>
+                                        </StackPanel>
+                                    </Button>
+                                    <WrapPanel Margin="0,10,0,0">
                                         <Button x:Name="FillRemainingPaymentButton"
                                                 Content="Kalani Doldur"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="FillRemainingPaymentButton_Click" />
                                         <Button x:Name="UseSelectedPaymentTemplateButton"
                                                 Content="Secili Odemeden Doldur"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="UseSelectedPaymentTemplateButton_Click" />
                                         <Button x:Name="UseLastPaymentTemplateButton"
                                                 Content="Son Odemeden Doldur"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="UseLastPaymentTemplateButton_Click" />
                                         <Button x:Name="SavePaymentButton"
                                                 Content="Ödeme Kaydet"
                                                 Style="{StaticResource SecondaryButton}"
+                                                Margin="0,0,8,8"
                                                 HorizontalAlignment="Left"
                                                 Click="SavePaymentButton_Click" />
-                                    </StackPanel>
+                                    </WrapPanel>
 
                                     <DataGrid x:Name="PaymentGrid"
                                               AutoGenerateColumns="False"
                                               CanUserAddRows="False"
                                               IsReadOnly="True"
                                               Height="112"
-                                              Margin="0,10,0,0"
+                                              Margin="0,12,0,0"
                                               SelectionMode="Single"
                                               SelectionChanged="PaymentGrid_SelectionChanged"
                                               HeadersVisibility="Column"
@@ -591,25 +1237,126 @@
                                     <TextBlock x:Name="PaymentPdfInfoText"
                                                Style="{StaticResource MutedText}"
                                                TextWrapping="Wrap"
-                                               Margin="0,10,0,0" />
+                                               Margin="0,12,0,0" />
+                                    <TextBlock x:Name="PaymentPdfHelperSummaryText"
+                                                Style="{StaticResource MutedText}"
+                                                TextWrapping="Wrap"
+                                                Margin="0,8,0,0" />
                                     <StackPanel Orientation="Horizontal"
-                                                Margin="0,10,0,0">
+                                                Margin="0,6,0,0">
+                                        <Border x:Name="PaymentPdfReplayPreferencePrefixBorder"
+                                                Style="{StaticResource InlineShortcutPrefixBorder}"
+                                                Background="#F0F9FF"
+                                                BorderBrush="#BAE6FD"
+                                                BorderThickness="1"
+                                                Margin="0,0,6,0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock x:Name="PaymentPdfReplayPreferencePrefixText"
+                                                           Style="{StaticResource InlineShortcutPrefixText}"
+                                                           Foreground="#0369A1" />
+                                                <TextBlock x:Name="PaymentPdfReplayPreferenceLevelText"
+                                                           Margin="4,0,0,0"
+                                                           Style="{StaticResource InlineShortcutPrefixText}"
+                                                           Foreground="#0369A1"
+                                                           FontSize="9" />
+                                            </StackPanel>
+                                        </Border>
+                                        <TextBlock x:Name="PaymentPdfReplayPreferenceSummaryText"
+                                                   Style="{StaticResource MutedText}"
+                                                   TextWrapping="Wrap" />
+                                    </StackPanel>
+                                    <Button x:Name="PaymentPdfHelperLastActionButton"
+                                            Style="{StaticResource InlineShortcutButton}"
+                                            Margin="0,6,0,0"
+                                            Visibility="Collapsed"
+                                            Click="PaymentPdfHelperLastActionButton_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border x:Name="PaymentPdfHelperLastActionPrefixBorder"
+                                                    Style="{StaticResource PaymentPdfPrefixBorderStyle}">
+                                                <TextBlock x:Name="PaymentPdfHelperLastActionPrefixText"
+                                                           Style="{StaticResource PaymentPdfPrefixTextStyle}" />
+                                            </Border>
+                                            <TextBlock x:Name="PaymentPdfHelperLastActionText"
+                                                       Style="{StaticResource PaymentPdfLastActionTextStyle}" />
+                                        </StackPanel>
+                                    </Button>
+                                    <ItemsControl x:Name="PaymentPdfHelperBadges"
+                                                  Margin="0,6,0,0">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Button Style="{StaticResource ActionBadgeButton}"
+                                                        Tag="{Binding ActionKey}"
+                                                        ToolTip="{Binding ToolTip}"
+                                                        Click="PaymentPdfHelperBadgeButton_Click">
+                                                    <Border Style="{StaticResource ActionBadgeBorder}">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="{Binding Prefix}"
+                                                                       Style="{StaticResource ActionBadgePrefixText}" />
+                                                            <TextBlock Text="{Binding Text}"
+                                                                       Style="{StaticResource ActionBadgeText}" />
+                                                            <TextBlock Text="AKTIF"
+                                                                       Style="{StaticResource ActionBadgeStateText}" />
+                                                        </StackPanel>
+                                                    </Border>
+                                                </Button>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <Button x:Name="PaymentPdfSelectedActionStatusButton"
+                                            Style="{StaticResource SelectedActionStatusButton}"
+                                            Margin="0,6,0,0"
+                                            ToolTip="Secili PDF yardimini yeniden calistir"
+                                            Visibility="Collapsed"
+                                            Click="PaymentPdfSelectedActionStatusButton_Click">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border x:Name="PaymentPdfSelectedActionStatusPrefixBorder"
+                                                    Style="{StaticResource PaymentPdfPrefixBorderStyle}">
+                                                <TextBlock x:Name="PaymentPdfSelectedActionStatusPrefixText"
+                                                           Text="PDF"
+                                                           Style="{StaticResource InlineShortcutPrefixText}"
+                                                           Foreground="#0369A1" />
+                                            </Border>
+                                              <Border x:Name="PaymentPdfSelectedActionRepeatBorder"
+                                                      Style="{StaticResource InlineShortcutRepeatBorder}">
+                                                  <TextBlock x:Name="PaymentPdfSelectedActionRepeatText"
+                                                             Text="TEKRAR"
+                                                             Style="{StaticResource InlineShortcutRepeatText}" />
+                                              </Border>
+                                              <TextBlock x:Name="PaymentPdfSelectedActionDividerText"
+                                                         Style="{StaticResource InlineShortcutDividerText}" />
+                                            <TextBlock x:Name="PaymentPdfSelectedActionStatusText"
+                                                       Style="{StaticResource PaymentPdfLastActionTextStyle}" />
+                                              <Border x:Name="PaymentPdfSelectedActionHintBorder"
+                                                      Style="{StaticResource InlineShortcutHintBorder}">
+                                                  <TextBlock x:Name="PaymentPdfSelectedActionHintText"
+                                                             Text="Enter/Space"
+                                                             Style="{StaticResource InlineShortcutHintText}" />
+                                              </Border>
+                                        </StackPanel>
+                                    </Button>
+                                    <WrapPanel Margin="0,10,0,0">
                                         <Button x:Name="SelectPaymentPdfButton"
                                                 Content="PDF Seç"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="SelectPaymentPdfButton_Click" />
                                         <Button x:Name="OpenPaymentPdfButton"
                                                 Content="PDF Aç"
                                                 Style="{StaticResource SecondaryButton}"
+                                                Margin="0,0,8,8"
                                                 Click="OpenPaymentPdfButton_Click" />
-                                    </StackPanel>
+                                    </WrapPanel>
                                 </StackPanel>
                             </Border>
 
                             <TextBlock Text="PDF Evrakı"
                                        Style="{StaticResource FieldLabel}"
-                                       Margin="0,14,0,6" />
+                                       Margin="0,12,0,6" />
                             <Border Background="#F8FAFC"
                                     BorderBrush="#DDE4EC"
                                     BorderThickness="1"
@@ -621,7 +1368,7 @@
                                                TextWrapping="Wrap" />
                                     <TextBlock Text="İnceleme Notu"
                                                Style="{StaticResource FieldLabel}"
-                                               Margin="0,10,0,6" />
+                                               Margin="0,12,0,6" />
                                     <TextBox x:Name="InvoiceReviewNoteInput"
                                              MinHeight="72"
                                              MaxLength="500"
@@ -642,7 +1389,7 @@
                                             BorderThickness="1"
                                             CornerRadius="6"
                                             Padding="10"
-                                            Margin="0,8,0,0"
+                                            Margin="0,12,0,0"
                                             Visibility="Collapsed">
                                         <StackPanel>
                                             <TextBlock Text="Rapor Geçiş Bağlamı"
@@ -656,14 +1403,24 @@
                                                 </ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
-                                                        <Border Style="{StaticResource ContextChipBorder}">
-                                                            <StackPanel Orientation="Horizontal">
-                                                                <TextBlock Text="{Binding Prefix}"
-                                                                           Style="{StaticResource ContextChipPrefixText}" />
-                                                                <TextBlock Text="{Binding Text}"
-                                                                           Style="{StaticResource ContextChipText}" />
-                                                            </StackPanel>
-                                                        </Border>
+                                                        <Button Style="{StaticResource ContextChipButton}"
+                                                                Tag="{Binding}"
+                                                                ToolTip="{Binding ToolTip}"
+                                                                Click="InvoiceReviewContextChipButton_Click"
+                                                                PreviewKeyDown="InvoiceReviewContextChipButton_KeyDown"
+                                                                MouseRightButtonUp="InvoiceReviewContextChipButton_MouseRightButtonUp"
+                                                                ContextMenuOpening="InvoiceReviewContextChipButton_ContextMenuOpening">
+                                                            <Border Style="{StaticResource ContextChipBorder}">
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <TextBlock Text="{Binding Prefix}"
+                                                                               Style="{StaticResource ContextChipPrefixText}" />
+                                                                    <TextBlock Text="{Binding Text}"
+                                                                               Style="{StaticResource ContextChipText}" />
+                                                                    <TextBlock Text="{Binding ActionBadge}"
+                                                                               Style="{StaticResource ContextChipActionText}" />
+                                                                </StackPanel>
+                                                            </Border>
+                                                        </Button>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
@@ -671,108 +1428,217 @@
                                                        Style="{StaticResource MutedText}"
                                                        TextWrapping="Wrap"
                                                        Margin="0,4,0,0" />
+                                            <ItemsControl x:Name="InvoiceReviewActionBadges"
+                                                          Margin="0,8,0,0">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel />
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Button Style="{StaticResource ActionBadgeButton}"
+                                                                Tag="{Binding ActionKey}"
+                                                                ToolTip="{Binding ToolTip}"
+                                                                Click="InvoiceReviewActionBadgeButton_Click">
+                                                            <Border Style="{StaticResource ActionBadgeBorder}">
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <TextBlock Text="{Binding Prefix}"
+                                                                               Style="{StaticResource ActionBadgePrefixText}" />
+                                                                    <TextBlock Text="{Binding Text}"
+                                                                               Style="{StaticResource ActionBadgeText}" />
+                                                                </StackPanel>
+                                                            </Border>
+                                                        </Button>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                            <TextBlock x:Name="InvoiceReviewLastActionText"
+                                                       Style="{StaticResource MutedText}"
+                                                       Margin="0,6,0,0"
+                                                       FontSize="12"
+                                                       FontWeight="SemiBold"
+                                                       Visibility="Collapsed" />
+                                            <CheckBox x:Name="ShowInvoiceReviewContextDetailsCheckBox"
+                                                      Content="Detay Metin"
+                                                      Margin="0,6,0,0"
+                                                      VerticalAlignment="Center"
+                                                      Checked="ShowInvoiceReviewContextDetailsCheckBox_Changed"
+                                                      Unchecked="ShowInvoiceReviewContextDetailsCheckBox_Changed" />
+                                            <TextBlock Text="Kisayol Geri Bildirimi"
+                                                       Style="{StaticResource MutedText}"
+                                                       Margin="0,12,0,4" />
+                                            <WrapPanel>
+                                                <ComboBox x:Name="PaymentShortcutReplaySecondsComboBox"
+                                                          Width="110"
+                                                          Margin="0,0,8,8"
+                                                          SelectionChanged="PaymentShortcutReplayPreference_Changed" />
+                                                <ComboBox x:Name="PaymentShortcutReplayEmphasisComboBox"
+                                                          Width="120"
+                                                          Margin="0,0,8,8"
+                                                          SelectionChanged="PaymentShortcutReplayPreference_Changed" />
+                                            </WrapPanel>
                                         </StackPanel>
                                     </Border>
-                                    <StackPanel Orientation="Horizontal"
-                                                Margin="0,8,0,0">
-                                        <CheckBox x:Name="ShowInvoiceReviewContextCheckBox"
-                                                  Content="Bağlamı Göster"
-                                                  IsChecked="True"
-                                                  VerticalAlignment="Center"
-                                                  Checked="ShowInvoiceReviewContextCheckBox_Changed"
-                                                  Unchecked="ShowInvoiceReviewContextCheckBox_Changed" />
-                                        <Button x:Name="CopyInvoiceReviewContextButton"
-                                                Content="Bağlamı Kopyala"
-                                                Style="{StaticResource SecondaryButton}"
-                                                Margin="12,0,0,0"
-                                                Click="CopyInvoiceReviewContextButton_Click" />
-                                        <Button x:Name="ApplyInvoiceReviewContextFilterButton"
-                                                Content="Bağlam Filtresi"
-                                                Style="{StaticResource SecondaryButton}"
-                                                Margin="12,0,0,0"
-                                                Click="ApplyInvoiceReviewContextFilterButton_Click" />
-                                        <Button x:Name="FocusInvoiceFromReviewContextButton"
-                                                Content="Bağlam Kaydına Git"
-                                                Style="{StaticResource SecondaryButton}"
-                                                Margin="12,0,0,0"
-                                                Click="FocusInvoiceFromReviewContextButton_Click" />
-                                        <Button x:Name="ApplyInvoiceReviewContextPeriodButton"
-                                                Content="Bağlam Dönemi"
-                                                Style="{StaticResource SecondaryButton}"
-                                                Margin="12,0,0,0"
-                                                Click="ApplyInvoiceReviewContextPeriodButton_Click" />
+                                    <StackPanel Margin="0,12,0,0">
+                                        <TextBlock Text="Ana Aksiyonlar"
+                                                   Style="{StaticResource MutedText}"
+                                                   FontWeight="SemiBold"
+                                                   Margin="0,0,0,6" />
+                                        <WrapPanel>
+                                            <CheckBox x:Name="ShowInvoiceReviewContextCheckBox"
+                                                      Content="Bağlamı Göster"
+                                                      IsChecked="True"
+                                                      Margin="0,0,12,8"
+                                                      VerticalAlignment="Center"
+                                                      Checked="ShowInvoiceReviewContextCheckBox_Changed"
+                                                      Unchecked="ShowInvoiceReviewContextCheckBox_Changed" />
+                                            <Button x:Name="FocusInvoiceFromReviewContextButton"
+                                                    Content="Bağlamdan İncele"
+                                                    Style="{StaticResource ContextPrimaryActionButton}"
+                                                    Margin="0,0,8,8"
+                                                    ToolTip="Review akisini baglamdan kurar (Ctrl+Shift+I)"
+                                                    Click="FocusInvoiceFromReviewContextButton_Click" />
+                                            <Button x:Name="ApplyInvoiceReviewContextNarrowButton"
+                                                    Content="Bağlamı Daralt"
+                                                    Style="{StaticResource ContextActionButton}"
+                                                    Tag="context"
+                                                    Margin="0,0,8,8"
+                                                    ToolTip="Filtre, donem, tur ve fatura no ipuclarini birlikte uygular"
+                                                    Click="ApplyInvoiceReviewContextNarrowButton_Click" />
+                                            <Button x:Name="ApplyInvoiceReviewContextFilterButton"
+                                                    Content="Bağlam Filtresi"
+                                                    Style="{StaticResource ContextActionButton}"
+                                                    Tag="filter"
+                                                    Margin="0,0,8,8"
+                                                    ToolTip="Baglamdan onerilen hizli filtreyi uygular"
+                                                    Click="ApplyInvoiceReviewContextFilterButton_Click" />
+                                            <Button x:Name="CopyInvoiceReviewContextButton"
+                                                    Content="Bağlamı Kopyala"
+                                                    Style="{StaticResource ContextActionButton}"
+                                                    Tag="context"
+                                                    Margin="0,0,8,8"
+                                                    ToolTip="Baglam etiketini panoya kopyalar"
+                                                    Click="CopyInvoiceReviewContextButton_Click" />
+                                            <Button x:Name="ClearInvoiceReviewContextButton"
+                                                    Content="Bağlamı Temizle"
+                                                    Style="{StaticResource ContextActionButton}"
+                                                    Tag="detail"
+                                                    Margin="0,0,8,8"
+                                                    ToolTip="Baglami ve review modu vurgularini temizler"
+                                                    Click="ClearInvoiceReviewContextButton_Click" />
+                                        </WrapPanel>
+                                        <TextBlock Text="Detay Araçlari"
+                                                   Style="{StaticResource MutedText}"
+                                                   FontWeight="SemiBold"
+                                                   Margin="0,4,0,6" />
+                                        <WrapPanel>
+                                            <Button x:Name="ApplyInvoiceReviewContextPeriodButton"
+                                                    Content="Bağlam Dönemi"
+                                                    Style="{StaticResource ContextActionButton}"
+                                                    Tag="period"
+                                                    Margin="0,0,8,8"
+                                                    ToolTip="Baglamdaki donemi yil/ay filtresine uygular"
+                                                    Click="ApplyInvoiceReviewContextPeriodButton_Click" />
+                                            <Button x:Name="ApplyInvoiceReviewContextTypeButton"
+                                                    Content="Bağlam Türü"
+                                                    Style="{StaticResource ContextActionButton}"
+                                                    Tag="detail"
+                                                    Margin="0,0,8,8"
+                                                    ToolTip="Baglamdaki fatura turunu filtreye uygular"
+                                                    Click="ApplyInvoiceReviewContextTypeButton_Click" />
+                                            <Button x:Name="ApplyInvoiceReviewContextInvoiceNoButton"
+                                                    Content="Bağlam No"
+                                                    Style="{StaticResource ContextActionButton}"
+                                                    Tag="detail"
+                                                    Margin="0,0,8,8"
+                                                    ToolTip="Baglamdaki fatura numarasini arama kutusuna uygular"
+                                                    Click="ApplyInvoiceReviewContextInvoiceNoButton_Click" />
+                                        </WrapPanel>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal"
-                                                Margin="0,10,0,0">
+                                    <WrapPanel Margin="0,10,0,4">
                                         <Button x:Name="SaveInvoiceReviewNoteButton"
                                                 Content="İnceleme Notunu Kaydet"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="SaveInvoiceReviewNoteButton_Click" />
                                         <Button x:Name="MarkReviewedAndNextButton"
                                                 Content="Bakıldı + Sonraki"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="MarkReviewedAndNextButton_Click" />
                                         <Button x:Name="ClearInvoiceReviewNoteButton"
                                                 Content="İşareti Temizle"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="ClearInvoiceReviewNoteButton_Click" />
                                         <Button Content="PDF Seç"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="SelectInvoicePdfButton_Click" />
                                         <Button x:Name="OpenInvoicePdfButton"
                                                 Content="PDF Aç"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="OpenInvoicePdfButton_Click" />
                                         <Button x:Name="RevealInvoicePdfFolderButton"
                                                 Content="Klasörde Göster"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="RevealInvoicePdfFolderButton_Click" />
                                         <Button x:Name="OpenInvoicePdfAndNextButton"
                                                 Content="PDF Aç + Sonraki"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="OpenInvoicePdfAndNextButton_Click" />
                                         <Button x:Name="RevealInvoicePdfFolderAndNextButton"
                                                 Content="Klasör + Sonraki"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="RevealInvoicePdfFolderAndNextButton_Click" />
                                         <Button x:Name="PreviousInvoiceButton"
                                                 Content="Önceki Kayıt"
                                                 Style="{StaticResource SecondaryButton}"
-                                                Margin="0,0,8,0"
+                                                Margin="0,0,8,8"
                                                 Click="PreviousInvoiceButton_Click" />
                                         <Button x:Name="NextInvoiceButton"
                                                 Content="Sonraki Kayıt"
                                                 Style="{StaticResource SecondaryButton}"
+                                                Margin="0,0,8,8"
                                                 Click="NextInvoiceButton_Click" />
-                                    </StackPanel>
+                                    </WrapPanel>
                                 </StackPanel>
                             </Border>
                         </StackPanel>
                     </ScrollViewer>
 
-                    <StackPanel Grid.Row="2" Margin="0,18,0,0">
-                        <TextBlock x:Name="InvoiceStatusText"
-                                   Style="{StaticResource MutedText}"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,12" />
-                        <Button Content="Kaydet"
-                                Style="{StaticResource PrimaryButton}"
-                                HorizontalAlignment="Left"
-                                Click="SaveInvoiceButton_Click" />
-                    </StackPanel>
+                    <Border Grid.Row="2"
+                            Margin="0,18,0,0"
+                            Padding="2,12,2,4"
+                            Background="#F8FAFC"
+                            BorderBrush="#E2E8F0"
+                            BorderThickness="0,1,0,0"
+                            CornerRadius="0,0,6,6">
+                        <StackPanel>
+                            <TextBlock x:Name="InvoiceStatusText"
+                                       Style="{StaticResource MutedText}"
+                                       TextWrapping="Wrap"
+                                       LineHeight="18"
+                                       LineStackingStrategy="BlockLineHeight"
+                                       Margin="0,0,0,12" />
+                            <Button Content="Kaydet"
+                                    Style="{StaticResource PrimaryButton}"
+                                    HorizontalAlignment="Left"
+                                    Click="SaveInvoiceButton_Click" />
+                        </StackPanel>
+                    </Border>
                 </Grid>
             </Border>
         </Grid>
     </Grid>
 </UserControl>
+
+
 
 
 

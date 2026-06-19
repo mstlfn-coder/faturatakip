@@ -1,67 +1,57 @@
-# Codex Devam Kılavuzu
+﻿# Codex Devam Kilavuzu
 
-Bu dosya, yeni Codex chatine geçildiğinde projeye kaldığı yerden devam etmek için ilk okunacak kılavuzdur.
+Bu dosya, yeni Codex chatine gecildiginde projeye kaldigimiz yerden devam etmek icin ilk okunacak temiz kilavuzdur.
 
 ## Proje Bilgisi
 
-- Proje adı: Kurum Fatura Takip Programı
+- Proje adi: Kurum Fatura Takip Programi
 - Proje yolu: `C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI`
-- Kaynak planın eski konumu: `C:\Users\Asus\Desktop\Kurum_Fatura_Takip_Programi_Gelistirme_Plani.md`
-- Proje içindeki plan kopyası: `docs/01-gelistirme-plani.md`
+- Proje ici plan: `docs/01-gelistirme-plani.md`
+- Temiz guncel durum ozeti: `docs/06-guncel-durum-ozeti.md`
 - Hedef teknoloji: C# / .NET / WPF / SQLite
-- Uygulama tipi: Kurum içi masaüstü takip programı
+- Uygulama tipi: kurum ici masaustu takip programi
 
-## Yeni Chat Başlangıç Sırası
+## Yeni Chat Baslangic Sirasi
 
-Yeni Codex chatinde şu sıra izlenmeli:
+Yeni Codex chatinde su sira izlenmeli:
 
-1. `README.md` oku.
-2. `docs/03-devam-notlari.md` oku.
-3. `ROADMAP.md` oku.
-4. `REGRESYON.md` oku.
-5. Gerekirse ayrıntılı plan için `docs/01-gelistirme-plani.md` oku.
-6. `git status --short --branch` çalıştır.
-7. Sadece roadmapte `Sıradaki` olan faza odaklan.
+1. `docs/06-guncel-durum-ozeti.md` oku.
+2. `README.md` icindeki en alttaki son faz notlarini oku.
+3. `ROADMAP.md` icindeki en alttaki `Son Guncelleme` bloklarini oku.
+4. `REGRESYON.md` icindeki en alttaki son faz bloklarini oku.
+5. Gerekirse ayrintili plan icin `docs/01-gelistirme-plani.md` oku.
+6. `git status --short --branch` calistir.
+7. Yalnizca bir sonraki mantikli kucuk faza odaklan.
 
-## Devam Komutu Örneği
+## Onemli Not
 
-Yeni chat açıldığında kullanıcı şu şekilde başlayabilir:
+Eski tarihsel dokumanlarda encoding kalintilari bulunabilir.
+Guncel ve guvenilir handoff noktasi olarak once `docs/06-guncel-durum-ozeti.md` esas alinmalidir.
+
+## Devam Komutu Ornegi
+
+Yeni chat acildiginda kullanici su sekilde baslayabilir:
 
 ```text
-Bu projeye kaldığımız yerden devam et. Önce README.md, docs/00-codex-devam-kilavuzu.md, docs/03-devam-notlari.md, ROADMAP.md ve REGRESYON.md dosyalarını oku. Sadece ROADMAP.md içindeki Sıradaki fazı uygula. Faz sonunda devam notlarını, roadmap'i ve regresyon dosyasını güncelle.
+Bu projeye kaldigimiz yerden devam et. Once docs/06-guncel-durum-ozeti.md, sonra README.md, ROADMAP.md ve REGRESYON.md dosyalarinin en guncel bolumlerini oku. Review baglam cipi UX'iyle ilgili bir is varsa docs/07-review-context-ui-smoke-checklist.md dosyasini da kontrol et. Sonraki mantikli kucuk adimi uygula; sonunda smoke testleri ve dokuman guncellemelerini yap.
 ```
 
-## Yol Güvenliği
+## Yol Guvenligi
 
-Proje kök klasörü Türkçe karakter içerir. PowerShell tarafında yol sorunu yaşanırsa `-LiteralPath` kullanılmalı.
-
-Önerilen yaklaşım:
+Proje kok klasoru Turkce karakter icerir. PowerShell tarafinda yol sorunu yasanirsa `-LiteralPath` kullanilmalidir.
 
 ```powershell
 Set-Location -LiteralPath 'C:\Users\Asus\Documents\FATURA TAKİP PROGRAMI'
 ```
 
-Yeni oluşturulacak proje içi dosya ve klasör adları mümkün olduğunca ASCII olmalı. Örneğin `docs`, `database`, `attachments`, `backups`, `logs`, `exports`.
+Yeni olusturulacak proje ici dosya ve klasor adlari mumkun oldugunca ASCII tutulmalidir.
 
-## Geliştirme Disiplini
+## Her Faz Sonunda Guncellenecek Dosyalar
 
-- Tek seferde büyük geliştirme yapılmayacak.
-- Her faz küçük ve test edilebilir olacak.
-- Önceki çalışan davranışlar regresyon listesiyle korunacak.
-- PDF dosyaları veritabanına gömülmeyecek, dosya sisteminde saklanacak.
-- Veritabanında dosya yolu, orijinal ad, hash ve yüklenme bilgileri tutulacak.
-- Abonelik ana veri modeli olarak korunacak.
-
-Ana ilişki:
-
-```text
-Fatura Türü -> Abonelik -> Fatura -> Ödeme -> Evraklar
-```
-
-## Her Faz Sonunda Güncellenecek Dosyalar
-
-- `docs/03-devam-notlari.md`
+- `docs/06-guncel-durum-ozeti.md`
+- `README.md`
 - `ROADMAP.md`
 - `REGRESYON.md`
 
-Bu üç dosya güncellenmeden bir sonraki faza geçilmemeli.
+Bu dosyalar guncellenmeden bir sonraki faza gecilmemelidir.
+

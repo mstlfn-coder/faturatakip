@@ -245,6 +245,159 @@ public sealed class SelfTestRunner
                 new DateTime(2026, 2, 3));
             Assert(string.IsNullOrEmpty(emptyDescriptionSuggestion.Description), "Bos son odeme aciklamasi bos donmeliydi.");
 
+            var paymentHelperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(
+                updatedInvoice,
+                new[]
+                {
+                    new Payment { Id = 7, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 18), Amount = 120m, Description = "Son odeme aciklamasi" },
+                },
+                new Payment { Id = 8, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 19), Amount = 95m, Description = "Secili odeme" });
+            Assert(paymentHelperBadges.Count == 3, "Odeme yardim rozetleri beklenen yardimlari uretmedi.");
+            Assert(paymentHelperBadges.Any(item => item.Prefix == "KLN" && item.Text == "Kalan Tutar"), "Kalan tutar yardim rozeti uretilmedi.");
+            Assert(paymentHelperBadges.Any(item => item.Prefix == "SON" && item.Text == "Son Aciklama"), "Son aciklama yardim rozeti uretilmedi.");
+            Assert(paymentHelperBadges.Any(item => item.Prefix == "SEC" && item.Text == "Secili Odeme"), "Secili odeme yardim rozeti uretilmedi.");
+            Assert(paymentHelperBadges.Any(item => item.ActionKey == "fill_remaining"), "Kalan tutar yardim rozeti aksiyon anahtari tasimiyor.");
+            Assert(paymentHelperBadges.Any(item => item.ActionKey == "use_last"), "Son aciklama yardim rozeti aksiyon anahtari tasimiyor.");
+            Assert(paymentHelperBadges.Any(item => item.ActionKey == "use_selected"), "Secili odeme yardim rozeti aksiyon anahtari tasimiyor.");
+            Assert(paymentHelperBadges.Any(item => item.ToolTip.Contains("Enter/Space", StringComparison.Ordinal)), "Odeme yardim rozetlerinde klavye tooltip ipucu eksik.");
+            Assert(
+                PaymentStatusMessageFormatter.BuildActionSuccess("Odeme taslagi kalan tutarla guncellendi.", "Odeme Yardimi") == "Odeme Yardimi: Odeme taslagi kalan tutarla guncellendi.",
+                "Odeme yardim status basari mesaji beklenen formati uretmedi.");
+            Assert(
+                PaymentStatusMessageFormatter.BuildActionError("Bu fatura icin daha once kaydedilmis odeme yok.", "Odeme Yardimi") == "Odeme Yardimi: Bu fatura icin daha once kaydedilmis odeme yok.",
+                "Odeme yardim status hata mesaji beklenen formati uretmedi.");
+            Assert(
+                PaymentEntryHelperSummaryBuilder.BuildLastActionText("use_selected") == "Son hizli yardim: Secili Odeme uygulandi.",
+                "Odeme yardim son aksiyon metni beklenen formati uretmedi.");
+            Assert(
+                PaymentEntryHelperSummaryBuilder.BuildLastActionToolTip("use_selected") == "Tikla ve Secili Odeme yardimini yeniden calistir.",
+                "Odeme yardim son aksiyon tooltip metni beklenen formati uretmedi.");
+            Assert(
+                PaymentEntryHelperSummaryBuilder.BuildSelectedActionStatusText("use_selected") == "Secili yardim: Secili Odeme hazir. Enter/Space ile tekrar.",
+                "Odeme yardim secili durum satiri beklenen formati uretmedi.");
+            Assert(
+                PaymentEntryHelperSummaryBuilder.BuildSelectedActionToolTip("use_selected") == "Yeniden calistir: Secili Odeme",
+                "Odeme yardim secili durum satiri tooltip metni beklenen formati uretmedi.");
+            Assert(
+                PaymentEntryHelperSummaryBuilder.BuildLastActionPrefix("use_selected") == "SEC",
+                "Odeme yardim son aksiyon prefix metni beklenen formati uretmedi.");
+            Assert(
+                PaymentEntryHelperSummaryBuilder.BuildReplayFeedbackText("Son hizli yardim: Secili Odeme uygulandi.", true) == "Son hizli yardim: Secili Odeme uygulandi. (yeniden tetiklendi)",
+                "Odeme yardim tekrar geri bildirimi beklenen formati uretmedi.");
+            Assert(
+                PaymentEntryHelperSummaryBuilder.BuildReplayPreferenceSummaryText("use_selected", 3, "high") == "Secili Odeme replay ayari: 3 sn, guclu vurgu.",
+                "Odeme yardim replay tercih ozeti beklenen formati uretmedi.");
+            Assert(
+                PaymentEntryHelperSummaryBuilder.BuildReplayPreferenceSummaryText(null, 2, "medium") == "Replay ayari hazir: 2 sn, orta vurgu.",
+                "Odeme yardim bos durum replay ozeti beklenen formati uretmedi.");
+            Assert(
+                PaymentEntryHelperSummaryBuilder.BuildReplayPreferencePrefix(null) == "AYR",
+                "Odeme yardim replay ozet prefix metni beklenen formati uretmedi.");
+            var selectedPaymentHelperBadges = PaymentEntryHelperSummaryBuilder.BuildBadges(
+                updatedInvoice,
+                new[] { new Payment { Id = 10, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 21), Amount = 40m, Description = "Aciklama" } },
+                new Payment { Id = 11, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 22), Amount = 30m, Description = "Secim" },
+                selectedActionKey: "use_selected");
+            Assert(selectedPaymentHelperBadges.Any(item => item.ActionKey == "use_selected" && item.IsSelected), "Secili odeme yardim rozeti son kullanilan secim vurgusunu tasimiyor.");
+            Assert(
+                PaymentEntryHelperSummaryBuilder.BuildSummaryText(
+                    updatedInvoice,
+                    new[] { new Payment { Id = 9, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 20), Amount = 50m, Description = "Aciklama" } },
+                    null) == "Hazir yardimlar: Kalan Tutar, Son Aciklama.",
+                "Odeme yardim ozet metni beklenen sirayi uretmedi.");
+            Assert(
+                PaymentEntryHelperSummaryBuilder.BuildSummaryText(null, Array.Empty<Payment>(), null) == "Hazir odeme yardimi yok.",
+                "Bos odeme yardim ozeti beklenen metni uretmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildSummaryText(null, paymentPdfExists: false) == "PDF islemleri icin secili odeme yok.",
+                "Bos odeme PDF yardim ozeti beklenen metni uretmedi.");
+            var paymentPdfMissingBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(
+                new Payment { Id = 12, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 23), Amount = 80m, Description = "Eksik", PdfFilePath = string.Empty },
+                paymentPdfExists: false);
+            Assert(paymentPdfMissingBadges.Any(item => item.Text == "PDF Bekleniyor"), "PDF eklenmemis odeme icin beklenen yardim rozeti uretilmedi.");
+            Assert(paymentPdfMissingBadges.Any(item => item.ActionKey == "select_pdf"), "PDF bekleyen odeme rozetleri secme aksiyonu tasimiyor.");
+            var paymentPdfReadyBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(
+                new Payment { Id = 13, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 24), Amount = 60m, Description = "Var", PdfFilePath = "attachments/payments/2026/01/a.pdf", PdfOriginalFileName = "a.pdf" },
+                paymentPdfExists: true);
+            Assert(paymentPdfReadyBadges.Any(item => item.Text == "PDF Kayitli"), "PDF kayitli odeme icin yardim rozeti uretilmedi.");
+            Assert(paymentPdfReadyBadges.Any(item => item.ActionKey == "open_pdf"), "PDF kayitli odeme rozetleri acma aksiyonu tasimiyor.");
+            var paymentPdfLostBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(
+                new Payment { Id = 14, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 25), Amount = 55m, Description = "Kayip", PdfFilePath = "attachments/payments/2026/01/missing.pdf", PdfOriginalFileName = "missing.pdf" },
+                paymentPdfExists: false);
+            Assert(paymentPdfLostBadges.Any(item => item.Text == "PDF Kayip"), "PDF kayip odeme icin yardim rozeti uretilmedi.");
+            Assert(paymentPdfLostBadges.Any(item => item.ToolTip.Contains("Enter/Space", StringComparison.Ordinal)), "Odeme PDF yardim rozetlerinde klavye tooltip ipucu eksik.");
+            var selectedPaymentPdfBadges = PaymentPdfHelperSummaryBuilder.BuildBadges(
+                new Payment { Id = 16, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 27), Amount = 44m, Description = "Secim", PdfFilePath = "attachments/payments/2026/01/exists.pdf", PdfOriginalFileName = "exists.pdf" },
+                paymentPdfExists: true,
+                selectedActionKey: "open_pdf");
+            Assert(selectedPaymentPdfBadges.Any(item => item.ActionKey == "open_pdf" && item.IsSelected), "Odeme PDF yardim rozeti son kullanilan secim vurgusunu tasimiyor.");
+            Assert(
+                PaymentStatusMessageFormatter.BuildActionSuccess("Ödeme PDF dosyası açıldı.", "PDF Yardimi") == "PDF Yardimi: Ödeme PDF dosyası açıldı.",
+                "Odeme PDF yardim status basari mesaji beklenen formati uretmedi.");
+            Assert(
+                PaymentStatusMessageFormatter.BuildActionError("Ödeme PDF dosyası bulunamadı.", "PDF Yardimi") == "PDF Yardimi: Ödeme PDF dosyası bulunamadı.",
+                "Odeme PDF yardim status hata mesaji beklenen formati uretmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildLastActionText("open_pdf") == "Son hizli yardim: PDF Ac uygulandi.",
+                "Odeme PDF yardim son aksiyon metni beklenen formati uretmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildLastActionToolTip("open_pdf") == "Tikla ve PDF Ac yardimini yeniden calistir.",
+                "Odeme PDF yardim son aksiyon tooltip metni beklenen formati uretmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildSelectedActionStatusText("open_pdf") == "Secili yardim: PDF Ac hazir. Enter/Space ile tekrar.",
+                "Odeme PDF yardim secili durum satiri beklenen formati uretmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildSelectedActionToolTip("open_pdf") == "Yeniden calistir: PDF Ac",
+                "Odeme PDF yardim secili durum satiri tooltip metni beklenen formati uretmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildLastActionPrefix("open_pdf") == "AC",
+                "Odeme PDF yardim son aksiyon prefix metni beklenen formati uretmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildReplayFeedbackText("Son hizli yardim: PDF Ac uygulandi.", true) == "Son hizli yardim: PDF Ac uygulandi. (yeniden tetiklendi)",
+                "Odeme PDF yardim tekrar geri bildirimi beklenen formati uretmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildReplayPreferenceSummaryText("open_pdf", 2, "medium") == "PDF Ac replay ayari: 2 sn, orta vurgu.",
+                "Odeme PDF replay tercih ozeti beklenen formati uretmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildReplayPreferenceSummaryText(null, 2, "low") == "Replay ayari hazir: 2 sn, dusuk vurgu.",
+                "Odeme PDF bos durum replay ozeti beklenen formati uretmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildReplayPreferencePrefix("open_pdf") == "AC",
+                "Odeme PDF replay ozet prefix metni beklenen formati uretmedi.");
+            Assert(
+                ReplayPreferenceIndicatorFormatter.BuildIndicator("high", 3, hasAction: true) == "***|||",
+                "Replay indicator aktif durum deseni beklenen formati uretmedi.");
+            Assert(
+                ReplayPreferenceIndicatorFormatter.BuildIndicator("low", 2, hasAction: false) == ".::",
+                "Replay indicator pasif durum deseni beklenen formati uretmedi.");
+            Assert(
+                ReplayPreferenceIndicatorFormatter.BuildActionDisplayName("use_selected") == "Secili Odeme",
+                "Replay indicator action gorunum adi beklenen metni uretmedi.");
+            var activeReplayToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip("medium", 2, hasAction: true, isReplayActive: true, actionKey: "open_pdf");
+            Assert(
+                activeReplayToolTip.Contains("PDF Ac replay ayari: 2 sn, orta vurgu", StringComparison.Ordinal)
+                && activeReplayToolTip.Contains("Yeniden tetiklendi.", StringComparison.Ordinal),
+                "Replay indicator aktif tooltip metni beklenen formati uretmedi.");
+            var idleReplayToolTip = ReplayPreferenceIndicatorFormatter.BuildToolTip("low", 1, hasAction: false, isReplayActive: false, actionKey: null);
+            Assert(
+                idleReplayToolTip.Contains("Replay ayari hazir: 1 sn, dusuk vurgu.", StringComparison.Ordinal)
+                && idleReplayToolTip.Contains("Bir action sec ve replay yardimini hazirla.", StringComparison.Ordinal),
+                "Replay indicator bos durum tooltip metni beklenen formati uretmedi.");
+            var replayPreferences = new InvoiceReviewPreferences
+            {
+                ShowContext = true,
+                ShowContextDetails = true,
+                PaymentShortcutReplaySeconds = 9,
+                PaymentShortcutReplayEmphasis = "unknown"
+            }.Sanitize();
+            Assert(replayPreferences.PaymentShortcutReplaySeconds == 4, "Replay tercih suresi ust sinirda kirpilamadi.");
+            Assert(replayPreferences.PaymentShortcutReplayEmphasis == "medium", "Replay tercih vurgu seviyesi varsayilana donmedi.");
+            Assert(
+                PaymentPdfHelperSummaryBuilder.BuildSummaryText(
+                    new Payment { Id = 15, InvoiceId = updatedInvoice.Id, PaymentDate = new DateTime(2026, 1, 26), Amount = 45m, Description = "Hazir", PdfFilePath = "attachments/payments/2026/01/ready.pdf" },
+                    paymentPdfExists: true) == "Secili odeme icin PDF kaydi hazir.",
+                "PDF hazir durum ozeti beklenen metni uretmedi.");
+
             var paymentRepository = new PaymentRepository(databasePath);
             var partialPayment = paymentRepository.Add(new PaymentInput(
                 updatedInvoice.Id,
@@ -438,7 +591,7 @@ public sealed class SelfTestRunner
             Assert(InvoiceReviewNavigator.BuildHint("Gecikmis", null, 0) == "Kontrol modu: Gecikmis - gorunur liste bos.", "Bos kontrol modu ipucu beklenen metni uretmedi.");
             Assert(
                 InvoiceReviewNavigator.BuildHint("PDF Eksik", 0, 3, includeShortcuts: true)
-                    == "Kontrol modu: PDF Eksik (1/3) | Kisayollar: Ctrl+Shift+Sol/Sag, Ctrl+Shift+O, Ctrl+Shift+K, Ctrl+Shift+B, Ctrl+Shift+C",
+                    == "Kontrol modu: PDF Eksik (1/3) | Kisayollar: Ctrl+Shift+Sol/Sag, Ctrl+Shift+O, Ctrl+Shift+K, Ctrl+Shift+B, Ctrl+Shift+C, Ctrl+Shift+I, Ctrl+Shift+X",
                 "Kontrol modu kisayol ipucu beklenen metni uretmedi.");
             Assert(
                 InvoiceReviewNavigator.BuildHint("PDF Eksik", 0, 3, includeShortcuts: false, contextLabel: "Rapor: Evrak Kontrol > PDF Kayip")
@@ -449,6 +602,7 @@ public sealed class SelfTestRunner
             Assert(reviewContextChips[0].Text == "Rapor: Evrak Kontrol", "Inceleme baglam rozetinde rapor basligi korunmadi.");
             Assert(reviewContextChips[0].Kind == "report", "Inceleme baglam rozetinde rapor tipi isaretlenmedi.");
             Assert(reviewContextChips[0].Prefix == "RPR", "Inceleme baglam rozetinde rapor on eki atanamadi.");
+            Assert(reviewContextChips[0].ActionBadge == "UYG", "Aksiyonlu baglam cipinde beklenen isaret bulunamadi.");
             Assert(reviewContextChips[1].Text == "PDF Kayip", "Inceleme baglam rozetinde issue tipi ayristirilamadi.");
             Assert(reviewContextChips[1].Kind == "issue", "Inceleme baglam rozetinde issue tipi atanamadi.");
             Assert(reviewContextChips[1].Prefix == "ISS", "Inceleme baglam rozetinde issue on eki atanamadi.");
@@ -458,6 +612,52 @@ public sealed class SelfTestRunner
             Assert(reviewContextChips[3].Text == "2026-01", "Inceleme baglam rozetinde donem ozeti ayristirilamadi.");
             Assert(reviewContextChips[3].Kind == "period", "Inceleme baglam rozetinde donem tipi atanamadi.");
             Assert(reviewContextChips[3].Prefix == "DNM", "Inceleme baglam rozetinde donem on eki atanamadi.");
+            Assert(reviewContextChips[2].ActionBadge == "KPY", "Kopyalama cipinde beklenen isaret bulunamadi.");
+            Assert(reviewContextChips[0].ActionKey == "apply_filter", "Rapor cipi beklenen filtre aksiyonunu uretmedi.");
+            Assert(reviewContextChips[3].ActionKey == "apply_period", "Donem cipi beklenen donem aksiyonunu uretmedi.");
+            Assert(
+                reviewContextChips[0].ToolTip.Contains("Enter/Space", StringComparison.Ordinal) &&
+                reviewContextChips[0].ToolTip.Contains("Ctrl+C", StringComparison.Ordinal) &&
+                reviewContextChips[0].ToolTip.Contains("Shift+F10", StringComparison.Ordinal),
+                "Aksiyonlu baglam cipi tooltip'inde beklenen kisayol ipuclari bulunamadi.");
+            Assert(
+                reviewContextChips[2].ToolTip.Contains("Enter/Space", StringComparison.Ordinal) &&
+                reviewContextChips[2].ToolTip.Contains("Ctrl+C", StringComparison.Ordinal) &&
+                reviewContextChips[2].ToolTip.Contains("Shift+F10", StringComparison.Ordinal),
+                "Kopyalama baglam cipi tooltip'inde beklenen kisayol ipuclari bulunamadi.");
+            Assert(
+                ReviewContextStatusMessageFormatter.BuildCopySuccess("INV-001", "Klavye") == "Klavye: INV-001 kopyalandı.",
+                "Klavye baglam cipi kopyalama mesaji beklenen kisa formati uretmedi.");
+            Assert(
+                ReviewContextStatusMessageFormatter.BuildCopySuccess("INV-001", null) == "Bağlam çipi panoya kopyalandı: INV-001",
+                "Varsayilan baglam cipi kopyalama mesaji bozuldu.");
+            Assert(
+                ReviewContextStatusMessageFormatter.BuildCopyError("Pano kilitli", "Menü") == "Menü: Kopyalama başarısız - Pano kilitli",
+                "Menu baglam cipi kopyalama hata mesaji beklenen formati uretmedi.");
+            Assert(
+                ReviewContextStatusMessageFormatter.BuildActionSuccess("Filtre uygulandı", "PDF Eksik", "Çip") == "Çip: Filtre uygulandı - PDF Eksik.",
+                "Cip baglam aksiyon basari mesaji beklenen kisa formati uretmedi.");
+            Assert(
+                ReviewContextStatusMessageFormatter.BuildActionSuccess("Filtre uygulandı", "PDF Eksik", null) == "Bağlam: Filtre uygulandı - PDF Eksik.",
+                "Varsayilan baglam aksiyon basari mesaji bozuldu.");
+            Assert(
+                ReviewContextStatusMessageFormatter.BuildActionError("Bağlamdan uygulanabilir bir filtre çıkarılamadı.", "Klavye") == "Klavye: Bağlamdan uygulanabilir bir filtre çıkarılamadı.",
+                "Klavye baglam aksiyon hata mesaji beklenen kisa formati uretmedi.");
+            Assert(
+                ReviewContextStatusMessageFormatter.TryResolveLead("Çip: Filtre uygulandı - PDF Eksik.", out var clickLead) &&
+                clickLead == "Çip",
+                "Cip durum mesajinda kaynak etiketi ayristirilamadi.");
+            Assert(
+                ReviewContextStatusMessageFormatter.TryResolveLead("Klavye: INV-001 kopyalandı.", out var keyboardLead) &&
+                keyboardLead == "Klavye",
+                "Klavye durum mesajinda kaynak etiketi ayristirilamadi.");
+            Assert(
+                ReviewContextStatusMessageFormatter.TryResolveLead("Menü: Fatura no uygulandı - INV-001.", out var menuLead) &&
+                menuLead == "Menü",
+                "Menu durum mesajinda kaynak etiketi ayristirilamadi.");
+            Assert(
+                !ReviewContextStatusMessageFormatter.TryResolveLead("Bağlam: Filtre uygulandı - PDF Eksik.", out _),
+                "Normal baglam durum mesaji yanlislikla cip kaynagi gibi yorumlandi.");
             Assert(
                 InvoiceReviewContextFormatter.TryResolveSuggestedFilter("Rapor: İncelenmedi > Elektrik / INV-001", out var unreviewedFilter) &&
                 unreviewedFilter == InvoiceReviewContextFormatter.SuggestedFilter.Unreviewed,
@@ -475,6 +675,38 @@ public sealed class SelfTestRunner
                 periodYear == 2026 &&
                 periodMonth == 1,
                 "Inceleme baglamindan donem filtresi cikartilamadi.");
+            var slashPeriodReviewContextChips = InvoiceReviewContextFormatter.BuildChips("Rapor: Evrak Kontrol > PDF Yok / Fatura / 2026/06");
+            Assert(slashPeriodReviewContextChips.Count == 4, "Slash donemli inceleme baglami beklenen cip sayisini uretmedi.");
+            Assert(
+                slashPeriodReviewContextChips.Any(chip =>
+                    chip.Text == "2026-06" &&
+                    chip.Kind == "period" &&
+                    chip.Prefix == "DNM" &&
+                    chip.ActionKey == "apply_period" &&
+                    chip.ActionBadge == "UYG"),
+                "Slash donemli inceleme baglami uygulanabilir donem cipine donusturulemedi.");
+            Assert(
+                InvoiceReviewContextFormatter.TryResolvePeriod("Rapor: Evrak Kontrol > PDF Yok / Fatura / 2026/06", out var slashPeriodYear, out var slashPeriodMonth) &&
+                slashPeriodYear == 2026 &&
+                slashPeriodMonth == 6,
+                "Slash donemli inceleme baglamindan yil ve ay filtresi cikartilamadi.");
+            Assert(
+                InvoiceReviewContextFormatter.TryResolveInvoiceTypeName("Rapor: İncelenmedi > Elektrik / INV-001", out var invoiceTypeName) &&
+                invoiceTypeName == "Elektrik",
+                "Inceleme baglamindan fatura turu cikartilamadi.");
+            Assert(
+                InvoiceReviewContextFormatter.TryResolveInvoiceNumber("Rapor: Gecikmiş > Su / INV-002", out var invoiceNumber) &&
+                invoiceNumber == "INV-002",
+                "Inceleme baglamindan fatura no cikartilamadi.");
+            Assert(
+                !InvoiceReviewContextFormatter.TryResolveInvoiceTypeName("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01", out _),
+                "Evrak kontrol baglami yanlislikla fatura turu gibi yorumlandi.");
+            Assert(
+                !InvoiceReviewContextFormatter.TryResolveInvoiceNumber("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01", out _),
+                "Evrak kontrol baglami yanlislikla fatura no gibi yorumlandi.");
+            var actionableReviewContextChips = InvoiceReviewContextFormatter.BuildChips("Rapor: İncelenmedi > Elektrik / INV-001");
+            Assert(actionableReviewContextChips.Any(chip => chip.Text == "Elektrik" && chip.ActionKey == "apply_type"), "Fatura turu cipi beklenen tur aksiyonunu uretmedi.");
+            Assert(actionableReviewContextChips.Any(chip => chip.Text == "INV-001" && chip.ActionKey == "apply_invoice_no"), "Fatura no cipi beklenen arama aksiyonunu uretmedi.");
             var reorderedReviewContextChips = InvoiceReviewContextFormatter.BuildChips("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01 > PDF Kayip / Fatura / 2026-01");
             Assert(reorderedReviewContextChips.Count == 4, "Inceleme baglam rozetleri tekrar eden parcayi tekillestiremedi.");
             Assert(reorderedReviewContextChips[0].Kind == "report", "Inceleme baglam rozetleri rapor basligini basa tasimadi.");
@@ -1279,10 +1511,15 @@ public sealed class SelfTestRunner
             Assert(loadedPreferences.EndDate == new DateTime(2026, 6, 5), "Audit log filtre tercihi bitis tarihi saklanmadi.");
             Assert(loadedPreferences.ChangedOnly, "Audit log filtre tercihi degisen alan filtresi saklanmadi.");
 
-            var invoiceReviewPreferences = new InvoiceReviewPreferences(ShowContext: false);
+            var invoiceReviewPreferences = new InvoiceReviewPreferences
+            {
+                ShowContext = false,
+                ShowContextDetails = false
+            };
             invoiceReviewPreferences.Save(testRoot);
             var loadedInvoiceReviewPreferences = InvoiceReviewPreferences.LoadOrDefault(testRoot);
             Assert(!loadedInvoiceReviewPreferences.ShowContext, "Inceleme baglami gorunurluk tercihi saklanmadi.");
+            Assert(!loadedInvoiceReviewPreferences.ShowContextDetails, "Inceleme baglami detay tercihi saklanmadi.");
 
             var backupsDir = Path.Combine(testRoot, "backups");
             Directory.CreateDirectory(backupsDir);
