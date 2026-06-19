@@ -1,5 +1,155 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.342)
+
+- v1.342 tamamlandi: v1.327-v1.341 arasinda biriken kod ve dokuman degisiklikleri butunsel diff denetiminden gecirildi.
+- Review cipi klavye, sag tik ve `ContextMenuOpening` girislerinin ayni menu kurucusuna ulastigi dogrulandi.
+- `YYYY/MM` donem normalizasyonu ile hedefli self-test kapsami birlikte kontrol edildi.
+- Guncel durum ozeti ve review smoke checklistindeki eski anlatimlar duzeltildi.
+- Yerel `config/invoice-review-preferences.json` dosyasi checkpoint kapsamindan ayri tutuldu.
+- Sonraki adim takip edilen degisiklikleri temiz bir checkpoint commitine donusturmek olarak belirlendi.
+- Diff bicim denetimi, build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-19 / v1.341)
+
+- v1.341 tamamlandi: Gecikmis ve PDF Eksik zengin review baglami serisi butunsel olarak kapatildi.
+- Genel baglamlarda yalnizca ana aksiyonlarin, secili satir baglamlarinda ise mevcut detaylara uygun aksiyonlarin etkinlestigi matris netlestirildi.
+- Gecikmis secili baglami Tur ve Fatura No; PDF Eksik secili baglami Donem aksiyonunu etkinlestiriyor.
+- `YYYY/MM` donem normalizasyonu, hedefli self-test ve gercek UI filtresiyle kapanis kaydina alindi.
+- Tur/No/Donem ciplerinin Enter, Space, Ctrl+C, Menu Uygula ve Menu Kopyala akisları tek checklist kaydinda toplandi.
+- Review checklist handoffu v1.341 kapanisina tasindi.
+- Sonraki adim birikmis degisikliklerin butunsel diff denetimi ve temiz checkpoint hazirligi olarak belirlendi.
+- Build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-19 / v1.340)
+
+- v1.340 tamamlandi: Tur, fatura no ve donem ciplerinin Ctrl+C ile kopyalama ve Shift+F10 menu akisları kontrol edildi.
+- Ctrl+C her cipte dogru metni panoya aldi ve `Klavye:` kaynak mesajini uretti.
+- Her menude cipe uygun Uygula secenegi ve metne ozel Kopyala secenegi gorundu.
+- Menu Kopyala aksiyonlari dogru pano metnini ve `Menu:` kaynak mesajini uretti.
+- Menu Uygula tur icin Telefon (ID 4), no icin arama metni, donem icin 2026/Haziran filtrelerini gercekten uyguladi.
+- Test panosu temizlendi; kalici veri yazilmadi.
+- Build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-19 / v1.339)
+
+- v1.339 tamamlandi: Gecikmis Tur/No ve PDF Eksik Donem cipleri Enter ve Space ile etkilesimli olarak kontrol edildi.
+- Telefon tur cipi iki tusla da `Klavye: Tur uygulandi - Telefon.` mesaji uretti ve Telefon (ID 4) filtresini secti.
+- Fatura no cipi iki tusla da `Klavye: Fatura no uygulandi - 1241231231123123.` mesaji uretti ve arama alanini doldurdu.
+- `2026-06` donem cipi iki tusla da `Klavye: Donem uygulandi - 2026-06.` mesaji uretti.
+- Donem filtresinde yil `2026`, ay `Haziran (6)` olarak secildi.
+- Kalici veri yazilmadi; build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-19 / v1.338)
+
+- v1.338 tamamlandi: Gecikmis ve PDF Eksik rapor gecis baglamlari genel ve secili satir durumlarinda karsilastirildi.
+- Genel baglamlarda odak, daraltma, filtre, kopyalama ve temizleme aktif; veri olmayan detay aksiyonlari pasif bulundu.
+- Secili Gecikmis satiri tur ve fatura no ciplerini/aksiyonlarini dogru etkinlestirdi.
+- Secili PDF Eksik satirinda `2026/06` donemi slash ayiraci nedeniyle iki detay cipine bolunuyor ve Donem aksiyonu pasif kaliyordu.
+- Baglam bolunmeden once yalnizca `YYYY/MM` deseni `YYYY-MM` bicimine normalize edildi.
+- Duzeltme sonrasinda `DNM | 2026-06 | UYG` cipi olustu, Donem dugmesi etkinlesti ve `Baglam: Donem uygulandi - 2026-06.` mesaji dogrulandi.
+- Slash donem icin hedefli self-testler eklendi; build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-19 / v1.337)
+
+- v1.337 tamamlandi: Faturalar ekranindaki sekiz Ctrl+Shift inceleme turu kisayolu etkilesimli olarak kontrol edildi.
+- Sag/Sol tek kayitli listede son ve ilk kayit sinir mesajlarini dogru uretti.
+- O eksik PDF durumunu bildirdi; K beklenen PDF klasorunu acti ve tur sonu mesajini uretti.
+- B baglam gorunurlugunu kapatti; C baglam metnini panoya kopyaladi; I hedef faturayi baglamdan inceledi; X normal akisa dondu.
+- K ile acilan hedefli Explorer penceresi kapatildi.
+- Test oncesi yerel tercih dosyasi yedeklendi; test sonrasinda SHA-256 hash degerine birebir geri yuklendi.
+- Veritabani hash degeri degismedi; gecici yedek ve pano icerigi temizlendi.
+- Build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-19 / v1.336)
+
+- v1.336 tamamlandi: Review baglami cipi fare sag tik akisi dogrulandi ve etkilesimli smoke serisi kapatildi.
+- Sag tik menusu ilk testte acilmadigi icin fare girisi yeniden `MouseRightButtonUp` olayina baglandi; ortak menu olusturucu korunarak klavye yolu bozulmadi.
+- Gercek tıklanabilir noktada sag tik menusu `Uygula: Baglam Filtresi` ve `Kopyala: Rapor: İncelenmedi` seceneklerini acti.
+- Sag tik menusunden Uygula `Menu: Filtre uygulandi - Incelenmedi.` mesaji uretti.
+- Sag tik menusunden Kopyala dogru pano metnini ve `Menu:` kaynak mesajini uretti.
+- v1.334-v1.336 arasindaki fare, klavye, menu, pano ve odak sonuclari review checklistinde kapanis kaydina donusturuldu.
+- Build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-19 / v1.335)
+
+- v1.335 tamamlandi: Review baglami cipinin Ctrl+C, Shift+F10, Menu tusu ve Esc akislarinin etkilesimli smoke kontrolu yapildi.
+- Ctrl+C cip metnini panoya kopyaladi ve `Klavye:` kaynak etiketli durum mesaji uretti.
+- Shift+F10 ve Menu tusu ilk kontrolde acilmadigi icin cip menusu WPF `ContextMenuOpening` olayina tasindi.
+- Duzeltme sonrasinda iki klavye yolu da `Uygula: Baglam Filtresi` ve `Kopyala: Rapor: İncelenmedi` seceneklerini acti.
+- Menu icinden Uygula ve Kopyala aksiyonlari `Menu:` kaynak etiketiyle dogru calisti.
+- Esc odagi `Baglami Goster` alanina geri tasidi.
+- Test panosu ve gecici ekran goruntuleri temizlendi; build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-19 / v1.334)
+
+- v1.334 tamamlandi: Review baglami cipi ve ana aksiyonlari etkilesimli olarak kontrol edildi.
+- `Rapor: İncelenmedi` cipi fare, Enter ve Space ile ayni filtreyi dogru uyguladi.
+- WPF Button varsayilan tus davranisi nedeniyle Enter/Space mesajinin `Cip:` olarak kalmasi tespit edildi.
+- Cip olay baglantisi `KeyDown` yerine `PreviewKeyDown` yapilarak fare `Cip:`, klavye `Klavye:` kaynak ayrimi duzeltildi.
+- `Baglam Filtresi`, `Baglami Daralt` ve `Baglamdan Incele` aksiyonlari dogru durum mesajlariyla calisti.
+- Donem, tur ve fatura no aksiyonlarinin bilgi olmayan baglamda pasif kalmasi dogrulandi.
+- Build, self-test ve duzeltme sonrasi Enter/Space UI smoke temiz gecti.
+
+## Son Guncelleme (2026-06-19 / v1.333)
+
+- v1.333 tamamlandi: Odeme ve PDF replay etkilesimli smoke serisi butunsel olarak kapatildi.
+- Replay checklistine iki klavye yuzeyi, Enter/Space odak beklentileri ve hash dogrulamali gecici veri guvenligi eklendi.
+- v1.329-v1.332 arasindaki gercek smoke sonuclari checklistte tek kapanis kaydi altinda toplandi.
+- Veritabani test oncesi hash degeri ve gecici dosya temizligi sonraki tekrarlar icin acik hale getirildi.
+- Sonraki gelisim ekseni review baglami cipleri ve aksiyonlarinin etkilesimli smoke kontrolu olarak belirlendi.
+- Build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-19 / v1.332)
+
+- v1.332 tamamlandi: Gecici odeme kaydi ile secili PDF yardim replay dugmesi Enter ve Space tuslariyla kontrol edildi.
+- `PDF Sec` baglami hazirlandiktan sonra secili yardim yuzeyi dosya secim penceresini iki tusla da yeniden acti.
+- Tum dosya pencereleri Esc ile iptal edildi; odak secili PDF yardim dugmesinde kaldi ve son aksiyon metni `yeniden tetiklendi` oldu.
+- Test oncesi veritabani SHA-256 yedegi alindi; test sonrasinda ayni hash degerine geri yuklendi.
+- Gecici odeme, PDF ve yedek dosyasi kalici olarak birakilmadi.
+- Build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-19 / v1.331)
+
+- v1.331 tamamlandi: Gecici odeme kaydi ile PDF son aksiyon replay dugmesi Enter ve Space tuslariyla kontrol edildi.
+- `PDF Sec` aksiyonu etkinlesti; dosya secim pencereleri her seferinde Esc ile iptal edilerek herhangi bir PDF eklenmedi.
+- Replay ozeti `2 sn, orta vurgu` bilgisini gosterdi; Enter ve Space sonrasinda odak dugmede kaldi ve `yeniden tetiklendi` metni goruldu.
+- Test oncesi veritabani SHA-256 yedegi alindi; test sonrasinda veritabani ayni hash degerine geri yuklendi.
+- Gecici odeme, PDF ve yedek dosyasi kalici olarak birakilmadi.
+- Build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-19 / v1.330)
+
+- v1.330 tamamlandi: Odeme replay yuzeyleri Enter ve Space tuslariyla etkilesimli olarak kontrol edildi.
+- Hem son hizli yardim hem de secili yardim dugmesi klavye ile `Kalani Doldur` aksiyonunu yeniden calistirdi.
+- Her iki yuzeyde de odak dugmede korundu, kaynak etiketli durum mesaji geldi ve `yeniden tetiklendi` metni goruldu.
+- Mevcut ornek faturada odeme kaydi olmadigi icin PDF sec/ac aksiyonlarinin pasif kalmasi yeniden dogrulandi.
+- Smoke sirasinda kalici odeme veya PDF kaydi olusturulmadi.
+- Build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-19 / v1.329)
+
+- v1.329 tamamlandi: Mevcut fatura seciliyken odeme ve PDF hizli aksiyonlari etkilesimli olarak kontrol edildi.
+- `Kalani Doldur` kalan tutari `210,00` olarak taslaga aktardi; son odeme bulunmadigi durumu aciklayici mesajla dondu.
+- Secili odeme ve PDF evrak aksiyonlari gerekli odeme kaydi olmadigi icin dogru bicimde pasif kaldi.
+- Kalan tutar replay akisi tekrar calistirildi; `2 sn / orta vurgu`, kaynak etiketli durum mesaji ve `yeniden tetiklendi` geri bildirimi dogrulandi.
+- Smoke sirasinda kalici odeme veya PDF kaydi olusturulmadi.
+- Build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-19 / v1.328)
+
+- v1.328 tamamlandi: Faturalar ekranindaki form akisi, odeme bilgisi girisi ve PDF inceleme zinciri butunsel olarak kontrol edildi.
+- Sag form panelinin kaydirma yapisi, kart gecisleri ve alt aksiyon yerlesimleri mevcut pencere duzeninde tutarli bulundu.
+- Gorunur bir tasma veya hizalama kusuru bulunmadigi icin kaynak kodda gereksiz ek piksel degisikligi yapilmadi.
+- Smoke test olarak build ve self-test temiz gecti.
+
+## Son Guncelleme (2026-06-19 / v1.327)
+
+- v1.327 tamamlandi: Odemeler ekranindaki uc kartli ozet satiri calisan uygulamada gorusel olarak kontrol edildi.
+- Kartlarin esit genislikte, ayni hizada ve mevcut pencere genisliginde tasma olmadan durdugu dogrulandi.
+- Yerlesim dengeli bulundugu icin kaynak kodda gereksiz ek piksel degisikligi yapilmadi.
+- Smoke test olarak build ve self-test temiz gecti.
+
 ## Son Guncelleme (2026-06-19 / v1.326)
 
 - v1.326 tamamlandi: `Detay Araçlari` basliginin ust boslugu hafifce artirildi.

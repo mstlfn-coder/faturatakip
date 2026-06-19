@@ -2,6 +2,188 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-19 / v1.342)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.342 - Birikmis Degisiklikler Checkpoint Denetimi`
+- v1.327-v1.341 arasinda biriken takip edilen kod ve dokuman degisiklikleri butunsel olarak incelendi.
+- Review menu girisleri, slash donem normalizasyonu ve hedefli self-test kapsami birbiriyle tutarli bulundu.
+- Guncel durum ozeti ile review smoke checklistindeki iki eski anlatim duzeltildi.
+- Yerel `config/invoice-review-preferences.json` dosyasi degistirilmedi ve checkpoint kapsamindan ayri tutuldu.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+## Son Guncelleme (2026-06-19 / v1.341)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.341 - Zengin Rapor Baglami Serisi Kapanisi`
+- Gecikmis ve PDF Eksik review baglamlarinin genel/secili aksiyon uygunluklari tek matriste kapatildi.
+- Gecikmis secili satiri Tur/No, PDF Eksik secili satiri Donem aksiyonunu etkinlestiriyor.
+- Slash donem normalizasyonu ve Tur/No/Donem ciplerinin Enter/Space, Ctrl+C ve menu akisları checklistte toplandi.
+- Gercek filtre sonuclari Telefon (ID 4), no `1241231231123123`, yil 2026 ve ay Haziran (6) olarak kaydedildi.
+- Veritabani ve yerel tercih hash degerleri korundu; kalici veri yazilmadi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+## Son Guncelleme (2026-06-19 / v1.340)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.340 - Detay Cipleri Kopyalama ve Menu Smoke`
+- Telefon turu, fatura no ve `2026-06` donem ciplerinde Ctrl+C ve Shift+F10 menu akisları kontrol edildi.
+- Ctrl+C ve menu Kopyala dogru pano metinleriyle `Klavye:` / `Menu:` mesajlarini uretti.
+- Menu Uygula secenekleri tur, arama no ve yil/ay filtrelerini gercek degerleriyle uyguladi.
+- Test panosu temizlendi; kalici veri yazilmadi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+## Son Guncelleme (2026-06-19 / v1.339)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.339 - Detay Cipleri Klavye Smoke`
+- Gecikmis baglamindaki Telefon turu ve fatura no cipleri Enter/Space ile kontrol edildi.
+- PDF Eksik baglamindaki `2026-06` donem cipi Enter/Space ile kontrol edildi.
+- Tum akislar `Klavye:` kaynak mesajini uretti.
+- Gercek filtre sonuclari Telefon (ID 4), arama no `1241231231123123`, yil 2026 ve ay Haziran (6) olarak dogrulandi.
+- Kalici veri yazilmadi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+## Son Guncelleme (2026-06-19 / v1.338)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.338 - Rapor Baglami Aksiyon Uygunlugu`
+- Gecikmis ve PDF Eksik rapor gecis baglamlari genel/secili satir durumlarinda karsilastirildi.
+- Gecikmis secili satirinda tur ve fatura no aksiyonlari dogru etkinlesti.
+- PDF Eksik satirindaki `2026/06` doneminin slash nedeniyle iki cipe bolunup Donem aksiyonunu pasif biraktigi tespit edildi.
+- `YYYY/MM` donem deseni bolunmeden once `YYYY-MM` bicimine normalize edildi.
+- Duzeltme sonrasinda `DNM | 2026-06 | UYG` cipi, etkin Donem dugmesi ve basarili donem durum mesaji dogrulandi.
+- Slash donem icin hedefli self-testler eklendi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+## Son Guncelleme (2026-06-19 / v1.337)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.337 - Inceleme Turu Kisayol Smoke`
+- Ctrl+Shift+Sag/Sol/O/K/B/C/I/X kisayollari Incelenmedi review baglaminda etkilesimli olarak kontrol edildi.
+- Gezinme sinirlari, eksik PDF, klasor acma, baglam gorunurlugu, pano kopyalama, baglamdan inceleme ve temizleme sonuclari dogru bulundu.
+- K ile acilan hedefli Explorer penceresi kapatildi.
+- Test oncesi yerel tercih dosyasi yedeklendi; test sonrasinda SHA-256 hash degerine birebir geri yuklendi.
+- Veritabani hash degeri degismedi; gecici yedek ve pano temizlendi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+## Son Guncelleme (2026-06-19 / v1.336)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.336 - Review Smoke Serisi Kapanisi`
+- Review cipi sag tik menusu gercek fare olayi ile kontrol edildi.
+- Sag tik acilisindaki regresyon `MouseRightButtonUp` baglantisi geri eklenerek duzeltildi; ortak menu olusturucu klavye akisiyla paylasilmaya devam etti.
+- Sag tik menusundeki Uygula ve Kopyala secenekleri `Menu:` kaynak mesajlariyla calisti; pano metni dogrulandi.
+- v1.334-v1.336 arasindaki fare, Enter/Space, Ctrl+C, Shift+F10, Menu tusu ve Esc sonuclari review checklistinde kapatildi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+## Son Guncelleme (2026-06-19 / v1.335)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.335 - Review Cipi Menu ve Odak Smoke`
+- Review cipi Ctrl+C ile kopyalandi; pano metni ve `Klavye:` durum mesaji dogrulandi.
+- Shift+F10 ve Menu tusunun acilmadigi ilk smoke sonucuna gore menu girisi `ContextMenuOpening` olayina tasindi.
+- Duzeltme sonrasinda Uygula ve Kopyala menu secenekleri iki klavye yoluyla da acildi ve `Menu:` kaynak etiketiyle calisti.
+- Esc odagi `Baglami Goster` alanina geri tasidi.
+- Test panosu ve gecici ekran goruntuleri temizlendi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+## Son Guncelleme (2026-06-19 / v1.334)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.334 - Review Cipi Klavye Kaynak Ayrimi`
+- Incelenmedi raporundan uretilen review baglami cipi fare, Enter ve Space ile kontrol edildi.
+- Enter/Space akisinin WPF varsayilan Button davranisi nedeniyle `Cip:` mesaji urettigi tespit edildi.
+- XAML olay baglantisi `PreviewKeyDown` yapilarak klavye akisinda `Klavye:` kaynak etiketi dogrulandi.
+- Baglam filtresi, daraltma ve inceleme ana aksiyonlari da fare/klavye ile temiz gecti.
+- Donem, tur ve no bilgisi olmayan baglamda ilgili detay dugmeleri dogru bicimde pasif kaldi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+## Son Guncelleme (2026-06-19 / v1.333)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.333 - Replay Smoke Serisi Kapanisi`
+- Odeme ve PDF replay akislarinin v1.329-v1.332 arasindaki etkilesimli smoke sonuclari checklistte birlestirildi.
+- Enter/Space klavye davranisi, odak koruma beklentisi ve gecici test verisinin hash dogrulamali geri alinmasi acik adimlara donusturuldu.
+- Veritabani SHA-256 degeri ve test artigi kontrolu kapanis kaydina eklendi.
+- Replay smoke halkasi temiz kabul edilerek sonraki eksen review baglami etkilesimli kontrolune tasindi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+## Son Guncelleme (2026-06-19 / v1.332)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.332 - Secili PDF Yardim Klavye Smoke`
+- Gecici odeme kaydi ile secili PDF yardim replay dugmesi Enter ve Space tuslariyla kontrol edildi.
+- Her iki tus da dosya secim penceresini acti; pencereler Esc ile iptal edildi, odak secili yardim dugmesinde kaldi ve son aksiyon `yeniden tetiklendi` oldu.
+- Test oncesi veritabani yedeklendi; test sonrasinda SHA-256 hash test oncesi degerle birebir eslesecek sekilde geri yuklendi.
+- Gecici odeme, PDF veya yedek dosyasi kalici olarak birakilmadi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+## Son Guncelleme (2026-06-19 / v1.331)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.331 - PDF Son Aksiyon Replay Klavye Smoke`
+- Gecici odeme kaydi ile PDF Sec ve PDF son aksiyon replay dugmesi klavyeden kontrol edildi.
+- Enter ve Space dosya secim penceresini acti; tum pencereler Esc ile iptal edildi, odak replay dugmesinde kaldi ve `yeniden tetiklendi` metni goruldu.
+- Replay ozeti `2 sn, orta vurgu` bilgisini dogru gosterdi.
+- Test oncesi veritabani yedeklendi; test sonrasinda SHA-256 hash test oncesi degerle birebir eslesecek sekilde geri yuklendi.
+- Gecici odeme, PDF veya yedek dosyasi kalici olarak birakilmadi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+## Son Guncelleme (2026-06-19 / v1.330)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.330 - Odeme Replay Klavye Smoke Kontrolu`
+- Son hizli yardim ve secili yardim replay dugmeleri Enter ve Space ile ayri ayri kontrol edildi.
+- Her iki dugme de `Kalani Doldur` aksiyonunu yeniden calistirdi; odak dugmede kaldi ve `yeniden tetiklendi` geri bildirimi goruldu.
+- Mevcut ornek faturada odeme kaydi olmadigi icin PDF replay aksiyonlari pasif durumda dogrulandi.
+- Smoke sirasinda kalici odeme veya PDF kaydi olusturulmadi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+## Son Guncelleme (2026-06-19 / v1.329)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.329 - Odeme ve PDF Hizli Aksiyon Smoke Kontrolu`
+- Mevcut fatura secilerek `Kalani Doldur` aksiyonu ve replay yuzeyi etkilesimli olarak dogrulandi.
+- Tutar `210,00` olarak dolduruldu; replay ozeti `2 sn, orta vurgu` bilgisini gosterdi ve tekrar akisinda `yeniden tetiklendi` metni olustu.
+- Odeme kaydi olmadigi icin secili odeme ve PDF aksiyonlarinin pasif kalmasi dogrulandi.
+- Smoke sirasinda kalici odeme veya PDF kaydi olusturulmadi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+## Son Guncelleme (2026-06-19 / v1.328)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.328 - Fatura Formu Butunsel Kontrolu`
+- Faturalar ekranindaki ust form akisi, odeme bilgisi girisi ve PDF inceleme zinciri birlikte kontrol edildi.
+- Sag panel kaydirma yapisi ile odeme/PDF kart gecislerinde tasma veya hizalama kusuru bulunmadi.
+- Yerlesim dengeli oldugu icin kaynak kodda ek piksel degisikligi yapilmadi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
+## Son Guncelleme (2026-06-19 / v1.327)
+
+- Aktif branch: `codex/v1.08-review-context-issue-action`
+- Son tamamlanan faz: `v1.327 - Uclu Ozet Grid Gorunumu Dogrulandi`
+- Odemeler ekranindaki aylik rapor, evrak kontrolu ve odeme calismasi kartlari calisan uygulamada birlikte incelendi.
+- Uc kartin esit genislikte, ayni hizada ve tasma olmadan durdugu dogrulandi.
+- Yerlesim dengeli oldugu icin kaynak kodda ek piksel degisikligi yapilmadi.
+- Smoke test: `dotnet build .\FaturaTakip.sln -c Release`
+- Smoke test: `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
+
 ## Son Guncelleme (2026-06-19 / v1.326)
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
@@ -1825,4 +2007,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Odemeler ekraninda uc parcali grid satirinin artik sabitlenip sabitlenmedigini gorusel olarak kontrol etmek.
+- Yerel tercih JSON'unu disarida birakarak takip edilen v1.327-v1.342 degisikliklerini temiz bir checkpoint commitine donusturmek.

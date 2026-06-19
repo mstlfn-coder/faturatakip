@@ -675,6 +675,21 @@ public sealed class SelfTestRunner
                 periodYear == 2026 &&
                 periodMonth == 1,
                 "Inceleme baglamindan donem filtresi cikartilamadi.");
+            var slashPeriodReviewContextChips = InvoiceReviewContextFormatter.BuildChips("Rapor: Evrak Kontrol > PDF Yok / Fatura / 2026/06");
+            Assert(slashPeriodReviewContextChips.Count == 4, "Slash donemli inceleme baglami beklenen cip sayisini uretmedi.");
+            Assert(
+                slashPeriodReviewContextChips.Any(chip =>
+                    chip.Text == "2026-06" &&
+                    chip.Kind == "period" &&
+                    chip.Prefix == "DNM" &&
+                    chip.ActionKey == "apply_period" &&
+                    chip.ActionBadge == "UYG"),
+                "Slash donemli inceleme baglami uygulanabilir donem cipine donusturulemedi.");
+            Assert(
+                InvoiceReviewContextFormatter.TryResolvePeriod("Rapor: Evrak Kontrol > PDF Yok / Fatura / 2026/06", out var slashPeriodYear, out var slashPeriodMonth) &&
+                slashPeriodYear == 2026 &&
+                slashPeriodMonth == 6,
+                "Slash donemli inceleme baglamindan yil ve ay filtresi cikartilamadi.");
             Assert(
                 InvoiceReviewContextFormatter.TryResolveInvoiceTypeName("Rapor: İncelenmedi > Elektrik / INV-001", out var invoiceTypeName) &&
                 invoiceTypeName == "Elektrik",

@@ -1170,6 +1170,18 @@ public partial class InvoicesView : UserControl
         ExecuteReviewContextChipPrimaryAction(chip, "Çip");
     }
 
+    private void InvoiceReviewContextChipButton_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+    {
+        if (sender is not Button { Tag: InvoiceReviewContextFormatter.ContextChip chip } button ||
+            string.IsNullOrWhiteSpace(chip.Text))
+        {
+            return;
+        }
+
+        ShowReviewContextChipContextMenu(button, chip);
+        e.Handled = true;
+    }
+
     private void InvoiceReviewContextChipButton_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
     {
         if (sender is not Button { Tag: InvoiceReviewContextFormatter.ContextChip chip } button ||

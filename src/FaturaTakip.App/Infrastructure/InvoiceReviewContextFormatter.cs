@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace FaturaTakip.App.Infrastructure;
 
 public static class InvoiceReviewContextFormatter
@@ -22,7 +24,7 @@ public static class InvoiceReviewContextFormatter
 
         for (var sectionIndex = 0; sectionIndex < sections.Length; sectionIndex++)
         {
-            var section = sections[sectionIndex];
+            var section = NormalizePeriodSeparators(sections[sectionIndex]);
             var parts = section
                 .Split('/', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
@@ -82,6 +84,15 @@ public static class InvoiceReviewContextFormatter
                parts[1].Length == 2 &&
                parts[0].All(char.IsDigit) &&
                parts[1].All(char.IsDigit);
+    }
+
+    private static string NormalizePeriodSeparators(string text)
+    {
+        return Regex.Replace(
+            text,
+            @"(?<!\d)(\d{4})/(\d{2})(?!\d)",
+            "$1-$2",
+            RegexOptions.CultureInvariant);
     }
 
     private static string ResolvePrefix(string kind)

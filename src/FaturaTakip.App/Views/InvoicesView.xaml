@@ -1407,8 +1407,9 @@
                                                                 Tag="{Binding}"
                                                                 ToolTip="{Binding ToolTip}"
                                                                 Click="InvoiceReviewContextChipButton_Click"
-                                                                KeyDown="InvoiceReviewContextChipButton_KeyDown"
-                                                                MouseRightButtonUp="InvoiceReviewContextChipButton_MouseRightButtonUp">
+                                                                PreviewKeyDown="InvoiceReviewContextChipButton_KeyDown"
+                                                                MouseRightButtonUp="InvoiceReviewContextChipButton_MouseRightButtonUp"
+                                                                ContextMenuOpening="InvoiceReviewContextChipButton_ContextMenuOpening">
                                                             <Border Style="{StaticResource ContextChipBorder}">
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <TextBlock Text="{Binding Prefix}"

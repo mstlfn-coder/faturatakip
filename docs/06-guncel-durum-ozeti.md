@@ -1,16 +1,32 @@
 # Guncel Durum Ozeti
 
-Son guncelleme tarihi: 2026-06-16
+Son guncelleme tarihi: 2026-06-19
 
 ## Hemen Okunacak Ozet
 
 - Aktif branch: `codex/v1.08-review-context-issue-action`
-- Son tamamlanan temiz faz: `v1.326 - Detay Araclari Gecisi Rahatladi`
-- Bu dalin ana odagi: Odemeler gecis panelinde aktif akis baglamini katman katman daha okunur hale getirmek
+- Son tamamlanan temiz faz: `v1.342 - Birikmis Degisiklikler Checkpoint Denetimi`
+- Bu dalin ana odagi: Faturalar review baglami, replay ve erisilebilir etkilesim akislarini guvenli smoke testlerle olgunlastirmak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.342` Birikmis Degisiklikler Checkpoint Denetimi
+- `v1.341` Zengin Rapor Baglami Serisi Kapanisi
+- `v1.340` Detay Cipleri Kopyalama ve Menu Smoke
+- `v1.339` Detay Cipleri Klavye Smoke
+- `v1.338` Rapor Baglami Aksiyon Uygunlugu
+- `v1.337` Inceleme Turu Kisayol Smoke
+- `v1.336` Review Smoke Serisi Kapanisi
+- `v1.335` Review Cipi Menu ve Odak Smoke
+- `v1.334` Review Cipi Klavye Kaynak Ayrimi
+- `v1.333` Replay Smoke Serisi Kapanisi
+- `v1.332` Secili PDF Yardim Klavye Smoke
+- `v1.331` PDF Son Aksiyon Replay Klavye Smoke
+- `v1.330` Odeme Replay Klavye Smoke Kontrolu
+- `v1.329` Odeme ve PDF Hizli Aksiyon Smoke Kontrolu
+- `v1.328` Fatura Formu Butunsel Kontrolu
+- `v1.327` Uclu Ozet Grid Gorunumu Dogrulandi
 - `v1.326` Detay Araclari Gecisi Rahatladi
 - `v1.325` Baglamdan Ana Aksiyona Gecis Esitlendi
 - `v1.324` Baglam Ici Kisayol Basligi Ritmi
@@ -242,7 +258,7 @@ Son guncelleme tarihi: 2026-06-16
 
 ## Sonraki Mantikli Ana Adim
 
-- Odemeler ekraninda uc parcali grid satirinin artik sabitlenip sabitlenmedigini gorusel olarak kontrol etmek
+- Yerel tercih JSON'unu disarida birakarak takip edilen v1.327-v1.342 degisikliklerini temiz bir checkpoint commitine donusturmek
 
 ## Yeni Chat Icin Kisa Talimat
 

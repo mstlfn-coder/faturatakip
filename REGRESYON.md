@@ -1,5 +1,244 @@
 # Regresyon Kontrol Listesi
 
+## v1.342 - Birikmis Degisiklikler Checkpoint Denetimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Butunsel diff denetimi tamamlandi | OK | v1.327-v1.341 kapsamindaki takip edilen degisiklikler incelendi |
+| Diff bicim denetimi temiz | OK | `git diff --check` hata vermedi |
+| Review menu girisleri tutarli | OK | Klavye, sag tik ve context-menu acilisi ortak menu kurucusuna ulasiyor |
+| Donem normalizasyonu kapsami korundu | OK | `YYYY/MM` girdisi `YYYY-MM` cipi ve donem aksiyonu uretiyor |
+| Dokuman tutarsizliklari giderildi | OK | Dal odagi ve sag tik menu anlatimi guncellendi |
+| Yerel tercih dosyasi ayrildi | OK | `config/invoice-review-preferences.json` checkpoint kapsaminda degil |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| 2026-06-19 | v1.342 | OK | Birikmis degisiklikler temiz checkpoint icin hazirlandi |
+
+## v1.341 - Zengin Rapor Baglami Serisi Kapanisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Genel baglam matrisi kaydedildi | OK | Ana aksiyonlar aktif, veri olmayan detay aksiyonlari pasif |
+| Gecikmis secili matrisi kaydedildi | OK | Tur ve Fatura No aksiyonlari aktif |
+| PDF Eksik secili matrisi kaydedildi | OK | Donem aksiyonu aktif |
+| Slash donem duzeltmesi kapatildi | OK | `2026/06` -> `DNM | 2026-06 | UYG` |
+| Enter/Space sonuclari toplandi | OK | Tur/No/Donem cipleri `Klavye:` mesaji uretiyor |
+| Ctrl+C sonuclari toplandi | OK | Uc detay cipi dogru pano metnini uretiyor |
+| Menu sonuclari toplandi | OK | Uygula gercek filtreyi, Kopyala `Menu:` mesajini uretiyor |
+| Review checklist guncellendi | OK | Zengin baglam serisi v1.341 kapanisina tasindi |
+| Kalici veri degismedi | OK | Veritabani ve tercih hash degerleri korundu |
+| 2026-06-19 | v1.341 | OK | Zengin rapor baglami serisi kapatildi |
+
+## v1.340 - Detay Cipleri Kopyalama ve Menu Smoke
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tur Ctrl+C calisti | OK | Pano `Telefon`, mesaj `Klavye: Telefon kopyalandi.` |
+| No Ctrl+C calisti | OK | Pano ve mesaj hedef fatura numarasini tasidi |
+| Donem Ctrl+C calisti | OK | Pano `2026-06`, mesaj klavye kaynagini tasidi |
+| Tur menusu dogru | OK | `Uygula: Baglam Turu` ve `Kopyala: Telefon` gorundu |
+| No menusu dogru | OK | `Uygula: Baglam No` ve numaraya ozel Kopyala gorundu |
+| Donem menusu dogru | OK | `Uygula: Baglam Donemi` ve `Kopyala: 2026-06` gorundu |
+| Menu Kopyala aksiyonlari calisti | OK | Uc cipte de `Menu:` mesaji ve dogru pano metni goruldu |
+| Menu Tur Uygula calisti | OK | Telefon, InvoiceTypeId 4 secildi |
+| Menu No Uygula calisti | OK | Arama alani `1241231231123123` oldu |
+| Menu Donem Uygula calisti | OK | Yil 2026, ay Haziran (6) secildi |
+| Gecici artik temiz | OK | Pano temizlendi, kalici veri yazilmadi |
+| 2026-06-19 | v1.340 | OK | Detay cipleri kopyalama ve menu smoke tamamlandi |
+
+## v1.339 - Detay Cipleri Klavye Smoke
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Tur cipi Enter ile calisti | OK | `Klavye: Tur uygulandi - Telefon.` mesaji goruldu |
+| Tur cipi Space ile calisti | OK | Ayni klavye kaynak mesaji goruldu |
+| Tur filtresi gercekten secildi | OK | Telefon, InvoiceTypeId 4 olarak secildi |
+| Fatura no cipi Enter ile calisti | OK | Hedef no arama alanina uygulandi |
+| Fatura no cipi Space ile calisti | OK | Hedef no arama alanina uygulandi |
+| Fatura no kaynak mesaji dogru | OK | `Klavye: Fatura no uygulandi - 1241231231123123.` goruldu |
+| Donem cipi Enter ile calisti | OK | `Klavye: Donem uygulandi - 2026-06.` goruldu |
+| Donem cipi Space ile calisti | OK | Ayni klavye kaynak mesaji goruldu |
+| Donem filtreleri gercekten secildi | OK | Yil 2026, ay Haziran (6) oldu |
+| Kalici veri yazilmadi | OK | Yalnizca filtre ve arama durumu degisti |
+| 2026-06-19 | v1.339 | OK | Detay cipleri klavye smoke tamamlandi |
+
+## v1.338 - Rapor Baglami Aksiyon Uygunlugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | Slash donem testleri dahil tum self-testler temiz gecti |
+| Gecikmis genel baglami dogru | OK | Odak/daralt/filtre/kopyala/temizle aktif, detay aksiyonlari pasif |
+| PDF Eksik genel baglami dogru | OK | Odak/daralt/filtre/kopyala/temizle aktif, detay aksiyonlari pasif |
+| Gecikmis secili baglami zengin | OK | Telefon turu ve fatura no cipleri UYG olarak olustu |
+| Gecikmis detay aksiyonlari dogru | OK | Baglam Turu ve Baglam No etkinlesti |
+| Slash donem sorunu yakalandi | OK | `2026/06` once iki DET cipine bolunuyordu |
+| Slash donem normalize edildi | OK | Yalnizca `YYYY/MM` deseni `YYYY-MM` bicimine donusturuluyor |
+| PDF Eksik donem cipi dogru | OK | `DNM | 2026-06 | UYG` cipi olustu |
+| Baglam Donemi etkin | OK | Donem dugmesi etkinlesti |
+| Donem aksiyonu calisti | OK | `Baglam: Donem uygulandi - 2026-06.` mesaji goruldu |
+| 2026-06-19 | v1.338 | OK | Rapor baglami aksiyon uygunlugu duzeltildi |
+
+## v1.337 - Inceleme Turu Kisayol Smoke
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ctrl+Shift+Sag calisti | OK | Tek kayitta `Son kayittasiniz.` mesaji gorundu |
+| Ctrl+Shift+Sol calisti | OK | Tek kayitta `Ilk kayittasiniz.` mesaji gorundu |
+| Ctrl+Shift+O calisti | OK | Eksik PDF icin `PDF dosyasi bulunamadi.` mesaji gorundu |
+| Ctrl+Shift+K calisti | OK | Beklenen PDF klasoru acildi ve tur sonu mesaji gorundu |
+| Ctrl+Shift+B calisti | OK | Inceleme baglami gizlendi ve tercih Off oldu |
+| Ctrl+Shift+C calisti | OK | Pano `Rapor: İncelenmedi` metnini aldi |
+| Ctrl+Shift+I calisti | OK | Hedef fatura numarasini tasiyan baglam inceleme mesaji gorundu |
+| Ctrl+Shift+X calisti | OK | `Baglam: Temizlendi - Normal akis.` mesaji gorundu |
+| Yerel tercih geri yuklendi | OK | SHA-256 `D15C7D0E...0CE67` degerine geri donuldu |
+| Veritabani degismedi | OK | SHA-256 `DF946F2E...67A29E` degeri korundu |
+| Gecici artik temiz | OK | Tercih yedegi, pano icerigi ve hedefli Explorer penceresi temizlendi |
+| 2026-06-19 | v1.337 | OK | Inceleme turu kisayol smoke tamamlandi |
+
+## v1.336 - Review Smoke Serisi Kapanisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Sag tik menu regresyonu duzeltildi | OK | `MouseRightButtonUp` yeniden ortak menu olusturucuya baglandi |
+| Sag tik menusu acildi | OK | Uygula ve Kopyala secenekleri gorundu |
+| Sag tik Uygula calisti | OK | `Menu: Filtre uygulandi - Incelenmedi.` mesaji uretti |
+| Sag tik Kopyala calisti | OK | Pano `Rapor: İncelenmedi` metnini aldi |
+| Kopyala kaynak mesaji dogru | OK | `Menu: Rapor: İncelenmedi kopyalandi.` mesaji uretti |
+| Klavye menu yolu korundu | OK | Shift+F10 ve Menu tusu duzeltme sonrasinda calismaya devam ediyor |
+| Review checklist kapatildi | OK | Fare, klavye, menu, pano ve odak sonuclari birlestirildi |
+| Gecici test artigi temiz | OK | Pano ve smoke ekran goruntuleri temizlendi |
+| 2026-06-19 | v1.336 | OK | Review smoke serisi kapatildi |
+
+## v1.335 - Review Cipi Menu ve Odak Smoke
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Ctrl+C kopyalama calisti | OK | Pano `Rapor: İncelenmedi` metnini aldi |
+| Ctrl+C kaynak mesaji dogru | OK | Durum mesaji `Klavye: Rapor: İncelenmedi kopyalandi.` oldu |
+| Menu acilis olayi duzeltildi | OK | Sag tik/klavye menusu `ContextMenuOpening` uzerinden ortaklastirildi |
+| Shift+F10 menuyu acti | OK | Uygula ve Kopyala secenekleri gorundu |
+| Menu tusu menuyu acti | OK | Uygula ve Kopyala secenekleri gorundu |
+| Menu Uygula calisti | OK | `Menu: Filtre uygulandi - Incelenmedi.` mesaji uretti |
+| Menu Kopyala calisti | OK | Pano metni ve `Menu:` kaynak mesaji dogrulandi |
+| Esc odak donusu calisti | OK | Odak `ShowInvoiceReviewContextCheckBox` alanina dondu |
+| Gecici test artigi temiz | OK | Pano temizlendi ve smoke ekran goruntuleri silindi |
+| 2026-06-19 | v1.335 | OK | Review cipi menu ve odak smoke tamamlandi |
+
+## v1.334 - Review Cipi Klavye Kaynak Ayrimi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Incelenmedi baglami olustu | OK | Rapor gecis baglami `Rapor: İncelenmedi` olarak gorundu |
+| Cip fare akisi calisti | OK | Durum mesaji `Cip: Filtre uygulandi - Incelenmedi.` oldu |
+| Cip Enter akisi calisti | OK | Duzeltme sonrasi durum mesaji `Klavye: Filtre uygulandi - Incelenmedi.` oldu |
+| Cip Space akisi calisti | OK | Duzeltme sonrasi durum mesaji `Klavye: Filtre uygulandi - Incelenmedi.` oldu |
+| Olay sirasi duzeltildi | OK | Cip `KeyDown` baglantisi `PreviewKeyDown` olarak degistirildi |
+| Baglam filtresi calisti | OK | Ana aksiyon `Baglam: Filtre uygulandi - Incelenmedi.` mesaji uretti |
+| Baglam daraltma calisti | OK | Enter ile `Baglam: Daraltma uygulandi - Incelenmedi.` mesaji uretti |
+| Baglamdan incele calisti | OK | Space ile hedef fatura numarasini tasiyan inceleme mesaji uretti |
+| Uygulanamayan detaylar pasif | OK | Donem, tur ve fatura no dugmeleri baglamda bilgi olmadigi icin pasif kaldi |
+| 2026-06-19 | v1.334 | OK | Review cipi klavye kaynak ayrimi duzeltildi |
+
+## v1.333 - Replay Smoke Serisi Kapanisi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Replay checklist guncellendi | OK | Son aksiyon ve secili yardim klavye yuzeyleri dokumante edildi |
+| Enter/Space beklentileri kaydedildi | OK | Aksiyon ve odak koruma kriterleri checklistte aciklandi |
+| Gecici veri guvenligi kaydedildi | OK | Yedek, SHA-256 geri donus ve artik temizligi adimlari eklendi |
+| Smoke sonuclari toplandi | OK | v1.329-v1.332 dogrulamalari tek kapanis kaydinda ozetlendi |
+| Veritabani temiz | OK | SHA-256 degeri `DF946F2E...67A29E` olarak korundu |
+| Test artigi yok | OK | Gecici v1.33x yedegi ve odeme PDF eki bulunmuyor |
+| 2026-06-19 | v1.333 | OK | Replay smoke serisi butunsel olarak kapatildi |
+
+## v1.332 - Secili PDF Yardim Klavye Smoke
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Gecici odeme olusturuldu | OK | PDF yardim yuzeyini etkinlestirmek icin `210,00` odeme kaydi kullanildi |
+| Secili PDF yardimi hazirlandi | OK | Durum metni `PDF Sec hazir. Enter/Space ile tekrar.` oldu |
+| Secili PDF yardimi Enter ile calisti | OK | Dosya secim penceresi acildi ve Esc ile iptal edildi |
+| Secili PDF yardimi Space ile calisti | OK | Dosya secim penceresi acildi ve Esc ile iptal edildi |
+| Klavye odagi korundu | OK | Enter ve Space sonrasinda odak secili PDF yardim dugmesinde kaldi |
+| Replay geri bildirimi gorundu | OK | Son aksiyon metni `yeniden tetiklendi` oldu |
+| PDF eklenmedi | OK | Tum dosya secim pencereleri Esc ile iptal edildi |
+| Veritabani geri yuklendi | OK | Test sonrasi SHA-256 hash test oncesi degerle birebir eslesti |
+| Gecici yedek temizlendi | OK | Geri yukleme sonrasi test yedegi silindi |
+| 2026-06-19 | v1.332 | OK | Secili PDF yardim klavye smoke tamamlandi |
+
+## v1.331 - PDF Son Aksiyon Replay Klavye Smoke
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Gecici odeme olusturuldu | OK | PDF yardim aksiyonlarini etkinlestirmek icin `210,00` odeme kaydi kullanildi |
+| PDF Sec Enter ile acildi | OK | Dosya secim penceresi acildi ve Esc ile iptal edildi |
+| PDF replay Enter ile calisti | OK | Son aksiyon replay dugmesi PDF Sec penceresini yeniden acti |
+| PDF replay Space ile calisti | OK | Son aksiyon replay dugmesi PDF Sec penceresini yeniden acti |
+| Klavye odagi korundu | OK | Enter ve Space sonrasinda odak PDF son aksiyon dugmesinde kaldi |
+| Replay geri bildirimi gorundu | OK | Son aksiyon metni `yeniden tetiklendi` oldu |
+| Replay tercihi gorunur | OK | Ozet satirinda `2 sn, orta vurgu` bilgisi okundu |
+| PDF eklenmedi | OK | Tum dosya secim pencereleri Esc ile iptal edildi |
+| Veritabani geri yuklendi | OK | Test sonrasi SHA-256 hash test oncesi degerle birebir eslesti |
+| Gecici yedek temizlendi | OK | Geri yukleme sonrasi test yedegi silindi |
+| 2026-06-19 | v1.331 | OK | PDF son aksiyon replay klavye smoke tamamlandi |
+
+## v1.330 - Odeme Replay Klavye Smoke Kontrolu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Son hizli yardim Enter ile calisti | OK | Replay dugmesi kalan tutar taslagini yeniden uyguladi |
+| Son hizli yardim Space ile calisti | OK | Replay dugmesi kalan tutar taslagini yeniden uyguladi |
+| Secili yardim Enter ile calisti | OK | Secili yardim yuzeyi ayni replay aksiyonunu tetikledi |
+| Secili yardim Space ile calisti | OK | Secili yardim yuzeyi ayni replay aksiyonunu tetikledi |
+| Klavye odagi korundu | OK | Enter ve Space sonrasinda odak ilgili replay dugmesinde kaldi |
+| Replay geri bildirimi gorundu | OK | Durum mesaji kaynak etiketi tasidi ve son aksiyon metni `yeniden tetiklendi` oldu |
+| PDF aksiyonlari dogru pasif | OK | Odeme kaydi olmadigi icin PDF sec/ac dugmeleri etkinlesmedi |
+| Kalici veri yazilmadi | OK | Odeme kaydetme ve PDF secme islemleri tetiklenmedi |
+| 2026-06-19 | v1.330 | OK | Odeme replay klavye smoke kontrolu tamamlandi |
+
+## v1.329 - Odeme ve PDF Hizli Aksiyon Smoke Kontrolu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Kalan tutar taslagi calisti | OK | `Kalani Doldur` odeme tutarini `210,00` olarak doldurdu |
+| Bos odeme durumu dogru | OK | Son odeme bulunmadigi aciklayici durum mesaji ile bildirildi |
+| Uygun olmayan aksiyonlar pasif | OK | Secili odeme ile iki PDF aksiyonu odeme kaydi olmadiginda pasif kaldi |
+| Replay geri bildirimi calisti | OK | Son aksiyon yeniden calistirildi ve `yeniden tetiklendi` metni goruldu |
+| Replay tercihi gorunur | OK | Ozet satirinda `2 sn, orta vurgu` bilgisi okundu |
+| Kalici veri yazilmadi | OK | Odeme kaydetme ve PDF secme islemleri tetiklenmedi |
+| 2026-06-19 | v1.329 | OK | Odeme ve PDF hizli aksiyon smoke kontrolu tamamlandi |
+
+## v1.328 - Fatura Formu Butunsel Kontrolu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Form ust akisi kontrol edildi | OK | Alan ciftleri, aciklama ve odeme bilgisi girisi ayni ritimde gorunuyor |
+| Alt kart zinciri kontrol edildi | OK | Odeme ve PDF inceleme bolumlerinin kaydirma ve aksiyon yerlesimleri tutarli |
+| Tasma veya hizalama kusuru yok | OK | Kaynak kodda ek piksel degisikligi gerektiren sorun bulunmadi |
+| 2026-06-19 | v1.328 | OK | Fatura formu butunsel kontrolu tamamlandi |
+
+## v1.327 - Uclu Ozet Grid Gorunumu Dogrulandi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| Uclu kart satiri gorusel olarak kontrol edildi | OK | Aylik rapor, evrak kontrolu ve odeme calismasi kartlari birlikte incelendi |
+| Kart hizalari korundu | OK | Uc kart esit genislikte ve ayni yatay hatta gorunuyor |
+| Tasma yok | OK | Mevcut pencere genisliginde kart icerikleri ve aksiyonlari panel disina tasmiyor |
+| 2026-06-19 | v1.327 | OK | Uclu ozet grid gorunumu dogrulandi |
+
 ## v1.326 - Detay Araclari Gecisi Rahatladi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
