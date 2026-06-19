@@ -1,5 +1,18 @@
 # Regresyon Kontrol Listesi
 
+## v1.349 - Windows PR Hizli Dogrulama CI
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| GitHub Actions workflow eklendi | OK | `.github/workflows/quick-validation.yml` |
+| PR tetikleyicisi tanimli | OK | `master` hedefli pull requestler |
+| Manuel tetikleyici tanimli | OK | `workflow_dispatch` |
+| Windows runner tanimli | OK | `windows-latest`, .NET 8 |
+| Birlesik komut kullaniliyor | OK | CI `HizliDogrulama.bat` calistiriyor |
+| Workflow encoding kapsaminda | OK | `.yml`/`.yaml` ve `.github/workflows` eklendi |
+| Yerel CI esdegeri basarili | OK | 104 dosya temiz, build 0 hata/0 uyari, self-test basarili |
+| Gercek GitHub runner basarili | OK | PR #109 `Encoding, build and self-test` kontrolu 1 dakika 22 saniyede gecti |
+| 2026-06-19 | v1.349 | OK | Windows PR hizli dogrulama CI altyapisi eklendi |
+
 ## v1.348 - Birlesik Hizli Dogrulama
 | Kontrol | Durum | Not |
 | --- | --- | --- |

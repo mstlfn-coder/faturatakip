@@ -4,8 +4,8 @@ Kurum aboneliklerine ait fatura, PDF evrak, odeme kaydi ve raporlama sureclerini
 
 ## Son Durum
 
-- Aktif branch: `codex/v1.348-quick-validation`
-- Son tamamlanan faz: `v1.348 - Birlesik Hizli Dogrulama`
+- Aktif branch: `codex/v1.349-windows-ci`
+- Son tamamlanan faz: `v1.349 - Windows PR Hizli Dogrulama CI`
 - Son smoke test:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
@@ -78,6 +78,8 @@ Encoding, Release build ve self-test adimlarini birlikte calistirmak icin:
 ```text
 HizliDogrulama.bat
 ```
+
+`master` hedefli pull requestlerde ayni komut GitHub Actions uzerinde Windows runner ile otomatik calisir.
 
 Windows uzerinden hizli acilis icin repo kokunde su dosyalar bulunur:
 

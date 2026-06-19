@@ -2,6 +2,17 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-19 / v1.349)
+
+- Aktif branch: `codex/v1.349-windows-ci`
+- Son tamamlanan faz: `v1.349 - Windows PR Hizli Dogrulama CI`
+- `.github/workflows/quick-validation.yml`, `master` hedefli PR ve manuel tetiklemelerde Windows runner aciyor.
+- Runner .NET 8 kurulumundan sonra `HizliDogrulama.bat` ile encoding, Release build ve self-test adimlarini calistiriyor.
+- Concurrency eski ayni-ref calismasini iptal ediyor; job timeoutu 20 dakika.
+- Workflow dosyalari encoding kontrol kapsamına alindi.
+- Yerel CI esdegeri: 104 dosya temiz, build 0 hata/0 uyari ve self-test basarili.
+- PR #109 uzerindeki ilk `Encoding, build and self-test` Windows runner kontrolu 1 dakika 22 saniyede basarili tamamlandi.
+
 ## Son Guncelleme (2026-06-19 / v1.348)
 
 - Aktif branch: `codex/v1.348-quick-validation`
@@ -2062,4 +2073,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- `HizliDogrulama.bat` adimlarini pull requestlerde otomatik calistiracak Windows GitHub Actions is akisi eklemek.
+- PR #109'u birlestirip `Quick Validation` kontrolunun branch protection icin zorunlu tutulup tutulmayacagini degerlendirmek.
