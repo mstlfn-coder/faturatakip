@@ -1,5 +1,15 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-19 / v1.349)
+
+- v1.349 tamamlandi: `.github/workflows/quick-validation.yml` Windows GitHub Actions is akisi eklendi.
+- Is akisi `master` hedefli pull requestlerde ve manuel `workflow_dispatch` tetiklemesinde calisiyor.
+- Windows runner depo checkout ve .NET 8 kurulumundan sonra `HizliDogrulama.bat` komutunu calistiriyor.
+- Ayni branch/ref icin eski calismalar concurrency ayariyla iptal ediliyor ve job 20 dakika ile sinirli.
+- Workflow `.yml` dosyalari encoding kontrol kapsamına alindi.
+- Yerel CI esdegeri 104 dosya encoding temiz, build 0 hata/0 uyari ve self-test basarili sonuc verdi.
+- Sonraki adim workflow'u pull request uzerinde gercek GitHub runner'da calistirip sonucu dogrulamak olarak belirlendi.
+
 ## Son Guncelleme (2026-06-19 / v1.348)
 
 - v1.348 tamamlandi: `HizliDogrulama.bat` ile encoding kontrolu, Release build ve self-test tek komutta birlestirildi.

@@ -4,13 +4,14 @@ Son guncelleme tarihi: 2026-06-19
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.348-quick-validation`
-- Son tamamlanan temiz faz: `v1.348 - Birlesik Hizli Dogrulama`
-- Bu dalin ana odagi: Encoding, derleme ve self-test kontrollerini tek ve otomatiklestirilebilir bir dogrulama akiminda toplamak
+- Aktif branch: `codex/v1.349-windows-ci`
+- Son tamamlanan temiz faz: `v1.349 - Windows PR Hizli Dogrulama CI`
+- Bu dalin ana odagi: Yerel hizli dogrulama akimini pull requestlerde otomatik Windows CI kontrolune donusturmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.349` Windows PR Hizli Dogrulama CI
 - `v1.348` Birlesik Hizli Dogrulama
 - `v1.347` Tekrar Kullanilabilir Encoding Dogrulamasi
 - `v1.346` Belge Encoding Kalintilari Temizligi
@@ -264,7 +265,7 @@ Son guncelleme tarihi: 2026-06-19
 
 ## Sonraki Mantikli Ana Adim
 
-- `HizliDogrulama.bat` adimlarini pull requestlerde otomatik calistiracak Windows GitHub Actions is akisi eklemek
+- v1.349 branchini PR'a tasiyip `Quick Validation` kontrolunun gercek GitHub Windows runner'inda basarili tamamlandigini dogrulamak
 
 ## Yeni Chat Icin Kisa Talimat
 

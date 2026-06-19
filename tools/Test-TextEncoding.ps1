@@ -15,7 +15,7 @@ else {
 
 $rootPath = (Resolve-Path -LiteralPath $Root).Path
 $utf8 = [System.Text.UTF8Encoding]::new($false, $true)
-$allowedExtensions = @('.md', '.cs', '.xaml', '.ps1', '.bat')
+$allowedExtensions = @('.md', '.cs', '.xaml', '.ps1', '.bat', '.yml', '.yaml')
 $suspiciousCodePoints = [System.Collections.Generic.HashSet[int]]::new(
     [int[]]@(0x00C3, 0x00C4, 0x00C5, 0x00E2, 0x00F0, 0xFFFD)
 )
@@ -32,6 +32,7 @@ if (-not $Path) {
         'docs/08-replay-indicator-ui-smoke-checklist.md',
         'EncodingKontrol.bat',
         'HizliDogrulama.bat',
+        '.github/workflows',
         'tools/Test-TextEncoding.ps1',
         'src/FaturaTakip.App'
     )
