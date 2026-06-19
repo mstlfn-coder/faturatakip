@@ -1,5 +1,16 @@
 # Regresyon Kontrol Listesi
 
+## v1.346 - Belge Encoding Kalintilari Temizligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Uygulama kaynaklari tarandi | OK | `.cs` ve `.xaml` dosyalarinda hedefli mojibake deseni bulunmadi |
+| Aktif belgeler tarandi | OK | Hedefli tarama duzeltme sonrasinda sifir sonuc verdi |
+| Export gecmisi metni duzeltildi | OK | Bozuk karakter kalintisi `gecmisi` oldu |
+| Bu Ay slug kayitlari duzeltildi | OK | Iki kontrol karakterli kayit `bu-ay` oldu |
+| Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release, 0 hata ve 0 uyari |
+| --self-test basarili | OK | dotnet run -c Release --no-build --project .\\src\\FaturaTakip.App\\FaturaTakip.App.csproj -- --self-test temiz gecti |
+| 2026-06-19 | v1.346 | OK | Belge encoding kalintilari temizlendi |
+
 ## v1.345 - PR Sonrasi Master Dogrulamasi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
@@ -3994,7 +4005,7 @@ Bu başlıklar ilgili fazlar başladığında ayrıntılandırılacak:
 | Derleme basarili | OK | dotnet build .\\FaturaTakip.sln -c Release temiz gecti |
 | --self-test basarili | OK | Self-test icinde export baglami slug dogrulamasi eklendi |
 | PDF Eksik export slug | OK | pdf-eksik dosya adi baglami uretiliyor |
-| Bu Ay export slug | OK | u-ay baglami dosya adina ekleniyor |
+| Bu Ay export slug | OK | bu-ay baglami dosya adina ekleniyor |
 | Filtreli export mesajlari | OK | Kullaniciya gorunur liste ve aktif filtre etiketiyle bilgi veriliyor |
 | 2026-06-07 | v0.80 | OK | Filtreli export baglami + build + self-test tamamlandi |
 
