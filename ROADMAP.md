@@ -1,5 +1,15 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-22 / v1.350)
+
+- `master` branch protection etkinlestirildi.
+- `Encoding, build and self-test` kontrolu strict ve zorunlu durum kontrolu olarak tanimlandi.
+- Force-push ve branch silme kapali; yonetici zorlamasi ile PR onay sarti eklenmedi.
+- PR #110 uzerinde kontrol `IN_PROGRESS` iken merge durumu `BLOCKED` oldu.
+- Kontrol 1 dakika 21 saniyede basarili tamamlaninca merge durumu `CLEAN` oldu.
+- Boylece zorunlu kontrolun gercek PR akisi uzerinde calistigi dogrulandi.
+- Sonraki adim yeni urun gelistirme fazinin kapsamını secmek olarak belirlendi.
+
 ## Son Guncelleme (2026-06-19 / v1.349)
 
 - v1.349 tamamlandi: `.github/workflows/quick-validation.yml` Windows GitHub Actions is akisi eklendi.

@@ -1,16 +1,17 @@
 # Guncel Durum Ozeti
 
-Son guncelleme tarihi: 2026-06-19
+Son guncelleme tarihi: 2026-06-22
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.349-windows-ci`
-- Son tamamlanan temiz faz: `v1.349 - Windows PR Hizli Dogrulama CI`
-- Bu dalin ana odagi: Yerel hizli dogrulama akimini pull requestlerde otomatik Windows CI kontrolune donusturmek
+- Aktif branch: `codex/v1.350-required-check-verification`
+- Son tamamlanan temiz faz: `v1.350 - Zorunlu PR Kontrolu Dogrulamasi`
+- Bu dalin ana odagi: Windows hizli dogrulama kontrolunun master birlestirmelerinde zorunlu calistigini kanitlamak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.350` Zorunlu PR Kontrolu Dogrulamasi
 - `v1.349` Windows PR Hizli Dogrulama CI
 - `v1.348` Birlesik Hizli Dogrulama
 - `v1.347` Tekrar Kullanilabilir Encoding Dogrulamasi
@@ -265,7 +266,7 @@ Son guncelleme tarihi: 2026-06-19
 
 ## Sonraki Mantikli Ana Adim
 
-- PR #109'u birlestirip `Quick Validation` kontrolunun branch protection icin zorunlu tutulup tutulmayacagini degerlendirmek
+- Guncel master tabaninda yeni urun gelistirme fazinin kapsamını secmek
 
 ## Yeni Chat Icin Kisa Talimat
 
