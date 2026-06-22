@@ -5,7 +5,10 @@
 - `master` branch protection etkinlestirildi.
 - `Encoding, build and self-test` kontrolu strict ve zorunlu durum kontrolu olarak tanimlandi.
 - Force-push ve branch silme kapali; yonetici zorlamasi ile PR onay sarti eklenmedi.
-- Gercek PR uzerinde kontrol beklerken birlesmenin bloklandigi, kontrol basarisindan sonra izin verildigi dogrulanacak.
+- PR #110 uzerinde kontrol `IN_PROGRESS` iken merge durumu `BLOCKED` oldu.
+- Kontrol 1 dakika 21 saniyede basarili tamamlaninca merge durumu `CLEAN` oldu.
+- Boylece zorunlu kontrolun gercek PR akisi uzerinde calistigi dogrulandi.
+- Sonraki adim yeni urun gelistirme fazinin kapsamını secmek olarak belirlendi.
 
 ## Son Guncelleme (2026-06-19 / v1.349)
 

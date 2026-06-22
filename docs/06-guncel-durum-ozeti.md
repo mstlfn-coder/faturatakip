@@ -266,7 +266,7 @@ Son guncelleme tarihi: 2026-06-22
 
 ## Sonraki Mantikli Ana Adim
 
-- Zorunlu kontrol dogrulamasini tamamlayip yeni urun gelistirme fazinin kapsamını secmek
+- Guncel master tabaninda yeni urun gelistirme fazinin kapsamını secmek
 
 ## Yeni Chat Icin Kisa Talimat
 

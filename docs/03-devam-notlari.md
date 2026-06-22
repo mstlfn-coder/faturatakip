@@ -8,7 +8,8 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Son tamamlanan faz: `v1.350 - Zorunlu PR Kontrolu Dogrulamasi`
 - `master` icin `Encoding, build and self-test` strict zorunlu kontrol olarak etkinlestirildi.
 - Force-push ve branch silme kapali; yonetici zorlamasi ve PR onay sarti etkin degil.
-- Bu branch uzerindeki gercek PR ile bekleyen kontrolun birlesmeyi bloklamasi ve basarili kontrolun engeli kaldirmasi dogrulanacak.
+- PR #110 kontrol beklerken `BLOCKED`, kontrol 1 dakika 21 saniyede basarili olduktan sonra `CLEAN` oldu.
+- Zorunlu kontrol davranisi gercek PR uzerinde iki yonlu olarak dogrulandi.
 
 ## Son Guncelleme (2026-06-19 / v1.349)
 
