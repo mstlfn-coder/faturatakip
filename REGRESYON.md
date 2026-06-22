@@ -1,5 +1,14 @@
 # Regresyon Kontrol Listesi
 
+## v1.350 - Zorunlu PR Kontrolu Dogrulamasi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Master branch protection etkin | OK | GitHub API ile dogrulandi |
+| Zorunlu kontrol tanimli | OK | `Encoding, build and self-test` |
+| Strict durum etkin | OK | PR branchi guncel master tabaninda olmali |
+| Force-push kapali | OK | Branch protection ayari |
+| Branch silme kapali | OK | Branch protection ayari |
+
 ## v1.349 - Windows PR Hizli Dogrulama CI
 | Kontrol | Durum | Not |
 | --- | --- | --- |

@@ -4,8 +4,8 @@ Kurum aboneliklerine ait fatura, PDF evrak, odeme kaydi ve raporlama sureclerini
 
 ## Son Durum
 
-- Aktif branch: `codex/v1.349-windows-ci`
-- Son tamamlanan faz: `v1.349 - Windows PR Hizli Dogrulama CI`
+- Aktif branch: `codex/v1.350-required-check-verification`
+- Son tamamlanan faz: `v1.350 - Zorunlu PR Kontrolu Dogrulamasi`
 - Son smoke test:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

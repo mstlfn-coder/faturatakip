@@ -2,6 +2,14 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-22 / v1.350)
+
+- Aktif branch: `codex/v1.350-required-check-verification`
+- Son tamamlanan faz: `v1.350 - Zorunlu PR Kontrolu Dogrulamasi`
+- `master` icin `Encoding, build and self-test` strict zorunlu kontrol olarak etkinlestirildi.
+- Force-push ve branch silme kapali; yonetici zorlamasi ve PR onay sarti etkin degil.
+- Bu branch uzerindeki gercek PR ile bekleyen kontrolun birlesmeyi bloklamasi ve basarili kontrolun engeli kaldirmasi dogrulanacak.
+
 ## Son Guncelleme (2026-06-19 / v1.349)
 
 - Aktif branch: `codex/v1.349-windows-ci`
@@ -2073,4 +2081,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- PR #109'u birlestirip `Quick Validation` kontrolunun branch protection icin zorunlu tutulup tutulmayacagini degerlendirmek.
+- Zorunlu kontrol dogrulamasini tamamlayip yeni urun gelistirme fazinin kapsamını secmek.
