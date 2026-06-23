@@ -1,5 +1,18 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-23 / v1.353)
+
+- v1.353 tamamlandi: Islem Gecmisi gridinde Enter ve satir cift tik `Ilgili kaydi ac` akisina baglandi.
+- Iki giris de ayni `OpenSelectedAuditEntity` metodunu kullaniyor; dugme davranisiyla farkli kod yolu olusmuyor.
+- Cift tik yalnizca gercek bir DataGridRow icinden geldiginde tetikleniyor; bos alan ve kolon basligi yok sayiliyor.
+- Enter ve satir cift tik hedef gecersiz olsa bile DataGrid varsayilan davranisina dusmeden guvenli audit mesajini koruyor.
+- Grid tooltip'i `Enter veya cift tik` ipucunu gorunur hale getiriyor.
+- Enter, gercek UI Automation smoke testinde hedef faturayi acti ve bir satir secti.
+- Codex masaustu katmani ham fare girdisini kendi penceresine yonlendirdigi icin fiziksel cift tik enjeksiyonu otomasyonla tamamlanamadi; event wiring, satir kaynak kontrolu, build ve self-test temiz.
+- Hizli dogrulama 105 dosya encoding temiz, build 0 hata/0 uyari ve self-test basarili sonuc verdi.
+- Veritabani ve tercih hash degerleri degismedi.
+- Sonraki adim cift tik akisini dogrudan gorunur masaustu oturumunda manuel smoke testten gecirmek olarak belirlendi.
+
 ## Son Guncelleme (2026-06-23 / v1.352)
 
 - v1.352 tamamlandi: audit kaydindan ilgili varliga gecisler gercek WPF arayuzunde Windows UI Automation ile test edildi.

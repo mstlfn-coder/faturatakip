@@ -4,13 +4,14 @@ Son guncelleme tarihi: 2026-06-23
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.352-audit-navigation-ui-smoke`
-- Son tamamlanan temiz faz: `v1.352 - Audit Navigasyonu UI Smoke`
-- Bu dalin ana odagi: Audit kaydindan ilgili varliga gecisleri gercek UI ve kalici veri guvenligiyle dogrulamak
+- Aktif branch: `codex/v1.353-audit-navigation-shortcuts`
+- Son tamamlanan temiz faz: `v1.353 - Audit Navigasyonu Enter ve Cift Tik`
+- Bu dalin ana odagi: Audit kaydindan ilgili varliga gecisi klavye ve satir cift tik girisleriyle hizlandirmak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.353` Audit Navigasyonu Enter ve Cift Tik
 - `v1.352` Audit Navigasyonu UI Smoke
 - `v1.351` Audit Kaydindan Ilgili Varliga Gecis
 - `v1.350` Zorunlu PR Kontrolu Dogrulamasi
@@ -268,7 +269,7 @@ Son guncelleme tarihi: 2026-06-23
 
 ## Sonraki Mantikli Ana Adim
 
-- Audit navigasyonuna Enter/cift tik gibi daha hizli operator girisleri eklemeyi degerlendirmek
+- Audit satirina cift tik akisinin dogrudan gorunur masaustu oturumunda manuel smoke testini tamamlamak
 
 ## Yeni Chat Icin Kisa Talimat
 
