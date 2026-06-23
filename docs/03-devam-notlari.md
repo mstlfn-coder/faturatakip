@@ -2,6 +2,17 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-22 / v1.351)
+
+- Aktif branch: `codex/v1.351-audit-entity-navigation`
+- Son tamamlanan faz: `v1.351 - Audit Kaydindan Ilgili Varliga Gecis`
+- Islem Gecmisi `Ilgili kaydi ac` aksiyonu fatura, odeme ve abonelik audit kayitlarini gercek hedef ekranlara tasiyor.
+- Odeme audit kaydi once bagli fatura kimligine cozuluyor ve odeme calisma alanini aciyor.
+- Hedef ekranlar filtreleri temizleyip tam kaydi seciyor; silinmis/desteklenmeyen hedefler guvenli mesaj uretiyor.
+- Dugme secim/gecerli hedef yokken pasif ve tooltip nedenini acikliyor.
+- `AuditLogNavigationResolver` self-test kapsamına alindi.
+- Hizli dogrulama: 105 dosya temiz, build 0 hata/0 uyari ve self-test basarili.
+
 ## Son Guncelleme (2026-06-22 / v1.350)
 
 - Aktif branch: `codex/v1.350-required-check-verification`
@@ -2082,4 +2093,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Zorunlu kontrol dogrulamasini tamamlayip yeni urun gelistirme fazinin kapsamını secmek.
+- Fatura, odeme ve abonelik audit hedeflerini gercek UI uzerinde etkilesimli smoke testten gecirmek.

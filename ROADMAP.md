@@ -1,5 +1,17 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-22 / v1.351)
+
+- Islem Gecmisi ekranindaki `Secili kayda git` davranisinin yalnizca audit satirini yeniden odakladigi tespit edildi.
+- Aksiyon `Ilgili kaydi ac` olarak degistirildi ve gercek ekran navigasyonuna baglandi.
+- Fatura audit kaydi Faturalar ekraninda hedef faturayi; odeme audit kaydi bagli faturanin odeme alanini; abonelik audit kaydi Abonelikler ekraninda hedef aboneligi aciyor.
+- Hedef ekranlar once filtreleri temizliyor, sonra tam kaydi secip gorunur alana getiriyor.
+- Silinmis, bulunamayan veya desteklenmeyen audit hedeflerinde ekran degismiyor ve aciklayici mesaj/tooltip gosteriliyor.
+- Aksiyon secim yokken veya hedef gecersizken pasif.
+- Saf `AuditLogNavigationResolver` fatura, odeme, abonelik ve negatif senaryolarla self-test kapsamına alindi.
+- Hizli dogrulama 105 dosya encoding temiz, build 0 hata/0 uyari ve self-test basarili sonuc verdi.
+- Sonraki adim uc hedef turunu gercek UI uzerinde etkilesimli smoke testten gecirmek olarak belirlendi.
+
 ## Son Guncelleme (2026-06-22 / v1.350)
 
 - `master` branch protection etkinlestirildi.

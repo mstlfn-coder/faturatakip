@@ -159,6 +159,30 @@ public partial class InvoicesView : UserControl
         SetInvoiceStatus("İncelenmedi filtresi dashboard üzerinden uygulandı.", isError: false);
     }
 
+    public bool FocusInvoiceFromAudit(long invoiceId)
+    {
+        if (!_isInitialized)
+        {
+            return false;
+        }
+
+        RefreshSubscriptionLists();
+        RefreshInvoices();
+        _invoiceReviewModeLabel = null;
+        InvoiceSearchInput.Text = string.Empty;
+        ResetQuickFilters();
+        var selected = ApplyFiltersToGridCore(selectedId: invoiceId);
+        if (selected is null)
+        {
+            SetInvoiceStatus($"Audit hedefindeki fatura bulunamadi: #{invoiceId}", isError: true);
+            return false;
+        }
+
+        InvoiceGrid.Focus();
+        SetInvoiceStatus($"Audit kaydindan fatura acildi: {selected.InvoiceNo}", isError: false);
+        return true;
+    }
+
     public void StartUnreviewedReviewMode(long? preferredInvoiceId = null, string? contextLabel = null)
     {
         if (!_isInitialized)

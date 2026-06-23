@@ -4,13 +4,14 @@ Son guncelleme tarihi: 2026-06-22
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.350-required-check-verification`
-- Son tamamlanan temiz faz: `v1.350 - Zorunlu PR Kontrolu Dogrulamasi`
-- Bu dalin ana odagi: Windows hizli dogrulama kontrolunun master birlestirmelerinde zorunlu calistigini kanitlamak
+- Aktif branch: `codex/v1.351-audit-entity-navigation`
+- Son tamamlanan temiz faz: `v1.351 - Audit Kaydindan Ilgili Varliga Gecis`
+- Bu dalin ana odagi: Islem Gecmisi kayitlarini ilgili fatura, odeme ve abonelik ekranlarina dogrudan baglamak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.351` Audit Kaydindan Ilgili Varliga Gecis
 - `v1.350` Zorunlu PR Kontrolu Dogrulamasi
 - `v1.349` Windows PR Hizli Dogrulama CI
 - `v1.348` Birlesik Hizli Dogrulama
@@ -266,7 +267,7 @@ Son guncelleme tarihi: 2026-06-22
 
 ## Sonraki Mantikli Ana Adim
 
-- Guncel master tabaninda yeni urun gelistirme fazinin kapsamını secmek
+- Fatura, odeme ve abonelik audit hedeflerini gercek UI uzerinde etkilesimli smoke testten gecirmek
 
 ## Yeni Chat Icin Kisa Talimat
 

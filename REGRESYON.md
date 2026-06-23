@@ -1,5 +1,19 @@
 # Regresyon Kontrol Listesi
 
+## v1.351 - Audit Kaydindan Ilgili Varliga Gecis
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Audit aksiyon etiketi guncellendi | OK | `Ilgili kaydi ac` |
+| Fatura hedefi cozuluyor | OK | Audit fatura kimligi Faturalar ekranina tasiniyor |
+| Odeme hedefi cozuluyor | OK | Odeme kimligi bagli fatura/odeme alanina cevriliyor |
+| Abonelik hedefi cozuluyor | OK | Audit abonelik kimligi Abonelikler ekranina tasiniyor |
+| Gecersiz hedef guvenli | OK | Silinmis/desteklenmeyen hedef navigasyon uretmiyor |
+| Aksiyon durumu baglama uygun | OK | Secim veya gecerli hedef yoksa dugme pasif |
+| Encoding kontrolu basarili | OK | 105 dosya temiz |
+| Release build basarili | OK | 0 hata ve 0 uyari |
+| --self-test basarili | OK | Resolver pozitif ve negatif senaryolari temiz gecti |
+| 2026-06-22 | v1.351 | OK | Audit kaydindan ilgili varliga gecis tamamlandi |
+
 ## v1.350 - Zorunlu PR Kontrolu Dogrulamasi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
