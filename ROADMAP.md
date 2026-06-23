@@ -1,5 +1,16 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-23 / v1.352)
+
+- v1.352 tamamlandi: audit kaydindan ilgili varliga gecisler gercek WPF arayuzunde Windows UI Automation ile test edildi.
+- Fatura audit kaydi Faturalar ekranini acti ve hedef faturayi secili/gorunur duruma getirdi.
+- Abonelik audit kaydi Abonelikler ekranini acti ve hedef aboneligi secili/gorunur duruma getirdi.
+- Veri setinde odeme bulunmadigi icin veritabani once birebir yedeklendi, UI uzerinden gecici 1,00 tutarli odeme olusturuldu ve olusan audit kaydi test edildi.
+- Odeme audit kaydi bagli faturayi secip `Odeme alani hedef kayitla acildi` durum mesajini uretti.
+- Smoke sonunda uygulama kapatildi, veritabani yedekten geri yuklendi ve gecici yedek silindi.
+- Veritabani SHA256 `DF946F2E...67A29E`, tercih SHA256 `D15C7D0E...0CE67` degerleriyle baslangic durumuna dondu.
+- Sonraki adim audit navigasyonunda klavye erisilebilirligi ve cift tik gibi operator rahatliklarini degerlendirmek olarak belirlendi.
+
 ## Son Guncelleme (2026-06-22 / v1.351)
 
 - Islem Gecmisi ekranindaki `Secili kayda git` davranisinin yalnizca audit satirini yeniden odakladigi tespit edildi.

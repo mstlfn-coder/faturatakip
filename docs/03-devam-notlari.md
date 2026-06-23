@@ -2,6 +2,16 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-23 / v1.352)
+
+- Aktif branch: `codex/v1.352-audit-navigation-ui-smoke`
+- Son tamamlanan faz: `v1.352 - Audit Navigasyonu UI Smoke`
+- Fatura ve abonelik audit kayitlari gercek UI'da hedef satiri secerek dogru ekranlara gecti.
+- Odeme kaydi olmayan veri setinde veritabani yedeklendi; UI uzerinden gecici odeme olusturulup audit gecisi test edildi.
+- Odeme audit gecisi bagli faturayi ve odeme alanini acarak hedef durum mesajini uretti.
+- Uygulama kapatildiktan sonra veritabani birebir geri yuklendi ve gecici yedek silindi.
+- Veritabani/preference hash degerleri baslangic durumuyla ayni.
+
 ## Son Guncelleme (2026-06-22 / v1.351)
 
 - Aktif branch: `codex/v1.351-audit-entity-navigation`
@@ -2093,4 +2103,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Fatura, odeme ve abonelik audit hedeflerini gercek UI uzerinde etkilesimli smoke testten gecirmek.
+- Audit navigasyonuna Enter/cift tik gibi daha hizli operator girisleri eklemeyi degerlendirmek.
