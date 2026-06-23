@@ -4,8 +4,8 @@ Kurum aboneliklerine ait fatura, PDF evrak, odeme kaydi ve raporlama sureclerini
 
 ## Son Durum
 
-- Aktif branch: `codex/v1.353-audit-navigation-shortcuts`
-- Son tamamlanan faz: `v1.353 - Audit Navigasyonu Enter ve Cift Tik`
+- Aktif branch: `codex/v1.354-audit-list-layout`
+- Son tamamlanan faz: `v1.354 - Audit Listesi Gorunurluk Duzeltmesi`
 - Son smoke test:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

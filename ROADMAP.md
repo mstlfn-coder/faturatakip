@@ -1,5 +1,16 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-23 / v1.354)
+
+- v1.354 tamamlandi: Islem Gecmisi listesi ile ayrinti panelinin ayni grid hucresinde ust uste binmesi giderildi.
+- Audit listesi ustte 150 piksel yukseklikte ayri bir alana, ayrinti paneli kalan alana yerlestirildi.
+- Ayrinti paneli dar ekranlarda tasma olmamasi icin dikey kaydirma destegi kazandi.
+- Diger rapor gridleri iki satiri kaplamaya devam ederek mevcut tam alan gorunumlerini korudu.
+- UI Automation smoke testinde liste yuksekligi 150 piksel, secili Abonelik satiri gorunur ve ekran icinde dogrulandi.
+- Kullanici tarafindan yapilan manuel cift tik smoke testinde secili Abonelik audit kaydi ilgili ekrani basariyla acti.
+- Hizli dogrulama 105 dosya encoding temiz, build 0 hata/0 uyari ve self-test basarili sonuc verdi.
+- Sonraki adim audit ekrani yerlesim degisikligini CI ve PR akisi ile master'a tasimak olarak belirlendi.
+
 ## Son Guncelleme (2026-06-23 / v1.353)
 
 - v1.353 tamamlandi: Islem Gecmisi gridinde Enter ve satir cift tik `Ilgili kaydi ac` akisina baglandi.
@@ -8,10 +19,10 @@
 - Enter ve satir cift tik hedef gecersiz olsa bile DataGrid varsayilan davranisina dusmeden guvenli audit mesajini koruyor.
 - Grid tooltip'i `Enter veya cift tik` ipucunu gorunur hale getiriyor.
 - Enter, gercek UI Automation smoke testinde hedef faturayi acti ve bir satir secti.
-- Codex masaustu katmani ham fare girdisini kendi penceresine yonlendirdigi icin fiziksel cift tik enjeksiyonu otomasyonla tamamlanamadi; event wiring, satir kaynak kontrolu, build ve self-test temiz.
+- Fiziksel cift tik ilk otomasyon denemesinde masaustu katmani nedeniyle tamamlanamadi; v1.354 gorunurluk duzeltmesi sonrasinda kullanici tarafindan manuel olarak basariyla dogrulandi.
 - Hizli dogrulama 105 dosya encoding temiz, build 0 hata/0 uyari ve self-test basarili sonuc verdi.
 - Veritabani ve tercih hash degerleri degismedi.
-- Sonraki adim cift tik akisini dogrudan gorunur masaustu oturumunda manuel smoke testten gecirmek olarak belirlendi.
+- Manuel cift tik smoke testi v1.354 kapsaminda tamamlandi.
 
 ## Son Guncelleme (2026-06-23 / v1.352)
 

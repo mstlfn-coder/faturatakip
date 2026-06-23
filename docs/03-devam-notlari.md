@@ -2,6 +2,16 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-23 / v1.354)
+
+- Aktif branch: `codex/v1.354-audit-list-layout`
+- Son tamamlanan faz: `v1.354 - Audit Listesi Gorunurluk Duzeltmesi`
+- Audit listesi ile ayrinti panelinin ust uste binmesi iki satirli yerlesimle giderildi.
+- Liste ustte 150 piksel yukseklikte gorunur; ayrinti paneli kalan alani kullaniyor ve dikey kaydirilabiliyor.
+- UI Automation listede secili Abonelik satirini gorunur ve ekran icinde dogruladi.
+- Kullanici manuel cift tik smoke testinde ilgili Abonelik ekraninin acildigini dogruladi.
+- Hizli dogrulama: 105 dosya temiz, build 0 hata/0 uyari, self-test basarili.
+
 ## Son Guncelleme (2026-06-23 / v1.353)
 
 - Aktif branch: `codex/v1.353-audit-navigation-shortcuts`
@@ -10,7 +20,7 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 - Cift tik yalniz DataGridRow icinde kabul ediliyor; bos alan ve kolon basligi guvenli.
 - Grid tooltip'i Enter/cift tik ipucunu gosteriyor.
 - Enter gercek UI smoke testinde hedef faturayi acti ve satiri secti.
-- Codex masaustu penceresi ham fare enjeksiyonunu yakaladigi icin fiziksel cift tik smoke'u otomasyonla tamamlanamadi; kod wiring + build + self-test temiz.
+- Fiziksel cift tik ilk otomasyon denemesinde tamamlanamadi; v1.354 sonrasinda kullanici tarafindan manuel olarak basariyla dogrulandi.
 - Hizli dogrulama: 105 dosya temiz, build 0 hata/0 uyari, self-test basarili.
 - Veritabani ve tercih hash degerleri degismedi.
 
