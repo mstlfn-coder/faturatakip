@@ -1,5 +1,20 @@
 # Regresyon Kontrol Listesi
 
+## v1.354 - Audit Listesi Gorunurluk Duzeltmesi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Liste ve ayrinti paneli ayrildi | OK | Iki satirli grid yerlesimi |
+| Audit listesi gorunur | OK | Yukseklik 150 piksel, minimum 120 piksel |
+| Secili satir ekran icinde | OK | UI Automation `IsOffscreen=False` |
+| Secim durumu korundu | OK | Abonelik satiri `IsSelected=True` |
+| Ayrinti paneli kaydirilabilir | OK | Dikey ScrollViewer eklendi |
+| Diger rapor gorunumleri korundu | OK | Rapor gridleri iki satiri kapliyor |
+| Manuel cift tik UI smoke | OK | Secili Abonelik kaydi ilgili ekrani acti |
+| Encoding kontrolu basarili | OK | 105 dosya temiz |
+| Release build basarili | OK | 0 hata ve 0 uyari |
+| --self-test basarili | OK | Temiz gecti |
+| 2026-06-23 | v1.354 | OK | Audit listesi gorunurluk ve cift tik smoke tamamlandi |
+
 ## v1.353 - Audit Navigasyonu Enter ve Cift Tik
 | Kontrol | Durum | Not |
 | --- | --- | --- |
@@ -9,7 +24,7 @@
 | Varsayilan davranis bastiriliyor | OK | Enter ve gecerli satir cift tik olaylari handled |
 | Klavye ipucu gorunur | OK | Grid tooltip'i Enter/cift tik bilgisini iceriyor |
 | Enter UI smoke | OK | Hedef fatura ekrani acildi ve 1 satir secildi |
-| Fiziksel cift tik UI smoke | BEKLIYOR | Codex masaustu katmani ham fareyi kendi penceresine yonlendirdi |
+| Fiziksel cift tik UI smoke | OK | v1.354 sonrasinda kullanici tarafindan manuel dogrulandi |
 | Encoding kontrolu basarili | OK | 105 dosya temiz |
 | Release build basarili | OK | 0 hata ve 0 uyari |
 | --self-test basarili | OK | Temiz gecti |
