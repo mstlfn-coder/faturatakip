@@ -1,5 +1,20 @@
 # Regresyon Kontrol Listesi
 
+## v1.355 - Audit Ayrinti Uyarlanabilir Yerlesim
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Araclar dar ekranda satira kayiyor | OK | Yatay StackPanel yerine WrapPanel |
+| Ayrinti paneli esnek | OK | Minimum yukseklik 180 piksel |
+| Kaydirici otomasyonda erisilebilir | OK | `AuditLogDetailScrollViewer` |
+| Minimum pencere boyutu | OK | 1040x700 |
+| Audit listesi gorunur | OK | Yukseklik 150 piksel |
+| Secili satir gorunur | OK | `IsOffscreen=False` |
+| Son arac kaydirilabilir | OK | Y=966 konumundan Y=503 konumuna tasindi |
+| Encoding kontrolu basarili | OK | 105 dosya temiz |
+| Release build basarili | OK | 0 hata ve 0 uyari |
+| --self-test basarili | OK | Temiz gecti |
+| 2026-06-23 | v1.355 | OK | Minimum-boyut uyarlanabilir yerlesim smoke tamamlandi |
+
 ## v1.354 - Audit Listesi Gorunurluk Duzeltmesi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
