@@ -25,6 +25,7 @@ public partial class ReportsView : UserControl
     public event EventHandler<InvoiceReviewNavigationRequestEventArgs>? UnreviewedInvoiceReviewRequested;
     public event EventHandler<InvoiceReviewNavigationRequestEventArgs>? OverdueInvoiceReviewRequested;
     public event EventHandler<InvoiceReviewNavigationRequestEventArgs>? MissingPdfInvoiceReviewRequested;
+    public event EventHandler<AuditEntityNavigationRequestEventArgs>? AuditEntityNavigationRequested;
 
     private InvoiceRepository? _invoiceRepository;
     private PaymentRepository? _paymentRepository;
@@ -352,17 +353,25 @@ public partial class ReportsView : UserControl
     {
         if (_selectedAuditLog is null)
         {
-            AuditLogHintText.Text = "Odaklanacak secili kayit yok.";
+            AuditLogHintText.Text = "Acilacak secili audit kaydi yok.";
             return;
         }
 
-        if (TryFocusSelectedAuditLog())
+        var resolution = ResolveAuditNavigation(_selectedAuditLog);
+
+        if (resolution.Request is null)
         {
-            AuditLogHintText.Text = $"Kayit gorunur alana getirildi: {_selectedAuditLog.RecordId}";
+            AuditLogHintText.Text = resolution.Message;
             return;
         }
 
-        AuditLogHintText.Text = "Secili kayit mevcut filtrelerde gorunmuyor.";
+        AuditLogHintText.Text = resolution.Message;
+        AuditEntityNavigationRequested?.Invoke(
+            this,
+            new AuditEntityNavigationRequestEventArgs(
+                resolution.Request.Target,
+                resolution.Request.RecordId,
+                resolution.Request.Label));
     }
 
     private void AuditLogGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -2290,6 +2299,8 @@ public partial class ReportsView : UserControl
     {
         if (log is null)
         {
+            FocusSelectedAuditLogButton.IsEnabled = false;
+            FocusSelectedAuditLogButton.ToolTip = "Once bir audit kaydi secin.";
             AuditLogDetailPanel.Visibility = Visibility.Collapsed;
             AuditLogDetailTitleText.Text = "Kayit detayi";
             AuditLogDetailMetaText.Text = string.Empty;
@@ -2300,6 +2311,11 @@ public partial class ReportsView : UserControl
         }
 
         AuditLogDetailPanel.Visibility = Visibility.Visible;
+        var navigation = ResolveAuditNavigation(log);
+        FocusSelectedAuditLogButton.IsEnabled = navigation.IsSuccess;
+        FocusSelectedAuditLogButton.ToolTip = navigation.IsSuccess
+            ? $"{navigation.Request!.Label} ekranina git"
+            : navigation.Message;
         AuditLogDetailTitleText.Text = $"{FormatAuditActionLabel(log.ActionType)} / {FormatAuditTableLabel(log.TableName)}";
         AuditLogDetailMetaText.Text = $"Kayit Id: {log.RecordId} | Kullanici: {(string.IsNullOrWhiteSpace(log.UserName) ? "system" : log.UserName)} | Tarih: {(log.CreatedAt == DateTimeOffset.MinValue ? "-" : log.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm", TurkishCulture))}";
         AuditLogOldValueTextBox.Text = FormatAuditPayload(log.OldValue);
@@ -3067,26 +3083,24 @@ public partial class ReportsView : UserControl
         }
     }
 
-    private bool TryFocusSelectedAuditLog()
-    {
-        var matchingRow = (AuditLogGrid.ItemsSource as IEnumerable<AuditLogRow>)?
-            .FirstOrDefault(row => row.Source.Id == _selectedAuditLog?.Id);
-
-        if (matchingRow is null)
-        {
-            return false;
-        }
-
-        AuditLogGrid.SelectedItem = matchingRow;
-        FocusAuditLogRow(matchingRow);
-        return true;
-    }
-
     private void FocusAuditLogRow(AuditLogRow row)
     {
         AuditLogGrid.UpdateLayout();
         AuditLogGrid.ScrollIntoView(row);
         AuditLogGrid.Focus();
+    }
+
+    private AuditLogNavigationResolver.Resolution ResolveAuditNavigation(AuditLog log)
+    {
+        var invoices = _invoiceRepository?.GetAll() ?? Array.Empty<Invoice>();
+        var payments = _paymentRepository?.GetAll() ?? Array.Empty<Payment>();
+        var subscriptions = _subscriptionRepository?.GetAll() ?? Array.Empty<Subscription>();
+        return AuditLogNavigationResolver.Resolve(
+            log.TableName,
+            log.RecordId,
+            invoiceId => invoices.Any(item => item.Id == invoiceId),
+            paymentId => payments.FirstOrDefault(item => item.Id == paymentId)?.InvoiceId,
+            subscriptionId => subscriptions.Any(item => item.Id == subscriptionId));
     }
 
     private long? GetSelectedInvoiceTypeId()
@@ -3253,6 +3267,16 @@ public partial class ReportsView : UserControl
     {
         public long? PreferredInvoiceId { get; } = preferredInvoiceId;
         public string? ContextLabel { get; } = contextLabel;
+    }
+
+    public sealed class AuditEntityNavigationRequestEventArgs(
+        AuditLogNavigationResolver.NavigationTarget target,
+        long recordId,
+        string label) : EventArgs
+    {
+        public AuditLogNavigationResolver.NavigationTarget Target { get; } = target;
+        public long RecordId { get; } = recordId;
+        public string Label { get; } = label;
     }
 
     private sealed record AuditLogRow(

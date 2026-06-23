@@ -53,6 +53,30 @@ public partial class SubscriptionsView : UserControl
         RefreshSubscriptions(_selectedSubscription?.Id);
     }
 
+    public bool FocusSubscriptionFromAudit(long subscriptionId)
+    {
+        if (!_isInitialized)
+        {
+            return false;
+        }
+
+        RefreshInvoiceTypeLists();
+        SubscriptionSearchInput.Text = string.Empty;
+        SubscriptionTypeFilterInput.SelectedIndex = 0;
+        SubscriptionStateFilterInput.SelectedIndex = 0;
+        RefreshSubscriptions(subscriptionId);
+        if (_selectedSubscription?.Id != subscriptionId)
+        {
+            SetSubscriptionStatus($"Audit hedefindeki abonelik bulunamadi: #{subscriptionId}", isError: true);
+            return false;
+        }
+
+        SubscriptionGrid.ScrollIntoView(_selectedSubscription);
+        SubscriptionGrid.Focus();
+        SetSubscriptionStatus($"Audit kaydindan abonelik acildi: {_selectedSubscription.SubscriptionName}", isError: false);
+        return true;
+    }
+
     private void RefreshInvoiceTypeLists()
     {
         if (_invoiceTypeRepository is null)

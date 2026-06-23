@@ -704,6 +704,51 @@ public sealed class SelfTestRunner
             Assert(
                 !InvoiceReviewContextFormatter.TryResolveInvoiceNumber("Rapor: Evrak Kontrol > PDF Kayip / Fatura / 2026-01", out _),
                 "Evrak kontrol baglami yanlislikla fatura no gibi yorumlandi.");
+            var invoiceAuditNavigation = AuditLogNavigationResolver.Resolve(
+                "invoices",
+                42,
+                invoiceId => invoiceId == 42,
+                _ => null,
+                _ => false);
+            Assert(
+                invoiceAuditNavigation.Request is
+                {
+                    Target: AuditLogNavigationResolver.NavigationTarget.Invoice,
+                    RecordId: 42
+                },
+                "Fatura audit kaydi ilgili fatura navigasyonuna donusturulemedi.");
+            var paymentAuditNavigation = AuditLogNavigationResolver.Resolve(
+                "payments",
+                7,
+                invoiceId => invoiceId == 42,
+                paymentId => paymentId == 7 ? 42 : null,
+                _ => false);
+            Assert(
+                paymentAuditNavigation.Request is
+                {
+                    Target: AuditLogNavigationResolver.NavigationTarget.InvoicePayment,
+                    RecordId: 42
+                },
+                "Odeme audit kaydi bagli fatura navigasyonuna donusturulemedi.");
+            var subscriptionAuditNavigation = AuditLogNavigationResolver.Resolve(
+                "subscriptions",
+                9,
+                _ => false,
+                _ => null,
+                subscriptionId => subscriptionId == 9);
+            Assert(
+                subscriptionAuditNavigation.Request is
+                {
+                    Target: AuditLogNavigationResolver.NavigationTarget.Subscription,
+                    RecordId: 9
+                },
+                "Abonelik audit kaydi ilgili abonelik navigasyonuna donusturulemedi.");
+            Assert(
+                !AuditLogNavigationResolver.Resolve("payments", 99, _ => false, _ => null, _ => false).IsSuccess,
+                "Eksik odeme audit kaydi yanlislikla navigasyon hedefi uretti.");
+            Assert(
+                !AuditLogNavigationResolver.Resolve("unknown", 1, _ => false, _ => null, _ => false).IsSuccess,
+                "Desteklenmeyen audit varligi yanlislikla navigasyon hedefi uretti.");
             var actionableReviewContextChips = InvoiceReviewContextFormatter.BuildChips("Rapor: İncelenmedi > Elektrik / INV-001");
             Assert(actionableReviewContextChips.Any(chip => chip.Text == "Elektrik" && chip.ActionKey == "apply_type"), "Fatura turu cipi beklenen tur aksiyonunu uretmedi.");
             Assert(actionableReviewContextChips.Any(chip => chip.Text == "INV-001" && chip.ActionKey == "apply_invoice_no"), "Fatura no cipi beklenen arama aksiyonunu uretmedi.");

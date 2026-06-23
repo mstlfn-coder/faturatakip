@@ -48,6 +48,7 @@ public partial class MainWindow : Window
         ReportsPanel.UnreviewedInvoiceReviewRequested += ReportsPanel_UnreviewedInvoiceReviewRequested;
         ReportsPanel.OverdueInvoiceReviewRequested += ReportsPanel_OverdueInvoiceReviewRequested;
         ReportsPanel.MissingPdfInvoiceReviewRequested += ReportsPanel_MissingPdfInvoiceReviewRequested;
+        ReportsPanel.AuditEntityNavigationRequested += ReportsPanel_AuditEntityNavigationRequested;
         ApplyStartupStatus(startupStatus);
         RefreshInvoiceTypes();
         RefreshDashboardSubscriptionCounts();
@@ -338,6 +339,25 @@ public partial class MainWindow : Window
     {
         ShowInvoices();
         InvoicesPanel.StartMissingPdfReviewMode(e.PreferredInvoiceId, e.ContextLabel);
+    }
+
+    private void ReportsPanel_AuditEntityNavigationRequested(object? sender, Views.ReportsView.AuditEntityNavigationRequestEventArgs e)
+    {
+        switch (e.Target)
+        {
+            case AuditLogNavigationResolver.NavigationTarget.Invoice:
+                ShowInvoices();
+                InvoicesPanel.FocusInvoiceFromAudit(e.RecordId);
+                break;
+            case AuditLogNavigationResolver.NavigationTarget.InvoicePayment:
+                ShowInvoices();
+                InvoicesPanel.StartPaymentWorkspaceForInvoice(e.RecordId, preferUnpaidFilter: false);
+                break;
+            case AuditLogNavigationResolver.NavigationTarget.Subscription:
+                ShowSubscriptions();
+                SubscriptionsPanel.FocusSubscriptionFromAudit(e.RecordId);
+                break;
+        }
     }
 
     private void ShowDashboard()
