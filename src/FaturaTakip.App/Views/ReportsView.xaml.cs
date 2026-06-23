@@ -8,7 +8,9 @@ using System.Text;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Media3D;
 using FaturaTakip.App.Data.AuditLogs;
 using FaturaTakip.App.Data.Invoices;
 using FaturaTakip.App.Data.InvoiceTypes;
@@ -351,10 +353,37 @@ public partial class ReportsView : UserControl
 
     private void FocusSelectedAuditLogButton_Click(object sender, RoutedEventArgs e)
     {
+        OpenSelectedAuditEntity();
+    }
+
+    private void AuditLogGrid_PreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key != Key.Enter)
+        {
+            return;
+        }
+
+        e.Handled = true;
+        OpenSelectedAuditEntity();
+    }
+
+    private void AuditLogGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+        if (FindVisualParent<DataGridRow>(e.OriginalSource as DependencyObject) is null)
+        {
+            return;
+        }
+
+        e.Handled = true;
+        OpenSelectedAuditEntity();
+    }
+
+    private bool OpenSelectedAuditEntity()
+    {
         if (_selectedAuditLog is null)
         {
             AuditLogHintText.Text = "Acilacak secili audit kaydi yok.";
-            return;
+            return false;
         }
 
         var resolution = ResolveAuditNavigation(_selectedAuditLog);
@@ -362,7 +391,7 @@ public partial class ReportsView : UserControl
         if (resolution.Request is null)
         {
             AuditLogHintText.Text = resolution.Message;
-            return;
+            return false;
         }
 
         AuditLogHintText.Text = resolution.Message;
@@ -372,6 +401,7 @@ public partial class ReportsView : UserControl
                 resolution.Request.Target,
                 resolution.Request.RecordId,
                 resolution.Request.Label));
+        return true;
     }
 
     private void AuditLogGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -3101,6 +3131,26 @@ public partial class ReportsView : UserControl
             invoiceId => invoices.Any(item => item.Id == invoiceId),
             paymentId => payments.FirstOrDefault(item => item.Id == paymentId)?.InvoiceId,
             subscriptionId => subscriptions.Any(item => item.Id == subscriptionId));
+    }
+
+    private static T? FindVisualParent<T>(DependencyObject? source)
+        where T : DependencyObject
+    {
+        while (source is not null)
+        {
+            if (source is T match)
+            {
+                return match;
+            }
+
+            source = source switch
+            {
+                Visual or Visual3D => VisualTreeHelper.GetParent(source),
+                _ => LogicalTreeHelper.GetParent(source)
+            };
+        }
+
+        return null;
     }
 
     private long? GetSelectedInvoiceTypeId()

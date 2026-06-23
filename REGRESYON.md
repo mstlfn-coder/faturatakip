@@ -1,5 +1,21 @@
 # Regresyon Kontrol Listesi
 
+## v1.353 - Audit Navigasyonu Enter ve Cift Tik
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Enter event wiring | OK | `PreviewKeyDown` ortak navigasyon metoduna bagli |
+| Cift tik event wiring | OK | `MouseDoubleClick` ortak navigasyon metoduna bagli |
+| Bos alan/baslik korumasi | OK | Yalniz `DataGridRow` kaynagi kabul ediliyor |
+| Varsayilan davranis bastiriliyor | OK | Enter ve gecerli satir cift tik olaylari handled |
+| Klavye ipucu gorunur | OK | Grid tooltip'i Enter/cift tik bilgisini iceriyor |
+| Enter UI smoke | OK | Hedef fatura ekrani acildi ve 1 satir secildi |
+| Fiziksel cift tik UI smoke | BEKLIYOR | Codex masaustu katmani ham fareyi kendi penceresine yonlendirdi |
+| Encoding kontrolu basarili | OK | 105 dosya temiz |
+| Release build basarili | OK | 0 hata ve 0 uyari |
+| --self-test basarili | OK | Temiz gecti |
+| Kalici veri degismedi | OK | Veritabani ve tercih hash degerleri korundu |
+| 2026-06-23 | v1.353 | OK | Audit Enter/cift tik kisa yol kodu tamamlandi |
+
 ## v1.352 - Audit Navigasyonu UI Smoke
 | Kontrol | Durum | Not |
 | --- | --- | --- |

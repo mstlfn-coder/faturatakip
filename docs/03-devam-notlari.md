@@ -2,6 +2,18 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-23 / v1.353)
+
+- Aktif branch: `codex/v1.353-audit-navigation-shortcuts`
+- Son tamamlanan faz: `v1.353 - Audit Navigasyonu Enter ve Cift Tik`
+- Audit grid Enter ve satir cift tik olaylari `Ilgili kaydi ac` ortak metoduna baglandi.
+- Cift tik yalniz DataGridRow icinde kabul ediliyor; bos alan ve kolon basligi guvenli.
+- Grid tooltip'i Enter/cift tik ipucunu gosteriyor.
+- Enter gercek UI smoke testinde hedef faturayi acti ve satiri secti.
+- Codex masaustu penceresi ham fare enjeksiyonunu yakaladigi icin fiziksel cift tik smoke'u otomasyonla tamamlanamadi; kod wiring + build + self-test temiz.
+- Hizli dogrulama: 105 dosya temiz, build 0 hata/0 uyari, self-test basarili.
+- Veritabani ve tercih hash degerleri degismedi.
+
 ## Son Guncelleme (2026-06-23 / v1.352)
 
 - Aktif branch: `codex/v1.352-audit-navigation-ui-smoke`
@@ -2103,4 +2115,4 @@ Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
 ## Sonraki Mantikli Kucuk Adim
 
-- Audit navigasyonuna Enter/cift tik gibi daha hizli operator girisleri eklemeyi degerlendirmek.
+- Audit satirina cift tik akisinin dogrudan gorunur masaustu oturumunda manuel smoke testini tamamlamak.
