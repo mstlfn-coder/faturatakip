@@ -4,13 +4,14 @@ Son guncelleme tarihi: 2026-06-23
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.354-audit-list-layout`
-- Son tamamlanan temiz faz: `v1.354 - Audit Listesi Gorunurluk Duzeltmesi`
-- Bu dalin ana odagi: Audit listesi ile ayrinti panelini ayirarak secili satiri surekli gorunur tutmak
+- Aktif branch: `codex/v1.355-audit-responsive-layout`
+- Son tamamlanan temiz faz: `v1.355 - Audit Ayrinti Uyarlanabilir Yerlesim`
+- Bu dalin ana odagi: Audit ayrinti araclarini minimum pencere boyunda kaydirilabilir ve erisilebilir tutmak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.355` Audit Ayrinti Uyarlanabilir Yerlesim
 - `v1.354` Audit Listesi Gorunurluk Duzeltmesi
 - `v1.353` Audit Navigasyonu Enter ve Cift Tik
 - `v1.352` Audit Navigasyonu UI Smoke

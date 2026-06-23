@@ -2,6 +2,16 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-23 / v1.355)
+
+- Aktif branch: `codex/v1.355-audit-responsive-layout`
+- Son tamamlanan faz: `v1.355 - Audit Ayrinti Uyarlanabilir Yerlesim`
+- Audit export ve diff araclari WrapPanel ile dar pencerelerde birden fazla satira yayiliyor.
+- Ayrinti paneli minimum yuksekligi 180 piksele indirildi.
+- Ayrinti kaydiricisi `AuditLogDetailScrollViewer` otomasyon kimligiyle erisilebilir.
+- 1040x700 UI smoke testinde liste ve secim gorunur kaldi; son dugme kaydirma sonrasi pencere icine geldi.
+- Hizli dogrulama: 105 dosya temiz, build 0 hata/0 uyari, self-test basarili.
+
 ## Son Guncelleme (2026-06-23 / v1.354)
 
 - Aktif branch: `codex/v1.354-audit-list-layout`

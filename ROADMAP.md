@@ -1,5 +1,15 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-23 / v1.355)
+
+- v1.355 tamamlandi: Islem Gecmisi ayrinti araclari dar pencerelerde satir sonlarinda otomatik kayacak bicimde WrapPanel yerlesimine tasindi.
+- Ayrinti panelinin minimum yuksekligi 260 pikselden 180 piksele indirilerek minimum pencere boyunda gereksiz tasma azaltildi.
+- Ayrinti ScrollViewer'i acik bir otomasyon kimligiyle erisilebilirlik ve UI testlerine tanitildi.
+- 1040x700 minimum pencere smoke testinde audit listesi 150 piksel kaldi ve secili satir gorunur durumunu korudu.
+- Son arac dugmesi dikey kaydirma ile pencere disindaki Y=966 konumundan gorunur Y=503 konumuna tasindi.
+- Hizli dogrulama 105 dosya encoding temiz, build 0 hata/0 uyari ve self-test basarili sonuc verdi.
+- Sonraki adim degisikligi tam dogrulama ve PR akisi ile master'a tasimak olarak belirlendi.
+
 ## Son Guncelleme (2026-06-23 / v1.354)
 
 - v1.354 tamamlandi: Islem Gecmisi listesi ile ayrinti panelinin ayni grid hucresinde ust uste binmesi giderildi.
@@ -9,7 +19,7 @@
 - UI Automation smoke testinde liste yuksekligi 150 piksel, secili Abonelik satiri gorunur ve ekran icinde dogrulandi.
 - Kullanici tarafindan yapilan manuel cift tik smoke testinde secili Abonelik audit kaydi ilgili ekrani basariyla acti.
 - Hizli dogrulama 105 dosya encoding temiz, build 0 hata/0 uyari ve self-test basarili sonuc verdi.
-- Sonraki adim audit ekrani yerlesim degisikligini CI ve PR akisi ile master'a tasimak olarak belirlendi.
+- Audit ekrani yerlesim degisikligi PR #114 ile master'a tasindi.
 
 ## Son Guncelleme (2026-06-23 / v1.353)
 
