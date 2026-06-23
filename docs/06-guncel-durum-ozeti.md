@@ -1,16 +1,17 @@
 # Guncel Durum Ozeti
 
-Son guncelleme tarihi: 2026-06-22
+Son guncelleme tarihi: 2026-06-23
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.351-audit-entity-navigation`
-- Son tamamlanan temiz faz: `v1.351 - Audit Kaydindan Ilgili Varliga Gecis`
-- Bu dalin ana odagi: Islem Gecmisi kayitlarini ilgili fatura, odeme ve abonelik ekranlarina dogrudan baglamak
+- Aktif branch: `codex/v1.352-audit-navigation-ui-smoke`
+- Son tamamlanan temiz faz: `v1.352 - Audit Navigasyonu UI Smoke`
+- Bu dalin ana odagi: Audit kaydindan ilgili varliga gecisleri gercek UI ve kalici veri guvenligiyle dogrulamak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.352` Audit Navigasyonu UI Smoke
 - `v1.351` Audit Kaydindan Ilgili Varliga Gecis
 - `v1.350` Zorunlu PR Kontrolu Dogrulamasi
 - `v1.349` Windows PR Hizli Dogrulama CI
@@ -267,7 +268,7 @@ Son guncelleme tarihi: 2026-06-22
 
 ## Sonraki Mantikli Ana Adim
 
-- Fatura, odeme ve abonelik audit hedeflerini gercek UI uzerinde etkilesimli smoke testten gecirmek
+- Audit navigasyonuna Enter/cift tik gibi daha hizli operator girisleri eklemeyi degerlendirmek
 
 ## Yeni Chat Icin Kisa Talimat
 

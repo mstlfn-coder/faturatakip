@@ -1,5 +1,18 @@
 # Regresyon Kontrol Listesi
 
+## v1.352 - Audit Navigasyonu UI Smoke
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Fatura audit UI gecisi | OK | Hedef fatura Faturalar ekraninda secildi |
+| Abonelik audit UI gecisi | OK | Hedef abonelik Abonelikler ekraninda secildi |
+| Odeme audit UI gecisi | OK | Bagli fatura ve odeme alani acildi |
+| Odeme durum mesaji | OK | `Odeme alani hedef kayitla acildi` |
+| Gecici odeme yalniz UI ile olusturuldu | OK | 1,00 tutarli smoke kaydi |
+| Veritabani geri yuklendi | OK | SHA256 `DF946F2EB74B1E6921DA1D9A03E0491C43C0125E716C2DDD3A0E5FFCED67A29E` |
+| Tercih dosyasi korundu | OK | SHA256 `D15C7D0E7003F5FABBE40330284AA8FAE5C31615513E398F1A5CD210B240CE67` |
+| Gecici yedek temizlendi | OK | `fatura_takip.ui-smoke-backup.db` kalmadi |
+| 2026-06-23 | v1.352 | OK | Uc audit hedef turu etkilesimli UI smoke testinden gecti |
+
 ## v1.351 - Audit Kaydindan Ilgili Varliga Gecis
 | Kontrol | Durum | Not |
 | --- | --- | --- |
