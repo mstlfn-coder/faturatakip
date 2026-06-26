@@ -4,13 +4,14 @@ Son guncelleme tarihi: 2026-06-26
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.358-audit-value-textbox-visibility`
-- Son tamamlanan temiz faz: `v1.358 - Audit Deger Kutulari Dar Pencere Gorunurlugu`
-- Bu dalin ana odagi: Audit eski/yeni deger metin kutularini minimum pencerede tam gorunur tutmak
+- Aktif branch: `codex/v1.359-audit-diff-grid-visibility`
+- Son tamamlanan temiz faz: `v1.359 - Audit Diff Tablosu Dar Pencere Gorunurlugu`
+- Bu dalin ana odagi: Audit diff tablosunu minimum pencerede tam gorunur ve klavye erisilebilir tutmak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.359` Audit Diff Tablosu Dar Pencere Gorunurlugu
 - `v1.358` Audit Deger Kutulari Dar Pencere Gorunurlugu
 - `v1.357` Audit Araclari Klavye Odak Gorunurlugu
 - `v1.356` Audit Ayrinti Klavye Kaydirma Smoke

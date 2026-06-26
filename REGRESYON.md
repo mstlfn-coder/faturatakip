@@ -1,5 +1,21 @@
 # Regresyon Kontrol Listesi
 
+## v1.359 - Audit Diff Tablosu Dar Pencere Gorunurlugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Diff tablosu yuksekligi | OK | 168 piksel |
+| Diff tablosu alt boslugu | OK | 8 piksel |
+| Minimum pencere boyutu | OK | 1040x700 |
+| Audit listesi gorunur | OK | Yukseklik 150 piksel |
+| Secili audit satiri gorunur | OK | `IsOffscreen=False` |
+| Diff tablosu gorunur | OK | %100 gorunur |
+| Diff tablosu klavye odaklanabilir | OK | `IsKeyboardFocusable=True` |
+| Ilk diff satiri secilebilir | OK | Secili ve gorunur |
+| Encoding kontrolu basarili | OK | 105 dosya temiz |
+| Release build basarili | OK | 0 hata ve 0 uyari |
+| --self-test basarili | OK | Temiz gecti |
+| 2026-06-26 | v1.359 | OK | Audit diff tablosu dar pencere smoke tamamlandi |
+
 ## v1.358 - Audit Deger Kutulari Dar Pencere Gorunurlugu
 | Kontrol | Durum | Not |
 | --- | --- | --- |
