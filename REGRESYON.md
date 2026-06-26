@@ -1,5 +1,24 @@
 # Regresyon Kontrol Listesi
 
+## v1.356 - Audit Ayrinti Klavye Kaydirma Smoke
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Kaydirici klavye odagi aliyor | OK | `Focusable=True` |
+| Klavye navigasyonu devam ediyor | OK | `KeyboardNavigation.TabNavigation=Continue` |
+| PageDown davranisi | OK | ScrollViewer odakliyken panel kayiyor |
+| PageUp/Home/End/ok tuslari bagli | OK | Ortak PreviewKeyDown akisi |
+| Ic kontroller korunuyor | OK | Olay yalniz ScrollViewer odakliyken isleniyor |
+| Minimum pencere boyutu | OK | 1040x700 |
+| Audit listesi gorunur | OK | Yukseklik 150 piksel |
+| Secili satir gorunur | OK | `IsOffscreen=False` |
+| Son arac PageDown ile gorunur | OK | Y=966 konumundan Y=516 konumuna geldi |
+| Son arac End ile gorunur | OK | Y=503 konumunda pencere icinde |
+| Son arac klavye odaklanabilir | OK | `IsKeyboardFocusable=True` |
+| Encoding kontrolu basarili | OK | 105 dosya temiz |
+| Release build basarili | OK | 0 hata ve 0 uyari |
+| --self-test basarili | OK | Temiz gecti |
+| 2026-06-26 | v1.356 | OK | Klavye kaydirma ve arac erisimi smoke tamamlandi |
+
 ## v1.355 - Audit Ayrinti Uyarlanabilir Yerlesim
 | Kontrol | Durum | Not |
 | --- | --- | --- |

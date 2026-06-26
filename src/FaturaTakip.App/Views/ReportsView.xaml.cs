@@ -378,6 +378,40 @@ public partial class ReportsView : UserControl
         OpenSelectedAuditEntity();
     }
 
+    private void AuditLogDetailScrollViewer_PreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        if (sender is not ScrollViewer scrollViewer || e.OriginalSource != scrollViewer)
+        {
+            return;
+        }
+
+        switch (e.Key)
+        {
+            case Key.Down:
+                scrollViewer.LineDown();
+                break;
+            case Key.Up:
+                scrollViewer.LineUp();
+                break;
+            case Key.PageDown:
+                scrollViewer.PageDown();
+                break;
+            case Key.PageUp:
+                scrollViewer.PageUp();
+                break;
+            case Key.Home:
+                scrollViewer.ScrollToTop();
+                break;
+            case Key.End:
+                scrollViewer.ScrollToBottom();
+                break;
+            default:
+                return;
+        }
+
+        e.Handled = true;
+    }
+
     private bool OpenSelectedAuditEntity()
     {
         if (_selectedAuditLog is null)

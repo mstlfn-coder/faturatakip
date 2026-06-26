@@ -1,5 +1,16 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-26 / v1.356)
+
+- v1.356 tamamlandi: Islem Gecmisi ayrinti kaydiricisi klavye odagi alabilir hale getirildi.
+- Audit ayrinti ScrollViewer'i PageDown, PageUp, Home, End ve ok tuslarini dogrudan kaydirma davranisina bagliyor.
+- Ic metin kutulari ve araclar kendi klavye davranislarini korusun diye olay yalnizca ScrollViewer odakliyken isleniyor.
+- 1040x700 minimum pencere smoke testinde audit listesi 150 piksel kaldi ve secili satir gorunur durumunu korudu.
+- Uc PageDown sonrasi son arac dugmesi pencere disindaki Y=966 konumundan gorunur Y=516 konumuna geldi.
+- End tusu ayrintiyi en alta kaydirip son araci Y=503 konumunda gorunur tuttu; son arac klavye odaklanabilir dogrulandi.
+- Hizli dogrulama 105 dosya encoding temiz, build 0 hata/0 uyari ve self-test basarili sonuc verdi.
+- Sonraki adim degisikligi tam dogrulama ve PR akisi ile master'a tasimak olarak belirlendi.
+
 ## Son Guncelleme (2026-06-23 / v1.355)
 
 - v1.355 tamamlandi: Islem Gecmisi ayrinti araclari dar pencerelerde satir sonlarinda otomatik kayacak bicimde WrapPanel yerlesimine tasindi.
@@ -8,7 +19,7 @@
 - 1040x700 minimum pencere smoke testinde audit listesi 150 piksel kaldi ve secili satir gorunur durumunu korudu.
 - Son arac dugmesi dikey kaydirma ile pencere disindaki Y=966 konumundan gorunur Y=503 konumuna tasindi.
 - Hizli dogrulama 105 dosya encoding temiz, build 0 hata/0 uyari ve self-test basarili sonuc verdi.
-- Sonraki adim degisikligi tam dogrulama ve PR akisi ile master'a tasimak olarak belirlendi.
+- Audit ayrinti uyarlanabilir yerlesim degisikligi PR #115 ile master'a tasindi.
 
 ## Son Guncelleme (2026-06-23 / v1.354)
 
