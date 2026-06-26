@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-26 / v1.356)
+
+- Aktif branch: `codex/v1.356-audit-keyboard-scroll`
+- Son tamamlanan faz: `v1.356 - Audit Ayrinti Klavye Kaydirma Smoke`
+- Audit ayrinti ScrollViewer'i odak alabiliyor ve PageDown/PageUp/Home/End/ok tuslariyla kaydiriliyor.
+- Klavye olayi yalniz ScrollViewer odakliyken islendigi icin metin kutulari ve dugmelerin kendi davranisi korunuyor.
+- 1040x700 UI smoke testinde liste ve secim gorunur kaldi; uc PageDown ve End ile son arac dugmesi pencere icine geldi.
+- Hizli dogrulama: 105 dosya temiz, build 0 hata/0 uyari, self-test basarili.
+
 ## Son Guncelleme (2026-06-23 / v1.355)
 
 - Aktif branch: `codex/v1.355-audit-responsive-layout`

@@ -1,16 +1,17 @@
 # Guncel Durum Ozeti
 
-Son guncelleme tarihi: 2026-06-23
+Son guncelleme tarihi: 2026-06-26
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.355-audit-responsive-layout`
-- Son tamamlanan temiz faz: `v1.355 - Audit Ayrinti Uyarlanabilir Yerlesim`
-- Bu dalin ana odagi: Audit ayrinti araclarini minimum pencere boyunda kaydirilabilir ve erisilebilir tutmak
+- Aktif branch: `codex/v1.356-audit-keyboard-scroll`
+- Son tamamlanan temiz faz: `v1.356 - Audit Ayrinti Klavye Kaydirma Smoke`
+- Bu dalin ana odagi: Audit ayrinti panelini klavyeyle kaydirilabilir ve araclara erisilebilir tutmak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.356` Audit Ayrinti Klavye Kaydirma Smoke
 - `v1.355` Audit Ayrinti Uyarlanabilir Yerlesim
 - `v1.354` Audit Listesi Gorunurluk Duzeltmesi
 - `v1.353` Audit Navigasyonu Enter ve Cift Tik

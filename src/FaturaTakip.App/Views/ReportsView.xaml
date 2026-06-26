@@ -688,6 +688,9 @@
                         CornerRadius="6">
                     <ScrollViewer x:Name="AuditLogDetailScrollViewer"
                                   AutomationProperties.AutomationId="AuditLogDetailScrollViewer"
+                                  Focusable="True"
+                                  KeyboardNavigation.TabNavigation="Continue"
+                                  PreviewKeyDown="AuditLogDetailScrollViewer_PreviewKeyDown"
                                   VerticalScrollBarVisibility="Auto"
                                   HorizontalScrollBarVisibility="Disabled">
                     <StackPanel>
