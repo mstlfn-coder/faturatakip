@@ -691,6 +691,7 @@
                                   Focusable="True"
                                   KeyboardNavigation.TabNavigation="Continue"
                                   PreviewKeyDown="AuditLogDetailScrollViewer_PreviewKeyDown"
+                                  PreviewGotKeyboardFocus="AuditLogDetailScrollViewer_PreviewGotKeyboardFocus"
                                   VerticalScrollBarVisibility="Auto"
                                   HorizontalScrollBarVisibility="Disabled">
                     <StackPanel>
