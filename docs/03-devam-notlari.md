@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-26 / v1.358)
+
+- Aktif branch: `codex/v1.358-audit-value-textbox-visibility`
+- Son tamamlanan faz: `v1.358 - Audit Deger Kutulari Dar Pencere Gorunurlugu`
+- Audit eski/yeni deger metin kutulari 160 pikselden 128 piksele indirildi.
+- 1040x700 UI smoke testinde iki metin kutusu da %100 gorunur ve klavye odaklanabilir dogrulandi.
+- Metin kutularinin ic dikey kaydiricilari korunuyor.
+- Hizli dogrulama: 105 dosya temiz, build 0 hata/0 uyari, self-test basarili.
+
 ## Son Guncelleme (2026-06-26 / v1.357)
 
 - Aktif branch: `codex/v1.357-audit-focus-visibility`

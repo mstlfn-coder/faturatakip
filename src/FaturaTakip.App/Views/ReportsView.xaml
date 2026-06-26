@@ -725,7 +725,7 @@
                                             Click="CopyOldAuditLogButton_Click" />
                                 </DockPanel>
                                 <TextBox x:Name="AuditLogOldValueTextBox"
-                                         Height="160"
+                                         Height="128"
                                          AcceptsReturn="True"
                                          TextWrapping="Wrap"
                                          VerticalScrollBarVisibility="Auto"
@@ -746,7 +746,7 @@
                                             Click="CopyNewAuditLogButton_Click" />
                                 </DockPanel>
                                 <TextBox x:Name="AuditLogNewValueTextBox"
-                                         Height="160"
+                                         Height="128"
                                          AcceptsReturn="True"
                                          TextWrapping="Wrap"
                                          VerticalScrollBarVisibility="Auto"

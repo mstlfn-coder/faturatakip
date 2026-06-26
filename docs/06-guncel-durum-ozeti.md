@@ -4,13 +4,14 @@ Son guncelleme tarihi: 2026-06-26
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.357-audit-focus-visibility`
-- Son tamamlanan temiz faz: `v1.357 - Audit Araclari Klavye Odak Gorunurlugu`
-- Bu dalin ana odagi: Audit ayrinti araclarini Tab sirasinda gorunur alanda tutmak
+- Aktif branch: `codex/v1.358-audit-value-textbox-visibility`
+- Son tamamlanan temiz faz: `v1.358 - Audit Deger Kutulari Dar Pencere Gorunurlugu`
+- Bu dalin ana odagi: Audit eski/yeni deger metin kutularini minimum pencerede tam gorunur tutmak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.358` Audit Deger Kutulari Dar Pencere Gorunurlugu
 - `v1.357` Audit Araclari Klavye Odak Gorunurlugu
 - `v1.356` Audit Ayrinti Klavye Kaydirma Smoke
 - `v1.355` Audit Ayrinti Uyarlanabilir Yerlesim
