@@ -2,6 +2,14 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-26 / v1.359)
+
+- Aktif branch: `codex/v1.359-audit-diff-grid-visibility`
+- Son tamamlanan faz: `v1.359 - Audit Diff Tablosu Dar Pencere Gorunurlugu`
+- Audit diff tablosu 168 piksel yukseklik ve 8 piksel alt boslukla minimum pencerede tam gorunur hale getirildi.
+- 1040x700 UI smoke testinde diff tablosu %100 gorunur, klavye odaklanabilir ve ilk satiri secilebilir/gorunur dogrulandi.
+- Hizli dogrulama: 105 dosya temiz, build 0 hata/0 uyari, self-test basarili.
+
 ## Son Guncelleme (2026-06-26 / v1.358)
 
 - Aktif branch: `codex/v1.358-audit-value-textbox-visibility`

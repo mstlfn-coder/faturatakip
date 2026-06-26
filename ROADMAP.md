@@ -1,5 +1,14 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-26 / v1.359)
+
+- v1.359 tamamlandi: Islem Gecmisi diff tablosu dar pencerede tam gorunur olacak sekilde duzenlendi.
+- Diff tablosu 168 piksel yukseklikte tutuldu ve en alta kaydirildiginda pencereye sifir dayanmamasi icin 8 piksel alt bosluk eklendi.
+- 1040x700 minimum pencere smoke testinde audit listesi 150 piksel kaldi ve secili satir gorunur durumunu korudu.
+- Diff tablosu minimum pencerede %100 gorunur, klavye odaklanabilir ve ilk diff satiri secilebilir/gorunur dogrulandi.
+- Hizli dogrulama 105 dosya encoding temiz, build 0 hata/0 uyari ve self-test basarili sonuc verdi.
+- Sonraki adim degisikligi tam dogrulama ve PR akisi ile master'a tasimak olarak belirlendi.
+
 ## Son Guncelleme (2026-06-26 / v1.358)
 
 - v1.358 tamamlandi: Islem Gecmisi eski/yeni deger metin kutulari dar pencerede tam gorunur olacak sekilde 128 piksel yukseklige indirildi.
@@ -7,7 +16,7 @@
 - 1040x700 minimum pencere smoke testinde audit listesi 150 piksel kaldi ve secili satir gorunur durumunu korudu.
 - Eski deger kutusu ve yeni deger kutusu minimum pencerede %100 gorunur ve klavye odaklanabilir dogrulandi.
 - Hizli dogrulama 105 dosya encoding temiz, build 0 hata/0 uyari ve self-test basarili sonuc verdi.
-- Sonraki adim degisikligi tam dogrulama ve PR akisi ile master'a tasimak olarak belirlendi.
+- Audit deger kutulari dar pencere gorunurlugu degisikligi PR #118 ile master'a tasindi.
 
 ## Son Guncelleme (2026-06-26 / v1.357)
 

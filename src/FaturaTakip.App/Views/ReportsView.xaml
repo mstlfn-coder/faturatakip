@@ -917,7 +917,8 @@
                                   BorderThickness="1"
                                   HeadersVisibility="Column"
                                   GridLinesVisibility="Horizontal"
-                                  Height="180">
+                                  Height="168"
+                                  Margin="0,0,0,8">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Alan"
                                                     Binding="{Binding FieldName}"
