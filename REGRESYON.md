@@ -1,5 +1,21 @@
 # Regresyon Kontrol Listesi
 
+## v1.358 - Audit Deger Kutulari Dar Pencere Gorunurlugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Eski deger kutusu yuksekligi | OK | 160 px -> 128 px |
+| Yeni deger kutusu yuksekligi | OK | 160 px -> 128 px |
+| Ic dikey kaydirma korundu | OK | `VerticalScrollBarVisibility=Auto` |
+| Minimum pencere boyutu | OK | 1040x700 |
+| Audit listesi gorunur | OK | Yukseklik 150 piksel |
+| Secili satir gorunur | OK | `IsOffscreen=False` |
+| Eski deger kutusu gorunur | OK | %100 gorunur, klavye odaklanabilir |
+| Yeni deger kutusu gorunur | OK | %100 gorunur, klavye odaklanabilir |
+| Encoding kontrolu basarili | OK | 105 dosya temiz |
+| Release build basarili | OK | 0 hata ve 0 uyari |
+| --self-test basarili | OK | Temiz gecti |
+| 2026-06-26 | v1.358 | OK | Audit deger kutulari dar pencere smoke tamamlandi |
+
 ## v1.357 - Audit Araclari Klavye Odak Gorunurlugu
 | Kontrol | Durum | Not |
 | --- | --- | --- |

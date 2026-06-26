@@ -1,5 +1,14 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-26 / v1.358)
+
+- v1.358 tamamlandi: Islem Gecmisi eski/yeni deger metin kutulari dar pencerede tam gorunur olacak sekilde 128 piksel yukseklige indirildi.
+- Metin kutularinin kendi dikey kaydiricilari korunarak uzun JSON/metin icerigi okumasi devam ediyor.
+- 1040x700 minimum pencere smoke testinde audit listesi 150 piksel kaldi ve secili satir gorunur durumunu korudu.
+- Eski deger kutusu ve yeni deger kutusu minimum pencerede %100 gorunur ve klavye odaklanabilir dogrulandi.
+- Hizli dogrulama 105 dosya encoding temiz, build 0 hata/0 uyari ve self-test basarili sonuc verdi.
+- Sonraki adim degisikligi tam dogrulama ve PR akisi ile master'a tasimak olarak belirlendi.
+
 ## Son Guncelleme (2026-06-26 / v1.357)
 
 - v1.357 tamamlandi: Islem Gecmisi ayrinti panelindeki klavye odagi alan kontroller otomatik gorunur alana getiriliyor.
@@ -8,7 +17,7 @@
 - Tab sirasinda kopyalama/disa aktarma araclarinin tamami pencere icinde kaldi; son `JSON disa aktar` araci Y=687 konumunda gorunur dogrulandi.
 - Buyuk eski/yeni metin kutulari 160 piksel yukseklikleri nedeniyle kismen tasabilir; arac gorunurlugu hedefi temiz gecti.
 - Hizli dogrulama 105 dosya encoding temiz, build 0 hata/0 uyari ve self-test basarili sonuc verdi.
-- Sonraki adim degisikligi tam dogrulama ve PR akisi ile master'a tasimak olarak belirlendi.
+- Audit araclari klavye odak gorunurlugu degisikligi PR #117 ile master'a tasindi.
 
 ## Son Guncelleme (2026-06-26 / v1.356)
 
