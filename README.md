@@ -4,8 +4,8 @@ Kurum aboneliklerine ait fatura, PDF evrak, odeme kaydi ve raporlama sureclerini
 
 ## Son Durum
 
-- Aktif branch: `codex/v1.356-audit-keyboard-scroll`
-- Son tamamlanan faz: `v1.356 - Audit Ayrinti Klavye Kaydirma Smoke`
+- Aktif branch: `codex/v1.357-audit-focus-visibility`
+- Son tamamlanan faz: `v1.357 - Audit Araclari Klavye Odak Gorunurlugu`
 - Son smoke test:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

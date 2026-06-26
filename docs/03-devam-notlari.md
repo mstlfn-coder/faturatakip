@@ -2,6 +2,15 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-26 / v1.357)
+
+- Aktif branch: `codex/v1.357-audit-focus-visibility`
+- Son tamamlanan faz: `v1.357 - Audit Araclari Klavye Odak Gorunurlugu`
+- Audit ayrinti panelinde klavye odagi alan ic kontroller `BringIntoView` ile gorunur alana kaydiriliyor.
+- Minimum 1040x700 UI smoke testinde liste ve secim gorunur kaldi; kopyalama/disa aktarma araclarinin tamami Tab sirasinda pencere icinde kaldı.
+- Son `JSON disa aktar` araci Y=687 konumunda gorunur dogrulandi.
+- Hizli dogrulama: 105 dosya temiz, build 0 hata/0 uyari, self-test basarili.
+
 ## Son Guncelleme (2026-06-26 / v1.356)
 
 - Aktif branch: `codex/v1.356-audit-keyboard-scroll`

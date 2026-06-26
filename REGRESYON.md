@@ -1,5 +1,21 @@
 # Regresyon Kontrol Listesi
 
+## v1.357 - Audit Araclari Klavye Odak Gorunurlugu
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Odaklanan kontrol gorunur alana getiriliyor | OK | `PreviewGotKeyboardFocus` + `BringIntoView` |
+| Gorunurluk tamponu | OK | 12 piksel |
+| Minimum pencere boyutu | OK | 1040x700 |
+| Audit listesi gorunur | OK | Yukseklik 150 piksel |
+| Secili satir gorunur | OK | `IsOffscreen=False` |
+| Kopyalama/disa aktarma araclari Tab ile gorunur | OK | 16/16 arac pencere icinde |
+| Son arac gorunur | OK | `JSON disa aktar` Y=687 konumunda |
+| Buyuk metin kutulari notu | OK | 160 px yukseklik nedeniyle kismen tasma kabul edilebilir |
+| Encoding kontrolu basarili | OK | 105 dosya temiz |
+| Release build basarili | OK | 0 hata ve 0 uyari |
+| --self-test basarili | OK | Temiz gecti |
+| 2026-06-26 | v1.357 | OK | Audit araclari klavye odak gorunurlugu smoke tamamlandi |
+
 ## v1.356 - Audit Ayrinti Klavye Kaydirma Smoke
 | Kontrol | Durum | Not |
 | --- | --- | --- |

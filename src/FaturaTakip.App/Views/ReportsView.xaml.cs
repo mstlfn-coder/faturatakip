@@ -412,6 +412,28 @@ public partial class ReportsView : UserControl
         e.Handled = true;
     }
 
+    private void AuditLogDetailScrollViewer_PreviewGotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+    {
+        if (sender is not ScrollViewer scrollViewer ||
+            e.NewFocus is not FrameworkElement focusedElement ||
+            ReferenceEquals(focusedElement, scrollViewer))
+        {
+            return;
+        }
+
+        focusedElement.Dispatcher.BeginInvoke(new Action(() =>
+        {
+            const double focusPadding = 12;
+            var visibleRect = new Rect(
+                -focusPadding,
+                -focusPadding,
+                Math.Max(0, focusedElement.ActualWidth + focusPadding * 2),
+                Math.Max(0, focusedElement.ActualHeight + focusPadding * 2));
+
+            focusedElement.BringIntoView(visibleRect);
+        }));
+    }
+
     private bool OpenSelectedAuditEntity()
     {
         if (_selectedAuditLog is null)
