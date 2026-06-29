@@ -4,13 +4,14 @@ Son guncelleme tarihi: 2026-06-29
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.360-audit-narrow-window-e2e-smoke`
-- Son tamamlanan temiz faz: `v1.360 - Audit Dar Pencere Uctan Uca Smoke`
-- Bu dalin ana odagi: Audit dar pencere iyilestirmelerini tek uctan uca regresyon turunda kapatmak
+- Aktif branch: `codex/v1.361-audit-accessibility-names`
+- Son tamamlanan temiz faz: `v1.361 - Audit Ekran Okuyucu Adlari`
+- Bu dalin ana odagi: Audit temel kontrollerini ekran okuyucuda acik ve ayirt edilebilir hale getirmek
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.361` Audit Ekran Okuyucu Adlari
 - `v1.360` Audit Dar Pencere Uctan Uca Smoke
 - `v1.359` Audit Diff Tablosu Dar Pencere Gorunurlugu
 - `v1.358` Audit Deger Kutulari Dar Pencere Gorunurlugu

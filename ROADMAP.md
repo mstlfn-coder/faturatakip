@@ -1,5 +1,13 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-29 / v1.361)
+
+- v1.361 tamamlandi: Islem Gecmisi listesi ve ayrinti kontrollerine acik ekran okuyucu adlari ve yardim metinleri eklendi.
+- Ayni gorunen eski/yeni `Kopyala` dugmeleri ekran okuyucuda benzersiz adlarla ayirt edilebilir hale getirildi.
+- Eski/yeni deger kutulari, ayrinti kaydiricisi, degisen alan filtresi, son disa aktarim secimi, dosya turu filtresi ve diff tablosu aciklandi.
+- Derlenen XAML uzerinde 10 kontrol icin 10 benzersiz ad ve 10 yardim metni dogrulandi.
+- Sonraki adim, audit arac dugmelerinin ekran okuyucu yardim metinlerini tamamlama olarak belirlendi.
+
 ## Son Guncelleme (2026-06-29 / v1.360)
 
 - v1.360 tamamlandi: Islem Gecmisi ayrinti ekraninin 1040x700 dar pencere iyilestirmeleri tek uctan uca smoke turunda kapatildi.
