@@ -1,5 +1,22 @@
 # Regresyon Kontrol Listesi
 
+## v1.361 - Audit Ekran Okuyucu Adlari
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Audit listesi | OK | Acik ad ve Enter/cift tik yardimi |
+| Ayrinti kaydiricisi | OK | Acik ad ve klavye gezinme yardimi |
+| Eski/yeni Kopyala dugmeleri | OK | Birbirinden farkli erisilebilir adlar |
+| Eski/yeni deger kutulari | OK | Salt okunur icerigi aciklayan ad ve yardim |
+| Diff filtresi | OK | Filtre etkisi aciklandi |
+| Disa aktarim secimleri | OK | Liste ve dosya turu filtresi ayirt edildi |
+| Diff tablosu | OK | Sutun icerigi ve amaci aciklandi |
+| Erisilebilirlik ozelligi sayisi | OK | 10 ad, 10 yardim metni |
+| Encoding kontrolu basarili | OK | 105 dosya temiz |
+| Release build basarili | OK | 0 hata ve 0 uyari |
+| --self-test basarili | OK | Temiz gecti |
+| UI Automation agac okuma | NOT | Ortam istemcisi WPF agacinda askida kaldi; basarili sayilmadi |
+| 2026-06-29 | v1.361 | OK | Audit temel ekran okuyucu adlari tamamlandi |
+
 ## v1.360 - Audit Dar Pencere Uctan Uca Smoke
 | Kontrol | Durum | Not |
 | --- | --- | --- |

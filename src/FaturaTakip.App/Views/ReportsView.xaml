@@ -638,6 +638,8 @@
                 </DataGrid>
 
                 <DataGrid x:Name="AuditLogGrid"
+                          AutomationProperties.Name="Islem gecmisi kayitlari"
+                          AutomationProperties.HelpText="Bir kayit secin. Ilgili ekrani acmak icin Enter tusuna basin veya kayda cift tiklayin."
                           Grid.Row="0"
                           Visibility="Collapsed"
                           Height="150"
@@ -688,6 +690,8 @@
                         CornerRadius="6">
                     <ScrollViewer x:Name="AuditLogDetailScrollViewer"
                                   AutomationProperties.AutomationId="AuditLogDetailScrollViewer"
+                                  AutomationProperties.Name="Islem gecmisi kayit ayrintisi"
+                                  AutomationProperties.HelpText="Ayrinti alaninda gezinmek icin Tab, ok, Page Up, Page Down, Home ve End tuslarini kullanin."
                                   Focusable="True"
                                   KeyboardNavigation.TabNavigation="Continue"
                                   PreviewKeyDown="AuditLogDetailScrollViewer_PreviewKeyDown"
@@ -718,6 +722,8 @@
                                                VerticalAlignment="Center"
                                                DockPanel.Dock="Left" />
                                     <Button x:Name="CopyOldAuditLogButton"
+                                            AutomationProperties.Name="Eski degeri kopyala"
+                                            AutomationProperties.HelpText="Secili islem kaydinin eski degerini panoya kopyalar."
                                             Content="Kopyala"
                                             MinWidth="78"
                                             Padding="10,4"
@@ -725,6 +731,8 @@
                                             Click="CopyOldAuditLogButton_Click" />
                                 </DockPanel>
                                 <TextBox x:Name="AuditLogOldValueTextBox"
+                                         AutomationProperties.Name="Eski deger"
+                                         AutomationProperties.HelpText="Secili islem kaydinin degisiklikten onceki salt okunur degeri."
                                          Height="128"
                                          AcceptsReturn="True"
                                          TextWrapping="Wrap"
@@ -739,6 +747,8 @@
                                                VerticalAlignment="Center"
                                                DockPanel.Dock="Left" />
                                     <Button x:Name="CopyNewAuditLogButton"
+                                            AutomationProperties.Name="Yeni degeri kopyala"
+                                            AutomationProperties.HelpText="Secili islem kaydinin yeni degerini panoya kopyalar."
                                             Content="Kopyala"
                                             MinWidth="78"
                                             Padding="10,4"
@@ -746,6 +756,8 @@
                                             Click="CopyNewAuditLogButton_Click" />
                                 </DockPanel>
                                 <TextBox x:Name="AuditLogNewValueTextBox"
+                                         AutomationProperties.Name="Yeni deger"
+                                         AutomationProperties.HelpText="Secili islem kaydinin degisiklikten sonraki salt okunur degeri."
                                          Height="128"
                                          AcceptsReturn="True"
                                          TextWrapping="Wrap"
@@ -759,6 +771,8 @@
                                    Margin="0,12,0,6" />
                         <WrapPanel Margin="0,0,0,8">
                             <CheckBox x:Name="AuditLogDiffChangedOnlyCheckBox"
+                                      AutomationProperties.Name="Sadece degisen alanlari goster"
+                                      AutomationProperties.HelpText="Alan bazli fark tablosunu yalnizca degisen alanlarla sinirlar."
                                       Content="Sadece degisen alanlari goster"
                                       VerticalAlignment="Center"
                                       Margin="0,0,16,8"
@@ -771,6 +785,8 @@
                                     Margin="0,0,8,8"
                                     Click="OpenAuditLogExportsButton_Click" />
                             <ComboBox x:Name="AuditLogRecentExportsInput"
+                                      AutomationProperties.Name="Son audit disa aktarimlari"
+                                      AutomationProperties.HelpText="Daha once olusturulan audit disa aktarim dosyalarindan birini secer."
                                       Width="220"
                                       Height="32"
                                       VerticalContentAlignment="Center"
@@ -825,6 +841,8 @@
                                     </ComboBox.ItemTemplate>
                             </ComboBox>
                             <ComboBox x:Name="AuditLogExportTypeFilterInput"
+                                      AutomationProperties.Name="Audit disa aktarim dosya turu filtresi"
+                                      AutomationProperties.HelpText="Son disa aktarim listesini tum, JSON veya TXT dosyalariyla sinirlar."
                                       Width="84"
                                       Height="32"
                                       VerticalContentAlignment="Center"
@@ -909,6 +927,8 @@
                                     Click="CopyAuditLogDiffButton_Click" />
                         </WrapPanel>
                         <DataGrid x:Name="AuditLogDiffGrid"
+                                  AutomationProperties.Name="Alan bazli farklar"
+                                  AutomationProperties.HelpText="Secili islem kaydinda alanlarin eski ve yeni degerlerini ve degisiklik durumunu listeler."
                                   AutoGenerateColumns="False"
                                   CanUserAddRows="False"
                                   IsReadOnly="True"

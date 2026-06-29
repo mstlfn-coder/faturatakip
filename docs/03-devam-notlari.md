@@ -2,6 +2,16 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-29 / v1.361)
+
+- Aktif branch: `codex/v1.361-audit-accessibility-names`
+- Son tamamlanan faz: `v1.361 - Audit Ekran Okuyucu Adlari`
+- Audit listesi, ayrinti kaydiricisi, eski/yeni kopyalama ve deger kontrolleri, filtre secimleri ile diff tablosuna acik ad/yardim metni eklendi.
+- Derlenen XAML uzerinde 10 benzersiz ad ve 10 yardim metni mevcut.
+- UI Automation agac okuma denemesi ortam istemcisinde askida kaldigi icin basarili smoke olarak kaydedilmedi.
+- Hizli dogrulama: 105 dosya temiz, build 0 hata/0 uyari, self-test basarili.
+- Sonraki adim: Audit arac dugmelerinin ekran okuyucu yardim metinlerini tamamlamak.
+
 ## Son Guncelleme (2026-06-29 / v1.360)
 
 - Aktif branch: `codex/v1.360-audit-narrow-window-e2e-smoke`
