@@ -1,5 +1,13 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-29 / v1.362)
+
+- v1.362 tamamlandi: Islem Gecmisi disa aktarim ve diff araclarindaki 13 dugmeye ekran okuyucu yardim metni eklendi.
+- Dosya acma, yol kopyalama, klasorde gosterme, TXT/JSON disa aktarma ve diff kopyalama eylemleri aciklandi.
+- Listeyi temizleme ile dosya silme arasindaki fark ve eski dosyalari temizleme isleminin saklama siniri etkisi belirginlestirildi.
+- Ilk dogrulamadaki eski UI smoke sureci kilidi dogrudan sonlandirildi; tekrar edilen hizli dogrulama temiz gecti.
+- Sonraki adim, audit ekranindaki dinamik durum bildirimlerini ekran okuyucu canli bolgesi olarak sunmak uzere inceleme yapmak olarak belirlendi.
+
 ## Son Guncelleme (2026-06-29 / v1.361)
 
 - v1.361 tamamlandi: Islem Gecmisi listesi ve ayrinti kontrollerine acik ekran okuyucu adlari ve yardim metinleri eklendi.

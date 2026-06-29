@@ -2,6 +2,16 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-29 / v1.362)
+
+- Aktif branch: `codex/v1.362-audit-tool-help-texts`
+- Son tamamlanan faz: `v1.362 - Audit Arac Yardim Metinleri`
+- Audit ayrintisindaki 13 disa aktarim/diff arac dugmesine islev ve etkiyi aciklayan ekran okuyucu yardim metni eklendi.
+- Listeyi temizleme ile diskteki dosyayi silme davranislari erisilebilirlik metninde ayirt edildi.
+- Onceki UI smoke surecinin biraktigi EXE kilidi sonlandirildiktan sonra hizli dogrulama temiz gecti.
+- Hizli dogrulama: 105 dosya temiz, build 0 hata/0 uyari, self-test basarili.
+- Sonraki adim: Audit dinamik durum bildirimleri icin ekran okuyucu canli bolgesi ihtiyacini incelemek.
+
 ## Son Guncelleme (2026-06-29 / v1.361)
 
 - Aktif branch: `codex/v1.361-audit-accessibility-names`

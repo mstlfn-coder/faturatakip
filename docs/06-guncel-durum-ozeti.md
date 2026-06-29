@@ -4,13 +4,14 @@ Son guncelleme tarihi: 2026-06-29
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.361-audit-accessibility-names`
-- Son tamamlanan temiz faz: `v1.361 - Audit Ekran Okuyucu Adlari`
-- Bu dalin ana odagi: Audit temel kontrollerini ekran okuyucuda acik ve ayirt edilebilir hale getirmek
+- Aktif branch: `codex/v1.362-audit-tool-help-texts`
+- Son tamamlanan temiz faz: `v1.362 - Audit Arac Yardim Metinleri`
+- Bu dalin ana odagi: Audit disa aktarim ve diff araclarinin etkisini ekran okuyucuda aciklamak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.362` Audit Arac Yardim Metinleri
 - `v1.361` Audit Ekran Okuyucu Adlari
 - `v1.360` Audit Dar Pencere Uctan Uca Smoke
 - `v1.359` Audit Diff Tablosu Dar Pencere Gorunurlugu
