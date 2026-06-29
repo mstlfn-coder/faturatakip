@@ -1,5 +1,13 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-29 / v1.364)
+
+- v1.364 tamamlandi: Islem Gecmisi filtre satirindaki 8 etkilesimli kontrol ekran okuyucu icin aciklandi.
+- Islem turu, varlik turu ve kullanici secimleri benzersiz erisilebilir adlara kavustu.
+- Baslangic/bitis tarih sinirlarinin dahil edici davranisi ve arama alaninin kapsami yardim metinlerinde belirtildi.
+- Filtreleri sifirlama ve secili audit kaydindan ilgili varliga gitme dugmelerinin etkisi aciklandi.
+- Sonraki adim, audit ozet kutularinin dinamik degerlerini ekran okuyucuda anlamli gruplar olarak sunmak uzere incelemek olarak belirlendi.
+
 ## Son Guncelleme (2026-06-29 / v1.363)
 
 - v1.363 tamamlandi: Islem Gecmisi durum metni ekran okuyucular icin `Polite` canli bolgeye donusturuldu.

@@ -2,6 +2,16 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-29 / v1.364)
+
+- Aktif branch: `codex/v1.364-audit-filter-accessibility`
+- Son tamamlanan faz: `v1.364 - Audit Filtre Erisilebilirligi`
+- Audit filtre satirindaki 8 etkilesimli kontrole ekran okuyucu adi ve/veya yardim metni eklendi.
+- Islem, varlik, kullanici, tarih ve arama filtrelerinin kapsami aciklandi.
+- Sifirlama ve ilgili kaydi acma dugmelerinin sonucu ekran okuyucu yardim metninde belirtildi.
+- Hizli dogrulama: 105 dosya temiz, build 0 hata/0 uyari, self-test basarili.
+- Sonraki adim: Audit ozet kutularinin dinamik degerlerini ekran okuyucu icin anlamli gruplamak.
+
 ## Son Guncelleme (2026-06-29 / v1.363)
 
 - Aktif branch: `codex/v1.363-audit-live-region`
