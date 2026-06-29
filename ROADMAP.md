@@ -1,5 +1,13 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-29 / v1.360)
+
+- v1.360 tamamlandi: Islem Gecmisi ayrinti ekraninin 1040x700 dar pencere iyilestirmeleri tek uctan uca smoke turunda kapatildi.
+- Audit listesi ve secili satir, eski/yeni deger kutulari, klavye kaydirma, odaklanan araclar ve diff tablosu birlikte dogrulandi.
+- v1.354-v1.359 arasinda eklenen gorunurluk ve klavye erisimi davranislarinin birbirini bozmadan calistigi teyit edildi.
+- Kalici veri degisikligi yapilmadi; yerel filtre ve inceleme tercihleri kapsam disinda tutuldu.
+- Sonraki adim, Islem Gecmisi ekraninin erisilebilirlik adlarini ve ekran okuyucu ipuclarini gozden gecirmek olarak belirlendi.
+
 ## Son Guncelleme (2026-06-26 / v1.359)
 
 - v1.359 tamamlandi: Islem Gecmisi diff tablosu dar pencerede tam gorunur olacak sekilde duzenlendi.

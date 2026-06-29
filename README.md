@@ -4,8 +4,8 @@ Kurum aboneliklerine ait fatura, PDF evrak, odeme kaydi ve raporlama sureclerini
 
 ## Son Durum
 
-- Aktif branch: `codex/v1.359-audit-diff-grid-visibility`
-- Son tamamlanan faz: `v1.359 - Audit Diff Tablosu Dar Pencere Gorunurlugu`
+- Aktif branch: `codex/v1.360-audit-narrow-window-e2e-smoke`
+- Son tamamlanan faz: `v1.360 - Audit Dar Pencere Uctan Uca Smoke`
 - Son smoke test:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`
