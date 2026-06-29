@@ -1,5 +1,22 @@
 # Regresyon Kontrol Listesi
 
+## v1.362 - Audit Arac Yardim Metinleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Arac dugmesi kapsami | OK | 13/13 dugme |
+| Klasor ve dosya acma yardimi | OK | Hedef ve davranis acik |
+| Liste yenileme/secme yardimi | OK | Liste etkisi acik |
+| Listeyi temizleme yardimi | OK | Diskteki dosyalari silmedigi belirtildi |
+| Secili dosyayi silme yardimi | OK | Diskten silme etkisi belirtildi |
+| Eskileri temizleme yardimi | OK | Saklama siniri etkisi belirtildi |
+| Yol kopyalama/klasorde gosterme | OK | Hedef dosya acik |
+| TXT/JSON disa aktarma | OK | Bicim ve secili audit kaydi acik |
+| Diff kopyalama | OK | Tum alan bazli fark kapsami acik |
+| Encoding kontrolu basarili | OK | 105 dosya temiz |
+| Release build basarili | OK | 0 hata ve 0 uyari |
+| --self-test basarili | OK | Temiz gecti |
+| 2026-06-29 | v1.362 | OK | Audit arac yardim metinleri tamamlandi |
+
 ## v1.361 - Audit Ekran Okuyucu Adlari
 | Kontrol | Durum | Not |
 | --- | --- | --- |
