@@ -1,5 +1,13 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-29 / v1.363)
+
+- v1.363 tamamlandi: Islem Gecmisi durum metni ekran okuyucular icin `Polite` canli bolgeye donusturuldu.
+- Filtre, kopyalama, dosya acma/silme ve disa aktarma sonuc metinleri degistiginde `LiveRegionChanged` olayi uretiliyor.
+- Otomasyon dinleyicisi yokken gereksiz peer islemi yapilmiyor.
+- Deger degisikligi aboneligi gorunum yuklenirken kuruluyor, gorunum kaldirilirken temizleniyor ve yeniden yuklemede tekrar kurulabiliyor.
+- Sonraki adim, audit filtre kontrollerinin ekran okuyucu adlarini ve yardim metinlerini tamamlamak olarak belirlendi.
+
 ## Son Guncelleme (2026-06-29 / v1.362)
 
 - v1.362 tamamlandi: Islem Gecmisi disa aktarim ve diff araclarindaki 13 dugmeye ekran okuyucu yardim metni eklendi.

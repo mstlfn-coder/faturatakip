@@ -345,6 +345,8 @@
                             Margin="0,0,10,0"
                             Click="FocusSelectedAuditLogButton_Click" />
                     <TextBlock x:Name="AuditLogHintText"
+                               AutomationProperties.Name="Islem gecmisi durum bildirimi"
+                               AutomationProperties.LiveSetting="Polite"
                                Text=""
                                VerticalAlignment="Center"
                                Foreground="#64748B" />

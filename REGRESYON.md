@@ -1,5 +1,21 @@
 # Regresyon Kontrol Listesi
 
+## v1.363 - Audit Canli Durum Bildirimleri
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Durum metni erisilebilir adi | OK | Islem gecmisi durum bildirimi |
+| Canli bolge ayari | OK | `AutomationLiveSetting.Polite` |
+| Metin degisikligi olayi | OK | `AutomationEvents.LiveRegionChanged` |
+| Dinleyici kontrolu | OK | `AutomationPeer.ListenerExists` |
+| Peer yeniden kullanimi/olusturma | OK | Mevcut peer veya yeni UIElement peer |
+| Yuklenme aboneligi | OK | Tek seferlik korumali ekleme |
+| Kaldirilma temizligi | OK | Abonelik kaldiriliyor |
+| Yeniden yukleme | OK | Abonelik tekrar kurulabilir |
+| Encoding kontrolu basarili | OK | 105 dosya temiz |
+| Release build basarili | OK | 0 hata ve 0 uyari |
+| --self-test basarili | OK | Temiz gecti |
+| 2026-06-29 | v1.363 | OK | Audit canli durum bildirimleri tamamlandi |
+
 ## v1.362 - Audit Arac Yardim Metinleri
 | Kontrol | Durum | Not |
 | --- | --- | --- |

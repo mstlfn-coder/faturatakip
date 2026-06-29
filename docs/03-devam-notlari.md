@@ -2,6 +2,16 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-29 / v1.363)
+
+- Aktif branch: `codex/v1.363-audit-live-region`
+- Son tamamlanan faz: `v1.363 - Audit Canli Durum Bildirimleri`
+- Ortak `AuditLogHintText` alani `Polite` ekran okuyucu canli bolgesi olarak isaretlendi.
+- Metin degisikliklerinde, etkin otomasyon dinleyicisi varsa `LiveRegionChanged` olayi yayimlaniyor.
+- Yuklenme/kaldirilma yasam dongusu olay aboneligini sizinti ve tekrar abonelik olmadan yonetiyor.
+- Hizli dogrulama: 105 dosya temiz, build 0 hata/0 uyari, self-test basarili.
+- Sonraki adim: Audit filtre kontrollerinin ekran okuyucu ad ve yardim metinlerini tamamlamak.
+
 ## Son Guncelleme (2026-06-29 / v1.362)
 
 - Aktif branch: `codex/v1.362-audit-tool-help-texts`

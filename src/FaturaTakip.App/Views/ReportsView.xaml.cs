@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Windows;
+using System.Windows.Automation;
+using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -55,10 +57,49 @@ public partial class ReportsView : UserControl
     private bool _isRefreshingSubscriptionFilters;
     private bool _isRefreshingTypeYearlyFilters;
     private bool _isRefreshingAuditLogFilters;
+    private readonly DependencyPropertyDescriptor? _auditLogHintTextDescriptor;
+    private bool _isAuditLogLiveRegionHandlerAttached;
 
     public ReportsView()
     {
         InitializeComponent();
+        _auditLogHintTextDescriptor = DependencyPropertyDescriptor.FromProperty(TextBlock.TextProperty, typeof(TextBlock));
+        Loaded += ReportsView_Loaded;
+        Unloaded += ReportsView_Unloaded;
+    }
+
+    private void ReportsView_Loaded(object sender, RoutedEventArgs e)
+    {
+        if (_isAuditLogLiveRegionHandlerAttached || _auditLogHintTextDescriptor is null)
+        {
+            return;
+        }
+
+        _auditLogHintTextDescriptor.AddValueChanged(AuditLogHintText, AuditLogHintText_Changed);
+        _isAuditLogLiveRegionHandlerAttached = true;
+    }
+
+    private void ReportsView_Unloaded(object sender, RoutedEventArgs e)
+    {
+        if (!_isAuditLogLiveRegionHandlerAttached || _auditLogHintTextDescriptor is null)
+        {
+            return;
+        }
+
+        _auditLogHintTextDescriptor.RemoveValueChanged(AuditLogHintText, AuditLogHintText_Changed);
+        _isAuditLogLiveRegionHandlerAttached = false;
+    }
+
+    private void AuditLogHintText_Changed(object? sender, EventArgs e)
+    {
+        if (!AutomationPeer.ListenerExists(AutomationEvents.LiveRegionChanged))
+        {
+            return;
+        }
+
+        var peer = UIElementAutomationPeer.FromElement(AuditLogHintText)
+                   ?? UIElementAutomationPeer.CreatePeerForElement(AuditLogHintText);
+        peer?.RaiseAutomationEvent(AutomationEvents.LiveRegionChanged);
     }
 
     public void Initialize(string databasePath)
