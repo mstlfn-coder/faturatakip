@@ -2128,6 +2128,20 @@ public partial class ReportsView : UserControl
             AuditLogGrid.Visibility = Visibility.Collapsed;
             AuditLogDetailPanel.Visibility = Visibility.Collapsed;
         }
+
+        UpdateTileAutomationNames();
+    }
+
+    private void UpdateTileAutomationNames()
+    {
+        AutomationProperties.SetName(Tile1Border, BuildTileAutomationName(Tile1LabelText, Tile1ValueText, Tile1DetailText));
+        AutomationProperties.SetName(Tile2Border, BuildTileAutomationName(Tile2LabelText, Tile2ValueText, Tile2DetailText));
+        AutomationProperties.SetName(Tile3Border, BuildTileAutomationName(Tile3LabelText, Tile3ValueText, Tile3DetailText));
+    }
+
+    private static string BuildTileAutomationName(TextBlock label, TextBlock value, TextBlock detail)
+    {
+        return $"{label.Text}: {value.Text}. {detail.Text}";
     }
 
     private string GetInvoicePdfState(Invoice invoice)

@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="FaturaTakip.App.Views.ReportsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FaturaTakip.App.Views"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
@@ -12,6 +13,13 @@
             <Setter Property="FontSize" Value="13" />
         </Style>
         <Style x:Key="TileBorder" TargetType="Border">
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="#DDE4EC" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="18" />
+        </Style>
+        <Style x:Key="AccessibleTileBorder" TargetType="local:AccessibleSummaryBorder">
             <Setter Property="Background" Value="White" />
             <Setter Property="BorderBrush" Value="#DDE4EC" />
             <Setter Property="BorderThickness" Value="1" />
@@ -368,7 +376,9 @@
             </Border>
 
             <UniformGrid Columns="3">
-            <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
+            <local:AccessibleSummaryBorder x:Name="Tile1Border"
+                                           Style="{StaticResource AccessibleTileBorder}"
+                                           Margin="0,0,12,0">
                 <StackPanel>
                     <TextBlock x:Name="Tile1LabelText"
                                Text="Ödenmemiş"
@@ -384,8 +394,10 @@
                                Style="{StaticResource MutedText}"
                                Margin="0,6,0,0" />
                 </StackPanel>
-            </Border>
-            <Border Style="{StaticResource TileBorder}" Margin="0,0,12,0">
+            </local:AccessibleSummaryBorder>
+            <local:AccessibleSummaryBorder x:Name="Tile2Border"
+                                           Style="{StaticResource AccessibleTileBorder}"
+                                           Margin="0,0,12,0">
                 <StackPanel>
                     <TextBlock x:Name="Tile2LabelText"
                                Text="Gecikmiş"
@@ -401,8 +413,9 @@
                                Style="{StaticResource MutedText}"
                                Margin="0,6,0,0" />
                 </StackPanel>
-            </Border>
-            <Border Style="{StaticResource TileBorder}">
+            </local:AccessibleSummaryBorder>
+            <local:AccessibleSummaryBorder x:Name="Tile3Border"
+                                           Style="{StaticResource AccessibleTileBorder}">
                 <StackPanel>
                     <TextBlock x:Name="Tile3LabelText"
                                Text="Yaklaşan (7 gün)"
@@ -418,7 +431,7 @@
                                Style="{StaticResource MutedText}"
                                Margin="0,6,0,0" />
                 </StackPanel>
-            </Border>
+            </local:AccessibleSummaryBorder>
             </UniformGrid>
 
             <Border x:Name="ActionableReviewActionPanel"
