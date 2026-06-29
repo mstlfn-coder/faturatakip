@@ -4,13 +4,14 @@ Son guncelleme tarihi: 2026-06-29
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.362-audit-tool-help-texts`
-- Son tamamlanan temiz faz: `v1.362 - Audit Arac Yardim Metinleri`
-- Bu dalin ana odagi: Audit disa aktarim ve diff araclarinin etkisini ekran okuyucuda aciklamak
+- Aktif branch: `codex/v1.363-audit-live-region`
+- Son tamamlanan temiz faz: `v1.363 - Audit Canli Durum Bildirimleri`
+- Bu dalin ana odagi: Audit islem sonuc metinlerini ekran okuyucuya otomatik duyurmak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.363` Audit Canli Durum Bildirimleri
 - `v1.362` Audit Arac Yardim Metinleri
 - `v1.361` Audit Ekran Okuyucu Adlari
 - `v1.360` Audit Dar Pencere Uctan Uca Smoke
