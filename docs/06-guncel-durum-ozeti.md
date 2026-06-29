@@ -4,13 +4,14 @@ Son guncelleme tarihi: 2026-06-29
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.364-audit-filter-accessibility`
-- Son tamamlanan temiz faz: `v1.364 - Audit Filtre Erisilebilirligi`
-- Bu dalin ana odagi: Audit filtrelerini ekran okuyucuda acik ve ayirt edilebilir hale getirmek
+- Aktif branch: `codex/v1.365-report-summary-accessibility`
+- Son tamamlanan temiz faz: `v1.365 - Rapor Ozet Kutusu Erisilebilirligi`
+- Bu dalin ana odagi: Rapor ozetlerini ekran okuyucuda anlamli ve tekrarsiz gruplamak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.365` Rapor Ozet Kutusu Erisilebilirligi
 - `v1.364` Audit Filtre Erisilebilirligi
 - `v1.363` Audit Canli Durum Bildirimleri
 - `v1.362` Audit Arac Yardim Metinleri

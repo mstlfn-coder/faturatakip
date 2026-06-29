@@ -1,5 +1,13 @@
 # Roadmap
 
+## Son Guncelleme (2026-06-29 / v1.365)
+
+- v1.365 tamamlandi: Uc ortak rapor ozet kutusu ekran okuyucuda tekil `Group` ogeleri olarak sunuldu.
+- Baslik, deger ve ayrinti metni tek dinamik erisilebilir adda birlestirildi; alt metinlerin ikinci kez okunmasi engellendi.
+- Ozet adlari audit dahil her rapor sekmesi uygulandiginda guncelleniyor, boylece ortak kutularda eski sekme bilgisi kalmiyor.
+- Gorsel tasarim korunarak WPF uyumlu `AccessibleSummaryBorder` ve ozel otomasyon peer'i eklendi.
+- Sonraki adim, rapor sekme dugmelerinin secili durumunu ekran okuyucuda acik hale getirmek olarak belirlendi.
+
 ## Son Guncelleme (2026-06-29 / v1.364)
 
 - v1.364 tamamlandi: Islem Gecmisi filtre satirindaki 8 etkilesimli kontrol ekran okuyucu icin aciklandi.

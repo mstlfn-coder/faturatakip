@@ -2,6 +2,16 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-29 / v1.365)
+
+- Aktif branch: `codex/v1.365-report-summary-accessibility`
+- Son tamamlanan faz: `v1.365 - Rapor Ozet Kutusu Erisilebilirligi`
+- Uc ortak ozet kutusu WPF uyumlu `AccessibleSummaryBorder` ile tek `Group` otomasyon ogesi haline getirildi.
+- Baslik, deger ve ayrinti tek dinamik adda birlestiriliyor; ic metinler tekrar okunmuyor.
+- Dinamik adlar audit dahil her rapor sekmesi uygulandiginda yenileniyor.
+- Hizli dogrulama: 106 dosya temiz, build 0 hata/0 uyari, self-test basarili.
+- Sonraki adim: Rapor sekme dugmelerinin secili durumunu ekran okuyucuda aciklamak.
+
 ## Son Guncelleme (2026-06-29 / v1.364)
 
 - Aktif branch: `codex/v1.364-audit-filter-accessibility`

@@ -1,5 +1,21 @@
 # Regresyon Kontrol Listesi
 
+## v1.365 - Rapor Ozet Kutusu Erisilebilirligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Ozet kutusu kapsami | OK | 3/3 ortak kutu |
+| Otomasyon kontrol turu | OK | `AutomationControlType.Group` |
+| Dinamik erisilebilir ad | OK | Baslik, deger ve ayrinti birlesik |
+| Alt metin tekrari | OK | Peer cocuklari otomasyon agacina eklenmiyor |
+| Sekme degisimi | OK | Uc ad her aktif rapor uygulamasinda yenileniyor |
+| Audit ozetleri | OK | Toplam kayit, bugun ve varliklar gruplandi |
+| Diger rapor ozetleri | OK | Ortak kutu davranisi korunuyor |
+| Gorsel yerlesim | OK | Border stili esdeger ozel stile tasindi |
+| Encoding kontrolu basarili | OK | 106 dosya temiz |
+| Release build basarili | OK | 0 hata ve 0 uyari |
+| --self-test basarili | OK | Temiz gecti |
+| 2026-06-29 | v1.365 | OK | Rapor ozet kutusu erisilebilirligi tamamlandi |
+
 ## v1.364 - Audit Filtre Erisilebilirligi
 | Kontrol | Durum | Not |
 | --- | --- | --- |
