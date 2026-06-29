@@ -2,6 +2,16 @@
 
 Bu dosya, yeni Codex chatlerinde kaldigimiz yeri hizlica anlamak icin tutulur.
 
+## Son Guncelleme (2026-06-29 / v1.360)
+
+- Aktif branch: `codex/v1.360-audit-narrow-window-e2e-smoke`
+- Son tamamlanan faz: `v1.360 - Audit Dar Pencere Uctan Uca Smoke`
+- v1.354-v1.359 audit gorunurluk ve klavye erisimi kazanimlari 1040x700 senaryosunda birlikte kapatildi.
+- Liste/secim, deger kutulari, kaydirma, arac odagi ve diff tablosu ayni regresyon kapsamina alindi.
+- Yerel tercih dosyalari ve kalici veriler degistirilmedi.
+- Hizli dogrulama: 105 dosya temiz, build 0 hata/0 uyari, self-test basarili.
+- Sonraki adim: Islem Gecmisi erisilebilirlik adlari ve ekran okuyucu ipuclarini gozden gecirmek.
+
 ## Son Guncelleme (2026-06-26 / v1.359)
 
 - Aktif branch: `codex/v1.359-audit-diff-grid-visibility`

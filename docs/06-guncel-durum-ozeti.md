@@ -1,16 +1,17 @@
 # Guncel Durum Ozeti
 
-Son guncelleme tarihi: 2026-06-26
+Son guncelleme tarihi: 2026-06-29
 
 ## Hemen Okunacak Ozet
 
-- Aktif branch: `codex/v1.359-audit-diff-grid-visibility`
-- Son tamamlanan temiz faz: `v1.359 - Audit Diff Tablosu Dar Pencere Gorunurlugu`
-- Bu dalin ana odagi: Audit diff tablosunu minimum pencerede tam gorunur ve klavye erisilebilir tutmak
+- Aktif branch: `codex/v1.360-audit-narrow-window-e2e-smoke`
+- Son tamamlanan temiz faz: `v1.360 - Audit Dar Pencere Uctan Uca Smoke`
+- Bu dalin ana odagi: Audit dar pencere iyilestirmelerini tek uctan uca regresyon turunda kapatmak
 - Dogrulama rutini: her kucuk adim sonunda `dotnet build` ve `--self-test`
 
 ## Son Tamamlanan Fazlar
 
+- `v1.360` Audit Dar Pencere Uctan Uca Smoke
 - `v1.359` Audit Diff Tablosu Dar Pencere Gorunurlugu
 - `v1.358` Audit Deger Kutulari Dar Pencere Gorunurlugu
 - `v1.357` Audit Araclari Klavye Odak Gorunurlugu

@@ -1,5 +1,22 @@
 # Regresyon Kontrol Listesi
 
+## v1.360 - Audit Dar Pencere Uctan Uca Smoke
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Minimum pencere boyutu | OK | 1040x700 |
+| Audit listesi ve secili satir | OK | 150 piksel, secim gorunur |
+| Eski/yeni deger kutulari | OK | 128 piksel, tam gorunur ve odaklanabilir |
+| Klavye kaydirma | OK | PageDown, PageUp, Home, End ve ok tuslari |
+| Odaklanan araclar | OK | 12 piksel tamponla gorunur alana getiriliyor |
+| Kopyalama/disa aktarma araclari | OK | Dar pencerede satira kayiyor ve erisilebilir |
+| Diff tablosu | OK | 168 piksel, tam gorunur ve klavye odaklanabilir |
+| Ilk diff satiri | OK | Secilebilir ve gorunur |
+| Kalici veri degisikligi | OK | Yapilmadi |
+| Encoding kontrolu basarili | OK | 105 dosya temiz |
+| Release build basarili | OK | 0 hata ve 0 uyari |
+| --self-test basarili | OK | Temiz gecti |
+| 2026-06-29 | v1.360 | OK | Audit dar pencere uctan uca smoke kapatildi |
+
 ## v1.359 - Audit Diff Tablosu Dar Pencere Gorunurlugu
 | Kontrol | Durum | Not |
 | --- | --- | --- |
