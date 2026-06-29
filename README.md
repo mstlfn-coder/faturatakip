@@ -4,8 +4,8 @@ Kurum aboneliklerine ait fatura, PDF evrak, odeme kaydi ve raporlama sureclerini
 
 ## Son Durum
 
-- Aktif branch: `codex/v1.363-audit-live-region`
-- Son tamamlanan faz: `v1.363 - Audit Canli Durum Bildirimleri`
+- Aktif branch: `codex/v1.364-audit-filter-accessibility`
+- Son tamamlanan faz: `v1.364 - Audit Filtre Erisilebilirligi`
 - Son smoke test:
   - `dotnet build .\FaturaTakip.sln -c Release`
   - `dotnet run -c Release --no-build --project .\src\FaturaTakip.App\FaturaTakip.App.csproj -- --self-test`

@@ -1,5 +1,22 @@
 # Regresyon Kontrol Listesi
 
+## v1.364 - Audit Filtre Erisilebilirligi
+| Kontrol | Durum | Not |
+| --- | --- | --- |
+| Etkilesimli filtre kapsami | OK | 8/8 kontrol |
+| Islem turu filtresi | OK | Benzersiz ad ve etki aciklamasi |
+| Varlik turu filtresi | OK | Benzersiz ad ve etki aciklamasi |
+| Kullanici filtresi | OK | Benzersiz ad ve etki aciklamasi |
+| Baslangic tarihi | OK | Tarihin dahil oldugu belirtildi |
+| Bitis tarihi | OK | Tarihin dahil oldugu belirtildi |
+| Arama metni | OK | Aranan audit alanlari aciklandi |
+| Filtreleri sifirlama | OK | Varsayilana donus aciklandi |
+| Ilgili kaydi acma | OK | Fatura/abonelik hedefi aciklandi |
+| Encoding kontrolu basarili | OK | 105 dosya temiz |
+| Release build basarili | OK | 0 hata ve 0 uyari |
+| --self-test basarili | OK | Temiz gecti |
+| 2026-06-29 | v1.364 | OK | Audit filtre erisilebilirligi tamamlandi |
+
 ## v1.363 - Audit Canli Durum Bildirimleri
 | Kontrol | Durum | Not |
 | --- | --- | --- |
